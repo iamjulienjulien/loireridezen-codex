@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
+import { init } from "@plausible-analytics/tracker";
 import "./globals.css";
 
 const AMBIANCE_INITIALIZATION_SCRIPT = `
@@ -57,6 +58,21 @@ export default function RootLayout({
 }) {
     return (
         <html lang="fr" data-mode="jour" suppressHydrationWarning>
+            <head>
+                <Script id="plausible-stub" strategy="beforeInteractive">
+                    {`
+                      window.plausible = window.plausible || function() {
+                        (window.plausible.q = window.plausible.q || []).push(arguments)
+                      }
+                    `}
+                </Script>
+                <Script
+                    strategy="afterInteractive"
+                    defer
+                    data-domain="codex.loireridezen.link"
+                    src="https://plausible.io/js/script.js"
+                />
+            </head>
             <body
                 className={`${fraunces.variable} ${inter.variable} ${mono.variable} font-[family-name:var(--font-body)] antialiased`}
             >
