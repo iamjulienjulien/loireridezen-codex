@@ -1,0 +1,47 @@
+.ambiance {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.label {
+    margin-right: 6px;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 11px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    border-color: var(--border-strong);
+}
+
+.button[aria-pressed="true"] {
+    border-color: var(--gold);
+    background: var(--gold-soft);
+    color: var(--gold);
+}
+
+.emoji {
+    font-size: 12px;
+    line-height: 1;
+}

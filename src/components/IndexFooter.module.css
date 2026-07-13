@@ -1,0 +1,21 @@
+.footer {
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+.separator {
+    width: 100%;
+    height: 1px;
+    background: var(--border-subtle);
+}
+.foot {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    text-align: center;
+    line-height: 1.9;
+}

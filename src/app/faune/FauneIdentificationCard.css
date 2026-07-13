@@ -1,0 +1,38 @@
+.faune-identification {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.75rem;
+}
+
+.faune-identification-item {
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #efe9dc, #e6dfd0);
+    border: 1px solid var(--border-subtle);
+}
+
+.faune-identification-title {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.35rem;
+    color: #8a806f;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+}
+
+.faune-identification-icon {
+    font-size: 0.65rem;
+}
+
+.faune-identification-value {
+    font-size: 0.95rem;
+
+    /* font-weight: 500; */
+
+    color: #433d35;
+}

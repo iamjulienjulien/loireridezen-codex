@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Loire Ride Zen Design System
+   Palette Naturalist
+   ========================================================================== */
+
+:root {
+    /* ======================================================================
+       Nature
+       ====================================================================== */
+
+    --lrz-nature-prairie: #5c8754;
+    --lrz-nature-roseau: #707c40;
+    --lrz-nature-foret: #503827;
+    --lrz-nature-sable: #cfbe9f;
+    --lrz-nature-galet: #7c7c78;
+    --lrz-nature-eau: #4d80a7;
+    --lrz-nature-eau-claire: #3e93a7;
+    --lrz-nature-ciel: #f7f6f2;
+    --lrz-nature-soleil: #d8b548;
+    --lrz-nature-coucher: #d97a3e;
+
+    /* ======================================================================
+       Faune
+       ====================================================================== */
+
+    --lrz-faune-blanc: #f7f6f2;
+    --lrz-faune-blanc-gris: #e5e7e3;
+    --lrz-faune-argent: #bec5c8;
+
+    --lrz-faune-gris: #7c7c78;
+    --lrz-faune-gris-ardoise: #5c6772;
+    --lrz-faune-gris-brun: #76695d;
+    --lrz-faune-noir: #2b2b29;
+
+    --lrz-faune-beige: #cfbe9f;
+    --lrz-faune-creme: #f2e7cf;
+    --lrz-faune-ocre: #b88945;
+    --lrz-faune-fauve: #b37a43;
+
+    --lrz-faune-brun: #795739;
+    --lrz-faune-brun-roux: #8f573c;
+    --lrz-faune-brun-fonce: #503827;
+
+    --lrz-faune-jaune: #d8b548;
+
+    --lrz-faune-orange: #d97a3e;
+    --lrz-faune-orange-cuivre: #b96841;
+    --lrz-faune-roux: #a55a35;
+    --lrz-faune-rouge: #a44842;
+
+    --lrz-faune-vert: #5c8754;
+    --lrz-faune-vert-vif: #6aa657;
+    --lrz-faune-vert-olive: #707c40;
+    --lrz-faune-vert-metallise: #3e7f73;
+
+    --lrz-faune-bleu: #4d80a7;
+    --lrz-faune-bleu-gris: #6c8796;
+    --lrz-faune-bleu-turquoise: #3e93a7;
+    --lrz-faune-bleu-metallise: #2c708e;
+
+    /* ======================================================================
+       Patrimoine
+       ====================================================================== */
+
+    --lrz-patrimoine-pierre: #d6d0c6;
+    --lrz-patrimoine-ardoise: #5c6772;
+    --lrz-patrimoine-brique: #a44842;
+    --lrz-patrimoine-tuffeau: #f2e7cf;
+}

@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+@import "./lrz-colors.css";
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== Loire Ride Zen — jetons & ambiances ===== */
+:root {
+    --bg-main: #f5ecd9;
+    --bg-surface: #faf3e5;
+    --bg-elevated: #ffffff;
+    --bg-overlay: rgba(40, 30, 15, 0.06);
+    --text-primary: #2b2620;
+    --text-secondary: #6b605c;
+    --text-tertiary: #a0928c;
+    --border-subtle: rgba(40, 30, 15, 0.1);
+    --border-soft: rgba(40, 30, 15, 0.18);
+    --border-strong: rgba(40, 30, 15, 0.3);
+    --gold: #c8893a;
+    --gold-soft: rgba(200, 137, 58, 0.15);
+    --gold-glow: rgba(200, 137, 58, 0.12);
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+    --shadow-card:
+        0 1px 3px rgba(40, 30, 15, 0.06), 0 4px 12px rgba(40, 30, 15, 0.08);
+    --ambient-glow: radial-gradient(
+        ellipse at top right,
+        rgba(255, 220, 150, 0.3) 0%,
+        transparent 70%
+    );
+    --noise-opacity: 0.025;
+}
+[data-mode="soir"] {
+    --bg-main: #2d1f1a;
+    --bg-surface: #382821;
+    --bg-elevated: #43322a;
+    --bg-overlay: rgba(255, 200, 120, 0.05);
+    --text-primary: #f0e0c8;
+    --text-secondary: #c8a890;
+    --text-tertiary: #8a7665;
+    --border-subtle: rgba(255, 200, 120, 0.08);
+    --border-soft: rgba(255, 200, 120, 0.16);
+    --border-strong: rgba(255, 200, 120, 0.28);
+    --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+    --ambient-glow:
+        radial-gradient(
+            ellipse at top,
+            rgba(224, 130, 60, 0.22) 0%,
+            transparent 65%
+        ),
+        radial-gradient(
+            ellipse at bottom right,
+            rgba(150, 80, 120, 0.14) 0%,
+            transparent 70%
+        );
+    --noise-opacity: 0.04;
+}
+[data-mode="aube"] {
+    --bg-main: #f4e7e6;
+    --bg-surface: #fbf0ee;
+    --bg-elevated: #ffffff;
+    --bg-overlay: rgba(60, 30, 40, 0.05);
+    --text-primary: #34272a;
+    --text-secondary: #75605f;
+    --text-tertiary: #ab928f;
+    --border-subtle: rgba(60, 30, 40, 0.1);
+    --border-soft: rgba(60, 30, 40, 0.16);
+    --border-strong: rgba(60, 30, 40, 0.28);
+    --shadow-card:
+        0 1px 3px rgba(60, 30, 40, 0.06), 0 4px 12px rgba(60, 30, 40, 0.09);
+    --ambient-glow:
+        radial-gradient(
+            ellipse at top,
+            rgba(255, 180, 170, 0.35) 0%,
+            transparent 68%
+        ),
+        radial-gradient(
+            ellipse at bottom left,
+            rgba(180, 170, 220, 0.18) 0%,
+            transparent 70%
+        );
+    --noise-opacity: 0.03;
+}
+[data-mode="nuit"] {
+    --bg-main: #0e1217;
+    --bg-surface: #171c24;
+    --bg-elevated: #1e2530;
+    --bg-overlay: rgba(200, 180, 140, 0.04);
+    --text-primary: #e8e0d0;
+    --text-secondary: #a0928c;
+    --text-tertiary: #6b605c;
+    --border-subtle: rgba(255, 240, 200, 0.07);
+    --border-soft: rgba(255, 240, 200, 0.13);
+    --border-strong: rgba(255, 240, 200, 0.22);
+    --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+    --ambient-glow:
+        radial-gradient(
+            ellipse at top right,
+            rgba(80, 100, 150, 0.15) 0%,
+            transparent 70%
+        ),
+        radial-gradient(
+            circle at 82% 16%,
+            rgba(220, 200, 160, 0.06) 0%,
+            transparent 9%
+        );
+    --noise-opacity: 0.05;
+}

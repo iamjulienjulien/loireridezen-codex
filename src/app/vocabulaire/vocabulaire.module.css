@@ -1,0 +1,491 @@
+.page {
+    position: relative;
+    min-height: 100dvh;
+    background: var(--bg-main);
+    background-image: var(--ambient-glow);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition:
+        background-color 1.4s ease,
+        color 1.4s ease;
+}
+.page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: var(--noise-opacity);
+    transition: opacity 1.4s ease;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 24px 96px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+}
+
+/* ===== Entrée de dictionnaire ===== */
+.entree {
+    position: relative;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 18px 20px 16px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 1.4s ease,
+        opacity 0.4s ease;
+}
+.entree:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        var(--shadow-card),
+        0 10px 22px rgba(40, 30, 15, 0.06);
+}
+/* Patine mémorielle : plus le mot est oublié, plus l'entrée se retire */
+.entree[data-usage="rare"] {
+    opacity: 0.95;
+}
+.entree[data-usage="oublié"] {
+    opacity: 0.86;
+    border-style: dashed;
+}
+.entree[data-usage="oublié"]:hover {
+    opacity: 1;
+}
+
+.eTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.categorie {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.categorie::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--cat-dot, var(--gold));
+    opacity: 0.9;
+}
+.categorie[data-categorie="relief"] {
+    --cat-dot: #a8894a;
+}
+.categorie[data-categorie="bateau"] {
+    --cat-dot: #7a6a4a;
+}
+.categorie[data-categorie="ouvrage"] {
+    --cat-dot: #8a7256;
+}
+.categorie[data-categorie="métier"] {
+    --cat-dot: #9a7b3a;
+}
+.categorie[data-categorie="eau"] {
+    --cat-dot: #4f7d8c;
+}
+
+.usage {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+.uVivant {
+    color: var(--gold);
+    background: var(--gold-soft);
+    border-color: var(--gold);
+}
+.uRare {
+    color: var(--text-secondary);
+    border-color: var(--border-soft);
+}
+.uOubli {
+    color: var(--text-tertiary);
+    border-style: dashed;
+    border-color: var(--border-soft);
+    font-style: italic;
+}
+
+.terme {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    color: var(--text-primary);
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+    flex-wrap: wrap;
+}
+.genre {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-tertiary);
+    letter-spacing: 0;
+}
+.gloss {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin-top: 3px;
+    margin-bottom: 12px;
+}
+
+.definition {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    padding-top: 12px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.foot {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+.variantes {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 12px;
+    color: var(--text-tertiary);
+}
+.registre {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-overlay);
+    margin-left: auto;
+}
+
+.detailsBtn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--gold);
+    padding: 12px 0 0;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.caret {
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+.details {
+    margin-top: 12px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-soft);
+    display: grid;
+    gap: 10px;
+}
+.etymo {
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 8px;
+}
+.etymoMark {
+    color: var(--gold);
+    flex-shrink: 0;
+}
+.exemple {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    padding-left: 12px;
+    border-left: 2px solid var(--gold-soft);
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    color: var(--text-tertiary);
+    font-size: 15px;
+}
+@media (prefers-reduced-motion: reduce) {
+    .page *,
+    .page {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ============================================================
+   VocabulaireCard v2 — esprit dictionnaire (--cat-accent)
+   ============================================================ */
+.entreeV2 {
+    overflow: hidden;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.4s ease;
+}
+/* Filet d'accent par catégorie, façon marge de dictionnaire */
+.entreeV2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--cat-accent, var(--gold));
+    opacity: 0.85;
+}
+.entreeV2:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(
+        in srgb,
+        var(--cat-accent, var(--gold)) 50%,
+        transparent
+    );
+    box-shadow:
+        var(--shadow-card),
+        0 10px 24px
+            color-mix(in srgb, var(--cat-accent, var(--gold)) 16%, transparent);
+}
+/* Initiale enluminée du terme */
+.termeV2::first-letter {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--cat-accent, var(--gold));
+}
+
+/* ============================================================
+   VocabulaireCard v3 — fiche de dictionnaire complète (--cat-accent)
+   Base .entree ; initiale enluminée en avatar. Même style que Faune v3.
+   ============================================================ */
+.entreeV3 {
+    gap: 13px;
+    overflow: hidden;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.4s ease;
+}
+.entreeV3 .detailsBtn {
+    margin-top: 0;
+    padding: 0;
+}
+.entreeV3 .details {
+    margin-top: 0;
+}
+/* Étymologie ancrée en bas de la carte */
+.entreeV3 .anecdoteV3 {
+    margin-top: auto;
+}
+.entreeV3:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(
+        in srgb,
+        var(--cat-accent, var(--gold)) 50%,
+        transparent
+    );
+    box-shadow:
+        var(--shadow-card),
+        0 10px 24px
+            color-mix(in srgb, var(--cat-accent, var(--gold)) 16%, transparent);
+}
+.heroV3 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--cat-accent, var(--gold)) 15%, transparent),
+        color-mix(in srgb, var(--cat-accent, var(--gold)) 4%, transparent)
+    );
+    border: 1px solid
+        color-mix(in srgb, var(--cat-accent, var(--gold)) 20%, transparent);
+}
+/* Initiale enluminée du terme, en avatar */
+.heroInitialeV3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 13px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--cat-accent, var(--gold));
+    background: color-mix(
+        in srgb,
+        var(--cat-accent, var(--gold)) 13%,
+        transparent
+    );
+    border: 1px solid
+        color-mix(in srgb, var(--cat-accent, var(--gold)) 30%, transparent);
+}
+.heroTextV3 {
+    min-width: 0;
+    flex: 1;
+}
+.heroEyebrowV3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+.heroCatV3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+.heroCatV3::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--cat-accent, var(--gold));
+}
+.heroNameV3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    color: var(--text-primary);
+}
+.heroSciV3 {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+.defV3 {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+.statsV3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.statV3 {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 8px 10px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    background: var(--bg-overlay);
+}
+.statKV3 {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+.statVV3 {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+.tagsV3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.tagV3 {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    padding: 4px 10px;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    color: var(--text-secondary);
+}
+.anecdoteV3 {
+    position: relative;
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    padding: 10px 12px;
+    border-left: 2px solid var(--cat-accent, var(--gold));
+    border-radius: 0 6px 6px 0;
+    background: color-mix(
+        in srgb,
+        var(--cat-accent, var(--gold)) 7%,
+        transparent
+    );
+}
+.anecdoteMarkV3 {
+    color: var(--cat-accent, var(--gold));
+    font-size: 15px;
+    font-style: normal;
+    margin-right: 5px;
+}

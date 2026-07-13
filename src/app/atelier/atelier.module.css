@@ -1,0 +1,229 @@
+.page {
+    position: relative;
+    min-height: 100dvh;
+    background: var(--bg-main);
+    background-image: var(--ambient-glow);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+.wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 24px 96px;
+}
+
+.head {
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+}
+.title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(28px, 5vw, 40px);
+    letter-spacing: -0.015em;
+    line-height: 1;
+    color: var(--text-primary);
+}
+.lede {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: 60ch;
+    margin-top: 12px;
+}
+
+.section {
+    margin-top: 44px;
+    scroll-margin-top: 24px;
+}
+.sectionHead {
+    margin-bottom: 22px;
+}
+.sectionTitle {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+}
+.sectionDesc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    max-width: 62ch;
+}
+
+.variant {
+    margin-top: 26px;
+}
+.variantHead {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-soft);
+}
+.variantLabel {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-soft);
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    padding: 3px 10px;
+}
+.variantNote {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.03em;
+    color: var(--text-tertiary);
+}
+.switch {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 2px;
+    transition: color 0.2s ease;
+}
+.switch:hover {
+    color: var(--text-primary);
+}
+.switchTrack {
+    position: relative;
+    width: 34px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-soft);
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+.switchThumb {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: var(--text-tertiary);
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+.switch[aria-checked="true"] .switchTrack {
+    background: var(--gold-soft);
+    border-color: var(--gold);
+}
+.switch[aria-checked="true"] .switchThumb {
+    transform: translateX(16px);
+    background: var(--gold);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+}
+
+/* ============================================================
+   Sommaire flottant (scroll-spy) — fixe à droite
+   ============================================================ */
+.toc {
+    position: fixed;
+    top: 50%;
+    right: 28px;
+    transform: translateY(-50%);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    max-width: 190px;
+}
+.tocTitle {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+    padding-left: 15px;
+}
+.tocList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border-left: 1px solid var(--border-subtle);
+}
+.tocLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: -1px;
+    padding: 5px 0 5px 14px;
+    border-left: 2px solid transparent;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--text-tertiary);
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+.tocLink:hover {
+    color: var(--text-secondary);
+}
+.tocDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    background: var(--border-strong);
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+.tocActive {
+    color: var(--gold);
+    border-left-color: var(--gold);
+}
+.tocActive .tocDot {
+    background: var(--gold);
+    transform: scale(1.15);
+    box-shadow: 0 0 0 3px var(--gold-soft);
+}
+
+/* Pas assez de gouttière pour le sommaire → on le masque */
+@media (max-width: 1439px) {
+    .toc {
+        display: none;
+    }
+}

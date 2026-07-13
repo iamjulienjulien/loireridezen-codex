@@ -1,0 +1,565 @@
+.page {
+    position: relative;
+    min-height: 100dvh;
+    background: var(--bg-main);
+    background-image: var(--ambient-glow);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition:
+        background-color 1.4s ease,
+        color 1.4s ease;
+}
+.page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: var(--noise-opacity);
+    transition: opacity 1.4s ease;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 24px 96px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+}
+
+.fiche {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px 20px 18px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 1.4s ease;
+}
+.fiche:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        var(--shadow-card),
+        0 10px 22px rgba(40, 30, 15, 0.06);
+}
+.phare {
+    border-color: var(--gold);
+    box-shadow:
+        0 0 0 1px var(--gold-soft),
+        var(--shadow-card),
+        0 0 26px var(--gold-glow);
+}
+
+.fEyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.fEpoque {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.fEpoque::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--epoque-dot, var(--gold));
+    opacity: 0.9;
+}
+.fEpoque[data-epoque="Médiéval"] {
+    --epoque-dot: #8a7256;
+}
+.fEpoque[data-epoque="Renaissance"] {
+    --epoque-dot: #c58a3a;
+}
+.fEpoque[data-epoque="Classique"] {
+    --epoque-dot: #6a7d8c;
+}
+.fEpoque[data-epoque="Éclectique"] {
+    --epoque-dot: #8f6bc2;
+}
+
+.fHead {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+}
+.fEmoji {
+    font-size: 30px;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+.fEmojiImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* transform: scale(1.1); */
+    transform-origin: center;
+}
+.fName {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    color: var(--text-primary);
+}
+.fSub {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+.wave {
+    height: 8px;
+    margin: 14px 0;
+    background-repeat: repeat-x;
+    background-position: center;
+    opacity: 0.85;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='8' viewBox='0 0 28 8'%3E%3Cpath d='M0 4 Q 7 0 14 4 T 28 4' fill='none' stroke='%23c8893a' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+.fSci {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+.fMeta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 14px;
+    margin-bottom: 12px;
+}
+.k {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+    margin-bottom: 2px;
+}
+.v {
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.renommee {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+.rConfidentiel {
+    color: var(--text-tertiary);
+    border-color: var(--border-soft);
+}
+.rNotable {
+    color: var(--gold);
+    background: var(--gold-soft);
+}
+.rMajeur {
+    color: var(--gold);
+    background: var(--gold-soft);
+    border-color: var(--gold);
+}
+.rPhare {
+    color: #fdf6e8;
+    background: var(--gold);
+    box-shadow: 0 0 10px var(--gold-glow);
+}
+
+.fCons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+.consItem {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.sc {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    width: fit-content;
+}
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: currentColor;
+}
+
+.detailsBtn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--gold);
+    padding: 10px 0 0;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.caret {
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+.details {
+    margin-top: 12px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-soft);
+    display: grid;
+    gap: 9px;
+}
+.lead {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+.consNote {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    color: var(--text-tertiary);
+    font-size: 15px;
+}
+@media (max-width: 560px) {
+    .fMeta {
+        grid-template-columns: 1fr;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .page *,
+    .page {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* ============================================================
+   ChateauxCard v2 — « digne des châteaux de Loire » (--epoque-accent)
+   ============================================================ */
+.ficheV2 {
+    overflow: hidden;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+/* Corniche d'accent : lumière rasante sur la façade, teintée par époque */
+.ficheV2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--epoque-accent, var(--gold)) 85%, transparent),
+        color-mix(in srgb, var(--epoque-accent, var(--gold)) 22%, transparent)
+    );
+}
+.ficheV2:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(
+        in srgb,
+        var(--epoque-accent, var(--gold)) 55%,
+        transparent
+    );
+    box-shadow:
+        var(--shadow-card),
+        0 12px 26px
+            color-mix(
+                in srgb,
+                var(--epoque-accent, var(--gold)) 20%,
+                transparent
+            );
+}
+/* Vignette encadrée — le château comme une gravure sous cadre */
+.fVignetteV2 {
+    width: 66px;
+    height: 46px;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 27px;
+    background: color-mix(
+        in srgb,
+        var(--epoque-accent, var(--gold)) 12%,
+        transparent
+    );
+    border: 1px solid
+        color-mix(in srgb, var(--epoque-accent, var(--gold)) 30%, transparent);
+    box-shadow: inset 0 0 0 1px var(--bg-elevated);
+}
+/* Marque des châteaux phares */
+.phareMarkV2 {
+    color: var(--gold);
+}
+
+/* ============================================================
+   ChateauxCard v3 — fiche complète (--epoque-accent)
+   Image du château en vignette paysage. Même style que Faune v3.
+   ============================================================ */
+.ficheV3 {
+    gap: 13px;
+    overflow: hidden;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+.ficheV3 .detailsBtn {
+    margin-top: 0;
+    padding: 0;
+}
+.ficheV3 .details {
+    margin-top: 0;
+}
+/* Classement (MH + UNESCO) + résumé ancrés en bas */
+.ficheV3 .fCons {
+    margin-top: auto;
+}
+.ficheV3:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(
+        in srgb,
+        var(--epoque-accent, var(--gold)) 45%,
+        transparent
+    );
+    box-shadow:
+        var(--shadow-card),
+        0 12px 26px
+            color-mix(
+                in srgb,
+                var(--epoque-accent, var(--gold)) 18%,
+                transparent
+            );
+}
+.heroV3 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--epoque-accent, var(--gold)) 16%, transparent),
+        color-mix(in srgb, var(--epoque-accent, var(--gold)) 5%, transparent)
+    );
+    border: 1px solid
+        color-mix(in srgb, var(--epoque-accent, var(--gold)) 20%, transparent);
+}
+.heroEmojiV3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 28px;
+    line-height: 1;
+}
+/* Vignette paysage pour l'image du château */
+.heroVignetteV3 {
+    width: 88px;
+    height: 58px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: color-mix(
+        in srgb,
+        var(--epoque-accent, var(--gold)) 12%,
+        transparent
+    );
+    border: 1px solid
+        color-mix(in srgb, var(--epoque-accent, var(--gold)) 30%, transparent);
+    box-shadow: inset 0 0 0 1px var(--bg-elevated);
+}
+.heroBadgeV3 {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: color-mix(
+        in srgb,
+        var(--epoque-accent, var(--gold)) 20%,
+        transparent
+    );
+    border: 1px solid
+        color-mix(in srgb, var(--epoque-accent, var(--gold)) 36%, transparent);
+}
+.heroImgV3 {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.heroTextV3 {
+    min-width: 0;
+    flex: 1;
+}
+.heroEyebrowV3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 5px;
+}
+.heroEpoqueV3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+.heroEpoqueV3::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--epoque-accent, var(--gold));
+}
+.heroNameV3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    color: var(--text-primary);
+}
+.heroSciV3 {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    margin-top: 1px;
+}
+.subV3 {
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+.statsV3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.statV3 {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 8px 10px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    background: var(--bg-overlay);
+}
+.statKV3 {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+.statVV3 {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+.tagsV3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.tagV3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.02em;
+    padding: 4px 10px;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    color: var(--text-secondary);
+}
+.anecdoteV3 {
+    position: relative;
+    font-family: var(--font-edit, var(--font-display));
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    padding: 10px 12px;
+    border-left: 2px solid var(--epoque-accent, var(--gold));
+    border-radius: 0 6px 6px 0;
+    background: color-mix(
+        in srgb,
+        var(--epoque-accent, var(--gold)) 7%,
+        transparent
+    );
+}
+.anecdoteMarkV3 {
+    color: var(--epoque-accent, var(--gold));
+    font-size: 15px;
+    font-style: normal;
+    margin-right: 4px;
+}
