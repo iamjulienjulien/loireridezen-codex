@@ -49,7 +49,6 @@ next-env.d.ts
 
 # Unpublished emoji collections
 /public/emoji/chateau/
-/public/emoji/flore/
 
 # Local AI settings
 /.claude/settings.local.json
@@ -57,3 +56,5 @@ next-env.d.ts
 # Local tool caches
 /.pnpm-store/
 .eslintcache
+
+/tmp/

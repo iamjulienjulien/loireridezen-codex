@@ -148,7 +148,7 @@
         },
         {
             "emoji": "🌳",
-            "customEmoji": "/emoji/flore/erable-negundo2.png",
+            "customEmoji": "/emoji/flore/erable-negundo.png",
             "slug": "erable-negundo",
             "categorie": "arbre",
             "nomCommun": "Érable negundo",
@@ -215,7 +215,7 @@
         },
         {
             "emoji": "🌿",
-            "customEmoji": "/emoji/flore/cornouiller-sanguin2.png",
+            "customEmoji": "/emoji/flore/cornouiller-sanguin.png",
             "slug": "cornouiller-sanguin",
             "categorie": "arbuste",
             "nomCommun": "Cornouiller sanguin",
@@ -601,6 +601,7 @@
 
         {
             "emoji": "🌾",
+            "customEmoji": "/emoji/flore/roseau-commun.png",
             "slug": "roseau-commun",
             "categorie": "graminée",
             "nomCommun": "Roseau commun",
@@ -618,6 +619,7 @@
         },
         {
             "emoji": "🌾",
+            "customEmoji": "/emoji/flore/baldingere-faux-roseau.png",
             "slug": "baldingere",
             "categorie": "graminée",
             "nomCommun": "Baldingère faux-roseau",
@@ -635,6 +637,7 @@
         },
         {
             "emoji": "🌾",
+            "customEmoji": "/emoji/flore/massette-a-larges-feuilles.png",
             "slug": "massette-a-larges-feuilles",
             "categorie": "graminée",
             "nomCommun": "Massette à larges feuilles",
@@ -652,6 +655,7 @@
         },
         {
             "emoji": "🌾",
+            "customEmoji": "/emoji/flore/laiche-des-rives.png",
             "slug": "laiche-des-rives",
             "categorie": "graminée",
             "nomCommun": "Laîche des rives",
@@ -669,6 +673,7 @@
         },
         {
             "emoji": "🌾",
+            "customEmoji": "/emoji/flore/jonc-epars.png",
             "slug": "jonc-epars",
             "categorie": "graminée",
             "nomCommun": "Jonc épars",
@@ -686,6 +691,7 @@
         },
         {
             "emoji": "🌾",
+            "customEmoji": "/emoji/flore/scirpe-triquetre.png",
             "slug": "scirpe-triquetre",
             "categorie": "graminée",
             "nomCommun": "Scirpe triquètre",
@@ -707,6 +713,7 @@
         },
         {
             "emoji": "🌾",
+            "customEmoji": "/emoji/flore/herbe-de-la-pampa.png",
             "slug": "herbe-de-la-pampa",
             "categorie": "graminée",
             "nomCommun": "Herbe de la pampa",
@@ -729,6 +736,7 @@
 
         {
             "emoji": "💧",
+            "customEmoji": "/emoji/flore/nenuphar-jaune.png",
             "slug": "nenuphar-jaune",
             "categorie": "aquatique",
             "nomCommun": "Nénuphar jaune",
@@ -746,6 +754,7 @@
         },
         {
             "emoji": "💧",
+            "customEmoji": "/emoji/flore/nenuphar-blanc.png",
             "slug": "nenuphar-blanc",
             "categorie": "aquatique",
             "nomCommun": "Nénuphar blanc",
@@ -767,6 +776,7 @@
         },
         {
             "emoji": "💧",
+            "customEmoji": "/emoji/flore/renoncule-des-rivieres.png",
             "slug": "renoncule-des-rivieres",
             "categorie": "aquatique",
             "nomCommun": "Renoncule des rivières",
@@ -788,6 +798,7 @@
         },
         {
             "emoji": "💧",
+            "customEmoji": "/emoji/flore/potamot-nageant.png",
             "slug": "potamot-nageant",
             "categorie": "aquatique",
             "nomCommun": "Potamot nageant",
@@ -805,6 +816,7 @@
         },
         {
             "emoji": "💧",
+            "customEmoji": "/emoji/flore/jussie-a-grandes-fleurs.png",
             "slug": "jussie-a-grandes-fleurs",
             "categorie": "aquatique",
             "nomCommun": "Jussie à grandes fleurs",
@@ -826,6 +838,7 @@
         },
         {
             "emoji": "💧",
+            "customEmoji": "/emoji/flore/myriophylle-du-bresil.png",
             "slug": "myriophylle-du-bresil",
             "categorie": "aquatique",
             "nomCommun": "Myriophylle du Brésil",
@@ -847,6 +860,7 @@
         },
         {
             "emoji": "💧",
+            "customEmoji": "/emoji/flore/elodee-du-canada.png",
             "slug": "elodee-du-canada",
             "categorie": "aquatique",
             "nomCommun": "Élodée du Canada",
@@ -869,6 +883,7 @@
 
         {
             "emoji": "🌱",
+            "customEmoji": "/emoji/flore/fougere-aigle.png",
             "slug": "fougere-aigle",
             "categorie": "fougère",
             "nomCommun": "Fougère aigle",
@@ -886,6 +901,7 @@
         },
         {
             "emoji": "🌱",
+            "customEmoji": "/emoji/flore/scolopendre.png",
             "slug": "scolopendre",
             "categorie": "fougère",
             "nomCommun": "Scolopendre",
@@ -907,6 +923,7 @@
         },
         {
             "emoji": "🌱",
+            "customEmoji": "/emoji/flore/osmonde-royale.png",
             "slug": "osmonde-royale",
             "categorie": "fougère",
             "nomCommun": "Osmonde royale",
@@ -928,6 +945,7 @@
         },
         {
             "emoji": "🌱",
+            "customEmoji": "/emoji/flore/polypode-commun.png",
             "slug": "polypode-commun",
             "categorie": "fougère",
             "nomCommun": "Polypode commun",
@@ -946,6 +964,7 @@
 
         {
             "emoji": "🍃",
+            "customEmoji": "/emoji/flore/lierre-grimpant.png",
             "slug": "lierre-grimpant",
             "categorie": "grimpante",
             "nomCommun": "Lierre grimpant",
@@ -967,6 +986,7 @@
         },
         {
             "emoji": "🍃",
+            "customEmoji": "/emoji/flore/houblon.png",
             "slug": "houblon",
             "categorie": "grimpante",
             "nomCommun": "Houblon",
@@ -984,6 +1004,7 @@
         },
         {
             "emoji": "🍃",
+            "customEmoji": "/emoji/flore/clematite-des-haies.png",
             "slug": "clematite-des-haies",
             "categorie": "grimpante",
             "nomCommun": "Clématite des haies",
