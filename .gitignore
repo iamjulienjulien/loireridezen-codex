@@ -47,9 +47,6 @@ next-env.d.ts
 # documentation
 /documentation
 
-# Unpublished emoji collections
-/public/emoji/chateau/
-
 # Local AI settings
 /.claude/settings.local.json
 
