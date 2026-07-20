@@ -156,9 +156,17 @@ export default function ChateauxIndex({
                 )}
 
                 <IndexFooter ambiance={ambiance} onAmbiance={setAmbiance}>
-                    {entry.title} · Loire Ride Zen · Codex
-                    <br />
-                    {chateaux.length} {entry.footerNote}
+                    <span
+                        style={{
+                            display: "block",
+                            fontSize: "12px",
+                            color: "var(--text-secondary)",
+                            marginBottom: "5px",
+                        }}
+                    >
+                        {list.length} {entry.footerNote}
+                    </span>
+                    {entry.title} · Le Codex Ligérien · Loire Ride Zen
                 </IndexFooter>
             </div>
         </main>

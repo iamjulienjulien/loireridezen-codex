@@ -86,7 +86,7 @@ export const INDEXES = [
             "Le fil royal remonte le temps autant que le fleuve. Voici les demeures qui le jalonnent, de la source à l'Atlantique — de la forteresse médiévale à la folie Renaissance, du confidentiel au phare.",
         presentation_md:
             "Le fil royal remonte le temps autant que le fleuve 👑. À l'amont, la pierre sait encore la **guerre** : le donjon roman de Loches, l'éperon de Chinon où Jeanne d'Arc reconnut le roi, les dix-sept tours noires d'Angers.\n\nPuis le val désarme et **la forteresse devient plaisir** 🏰 : Chambord, rêve de pierre de François Iᵉʳ ⚜️, Chenonceau posé sur les arches du Cher, les jardins en broderie de Villandry 🌿.\n\nDu château fort presque intact à la folie Renaissance, du confidentiel au phare.",
-        footerNote: "châteaux du val · les émojis attendent leur version LRZ",
+        footerNote: "châteaux composant le patrimoine castral ligérien",
         dataFile: "chateau.json",
         env: ["development", "production"],
     },
