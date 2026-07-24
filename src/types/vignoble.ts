@@ -17,6 +17,7 @@ export type VignobleAOC = "AOC communale" | "AOC régionale" | "IGP";
 
 /** Grande région viticole de la Loire, d'amont en aval — miroir du UNESCO (in/out). */
 export type VignobleRive =
+    | "Auvergne & Forez" // haut bassin
     | "Centre-Loire" // Sancerre, Pouilly… (amont)
     | "Touraine" // Vouvray, Chinon, Bourgueil…
     | "Anjou-Saumur" // Savennières, Saumur, Coteaux du Layon…

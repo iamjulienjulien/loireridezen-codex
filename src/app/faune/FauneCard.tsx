@@ -59,7 +59,7 @@ export const FAUNE_COULEURS: Record<FauneCouleur, string> = {
     roux: "var(--lrz-faune-roux)",
 
     vert: "var(--lrz-faune-vert)",
-    "vert métallisé": "var(--lrz-faune-vert-metallise)",
+    "vert métallique": "var(--lrz-faune-vert-metallise)",
     "vert olive": "var(--lrz-faune-vert-olive)",
     "vert vif": "var(--lrz-faune-vert-vif)",
 };

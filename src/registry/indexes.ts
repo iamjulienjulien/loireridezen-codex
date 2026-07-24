@@ -6,6 +6,7 @@
  */
 
 export type Env = "development" | "production";
+export type IndexEtat = "publie" | "relecture" | "brouillon";
 
 export interface IndexEntry {
     /** Clé stable, sans slash. */
@@ -32,6 +33,8 @@ export interface IndexEntry {
     footerNote: string;
     /** Fichier de données associé, dans /data. */
     dataFile: string;
+    /** État éditorial en vue de la publication par l'API. */
+    etat: IndexEtat;
     env: Env[];
 }
 
@@ -52,6 +55,7 @@ export const INDEXES = [
             "Le fil ne traverse pas un décor : il longe le **dernier grand fleuve sauvage d'Europe** 🌊. L'eau y décide de tout — elle creuse les berges, découvre les grèves, et redessine chaque année les bancs de sable où la vie s'installe.\n\nOn y croise l'**ordinaire** comme le **trésor** : le héron figé sur la levée 🪶, la sterne qui plonge sur le sable nu, et — pour qui sait attendre — la loutre à l'aube 🦦 ou la cigogne noire en lisière 🐦‍⬛.\n\nDu plus commun au plus rare, du grand jour à la pleine nuit. 🌒",
         footerNote: "espèces composant le bestiaire ligérien",
         dataFile: "faune.json",
+        etat: "publie",
         env: ["development", "production"],
     },
     {
@@ -70,6 +74,7 @@ export const INDEXES = [
             "La Loire fait pousser autant qu'elle emporte 🌊. Sur ses grèves mouvantes s'accroche une **forêt d'eau** — saules et peupliers noirs qui plient sans rompre et refont racine à chaque crue.\n\nDu pied de la levée au sel de l'estuaire, le fil mêle l'**indigène**, le **rare** et l'**intrus** : la fritillaire pintade 🌸 dans la prairie inondée, l'**angélique des estuaires** 🌿 qu'on ne trouve nulle part ailleurs au monde, et la renouée qui, elle, gagne du terrain saison après saison.\n\nCe qui verdit le fil ne tient jamais en place : il dérive, colonise, s'efface.",
         footerNote: "espèces composant l'herbier ligérien",
         dataFile: "flore.json",
+        etat: "publie",
         env: ["development", "production"],
     },
     {
@@ -88,6 +93,7 @@ export const INDEXES = [
             "Le fil royal remonte le temps autant que le fleuve 👑. À l'amont, la pierre sait encore la **guerre** : le donjon roman de Loches, l'éperon de Chinon où Jeanne d'Arc reconnut le roi, les dix-sept tours noires d'Angers.\n\nPuis le val désarme et **la forteresse devient plaisir** 🏰 : Chambord, rêve de pierre de François Iᵉʳ ⚜️, Chenonceau posé sur les arches du Cher, les jardins en broderie de Villandry 🌿.\n\nDu château fort presque intact à la folie Renaissance, du confidentiel au phare.",
         footerNote: "châteaux composant le patrimoine castral ligérien",
         dataFile: "chateau.json",
+        etat: "publie",
         env: ["development", "production"],
     },
     {
@@ -107,6 +113,7 @@ export const INDEXES = [
         footerNote:
             "appellations du fil · les émojis attendent leur version LRZ",
         dataFile: "vignoble.json",
+        etat: "relecture",
         env: ["development"],
     },
     {
@@ -125,6 +132,7 @@ export const INDEXES = [
             "Un fleuve laisse sa mémoire dans les mots avant de la laisser dans les pierres 📖. La Loire a la sienne : ici, on ne dit pas un bras mort mais une **boire**, pas une berge de sable mais une **grève**.\n\nPuis vient le peuple de la **marine de Loire** ⚓️ — le chaland, la toue cabanée du pêcheur, le fûtreau, plus petit des ligériens — et ses métiers effacés : marinier, sablier, passeur du bac.\n\nCertains mots vivent encore, d'autres ne survivent plus que dans les livres : le **mascaret** qui remonte l'estuaire 🌊, la débâcle des glaces, l'art d'avaler — descendre au fil du courant.",
         footerNote: "mots du fil · la mémoire déposée dans les mots",
         dataFile: "mot.json",
+        etat: "relecture",
         env: ["development"],
     },
     {
@@ -144,6 +152,7 @@ export const INDEXES = [
         footerNote:
             "ouvrages du fleuve-travail · les émojis attendent leur version LRZ",
         dataFile: "patrimoine.json",
+        etat: "relecture",
         env: ["development"],
     },
 ] as const satisfies readonly IndexEntry[];

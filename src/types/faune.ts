@@ -22,6 +22,8 @@ export interface FauneIdentification {
 export interface FauneEspece {
     emoji: string;
     customEmoji?: string;
+    /** Identifiant stable d'URL, en kebab-case sans accent. */
+    slug: string;
     type: FauneType;
     nomCommun: string;
     autresNoms: string[];
@@ -71,6 +73,6 @@ export type FauneCouleur =
     | "rouge"
     | "roux"
     | "vert"
-    | "vert métallisé"
+    | "vert métallique"
     | "vert olive"
     | "vert vif";

@@ -15,8 +15,8 @@ Ce dépôt contient l’application web du Codex : une collection d’index
 | Index          | Contenu                                     | Entrées | Disponible en production |
 | -------------- | ------------------------------------------- | ------: | :----------------------: |
 | 🪶 Faune       | Oiseaux, mammifères, poissons, reptiles…    |      49 |            ✅            |
-| 🌿 Flore       | Arbres, herbacées, plantes aquatiques…      |      51 |            —             |
-| 🏰 Châteaux    | Forteresses et demeures du Val de Loire     |      28 |            —             |
+| 🌿 Flore       | Arbres, herbacées, plantes aquatiques…      |      51 |            ✅            |
+| 🏰 Châteaux    | Forteresses et demeures du Val de Loire     |      28 |            ✅            |
 | 🍷 Vignobles   | Appellations et crus du bassin ligérien     |      70 |            —             |
 | ⚓️ Vocabulaire | Mots du fleuve et de la marine de Loire     |      37 |            —             |
 | 🏛 Patrimoine   | Ponts, ports, moulins et ouvrages du fleuve |      23 |            —             |
@@ -72,7 +72,7 @@ La liste autorisée pour chaque index se trouve dans
 | Valeur        | Comportement actuel                             |
 | ------------- | ----------------------------------------------- |
 | `development` | Affiche les six index et le lien vers l’Atelier |
-| `production`  | Affiche uniquement la Faune et masque l’Atelier |
+| `production`  | Affiche la Faune, la Flore et les Châteaux      |
 
 Si aucun index ou un seul index est disponible, la navigation du header est
 automatiquement masquée.
