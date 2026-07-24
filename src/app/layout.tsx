@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
-import { init } from "@plausible-analytics/tracker";
 import "./globals.css";
 
 const AMBIANCE_INITIALIZATION_SCRIPT = `
