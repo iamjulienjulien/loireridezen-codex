@@ -207,6 +207,28 @@ Exemple :
 curl https://codex.loireridezen.bike/api/v1/indexes/faune/entries/heron-cendre
 ```
 
+Le contrat externe est publié au format **OpenAPI 3.1.2** :
+
+```text
+https://codex.loireridezen.bike/api/v1/openapi.json
+http://localhost:3000/api/v1/openapi.json
+```
+
+Ce document JSON peut être importé dans Bruno ou dans tout autre client
+compatible OpenAPI. L’URL de production est déclarée comme serveur canonique ;
+un client local peut la remplacer par `http://localhost:3000`.
+
+Les schémas Zod de `src/api/schemas/` valident les catalogues éditoriaux
+internes. Le document OpenAPI décrit séparément les DTO réellement exposés aux
+consommateurs. Toute modification du format public doit mettre à jour le
+contrat et ses tests.
+
+Pour valider le contrat :
+
+```bash
+pnpm api:lint
+```
+
 Les données textuelles et les illustrations n’ont pas la même politique de
 réutilisation. Consultez [`CONTENT_LICENSE.md`](CONTENT_LICENSE.md) pour le
 détail des licences et de l’attribution.
@@ -219,6 +241,7 @@ détail des licences et de l’attribution.
 | `pnpm build`             | Produit la version optimisée                    |
 | `pnpm start`             | Lance une version déjà compilée                 |
 | `pnpm test`              | Exécute les tests automatisés                   |
+| `pnpm api:lint`          | Valide le contrat OpenAPI public                |
 | `pnpm lint`              | Analyse le code avec ESLint                     |
 | `pnpm format`            | Formate le dépôt avec Prettier                  |
 | `pnpm format:check`      | Vérifie le formatage sans modifier les fichiers |
