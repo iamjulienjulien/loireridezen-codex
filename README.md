@@ -339,9 +339,10 @@ Le détail des périmètres et des conditions de réutilisation est disponible d
 
 ## 👋 À propos du développeur
 
-**Julien Julien**
-Développeur Full Stack & créateur de projets narratifs.
-Je conçois des applications et des outils numériques durables, où le code, la structure et le récit avancent ensemble.
+**Julien Julien**  
+_Développeur web & créateur de projets narratifs._
+
+Je conçois des applications et des outils numériques durables, où le code, la structure et le récit avancent ensemble.  
 J'aime les projets clairs, évolutifs, pensés pour le temps long plutôt que pour l'instantané.
 
 📍 Angers, France 🇫🇷  
