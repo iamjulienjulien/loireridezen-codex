@@ -52,7 +52,11 @@ Crée ensuite un fichier `.env.local` à la racine :
 
 ```dotenv
 CURRENT_ENV=development
+SITE_URL=https://codex.example.com
 ```
+
+`SITE_URL` doit être une URL HTTP ou HTTPS absolue. Elle sert à construire les
+URL publiques des illustrations dans l’API.
 
 Puis lance le serveur de développement :
 
@@ -183,6 +187,30 @@ Il sert à :
 Le lien vers l’Atelier n’est affiché sur l’accueil qu’en environnement
 `development`.
 
+## API publique
+
+La V1 de l’API publique est disponible en lecture seule sous `/api/v1`.
+Elle expose les index dont la propriété `etat` vaut `publie`, indépendamment de
+leur visibilité web définie par `env`.
+
+```text
+GET /api/v1
+GET /api/v1/indexes
+GET /api/v1/indexes/{index}
+GET /api/v1/indexes/{index}/entries
+GET /api/v1/indexes/{index}/entries/{slug}
+```
+
+Exemple :
+
+```bash
+curl https://codex.loireridezen.bike/api/v1/indexes/faune/entries/heron-cendre
+```
+
+Les données textuelles et les illustrations n’ont pas la même politique de
+réutilisation. Consultez [`CONTENT_LICENSE.md`](CONTENT_LICENSE.md) pour le
+détail des licences et de l’attribution.
+
 ## 🧰 Commandes utiles
 
 | Commande                 | Effet                                           |
@@ -190,6 +218,7 @@ Le lien vers l’Atelier n’est affiché sur l’accueil qu’en environnement
 | `pnpm dev`               | Lance le serveur de développement               |
 | `pnpm build`             | Produit la version optimisée                    |
 | `pnpm start`             | Lance une version déjà compilée                 |
+| `pnpm test`              | Exécute les tests automatisés                   |
 | `pnpm lint`              | Analyse le code avec ESLint                     |
 | `pnpm format`            | Formate le dépôt avec Prettier                  |
 | `pnpm format:check`      | Vérifie le formatage sans modifier les fichiers |
