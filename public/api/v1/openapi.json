@@ -1,0 +1,1854 @@
+{
+    "openapi": "3.1.2",
+    "jsonSchemaDialect": "https://spec.openapis.org/oas/3.1/dialect/base",
+    "info": {
+        "title": "API publique du Codex ligérien",
+        "summary": "Index éditoriaux publics de Loire Ride Zen",
+        "description": "API publique, anonyme et en lecture seule des index éditoriaux du Codex ligérien. Les contenus textuels sont proposés sous licence CC BY-NC-SA 4.0. Les illustrations et l’identité visuelle restent tous droits réservés et ne sont pas couvertes par cette licence.",
+        "version": "1.0.0",
+        "license": {
+            "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+            "identifier": "CC-BY-NC-SA-4.0"
+        },
+        "x-media-license": {
+            "name": "All rights reserved",
+            "reuseAllowed": false
+        }
+    },
+    "servers": [
+        {
+            "url": "https://codex.loireridezen.bike",
+            "description": "Production"
+        }
+    ],
+    "security": [],
+    "tags": [
+        {
+            "name": "Discovery",
+            "description": "Découverte de l’API et de ses ressources."
+        },
+        {
+            "name": "Indexes",
+            "description": "Consultation des index publiés et de leurs entrées."
+        }
+    ],
+    "paths": {
+        "/api/v1": {
+            "get": {
+                "operationId": "getApiRoot",
+                "summary": "Découvrir l’API",
+                "description": "Retourne l’identité de l’API, ses licences et ses liens de découverte.",
+                "tags": ["Discovery"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/ApiRootSuccess"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "head": {
+                "operationId": "headApiRoot",
+                "summary": "Inspecter la racine de l’API",
+                "description": "Retourne le statut et les en-têtes du GET équivalent, sans corps.",
+                "tags": ["Discovery"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/HeadSuccess"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/HeadInternalServerError"
+                    }
+                }
+            },
+            "options": {
+                "operationId": "optionsApiRoot",
+                "summary": "Découvrir les méthodes de la racine",
+                "description": "Retourne les méthodes et en-têtes CORS autorisés.",
+                "tags": ["Discovery"],
+                "responses": {
+                    "204": {
+                        "$ref": "#/components/responses/OptionsNoContent"
+                    }
+                }
+            }
+        },
+        "/api/v1/indexes": {
+            "get": {
+                "operationId": "listIndexes",
+                "summary": "Lister les index publiés",
+                "description": "Retourne tous les index dont l’état éditorial est publié.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/IndexCollectionSuccess"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "head": {
+                "operationId": "headIndexes",
+                "summary": "Inspecter la liste des index",
+                "description": "Retourne le statut et les en-têtes du GET équivalent, sans corps.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/HeadSuccess"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/HeadInternalServerError"
+                    }
+                }
+            },
+            "options": {
+                "operationId": "optionsIndexes",
+                "summary": "Découvrir les méthodes de la liste des index",
+                "description": "Retourne les méthodes et en-têtes CORS autorisés.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "204": {
+                        "$ref": "#/components/responses/OptionsNoContent"
+                    }
+                }
+            }
+        },
+        "/api/v1/indexes/{index}": {
+            "parameters": [
+                {
+                    "$ref": "#/components/parameters/IndexPath"
+                }
+            ],
+            "get": {
+                "operationId": "getIndex",
+                "summary": "Consulter un index publié",
+                "description": "Retourne les métadonnées publiques d’un index. Un index inconnu ou non publié répond 404.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/IndexDetailSuccess"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "head": {
+                "operationId": "headIndex",
+                "summary": "Inspecter un index publié",
+                "description": "Retourne le statut et les en-têtes du GET équivalent, sans corps.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/HeadSuccess"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/HeadNotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/HeadInternalServerError"
+                    }
+                }
+            },
+            "options": {
+                "operationId": "optionsIndex",
+                "summary": "Découvrir les méthodes d’un index",
+                "description": "Retourne les méthodes et en-têtes CORS autorisés.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "204": {
+                        "$ref": "#/components/responses/OptionsNoContent"
+                    }
+                }
+            }
+        },
+        "/api/v1/indexes/{index}/entries": {
+            "parameters": [
+                {
+                    "$ref": "#/components/parameters/IndexPath"
+                }
+            ],
+            "get": {
+                "operationId": "listIndexEntries",
+                "summary": "Lister les entrées d’un index",
+                "description": "Retourne la collection complète des entrées d’un index publié, dans l’ordre éditorial.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/EntryCollectionSuccess"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "head": {
+                "operationId": "headIndexEntries",
+                "summary": "Inspecter les entrées d’un index",
+                "description": "Retourne le statut et les en-têtes du GET équivalent, sans corps.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/HeadSuccess"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/HeadNotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/HeadInternalServerError"
+                    }
+                }
+            },
+            "options": {
+                "operationId": "optionsIndexEntries",
+                "summary": "Découvrir les méthodes de la collection",
+                "description": "Retourne les méthodes et en-têtes CORS autorisés.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "204": {
+                        "$ref": "#/components/responses/OptionsNoContent"
+                    }
+                }
+            }
+        },
+        "/api/v1/indexes/{index}/entries/{slug}": {
+            "parameters": [
+                {
+                    "$ref": "#/components/parameters/IndexPath"
+                },
+                {
+                    "$ref": "#/components/parameters/EntrySlugPath"
+                }
+            ],
+            "get": {
+                "operationId": "getIndexEntry",
+                "summary": "Consulter une entrée",
+                "description": "Retourne une entrée publique identifiée par son index et son slug.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/EntryDetailSuccess"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/InternalServerError"
+                    }
+                }
+            },
+            "head": {
+                "operationId": "headIndexEntry",
+                "summary": "Inspecter une entrée",
+                "description": "Retourne le statut et les en-têtes du GET équivalent, sans corps.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/HeadSuccess"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/HeadNotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/HeadInternalServerError"
+                    }
+                }
+            },
+            "options": {
+                "operationId": "optionsIndexEntry",
+                "summary": "Découvrir les méthodes d’une entrée",
+                "description": "Retourne les méthodes et en-têtes CORS autorisés.",
+                "tags": ["Indexes"],
+                "responses": {
+                    "204": {
+                        "$ref": "#/components/responses/OptionsNoContent"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "parameters": {
+            "IndexPath": {
+                "name": "index",
+                "in": "path",
+                "required": true,
+                "description": "Identifiant d’un index actuellement publié.",
+                "schema": {
+                    "$ref": "#/components/schemas/PublishedIndexSlug"
+                }
+            },
+            "EntrySlugPath": {
+                "name": "slug",
+                "in": "path",
+                "required": true,
+                "description": "Slug immuable de l’entrée.",
+                "schema": {
+                    "$ref": "#/components/schemas/EntrySlug"
+                }
+            }
+        },
+        "headers": {
+            "SuccessCacheControl": {
+                "description": "Politique de cache public. Le CDN peut consommer les directives partagées avant de transmettre cet en-tête au client.",
+                "schema": {
+                    "type": "string"
+                },
+                "example": "public, max-age=300"
+            },
+            "NoStoreCacheControl": {
+                "description": "Interdit la mise en cache de la réponse.",
+                "schema": {
+                    "type": "string",
+                    "const": "no-store"
+                },
+                "example": "no-store"
+            },
+            "AllowOrigin": {
+                "description": "Origine autorisée par CORS.",
+                "schema": {
+                    "type": "string",
+                    "const": "*"
+                },
+                "example": "*"
+            },
+            "AllowMethods": {
+                "description": "Méthodes autorisées par CORS.",
+                "schema": {
+                    "type": "string",
+                    "const": "GET, HEAD, OPTIONS"
+                },
+                "example": "GET, HEAD, OPTIONS"
+            },
+            "AllowHeaders": {
+                "description": "En-têtes de requête autorisés par CORS.",
+                "schema": {
+                    "type": "string",
+                    "const": "Content-Type"
+                },
+                "example": "Content-Type"
+            },
+            "Allow": {
+                "description": "Méthodes HTTP prises en charge par la ressource.",
+                "schema": {
+                    "type": "string",
+                    "const": "GET, HEAD, OPTIONS"
+                },
+                "example": "GET, HEAD, OPTIONS"
+            }
+        },
+        "responses": {
+            "ApiRootSuccess": {
+                "description": "Identité et liens de découverte de l’API.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/SuccessCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ApiRootResponse"
+                        }
+                    }
+                }
+            },
+            "IndexCollectionSuccess": {
+                "description": "Liste complète des index publiés.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/SuccessCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/IndexCollectionResponse"
+                        }
+                    }
+                }
+            },
+            "IndexDetailSuccess": {
+                "description": "Métadonnées publiques de l’index demandé.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/SuccessCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/IndexDetailResponse"
+                        }
+                    }
+                }
+            },
+            "EntryCollectionSuccess": {
+                "description": "Collection complète des entrées de l’index.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/SuccessCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/EntryCollectionResponse"
+                        }
+                    }
+                }
+            },
+            "EntryDetailSuccess": {
+                "description": "Entrée publique demandée.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/SuccessCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/EntryDetailResponse"
+                        }
+                    }
+                }
+            },
+            "NotFound": {
+                "description": "Aucune ressource publiée ne correspond aux identifiants demandés.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/NoStoreCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                },
+                "content": {
+                    "application/problem+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Problem"
+                        }
+                    }
+                }
+            },
+            "InternalServerError": {
+                "description": "Le serveur n’a pas pu terminer la requête.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/NoStoreCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                },
+                "content": {
+                    "application/problem+json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Problem"
+                        }
+                    }
+                }
+            },
+            "HeadSuccess": {
+                "description": "Statut et en-têtes du GET équivalent, sans corps.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/SuccessCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                }
+            },
+            "HeadNotFound": {
+                "description": "Ressource absente, sans corps.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/NoStoreCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                }
+            },
+            "HeadInternalServerError": {
+                "description": "Erreur interne générique, sans corps.",
+                "headers": {
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/NoStoreCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                }
+            },
+            "OptionsNoContent": {
+                "description": "Méthodes et en-têtes CORS autorisés.",
+                "headers": {
+                    "Allow": {
+                        "$ref": "#/components/headers/Allow"
+                    },
+                    "Cache-Control": {
+                        "$ref": "#/components/headers/NoStoreCacheControl"
+                    },
+                    "Access-Control-Allow-Origin": {
+                        "$ref": "#/components/headers/AllowOrigin"
+                    },
+                    "Access-Control-Allow-Methods": {
+                        "$ref": "#/components/headers/AllowMethods"
+                    },
+                    "Access-Control-Allow-Headers": {
+                        "$ref": "#/components/headers/AllowHeaders"
+                    }
+                }
+            }
+        },
+        "schemas": {
+            "ApiVersion": {
+                "type": "string",
+                "const": "1",
+                "description": "Version majeure du contrat de réponse."
+            },
+            "PublishedIndexSlug": {
+                "type": "string",
+                "enum": ["faune", "flore", "chateaux"],
+                "description": "Identifiant d’un index actuellement publié."
+            },
+            "EntrySlug": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+                "examples": ["heron-cendre"],
+                "description": "Identifiant kebab-case immuable de l’entrée."
+            },
+            "PublicMedia": {
+                "type": "object",
+                "required": ["emoji", "imageUrl"],
+                "properties": {
+                    "emoji": {
+                        "type": "string"
+                    },
+                    "imageUrl": {
+                        "type": ["string", "null"],
+                        "format": "uri",
+                        "description": "URL absolue HTTP(S) de l’illustration, ou null."
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ContentLicense": {
+                "type": "object",
+                "required": ["id", "name", "url", "attribution"],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "const": "CC-BY-NC-SA-4.0"
+                    },
+                    "name": {
+                        "type": "string",
+                        "const": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International"
+                    },
+                    "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "const": "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                    },
+                    "attribution": {
+                        "type": "string",
+                        "const": "Julien Julien — Loire Ride Zen"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "MediaLicense": {
+                "type": "object",
+                "required": ["name", "copyright", "reuseAllowed"],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "const": "All rights reserved"
+                    },
+                    "copyright": {
+                        "type": "string",
+                        "const": "© 2026 Julien Julien — Loire Ride Zen"
+                    },
+                    "reuseAllowed": {
+                        "type": "boolean",
+                        "const": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "PublicLicenses": {
+                "type": "object",
+                "required": ["content", "media"],
+                "properties": {
+                    "content": {
+                        "$ref": "#/components/schemas/ContentLicense"
+                    },
+                    "media": {
+                        "$ref": "#/components/schemas/MediaLicense"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "PublicIndex": {
+                "type": "object",
+                "required": [
+                    "slug",
+                    "label",
+                    "title",
+                    "description",
+                    "mark",
+                    "accent",
+                    "presentation",
+                    "presentationMarkdown",
+                    "state",
+                    "entryCount",
+                    "updatedAt",
+                    "source",
+                    "corridor",
+                    "editorialWarning",
+                    "links"
+                ],
+                "properties": {
+                    "slug": {
+                        "$ref": "#/components/schemas/PublishedIndexSlug"
+                    },
+                    "label": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "mark": {
+                        "type": "string"
+                    },
+                    "accent": {
+                        "type": "string"
+                    },
+                    "presentation": {
+                        "type": "string"
+                    },
+                    "presentationMarkdown": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string",
+                        "const": "publie"
+                    },
+                    "entryCount": {
+                        "type": "integer",
+                        "minimum": 0
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "source": {
+                        "type": "string"
+                    },
+                    "corridor": {
+                        "type": "string"
+                    },
+                    "editorialWarning": {
+                        "type": ["string", "null"]
+                    },
+                    "links": {
+                        "type": "object",
+                        "required": ["self", "entries"],
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "pattern": "^/api/v1/indexes/"
+                            },
+                            "entries": {
+                                "type": "string",
+                                "pattern": "^/api/v1/indexes/.+/entries$"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false
+            },
+            "FauneIdentification": {
+                "type": "object",
+                "required": ["silhouette", "couleurs", "dimorphisme"],
+                "properties": {
+                    "longueur": {
+                        "type": "string"
+                    },
+                    "hauteur": {
+                        "type": "string"
+                    },
+                    "envergure": {
+                        "type": "string"
+                    },
+                    "poids": {
+                        "type": "string"
+                    },
+                    "silhouette": {
+                        "type": "string"
+                    },
+                    "couleurs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "argent",
+                                "beige",
+                                "blanc",
+                                "blanc gris",
+                                "bleu",
+                                "bleu gris",
+                                "bleu métallique",
+                                "bleu turquoise",
+                                "brun",
+                                "brun foncé",
+                                "brun roux",
+                                "crème",
+                                "fauve",
+                                "gris",
+                                "gris ardoise",
+                                "gris brun",
+                                "jaune",
+                                "noir",
+                                "ocre",
+                                "orange",
+                                "orange cuivré",
+                                "rouge",
+                                "roux",
+                                "vert",
+                                "vert métallique",
+                                "vert olive",
+                                "vert vif"
+                            ]
+                        }
+                    },
+                    "dimorphisme": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "FauneConservation": {
+                "type": "object",
+                "required": ["monde", "france"],
+                "properties": {
+                    "monde": {
+                        "type": "string",
+                        "enum": ["LC", "NT", "VU", "EN", "CR", "NA"]
+                    },
+                    "france": {
+                        "type": "string",
+                        "enum": ["LC", "NT", "VU", "EN", "CR", "NA"]
+                    },
+                    "note": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "FauneAttributes": {
+                "type": "object",
+                "required": [
+                    "autresNoms",
+                    "type",
+                    "nomScientifique",
+                    "regne",
+                    "classe",
+                    "famille",
+                    "rangTaxinomique",
+                    "identification",
+                    "conservation",
+                    "rarete",
+                    "milieu",
+                    "periode"
+                ],
+                "properties": {
+                    "autresNoms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "oiseau",
+                            "mammifère",
+                            "poisson",
+                            "reptile",
+                            "amphibien",
+                            "insecte"
+                        ]
+                    },
+                    "nomScientifique": {
+                        "type": "string"
+                    },
+                    "regne": {
+                        "type": "string"
+                    },
+                    "classe": {
+                        "type": "string"
+                    },
+                    "famille": {
+                        "type": "string"
+                    },
+                    "rangTaxinomique": {
+                        "type": "string"
+                    },
+                    "identification": {
+                        "$ref": "#/components/schemas/FauneIdentification"
+                    },
+                    "conservation": {
+                        "$ref": "#/components/schemas/FauneConservation"
+                    },
+                    "rarete": {
+                        "type": "string",
+                        "enum": ["commun", "régulier", "rare", "trésor"]
+                    },
+                    "milieu": {
+                        "type": "string"
+                    },
+                    "periode": {
+                        "type": "string"
+                    },
+                    "taille": {
+                        "type": "string"
+                    },
+                    "poids": {
+                        "type": "string"
+                    },
+                    "longevite": {
+                        "type": "string"
+                    },
+                    "regime": {
+                        "type": "string"
+                    },
+                    "anecdote": {
+                        "type": "string"
+                    },
+                    "rectEmoji": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "FloreStatut": {
+                "type": "object",
+                "required": ["indigenat", "protection"],
+                "properties": {
+                    "indigenat": {
+                        "type": "string",
+                        "enum": ["indigène", "exotique", "envahissante"]
+                    },
+                    "protection": {
+                        "type": "string",
+                        "enum": ["nationale", "régionale", "aucune"]
+                    },
+                    "note": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "FloreAttributes": {
+                "type": "object",
+                "required": [
+                    "autresNoms",
+                    "categorie",
+                    "nomScientifique",
+                    "regne",
+                    "famille",
+                    "rangTaxinomique",
+                    "statut",
+                    "rarete",
+                    "milieu",
+                    "floraison",
+                    "taille"
+                ],
+                "properties": {
+                    "autresNoms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "categorie": {
+                        "type": "string",
+                        "enum": [
+                            "arbre",
+                            "arbuste",
+                            "herbacée",
+                            "graminée",
+                            "aquatique",
+                            "fougère",
+                            "grimpante"
+                        ]
+                    },
+                    "nomScientifique": {
+                        "type": "string"
+                    },
+                    "regne": {
+                        "type": "string"
+                    },
+                    "famille": {
+                        "type": "string"
+                    },
+                    "rangTaxinomique": {
+                        "type": "string"
+                    },
+                    "statut": {
+                        "$ref": "#/components/schemas/FloreStatut"
+                    },
+                    "rarete": {
+                        "type": "string",
+                        "enum": ["commun", "régulier", "rare", "trésor"]
+                    },
+                    "milieu": {
+                        "type": "string"
+                    },
+                    "floraison": {
+                        "type": "string"
+                    },
+                    "taille": {
+                        "type": "string"
+                    },
+                    "usages": {
+                        "type": "string"
+                    },
+                    "anecdote": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Coordinates": {
+                "type": "object",
+                "required": ["lat", "lng"],
+                "properties": {
+                    "lat": {
+                        "type": "number",
+                        "minimum": -90,
+                        "maximum": 90
+                    },
+                    "lng": {
+                        "type": "number",
+                        "minimum": -180,
+                        "maximum": 180
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ChateauProtection": {
+                "type": "object",
+                "required": ["monumentHistorique", "unesco"],
+                "properties": {
+                    "monumentHistorique": {
+                        "type": "string",
+                        "enum": ["classé", "inscrit", "aucune"]
+                    },
+                    "unesco": {
+                        "type": "boolean"
+                    },
+                    "note": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ChateauAttributes": {
+                "type": "object",
+                "required": [
+                    "autresNoms",
+                    "commune",
+                    "departement",
+                    "coordonnees",
+                    "riviere",
+                    "epoque",
+                    "style",
+                    "construction",
+                    "protection",
+                    "renommee",
+                    "visite"
+                ],
+                "properties": {
+                    "autresNoms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "commune": {
+                        "type": "string"
+                    },
+                    "departement": {
+                        "type": "string"
+                    },
+                    "coordonnees": {
+                        "$ref": "#/components/schemas/Coordinates"
+                    },
+                    "riviere": {
+                        "type": "string"
+                    },
+                    "epoque": {
+                        "type": "string",
+                        "enum": [
+                            "Médiéval",
+                            "Renaissance",
+                            "Classique",
+                            "Éclectique"
+                        ]
+                    },
+                    "style": {
+                        "type": "string"
+                    },
+                    "construction": {
+                        "type": "string"
+                    },
+                    "commanditaire": {
+                        "type": "string"
+                    },
+                    "protection": {
+                        "$ref": "#/components/schemas/ChateauProtection"
+                    },
+                    "renommee": {
+                        "type": "string",
+                        "enum": ["phare", "majeur", "notable", "confidentiel"]
+                    },
+                    "visite": {
+                        "type": "string",
+                        "enum": [
+                            "ouvert au public",
+                            "extérieurs & parc",
+                            "privé, non visitable"
+                        ]
+                    }
+                },
+                "additionalProperties": false
+            },
+            "FauneEntry": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "index",
+                    "slug",
+                    "name",
+                    "subtitle",
+                    "summary",
+                    "media",
+                    "attributes"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "pattern": "^faune:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "index": {
+                        "type": "string",
+                        "const": "faune"
+                    },
+                    "slug": {
+                        "$ref": "#/components/schemas/EntrySlug"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "subtitle": {
+                        "type": "string"
+                    },
+                    "summary": {
+                        "type": "null"
+                    },
+                    "media": {
+                        "$ref": "#/components/schemas/PublicMedia"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/FauneAttributes"
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "id": "faune:heron-cendre",
+                    "index": "faune",
+                    "slug": "heron-cendre",
+                    "name": "Héron cendré",
+                    "subtitle": "sur la levée",
+                    "summary": null,
+                    "media": {
+                        "emoji": "🐦",
+                        "imageUrl": "https://codex.loireridezen.bike/emoji/faune/heron-cendree.png"
+                    },
+                    "attributes": {
+                        "autresNoms": ["Héron", "Aigron"],
+                        "type": "oiseau",
+                        "nomScientifique": "Ardea cinerea",
+                        "regne": "Animalia",
+                        "classe": "Aves",
+                        "famille": "Ardeidae",
+                        "rangTaxinomique": "Animalia › Chordata › Aves › Pelecaniformes › Ardeidae › Ardea › cinerea",
+                        "identification": {
+                            "longueur": "90 à 98 cm",
+                            "envergure": "175 à 195 cm",
+                            "poids": "1,0 à 2,1 kg",
+                            "silhouette": "Grand échassier au long cou replié en S.",
+                            "couleurs": ["gris", "blanc", "noir"],
+                            "dimorphisme": "Très faible."
+                        },
+                        "conservation": {
+                            "monde": "LC",
+                            "france": "LC"
+                        },
+                        "rarete": "commun",
+                        "milieu": "Eau libre & grève",
+                        "periode": "Jour"
+                    }
+                }
+            },
+            "FloreEntry": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "index",
+                    "slug",
+                    "name",
+                    "subtitle",
+                    "summary",
+                    "media",
+                    "attributes"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "pattern": "^flore:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "index": {
+                        "type": "string",
+                        "const": "flore"
+                    },
+                    "slug": {
+                        "$ref": "#/components/schemas/EntrySlug"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "subtitle": {
+                        "type": "string"
+                    },
+                    "summary": {
+                        "type": "null"
+                    },
+                    "media": {
+                        "$ref": "#/components/schemas/PublicMedia"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/FloreAttributes"
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "id": "flore:peuplier-noir",
+                    "index": "flore",
+                    "slug": "peuplier-noir",
+                    "name": "Peuplier noir",
+                    "subtitle": "les racines dans la grève",
+                    "summary": null,
+                    "media": {
+                        "emoji": "🌳",
+                        "imageUrl": "https://codex.loireridezen.bike/emoji/flore/peuplier-noir.png"
+                    },
+                    "attributes": {
+                        "autresNoms": ["Liard", "Peuplier commun"],
+                        "categorie": "arbre",
+                        "nomScientifique": "Populus nigra",
+                        "regne": "Plantae",
+                        "famille": "Salicaceae",
+                        "rangTaxinomique": "Plantae › Tracheophyta › Magnoliopsida › Malpighiales › Salicaceae › Populus › nigra",
+                        "statut": {
+                            "indigenat": "indigène",
+                            "protection": "aucune",
+                            "note": "Arbre emblématique de la ripisylve ligérienne."
+                        },
+                        "rarete": "commun",
+                        "milieu": "Ripisylve & grève",
+                        "floraison": "Mars–avril (chatons)",
+                        "taille": "Arbre, 20–30 m"
+                    }
+                }
+            },
+            "ChateauEntry": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "index",
+                    "slug",
+                    "name",
+                    "subtitle",
+                    "summary",
+                    "media",
+                    "attributes"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "pattern": "^chateaux:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "index": {
+                        "type": "string",
+                        "const": "chateaux"
+                    },
+                    "slug": {
+                        "$ref": "#/components/schemas/EntrySlug"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "subtitle": {
+                        "type": "string"
+                    },
+                    "summary": {
+                        "type": ["string", "null"]
+                    },
+                    "media": {
+                        "$ref": "#/components/schemas/PublicMedia"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/ChateauAttributes"
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "id": "chateaux:chateau-de-gien",
+                    "index": "chateaux",
+                    "slug": "chateau-de-gien",
+                    "name": "Château de Gien",
+                    "subtitle": "la brique rose au-dessus du fleuve",
+                    "summary": "Château de brique et de pierre de la fin du XVᵉ siècle.",
+                    "media": {
+                        "emoji": "🏰",
+                        "imageUrl": "https://codex.loireridezen.bike/emoji/chateau/gien.png"
+                    },
+                    "attributes": {
+                        "autresNoms": ["Château Anne de Beaujeu"],
+                        "commune": "Gien",
+                        "departement": "Loiret (45)",
+                        "coordonnees": {
+                            "lat": 47.6847,
+                            "lng": 2.63
+                        },
+                        "riviere": "Loire",
+                        "epoque": "Renaissance",
+                        "style": "Gothique-Renaissance de brique",
+                        "construction": "1484–1500",
+                        "commanditaire": "Anne de Beaujeu",
+                        "protection": {
+                            "monumentHistorique": "classé",
+                            "unesco": false,
+                            "note": "En amont de Sully-sur-Loire, hors du périmètre UNESCO."
+                        },
+                        "renommee": "notable",
+                        "visite": "ouvert au public"
+                    }
+                }
+            },
+            "PublicEntry": {
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/FauneEntry"
+                    },
+                    {
+                        "$ref": "#/components/schemas/FloreEntry"
+                    },
+                    {
+                        "$ref": "#/components/schemas/ChateauEntry"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "index",
+                    "mapping": {
+                        "faune": "#/components/schemas/FauneEntry",
+                        "flore": "#/components/schemas/FloreEntry",
+                        "chateaux": "#/components/schemas/ChateauEntry"
+                    }
+                }
+            },
+            "ApiRootResponse": {
+                "type": "object",
+                "required": ["apiVersion", "data", "meta", "links"],
+                "properties": {
+                    "apiVersion": {
+                        "$ref": "#/components/schemas/ApiVersion"
+                    },
+                    "data": {
+                        "type": "object",
+                        "required": ["name", "description", "version"],
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "version": {
+                                "type": "string",
+                                "const": "1"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "meta": {
+                        "type": "object",
+                        "required": ["license"],
+                        "properties": {
+                            "license": {
+                                "$ref": "#/components/schemas/PublicLicenses"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "links": {
+                        "type": "object",
+                        "required": ["self", "indexes", "openapi"],
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "const": "/api/v1"
+                            },
+                            "indexes": {
+                                "type": "string",
+                                "const": "/api/v1/indexes"
+                            },
+                            "openapi": {
+                                "type": "string",
+                                "const": "/api/v1/openapi.json"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "apiVersion": "1",
+                    "data": {
+                        "name": "API publique du Codex ligérien",
+                        "description": "Index éditoriaux publics de Loire Ride Zen, en lecture seule.",
+                        "version": "1"
+                    },
+                    "meta": {
+                        "license": {
+                            "content": {
+                                "id": "CC-BY-NC-SA-4.0",
+                                "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+                                "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+                                "attribution": "Julien Julien — Loire Ride Zen"
+                            },
+                            "media": {
+                                "name": "All rights reserved",
+                                "copyright": "© 2026 Julien Julien — Loire Ride Zen",
+                                "reuseAllowed": false
+                            }
+                        }
+                    },
+                    "links": {
+                        "self": "/api/v1",
+                        "indexes": "/api/v1/indexes",
+                        "openapi": "/api/v1/openapi.json"
+                    }
+                }
+            },
+            "IndexCollectionResponse": {
+                "type": "object",
+                "required": ["apiVersion", "data", "meta", "links"],
+                "properties": {
+                    "apiVersion": {
+                        "$ref": "#/components/schemas/ApiVersion"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicIndex"
+                        }
+                    },
+                    "meta": {
+                        "type": "object",
+                        "required": ["total", "license"],
+                        "properties": {
+                            "total": {
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "license": {
+                                "$ref": "#/components/schemas/PublicLicenses"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "links": {
+                        "type": "object",
+                        "required": ["self", "api"],
+                        "properties": {
+                            "self": {
+                                "type": "string",
+                                "const": "/api/v1/indexes"
+                            },
+                            "api": {
+                                "type": "string",
+                                "const": "/api/v1"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "apiVersion": "1",
+                    "data": [
+                        {
+                            "slug": "faune",
+                            "label": "Faune",
+                            "title": "Faune ligérienne",
+                            "description": "Espèces animales du corridor ligérien.",
+                            "mark": "🐦",
+                            "accent": "#5f7f71",
+                            "presentation": "La faune du corridor ligérien.",
+                            "presentationMarkdown": "La **faune** du corridor ligérien.",
+                            "state": "publie",
+                            "entryCount": 49,
+                            "updatedAt": "2026-07-21",
+                            "source": "Loire Ride Zen",
+                            "corridor": "Loire",
+                            "editorialWarning": null,
+                            "links": {
+                                "self": "/api/v1/indexes/faune",
+                                "entries": "/api/v1/indexes/faune/entries"
+                            }
+                        }
+                    ],
+                    "meta": {
+                        "total": 3,
+                        "license": {
+                            "content": {
+                                "id": "CC-BY-NC-SA-4.0",
+                                "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+                                "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+                                "attribution": "Julien Julien — Loire Ride Zen"
+                            },
+                            "media": {
+                                "name": "All rights reserved",
+                                "copyright": "© 2026 Julien Julien — Loire Ride Zen",
+                                "reuseAllowed": false
+                            }
+                        }
+                    },
+                    "links": {
+                        "self": "/api/v1/indexes",
+                        "api": "/api/v1"
+                    }
+                }
+            },
+            "IndexDetailResponse": {
+                "type": "object",
+                "required": ["apiVersion", "data", "meta", "links"],
+                "properties": {
+                    "apiVersion": {
+                        "$ref": "#/components/schemas/ApiVersion"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/PublicIndex"
+                    },
+                    "meta": {
+                        "type": "object",
+                        "required": ["license"],
+                        "properties": {
+                            "license": {
+                                "$ref": "#/components/schemas/PublicLicenses"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "links": {
+                        "type": "object",
+                        "required": ["self", "entries", "indexes"],
+                        "properties": {
+                            "self": {
+                                "type": "string"
+                            },
+                            "entries": {
+                                "type": "string"
+                            },
+                            "indexes": {
+                                "type": "string",
+                                "const": "/api/v1/indexes"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "apiVersion": "1",
+                    "data": {
+                        "slug": "faune",
+                        "label": "Faune",
+                        "title": "Faune ligérienne",
+                        "description": "Espèces animales du corridor ligérien.",
+                        "mark": "🐦",
+                        "accent": "#5f7f71",
+                        "presentation": "La faune du corridor ligérien.",
+                        "presentationMarkdown": "La **faune** du corridor ligérien.",
+                        "state": "publie",
+                        "entryCount": 49,
+                        "updatedAt": "2026-07-21",
+                        "source": "Loire Ride Zen",
+                        "corridor": "Loire",
+                        "editorialWarning": null,
+                        "links": {
+                            "self": "/api/v1/indexes/faune",
+                            "entries": "/api/v1/indexes/faune/entries"
+                        }
+                    },
+                    "meta": {
+                        "license": {
+                            "content": {
+                                "id": "CC-BY-NC-SA-4.0",
+                                "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+                                "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+                                "attribution": "Julien Julien — Loire Ride Zen"
+                            },
+                            "media": {
+                                "name": "All rights reserved",
+                                "copyright": "© 2026 Julien Julien — Loire Ride Zen",
+                                "reuseAllowed": false
+                            }
+                        }
+                    },
+                    "links": {
+                        "self": "/api/v1/indexes/faune",
+                        "entries": "/api/v1/indexes/faune/entries",
+                        "indexes": "/api/v1/indexes"
+                    }
+                }
+            },
+            "EntryCollectionResponse": {
+                "type": "object",
+                "required": ["apiVersion", "data", "meta", "links"],
+                "properties": {
+                    "apiVersion": {
+                        "$ref": "#/components/schemas/ApiVersion"
+                    },
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PublicEntry"
+                        }
+                    },
+                    "meta": {
+                        "type": "object",
+                        "required": ["index", "total", "license"],
+                        "properties": {
+                            "index": {
+                                "$ref": "#/components/schemas/PublishedIndexSlug"
+                            },
+                            "total": {
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "license": {
+                                "$ref": "#/components/schemas/PublicLicenses"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "links": {
+                        "type": "object",
+                        "required": ["self", "index"],
+                        "properties": {
+                            "self": {
+                                "type": "string"
+                            },
+                            "index": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "apiVersion": "1",
+                    "data": [
+                        {
+                            "id": "faune:heron-cendre",
+                            "index": "faune",
+                            "slug": "heron-cendre",
+                            "name": "Héron cendré",
+                            "subtitle": "sur la levée",
+                            "summary": null,
+                            "media": {
+                                "emoji": "🐦",
+                                "imageUrl": "https://codex.loireridezen.bike/emoji/faune/heron-cendree.png"
+                            },
+                            "attributes": {
+                                "autresNoms": ["Héron", "Aigron"],
+                                "type": "oiseau",
+                                "nomScientifique": "Ardea cinerea",
+                                "regne": "Animalia",
+                                "classe": "Aves",
+                                "famille": "Ardeidae",
+                                "rangTaxinomique": "Animalia › Chordata › Aves",
+                                "identification": {
+                                    "silhouette": "Grand échassier.",
+                                    "couleurs": ["gris", "blanc", "noir"],
+                                    "dimorphisme": "Très faible."
+                                },
+                                "conservation": {
+                                    "monde": "LC",
+                                    "france": "LC"
+                                },
+                                "rarete": "commun",
+                                "milieu": "Eau libre & grève",
+                                "periode": "Jour"
+                            }
+                        }
+                    ],
+                    "meta": {
+                        "index": "faune",
+                        "total": 49,
+                        "license": {
+                            "content": {
+                                "id": "CC-BY-NC-SA-4.0",
+                                "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+                                "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+                                "attribution": "Julien Julien — Loire Ride Zen"
+                            },
+                            "media": {
+                                "name": "All rights reserved",
+                                "copyright": "© 2026 Julien Julien — Loire Ride Zen",
+                                "reuseAllowed": false
+                            }
+                        }
+                    },
+                    "links": {
+                        "self": "/api/v1/indexes/faune/entries",
+                        "index": "/api/v1/indexes/faune"
+                    }
+                }
+            },
+            "EntryDetailResponse": {
+                "type": "object",
+                "required": ["apiVersion", "data", "meta", "links"],
+                "properties": {
+                    "apiVersion": {
+                        "$ref": "#/components/schemas/ApiVersion"
+                    },
+                    "data": {
+                        "$ref": "#/components/schemas/PublicEntry"
+                    },
+                    "meta": {
+                        "type": "object",
+                        "required": ["license"],
+                        "properties": {
+                            "license": {
+                                "$ref": "#/components/schemas/PublicLicenses"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "links": {
+                        "type": "object",
+                        "required": ["self", "index", "collection"],
+                        "properties": {
+                            "self": {
+                                "type": "string"
+                            },
+                            "index": {
+                                "type": "string"
+                            },
+                            "collection": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "apiVersion": "1",
+                    "data": {
+                        "id": "faune:heron-cendre",
+                        "index": "faune",
+                        "slug": "heron-cendre",
+                        "name": "Héron cendré",
+                        "subtitle": "sur la levée",
+                        "summary": null,
+                        "media": {
+                            "emoji": "🐦",
+                            "imageUrl": "https://codex.loireridezen.bike/emoji/faune/heron-cendree.png"
+                        },
+                        "attributes": {
+                            "autresNoms": ["Héron", "Aigron"],
+                            "type": "oiseau",
+                            "nomScientifique": "Ardea cinerea",
+                            "regne": "Animalia",
+                            "classe": "Aves",
+                            "famille": "Ardeidae",
+                            "rangTaxinomique": "Animalia › Chordata › Aves",
+                            "identification": {
+                                "silhouette": "Grand échassier.",
+                                "couleurs": ["gris", "blanc", "noir"],
+                                "dimorphisme": "Très faible."
+                            },
+                            "conservation": {
+                                "monde": "LC",
+                                "france": "LC"
+                            },
+                            "rarete": "commun",
+                            "milieu": "Eau libre & grève",
+                            "periode": "Jour"
+                        }
+                    },
+                    "meta": {
+                        "license": {
+                            "content": {
+                                "id": "CC-BY-NC-SA-4.0",
+                                "name": "Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International",
+                                "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+                                "attribution": "Julien Julien — Loire Ride Zen"
+                            },
+                            "media": {
+                                "name": "All rights reserved",
+                                "copyright": "© 2026 Julien Julien — Loire Ride Zen",
+                                "reuseAllowed": false
+                            }
+                        }
+                    },
+                    "links": {
+                        "self": "/api/v1/indexes/faune/entries/heron-cendre",
+                        "index": "/api/v1/indexes/faune",
+                        "collection": "/api/v1/indexes/faune/entries"
+                    }
+                }
+            },
+            "Problem": {
+                "type": "object",
+                "required": ["type", "title", "status", "detail", "instance"],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "minimum": 400,
+                        "maximum": 599
+                    },
+                    "detail": {
+                        "type": "string"
+                    },
+                    "instance": {
+                        "type": "string",
+                        "pattern": "^/api/v1"
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "type": "https://codex.loireridezen.bike/problems/not-found",
+                    "title": "Resource not found",
+                    "status": 404,
+                    "detail": "No published entry matches the requested identifier.",
+                    "instance": "/api/v1/indexes/faune/entries/entree-inconnue"
+                }
+            }
+        }
+    }
+}

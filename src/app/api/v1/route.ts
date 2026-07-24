@@ -22,6 +22,7 @@ export async function GET() {
             links: {
                 self: "/api/v1",
                 indexes: "/api/v1/indexes",
+                openapi: "/api/v1/openapi.json",
             },
         }),
     );
