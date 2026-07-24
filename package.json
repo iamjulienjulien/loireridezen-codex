@@ -9,6 +9,9 @@
         "start": "next start",
         "test": "vitest run",
         "api:lint": "redocly lint codex@v1",
+        "api:test:local": "cd bruno/codex-public-api && bru run --env local --sandbox=safe --bail",
+        "api:test:production": "cd bruno/codex-public-api && bru run --env production --sandbox=safe --bail --tags=production-safe",
+        "api:test:smoke": "cd bruno/codex-public-api && bru run --env production --sandbox=safe --bail --tags=smoke",
         "lint": "eslint",
         "format": "prettier --write .",
         "format:check": "prettier --check ."
@@ -27,6 +30,7 @@
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
+        "@usebruno/cli": "3.5.2",
         "eslint": "^9",
         "eslint-config-next": "16.2.10",
         "prettier": "^3.9.4",

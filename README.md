@@ -229,23 +229,36 @@ Pour valider le contrat :
 pnpm api:lint
 ```
 
+Une collection Bruno versionnée couvre les routes publiques, CORS, le cache,
+les licences et les erreurs. Consultez son
+[guide de prise en main](bruno/codex-public-api/README.md).
+
+```bash
+pnpm api:test:local
+pnpm api:test:production
+pnpm api:test:smoke
+```
+
 Les données textuelles et les illustrations n’ont pas la même politique de
 réutilisation. Consultez [`CONTENT_LICENSE.md`](CONTENT_LICENSE.md) pour le
 détail des licences et de l’attribution.
 
 ## 🧰 Commandes utiles
 
-| Commande                 | Effet                                           |
-| ------------------------ | ----------------------------------------------- |
-| `pnpm dev`               | Lance le serveur de développement               |
-| `pnpm build`             | Produit la version optimisée                    |
-| `pnpm start`             | Lance une version déjà compilée                 |
-| `pnpm test`              | Exécute les tests automatisés                   |
-| `pnpm api:lint`          | Valide le contrat OpenAPI public                |
-| `pnpm lint`              | Analyse le code avec ESLint                     |
-| `pnpm format`            | Formate le dépôt avec Prettier                  |
-| `pnpm format:check`      | Vérifie le formatage sans modifier les fichiers |
-| `pnpm exec tsc --noEmit` | Vérifie les types TypeScript                    |
+| Commande                   | Effet                                           |
+| -------------------------- | ----------------------------------------------- |
+| `pnpm dev`                 | Lance le serveur de développement               |
+| `pnpm build`               | Produit la version optimisée                    |
+| `pnpm start`               | Lance une version déjà compilée                 |
+| `pnpm test`                | Exécute les tests automatisés                   |
+| `pnpm api:lint`            | Valide le contrat OpenAPI public                |
+| `pnpm api:test:local`      | Teste l’API locale avec Bruno                   |
+| `pnpm api:test:production` | Teste toute l’API publique en production        |
+| `pnpm api:test:smoke`      | Lance le smoke test de production               |
+| `pnpm lint`                | Analyse le code avec ESLint                     |
+| `pnpm format`              | Formate le dépôt avec Prettier                  |
+| `pnpm format:check`        | Vérifie le formatage sans modifier les fichiers |
+| `pnpm exec tsc --noEmit`   | Vérifie les types TypeScript                    |
 
 Avant de quitter le quai :
 
