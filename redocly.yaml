@@ -1,0 +1,12 @@
+apis:
+    codex@v1:
+        root: ./public/api/v1/openapi.json
+
+extends:
+    - recommended-strict
+
+# The current read-only handlers do not expose a 4XX response on every
+# operation (notably OPTIONS and collection discovery). Documenting invented
+# responses would make the contract less accurate than the runtime.
+rules:
+    operation-4xx-response: off
