@@ -239,6 +239,20 @@ pnpm api:test:production
 pnpm api:test:smoke
 ```
 
+### Surveillance de production
+
+Le workflow
+[`API production monitor`](.github/workflows/api-production-monitor.yml)
+réutilise `pnpm api:test:smoke` après chaque promotion Vercel en production,
+toutes les 30 minutes et à la demande. Il contrôle exclusivement le domaine
+canonique, sans secret ni service de monitoring supplémentaire.
+
+Après trois échecs, GitHub Actions conserve pendant sept jours un rapport
+minimal et signale le job en erreur. Les notifications GitHub et e-mail
+configurées sur le dépôt assurent l’alerte. Le
+[README Bruno](bruno/codex-public-api/README.md#surveillance-de-production)
+détaille les parcours surveillés et la procédure d’incident.
+
 Les données textuelles et les illustrations n’ont pas la même politique de
 réutilisation. Consultez [`CONTENT_LICENSE.md`](CONTENT_LICENSE.md) pour le
 détail des licences et de l’attribution.

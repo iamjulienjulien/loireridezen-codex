@@ -48,6 +48,49 @@ Pour une vérification rapide :
 pnpm api:test:smoke
 ```
 
+## Surveillance de production
+
+Le tag `smoke` sélectionne sept parcours représentatifs :
+
+1. la racine de l’API ;
+2. le contrat OpenAPI ;
+3. la liste des index ;
+4. le détail de l’index Faune ;
+5. la liste des entrées Faune ;
+6. le détail du Héron cendré ;
+7. la réponse `404` d’un index non publié.
+
+Le workflow
+[`API production monitor`](../../.github/workflows/api-production-monitor.yml)
+exécute `pnpm api:test:smoke` après une promotion Vercel, toutes les 30 minutes
+et à la demande. Cette commande cible toujours le domaine canonique
+`https://codex.loireridezen.bike`, jamais une URL Preview.
+
+Après trois échecs, le run GitHub devient rouge et publie pendant sept jours un
+rapport JSON Bruno minimal. Ce rapport conserve les scénarios, statuts et
+assertions nécessaires au diagnostic, mais omet tous les en-têtes et tous les
+corps HTTP. Il ne doit jamais être enrichi avec un token, un cookie, un secret
+ou une variable d’environnement.
+
+Le lancement manuel propose `simulate_failure`. Sa valeur par défaut est
+`false`. La valeur `true` exécute les vrais smoke tests, puis produit
+volontairement trois échecs afin de valider les retries, l’artefact et les
+notifications GitHub. Le workflow sera volontairement rouge et peut déclencher
+un e-mail GitHub.
+
+### Mini-runbook d’incident
+
+1. Ouvrir le run GitHub en échec et lire son résumé pour identifier le
+   déclencheur.
+2. Télécharger l’artefact JSON du run.
+3. Identifier la première requête ou assertion en échec.
+4. Vérifier le déploiement Vercel associé.
+5. Relancer manuellement le workflow, avec `simulate_failure` désactivé.
+6. Si l’échec persiste, vérifier directement
+   `https://codex.loireridezen.bike/api/v1` et
+   `https://codex.loireridezen.bike/api/v1/openapi.json`.
+7. Corriger la cause ou revenir au dernier déploiement sain.
+
 ## Utilisation avec Bruno Desktop
 
 1. Ouvrir le dossier `bruno/codex-public-api`.
