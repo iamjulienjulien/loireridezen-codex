@@ -1,0 +1,56 @@
+info:
+    name: Get OpenAPI contract
+    type: http
+    seq: 4
+    tags:
+        - get
+        - production-safe
+        - success
+        - smoke
+
+http:
+    method: GET
+    url: "{{baseUrl}}/api/v1/openapi.json"
+
+docs: |
+    Downloads and checks the machine-readable OpenAPI 3.1.2 contract.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "200"
+    scripts:
+        - type: tests
+          code: |-
+              test("returns the versioned OpenAPI document", function () {
+                  expect(res.getHeader("content-type")).to.match(/^application\/json/i);
+                  expect(res.body).to.be.an("object");
+                  expect(res.body.openapi).to.equal("3.1.2");
+                  expect(res.body.info.version).to.equal("1.0.0");
+                  expect(res.body.info.title).to.be.a("string").and.not.empty;
+                  expect(res.body.paths).to.be.an("object");
+                  [
+                      "/api/v1",
+                      "/api/v1/indexes",
+                      "/api/v1/indexes/{index}",
+                      "/api/v1/indexes/{index}/entries",
+                      "/api/v1/indexes/{index}/entries/{slug}"
+                  ].forEach((path) => expect(res.body.paths).to.have.property(path));
+                  expect(res.body.components.schemas).to.be.an("object").and.not.empty;
+              });
+              test("serves the static contract with stable CORS and cache metadata", function () {
+                  expect(res.getHeader("cache-control")).to.exist;
+                  expect(res.getHeader("access-control-allow-origin")).to.equal("*");
+                  ["GET", "HEAD", "OPTIONS"].forEach((method) =>
+                      expect(res.getHeader("access-control-allow-methods")).to.include(method)
+                  );
+                  expect(res.getHeader("access-control-allow-headers")).to.include("Content-Type");
+                  expect(res.getHeader("access-control-allow-credentials")).to.equal(undefined);
+              });
+              test("does not expose obvious secrets", function () {
+                  const serialized = JSON.stringify(res.body);
+                  ["password", "clientSecret", "apiKey", "authorization"].forEach((secret) => {
+                      expect(serialized.toLowerCase()).not.to.include(secret.toLowerCase());
+                  });
+              });

@@ -1,0 +1,72 @@
+info:
+    name: Get API root
+    type: http
+    seq: 1
+    tags:
+        - get
+        - production-safe
+        - success
+        - smoke
+
+http:
+    method: GET
+    url: "{{baseUrl}}/api/v1"
+
+docs: |
+    Returns the public API identity, licenses and discovery links.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "200"
+    scripts:
+        - type: tests
+          code: |-
+              const header = (name) => res.getHeader(name);
+              const cache = header("cache-control") || "";
+              const methods = header("access-control-allow-methods") || "";
+              const serialized = JSON.stringify(res.body);
+              const hasInternalKey = (value) => {
+                if (Array.isArray(value)) return value.some(hasInternalKey);
+                if (!value || typeof value !== "object") return false;
+                return Object.entries(value).some(([key, child]) =>
+                    key === "env" || key === "dataFile" || hasInternalKey(child)
+                );
+              };
+              test("returns the public API envelope", function () {
+                  expect(header("content-type")).to.match(/^application\/json/i);
+                  expect(res.body).to.be.an("object");
+                  expect(res.body.apiVersion).to.equal("1");
+                  expect(res.body).to.have.property("data");
+                  expect(res.body).to.have.nested.property("meta.license");
+                  expect(res.body).to.have.nested.property("links.self");
+                  expect(hasInternalKey(res.body)).to.equal(false);
+                  expect(serialized).not.to.include('"env"');
+              });
+              test("serves public cache and anonymous CORS headers", function () {
+                  expect(cache).to.include("public");
+                  expect(cache).to.match(/(?:^|,\s*)max-age=300(?:,|$)/);
+                  expect(header("access-control-allow-origin")).to.equal("*");
+                  expect(methods).to.include("GET");
+                  expect(methods).to.include("HEAD");
+                  expect(methods).to.include("OPTIONS");
+                  expect(header("access-control-allow-headers")).to.include("Content-Type");
+                  expect(header("access-control-allow-credentials")).to.equal(undefined);
+              });
+              test("publishes the expected content and media licenses", function () {
+                  const license = res.body.meta.license;
+                  expect(license.content.id).to.equal("CC-BY-NC-SA-4.0");
+                  expect(license.content.url).to.equal("https://creativecommons.org/licenses/by-nc-sa/4.0/");
+                  expect(license.content.name).to.be.a("string").and.not.empty;
+                  expect(license.media.name).to.equal("All rights reserved");
+                  expect(license.media.reuseAllowed).to.equal(false);
+                  expect(license.media.copyright).to.be.a("string").and.not.empty;
+              });
+              test("advertises stable discovery links", function () {
+                  expect(res.body.data.name).to.be.a("string").and.not.empty;
+                  expect(res.body.data.version).to.equal("1");
+                  expect(res.body.links.self).to.equal("/api/v1");
+                  expect(res.body.links.indexes).to.equal("/api/v1/indexes");
+                  expect(res.body.links.openapi).to.equal("/api/v1/openapi.json");
+              });

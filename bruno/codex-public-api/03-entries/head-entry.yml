@@ -1,0 +1,30 @@
+info:
+    name: Head heron cendre
+    type: http
+    seq: 9
+    tags: [head, production-safe, success]
+
+http:
+    method: HEAD
+    url: "{{baseUrl}}/api/v1/indexes/faune/entries/heron-cendre"
+
+docs: Checks entry headers without transferring its representation.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "200"
+    scripts:
+        - type: tests
+          code: |-
+              test("returns an empty body with public cache and CORS", function () {
+                  const cache = res.getHeader("cache-control") || "";
+                  expect(res.body === null || res.body === "").to.equal(true);
+                  expect(cache).to.include("public");
+                  expect(cache).to.match(/(?:^|,\s*)max-age=300(?:,|$)/);
+                  expect(res.getHeader("access-control-allow-origin")).to.equal("*");
+                  ["GET", "HEAD", "OPTIONS"].forEach((method) => expect(res.getHeader("access-control-allow-methods")).to.include(method));
+                  expect(res.getHeader("access-control-allow-headers")).to.include("Content-Type");
+                  expect(res.getHeader("access-control-allow-credentials")).to.equal(undefined);
+              });

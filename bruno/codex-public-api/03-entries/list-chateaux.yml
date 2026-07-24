@@ -1,0 +1,58 @@
+info:
+    name: List chateaux entries
+    type: http
+    seq: 3
+    tags: [get, production-safe, success]
+
+http:
+    method: GET
+    url: "{{baseUrl}}/api/v1/indexes/chateaux/entries"
+
+docs: Lists every public chateaux entry without assuming an editorial count.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "200"
+    scripts:
+        - type: tests
+          code: |-
+              const index = "chateaux";
+              const h = (name) => res.getHeader(name);
+              test("returns a coherent non-empty chateaux collection", function () {
+                  expect(res.body.data).to.be.an("array").and.not.empty;
+                  expect(res.body.meta.index).to.equal(index);
+                  expect(Number.isInteger(res.body.meta.total)).to.equal(true);
+                  expect(res.body.meta.total).to.equal(res.body.data.length);
+                  res.body.data.forEach((entry) => {
+                      ["id", "index", "slug", "name", "subtitle", "summary", "media", "attributes"].forEach((key) =>
+                          expect(entry).to.have.property(key)
+                      );
+                      expect(entry.index).to.equal(index);
+                      expect(entry.id).to.equal(`${index}:${entry.slug}`);
+                      expect(entry.media.emoji).to.be.a("string");
+                      expect(entry.media.imageUrl === null || /^https?:\/\//.test(entry.media.imageUrl)).to.equal(true);
+                      expect(entry.attributes).to.be.an("object");
+                  });
+                  expect(res.body.links.self).to.equal(`/api/v1/indexes/${index}/entries`);
+              });
+              test("returns the common envelope, headers and licenses", function () {
+                  const cache = h("cache-control") || "";
+                  expect(res.body.apiVersion).to.equal("1");
+                  expect(h("content-type")).to.match(/^application\/json/i);
+                  expect(cache).to.include("public");
+                  expect(cache).to.match(/(?:^|,\s*)max-age=300(?:,|$)/);
+                  expect(h("access-control-allow-origin")).to.equal("*");
+                  ["GET", "HEAD", "OPTIONS"].forEach((method) => expect(h("access-control-allow-methods")).to.include(method));
+                  expect(h("access-control-allow-headers")).to.include("Content-Type");
+                  expect(h("access-control-allow-credentials")).to.equal(undefined);
+                  const license = res.body.meta.license;
+                  expect(license.content.id).to.equal("CC-BY-NC-SA-4.0");
+                  expect(license.content.url).to.equal("https://creativecommons.org/licenses/by-nc-sa/4.0/");
+                  expect(license.content.name).to.be.a("string").and.not.empty;
+                  expect(license.media.name).to.equal("All rights reserved");
+                  expect(license.media.reuseAllowed).to.equal(false);
+                  expect(license.media.copyright).to.be.a("string").and.not.empty;
+                  expect(JSON.stringify(res.body)).not.to.match(/"env"|"dataFile"/);
+              });

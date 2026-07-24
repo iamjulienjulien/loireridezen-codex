@@ -1,0 +1,39 @@
+info:
+    name: Head API root
+    type: http
+    seq: 2
+    tags:
+        - head
+        - production-safe
+        - success
+
+http:
+    method: HEAD
+    url: "{{baseUrl}}/api/v1"
+
+docs: |
+    Checks the API root status and headers without transferring a body.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "200"
+    scripts:
+        - type: tests
+          code: |-
+              const cache = res.getHeader("cache-control") || "";
+              const methods = res.getHeader("access-control-allow-methods") || "";
+              test("returns no representation for HEAD", function () {
+                  expect(res.body === null || res.body === "").to.equal(true);
+              });
+              test("preserves success cache and CORS headers", function () {
+                  expect(cache).to.include("public");
+                  expect(cache).to.match(/(?:^|,\s*)max-age=300(?:,|$)/);
+                  expect(res.getHeader("access-control-allow-origin")).to.equal("*");
+                  expect(methods).to.include("GET");
+                  expect(methods).to.include("HEAD");
+                  expect(methods).to.include("OPTIONS");
+                  expect(res.getHeader("access-control-allow-headers")).to.include("Content-Type");
+                  expect(res.getHeader("access-control-allow-credentials")).to.equal(undefined);
+              });

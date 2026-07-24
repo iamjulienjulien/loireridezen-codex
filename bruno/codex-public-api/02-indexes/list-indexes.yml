@@ -1,0 +1,67 @@
+info:
+    name: List published indexes
+    type: http
+    seq: 1
+    tags: [get, production-safe, success, smoke]
+
+http:
+    method: GET
+    url: "{{baseUrl}}/api/v1/indexes"
+
+docs: Lists exactly the currently published Codex indexes.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "200"
+    scripts:
+        - type: tests
+          code: |-
+              const h = (name) => res.getHeader(name);
+              const cache = h("cache-control") || "";
+              const internal = (value) => Array.isArray(value)
+                  ? value.some(internal)
+                  : Boolean(value && typeof value === "object" && Object.entries(value)
+                      .some(([key, child]) => key === "env" || key === "dataFile" || internal(child)));
+              test("returns the three published indexes only", function () {
+                  expect(res.body.data).to.be.an("array");
+                  expect(res.body.data.map(({ slug }) => slug).sort()).to.deep.equal(["chateaux", "faune", "flore"]);
+                  ["vignobles", "vocabulaire", "patrimoine"].forEach((slug) =>
+                      expect(res.body.data.some((item) => item.slug === slug)).to.equal(false)
+                  );
+                  expect(internal(res.body)).to.equal(false);
+              });
+              test("keeps index metadata and links coherent", function () {
+                  res.body.data.forEach((item) => {
+                      ["slug", "label", "state", "entryCount", "updatedAt", "links"].forEach((key) =>
+                          expect(item).to.have.property(key)
+                      );
+                      expect(item.state).to.equal("publie");
+                      expect(item.entryCount).to.be.a("number").and.greaterThan(0);
+                      expect(Number.isInteger(item.entryCount)).to.equal(true);
+                      expect(item.links.self).to.equal(`/api/v1/indexes/${item.slug}`);
+                      expect(item.links.entries).to.equal(`/api/v1/indexes/${item.slug}/entries`);
+                  });
+              });
+              test("returns the shared envelope, cache, CORS and licenses", function () {
+                  expect(h("content-type")).to.match(/^application\/json/i);
+                  expect(res.body.apiVersion).to.equal("1");
+                  expect(res.body).to.have.nested.property("meta.license");
+                  expect(res.body).to.have.nested.property("links.self");
+                  expect(cache).to.include("public");
+                  expect(cache).to.match(/(?:^|,\s*)max-age=300(?:,|$)/);
+                  expect(h("access-control-allow-origin")).to.equal("*");
+                  ["GET", "HEAD", "OPTIONS"].forEach((method) =>
+                      expect(h("access-control-allow-methods")).to.include(method)
+                  );
+                  expect(h("access-control-allow-headers")).to.include("Content-Type");
+                  expect(h("access-control-allow-credentials")).to.equal(undefined);
+                  const license = res.body.meta.license;
+                  expect(license.content.id).to.equal("CC-BY-NC-SA-4.0");
+                  expect(license.content.url).to.equal("https://creativecommons.org/licenses/by-nc-sa/4.0/");
+                  expect(license.content.name).to.be.a("string").and.not.empty;
+                  expect(license.media.name).to.equal("All rights reserved");
+                  expect(license.media.reuseAllowed).to.equal(false);
+                  expect(license.media.copyright).to.be.a("string").and.not.empty;
+              });

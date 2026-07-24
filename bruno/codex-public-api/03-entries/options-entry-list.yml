@@ -1,0 +1,31 @@
+info:
+    name: Options faune entries
+    type: http
+    seq: 8
+    tags: [options, production-safe, success]
+
+http:
+    method: OPTIONS
+    url: "{{baseUrl}}/api/v1/indexes/faune/entries"
+
+docs: Checks methods and CORS for an entry collection.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "204"
+    scripts:
+        - type: tests
+          code: |-
+              test("returns the read-only preflight policy without a body", function () {
+                  expect(res.body === null || res.body === "").to.equal(true);
+                  expect(res.getHeader("cache-control")).to.equal("no-store");
+                  ["GET", "HEAD", "OPTIONS"].forEach((method) => {
+                      expect(res.getHeader("allow")).to.include(method);
+                      expect(res.getHeader("access-control-allow-methods")).to.include(method);
+                  });
+                  expect(res.getHeader("access-control-allow-origin")).to.equal("*");
+                  expect(res.getHeader("access-control-allow-headers")).to.include("Content-Type");
+                  expect(res.getHeader("access-control-allow-credentials")).to.equal(undefined);
+              });

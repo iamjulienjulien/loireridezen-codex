@@ -1,0 +1,8 @@
+name: production
+
+variables:
+    - name: baseUrl
+      value: https://codex.loireridezen.bike
+      enabled: true
+      secret: false
+      type: text

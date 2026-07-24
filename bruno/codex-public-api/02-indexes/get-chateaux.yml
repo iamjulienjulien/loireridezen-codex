@@ -1,0 +1,50 @@
+info:
+    name: Get chateaux index
+    type: http
+    seq: 4
+    tags: [get, production-safe, success]
+
+http:
+    method: GET
+    url: "{{baseUrl}}/api/v1/indexes/chateaux"
+
+docs: Returns the public metadata of the chateaux index.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "200"
+    scripts:
+        - type: tests
+          code: |-
+              const h = (name) => res.getHeader(name);
+              test("returns coherent chateaux metadata", function () {
+                  expect(res.body.apiVersion).to.equal("1");
+                  expect(res.body.data.slug).to.equal("chateaux");
+                  expect(res.body.data.state).to.equal("publie");
+                  expect(Number.isInteger(res.body.data.entryCount)).to.equal(true);
+                  expect(res.body.data.entryCount).to.be.greaterThan(0);
+                  expect(res.body.data.updatedAt).to.be.a("string").and.not.empty;
+                  expect(res.body.links.self).to.equal("/api/v1/indexes/chateaux");
+                  expect(res.body.links.entries).to.equal("/api/v1/indexes/chateaux/entries");
+              });
+              test("returns shared headers and licenses without internals", function () {
+                  const cache = h("cache-control") || "";
+                  expect(h("content-type")).to.match(/^application\/json/i);
+                  expect(cache).to.include("public");
+                  expect(cache).to.match(/(?:^|,\s*)max-age=300(?:,|$)/);
+                  expect(h("access-control-allow-origin")).to.equal("*");
+                  ["GET", "HEAD", "OPTIONS"].forEach((method) =>
+                      expect(h("access-control-allow-methods")).to.include(method)
+                  );
+                  expect(h("access-control-allow-headers")).to.include("Content-Type");
+                  expect(h("access-control-allow-credentials")).to.equal(undefined);
+                  expect(res.body.meta.license.content.id).to.equal("CC-BY-NC-SA-4.0");
+                  expect(res.body.meta.license.content.url).to.equal("https://creativecommons.org/licenses/by-nc-sa/4.0/");
+                  expect(res.body.meta.license.content.name).to.be.a("string").and.not.empty;
+                  expect(res.body.meta.license.media.name).to.equal("All rights reserved");
+                  expect(res.body.meta.license.media.reuseAllowed).to.equal(false);
+                  expect(res.body.meta.license.media.copyright).to.be.a("string").and.not.empty;
+                  expect(JSON.stringify(res.body)).not.to.match(/"env"|"dataFile"/);
+              });
