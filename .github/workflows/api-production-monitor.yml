@@ -1,0 +1,179 @@
+name: API production monitor
+
+on:
+    repository_dispatch:
+        types:
+            - vercel.deployment.promoted
+    schedule:
+        - cron: "7,37 * * * *"
+    workflow_dispatch:
+        inputs:
+            simulate_failure:
+                description: "Force a safe monitoring failure to validate retries and alerts"
+                required: false
+                default: false
+                type: boolean
+
+permissions:
+    contents: read
+
+concurrency:
+    group: api-production-monitor
+    cancel-in-progress: false
+
+env:
+    VERCEL_PROJECT_ID: prj_q21S8lSZ3yPesZ3WsDowkkMufI3O
+    SMOKE_REPORT_PATH: artifacts/api-production-smoke.json
+
+jobs:
+    monitor:
+        name: Monitor production API
+        if: >-
+            github.event_name != 'repository_dispatch' ||
+            github.event.client_payload.project.id == 'prj_q21S8lSZ3yPesZ3WsDowkkMufI3O'
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+
+            - name: Set up Node.js
+              uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version: 22
+                  cache: pnpm
+                  cache-dependency-path: pnpm-lock.yaml
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Wait for the promoted deployment
+              if: github.event_name == 'repository_dispatch'
+              env:
+                  DEPLOYMENT_ID: ${{ github.event.client_payload.id }}
+                  DEPLOYMENT_URL: ${{ github.event.client_payload.url }}
+              run: |
+                  echo "Vercel production promotion received."
+                  echo "Deployment: ${DEPLOYMENT_ID:-unknown}"
+                  echo "Deployment URL: ${DEPLOYMENT_URL:-unknown}"
+                  echo "The canonical production domain will be tested after 30 seconds."
+                  sleep 30
+
+            - name: Run production API smoke tests
+              id: monitor
+              shell: bash
+              env:
+                  CONTROLLED_FAILURE: ${{ github.event_name == 'workflow_dispatch' && inputs.simulate_failure }}
+                  DEPLOYMENT_ID: ${{ github.event.client_payload.id }}
+                  DEPLOYMENT_URL: ${{ github.event.client_payload.url }}
+                  DEPLOYMENT_SHA: ${{ github.event.client_payload.git.sha }}
+              run: |
+                  set -euo pipefail
+
+                  canonical_domain="https://codex.loireridezen.bike"
+                  trigger="${GITHUB_EVENT_NAME}"
+                  attempts=0
+                  final_failed=true
+                  result_label=""
+                  artifact_name="api-production-smoke-report-${GITHUB_RUN_ID}"
+
+                  if [[ "${CONTROLLED_FAILURE}" == "true" ]]; then
+                      echo "::warning::Controlled failure simulation"
+                  fi
+
+                  for attempt in 1 2 3; do
+                      attempts="${attempt}"
+                      echo "Smoke attempt ${attempt}/3 at $(date -u +'%Y-%m-%dT%H:%M:%SZ') — trigger: ${trigger}"
+
+                      if [[ "${attempt}" -eq 3 ]]; then
+                          mkdir -p "$(dirname "${SMOKE_REPORT_PATH}")"
+                      fi
+
+                      set +e
+                      if [[ "${attempt}" -eq 3 ]]; then
+                          pnpm api:test:smoke \
+                              --reporter-json "${GITHUB_WORKSPACE}/${SMOKE_REPORT_PATH}" \
+                              --reporter-skip-all-headers \
+                              --reporter-skip-body
+                      else
+                          pnpm api:test:smoke
+                      fi
+                      smoke_status=$?
+                      set -e
+
+                      if [[ "${CONTROLLED_FAILURE}" == "true" ]]; then
+                          echo "Controlled failure simulation: forcing attempt ${attempt} to fail."
+                          smoke_status=1
+                      fi
+
+                      if [[ "${smoke_status}" -eq 0 ]]; then
+                          final_failed=false
+                          if [[ "${attempt}" -eq 1 ]]; then
+                              result_label="✅ Production API healthy — passed on attempt 1/3"
+                          else
+                              result_label="✅ Production API recovered — passed on attempt ${attempt}/3"
+                          fi
+                          break
+                      fi
+
+                      echo "::warning::Smoke attempt ${attempt}/3 failed with exit code ${smoke_status}."
+                      if [[ "${attempt}" -eq 1 ]]; then
+                          echo "Retrying in 30 seconds."
+                          sleep 30
+                      elif [[ "${attempt}" -eq 2 ]]; then
+                          echo "Retrying in 60 seconds."
+                          sleep 60
+                      fi
+                  done
+
+                  if [[ "${final_failed}" == "true" ]]; then
+                      result_label="❌ Production API unavailable — failed after 3 attempts"
+                  fi
+
+                  {
+                      echo "## API production monitor"
+                      echo
+                      echo "${result_label}"
+                      echo
+                      echo "| Field | Value |"
+                      echo "| --- | --- |"
+                      echo "| Trigger | \`${trigger}\` |"
+                      echo "| Checked at | \`$(date -u +'%Y-%m-%dT%H:%M:%SZ')\` |"
+                      echo "| Canonical domain | ${canonical_domain} |"
+                      echo "| Attempts | ${attempts}/3 |"
+                      echo "| Controlled failure simulation | ${CONTROLLED_FAILURE} |"
+                      if [[ "${trigger}" == "repository_dispatch" ]]; then
+                          echo "| Vercel project | \`${VERCEL_PROJECT_ID}\` |"
+                          echo "| Vercel deployment | \`${DEPLOYMENT_ID:-unknown}\` |"
+                          echo "| Vercel deployment URL | ${DEPLOYMENT_URL:-unknown} |"
+                          echo "| Deployment Git SHA | \`${DEPLOYMENT_SHA:-unknown}\` |"
+                      else
+                          echo "| Git SHA | \`${GITHUB_SHA}\` |"
+                      fi
+                      if [[ "${final_failed}" == "true" ]]; then
+                          echo "| Failure artifact | \`${artifact_name}\` |"
+                      fi
+                  } >> "${GITHUB_STEP_SUMMARY}"
+
+                  echo "attempts=${attempts}" >> "${GITHUB_OUTPUT}"
+                  echo "artifact_name=${artifact_name}" >> "${GITHUB_OUTPUT}"
+                  echo "final_failed=${final_failed}" >> "${GITHUB_OUTPUT}"
+
+            - name: Upload final failure report
+              if: steps.monitor.outputs.final_failed == 'true'
+              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+              with:
+                  name: ${{ steps.monitor.outputs.artifact_name }}
+                  path: ${{ env.SMOKE_REPORT_PATH }}
+                  retention-days: 7
+                  if-no-files-found: error
+
+            - name: Mark monitoring failure
+              if: always() && steps.monitor.outputs.final_failed == 'true'
+              run: |
+                  echo "::error::Production API smoke tests failed after three attempts."
+                  exit 1
