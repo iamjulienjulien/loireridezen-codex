@@ -40,8 +40,71 @@
     font-size: 16px;
     line-height: 1.65;
     color: var(--text-secondary);
-    max-width: 60ch;
     margin-top: 12px;
+}
+
+.componentNav {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.componentNavLabel {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.componentLink {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    align-items: baseline;
+    padding: 8px 12px;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-decoration: none;
+    box-shadow: var(--shadow-card);
+    transition:
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.componentLink small {
+    color: var(--text-tertiary);
+    font-family: var(--font-body);
+    font-size: 10.5px;
+}
+
+.componentLink:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-1px);
+}
+
+.componentLink:focus-visible {
+    outline: 3px solid var(--gold-soft);
+    outline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+    .componentNav {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .componentLink {
+        grid-template-columns: auto 1fr auto;
+        width: 100%;
+    }
 }
 
 .section {

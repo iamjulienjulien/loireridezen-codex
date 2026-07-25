@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import Link from "next/link";
 import FauneCard from "../faune/FauneCard";
 import FloreCard from "../flore/FloreCard";
 import ChateauxCard from "../chateaux/ChateauxCard";
@@ -142,6 +143,22 @@ export default function AtelierPage() {
                         La collection des esquisses de composants — variantes,
                         états et données de démonstration, au même endroit.
                     </p>
+                    <nav
+                        className={styles.componentNav}
+                        aria-label="Composants UI"
+                    >
+                        <span className={styles.componentNavLabel}>
+                            Composants UI
+                        </span>
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-badge"
+                        >
+                            <span>LRZBadge</span>
+                            <small>Statuts et protections</small>
+                            <span aria-hidden="true">→</span>
+                        </Link>
+                    </nav>
                 </header>
 
                 <AtelierSection

@@ -1,0 +1,206 @@
+.playground {
+    margin-top: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.kicker {
+    margin: 0 0 0.55rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.header h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 540;
+}
+
+.header p:last-child {
+    max-width: 55ch;
+    margin: 0.55rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.reset {
+    flex: 0 0 auto;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-overlay);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    cursor: pointer;
+}
+
+.reset:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.reset:focus-visible,
+.control input:focus-visible,
+.control select:focus-visible {
+    outline: 3px solid var(--gold-soft);
+    outline-offset: 2px;
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.75fr) minmax(0, 1.25fr);
+    min-width: 0;
+}
+
+.controls {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-right: 1px solid var(--border-subtle);
+}
+
+.control {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.control > span {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.control strong {
+    margin-left: 0.35rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-body);
+    font-size: 0.63rem;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.control input,
+.control select {
+    width: 100%;
+    min-height: 2.4rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+}
+
+.output {
+    display: grid;
+    min-width: 0;
+    background:
+        linear-gradient(var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
+        var(--bg-main);
+    background-size: 24px 24px;
+}
+
+.preview,
+.codePanel {
+    min-width: 0;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.preview {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.outputLabel {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.canvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 8rem;
+    padding: 1rem;
+    overflow: hidden;
+    border: 1px dashed var(--border-soft);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+}
+
+.overrideNotice {
+    margin: 0.75rem 0 0;
+    color: var(--text-tertiary);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+}
+
+.overrideNotice code {
+    font-family: var(--font-mono);
+}
+
+.codePanel pre {
+    max-width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-surface);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.65;
+}
+
+.codePanel code {
+    font: inherit;
+}
+
+@media (max-width: 760px) {
+    .workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .reset {
+        width: fit-content;
+    }
+}
