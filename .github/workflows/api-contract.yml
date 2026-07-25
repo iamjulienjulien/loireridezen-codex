@@ -1,0 +1,188 @@
+name: API contract
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+        inputs:
+            base_ref:
+                description: "Optional Git reference used as the base contract"
+                required: false
+                type: string
+
+permissions:
+    contents: read
+
+concurrency:
+    group: api-contract-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+    OASDIFF_VERSION: 1.17.0
+    OASDIFF_ARCHIVE: oasdiff_1.17.0_linux_amd64.tar.gz
+
+jobs:
+    contract:
+        name: API contract
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        steps:
+            - name: Check out repository history
+              uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+              with:
+                  fetch-depth: 0
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+
+            - name: Set up Node.js
+              uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version: 22
+                  cache: pnpm
+                  cache-dependency-path: pnpm-lock.yaml
+
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Install verified oasdiff
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  release_url="https://github.com/oasdiff/oasdiff/releases/download/v${OASDIFF_VERSION}"
+                  archive_path="${RUNNER_TEMP}/${OASDIFF_ARCHIVE}"
+                  checksums_path="${RUNNER_TEMP}/checksums.txt"
+                  install_directory="${RUNNER_TEMP}/oasdiff-bin"
+
+                  curl --fail --silent --show-error --location \
+                      "${release_url}/${OASDIFF_ARCHIVE}" \
+                      --output "${archive_path}"
+                  curl --fail --silent --show-error --location \
+                      "${release_url}/checksums.txt" \
+                      --output "${checksums_path}"
+
+                  expected_checksum="$(awk -v archive="${OASDIFF_ARCHIVE}" '$2 == archive { print $1 }' "${checksums_path}")"
+                  if [[ -z "${expected_checksum}" ]]; then
+                      echo "::error::No checksum found for ${OASDIFF_ARCHIVE}."
+                      exit 1
+                  fi
+
+                  echo "${expected_checksum}  ${archive_path}" | sha256sum --check -
+                  mkdir -p "${install_directory}"
+                  tar --extract --gzip --file "${archive_path}" \
+                      --directory "${install_directory}" \
+                      oasdiff
+                  chmod +x "${install_directory}/oasdiff"
+                  echo "${install_directory}" >> "${GITHUB_PATH}"
+
+                  "${install_directory}/oasdiff" --version
+
+            - name: Determine base contract revision
+              id: base
+              shell: bash
+              env:
+                  BASE_REF_INPUT: ${{ inputs.base_ref }}
+                  PR_BASE_REF: ${{ github.base_ref }}
+                  PUSH_BEFORE: ${{ github.event.before }}
+              run: |
+                  set -euo pipefail
+
+                  if [[ -n "${BASE_REF_INPUT:-}" ]]; then
+                      base_ref="${BASE_REF_INPUT}"
+                  elif [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
+                      git fetch --no-tags origin "${PR_BASE_REF}"
+                      base_ref="$(git merge-base HEAD "origin/${PR_BASE_REF}")"
+                  elif [[ "${GITHUB_EVENT_NAME}" == "push" ]]; then
+                      if [[ -z "${PUSH_BEFORE:-}" || "${PUSH_BEFORE}" =~ ^0+$ ]]; then
+                          echo "::error::The push event has no usable previous revision."
+                          exit 1
+                      fi
+                      base_ref="${PUSH_BEFORE}"
+                  elif [[ "${GITHUB_REF_NAME}" != "main" ]]; then
+                      git fetch --no-tags origin main
+                      base_ref="$(git merge-base HEAD origin/main)"
+                  elif git rev-parse --verify --quiet HEAD^ >/dev/null; then
+                      base_ref="$(git rev-parse HEAD^)"
+                  else
+                      echo "::error::No parent revision is available for this manual run on main."
+                      exit 1
+                  fi
+
+                  git cat-file -e "${base_ref}^{commit}"
+                  echo "base_ref=${base_ref}" >> "${GITHUB_OUTPUT}"
+                  echo "Using base contract revision ${base_ref}."
+
+            - name: Lint current OpenAPI
+              id: lint
+              continue-on-error: true
+              run: pnpm api:lint
+
+            - name: Validate runtime against current OpenAPI
+              id: runtime
+              continue-on-error: true
+              run: pnpm api:test:contract
+
+            - name: Verify public shape snapshots
+              id: snapshots
+              continue-on-error: true
+              run: pnpm exec vitest run src/api/contract/public-shapes.test.ts
+
+            - name: Compare OpenAPI compatibility
+              id: compatibility
+              continue-on-error: true
+              env:
+                  API_CONTRACT_BASE: ${{ steps.base.outputs.base_ref }}
+              run: pnpm api:contract:diff
+
+            - name: Summarize contract checks
+              if: always()
+              shell: bash
+              env:
+                  BASE_REF: ${{ steps.base.outputs.base_ref }}
+                  LINT_RESULT: ${{ steps.lint.outcome }}
+                  RUNTIME_RESULT: ${{ steps.runtime.outcome }}
+                  SNAPSHOT_RESULT: ${{ steps.snapshots.outcome }}
+                  COMPATIBILITY_RESULT: ${{ steps.compatibility.outcome }}
+              run: |
+                  {
+                      echo "## API contract"
+                      echo
+                      echo "| Guard | Result |"
+                      echo "| --- | --- |"
+                      echo "| OpenAPI lint | ${LINT_RESULT:-skipped} |"
+                      echo "| Runtime response against current OpenAPI | ${RUNTIME_RESULT:-skipped} |"
+                      echo "| Public shape snapshots | ${SNAPSHOT_RESULT:-skipped} |"
+                      echo "| OpenAPI compatibility | ${COMPATIBILITY_RESULT:-skipped} |"
+                      echo
+                      echo "| Revision | Value |"
+                      echo "| --- | --- |"
+                      echo "| Base | \`${BASE_REF:-unavailable}\` |"
+                      echo "| Current | \`${GITHUB_SHA}\` |"
+                      echo "| oasdiff | \`${OASDIFF_VERSION}\` |"
+                  } >> "${GITHUB_STEP_SUMMARY}"
+
+                  failed=false
+                  if [[ "${LINT_RESULT:-skipped}" != "success" ]]; then
+                      echo "::error::OpenAPI lint failed"
+                      failed=true
+                  fi
+                  if [[ "${RUNTIME_RESULT:-skipped}" != "success" ]]; then
+                      echo "::error::Runtime response does not match current OpenAPI"
+                      failed=true
+                  fi
+                  if [[ "${SNAPSHOT_RESULT:-skipped}" != "success" ]]; then
+                      echo "::error::Public shape snapshot changed"
+                      failed=true
+                  fi
+                  if [[ "${COMPATIBILITY_RESULT:-skipped}" != "success" ]]; then
+                      echo "::error::Breaking or potentially breaking OpenAPI change detected"
+                      failed=true
+                  fi
+
+                  if [[ "${failed}" == "true" ]]; then
+                      exit 1
+                  fi
