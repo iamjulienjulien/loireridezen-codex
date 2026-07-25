@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LRZBadge, { type LRZBadgeProps } from "@/components/LRZBadge/LRZBadge";
-import type { LRZColor } from "@/types/lrz";
+import { LRZ_COLOR_GROUPS } from "@/registry/colors";
+import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZBadgePlayground from "./LRZBadgePlayground";
 import styles from "./lrz-badge.module.css";
 
@@ -19,11 +20,6 @@ type ExampleGroup = {
     title: string;
     description: string;
     examples: BadgeExample[];
-};
-
-type ColorGroup = {
-    title: string;
-    colors: LRZColor[];
 };
 
 const GROUPS: ExampleGroup[] = [
@@ -147,60 +143,6 @@ const GROUPS: ExampleGroup[] = [
     },
 ];
 
-const COLOR_GROUPS: ColorGroup[] = [
-    {
-        title: "Nature",
-        colors: [
-            "prairie",
-            "roseau",
-            "foret",
-            "sable",
-            "galet",
-            "eau",
-            "eau-claire",
-            "ciel",
-            "soleil",
-            "coucher",
-        ],
-    },
-    {
-        title: "Faune",
-        colors: [
-            "blanc",
-            "blanc-gris",
-            "argent",
-            "gris",
-            "gris-ardoise",
-            "gris-brun",
-            "noir",
-            "beige",
-            "creme",
-            "ocre",
-            "fauve",
-            "brun",
-            "brun-roux",
-            "brun-fonce",
-            "jaune",
-            "orange",
-            "orange-cuivre",
-            "roux",
-            "rouge",
-            "vert",
-            "vert-vif",
-            "vert-olive",
-            "vert-metallise",
-            "bleu",
-            "bleu-gris",
-            "bleu-turquoise",
-            "bleu-metallise",
-        ],
-    },
-    {
-        title: "Patrimoine",
-        colors: ["pierre", "ardoise", "brique", "tuffeau"],
-    },
-];
-
 const PROPS = [
     {
         name: "label",
@@ -246,6 +188,7 @@ const PROPS = [
 export default function LRZBadgePage() {
     return (
         <main className={styles.page}>
+            <ComponentsNavigation current="lrz-badge" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
                     <Link className={styles.back} href="/atelier">
@@ -393,7 +336,7 @@ export default function LRZBadgePage() {
                     </div>
 
                     <div className={styles.colorGroups}>
-                        {COLOR_GROUPS.map((group) => (
+                        {LRZ_COLOR_GROUPS.map((group) => (
                             <section
                                 className={styles.colorGroup}
                                 key={group.title}

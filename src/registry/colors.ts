@@ -111,3 +111,63 @@ export const LRZ_COLOR_VARIABLES: Record<LRZColor, `--lrz-${string}`> = {
 };
 
 export const LRZ_COLOR_NAMES = Object.keys(LRZ_COLOR_VARIABLES) as LRZColor[];
+
+export type LRZColorGroup = {
+    title: string;
+    colors: LRZColor[];
+};
+
+/** Groupes d’affichage de la palette partagés par la documentation UI. */
+export const LRZ_COLOR_GROUPS: LRZColorGroup[] = [
+    {
+        title: "Nature",
+        colors: [
+            "prairie",
+            "roseau",
+            "foret",
+            "sable",
+            "galet",
+            "eau",
+            "eau-claire",
+            "ciel",
+            "soleil",
+            "coucher",
+        ],
+    },
+    {
+        title: "Faune",
+        colors: [
+            "blanc",
+            "blanc-gris",
+            "argent",
+            "gris",
+            "gris-ardoise",
+            "gris-brun",
+            "noir",
+            "beige",
+            "creme",
+            "ocre",
+            "fauve",
+            "brun",
+            "brun-roux",
+            "brun-fonce",
+            "jaune",
+            "orange",
+            "orange-cuivre",
+            "roux",
+            "rouge",
+            "vert",
+            "vert-vif",
+            "vert-olive",
+            "vert-metallise",
+            "bleu",
+            "bleu-gris",
+            "bleu-turquoise",
+            "bleu-metallise",
+        ],
+    },
+    {
+        title: "Patrimoine",
+        colors: ["pierre", "ardoise", "brique", "tuffeau"],
+    },
+];

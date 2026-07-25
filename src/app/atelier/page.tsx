@@ -158,6 +158,14 @@ export default function AtelierPage() {
                             <small>Statuts et protections</small>
                             <span aria-hidden="true">→</span>
                         </Link>
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-anecdote"
+                        >
+                            <span>LRZAnecdote</span>
+                            <small>Citations éditoriales</small>
+                            <span aria-hidden="true">→</span>
+                        </Link>
                     </nav>
                 </header>
 
