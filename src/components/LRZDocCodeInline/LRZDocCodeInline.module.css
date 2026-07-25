@@ -1,0 +1,12 @@
+.code {
+    padding: 0.12em 0.38em;
+    border: 1px solid color-mix(in srgb, var(--color-galet) 22%, transparent);
+    border-radius: var(--radius-sm);
+    color: var(--color-argent);
+    background: color-mix(in srgb, var(--color-noir) 92%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    font-weight: 400;
+    line-height: inherit;
+    overflow-wrap: anywhere;
+}

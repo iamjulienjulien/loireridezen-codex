@@ -1,0 +1,260 @@
+.root {
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--color-galet) 22%, transparent);
+    border-radius: var(--radius-lg);
+    background: #282828;
+    box-shadow:
+        0 1px 2px rgb(35 29 22 / 8%),
+        0 12px 32px rgb(35 29 22 / 8%);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 42px;
+    gap: 16px;
+    padding: 6px 8px 6px 14px;
+    border-bottom: 1px solid rgb(255 255 255 / 8%);
+    background: rgb(255 255 255 / 3%);
+    font-family: var(--font-mono);
+}
+
+.headerIdentity {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 10px;
+}
+
+.filename {
+    overflow: hidden;
+    color: rgb(255 255 255 / 92%);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.language {
+    flex: 0 0 auto;
+    color: rgb(255 255 255 / 48%);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.copyButton {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    min-width: 74px;
+    height: 28px;
+    gap: 6px;
+    padding: 0 9px;
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: var(--radius-sm);
+    color: rgb(255 255 255 / 68%);
+    background: rgb(255 255 255 / 4%);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        color 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease,
+        transform 100ms ease;
+}
+
+.copyButton:hover {
+    border-color: rgb(255 255 255 / 18%);
+    color: rgb(255 255 255 / 94%);
+    background: rgb(255 255 255 / 8%);
+}
+
+.copyButton:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-ocre) 75%, white);
+    outline-offset: 2px;
+}
+
+.copyButton:active {
+    transform: translateY(1px);
+}
+
+.copyButton[data-status="copied"] {
+    border-color: rgb(152 180 113 / 28%);
+    color: rgb(194 220 156);
+    background: rgb(152 180 113 / 10%);
+}
+
+.copyButton[data-status="error"] {
+    border-color: rgb(204 120 103 / 28%);
+    color: rgb(236 157 139);
+    background: rgb(204 120 103 / 10%);
+}
+
+.copyIcon {
+    display: inline-flex;
+    width: 13px;
+    height: 13px;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyIcon svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.highlight {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-color: color-mix(in srgb, var(--color-galet) 50%, transparent)
+        transparent;
+    scrollbar-width: thin;
+}
+
+.highlight :global(.shiki) {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    padding: 16px 18px 18px;
+    background: transparent !important;
+    tab-size: 4;
+}
+
+.highlight :global(.shiki code) {
+    display: block;
+    width: max-content;
+    min-width: 100%;
+    padding: 0;
+    border: 0;
+    color: inherit;
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-wrap: normal;
+    white-space: pre;
+}
+
+.highlight::-webkit-scrollbar {
+    height: 8px;
+}
+
+.highlight::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.highlight::-webkit-scrollbar-thumb {
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-galet) 50%, transparent);
+    background-clip: padding-box;
+}
+
+@media (prefers-color-scheme: light) {
+    .root {
+        background: #fbf1c7;
+    }
+
+    .header {
+        border-bottom-color: rgb(60 56 54 / 12%);
+        background: rgb(60 56 54 / 3%);
+    }
+
+    .filename {
+        color: rgb(60 56 54 / 90%);
+    }
+
+    .language {
+        color: rgb(60 56 54 / 52%);
+    }
+
+    .copyButton {
+        border-color: rgb(60 56 54 / 12%);
+        color: rgb(60 56 54 / 68%);
+        background: rgb(60 56 54 / 4%);
+    }
+
+    .copyButton:hover {
+        border-color: rgb(60 56 54 / 22%);
+        color: rgb(60 56 54 / 94%);
+        background: rgb(60 56 54 / 8%);
+    }
+
+    .copyButton[data-status="copied"] {
+        border-color: rgb(121 116 14 / 25%);
+        color: rgb(82 80 10);
+        background: rgb(121 116 14 / 9%);
+    }
+
+    .copyButton[data-status="error"] {
+        border-color: rgb(157 0 6 / 22%);
+        color: rgb(157 0 6);
+        background: rgb(157 0 6 / 7%);
+    }
+
+    .highlight :global(.shiki),
+    .highlight :global(.shiki span) {
+        color: var(--shiki-light) !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .highlight :global(.shiki),
+    .highlight :global(.shiki span) {
+        color: var(--shiki-dark) !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .root {
+        margin: 16px 0;
+        border-radius: var(--radius-md);
+    }
+
+    .header {
+        min-height: 40px;
+        gap: 8px;
+        padding-left: 12px;
+    }
+
+    .headerIdentity {
+        gap: 7px;
+    }
+
+    .filename {
+        font-size: 9px;
+    }
+
+    .copyButton {
+        min-width: 32px;
+        padding-inline: 8px;
+    }
+
+    .copyButton > span:last-child {
+        display: none;
+    }
+
+    .highlight :global(.shiki) {
+        padding: 14px;
+    }
+
+    .highlight :global(.shiki code) {
+        font-size: 11px;
+        line-height: 1.65;
+    }
+}
