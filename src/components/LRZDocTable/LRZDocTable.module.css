@@ -1,0 +1,228 @@
+.root {
+    --table-accent: var(--color-eau);
+    --table-border:
+        color-mix(in srgb, var(--text-primary) 12%, transparent);
+    --table-border-strong:
+        color-mix(in srgb, var(--text-primary) 18%, transparent);
+    --table-header-bg:
+        color-mix(in srgb, var(--table-accent) 8%, var(--bg-surface));
+    --table-row-alt:
+        color-mix(in srgb, var(--text-primary) 2.5%, transparent);
+
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+.caption {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 0.8rem;
+}
+
+.title {
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 650;
+    line-height: 1.35;
+}
+
+.description {
+    max-width: 52rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.6;
+}
+
+.scroll {
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    border: 1px solid var(--table-border);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    box-shadow:
+        0 1px 2px rgb(35 29 22 / 4%),
+        0 8px 24px rgb(35 29 22 / 4%);
+    scrollbar-width: thin;
+}
+
+.scroll:focus-visible {
+    outline: 2px solid
+        color-mix(in srgb, var(--table-accent) 55%, transparent);
+    outline-offset: 3px;
+}
+
+.tableFrame {
+    min-width: 100%;
+    width: max-content;
+}
+
+.tableFrame > table {
+    width: 100%;
+    min-width: 42rem;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.55;
+}
+
+.tableFrame thead {
+    background: var(--table-header-bg);
+}
+
+.tableFrame th,
+.tableFrame td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--table-border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.tableFrame th {
+    color: var(--text-primary);
+    font-weight: 650;
+}
+
+.tableFrame thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--table-header-bg);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.tableFrame tbody tr:last-child > * {
+    border-bottom: 0;
+}
+
+.tableFrame tbody tr {
+    transition: background-color 140ms ease;
+}
+
+.tableFrame tbody tr:hover {
+    background:
+        color-mix(in srgb, var(--table-accent) 5%, transparent);
+}
+
+.tableFrame code {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+}
+
+.tableFrame a {
+    color: inherit;
+    text-decoration-color:
+        color-mix(in srgb, var(--table-accent) 48%, transparent);
+    text-underline-offset: 0.18em;
+}
+
+.tableFrame a:hover {
+    text-decoration-color: var(--table-accent);
+}
+
+/* Compact */
+
+.root[data-variant="compact"] .tableFrame > table {
+    font-size: 0.78rem;
+}
+
+.root[data-variant="compact"] .tableFrame th,
+.root[data-variant="compact"] .tableFrame td {
+    padding: 0.62rem 0.75rem;
+}
+
+.root[data-variant="compact"] .scroll {
+    border-radius: var(--radius-md);
+    box-shadow: none;
+}
+
+/* Lignes alternées */
+
+.root[data-variant="striped"] .tableFrame tbody tr:nth-child(even) {
+    background: var(--table-row-alt);
+}
+
+.root[data-variant="striped"] .tableFrame tbody tr:nth-child(even):hover,
+.root[data-variant="striped"] .tableFrame tbody tr:hover {
+    background:
+        color-mix(in srgb, var(--table-accent) 6%, transparent);
+}
+
+/* Tableau comparatif */
+
+.root[data-variant="comparison"] {
+    --table-accent: var(--color-prairie);
+}
+
+.root[data-variant="comparison"] .tableFrame thead th:not(:first-child) {
+    text-align: center;
+}
+
+.root[data-variant="comparison"] .tableFrame tbody td:not(:first-child) {
+    text-align: center;
+}
+
+.root[data-variant="comparison"] .tableFrame th:first-child,
+.root[data-variant="comparison"] .tableFrame td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--bg-surface);
+    box-shadow:
+        1px 0 0 var(--table-border);
+}
+
+.root[data-variant="comparison"] .tableFrame thead th:first-child {
+    z-index: 2;
+    background: var(--table-header-bg);
+}
+
+/* Première colonne mise en avant */
+
+.root[data-emphasize-first-column="true"] .tableFrame tbody th:first-child,
+.root[data-emphasize-first-column="true"] .tableFrame tbody td:first-child {
+    color: var(--text-primary);
+    font-weight: 620;
+}
+
+@media (max-width: 640px) {
+    .root {
+        margin-block: 1.2rem;
+    }
+
+    .scroll {
+        border-radius: var(--radius-md);
+    }
+
+    .tableFrame > table {
+        min-width: 34rem;
+        font-size: 0.8rem;
+    }
+
+    .tableFrame th,
+    .tableFrame td {
+        padding: 0.75rem 0.8rem;
+    }
+
+    .title {
+        font-size: 0.95rem;
+    }
+
+    .description {
+        font-size: 0.74rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tableFrame tbody tr {
+        transition: none;
+    }
+}

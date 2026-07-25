@@ -1,0 +1,271 @@
+.root {
+    --quote-accent: var(--gold);
+    --quote-accent-soft:
+        color-mix(in srgb, var(--quote-accent) 12%, transparent);
+    --quote-border:
+        color-mix(in srgb, var(--quote-accent) 28%, transparent);
+
+    position: relative;
+    width: 100%;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    border: 1px solid var(--quote-border);
+    border-radius: var(--radius-lg);
+    background:
+        radial-gradient(
+            circle at top right,
+            var(--quote-accent-soft),
+            transparent 42%
+        ),
+        color-mix(in srgb, var(--bg-surface) 96%, transparent);
+    box-shadow:
+        0 1px 2px rgb(35 29 22 / 5%),
+        0 10px 30px rgb(35 29 22 / 6%);
+}
+
+.quote {
+    position: relative;
+    margin: 0;
+    padding: clamp(1.4rem, 4vw, 2.2rem);
+}
+
+.label {
+    display: block;
+    margin: 0 0 0.9rem;
+    color: var(--quote-accent);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.mark {
+    position: absolute;
+    top: 0.65rem;
+    right: 1rem;
+    color:
+        color-mix(in srgb, var(--quote-accent) 18%, transparent);
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 13vw, 9rem);
+    font-weight: 500;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.content {
+    position: relative;
+    max-width: 58rem;
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+    font-weight: 480;
+    letter-spacing: -0.018em;
+    line-height: 1.5;
+}
+
+.content > :first-child {
+    margin-top: 0;
+}
+
+.content > :last-child {
+    margin-bottom: 0;
+}
+
+.content p {
+    margin: 0;
+}
+
+.content p + p {
+    margin-top: 0.85rem;
+}
+
+.content strong {
+    font-weight: 620;
+}
+
+.content em {
+    color: var(--text-secondary);
+}
+
+.content a {
+    color: inherit;
+    text-decoration-color:
+        color-mix(in srgb, var(--quote-accent) 50%, transparent);
+    text-underline-offset: 0.18em;
+}
+
+.content a:hover {
+    text-decoration-color: var(--quote-accent);
+}
+
+.content code {
+    font-family: var(--font-mono);
+    font-size: 0.78em;
+}
+
+.caption {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0 2rem 1.5rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    line-height: 1.5;
+}
+
+.rule {
+    width: 1.5rem;
+    height: 1px;
+    flex: 0 0 auto;
+    background:
+        color-mix(in srgb, var(--quote-accent) 48%, transparent);
+}
+
+.attribution {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: baseline;
+}
+
+.author {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.separator {
+    color: var(--quote-accent);
+}
+
+.source {
+    color: var(--text-tertiary);
+    font-style: normal;
+}
+
+/* Citation mise en avant */
+
+.root[data-variant="highlight"] {
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--quote-accent) 14%, var(--bg-surface)),
+            var(--bg-surface) 72%
+        );
+}
+
+.root[data-variant="highlight"] .quote {
+    padding-block: clamp(1.8rem, 5vw, 3rem);
+}
+
+.root[data-variant="highlight"] .content {
+    max-width: 64rem;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+    line-height: 1.4;
+}
+
+/* Note de terrain */
+
+.root[data-variant="fieldNote"] {
+    --quote-accent: var(--color-prairie);
+
+    border-left-width: 4px;
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--color-prairie) 8%, transparent),
+            transparent 42%
+        ),
+        var(--bg-surface);
+    box-shadow: none;
+}
+
+.root[data-variant="fieldNote"] .content {
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    letter-spacing: 0;
+    line-height: 1.75;
+}
+
+.root[data-variant="fieldNote"] .mark {
+    font-family: var(--font-mono);
+    font-size: 4.5rem;
+}
+
+/* Témoignage */
+
+.root[data-variant="testimonial"] {
+    --quote-accent: var(--color-eau);
+
+    text-align: center;
+}
+
+.root[data-variant="testimonial"] .quote {
+    padding-inline: clamp(1.5rem, 7vw, 5rem);
+}
+
+.root[data-variant="testimonial"] .content {
+    max-width: 52rem;
+    margin-inline: auto;
+}
+
+.root[data-variant="testimonial"] .mark {
+    right: 50%;
+    transform: translateX(50%);
+}
+
+.root[data-variant="testimonial"] .caption {
+    justify-content: center;
+    padding-inline: 1.5rem;
+}
+
+.root[data-variant="testimonial"] .rule {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .root {
+        margin-block: 1.2rem;
+        border-radius: var(--radius-md);
+    }
+
+    .quote {
+        padding: 1.2rem;
+    }
+
+    .content {
+        font-size: 1.08rem;
+        line-height: 1.55;
+    }
+
+    .caption {
+        align-items: flex-start;
+        padding: 0 1.2rem 1.2rem;
+        font-size: 0.72rem;
+    }
+
+    .mark {
+        top: 0.4rem;
+        right: 0.65rem;
+        font-size: 5rem;
+    }
+
+    .root[data-variant="highlight"] .quote {
+        padding-block: 1.5rem;
+    }
+
+    .root[data-variant="highlight"] .content {
+        font-size: 1.3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .root,
+    .root * {
+        scroll-behavior: auto;
+    }
+}

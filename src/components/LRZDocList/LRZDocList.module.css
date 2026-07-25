@@ -1,0 +1,230 @@
+.root {
+    --list-accent: var(--gold);
+    --list-marker-size: 1.35rem;
+    --list-gap: 0.8rem;
+
+    display: grid;
+    gap: var(--list-gap);
+    margin: 1.25rem 0;
+    padding: 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    list-style: none;
+    counter-reset: lrz-doc-list;
+}
+
+.root > li {
+    position: relative;
+    min-width: 0;
+    padding-left: calc(var(--list-marker-size) + 0.75rem);
+}
+
+.root > li::before {
+    position: absolute;
+    top: 0.28em;
+    left: 0;
+    display: grid;
+    width: var(--list-marker-size);
+    height: var(--list-marker-size);
+    place-items: center;
+    border: 1px solid
+        color-mix(in srgb, var(--list-accent) 38%, transparent);
+    border-radius: 999px;
+    color: var(--list-accent);
+    background:
+        color-mix(in srgb, var(--list-accent) 8%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 650;
+    line-height: 1;
+    content: "";
+}
+
+.root:not([data-ordered="true"]) > li::after {
+    position: absolute;
+    top: calc(0.28em + var(--list-marker-size) / 2 - 2px);
+    left: calc(var(--list-marker-size) / 2 - 2px);
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: currentColor;
+    color: var(--list-accent);
+    content: "";
+}
+
+.root[data-ordered="true"] > li {
+    counter-increment: lrz-doc-list;
+}
+
+.root[data-ordered="true"] > li::before {
+    content: counter(lrz-doc-list);
+}
+
+.root > li > p {
+    margin: 0;
+}
+
+.root > li > p + p {
+    margin-top: 0.55rem;
+}
+
+.root strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.root a {
+    color: var(--gold);
+    text-decoration-color:
+        color-mix(in srgb, var(--gold) 42%, transparent);
+    text-underline-offset: 0.18em;
+}
+
+.root a:hover {
+    text-decoration-color: currentColor;
+}
+
+.root code {
+    font-family: var(--font-mono);
+}
+
+/* Listes imbriquées */
+
+.root .root,
+.root ul,
+.root ol {
+    margin: 0.65rem 0 0;
+}
+
+.root > li > ul,
+.root > li > ol {
+    display: grid;
+    gap: 0.45rem;
+    padding-left: 1.1rem;
+    color: var(--text-tertiary);
+    list-style: none;
+}
+
+.root > li > ul > li,
+.root > li > ol > li {
+    position: relative;
+    padding-left: 1rem;
+}
+
+.root > li > ul > li::before,
+.root > li > ol > li::before {
+    position: absolute;
+    top: 0.75em;
+    left: 0;
+    width: 0.3rem;
+    height: 0.3rem;
+    border: 1px solid
+        color-mix(in srgb, var(--list-accent) 55%, transparent);
+    border-radius: 999px;
+    content: "";
+}
+
+/* Variante compacte */
+
+.root[data-variant="compact"] {
+    --list-marker-size: 0.95rem;
+    --list-gap: 0.35rem;
+
+    margin-block: 0.9rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+}
+
+.root[data-variant="compact"] > li {
+    padding-left: calc(var(--list-marker-size) + 0.55rem);
+}
+
+.root[data-variant="compact"] > li::before {
+    top: 0.28em;
+    border: 0;
+    background: transparent;
+}
+
+.root[data-variant="compact"]:not([data-ordered="true"]) > li::after {
+    top: 0.72em;
+    left: calc(var(--list-marker-size) / 2 - 1.5px);
+    width: 3px;
+    height: 3px;
+}
+
+/* Variante validation */
+
+.root[data-variant="check"] > li::before {
+    border-color:
+        color-mix(in srgb, var(--color-prairie) 42%, transparent);
+    color: var(--color-prairie);
+    background:
+        color-mix(in srgb, var(--color-prairie) 10%, transparent);
+    content: "✓";
+}
+
+.root[data-variant="check"] > li::after {
+    display: none;
+}
+
+/* Variante chronologique */
+
+.root[data-variant="timeline"] {
+    --list-gap: 0;
+
+    overflow: hidden;
+}
+
+.root[data-variant="timeline"] > li {
+    min-height: 3.2rem;
+    padding-bottom: 1rem;
+}
+
+.root[data-variant="timeline"] > li:not(:last-child)::after {
+    position: absolute;
+    top: calc(0.28em + var(--list-marker-size) + 0.2rem);
+    bottom: -0.2rem;
+    left: calc(var(--list-marker-size) / 2);
+    display: block;
+    width: 1px;
+    height: auto;
+    border-radius: 0;
+    background:
+        color-mix(in srgb, var(--list-accent) 28%, transparent);
+    content: "";
+}
+
+.root[data-variant="timeline"] > li:last-child {
+    padding-bottom: 0;
+}
+
+.root[data-variant="timeline"]:not([data-ordered="true"])
+    > li::before {
+    background:
+        radial-gradient(
+            circle,
+            var(--list-accent) 0 3px,
+            transparent 3.5px
+        ),
+        color-mix(in srgb, var(--list-accent) 8%, transparent);
+}
+
+.root[data-variant="timeline"]:not([data-ordered="true"])
+    > li::after {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .root {
+        --list-marker-size: 1.2rem;
+
+        gap: 0.65rem;
+        font-size: 0.86rem;
+    }
+
+    .root > li {
+        padding-left: calc(var(--list-marker-size) + 0.6rem);
+    }
+}

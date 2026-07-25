@@ -3,6 +3,10 @@ import { join } from "node:path";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MarkdownAsync, type Components } from "react-markdown";
+import remarkGfm from "remark-gfm";
+import remarkDirective from "remark-directive";
+
+import remarkLrzDirectives from "@/lib/markdown/remark-lrz-directives";
 
 import LRZDocCodeBlock from "@/components/LRZDocCodeBlock/LRZDocCodeBlock";
 import LRZDocCodeInline from "@/components/LRZDocCodeInline/LRZDocCodeInline";
@@ -15,6 +19,16 @@ import {
 } from "./markdown";
 
 import styles from "./api-docs.module.css";
+import LRZDocList from "@/components/LRZDocList/LRZDocList";
+import LRZDocQuote, {
+    type LRZDocQuoteVariant,
+} from "@/components/LRZDocQuote/LRZDocQuote";
+import LRZDocCallout, {
+    type LRZDocCalloutVariant,
+} from "@/components/LRZDocCallout/LRZDocCallout";
+import LRZDocTable, {
+    LRZDocTableVariant,
+} from "@/components/LRZDocTable/LRZDocTable";
 
 export const dynamic = "force-static";
 
@@ -63,6 +77,64 @@ const sectionHeading = (level: 2 | 3, children: React.ReactNode) => {
     );
 };
 
+const QUOTE_VARIANTS: readonly LRZDocQuoteVariant[] = [
+    "default",
+    "highlight",
+    "fieldNote",
+    "testimonial",
+];
+
+const isQuoteVariant = (value: unknown): value is LRZDocQuoteVariant =>
+    typeof value === "string" &&
+    QUOTE_VARIANTS.includes(value as LRZDocQuoteVariant);
+
+type MarkdownBlockquoteProps = React.ComponentPropsWithoutRef<"blockquote"> & {
+    "data-lrz-quote"?: string;
+    "data-variant"?: string;
+    "data-label"?: string;
+    "data-author"?: string;
+    "data-source"?: string;
+};
+
+const CALLOUT_VARIANTS: readonly LRZDocCalloutVariant[] = [
+    "info",
+    "tip",
+    "warning",
+    "danger",
+    "success",
+];
+
+const isCalloutVariant = (value: unknown): value is LRZDocCalloutVariant =>
+    typeof value === "string" &&
+    CALLOUT_VARIANTS.includes(value as LRZDocCalloutVariant);
+
+type MarkdownAsideProps = React.ComponentPropsWithoutRef<"aside"> & {
+    "data-lrz-callout"?: string;
+    "data-variant"?: string;
+    "data-title"?: string;
+    "data-icon"?: string;
+    "data-compact"?: string;
+};
+
+const TABLE_VARIANTS: readonly LRZDocTableVariant[] = [
+    "default",
+    "compact",
+    "striped",
+    "comparison",
+];
+
+const isTableVariant = (value: unknown): value is LRZDocTableVariant =>
+    typeof value === "string" &&
+    TABLE_VARIANTS.includes(value as LRZDocTableVariant);
+
+type MarkdownDivProps = React.ComponentPropsWithoutRef<"div"> & {
+    "data-lrz-table"?: string;
+    "data-variant"?: string;
+    "data-title"?: string;
+    "data-description"?: string;
+    "data-emphasize-first-column"?: string;
+};
+
 const markdownComponents: Components = {
     h2: ({ children }) => sectionHeading(2, children),
 
@@ -72,9 +144,57 @@ const markdownComponents: Components = {
         <a href={documentationHref(href ?? "")}>{children}</a>
     ),
 
-    blockquote: ({ children }) => (
-        <blockquote className={styles.notice}>{children}</blockquote>
-    ),
+    blockquote: ({ children, ...props }) => {
+        const {
+            "data-variant": rawVariant,
+            "data-label": label,
+            "data-author": author,
+            "data-source": source,
+            cite,
+            ...blockquoteProps
+        } = props as MarkdownBlockquoteProps;
+
+        const variant = isQuoteVariant(rawVariant) ? rawVariant : "default";
+
+        return (
+            <LRZDocQuote
+                {...blockquoteProps}
+                variant={variant}
+                label={label}
+                author={author}
+                source={source}
+                cite={cite}
+            >
+                {children}
+            </LRZDocQuote>
+        );
+    },
+
+    aside: ({ children, ...props }) => {
+        const {
+            "data-variant": rawVariant,
+            "data-title": title,
+            "data-icon": icon,
+            "data-compact": rawCompact,
+            ...asideProps
+        } = props as MarkdownAsideProps;
+
+        const variant = isCalloutVariant(rawVariant) ? rawVariant : "info";
+
+        const compact = rawCompact === "true";
+
+        return (
+            <LRZDocCallout
+                {...asideProps}
+                variant={variant}
+                title={title}
+                icon={icon === "none" ? null : icon}
+                compact={compact}
+            >
+                {children}
+            </LRZDocCallout>
+        );
+    },
 
     pre: ({ children, ...props }) => (
         <LRZDocCodeBlock {...props}>{children}</LRZDocCodeBlock>
@@ -98,10 +218,45 @@ const markdownComponents: Components = {
         );
     },
 
-    table: ({ children }) => (
-        <div className={styles.tableScroll}>
-            <table>{children}</table>
-        </div>
+    table: ({ children, ...props }) => <table {...props}>{children}</table>,
+
+    div: ({ children, ...props }) => {
+        const {
+            "data-lrz-table": isLrzTable,
+            "data-variant": rawVariant,
+            "data-title": title,
+            "data-description": description,
+            "data-emphasize-first-column": rawEmphasize,
+            ...divProps
+        } = props as MarkdownDivProps;
+
+        if (isLrzTable !== "true") {
+            return <div {...divProps}>{children}</div>;
+        }
+
+        return (
+            <LRZDocTable
+                {...divProps}
+                variant={isTableVariant(rawVariant) ? rawVariant : "default"}
+                title={title}
+                description={description}
+                emphasizeFirstColumn={rawEmphasize === "true"}
+            >
+                {children}
+            </LRZDocTable>
+        );
+    },
+
+    ul: ({ children, ...props }) => (
+        <LRZDocList variant="compact" {...props}>
+            {children}
+        </LRZDocList>
+    ),
+
+    ol: ({ children, ...props }) => (
+        <LRZDocList ordered {...props}>
+            {children}
+        </LRZDocList>
     ),
 };
 
@@ -139,7 +294,14 @@ export default function ApiDocumentationPage() {
                 </aside>
 
                 <main className={styles.content}>
-                    <MarkdownAsync components={markdownComponents}>
+                    <MarkdownAsync
+                        components={markdownComponents}
+                        remarkPlugins={[
+                            remarkGfm,
+                            remarkDirective,
+                            remarkLrzDirectives,
+                        ]}
+                    >
                         {guide}
                     </MarkdownAsync>
                 </main>

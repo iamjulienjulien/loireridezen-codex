@@ -22,6 +22,16 @@ const COMPONENTS = [
         label: "LRZDocCodeInline",
         href: "/atelier/components/lrz-doc-code-inline",
     },
+    {
+        id: "lrz-doc-list",
+        label: "LRZDocList",
+        href: "/atelier/components/lrz-doc-list",
+    },
+    {
+        id: "lrz-doc-quote",
+        label: "LRZDocQuote",
+        href: "/atelier/components/lrz-doc-quote",
+    },
 ] as const;
 
 type ComponentId = (typeof COMPONENTS)[number]["id"];
