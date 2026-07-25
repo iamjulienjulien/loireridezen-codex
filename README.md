@@ -261,6 +261,33 @@ compare les contraintes JSON Schema et bloque les bornes numériques ou de
 taille durcies, ainsi que l’ajout ou le changement de `pattern`, `multipleOf`
 et `uniqueItems`.
 
+### Qualité des données éditoriales
+
+Les schémas Zod valident la structure propre à chaque catalogue. Le contrôle
+qualité transverse vérifie en complément la cohérence entre registres,
+catalogues, API et fichiers médias :
+
+- unicité et format des slugs, hrefs, fichiers et identifiants publics ;
+- dates réelles, non futures, au format `YYYY-MM-DD` ;
+- coordonnées dans le corridor ligérien (`44.5–48.5` de latitude,
+  `-2.5–5.0` de longitude), avec avertissement à moins de `0.25°` d’une limite ;
+- chemins médias sûrs, casse exacte, existence et extensions `.png`, `.webp`
+  ou `.svg` ;
+- cohérence de l’état de publication, des sources techniques et des entrées
+  réellement exposées.
+
+```bash
+SITE_URL=https://example.test pnpm api:data:check
+```
+
+La commande inspecte uniquement le dépôt local et ne fait aucun appel réseau.
+Une `error` bloque la CI ; une `warning` signale une dette éditoriale autorisée.
+Ainsi, une illustration manque encore légitimement sur une entrée WIP, tandis
+qu’elle est obligatoire dès publication. Les codes stables affichés dans le
+rapport sont définis dans
+[`src/data-quality/types.ts`](src/data-quality/types.ts) et permettent de
+retrouver précisément la règle concernée.
+
 Après le premier run vert du workflow `API contract`, ajoutez son check stable
 aux contrôles requis de la branche `main` dans les règles ou la protection de
 branche. Vérifiez ensuite qu’une pull request rouge ne peut pas être fusionnée.
@@ -305,6 +332,7 @@ détail des licences et de l’attribution.
 | `pnpm api:lint`            | Valide le contrat OpenAPI public                |
 | `pnpm api:test:contract`   | Vérifie réponses et snapshots du contrat        |
 | `pnpm api:contract:diff`   | Compare l’OpenAPI à sa base Git avec oasdiff    |
+| `pnpm api:data:check`      | Contrôle la qualité des données éditoriales     |
 | `pnpm api:test:local`      | Teste l’API locale avec Bruno                   |
 | `pnpm api:test:production` | Teste toute l’API publique en production        |
 | `pnpm api:test:smoke`      | Lance le smoke test de production               |
