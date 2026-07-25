@@ -300,6 +300,24 @@ export default function AtelierHomePage({
                             <small>Citations éditoriales</small>
                             <span aria-hidden="true">→</span>
                         </Link>
+
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-doc-code-block"
+                        >
+                            <span>LRZDocCodeBlock</span>
+                            <small>Bloc de code</small>
+                            <span aria-hidden="true">→</span>
+                        </Link>
+
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-doc-code-inline"
+                        >
+                            <span>LRZDocCodeInline</span>
+                            <small>Extrait de code</small>
+                            <span aria-hidden="true">→</span>
+                        </Link>
                     </nav>
                 </header>
 
