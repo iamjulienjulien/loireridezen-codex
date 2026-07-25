@@ -230,16 +230,18 @@ export default function AtelierPage() {
                 <AtelierSection
                     id="chateaux"
                     title="ChateauxCard"
-                    desc={`Carte de château de l'index Châteaux — ${MOCK_CHATEAU.length} châteaux de démonstration (2 par époque, tirés du catalogue).`}
+                    desc={`Carte de château de l'index Châteaux — ${MOCK_CHATEAU.length} châteaux de démonstration (jusqu’à 2 par époque, tirés du catalogue).`}
                     items={MOCK_CHATEAU}
                     keyOf={(d) => d.slug}
-                    versions={[1, 2, 3] as const}
+                    versions={[1, 2, 3, 4] as const}
                     note={(v) =>
                         v === 1
                             ? "rendu d'origine"
                             : v === 2
                               ? "corniche par époque + vignette encadrée + ✦ phares"
-                              : "fiche complète : hero paysage, stats, classement, résumé"
+                              : v === 3
+                                ? "fiche complète : hero paysage, stats, classement, résumé"
+                                : "scène illustrée : château détouré, informations structurées, protections"
                     }
                     render={(d, v, key, isOpen, onToggle) => (
                         <ChateauxCard

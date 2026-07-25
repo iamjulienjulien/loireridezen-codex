@@ -2,9 +2,9 @@ import chateau from "@data/chateau.json";
 import type { Chateau } from "@/types/chateau";
 
 /**
- * Jeu de démonstration pour l'atelier : 2 châteaux de chaque époque,
+ * Jeu de démonstration pour l'atelier : jusqu'à 2 châteaux de chaque époque,
  * tirés du catalogue réel (data/chateau.json). On privilégie les mieux
- * renseignés (résumé + commanditaire) pour la démo v3.
+ * renseignés (résumé + commanditaire) pour les démos v3 et v4.
  */
 const EPOQUES = ["Médiéval", "Renaissance", "Classique", "Éclectique"];
 
