@@ -12,6 +12,7 @@
         "api:test:contract": "vitest run src/api/contract scripts/api-contract-diff.test.mjs",
         "api:contract:diff": "node scripts/api-contract-diff.mjs",
         "api:contract:update-snapshots": "vitest run src/api/contract/public-shapes.test.ts -u",
+        "api:data:check": "vitest run src/data-quality --disableConsoleIntercept",
         "api:test:local": "cd bruno/codex-public-api && bru run --env local --sandbox=safe --bail",
         "api:test:production": "cd bruno/codex-public-api && bru run --env production --sandbox=safe --bail --tags=production-safe",
         "api:test:smoke": "cd bruno/codex-public-api && bru run --env production --sandbox=safe --bail --tags=smoke",

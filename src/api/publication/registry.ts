@@ -1,28 +1,5 @@
-import chateauData from "@data/chateau.json";
-import fauneData from "@data/faune.json";
-import floreData from "@data/flore.json";
-import motData from "@data/mot.json";
-import patrimoineData from "@data/patrimoine.json";
-import vignobleData from "@data/vignoble.json";
 import type { z } from "zod";
-import {
-    adaptChateau,
-    adaptFaune,
-    adaptFlore,
-    adaptMot,
-    adaptPatrimoine,
-    adaptVignoble,
-    type EntryAdapter,
-    type InternalEntry,
-} from "@/api/adapters";
-import {
-    chateauCatalogSchema,
-    fauneCatalogSchema,
-    floreCatalogSchema,
-    motCatalogSchema,
-    patrimoineCatalogSchema,
-    vignobleCatalogSchema,
-} from "@/api/schemas";
+import type { EntryAdapter, InternalEntry } from "@/api/adapters";
 import type { CatalogMeta, PublicEntry, PublicIndex } from "@/api/types";
 import {
     INDEXES,
@@ -30,14 +7,9 @@ import {
     type IndexEntry,
     type IndexSlug,
 } from "@/registry/indexes";
+import { TECHNICAL_INDEX_SOURCES } from "./sources";
 
-interface TechnicalSource {
-    slug: IndexSlug;
-    collectionKey: string;
-    raw: unknown;
-    schema: z.ZodType;
-    adapter: EntryAdapter;
-}
+export { TECHNICAL_INDEX_SOURCES, type TechnicalIndexSource } from "./sources";
 
 interface RegisteredIndex {
     definition: IndexEntry;
@@ -46,51 +18,6 @@ interface RegisteredIndex {
     adapter: EntryAdapter;
 }
 
-const sources: readonly TechnicalSource[] = [
-    {
-        slug: "faune",
-        collectionKey: "especes",
-        raw: fauneData,
-        schema: fauneCatalogSchema,
-        adapter: adaptFaune as EntryAdapter,
-    },
-    {
-        slug: "flore",
-        collectionKey: "flore",
-        raw: floreData,
-        schema: floreCatalogSchema,
-        adapter: adaptFlore as EntryAdapter,
-    },
-    {
-        slug: "chateaux",
-        collectionKey: "chateaux",
-        raw: chateauData,
-        schema: chateauCatalogSchema,
-        adapter: adaptChateau as EntryAdapter,
-    },
-    {
-        slug: "vignobles",
-        collectionKey: "vignobles",
-        raw: vignobleData,
-        schema: vignobleCatalogSchema,
-        adapter: adaptVignoble as EntryAdapter,
-    },
-    {
-        slug: "vocabulaire",
-        collectionKey: "mots",
-        raw: motData,
-        schema: motCatalogSchema,
-        adapter: adaptMot as EntryAdapter,
-    },
-    {
-        slug: "patrimoine",
-        collectionKey: "patrimoine",
-        raw: patrimoineData,
-        schema: patrimoineCatalogSchema,
-        adapter: adaptPatrimoine as EntryAdapter,
-    },
-] as const;
-
 const formatIssues = (issues: z.core.$ZodIssue[]) =>
     issues
         .map((issue) => `${issue.path.join(".") || "<root>"}: ${issue.message}`)
@@ -98,10 +25,10 @@ const formatIssues = (issues: z.core.$ZodIssue[]) =>
 
 const buildRegistry = (): ReadonlyMap<IndexSlug, RegisteredIndex> => {
     const expected = new Set(INDEXES.map(({ slug }) => slug));
-    const actual = new Set(sources.map(({ slug }) => slug));
+    const actual = new Set(TECHNICAL_INDEX_SOURCES.map(({ slug }) => slug));
 
     if (
-        expected.size !== sources.length ||
+        expected.size !== TECHNICAL_INDEX_SOURCES.length ||
         [...expected].some((slug) => !actual.has(slug))
     ) {
         throw new Error(
@@ -110,7 +37,7 @@ const buildRegistry = (): ReadonlyMap<IndexSlug, RegisteredIndex> => {
     }
 
     return new Map(
-        sources.map((source) => {
+        TECHNICAL_INDEX_SOURCES.map((source) => {
             const result = source.schema.safeParse(source.raw);
             if (!result.success) {
                 const details = formatIssues(result.error.issues);

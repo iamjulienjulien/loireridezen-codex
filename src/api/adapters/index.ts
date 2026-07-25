@@ -27,7 +27,8 @@ const media = (emoji: string, customEmoji?: string) => ({
     imageUrl: customEmoji ? `${getSiteUrl()}${customEmoji}` : null,
 });
 
-const identity = (index: IndexSlug, slug: string) => `${index}:${slug}`;
+export const publicEntryId = (index: IndexSlug, slug: string) =>
+    `${index}:${slug}`;
 
 export const adaptFaune: EntryAdapter<ValidatedFauneEntry> = (entry) => {
     const {
@@ -40,7 +41,7 @@ export const adaptFaune: EntryAdapter<ValidatedFauneEntry> = (entry) => {
         ...attributes
     } = entry;
     return {
-        id: identity("faune", slug),
+        id: publicEntryId("faune", slug),
         index: "faune",
         slug,
         name: nomCommun,
@@ -62,7 +63,7 @@ export const adaptFlore: EntryAdapter<ValidatedFloreEntry> = (entry) => {
         ...attributes
     } = entry;
     return {
-        id: identity("flore", slug),
+        id: publicEntryId("flore", slug),
         index: "flore",
         slug,
         name: nomCommun,
@@ -85,7 +86,7 @@ export const adaptChateau: EntryAdapter<ValidatedChateauEntry> = (entry) => {
         ...attributes
     } = entry;
     return {
-        id: identity("chateaux", slug),
+        id: publicEntryId("chateaux", slug),
         index: "chateaux",
         slug,
         name: nom,
@@ -108,7 +109,7 @@ export const adaptVignoble: EntryAdapter<ValidatedVignobleEntry> = (entry) => {
         ...attributes
     } = entry;
     return {
-        id: identity("vignobles", slug),
+        id: publicEntryId("vignobles", slug),
         index: "vignobles",
         slug,
         name: nom,
@@ -131,7 +132,7 @@ export const adaptMot: EntryAdapter<ValidatedMotEntry> = (entry) => {
         ...attributes
     } = entry;
     return {
-        id: identity("vocabulaire", slug),
+        id: publicEntryId("vocabulaire", slug),
         index: "vocabulaire",
         slug,
         name: terme,
@@ -156,7 +157,7 @@ export const adaptPatrimoine: EntryAdapter<ValidatedPatrimoineEntry> = (
         ...attributes
     } = entry;
     return {
-        id: identity("patrimoine", slug),
+        id: publicEntryId("patrimoine", slug),
         index: "patrimoine",
         slug,
         name: nom,
