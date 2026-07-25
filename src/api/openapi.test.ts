@@ -269,10 +269,18 @@ describe("public OpenAPI contract", () => {
         }
     });
 
-    it("exposes the contract from the runtime API root", async () => {
+    it("exposes the contract and documentation from the runtime API root", async () => {
         const response = await getApiRoot();
         const body = await response.json();
+        const links = asObject(
+            contract.components.schemas.ApiRootResponse.properties,
+        ).links;
+        const linkProperties = asObject(asObject(links).properties);
+        const required = asObject(links).required as string[];
 
         expect(body.links.openapi).toBe("/api/v1/openapi.json");
+        expect(body.links.documentation).toBe("/docs/api");
+        expect(required).toContain("documentation");
+        expect(asObject(linkProperties.documentation).const).toBe("/docs/api");
     });
 });

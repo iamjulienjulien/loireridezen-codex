@@ -1395,7 +1395,12 @@
                     },
                     "links": {
                         "type": "object",
-                        "required": ["self", "indexes", "openapi"],
+                        "required": [
+                            "self",
+                            "indexes",
+                            "openapi",
+                            "documentation"
+                        ],
                         "properties": {
                             "self": {
                                 "type": "string",
@@ -1408,6 +1413,10 @@
                             "openapi": {
                                 "type": "string",
                                 "const": "/api/v1/openapi.json"
+                            },
+                            "documentation": {
+                                "type": "string",
+                                "const": "/docs/api"
                             }
                         },
                         "additionalProperties": false
@@ -1439,7 +1448,8 @@
                     "links": {
                         "self": "/api/v1",
                         "indexes": "/api/v1/indexes",
-                        "openapi": "/api/v1/openapi.json"
+                        "openapi": "/api/v1/openapi.json",
+                        "documentation": "/docs/api"
                     }
                 }
             },

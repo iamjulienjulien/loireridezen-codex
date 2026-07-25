@@ -23,6 +23,7 @@ export async function GET() {
                 self: "/api/v1",
                 indexes: "/api/v1/indexes",
                 openapi: "/api/v1/openapi.json",
+                documentation: "/docs/api",
             },
         }),
     );

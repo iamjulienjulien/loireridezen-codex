@@ -244,6 +244,12 @@ exports[`public structural signatures > snapshots public links 1`] = `
       "string",
     ],
   },
+  "documentation": {
+    "oneOf": [
+      "absent",
+      "string",
+    ],
+  },
   "entries": {
     "oneOf": [
       "absent",
@@ -281,6 +287,7 @@ exports[`public structural signatures > snapshots the API root envelope 1`] = `
     "version": "string",
   },
   "links": {
+    "documentation": "string",
     "indexes": "string",
     "openapi": "string",
     "self": "string",

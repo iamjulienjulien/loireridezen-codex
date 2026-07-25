@@ -69,4 +69,5 @@ runtime:
                   expect(res.body.links.self).to.equal("/api/v1");
                   expect(res.body.links.indexes).to.equal("/api/v1/indexes");
                   expect(res.body.links.openapi).to.equal("/api/v1/openapi.json");
+                  expect(res.body.links.documentation).to.equal("/docs/api");
               });

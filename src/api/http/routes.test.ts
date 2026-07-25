@@ -57,11 +57,12 @@ describe("public API route handlers", () => {
         }
     });
 
-    it("links to the machine-readable OpenAPI contract", async () => {
+    it("links to the contract and developer documentation", async () => {
         const response = await getApi();
         const body = await response.json();
 
         expect(body.links.openapi).toBe("/api/v1/openapi.json");
+        expect(body.links.documentation).toBe("/docs/api");
     });
 
     it.each([
