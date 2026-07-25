@@ -1,0 +1,382 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`public structural signatures > snapshots a public 404 problem 1`] = `
+{
+  "detail": "string",
+  "instance": "string",
+  "status": "number",
+  "title": "string",
+  "type": "string",
+}
+`;
+
+exports[`public structural signatures > snapshots a published index 1`] = `
+{
+  "accent": "string",
+  "corridor": "string",
+  "description": "string",
+  "editorialWarning": {
+    "oneOf": [
+      "null",
+      "string",
+    ],
+  },
+  "entryCount": "number",
+  "label": "string",
+  "links": {
+    "entries": "string",
+    "self": "string",
+  },
+  "mark": "string",
+  "presentation": "string",
+  "presentationMarkdown": "string",
+  "slug": "string",
+  "source": "string",
+  "state": "string",
+  "title": "string",
+  "updatedAt": "string",
+}
+`;
+
+exports[`public structural signatures > snapshots an entry collection envelope 1`] = `
+{
+  "apiVersion": "string",
+  "data": [
+    {
+      "attributes": {
+        "autresNoms": [
+          "string",
+        ],
+        "classe": "string",
+        "conservation": {
+          "france": "string",
+          "monde": "string",
+          "note": {
+            "oneOf": [
+              "absent",
+              "string",
+            ],
+          },
+        },
+        "famille": "string",
+        "identification": {
+          "couleurs": [
+            "string",
+          ],
+          "dimorphisme": "string",
+          "envergure": {
+            "oneOf": [
+              "absent",
+              "string",
+            ],
+          },
+          "hauteur": {
+            "oneOf": [
+              "absent",
+              "string",
+            ],
+          },
+          "longueur": "string",
+          "poids": "string",
+          "silhouette": "string",
+        },
+        "milieu": "string",
+        "nomScientifique": "string",
+        "periode": "string",
+        "rangTaxinomique": "string",
+        "rarete": "string",
+        "regne": "string",
+        "type": "string",
+      },
+      "id": "string",
+      "index": "string",
+      "media": {
+        "emoji": "string",
+        "imageUrl": {
+          "oneOf": [
+            "null",
+            "string",
+          ],
+        },
+      },
+      "name": "string",
+      "slug": "string",
+      "subtitle": "string",
+      "summary": "null",
+    },
+  ],
+  "links": {
+    "index": "string",
+    "self": "string",
+  },
+  "meta": {
+    "index": "string",
+    "license": {
+      "content": {
+        "attribution": "string",
+        "id": "string",
+        "name": "string",
+        "url": "string",
+      },
+      "media": {
+        "copyright": "string",
+        "name": "string",
+        "reuseAllowed": "boolean",
+      },
+    },
+    "total": "number",
+  },
+}
+`;
+
+exports[`public structural signatures > snapshots chateaux attributes 1`] = `
+{
+  "autresNoms": [
+    "string",
+  ],
+  "commanditaire": "string",
+  "commune": "string",
+  "construction": "string",
+  "coordonnees": {
+    "lat": "number",
+    "lng": "number",
+  },
+  "departement": "string",
+  "epoque": "string",
+  "protection": {
+    "monumentHistorique": "string",
+    "note": "string",
+    "unesco": "boolean",
+  },
+  "renommee": "string",
+  "riviere": "string",
+  "style": "string",
+  "visite": "string",
+}
+`;
+
+exports[`public structural signatures > snapshots faune attributes 1`] = `
+{
+  "autresNoms": [
+    "string",
+  ],
+  "classe": "string",
+  "conservation": {
+    "france": "string",
+    "monde": "string",
+    "note": {
+      "oneOf": [
+        "absent",
+        "string",
+      ],
+    },
+  },
+  "famille": "string",
+  "identification": {
+    "couleurs": [
+      "string",
+    ],
+    "dimorphisme": "string",
+    "envergure": {
+      "oneOf": [
+        "absent",
+        "string",
+      ],
+    },
+    "hauteur": {
+      "oneOf": [
+        "absent",
+        "string",
+      ],
+    },
+    "longueur": "string",
+    "poids": "string",
+    "silhouette": "string",
+  },
+  "milieu": "string",
+  "nomScientifique": "string",
+  "periode": "string",
+  "rangTaxinomique": "string",
+  "rarete": "string",
+  "regne": "string",
+  "type": "string",
+}
+`;
+
+exports[`public structural signatures > snapshots flore attributes 1`] = `
+{
+  "autresNoms": [
+    "string",
+  ],
+  "categorie": "string",
+  "famille": "string",
+  "floraison": "string",
+  "milieu": "string",
+  "nomScientifique": "string",
+  "rangTaxinomique": "string",
+  "rarete": "string",
+  "regne": "string",
+  "statut": {
+    "indigenat": "string",
+    "note": {
+      "oneOf": [
+        "absent",
+        "string",
+      ],
+    },
+    "protection": "string",
+  },
+  "taille": "string",
+}
+`;
+
+exports[`public structural signatures > snapshots public links 1`] = `
+{
+  "api": {
+    "oneOf": [
+      "absent",
+      "string",
+    ],
+  },
+  "collection": {
+    "oneOf": [
+      "absent",
+      "string",
+    ],
+  },
+  "entries": {
+    "oneOf": [
+      "absent",
+      "string",
+    ],
+  },
+  "index": {
+    "oneOf": [
+      "absent",
+      "string",
+    ],
+  },
+  "indexes": {
+    "oneOf": [
+      "absent",
+      "string",
+    ],
+  },
+  "openapi": {
+    "oneOf": [
+      "absent",
+      "string",
+    ],
+  },
+  "self": "string",
+}
+`;
+
+exports[`public structural signatures > snapshots the API root envelope 1`] = `
+{
+  "apiVersion": "string",
+  "data": {
+    "description": "string",
+    "name": "string",
+    "version": "string",
+  },
+  "links": {
+    "indexes": "string",
+    "openapi": "string",
+    "self": "string",
+  },
+  "meta": {
+    "license": {
+      "content": {
+        "attribution": "string",
+        "id": "string",
+        "name": "string",
+        "url": "string",
+      },
+      "media": {
+        "copyright": "string",
+        "name": "string",
+        "reuseAllowed": "boolean",
+      },
+    },
+  },
+}
+`;
+
+exports[`public structural signatures > snapshots the common entry foundation 1`] = `
+{
+  "id": "string",
+  "index": "string",
+  "media": {
+    "emoji": "string",
+    "imageUrl": {
+      "oneOf": [
+        "null",
+        "string",
+      ],
+    },
+  },
+  "name": "string",
+  "slug": "string",
+  "subtitle": "string",
+  "summary": {
+    "oneOf": [
+      "null",
+      "string",
+    ],
+  },
+}
+`;
+
+exports[`public structural signatures > snapshots the index collection envelope 1`] = `
+{
+  "apiVersion": "string",
+  "data": [
+    {
+      "accent": "string",
+      "corridor": "string",
+      "description": "string",
+      "editorialWarning": {
+        "oneOf": [
+          "null",
+          "string",
+        ],
+      },
+      "entryCount": "number",
+      "label": "string",
+      "links": {
+        "entries": "string",
+        "self": "string",
+      },
+      "mark": "string",
+      "presentation": "string",
+      "presentationMarkdown": "string",
+      "slug": "string",
+      "source": "string",
+      "state": "string",
+      "title": "string",
+      "updatedAt": "string",
+    },
+  ],
+  "links": {
+    "api": "string",
+    "self": "string",
+  },
+  "meta": {
+    "license": {
+      "content": {
+        "attribution": "string",
+        "id": "string",
+        "name": "string",
+        "url": "string",
+      },
+      "media": {
+        "copyright": "string",
+        "name": "string",
+        "reuseAllowed": "boolean",
+      },
+    },
+    "total": "number",
+  },
+}
+`;

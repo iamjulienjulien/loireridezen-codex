@@ -1,0 +1,6 @@
+response-non-success-status-removed err
+response-property-became-required err
+response-required-property-added err
+response-property-enum-value-removed err
+response-property-list-of-types-narrowed err
+response-body-list-of-types-narrowed err
