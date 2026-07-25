@@ -10,6 +10,87 @@
     "chateaux": [
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/palais-ducal-nevers.png",
+            "slug": "palais-ducal-de-nevers",
+            "nom": "Palais ducal de Nevers",
+            "autresNoms": ["Palais des ducs de Nevers"],
+            "sousTitre": "le premier palais Renaissance de la Loire",
+            "resume": "Résidence des comtes puis des ducs de Nevers, le palais ducal est considéré comme l'un des tout premiers édifices de la Renaissance française, mêlant élégance italienne et tradition gothique.",
+            "commune": "Nevers",
+            "departement": "Nièvre (58)",
+            "coordonnees": {
+                "lat": 46.9893,
+                "lng": 3.1596
+            },
+            "riviere": "Loire",
+            "epoque": "Renaissance",
+            "style": "Première Renaissance française & Gothique flamboyant",
+            "construction": "1464–1528",
+            "commanditaire": "Jean de Clamecy puis les ducs de Nevers",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé au cœur historique de Nevers, en amont du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "majeur",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/la-bussiere.png",
+            "slug": "chateau-de-la-bussiere",
+            "nom": "Château de La Bussière",
+            "autresNoms": [],
+            "sousTitre": "le château des pêcheurs",
+            "resume": "Entouré de larges douves, le château de La Bussière est célèbre pour son musée consacré à la pêche en eau douce et son remarquable potager historique.",
+            "commune": "La Bussière",
+            "departement": "Loiret (45)",
+            "coordonnees": {
+                "lat": 47.7628,
+                "lng": 2.7473
+            },
+            "riviere": "Loire",
+            "epoque": "Renaissance",
+            "style": "Renaissance française sur base médiévale",
+            "construction": "XIIᵉ–XVIIᵉ s.",
+            "commanditaire": "Familles Feydeau puis Chasseval",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans le Giennois, en dehors du périmètre UNESCO."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/saint-brisson-sur-loire.png",
+            "slug": "chateau-de-saint-brisson-sur-loire",
+            "nom": "Château de Saint-Brisson-sur-Loire",
+            "autresNoms": [],
+            "sousTitre": "la forteresse des bords de Loire",
+            "resume": "Imposante forteresse dominant la Loire, le château de Saint-Brisson-sur-Loire conserve son caractère médiéval tout en ayant été transformé en résidence seigneuriale.",
+            "commune": "Saint-Brisson-sur-Loire",
+            "departement": "Loiret (45)",
+            "coordonnees": {
+                "lat": 47.6478,
+                "lng": 2.7656
+            },
+            "riviere": "Loire",
+            "epoque": "Médiéval",
+            "style": "Forteresse médiévale",
+            "construction": "XIᵉ–XVIᵉ s.",
+            "commanditaire": "Famille de Sancerre",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé sur les bords de Loire, hors périmètre UNESCO."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/gien.png",
             "slug": "chateau-de-gien",
             "nom": "Château de Gien",
@@ -18,7 +99,10 @@
             "resume": "Château de brique et de pierre de la fin du XVᵉ siècle, dominant la Loire à l'amont du val.",
             "commune": "Gien",
             "departement": "Loiret (45)",
-            "coordonnees": { "lat": 47.6847, "lng": 2.63 },
+            "coordonnees": {
+                "lat": 47.6847,
+                "lng": 2.63
+            },
             "riviere": "Loire",
             "epoque": "Renaissance",
             "style": "Gothique-Renaissance de brique",
@@ -42,7 +126,10 @@
             "resume": "Forteresse médiévale à douves, borne orientale du Val de Loire inscrit.",
             "commune": "Sully-sur-Loire",
             "departement": "Loiret (45)",
-            "coordonnees": { "lat": 47.7664, "lng": 2.373 },
+            "coordonnees": {
+                "lat": 47.7664,
+                "lng": 2.373
+            },
             "riviere": "Loire",
             "epoque": "Médiéval",
             "style": "Forteresse médiévale",
@@ -58,6 +145,33 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/chamerolles.png",
+            "slug": "chateau-de-chamerolles",
+            "nom": "Château de Chamerolles",
+            "autresNoms": [],
+            "sousTitre": "le château des parfums",
+            "resume": "Élégant château Renaissance entouré de douves, célèbre pour son musée consacré à l'histoire du parfum et ses jardins inspirés du XVIᵉ siècle.",
+            "commune": "Chilleurs-aux-Bois",
+            "departement": "Loiret (45)",
+            "coordonnees": {
+                "lat": 48.0735,
+                "lng": 2.1653
+            },
+            "riviere": "Essonne",
+            "epoque": "Renaissance",
+            "style": "Renaissance française",
+            "construction": "1500–1530",
+            "commanditaire": "Lancelot Ier du Lac",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans la forêt d'Orléans, hors périmètre UNESCO."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/meung-sur-loire.png",
             "slug": "chateau-de-meung-sur-loire",
             "nom": "Château de Meung-sur-Loire",
@@ -66,7 +180,10 @@
             "resume": "Ancienne résidence des évêques d'Orléans, mêlant façade médiévale et façade classique.",
             "commune": "Meung-sur-Loire",
             "departement": "Loiret (45)",
-            "coordonnees": { "lat": 47.8236, "lng": 1.6961 },
+            "coordonnees": {
+                "lat": 47.8236,
+                "lng": 1.6961
+            },
             "riviere": "Loire",
             "epoque": "Médiéval",
             "style": "Médiéval & classique",
@@ -90,7 +207,10 @@
             "resume": "Ensemble médiéval associant un donjon roman du XIᵉ siècle et le logis gothique de Dunois.",
             "commune": "Beaugency",
             "departement": "Loiret (45)",
-            "coordonnees": { "lat": 47.7772, "lng": 1.6381 },
+            "coordonnees": {
+                "lat": 47.7772,
+                "lng": 1.6381
+            },
             "riviere": "Loire",
             "epoque": "Médiéval",
             "style": "Donjon roman & logis Dunois",
@@ -114,7 +234,10 @@
             "resume": "Le plus vaste des châteaux de la Loire, manifeste de la première Renaissance française et de son escalier à double révolution.",
             "commune": "Chambord",
             "departement": "Loir-et-Cher (41)",
-            "coordonnees": { "lat": 47.6161, "lng": 1.517 },
+            "coordonnees": {
+                "lat": 47.6161,
+                "lng": 1.517
+            },
             "riviere": "Cosson",
             "epoque": "Renaissance",
             "style": "Première Renaissance française",
@@ -138,7 +261,10 @@
             "resume": "Demeure Renaissance élevée par l'intendant du chantier de Chambord, tout près de celui-ci.",
             "commune": "Tour-en-Sologne",
             "departement": "Loir-et-Cher (41)",
-            "coordonnees": { "lat": 47.533, "lng": 1.525 },
+            "coordonnees": {
+                "lat": 47.533,
+                "lng": 1.525
+            },
             "riviere": "Cosson",
             "epoque": "Renaissance",
             "style": "Renaissance",
@@ -162,7 +288,10 @@
             "resume": "Château classique Louis XIII, resté dans la même famille, célèbre pour sa façade symétrique et ses intérieurs.",
             "commune": "Cheverny",
             "departement": "Loir-et-Cher (41)",
-            "coordonnees": { "lat": 47.5, "lng": 1.4581 },
+            "coordonnees": {
+                "lat": 47.5,
+                "lng": 1.4581
+            },
             "riviere": "Beuvron (bassin)",
             "epoque": "Classique",
             "style": "Classicisme Louis XIII",
@@ -186,7 +315,10 @@
             "resume": "Château Renaissance connu pour sa galerie des Illustres, longue collection de portraits historiques.",
             "commune": "Cellettes",
             "departement": "Loir-et-Cher (41)",
-            "coordonnees": { "lat": 47.515, "lng": 1.376 },
+            "coordonnees": {
+                "lat": 47.515,
+                "lng": 1.376
+            },
             "riviere": "Beuvron (bassin)",
             "epoque": "Renaissance",
             "style": "Renaissance",
@@ -210,7 +342,10 @@
             "resume": "Résidence royale réunissant quatre styles autour d'une même cour, du gothique au classique, dont le fameux escalier François Iᵉʳ.",
             "commune": "Blois",
             "departement": "Loir-et-Cher (41)",
-            "coordonnees": { "lat": 47.5859, "lng": 1.3306 },
+            "coordonnees": {
+                "lat": 47.5859,
+                "lng": 1.3306
+            },
             "riviere": "Loire",
             "epoque": "Renaissance",
             "style": "Gothique, Renaissance & Classique",
@@ -234,7 +369,10 @@
             "resume": "Petite forteresse de la fin du Moyen Âge, remarquablement conservée, au bord de la Bièvre.",
             "commune": "Fougères-sur-Bièvre",
             "departement": "Loir-et-Cher (41)",
-            "coordonnees": { "lat": 47.46, "lng": 1.34 },
+            "coordonnees": {
+                "lat": 47.46,
+                "lng": 1.34
+            },
             "riviere": "Bièvre",
             "epoque": "Médiéval",
             "style": "Gothique tardif fortifié",
@@ -258,7 +396,10 @@
             "resume": "Château Renaissance à l'allure encore médiévale, lié à la poésie de la Pléiade (Cassandre, chantée par Ronsard).",
             "commune": "Talcy",
             "departement": "Loir-et-Cher (41)",
-            "coordonnees": { "lat": 47.766, "lng": 1.436 },
+            "coordonnees": {
+                "lat": 47.766,
+                "lng": 1.436
+            },
             "riviere": "Petite Beauce (hors Loire)",
             "epoque": "Renaissance",
             "style": "Renaissance",
@@ -274,6 +415,33 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/menars.png",
+            "slug": "chateau-de-menars",
+            "nom": "Château de Menars",
+            "autresNoms": ["Château de Ménars"],
+            "sousTitre": "la demeure ligérienne de Madame de Pompadour",
+            "resume": "Élégant château classique dominant la Loire, célèbre pour les aménagements réalisés par Madame de Pompadour et ses jardins en terrasses.",
+            "commune": "Menars",
+            "departement": "Loir-et-Cher (41)",
+            "coordonnees": {
+                "lat": 47.6428,
+                "lng": 1.4045
+            },
+            "riviere": "Loire",
+            "epoque": "Classique",
+            "style": "Classicisme français",
+            "construction": "1646–1653 ; agrandissements au XVIIIᵉ s.",
+            "commanditaire": "Guillaume Charron ; remaniements par Abel-François Poisson de Vandières, marquis de Marigny",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": true,
+                "note": "Situé sur les bords de Loire, dans le périmètre du Val de Loire inscrit au patrimoine mondial de l'UNESCO."
+            },
+            "renommee": "notable",
+            "visite": "extérieurs & parc"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/chaumont-sur-loire.png",
             "slug": "domaine-de-chaumont-sur-loire",
             "nom": "Château de Chaumont-sur-Loire",
@@ -282,7 +450,10 @@
             "resume": "Château de la fin du Moyen Âge remanié à la Renaissance, dominant la Loire, siège du Festival international des jardins.",
             "commune": "Chaumont-sur-Loire",
             "departement": "Loir-et-Cher (41)",
-            "coordonnees": { "lat": 47.4797, "lng": 1.185 },
+            "coordonnees": {
+                "lat": 47.4797,
+                "lng": 1.185
+            },
             "riviere": "Loire",
             "epoque": "Renaissance",
             "style": "Gothique-Renaissance",
@@ -306,7 +477,10 @@
             "resume": "Résidence des rois de France au tournant de la Renaissance ; Léonard de Vinci y repose dans la chapelle Saint-Hubert.",
             "commune": "Amboise",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.4131, "lng": 0.986 },
+            "coordonnees": {
+                "lat": 47.4131,
+                "lng": 0.986
+            },
             "riviere": "Loire",
             "epoque": "Renaissance",
             "style": "Gothique flamboyant & Renaissance",
@@ -322,6 +496,33 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/chateau-gaillard.png",
+            "slug": "domaine-royal-de-chateau-gaillard",
+            "nom": "Domaine royal de Château Gaillard",
+            "autresNoms": ["Château Gaillard"],
+            "sousTitre": "le laboratoire de la Renaissance française",
+            "resume": "Résidence offerte par Charles VIII à Dom Pacello de Mercogliano, Château Gaillard est considéré comme le berceau de la Renaissance horticole française et des premiers jardins inspirés de l'Italie.",
+            "commune": "Amboise",
+            "departement": "Indre-et-Loire (37)",
+            "coordonnees": {
+                "lat": 47.4183,
+                "lng": 0.9876
+            },
+            "riviere": "Loire",
+            "epoque": "Renaissance",
+            "style": "Première Renaissance française",
+            "construction": "1496–1500",
+            "commanditaire": "Charles VIII ; Dom Pacello de Mercogliano",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": true,
+                "note": "Situé dans le périmètre du Val de Loire inscrit au patrimoine mondial de l'UNESCO."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/clos-luce.png",
             "slug": "chateau-du-clos-luce",
             "nom": "Château du Clos Lucé",
@@ -330,7 +531,10 @@
             "resume": "Manoir de brique où Léonard de Vinci passa ses trois dernières années, invité par François Iᵉʳ.",
             "commune": "Amboise",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.41, "lng": 0.9931 },
+            "coordonnees": {
+                "lat": 47.41,
+                "lng": 0.9931
+            },
             "riviere": "Amasse",
             "epoque": "Renaissance",
             "style": "Manoir de brique Renaissance",
@@ -354,7 +558,10 @@
             "resume": "Château Renaissance dont la galerie enjambe le Cher, marqué par les femmes qui l'ont façonné (Diane de Poitiers, Catherine de Médicis).",
             "commune": "Chenonceaux",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.3247, "lng": 1.0703 },
+            "coordonnees": {
+                "lat": 47.3247,
+                "lng": 1.0703
+            },
             "riviere": "Cher",
             "epoque": "Renaissance",
             "style": "Renaissance",
@@ -370,6 +577,60 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/montpoupon.png",
+            "slug": "chateau-de-montpoupon",
+            "nom": "Château de Montpoupon",
+            "autresNoms": [],
+            "sousTitre": "le château de la forêt et de la vénerie",
+            "resume": "Niché au cœur de la forêt tourangelle, le château de Montpoupon conserve l'atmosphère d'une demeure seigneuriale habitée, célèbre pour son musée de la vénerie.",
+            "commune": "Céré-la-Ronde",
+            "departement": "Indre-et-Loire (37)",
+            "coordonnees": {
+                "lat": 47.2617,
+                "lng": 1.1094
+            },
+            "riviere": "Indrois",
+            "epoque": "Renaissance",
+            "style": "Renaissance française sur base médiévale",
+            "construction": "XIIIᵉ–XVIᵉ s.",
+            "commanditaire": "Familles de Prie puis de La Motte-Saint-Pierre",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans la vallée de l'Indrois, en dehors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/montresor.png",
+            "slug": "chateau-de-montresor",
+            "nom": "Château de Montrésor",
+            "autresNoms": [],
+            "sousTitre": "le joyau de l'Indrois",
+            "resume": "Dominant l'Indrois, le château de Montrésor associe une ancienne forteresse médiévale à un élégant logis Renaissance, enrichi au XIXᵉ siècle par le comte Xavier Branicki.",
+            "commune": "Montrésor",
+            "departement": "Indre-et-Loire (37)",
+            "coordonnees": {
+                "lat": 47.1557,
+                "lng": 1.2018
+            },
+            "riviere": "Indrois",
+            "epoque": "Renaissance",
+            "style": "Renaissance française & vestiges médiévaux",
+            "construction": "XIᵉ–XVIᵉ s.",
+            "commanditaire": "Foulques Nerra ; reconstruit par Imbert de Batarnay ; restauré par Xavier Branicki",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans la vallée de l'Indrois, en dehors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/loches.png",
             "slug": "cite-royale-de-loches",
             "nom": "Cité royale de Loches",
@@ -378,7 +639,10 @@
             "resume": "Vaste ensemble fortifié associant l'un des plus anciens donjons romans de France et le logis royal des Valois.",
             "commune": "Loches",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.1258, "lng": 1.0038 },
+            "coordonnees": {
+                "lat": 47.1258,
+                "lng": 1.0038
+            },
             "riviere": "Indre",
             "epoque": "Médiéval",
             "style": "Donjon roman & logis gothique",
@@ -394,6 +658,60 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/cande.png",
+            "slug": "domaine-de-cande",
+            "nom": "Domaine de Candé",
+            "autresNoms": ["Château de Candé"],
+            "sousTitre": "le château du mariage royal",
+            "resume": "Élégant château entouré d'un vaste domaine boisé, célèbre pour avoir accueilli en 1937 le mariage du duc de Windsor et de Wallis Simpson, ainsi que pour son exceptionnel confort moderne des années 1930.",
+            "commune": "Monts",
+            "departement": "Indre-et-Loire (37)",
+            "coordonnees": {
+                "lat": 47.2803,
+                "lng": 0.6272
+            },
+            "riviere": "Indre",
+            "epoque": "Classique",
+            "style": "Classique avec aménagements Art déco",
+            "construction": "XVIᵉ–XVIIIᵉ s.",
+            "commanditaire": "Familles de Butor et Drake del Castillo",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans la vallée de l'Indre, en dehors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/plessis-les-tours.png",
+            "slug": "chateau-du-plessis-les-tours",
+            "nom": "Château du Plessis-lès-Tours",
+            "autresNoms": ["Le Plessis du Parc-lès-Tours"],
+            "sousTitre": "la résidence secrète de Louis XI",
+            "resume": "Ancienne résidence favorite de Louis XI, où le roi gouverna le royaume jusqu'à sa mort en 1483. Il ne subsiste aujourd'hui qu'une partie de l'ancien domaine royal.",
+            "commune": "La Riche",
+            "departement": "Indre-et-Loire (37)",
+            "coordonnees": {
+                "lat": 47.3827,
+                "lng": 0.6474
+            },
+            "riviere": "Loire",
+            "epoque": "Médiéval",
+            "style": "Manoir fortifié médiéval",
+            "construction": "XIᵉ–XVᵉ s.",
+            "commanditaire": "Louis XI (agrandissements et résidence royale)",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": true,
+                "note": "Situé dans le périmètre du Val de Loire inscrit au patrimoine mondial de l'UNESCO."
+            },
+            "renommee": "notable",
+            "visite": "extérieurs & parc"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/villandry.png",
             "slug": "chateau-de-villandry",
             "nom": "Château de Villandry",
@@ -402,7 +720,10 @@
             "resume": "Dernier grand château Renaissance du val, mondialement connu pour ses jardins en terrasses reconstitués.",
             "commune": "Villandry",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.3402, "lng": 0.5136 },
+            "coordonnees": {
+                "lat": 47.3402,
+                "lng": 0.5136
+            },
             "riviere": "Cher (près de la confluence avec la Loire)",
             "epoque": "Renaissance",
             "style": "Renaissance",
@@ -426,7 +747,10 @@
             "resume": "Chef-d'œuvre de la première Renaissance, château d'agrément se mirant dans l'Indre.",
             "commune": "Azay-le-Rideau",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.2586, "lng": 0.4664 },
+            "coordonnees": {
+                "lat": 47.2586,
+                "lng": 0.4664
+            },
             "riviere": "Indre",
             "epoque": "Renaissance",
             "style": "Première Renaissance française",
@@ -442,6 +766,60 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/islette.png",
+            "slug": "chateau-de-l-islette",
+            "nom": "Château de l'Islette",
+            "autresNoms": [],
+            "sousTitre": "le refuge de Rodin et Camille Claudel",
+            "resume": "Élégant château Renaissance bordé par l'Indre, célèbre pour avoir accueilli les séjours d'Auguste Rodin et de Camille Claudel au cœur de la Touraine.",
+            "commune": "Azay-le-Rideau",
+            "departement": "Indre-et-Loire (37)",
+            "coordonnees": {
+                "lat": 47.2638,
+                "lng": 0.4622
+            },
+            "riviere": "Indre",
+            "epoque": "Renaissance",
+            "style": "Renaissance française",
+            "construction": "vers 1520–1530",
+            "commanditaire": "René de Maillé",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans la vallée de l'Indre, en dehors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/sache.png",
+            "slug": "chateau-de-sache",
+            "nom": "Château de Saché",
+            "autresNoms": [],
+            "sousTitre": "la maison d'Honoré de Balzac",
+            "resume": "Élégante demeure tourangelle où Honoré de Balzac séjourna à de nombreuses reprises et rédigea une partie de La Comédie humaine. Le château accueille aujourd'hui le musée Balzac.",
+            "commune": "Saché",
+            "departement": "Indre-et-Loire (37)",
+            "coordonnees": {
+                "lat": 47.2476,
+                "lng": 0.5435
+            },
+            "riviere": "Indre",
+            "epoque": "Renaissance",
+            "style": "Renaissance française",
+            "construction": "XVᵉ–XVIᵉ s.",
+            "commanditaire": "Familles de Margonne et successives",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans la vallée de l'Indre, en dehors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/langeais.png",
             "slug": "chateau-de-langeais",
             "nom": "Château de Langeais",
@@ -450,7 +828,10 @@
             "resume": "Château de la fin du Moyen Âge où fut célébré le mariage d'Anne de Bretagne et de Charles VIII, rattachant la Bretagne au royaume.",
             "commune": "Langeais",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.3253, "lng": 0.4046 },
+            "coordonnees": {
+                "lat": 47.3253,
+                "lng": 0.4046
+            },
             "riviere": "Loire",
             "epoque": "Médiéval",
             "style": "Gothique (fin médiéval)",
@@ -474,7 +855,10 @@
             "resume": "Château aux toitures et tourelles foisonnantes, dressé en lisière de forêt, réputé avoir inspiré La Belle au bois dormant.",
             "commune": "Rigny-Ussé",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.249, "lng": 0.293 },
+            "coordonnees": {
+                "lat": 47.249,
+                "lng": 0.293
+            },
             "riviere": "Indre (près de la Loire)",
             "epoque": "Renaissance",
             "style": "Gothique flamboyant & Renaissance",
@@ -498,7 +882,10 @@
             "resume": "Château fort du XVᵉ siècle entouré de jardins contemporains d'inspiration médiévale et féerique.",
             "commune": "Lémeré",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.133, "lng": 0.304 },
+            "coordonnees": {
+                "lat": 47.133,
+                "lng": 0.304
+            },
             "riviere": "Veude",
             "epoque": "Renaissance",
             "style": "Château fort & Renaissance",
@@ -522,7 +909,10 @@
             "resume": "Vaste forteresse Plantagenêt sur son éperon rocheux, où Jeanne d'Arc reconnut le dauphin Charles.",
             "commune": "Chinon",
             "departement": "Indre-et-Loire (37)",
-            "coordonnees": { "lat": 47.168, "lng": 0.2344 },
+            "coordonnees": {
+                "lat": 47.168,
+                "lng": 0.2344
+            },
             "riviere": "Vienne",
             "epoque": "Médiéval",
             "style": "Forteresse médiévale",
@@ -546,7 +936,10 @@
             "resume": "Grand château Renaissance et classique, résidence de Talleyrand, à la lisière du Berry.",
             "commune": "Valençay",
             "departement": "Indre (36)",
-            "coordonnees": { "lat": 47.1613, "lng": 1.556 },
+            "coordonnees": {
+                "lat": 47.1613,
+                "lng": 1.556
+            },
             "riviere": "Nahon",
             "epoque": "Renaissance",
             "style": "Renaissance & Classique",
@@ -562,6 +955,87 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/le-lude.png",
+            "slug": "chateau-du-lude",
+            "nom": "Château du Lude",
+            "autresNoms": [],
+            "sousTitre": "la première Renaissance sur le Loir",
+            "resume": "Ancienne forteresse transformée en élégante demeure Renaissance, le château du Lude domine les rives du Loir depuis près de neuf siècles.",
+            "commune": "Le Lude",
+            "departement": "Sarthe (72)",
+            "coordonnees": {
+                "lat": 47.6468,
+                "lng": 0.1566
+            },
+            "riviere": "Loir",
+            "epoque": "Renaissance",
+            "style": "Première Renaissance française",
+            "construction": "forteresse XIIᵉ s. ; transformations majeures 1457–1500 ; compléments XVIIIᵉ s.",
+            "commanditaire": "Jean Daillon",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans la vallée du Loir, hors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "majeur",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/bauge.png",
+            "slug": "chateau-de-bauge",
+            "nom": "Château de Baugé",
+            "autresNoms": ["Palais du roi René"],
+            "sousTitre": "la résidence de chasse du roi René",
+            "resume": "Construit par le roi René au cœur du Baugeois, ce palais princier marque la transition entre le château fort médiéval et la demeure de plaisance de la Renaissance.",
+            "commune": "Baugé-en-Anjou",
+            "departement": "Maine-et-Loire (49)",
+            "coordonnees": {
+                "lat": 47.5447,
+                "lng": -0.1026
+            },
+            "riviere": "Couasnon",
+            "epoque": "Renaissance",
+            "style": "Gothique flamboyant & Première Renaissance",
+            "construction": "1454–1465",
+            "commanditaire": "René d'Anjou, dit le roi René",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans le Baugeois, hors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/gizeux.png",
+            "slug": "chateau-de-gizeux",
+            "nom": "Château de Gizeux",
+            "autresNoms": [],
+            "sousTitre": "la grande galerie du Baugeois",
+            "resume": "Immense demeure seigneuriale aux remarquables galeries peintes, le château de Gizeux est habité par la même famille depuis plusieurs générations et témoigne de cinq siècles d'architecture.",
+            "commune": "Gizeux",
+            "departement": "Indre-et-Loire (37)",
+            "coordonnees": {
+                "lat": 47.3475,
+                "lng": 0.3109
+            },
+            "riviere": "Maulne",
+            "epoque": "Renaissance",
+            "style": "Renaissance française & Classique",
+            "construction": "XIVᵉ–XVIIᵉ s.",
+            "commanditaire": "Familles du Bellay puis de Laffon",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans la vallée de la Maulne, hors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/montsoreau.png",
             "slug": "chateau-de-montsoreau",
             "nom": "Château de Montsoreau",
@@ -570,7 +1044,10 @@
             "resume": "Seul château de la Loire bâti directement dans le lit du fleuve ; aujourd'hui musée d'art contemporain.",
             "commune": "Montsoreau",
             "departement": "Maine-et-Loire (49)",
-            "coordonnees": { "lat": 47.2158, "lng": 0.0623 },
+            "coordonnees": {
+                "lat": 47.2158,
+                "lng": 0.0623
+            },
             "riviere": "Loire",
             "epoque": "Renaissance",
             "style": "Gothique-Renaissance",
@@ -586,6 +1063,60 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/breze.png",
+            "slug": "chateau-de-breze",
+            "nom": "Château de Brézé",
+            "autresNoms": ["Le château sous le château"],
+            "sousTitre": "la forteresse cachée sous les vignes",
+            "resume": "Château Renaissance remanié dans le goût néogothique, dissimulant sous ses profondes douves sèches une vaste forteresse troglodytique.",
+            "commune": "Brézé",
+            "departement": "Maine-et-Loire (49)",
+            "coordonnees": {
+                "lat": 47.1746,
+                "lng": -0.0586
+            },
+            "riviere": "Thouet (bassin)",
+            "epoque": "Éclectique",
+            "style": "Renaissance & Néogothique",
+            "construction": "forteresse souterraine attestée en 1063 ; château Renaissance 1560–1580 ; remaniements néogothiques au XIXᵉ s.",
+            "commanditaire": "Arthus de Maillé-Brézé ; puis famille de Dreux-Brézé",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Partiellement classé Monument historique depuis 1979. Situé au sud de Saumur, hors du périmètre UNESCO strict du Val de Loire."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/montreuil-bellay.png",
+            "slug": "chateau-de-montreuil-bellay",
+            "nom": "Château de Montreuil-Bellay",
+            "autresNoms": [],
+            "sousTitre": "la grande forteresse du Thouet",
+            "resume": "Imposante forteresse dominant le Thouet, mêlant près de mille ans d'architecture, des remparts médiévaux aux logis Renaissance.",
+            "commune": "Montreuil-Bellay",
+            "departement": "Maine-et-Loire (49)",
+            "coordonnees": {
+                "lat": 47.1329,
+                "lng": -0.1547
+            },
+            "riviere": "Thouet",
+            "epoque": "Médiéval",
+            "style": "Forteresse médiévale & Renaissance",
+            "construction": "XIᵉ–XVIᵉ s.",
+            "commanditaire": "Foulques Nerra ; puis famille de Melun et familles successives",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé sur le Thouet au sud de Saumur, hors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "majeur",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/saumur.png",
             "slug": "chateau-de-saumur",
             "nom": "Château de Saumur",
@@ -594,7 +1125,10 @@
             "resume": "Château médiéval remanié en résidence princière, dominant la Loire ; figure des Très Riches Heures du duc de Berry.",
             "commune": "Saumur",
             "departement": "Maine-et-Loire (49)",
-            "coordonnees": { "lat": 47.2569, "lng": -0.0769 },
+            "coordonnees": {
+                "lat": 47.2569,
+                "lng": -0.0769
+            },
             "riviere": "Loire",
             "epoque": "Médiéval",
             "style": "Gothique (forteresse princière)",
@@ -610,6 +1144,33 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/montgeoffroy.png",
+            "slug": "chateau-de-montgeoffroy",
+            "nom": "Château de Montgeoffroy",
+            "autresNoms": [],
+            "sousTitre": "le château meublé du siècle des Lumières",
+            "resume": "Chef-d'œuvre du classicisme français, le château de Montgeoffroy conserve un exceptionnel ensemble de mobilier et de décors du XVIIIᵉ siècle dans leur disposition d'origine.",
+            "commune": "Mazé-Milon",
+            "departement": "Maine-et-Loire (49)",
+            "coordonnees": {
+                "lat": 47.4546,
+                "lng": -0.2736
+            },
+            "riviere": "Authion",
+            "epoque": "Classique",
+            "style": "Classicisme français",
+            "construction": "1772–1776",
+            "commanditaire": "Louis-Georges Érasme de Contades",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé dans la vallée de l'Authion, en dehors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "majeur",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/brissac.png",
             "slug": "chateau-de-brissac",
             "nom": "Château de Brissac",
@@ -618,7 +1179,10 @@
             "resume": "Château à sept étages, le plus haut de France, né d'un édifice médiéval remanié au XVIIᵉ siècle.",
             "commune": "Brissac Loire Aubance",
             "departement": "Maine-et-Loire (49)",
-            "coordonnees": { "lat": 47.3542, "lng": -0.4436 },
+            "coordonnees": {
+                "lat": 47.3542,
+                "lng": -0.4436
+            },
             "riviere": "Aubance",
             "epoque": "Classique",
             "style": "Baroque & Classique",
@@ -634,6 +1198,60 @@
         },
         {
             "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/plessis-bourre.png",
+            "slug": "chateau-du-plessis-bourre",
+            "nom": "Château du Plessis-Bourré",
+            "autresNoms": [],
+            "sousTitre": "la forteresse qui annonce la Renaissance",
+            "resume": "Château entouré de larges douves, mêlant l'allure d'une forteresse médiévale au raffinement de la première Renaissance française.",
+            "commune": "Écuillé",
+            "departement": "Maine-et-Loire (49)",
+            "coordonnees": {
+                "lat": 47.5768,
+                "lng": -0.5433
+            },
+            "riviere": "Sarthe",
+            "epoque": "Renaissance",
+            "style": "Première Renaissance française",
+            "construction": "1468–1473",
+            "commanditaire": "Jean Bourré, grand trésorier de Louis XI",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé au nord d'Angers sur la Sarthe, hors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "notable",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/plessis-mace.png",
+            "slug": "chateau-du-plessis-mace",
+            "nom": "Château du Plessis-Macé",
+            "autresNoms": [],
+            "sousTitre": "la forteresse devenue palais",
+            "resume": "Puissante forteresse angevine transformée à la Renaissance en résidence de prestige, le château du Plessis-Macé est aujourd'hui un haut lieu du patrimoine et du théâtre en Anjou.",
+            "commune": "Longuenée-en-Anjou",
+            "departement": "Maine-et-Loire (49)",
+            "coordonnees": {
+                "lat": 47.5448,
+                "lng": -0.6717
+            },
+            "riviere": "Mayenne",
+            "epoque": "Médiéval",
+            "style": "Forteresse médiévale & Renaissance",
+            "construction": "XIIIᵉ–XVe s.",
+            "commanditaire": "Familles de Beaumont puis de Bellay",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé au nord-ouest d'Angers, dans la vallée de la Mayenne, hors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "majeur",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
             "customEmoji": "/emoji/chateau/angers.png",
             "slug": "chateau-d-angers",
             "nom": "Château d'Angers",
@@ -642,7 +1260,10 @@
             "resume": "Puissante forteresse aux tours de schiste et de tuffeau, abritant la tenture de l'Apocalypse, à la porte occidentale du val.",
             "commune": "Angers",
             "departement": "Maine-et-Loire (49)",
-            "coordonnees": { "lat": 47.4706, "lng": -0.5601 },
+            "coordonnees": {
+                "lat": 47.4706,
+                "lng": -0.5601
+            },
             "riviere": "Maine (près de la confluence avec la Loire)",
             "epoque": "Médiéval",
             "style": "Forteresse médiévale",
@@ -654,6 +1275,114 @@
                 "note": "Cité emblématique du Bien, près de la borne ouest (Chalonnes) du périmètre UNESCO."
             },
             "renommee": "majeur",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/serrant.png",
+            "slug": "chateau-de-serrant",
+            "nom": "Château de Serrant",
+            "autresNoms": [],
+            "sousTitre": "la grande demeure des princes de Ligne",
+            "resume": "Vaste château mêlant Renaissance et classicisme, célèbre pour ses intérieurs parfaitement conservés et l'une des plus importantes bibliothèques privées de France.",
+            "commune": "Saint-Georges-sur-Loire",
+            "departement": "Maine-et-Loire (49)",
+            "coordonnees": {
+                "lat": 47.3997,
+                "lng": -0.7623
+            },
+            "riviere": "Loire",
+            "epoque": "Classique",
+            "style": "Renaissance & Classique",
+            "construction": "1546–1704",
+            "commanditaire": "Familles Brie, Bautru puis de La Trémoille ; propriété des princes de Ligne depuis 1830",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": true,
+                "note": "Dans le périmètre du Val de Loire inscrit au patrimoine mondial de l'UNESCO."
+            },
+            "renommee": "majeur",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/ancenis.png",
+            "slug": "chateau-d-ancenis",
+            "nom": "Château d'Ancenis",
+            "autresNoms": [],
+            "sousTitre": "la sentinelle bretonne de la Loire",
+            "resume": "Ancienne forteresse des marches de Bretagne, le château d'Ancenis surveillait l'un des principaux passages de la Loire entre Bretagne et Anjou.",
+            "commune": "Ancenis-Saint-Géréon",
+            "departement": "Loire-Atlantique (44)",
+            "coordonnees": {
+                "lat": 47.3668,
+                "lng": -1.1772
+            },
+            "riviere": "Loire",
+            "epoque": "Médiéval",
+            "style": "Forteresse médiévale",
+            "construction": "Xᵉ–XVIᵉ s.",
+            "commanditaire": "Comtes de Nantes puis ducs de Bretagne",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé en aval du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "majeur",
+            "visite": "extérieurs & parc"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/oudon.png",
+            "slug": "chateau-d-oudon",
+            "nom": "Château d'Oudon",
+            "autresNoms": [],
+            "sousTitre": "le donjon des marches de Bretagne",
+            "resume": "Dominé par son imposant donjon octogonal, le château d'Oudon contrôlait la navigation sur la Loire et la frontière entre Bretagne et Anjou.",
+            "commune": "Oudon",
+            "departement": "Loire-Atlantique (44)",
+            "coordonnees": {
+                "lat": 47.3468,
+                "lng": -1.2868
+            },
+            "riviere": "Loire",
+            "epoque": "Médiéval",
+            "style": "Forteresse médiévale",
+            "construction": "1392–1397",
+            "commanditaire": "Jean V de Malestroit",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "Situé en aval du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "majeur",
+            "visite": "ouvert au public"
+        },
+        {
+            "emoji": "🏰",
+            "customEmoji": "/emoji/chateau/goulaine.png",
+            "slug": "chateau-de-goulaine",
+            "nom": "Château de Goulaine",
+            "autresNoms": [],
+            "sousTitre": "la demeure millénaire des marais nantais",
+            "resume": "Château Renaissance édifié sur une ancienne forteresse médiévale, résidence historique de la famille de Goulaine depuis près de mille ans.",
+            "commune": "Haute-Goulaine",
+            "departement": "Loire-Atlantique (44)",
+            "coordonnees": {
+                "lat": 47.1988,
+                "lng": -1.4305
+            },
+            "riviere": "Goulaine",
+            "epoque": "Renaissance",
+            "style": "Renaissance italienne & vestiges médiévaux",
+            "construction": "forteresse attestée au XIᵉ s. ; remaniements majeurs au XVIᵉ s.",
+            "commanditaire": "Famille de Goulaine",
+            "protection": {
+                "monumentHistorique": "classé",
+                "unesco": false,
+                "note": "À l'est de Nantes, dans les marais de Goulaine, hors du périmètre UNESCO du Val de Loire."
+            },
+            "renommee": "notable",
             "visite": "ouvert au public"
         },
         {
