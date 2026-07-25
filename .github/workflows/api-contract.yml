@@ -55,6 +55,13 @@ jobs:
                   SITE_URL: https://example.test
               run: pnpm api:data:check
 
+            - name: Check developer documentation
+              id: developer_docs
+              continue-on-error: true
+              env:
+                  SITE_URL: https://example.test
+              run: pnpm api:docs:check
+
             - name: Install verified oasdiff
               shell: bash
               run: |
@@ -151,6 +158,7 @@ jobs:
               env:
                   BASE_REF: ${{ steps.base.outputs.base_ref }}
                   DATA_QUALITY_RESULT: ${{ steps.data_quality.outcome }}
+                  DEVELOPER_DOCS_RESULT: ${{ steps.developer_docs.outcome }}
                   LINT_RESULT: ${{ steps.lint.outcome }}
                   RUNTIME_RESULT: ${{ steps.runtime.outcome }}
                   SNAPSHOT_RESULT: ${{ steps.snapshots.outcome }}
@@ -162,6 +170,7 @@ jobs:
                       echo "| Guard | Result |"
                       echo "| --- | --- |"
                       echo "| Editorial data quality | ${DATA_QUALITY_RESULT:-skipped} |"
+                      echo "| Developer documentation | ${DEVELOPER_DOCS_RESULT:-skipped} |"
                       echo "| OpenAPI lint | ${LINT_RESULT:-skipped} |"
                       echo "| Runtime response against current OpenAPI | ${RUNTIME_RESULT:-skipped} |"
                       echo "| Public shape snapshots | ${SNAPSHOT_RESULT:-skipped} |"
@@ -177,6 +186,10 @@ jobs:
                   failed=false
                   if [[ "${DATA_QUALITY_RESULT:-skipped}" != "success" ]]; then
                       echo "::error::Editorial data quality check failed"
+                      failed=true
+                  fi
+                  if [[ "${DEVELOPER_DOCS_RESULT:-skipped}" != "success" ]]; then
+                      echo "::error::Developer documentation check failed"
                       failed=true
                   fi
                   if [[ "${LINT_RESULT:-skipped}" != "success" ]]; then
