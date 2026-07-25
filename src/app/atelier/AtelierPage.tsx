@@ -18,6 +18,8 @@ import { MOCK_PATRIMOINE } from "./mockPatrimoine";
 import TableOfContents, { type TocItem } from "./TableOfContents";
 import styles from "./atelier.module.css";
 import type { IndexEntry } from "@/registry/indexes";
+import FauneCardOld from "../faune/FauneCardOld";
+import FloreCardOld from "../flore/FloreCardOld";
 
 const TOC_ITEMS: TocItem[] = [
     { id: "faune", label: "FauneCard" },
@@ -337,15 +339,24 @@ export default function AtelierHomePage({
                                   ? "identité colorée par type + emoji custom agrandi"
                                   : "fiche naturaliste complète : hero, stats, tags, anecdote"
                         }
-                        render={(d, v, key, isOpen, onToggle) => (
-                            <FauneCard
-                                key={key}
-                                version={v}
-                                d={d}
-                                open={isOpen}
-                                onToggle={onToggle}
-                            />
-                        )}
+                        render={(d, v, key, isOpen, onToggle) =>
+                            v === 2 ? (
+                                <FauneCard
+                                    key={key}
+                                    d={d}
+                                    open={isOpen}
+                                    onToggle={onToggle}
+                                />
+                            ) : (
+                                <FauneCardOld
+                                    key={key}
+                                    version={v}
+                                    d={d}
+                                    open={isOpen}
+                                    onToggle={onToggle}
+                                />
+                            )
+                        }
                         open={open}
                         allOpen={allOpen}
                         onToggle={toggle}
@@ -369,15 +380,24 @@ export default function AtelierHomePage({
                                   ? "identité colorée par catégorie"
                                   : "fiche botanique complète : hero, stats, tags, anecdote"
                         }
-                        render={(d, v, key, isOpen, onToggle) => (
-                            <FloreCard
-                                key={key}
-                                version={v}
-                                d={d}
-                                open={isOpen}
-                                onToggle={onToggle}
-                            />
-                        )}
+                        render={(d, v, key, isOpen, onToggle) =>
+                            v === 2 ? (
+                                <FloreCard
+                                    key={key}
+                                    d={d}
+                                    open={isOpen}
+                                    onToggle={onToggle}
+                                />
+                            ) : (
+                                <FloreCardOld
+                                    key={key}
+                                    version={v}
+                                    d={d}
+                                    open={isOpen}
+                                    onToggle={onToggle}
+                                />
+                            )
+                        }
                         open={open}
                         allOpen={allOpen}
                         onToggle={toggle}

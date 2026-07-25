@@ -142,7 +142,6 @@ export default function FauneIndex({
                         {list.map((d) => (
                             <FauneCard
                                 key={d.nomScientifique}
-                                version={2}
                                 d={d}
                                 open={
                                     openOverrides[d.nomScientifique] ??

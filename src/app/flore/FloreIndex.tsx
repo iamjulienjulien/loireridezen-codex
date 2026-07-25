@@ -148,7 +148,6 @@ export default function FloreIndex({
                         {list.map((d) => (
                             <FloreCard
                                 key={d.slug}
-                                version={2}
                                 d={d}
                                 open={openOverrides[d.slug] ?? expandAll}
                                 onToggle={() => toggleOne(d.slug)}
