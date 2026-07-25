@@ -7,13 +7,14 @@ import styles from "./chateaux.module.css";
 import { LRZColor } from "@/types/lrz";
 import LRZBadge from "@/components/LRZBadge/LRZBadge";
 import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
+import { Footprints } from "lucide-react";
 
 /** Couleur d'accent par époque. */
 const EPOQUE_ACCENT: Record<string, string> = {
-    Médiéval: "#8a7256",
-    Renaissance: "#c58a3a",
-    Classique: "#6a7d8c",
-    Éclectique: "#8f6bc2",
+    Médiéval: "#795739",
+    Renaissance: "#b88945",
+    Classique: "#4d80a7",
+    Éclectique: "#a44842",
 };
 const EPOQUE_COLOR: Record<string, LRZColor> = {
     Médiéval: "brun",
@@ -164,7 +165,9 @@ export default function ChateauCard({ d, open, onToggle }: ChateauCardProps) {
                     aria-label="Visite et protections"
                 >
                     <p className={styles.visitV4}>
-                        <span aria-hidden="true">🎟️</span>
+                        <span aria-hidden="true">
+                            <Footprints />
+                        </span>
 
                         <span>
                             <strong>Visite</strong> · {d.visite}

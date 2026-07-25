@@ -784,7 +784,6 @@
     display: grid;
     width: 25px;
     height: 25px;
-    padding-left: 2px;
     place-items: center;
     flex: 0 0 auto;
     border-radius: 999px;
@@ -798,6 +797,10 @@
 .visitV4 strong {
     font-weight: 600;
     color: var(--text-primary);
+}
+.visitV4 svg {
+    width: 16px;
+    height: 16px;
 }
 .protectionsV4 {
     display: flex;
