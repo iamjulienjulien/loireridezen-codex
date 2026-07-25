@@ -227,7 +227,44 @@ Pour valider le contrat :
 
 ```bash
 pnpm api:lint
+pnpm api:test:contract
+pnpm api:contract:diff
 ```
+
+La non-régression repose sur trois garde-fous complémentaires : Ajv vérifie les
+réponses des Route Handlers contre l’OpenAPI courant, des snapshots ciblés
+rendent les changements de structure visibles, puis `oasdiff` compare le
+contrat à sa base Git. Ces contrôles sont locaux et n’appellent jamais la
+production.
+
+`pnpm api:contract:diff` exige exactement
+[`oasdiff 1.17.0`](https://github.com/oasdiff/oasdiff/releases/tag/v1.17.0)
+dans le `PATH`. Un échec Ajv indique la route, le statut, le schéma et le chemin
+JSON concernés ; un échec de snapshot signale une forme publique modifiée ;
+un échec `oasdiff` indique une rupture avérée ou potentielle de compatibilité.
+
+Après revue explicite d’un ajout public volontaire, les snapshots peuvent être
+mis à jour localement avec :
+
+```bash
+pnpm api:contract:update-snapshots
+```
+
+Cette commande n’est jamais exécutée en CI. Mettre à jour un snapshot ne rend
+pas une rupture OpenAPI compatible : le diff `oasdiff` reste bloquant pour les
+niveaux `WARN` et `ERR`.
+Le fichier `oasdiff-levels.txt` renforce sa politique par défaut pour traiter
+notamment la suppression d’une réponse d’erreur, la réduction d’une enum et le
+passage d’un champ facultatif à obligatoire comme des ruptures de la V1.
+Le wrapper compense également une limite vérifiée d’`oasdiff 1.17.0` : il
+compare les contraintes JSON Schema et bloque les bornes numériques ou de
+taille durcies, ainsi que l’ajout ou le changement de `pattern`, `multipleOf`
+et `uniqueItems`.
+
+Après le premier run vert du workflow `API contract`, ajoutez son check stable
+aux contrôles requis de la branche `main` dans les règles ou la protection de
+branche. Vérifiez ensuite qu’une pull request rouge ne peut pas être fusionnée.
+Cette configuration GitHub reste manuelle.
 
 Une collection Bruno versionnée couvre les routes publiques, CORS, le cache,
 les licences et les erreurs. Consultez son
@@ -266,6 +303,8 @@ détail des licences et de l’attribution.
 | `pnpm start`               | Lance une version déjà compilée                 |
 | `pnpm test`                | Exécute les tests automatisés                   |
 | `pnpm api:lint`            | Valide le contrat OpenAPI public                |
+| `pnpm api:test:contract`   | Vérifie réponses et snapshots du contrat        |
+| `pnpm api:contract:diff`   | Compare l’OpenAPI à sa base Git avec oasdiff    |
 | `pnpm api:test:local`      | Teste l’API locale avec Bruno                   |
 | `pnpm api:test:production` | Teste toute l’API publique en production        |
 | `pnpm api:test:smoke`      | Lance le smoke test de production               |
