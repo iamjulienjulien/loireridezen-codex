@@ -189,23 +189,13 @@ Le lien vers l’Atelier n’est affiché sur l’accueil qu’en environnement
 
 ## API publique
 
-La V1 de l’API publique est disponible en lecture seule sous `/api/v1`.
-Elle expose les index dont la propriété `etat` vaut `publie`, indépendamment de
-leur visibilité web définie par `env`.
+La V1 est publique, anonyme et disponible en lecture seule sous `/api/v1`.
+Pour effectuer un premier appel et comprendre les réponses, consultez le
+[guide développeur public](https://codex.loireridezen.bike/docs/api) ou sa
+[source versionnée](docs/api/README.md).
 
-```text
-GET /api/v1
-GET /api/v1/indexes
-GET /api/v1/indexes/{index}
-GET /api/v1/indexes/{index}/entries
-GET /api/v1/indexes/{index}/entries/{slug}
-```
-
-Exemple :
-
-```bash
-curl https://codex.loireridezen.bike/api/v1/indexes/faune/entries/heron-cendre
-```
+Ce README conserve les informations de maintenance du dépôt. Le guide
+développeur est la source narrative destinée aux consommateurs externes.
 
 Le contrat externe est publié au format **OpenAPI 3.1.2** :
 
@@ -333,6 +323,7 @@ détail des licences et de l’attribution.
 | `pnpm api:test:contract`   | Vérifie réponses et snapshots du contrat        |
 | `pnpm api:contract:diff`   | Compare l’OpenAPI à sa base Git avec oasdiff    |
 | `pnpm api:data:check`      | Contrôle la qualité des données éditoriales     |
+| `pnpm api:docs:check`      | Vérifie le guide et ses exemples                |
 | `pnpm api:test:local`      | Teste l’API locale avec Bruno                   |
 | `pnpm api:test:production` | Teste toute l’API publique en production        |
 | `pnpm api:test:smoke`      | Lance le smoke test de production               |

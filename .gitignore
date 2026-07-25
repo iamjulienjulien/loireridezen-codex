@@ -46,7 +46,6 @@ next-env.d.ts
 
 # documentation
 /documentation
-/docs
 
 # Local AI settings
 /.claude/settings.local.json

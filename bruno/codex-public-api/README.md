@@ -5,6 +5,9 @@ anonyme. Elle complète le contrat
 [`public/api/v1/openapi.json`](../../public/api/v1/openapi.json) avec des
 scénarios exécutables, maintenus manuellement et strictement en lecture seule.
 
+Le [guide développeur](https://codex.loireridezen.bike/docs/api) présente le
+démarrage rapide, le modèle public, les erreurs et les règles de licence.
+
 ## Prérequis
 
 - Node.js 20.9 ou supérieur ;
