@@ -146,7 +146,6 @@ export default function ChateauxIndex({
                         {list.map((d) => (
                             <ChateauxCard
                                 key={d.slug}
-                                version={4}
                                 d={d}
                                 open={openOverrides[d.slug] ?? expandAll}
                                 onToggle={() => toggleOne(d.slug)}

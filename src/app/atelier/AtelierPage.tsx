@@ -5,6 +5,7 @@ import Link from "next/link";
 import FauneCard from "../faune/FauneCard";
 import FloreCard from "../flore/FloreCard";
 import ChateauxCard from "../chateaux/ChateauxCard";
+import ChateauxCardOld from "../chateaux/ChateauxCardOld";
 import VignoblesCard from "../vignobles/VignoblesCard";
 import VocabulaireCard from "../vocabulaire/VocabulaireCard";
 import PatrimoineCard from "../patrimoine/PatrimoineCard";
@@ -384,15 +385,25 @@ export default function AtelierHomePage({
                                     ? "fiche complète : hero paysage, stats, classement, résumé"
                                     : "scène illustrée : château détouré, informations structurées, protections"
                         }
-                        render={(d, v, key, isOpen, onToggle) => (
-                            <ChateauxCard
-                                key={key}
-                                version={v}
-                                d={d}
-                                open={isOpen}
-                                onToggle={onToggle}
-                            />
-                        )}
+                        render={(d, v, key, isOpen, onToggle) =>
+                            v === 4 ? (
+                                <ChateauxCard
+                                    key={key}
+
+                                    d={d}
+                                    open={isOpen}
+                                    onToggle={onToggle}
+                                />
+                            ) : (
+                                <ChateauxCardOld
+                                    key={key}
+                                    version={v}
+                                    d={d}
+                                    open={isOpen}
+                                    onToggle={onToggle}
+                                />
+                            )
+                        }
                         open={open}
                         allOpen={allOpen}
                         onToggle={toggle}
