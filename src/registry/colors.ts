@@ -1,3 +1,5 @@
+import type { LRZColor } from "@/types/lrz";
+
 export const LRZ_NATURALIST_COLORS = {
     // Neutres
     blanc: "#F7F6F2",
@@ -62,3 +64,50 @@ export const LRZ_COLOR = {
         tuffeau: "#F2E7CF",
     },
 };
+
+/** Variable CSS associée à chaque nom public de la palette LRZ. */
+export const LRZ_COLOR_VARIABLES: Record<LRZColor, `--lrz-${string}`> = {
+    prairie: "--lrz-nature-prairie",
+    roseau: "--lrz-nature-roseau",
+    foret: "--lrz-nature-foret",
+    sable: "--lrz-nature-sable",
+    galet: "--lrz-nature-galet",
+    eau: "--lrz-nature-eau",
+    "eau-claire": "--lrz-nature-eau-claire",
+    ciel: "--lrz-nature-ciel",
+    soleil: "--lrz-nature-soleil",
+    coucher: "--lrz-nature-coucher",
+    blanc: "--lrz-faune-blanc",
+    "blanc-gris": "--lrz-faune-blanc-gris",
+    argent: "--lrz-faune-argent",
+    gris: "--lrz-faune-gris",
+    "gris-ardoise": "--lrz-faune-gris-ardoise",
+    "gris-brun": "--lrz-faune-gris-brun",
+    noir: "--lrz-faune-noir",
+    beige: "--lrz-faune-beige",
+    creme: "--lrz-faune-creme",
+    ocre: "--lrz-faune-ocre",
+    fauve: "--lrz-faune-fauve",
+    brun: "--lrz-faune-brun",
+    "brun-roux": "--lrz-faune-brun-roux",
+    "brun-fonce": "--lrz-faune-brun-fonce",
+    jaune: "--lrz-faune-jaune",
+    orange: "--lrz-faune-orange",
+    "orange-cuivre": "--lrz-faune-orange-cuivre",
+    roux: "--lrz-faune-roux",
+    rouge: "--lrz-faune-rouge",
+    vert: "--lrz-faune-vert",
+    "vert-vif": "--lrz-faune-vert-vif",
+    "vert-olive": "--lrz-faune-vert-olive",
+    "vert-metallise": "--lrz-faune-vert-metallise",
+    bleu: "--lrz-faune-bleu",
+    "bleu-gris": "--lrz-faune-bleu-gris",
+    "bleu-turquoise": "--lrz-faune-bleu-turquoise",
+    "bleu-metallise": "--lrz-faune-bleu-metallise",
+    pierre: "--lrz-patrimoine-pierre",
+    ardoise: "--lrz-patrimoine-ardoise",
+    brique: "--lrz-patrimoine-brique",
+    tuffeau: "--lrz-patrimoine-tuffeau",
+};
+
+export const LRZ_COLOR_NAMES = Object.keys(LRZ_COLOR_VARIABLES) as LRZColor[];
