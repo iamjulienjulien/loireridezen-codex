@@ -89,8 +89,6 @@ const EXTRAS: Record<string, Partial<FauneEspece>> = {
         regime: "Insectes",
         anecdote:
             "Grimpe grâce à ses ventouses ; change de teinte selon le support.",
-        customEmoji: "/emoji/faune/rainette-verte2.png",
-        rectEmoji: true,
     },
     "Calopteryx splendens": {
         taille: "4,5–5 cm",
