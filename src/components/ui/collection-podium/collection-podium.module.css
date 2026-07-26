@@ -1,0 +1,918 @@
+/* collection-podium.module.css */
+
+.podium {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(28px, 4.5vw, 52px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background:
+        radial-gradient(
+            circle at 50% 5%,
+            color-mix(in srgb, #d8b548 14%, transparent),
+            transparent 34%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            color-mix(in srgb, #b88945 7%, transparent),
+            transparent 58%
+        ),
+        linear-gradient(180deg, var(--bg-elevated), var(--bg-surface));
+    box-shadow:
+        var(--shadow-card),
+        inset 0 1px 0 color-mix(in srgb, white 52%, transparent);
+}
+
+.podium::before {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background-image:
+        linear-gradient(
+            color-mix(in srgb, var(--border-soft) 32%, transparent) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--border-soft) 21%, transparent) 1px,
+            transparent 1px
+        );
+    background-position: center;
+    background-size: 32px 32px;
+    content: "";
+    opacity: 0.16;
+    pointer-events: none;
+}
+
+.podium::after {
+    position: absolute;
+    z-index: -1;
+    right: 5%;
+    bottom: 0;
+    left: 5%;
+    height: 26%;
+    background: radial-gradient(
+        ellipse at center bottom,
+        rgba(70, 50, 28, 0.09),
+        transparent 72%
+    );
+    content: "";
+    pointer-events: none;
+}
+
+/* ============================================================
+   En-tête
+   ============================================================ */
+
+.header {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    justify-items: center;
+    margin-bottom: clamp(42px, 6vw, 72px);
+    text-align: center;
+}
+
+.eyebrow {
+    margin: 0 0 9px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+
+.title {
+    max-width: 18ch;
+    margin: 0;
+    text-wrap: balance;
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 500;
+    letter-spacing: -0.042em;
+    line-height: 0.98;
+    color: var(--text-primary);
+}
+
+.ornament {
+    display: grid;
+    grid-template-columns: 54px auto 54px;
+    align-items: center;
+    gap: 12px;
+    margin-top: 19px;
+    color: #b88945;
+}
+
+.ornament > span:first-child,
+.ornament > span:last-child {
+    height: 1px;
+}
+
+.ornament > span:first-child {
+    background: linear-gradient(90deg, transparent, currentColor);
+}
+
+.ornament > span:last-child {
+    background: linear-gradient(90deg, currentColor, transparent);
+}
+
+/* ============================================================
+   Scène
+   ============================================================ */
+
+.stage {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns:
+        minmax(0, 0.92fr)
+        minmax(0, 1.16fr)
+        minmax(0, 0.92fr);
+    align-items: end;
+    gap: clamp(18px, 2.7vw, 34px);
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.stage::before {
+    position: absolute;
+    z-index: -1;
+    right: 2%;
+    bottom: -8px;
+    left: 2%;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(61, 45, 25, 0.08);
+    content: "";
+    filter: blur(18px);
+    pointer-events: none;
+}
+
+/* ============================================================
+   Place
+   ============================================================ */
+
+.place {
+    --castle-accent: #b88945;
+    --metal-light: #eeeeee;
+    --metal-mid: #bbbbbb;
+    --metal-dark: #777777;
+    --step-height: 130px;
+    --portrait-height: 230px;
+    --halo-size: min(80%, 220px);
+    --image-scale: 1;
+    --image-hover-scale: 1.035;
+
+    position: relative;
+    min-width: 0;
+    container-type: inline-size;
+}
+
+.place:hover {
+    z-index: 5;
+}
+
+.link {
+    display: flex;
+    min-width: 0;
+    align-items: stretch;
+    flex-direction: column;
+    color: inherit;
+    text-decoration: none;
+}
+
+.link:focus-visible {
+    outline: 2px solid var(--castle-accent);
+    outline-offset: 7px;
+    border-radius: var(--radius-lg);
+}
+
+/* ============================================================
+   Rang
+   ============================================================ */
+
+.medalSlot {
+    position: absolute;
+    z-index: 8;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* ============================================================
+   Portrait
+   ============================================================ */
+
+.portrait {
+    position: relative;
+    display: grid;
+    min-height: var(--portrait-height);
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid
+        color-mix(in srgb, var(--castle-accent) 25%, var(--border-subtle));
+    border-bottom: 0;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background:
+        radial-gradient(
+            circle at 50% 38%,
+            color-mix(in srgb, var(--castle-accent) 7%, transparent),
+            transparent 48%
+        ),
+        linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--castle-accent) 5%, var(--bg-elevated)),
+            var(--bg-surface)
+        );
+}
+
+.portrait::before {
+    position: absolute;
+    z-index: 1;
+    bottom: 14px;
+    left: 50%;
+    width: 64%;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(45, 34, 19, 0.11);
+    content: "";
+    filter: blur(8px);
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.portrait::after {
+    position: absolute;
+    z-index: 4;
+    right: 8%;
+    bottom: 8px;
+    left: 8%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        color-mix(in srgb, var(--castle-accent) 34%, var(--border-soft)),
+        transparent
+    );
+    content: "";
+    pointer-events: none;
+}
+
+/* ============================================================
+   Médaillon illustré
+   ============================================================ */
+
+.halo {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: var(--halo-size);
+    max-width: calc(100% - 28px);
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid
+        color-mix(in srgb, var(--castle-accent) 38%, var(--border-subtle));
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 50% 35%,
+        color-mix(in srgb, var(--castle-accent) 14%, var(--bg-surface)),
+        var(--bg-surface) 68%
+    );
+    box-shadow:
+        inset 0 0 0 8px color-mix(in srgb, var(--castle-accent) 5%, transparent),
+        inset 0 -15px 28px
+            color-mix(in srgb, var(--castle-accent) 7%, transparent),
+        0 12px 26px rgba(55, 40, 18, 0.09);
+    transform: translate(-50%, -47%);
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.place:hover .halo {
+    border-color: color-mix(
+        in srgb,
+        var(--castle-accent) 54%,
+        var(--border-subtle)
+    );
+    box-shadow:
+        inset 0 0 0 8px color-mix(in srgb, var(--castle-accent) 7%, transparent),
+        inset 0 -15px 28px
+            color-mix(in srgb, var(--castle-accent) 9%, transparent),
+        0 17px 34px rgba(55, 40, 18, 0.14);
+    transform: translate(-50%, -49%);
+}
+
+.halo::before {
+    position: absolute;
+    z-index: 5;
+    inset: 10%;
+    border: 1px dashed color-mix(in srgb, var(--castle-accent) 29%, transparent);
+    border-radius: inherit;
+    content: "";
+    pointer-events: none;
+}
+
+.halo::after {
+    position: absolute;
+    z-index: 3;
+    right: 11%;
+    bottom: 8%;
+    left: 11%;
+    height: 13%;
+    border-radius: 50%;
+    background: rgba(56, 40, 20, 0.1);
+    content: "";
+    filter: blur(7px);
+    pointer-events: none;
+}
+
+/* ============================================================
+   Illustration
+   ============================================================ */
+
+.image {
+    z-index: 2;
+    object-fit: contain;
+    object-position: center bottom;
+    padding: 17% 4.5% 7%;
+    filter: drop-shadow(0 11px 9px rgba(45, 34, 19, 0.19));
+    transform: scale(var(--image-scale));
+    transform-origin: center bottom;
+    transition:
+        transform 0.28s ease,
+        filter 0.28s ease;
+}
+
+.place:hover .image {
+    filter: drop-shadow(0 16px 12px rgba(45, 34, 19, 0.24));
+    transform: translateY(-4px) scale(var(--image-hover-scale));
+}
+
+.fallback {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: clamp(54px, 7vw, 88px);
+    filter: saturate(0.8);
+    transform: scale(var(--image-scale));
+    transform-origin: center;
+    transition: transform 0.28s ease;
+}
+
+.place:hover .fallback {
+    transform: translateY(-4px) scale(var(--image-hover-scale));
+}
+
+/* ============================================================
+   Identité
+   ============================================================ */
+
+.identity {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    min-height: 118px;
+    align-content: start;
+    justify-items: center;
+    padding: 19px 16px 14px;
+    border-right: 1px solid var(--border-subtle);
+    border-left: 1px solid var(--border-subtle);
+    background: var(--bg-surface);
+    text-align: center;
+}
+
+.epoque {
+    margin: 0 0 7px;
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--castle-accent);
+}
+
+.castleName {
+    max-width: 17ch;
+    margin: 0;
+    text-wrap: balance;
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.15vw, 29px);
+    font-weight: 500;
+    letter-spacing: -0.032em;
+    line-height: 1.02;
+    color: var(--text-primary);
+}
+
+.location {
+    margin: 8px 0 0;
+    font-family: var(--font-body);
+    font-size: 10px;
+    line-height: 1.35;
+    color: var(--text-tertiary);
+}
+
+/* ============================================================
+   Raison éditoriale
+   ============================================================ */
+
+.reason {
+    display: flex;
+    min-height: 104px;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0;
+    padding: 16px 17px 19px;
+    border-right: 1px solid var(--border-subtle);
+    border-left: 1px solid var(--border-subtle);
+    background: var(--bg-surface);
+    font-family: var(--font-edit, var(--font-display));
+    font-size: 12.5px;
+    font-style: italic;
+    line-height: 1.53;
+    color: var(--text-secondary);
+}
+
+.reason > span:first-child {
+    flex: 0 0 auto;
+    margin-top: 1px;
+    color: var(--castle-accent);
+    font-style: normal;
+}
+
+/* ============================================================
+   Marche
+   ============================================================ */
+
+.step {
+    position: relative;
+    display: flex;
+    height: var(--step-height);
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--metal-dark);
+    border-radius: 0 0 8px 8px;
+    background:
+        radial-gradient(
+            circle at 50% 16%,
+            rgba(255, 255, 255, 0.3),
+            transparent 48%
+        ),
+        linear-gradient(
+            155deg,
+            color-mix(in srgb, var(--metal-light) 82%, var(--bg-surface)),
+            var(--metal-mid)
+        );
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.48),
+        inset 0 -3px 0 color-mix(in srgb, var(--metal-dark) 12%, transparent),
+        0 15px 22px color-mix(in srgb, var(--metal-dark) 15%, transparent);
+    color: var(--metal-dark);
+    transition:
+        filter 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.place:hover .step {
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.52),
+        inset 0 -3px 0 color-mix(in srgb, var(--metal-dark) 15%, transparent),
+        0 19px 28px color-mix(in srgb, var(--metal-dark) 21%, transparent);
+    filter: saturate(1.04);
+}
+
+.step::before {
+    position: absolute;
+    inset: 11px;
+    border: 1px solid color-mix(in srgb, var(--metal-dark) 28%, transparent);
+    border-radius: 4px;
+    content: "";
+}
+
+.step::after {
+    position: absolute;
+    top: 12px;
+    right: 18%;
+    left: 18%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.55),
+        transparent
+    );
+    content: "";
+}
+
+.stepRank {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: clamp(44px, 6vw, 74px);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.045em;
+    line-height: 0.8;
+    opacity: 0.8;
+}
+
+.stepLabel {
+    position: relative;
+    z-index: 1;
+    margin-top: 11px;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.stepArrow {
+    position: absolute;
+    z-index: 2;
+    right: 14px;
+    bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateX(-5px);
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease;
+}
+
+.place:hover .stepArrow {
+    opacity: 0.8;
+    transform: translateX(0);
+}
+
+/* ============================================================
+   Ordre et hiérarchie
+   ============================================================ */
+
+.first {
+    --step-height: 190px;
+    --portrait-height: 306px;
+    --halo-size: min(86%, 292px);
+    --image-scale: 1.045;
+    --image-hover-scale: 1.085;
+
+    z-index: 3;
+}
+
+.second {
+    --step-height: 145px;
+    --portrait-height: 224px;
+    --halo-size: min(79%, 220px);
+
+    z-index: 2;
+}
+
+.third {
+    --step-height: 116px;
+    --portrait-height: 224px;
+    --halo-size: min(79%, 220px);
+
+    z-index: 1;
+}
+
+.first .identity {
+    min-height: 134px;
+    padding-top: 22px;
+}
+
+.first .castleName {
+    max-width: 16ch;
+    font-size: clamp(27px, 3.2vw, 39px);
+}
+
+.first .reason {
+    min-height: 118px;
+    padding: 18px 24px 22px;
+    font-size: 13.7px;
+    line-height: 1.52;
+}
+
+/* ============================================================
+   Métaux des marches
+   ============================================================ */
+
+.gold {
+    --metal-light: #f8e9aa;
+    --metal-mid: #d8b548;
+    --metal-dark: #765311;
+}
+
+.silver {
+    --metal-light: #f2f3f3;
+    --metal-mid: #b9bec2;
+    --metal-dark: #555b60;
+}
+
+.bronze {
+    --metal-light: #e6b68d;
+    --metal-mid: #b77445;
+    --metal-dark: #63371d;
+}
+
+/* ============================================================
+   Première place
+   ============================================================ */
+
+.first::before {
+    position: absolute;
+    z-index: -1;
+    top: -64px;
+    left: 50%;
+    width: 126%;
+    height: 220px;
+    background: radial-gradient(
+        ellipse,
+        rgba(216, 181, 72, 0.2),
+        transparent 68%
+    );
+    content: "";
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+/* ============================================================
+   Conteneurs intermédiaires
+   ============================================================ */
+
+@container (max-width: 310px) {
+    .castleName {
+        font-size: 22px;
+    }
+
+    .identity {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .reason {
+        padding-right: 13px;
+        padding-left: 13px;
+        font-size: 11.5px;
+    }
+}
+
+/* ============================================================
+   Tablette
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .podium {
+        padding: 30px 22px;
+    }
+
+    .header {
+        margin-bottom: 42px;
+    }
+
+    .stage {
+        grid-template-columns: minmax(0, 1fr);
+        align-items: stretch;
+        gap: 18px;
+        max-width: 760px;
+    }
+
+    .first {
+        order: 1;
+    }
+
+    .second {
+        order: 2;
+    }
+
+    .third {
+        order: 3;
+    }
+
+    .place {
+        --step-height: auto;
+        --portrait-height: 184px;
+        --halo-size: min(82%, 164px);
+        --image-scale: 1;
+        --image-hover-scale: 1.035;
+
+        z-index: auto;
+    }
+
+    .first::before {
+        display: none;
+    }
+
+    .link {
+        display: grid;
+        grid-template-columns: 78px 168px minmax(0, 1fr);
+        overflow: hidden;
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        background: var(--bg-surface);
+        box-shadow: var(--shadow-card);
+    }
+
+    .medalSlot {
+        position: relative;
+        top: auto;
+        left: auto;
+        align-self: center;
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        margin: 0 auto;
+        transform: none;
+    }
+
+    .portrait {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        min-height: var(--portrait-height);
+        border: 0;
+        border-right: 1px solid var(--border-subtle);
+        border-radius: 0;
+    }
+
+    .portrait::after {
+        right: 7%;
+        left: 7%;
+    }
+
+    .identity {
+        grid-column: 3;
+        min-height: 0;
+        align-content: end;
+        justify-items: start;
+        padding: 20px 20px 8px;
+        border: 0;
+        text-align: left;
+    }
+
+    .castleName,
+    .first .castleName {
+        max-width: none;
+        font-size: clamp(23px, 4vw, 30px);
+    }
+
+    .reason,
+    .first .reason {
+        grid-column: 3;
+        min-height: 0;
+        padding: 9px 20px 20px;
+        border: 0;
+        font-size: 12.5px;
+        line-height: 1.48;
+    }
+
+    .step {
+        display: none;
+    }
+}
+
+/* ============================================================
+   Mobile
+   ============================================================ */
+
+@media (max-width: 620px) {
+    .podium {
+        padding: 24px 14px;
+        border-radius: calc(var(--radius-lg) - 2px);
+    }
+
+    .header {
+        margin-bottom: 34px;
+    }
+
+    .title {
+        font-size: clamp(30px, 10vw, 40px);
+    }
+
+    .ornament {
+        grid-template-columns: 40px auto 40px;
+        margin-top: 15px;
+    }
+
+    .stage {
+        gap: 14px;
+    }
+
+    .place {
+        --portrait-height: 148px;
+        --halo-size: min(86%, 116px);
+    }
+
+    .link {
+        grid-template-columns: 56px 116px minmax(0, 1fr);
+    }
+
+    .portrait::before {
+        bottom: 10px;
+        height: 10px;
+    }
+
+    .identity,
+    .first .identity {
+        padding: 15px 13px 5px;
+    }
+
+    .epoque {
+        margin-bottom: 5px;
+        font-size: 7.5px;
+    }
+
+    .castleName,
+    .first .castleName {
+        font-size: clamp(18px, 5.4vw, 22px);
+        line-height: 1.03;
+    }
+
+    .location {
+        display: none;
+    }
+
+    .reason,
+    .first .reason {
+        display: -webkit-box;
+        overflow: hidden;
+        padding: 6px 13px 15px;
+        font-size: 11.5px;
+        line-height: 1.42;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+
+    .reason > span:first-child {
+        display: none;
+    }
+}
+
+/* ============================================================
+   Très petit écran
+   ============================================================ */
+
+@media (max-width: 430px) {
+    .place {
+        --portrait-height: 128px;
+        --halo-size: min(88%, 98px);
+    }
+
+    .link {
+        grid-template-columns: 48px 98px minmax(0, 1fr);
+    }
+
+    .identity,
+    .first .identity {
+        padding: 12px 10px 4px;
+    }
+
+    .castleName,
+    .first .castleName {
+        font-size: 17px;
+    }
+
+    .reason,
+    .first .reason {
+        padding: 5px 10px 12px;
+        font-size: 10.5px;
+    }
+}
+
+/* ============================================================
+   Réduction des animations
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .halo,
+    .image,
+    .fallback,
+    .step,
+    .stepArrow {
+        transition: none;
+    }
+
+    .place:hover .halo {
+        transform: translate(-50%, -47%);
+    }
+
+    .place:hover .image,
+    .place:hover .fallback {
+        transform: scale(var(--image-scale));
+    }
+
+    .place:hover .stepArrow {
+        transform: none;
+    }
+}
