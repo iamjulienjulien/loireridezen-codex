@@ -1,0 +1,369 @@
+.root {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    display: grid;
+    place-items: start center;
+    padding: min(14vh, 8rem) 1rem 1rem;
+}
+
+.backdrop {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: color-mix(in srgb, var(--text-primary) 38%, transparent);
+    cursor: default;
+    backdrop-filter: blur(7px);
+}
+
+.dialog {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: min(100%, 36rem);
+    max-height: min(72vh, 42rem);
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    box-shadow:
+        var(--shadow-card),
+        0 1.5rem 4rem color-mix(in srgb, var(--text-primary) 24%, transparent);
+    color: var(--text-primary);
+    animation: palette-enter 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header {
+    display: flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0.85rem 0.65rem 1rem;
+}
+
+.title {
+    margin: 0;
+    font-family: var(--font-display, var(--font-body));
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.globalShortcut,
+.commandShortcut,
+.footer kbd {
+    font-family: var(--font-mono);
+}
+
+.globalShortcut {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    color: var(--text-tertiary);
+    font-size: 0.68rem;
+}
+
+.globalShortcut span,
+.commandShortcut span,
+.footer kbd {
+    display: inline-grid;
+    min-width: 1.35rem;
+    min-height: 1.35rem;
+    place-items: center;
+    padding-inline: 0.25rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface);
+    box-shadow: 0 1px 0 var(--border-soft);
+}
+
+.closeButton {
+    display: inline-grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-tertiary);
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    border-color: var(--border-subtle);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+}
+
+.closeButton:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 1px;
+}
+
+.closeButton svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-block: 1px solid var(--border-subtle);
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1rem;
+    width: 1rem;
+    height: 1rem;
+    color: var(--text-tertiary);
+    pointer-events: none;
+}
+
+.input {
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0.85rem 1rem 0.85rem 2.75rem;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+}
+
+.input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.search:focus-within {
+    box-shadow: inset 3px 0 var(--gold);
+}
+
+.results {
+    min-height: 5rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0.5rem;
+    scrollbar-color: var(--border-soft) transparent;
+}
+
+.group + .group {
+    margin-top: 0.45rem;
+    padding-top: 0.45rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.groupLabel {
+    margin: 0;
+    padding: 0.45rem 0.65rem 0.35rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.commandList {
+    display: grid;
+    gap: 0.15rem;
+}
+
+.command {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 3.35rem;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: var(--text-primary);
+    text-align: left;
+    cursor: pointer;
+}
+
+.command[data-highlighted="true"] {
+    border-color: color-mix(in srgb, var(--gold) 25%, transparent);
+    background: var(--gold-soft);
+}
+
+.command[data-active="true"] .commandLabel {
+    color: var(--gold);
+}
+
+.command:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
+}
+
+.command:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.commandIcon {
+    display: inline-grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.commandIcon svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.commandContent {
+    display: grid;
+    min-width: 0;
+    gap: 0.16rem;
+}
+
+.commandLabel {
+    overflow: hidden;
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    font-weight: 650;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.commandDescription {
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.commandMeta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+}
+
+.commandShortcut {
+    display: inline-flex;
+    gap: 0.18rem;
+    color: var(--text-tertiary);
+    font-size: 0.62rem;
+}
+
+.commandShortcut span {
+    min-width: 1.2rem;
+    min-height: 1.2rem;
+}
+
+.activeIcon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--gold);
+}
+
+.empty {
+    margin: 0;
+    padding: 2.25rem 1rem;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 1rem;
+    border-top: 1px solid var(--border-subtle);
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+}
+
+.footer > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+}
+
+.footer kbd {
+    min-width: 1.15rem;
+    min-height: 1.15rem;
+    font-size: 0.58rem;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    white-space: nowrap;
+}
+
+@keyframes palette-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-0.65rem) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 640px) {
+    .root {
+        padding-top: 8vh;
+    }
+
+    .dialog {
+        max-height: 82vh;
+    }
+
+    .globalShortcut,
+    .footer {
+        display: none;
+    }
+
+    .command {
+        min-height: 3.6rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dialog {
+        animation: none;
+    }
+}

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono, Lora } from "next/font/google";
 import Script from "next/script";
+import AmbianceCommandPalette from "@/components/AmbianceCommandPalette";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
+import { featureIsEnabled } from "@/registry/feature-flags";
 import "./globals.css";
 
 const AMBIANCE_INITIALIZATION_SCRIPT = `
@@ -60,6 +62,12 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    const currentEnv = process.env.CURRENT_ENV;
+    const commandPaletteEnabled =
+        currentEnv === "development" || currentEnv === "production"
+            ? featureIsEnabled("commandPalette", currentEnv)
+            : false;
+
     return (
         <html lang="fr" data-mode="jour" suppressHydrationWarning>
             <head>
@@ -89,6 +97,7 @@ export default function RootLayout({
                     }
                 >
                     {children}
+                    {commandPaletteEnabled ? <AmbianceCommandPalette /> : null}
                 </AmbianceProvider>
             </body>
         </html>
