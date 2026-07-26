@@ -1,0 +1,748 @@
+/* LRZSeparateurPlayground.module.css */
+
+/* -------------------------------------------------------------------------- */
+/* Page                                                                       */
+/* -------------------------------------------------------------------------- */
+
+.page {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+    background-image: var(--ambient-glow);
+}
+
+.wrap {
+    width: min(100% - 2rem, 68rem);
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 5rem) 0 6rem;
+}
+
+.pageHeader {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.back {
+    display: inline-flex;
+    margin-bottom: 2.5rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.back:hover {
+    color: var(--gold);
+}
+
+.back:focus-visible {
+    border-radius: var(--radius-sm);
+    outline: 3px solid var(--gold-soft);
+    outline-offset: 4px;
+}
+
+.eyebrow,
+.kicker {
+    margin: 0 0 0.6rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.7rem, 8vw, 5.6rem);
+    font-weight: 520;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+}
+
+.lede {
+    max-width: 64rem;
+    margin: 1.25rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.7;
+}
+
+.lede code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Main example                                                               */
+/* -------------------------------------------------------------------------- */
+
+.mainExample {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.9fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+    margin-top: 2rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.mainExamplePreview {
+    min-width: 0;
+}
+
+.mainExamplePreview h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 540;
+}
+
+.mainExamplePreview > p:not(.kicker) {
+    margin: 0.65rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.mainExampleCanvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 10rem;
+    margin-top: 1.25rem;
+    padding: 1rem;
+    overflow: hidden;
+    border: 1px dashed var(--border-soft);
+    border-radius: var(--radius-md);
+    background:
+        linear-gradient(var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
+        var(--bg-main);
+    background-size: 24px 24px;
+}
+
+.mainExampleCode {
+    max-width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-main);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.65;
+}
+
+.mainExampleCode code {
+    font: inherit;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared cards                                                               */
+/* -------------------------------------------------------------------------- */
+
+.sectionCard {
+    margin-top: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.sectionHeader {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.sectionHeader h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 540;
+}
+
+.sectionHeader > p:last-child {
+    max-width: 58ch;
+    margin: 0.55rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Presets                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.presetGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.presetCard {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--bg-surface) 94%, transparent);
+}
+
+.presetHeader {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.presetHeader h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 540;
+}
+
+.presetHeader code {
+    flex: 0 0 auto;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+}
+
+.presetDescription {
+    margin: 0.45rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.55;
+}
+
+.presetPreview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 7rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    overflow: hidden;
+    border: 1px dashed var(--border-soft);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Usage groups                                                               */
+/* -------------------------------------------------------------------------- */
+
+.groups {
+    display: grid;
+    gap: 1rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.group {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.3fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--bg-surface) 94%, transparent);
+}
+
+.groupHeader h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 540;
+    line-height: 1.15;
+}
+
+.groupHeader p {
+    margin: 0.65rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.examples {
+    display: grid;
+    gap: 0.65rem;
+    align-content: start;
+}
+
+.example {
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.7fr) minmax(0, 1.3fr);
+    gap: 1rem;
+    align-items: center;
+    min-width: 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--border-subtle);
+}
+
+.example:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.exampleMeta {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.exampleName {
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+}
+
+.exampleMeta code {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+}
+
+.examplePreview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 4.5rem;
+    padding: 0.5rem;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.verticalExamplePreview {
+    min-height: 11rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Playground                                                                 */
+/* -------------------------------------------------------------------------- */
+
+.playground {
+    margin-top: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.header h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 540;
+}
+
+.header p:last-child {
+    max-width: 55ch;
+    margin: 0.55rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.reset {
+    flex: 0 0 auto;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-overlay);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    cursor: pointer;
+}
+
+.reset:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.reset:focus-visible,
+.control input:focus-visible,
+.control select:focus-visible,
+.checkboxControl input:focus-visible {
+    outline: 3px solid var(--gold-soft);
+    outline-offset: 2px;
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.2fr);
+    min-width: 0;
+}
+
+.controls {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-right: 1px solid var(--border-subtle);
+}
+
+.controlGroup {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.controlGroup + .controlGroup {
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--border-subtle);
+}
+
+.controlGroupTitle {
+    margin: 0;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.control {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.control > span,
+.checkboxControl > span {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.control strong,
+.checkboxControl strong {
+    margin-left: 0.35rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-body);
+    font-size: 0.63rem;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.control input,
+.control select {
+    width: 100%;
+    min-height: 2.4rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+}
+
+.checkboxControl {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.65rem;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.checkboxControl input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0.1rem 0 0;
+    accent-color: var(--gold);
+}
+
+.checkboxControl > span {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem;
+    align-items: baseline;
+}
+
+.output {
+    display: grid;
+    min-width: 0;
+    background:
+        linear-gradient(var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
+        var(--bg-main);
+    background-size: 24px 24px;
+}
+
+.preview,
+.codePanel {
+    min-width: 0;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.preview {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.outputLabel {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.canvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 11rem;
+    padding: 1rem;
+    overflow: hidden;
+    border: 1px dashed var(--border-soft);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+}
+
+.verticalCanvas {
+    min-height: 22rem;
+}
+
+.resolvedValues {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    margin: 0.85rem 0 0;
+}
+
+.resolvedValues div {
+    min-width: 0;
+    padding: 0.65rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-overlay);
+}
+
+.resolvedValues dt {
+    margin: 0 0 0.25rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-body);
+    font-size: 0.64rem;
+}
+
+.resolvedValues dd {
+    margin: 0;
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.resolvedValues code {
+    font-family: var(--font-mono);
+}
+
+.overrideNotice {
+    margin: 0.75rem 0 0;
+    color: var(--text-tertiary);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    line-height: 1.55;
+}
+
+.overrideNotice code {
+    font-family: var(--font-mono);
+}
+
+.codePanel pre {
+    max-width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-surface);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.65;
+}
+
+.codePanel code {
+    font: inherit;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Props table                                                                */
+/* -------------------------------------------------------------------------- */
+
+.tableScroll {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.tableScroll table {
+    width: 100%;
+    min-width: 64rem;
+    border-collapse: collapse;
+}
+
+.tableScroll th,
+.tableScroll td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tableScroll thead th {
+    color: var(--text-tertiary);
+    background: var(--bg-overlay);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tableScroll tbody th {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.tableScroll code {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.tableScroll tr:last-child th,
+.tableScroll tr:last-child td {
+    border-bottom: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Palette                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.colorGroups {
+    display: grid;
+    gap: 2rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.colorGroup h3 {
+    margin: 0 0 0.8rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.colorGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 0.65rem;
+}
+
+.colorExample {
+    display: grid;
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.75rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-overlay);
+}
+
+.colorExample code {
+    overflow: hidden;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Responsive                                                                 */
+/* -------------------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+    .workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+}
+
+@media (max-width: 760px) {
+    .mainExample,
+    .group {
+        grid-template-columns: 1fr;
+    }
+
+    .presetGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .example {
+        grid-template-columns: 1fr;
+    }
+
+    .resolvedValues {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .reset {
+        width: fit-content;
+    }
+
+    .presetHeader {
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+}
