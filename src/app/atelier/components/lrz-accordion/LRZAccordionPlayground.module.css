@@ -1,0 +1,587 @@
+.page {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+    background-image: var(--ambient-glow);
+}
+
+.wrap {
+    width: min(100% - 2rem, 72rem);
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 5rem) 0 6rem;
+}
+
+.pageHeader {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.back {
+    display: inline-flex;
+    margin-bottom: 2.5rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.back:hover {
+    color: var(--gold);
+}
+
+.back:focus-visible,
+.reset:focus-visible,
+.control input:focus-visible,
+.control select:focus-visible,
+.control textarea:focus-visible,
+.checkControl input:focus-visible {
+    border-radius: var(--radius-sm);
+    outline: 3px solid var(--gold-soft);
+    outline-offset: 3px;
+}
+
+.eyebrow,
+.kicker {
+    margin: 0 0 0.6rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.pageTitle {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.7rem, 8vw, 5.6rem);
+    font-weight: 520;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+}
+
+.lede {
+    max-width: 68ch;
+    margin: 1.25rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.7;
+}
+
+.mainExample,
+.referenceSection,
+.propsSection,
+.playground,
+.accessibility {
+    margin-top: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.mainExample {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.85fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.mainExamplePreview h2,
+.sectionHeader h2,
+.playgroundHeader h2,
+.accessibility h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 540;
+}
+
+.mainExamplePreview > p:not(.kicker),
+.sectionHeader > p:last-child,
+.playgroundHeader p:last-child {
+    margin: 0.55rem 0 1.25rem;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.mainExampleCode {
+    max-width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-main);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.65;
+}
+
+.mainExampleCode code {
+    font: inherit;
+}
+
+.demoDetails {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+}
+
+.demoDetails > div {
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.45fr) minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.demoDetails dt {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+}
+
+.demoDetails dd {
+    margin: 0;
+}
+
+.referenceSection {
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.sectionHeader {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.sectionHeader > p:last-child {
+    max-width: 68ch;
+    margin-bottom: 0;
+}
+
+.sectionHeader code,
+.stateGrid code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+.exampleGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.example {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    min-width: 0;
+    padding: clamp(1rem, 2vw, 1.25rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: var(--bg-overlay);
+}
+
+.exampleHeader h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 540;
+}
+
+.exampleHeader p {
+    margin: 0.4rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.example > code,
+.colorExample > code {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+}
+
+.example p,
+.stateGrid p,
+.colorExample p {
+    margin: 0;
+}
+
+.sizeStack,
+.stateGrid {
+    display: grid;
+    gap: 0.8rem;
+    margin-top: 1.25rem;
+}
+
+.stateGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.propsSection {
+    padding-top: clamp(1.25rem, 3vw, 2rem);
+}
+
+.propsSection .sectionHeader {
+    padding-inline: clamp(1.25rem, 3vw, 2rem);
+}
+
+.tableScroll {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.tableScroll:focus-visible {
+    outline: 3px solid var(--gold-soft);
+    outline-offset: -3px;
+}
+
+.tableScroll table {
+    width: 100%;
+    min-width: 64rem;
+    border-collapse: collapse;
+}
+
+.tableScroll th,
+.tableScroll td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tableScroll thead th {
+    color: var(--text-tertiary);
+    background: var(--bg-overlay);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tableScroll tbody th {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.tableScroll code {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.tableScroll tr:last-child th,
+.tableScroll tr:last-child td {
+    border-bottom: 0;
+}
+
+.colorGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.colorExample {
+    display: grid;
+    gap: 0.6rem;
+    min-width: 0;
+    padding: 0.85rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-overlay);
+}
+
+.accessibility {
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.accessibility ul {
+    display: grid;
+    gap: 0.6rem;
+    margin: 1rem 0 0;
+    padding-left: 1.2rem;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.accessibility code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+}
+
+.playgroundHeader {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.playgroundHeader p:last-child {
+    max-width: 55ch;
+    margin-bottom: 0;
+}
+
+.reset {
+    flex: 0 0 auto;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-overlay);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    cursor: pointer;
+}
+
+.reset:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.78fr) minmax(0, 1.22fr);
+    min-width: 0;
+}
+
+.controls {
+    display: grid;
+    gap: 1.25rem;
+    align-content: start;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-right: 1px solid var(--border-subtle);
+}
+
+.controlGroup {
+    display: grid;
+    gap: 0.85rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0 0 1.25rem;
+    border: 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.controlGroup:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.controlGroup legend {
+    margin-bottom: 0.75rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.control {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.control > span {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.control strong {
+    margin-left: 0.35rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-body);
+    font-size: 0.63rem;
+    font-weight: 400;
+}
+
+.control input,
+.control select,
+.control textarea {
+    width: 100%;
+    min-height: 2.4rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+}
+
+.control textarea {
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.checkControl {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    cursor: pointer;
+}
+
+.checkControl input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    accent-color: var(--gold);
+}
+
+.output {
+    display: grid;
+    min-width: 0;
+    background:
+        linear-gradient(var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
+        var(--bg-main);
+    background-size: 24px 24px;
+}
+
+.preview,
+.codePanel {
+    min-width: 0;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.preview {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.outputLabel {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.canvas {
+    display: grid;
+    align-content: center;
+    min-height: 15rem;
+    padding: clamp(1rem, 3vw, 2rem);
+    overflow: hidden;
+    border: 1px dashed var(--border-soft);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--bg-surface) 86%, transparent);
+}
+
+.canvas p {
+    margin: 0;
+}
+
+.resolvedValues {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0.8rem 0 0;
+}
+
+.resolvedValues > div {
+    min-width: 0;
+    padding: 0.6rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-overlay);
+}
+
+.resolvedValues dt {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.resolvedValues dd {
+    margin: 0.25rem 0 0;
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    text-overflow: ellipsis;
+}
+
+.codePanel pre {
+    max-width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-surface);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.65;
+}
+
+.codePanel code {
+    font: inherit;
+}
+
+@media (max-width: 900px) {
+    .exampleGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .mainExample,
+    .workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .stateGrid,
+    .colorGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .playgroundHeader {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .reset {
+        width: fit-content;
+    }
+
+    .resolvedValues,
+    .demoDetails > div {
+        grid-template-columns: 1fr;
+    }
+}
