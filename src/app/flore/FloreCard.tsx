@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { Flore } from "@/types/flore";
 import styles from "./flore.module.css";

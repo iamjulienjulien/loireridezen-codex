@@ -5,9 +5,10 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { CollectionBadge } from "@/components/ui/collection-badge";
-import { CollectionCriteria } from "@/components/ui/collection-criteria";
-import { CollectionEntryCard } from "@/components/ui/collection-entry-card";
+import {
+    CollectionEntryCard,
+    CollectionEntryCastle,
+} from "@/components/ui/collection-entry-card";
 import { CollectionHero } from "@/components/ui/collection-hero";
 import { CollectionList } from "@/components/ui/collection-list";
 import { CollectionPodium } from "@/components/ui/collection-podium";
@@ -92,9 +93,6 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         ],
     };
 
-    const criteria = collection.criteria.map((criterion) => ({
-        label: criterion,
-    }));
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
 
     return (
@@ -231,7 +229,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                             >
                                 <CollectionEntryCard
                                     collectionEntry={collectionEntry}
-                                    castle={castle}
+                                    castle={castle as CollectionEntryCastle}
                                     variant="default"
                                 />
                             </li>
