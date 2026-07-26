@@ -1,0 +1,63 @@
+/* src/components/ui/collection-list/collection-list.module.css */
+
+.list {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+}
+
+.list:is(ol, ul) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sm {
+    gap: 10px;
+}
+
+.md {
+    gap: 16px;
+}
+
+.lg {
+    gap: 24px;
+}
+
+.dividers {
+    gap: 0;
+}
+
+.dividers > * {
+    border-radius: 0;
+}
+
+.dividers > * + * {
+    border-top: 0;
+}
+
+.dividers > :first-child {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.dividers > :last-child {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.dividers > :only-child {
+    border-radius: var(--radius-lg);
+}
+
+@media (max-width: 620px) {
+    .sm {
+        gap: 8px;
+    }
+
+    .md {
+        gap: 12px;
+    }
+
+    .lg {
+        gap: 18px;
+    }
+}
