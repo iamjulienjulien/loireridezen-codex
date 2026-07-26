@@ -1,0 +1,368 @@
+/* ============================================================
+   PageHeader
+   Adaptation autonome de la version 5 d’IndexHeader.
+
+   Le composant prend en charge :
+   - les pages d’index ;
+   - les pages de collection ;
+   - l’accent propre à la page ;
+   - l’index parent d’une collection ;
+   - la navigation générale du Codex.
+   ============================================================ */
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    padding-bottom: 20px;
+
+    /* border-bottom: 1px solid var(--border-subtle); */
+}
+
+/* ============================================================
+   Identité de page
+   ============================================================ */
+
+.brand {
+    display: flex;
+    align-items: end;
+    min-width: 0;
+    gap: 16px;
+}
+
+.markBadge {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+
+    width: 58px;
+    height: 58px;
+
+    overflow: hidden;
+
+    border: 1px solid color-mix(in srgb, var(--accent) 36%, transparent);
+    border-radius: 15px;
+
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+
+    box-shadow: var(--shadow-card);
+
+    font-size: 28px;
+    line-height: 1;
+
+    animation: pageHeaderBreath 6s ease-in-out infinite;
+}
+
+.markBadge img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.collectionMark {
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    font-size: 30px;
+    line-height: 1;
+
+    filter: drop-shadow(0 1px 2px rgb(0 0 0 / 12%));
+}
+
+.brandText {
+    min-width: 0;
+}
+
+/* Ligne compacte :
+   Loire Ride Zen · Le Codex ligérien · contexte éventuel
+*/
+
+.identity {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+
+    margin-bottom: 6px;
+}
+
+.kickerBar {
+    width: 16px;
+    height: 2px;
+
+    border-radius: 2px;
+
+    background: var(--accent);
+    opacity: 0.85;
+}
+
+.brandName {
+    color: var(--accent);
+
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.identitySeparator {
+    color: var(--text-tertiary);
+    opacity: 0.7;
+}
+
+.siteName,
+.parentIndex {
+    color: var(--text-secondary);
+
+    font-family: var(--font-display);
+    font-size: 13.5px;
+    letter-spacing: -0.005em;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.siteName:hover,
+.parentIndex:hover {
+    color: var(--accent);
+}
+
+.parentIndex {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Le titre de la page reste la voix dominante. */
+
+.title {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-family: var(--font-display);
+    font-size: clamp(26px, 4.4vw, 36px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+/* ============================================================
+   Navigation des index
+   ============================================================ */
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+
+    max-width: 100%;
+    padding: 4px;
+    overflow-x: auto;
+
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+
+    background: var(--bg-overlay);
+
+    scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar {
+    display: none;
+}
+
+.navButton {
+    position: relative;
+
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 13px 9px;
+
+    border-radius: 999px;
+
+    color: var(--text-secondary);
+
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.navButton:hover {
+    color: var(--text-primary);
+    background: var(--bg-overlay);
+}
+
+/* Index actuellement affiché. */
+
+.navButton[aria-current="page"] {
+    color: var(--text-primary);
+
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-card);
+}
+
+/* Index parent lorsqu’une collection est affichée. */
+
+.navButton[data-current-section] {
+    color: var(--text-primary);
+
+    background: color-mix(in srgb, var(--accent) 8%, var(--bg-elevated));
+}
+
+/* L’index courant et l’index parent utilisent le même fil
+   de couleur, mais l’index parent reste légèrement plus discret.
+*/
+
+.navButton[aria-current="page"]::after,
+.navButton[data-current-section]::after {
+    content: "";
+
+    position: absolute;
+    bottom: 3.5px;
+    left: 50%;
+
+    width: 50%;
+    height: 2px;
+
+    border-radius: 2px;
+
+    background: var(--accent, var(--gold));
+
+    transform: translateX(-50%);
+}
+
+.navButton[data-current-section]::after {
+    opacity: 0.58;
+}
+
+.navEmoji {
+    display: grid;
+    place-items: center;
+
+    width: 25px;
+    height: 25px;
+
+    font-size: 13px;
+    line-height: 1;
+}
+
+.navEmoji img {
+    display: block;
+
+    width: 25px;
+    height: 25px;
+
+    object-fit: contain;
+}
+
+.navText {
+    white-space: nowrap;
+}
+
+/* ============================================================
+   Animation
+   ============================================================ */
+
+@keyframes pageHeaderBreath {
+    0%,
+    100% {
+        opacity: 0.9;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(-1px);
+    }
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media (max-width: 820px) {
+    .header {
+        align-items: stretch;
+    }
+
+    .nav {
+        width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .header {
+        gap: 18px;
+        padding-bottom: 16px;
+    }
+
+    .brand {
+        align-items: center;
+        gap: 12px;
+    }
+
+    .markBadge {
+        width: 52px;
+        height: 52px;
+
+        border-radius: 14px;
+    }
+
+    .markBadge img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .collectionMark {
+        font-size: 27px;
+    }
+
+    .identity {
+        gap: 6px;
+        margin-bottom: 5px;
+    }
+
+    .parentIndex,
+    .parentIndex + .identitySeparator {
+        display: none;
+    }
+
+    .title {
+        font-size: clamp(24px, 8vw, 31px);
+    }
+
+    .navButton {
+        padding-inline: 11px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .markBadge {
+        animation: none;
+    }
+
+    .navButton,
+    .siteName,
+    .parentIndex {
+        transition: none;
+    }
+}
