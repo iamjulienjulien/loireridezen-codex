@@ -13,6 +13,26 @@ const COMPONENTS = [
         href: "/atelier/components/lrz-anecdote",
     },
     {
+        id: "lrz-accordion",
+        label: "LRZAccordion",
+        href: "/atelier/components/lrz-accordion",
+    },
+    {
+        id: "lrz-separateur",
+        label: "LRZSeparateur",
+        href: "/atelier/components/lrz-separateur",
+    },
+    {
+        id: "lrz-section",
+        label: "LRZSection",
+        href: "/atelier/components/lrz-section",
+    },
+    {
+        id: "lrz-card",
+        label: "LRZCard",
+        href: "/atelier/components/lrz-card",
+    },
+    {
         id: "lrz-doc-code-block",
         label: "LRZDocCodeBlock",
         href: "/atelier/components/lrz-doc-code-block",

@@ -290,7 +290,6 @@ export default function AtelierHomePage({
                             href="/atelier/components/lrz-badge"
                         >
                             <span>LRZBadge</span>
-                            <small>Statuts et protections</small>
                             <span aria-hidden="true">→</span>
                         </Link>
 
@@ -299,16 +298,51 @@ export default function AtelierHomePage({
                             href="/atelier/components/lrz-anecdote"
                         >
                             <span>LRZAnecdote</span>
-                            <small>Citations éditoriales</small>
                             <span aria-hidden="true">→</span>
                         </Link>
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-accordion"
+                        >
+                            <span>LRZAccordion</span>
+                            <span aria-hidden="true">→</span>
+                        </Link>
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-separateur"
+                        >
+                            <span>LRZSeparateur</span>
+                            <span aria-hidden="true">→</span>
+                        </Link>
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-section"
+                        >
+                            <span>LRZSection</span>
+                            <span aria-hidden="true">→</span>
+                        </Link>
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-card"
+                        >
+                            <span>LRZCard</span>
+                            <span aria-hidden="true">→</span>
+                        </Link>
+                    </nav>
+                    <nav
+                        className={styles.componentNav}
+                        aria-label="Composants Doc"
+                    >
+                        <span className={styles.componentNavLabel}>
+                            Composants Doc
+                        </span>
 
                         <Link
                             className={styles.componentLink}
                             href="/atelier/components/lrz-doc-code-block"
                         >
                             <span>LRZDocCodeBlock</span>
-                            <small>Bloc de code</small>
+                            {/* <small>Bloc de code</small> */}
                             <span aria-hidden="true">→</span>
                         </Link>
 
@@ -317,7 +351,23 @@ export default function AtelierHomePage({
                             href="/atelier/components/lrz-doc-code-inline"
                         >
                             <span>LRZDocCodeInline</span>
-                            <small>Extrait de code</small>
+                            {/* <small>Extrait de code</small> */}
+                            <span aria-hidden="true">→</span>
+                        </Link>
+
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-doc-list"
+                        >
+                            <span>LRZDocList</span>
+                            <span aria-hidden="true">→</span>
+                        </Link>
+
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-doc-quote"
+                        >
+                            <span>LRZDocQuote</span>
                             <span aria-hidden="true">→</span>
                         </Link>
                     </nav>
