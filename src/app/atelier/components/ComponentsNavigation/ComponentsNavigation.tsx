@@ -33,6 +33,11 @@ const COMPONENTS = [
         href: "/atelier/components/lrz-card",
     },
     {
+        id: "lrz-meta-list",
+        label: "LRZMetaList",
+        href: "/atelier/components/lrz-meta-list",
+    },
+    {
         id: "lrz-doc-code-block",
         label: "LRZDocCodeBlock",
         href: "/atelier/components/lrz-doc-code-block",

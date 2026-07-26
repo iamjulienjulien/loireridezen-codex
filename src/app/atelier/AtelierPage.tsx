@@ -367,6 +367,13 @@ export default function AtelierHomePage({
                             <span>LRZCard</span>
                             <span aria-hidden="true">→</span>
                         </Link>
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-meta-list"
+                        >
+                            <span>LRZMetaList</span>
+                            <span aria-hidden="true">→</span>
+                        </Link>
                     </nav>
                     <nav
                         className={styles.componentNav}

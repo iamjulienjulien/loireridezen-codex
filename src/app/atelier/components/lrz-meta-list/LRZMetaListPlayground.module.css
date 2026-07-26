@@ -1,0 +1,446 @@
+.page {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+    background-image: var(--ambient-glow);
+}
+
+.wrap {
+    width: min(100% - 2rem, 72rem);
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 5rem) 0 6rem;
+}
+
+.pageHeader {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.back {
+    display: inline-flex;
+    margin-bottom: 2.5rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.back:hover {
+    color: var(--gold);
+}
+
+.back:focus-visible,
+.reset:focus-visible,
+.control input:focus-visible,
+.control select:focus-visible,
+.checkControl input:focus-visible,
+.tableScroll:focus-visible {
+    border-radius: var(--radius-sm);
+    outline: 3px solid var(--gold-soft);
+    outline-offset: 3px;
+}
+
+.eyebrow,
+.kicker {
+    margin: 0 0 0.6rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.pageTitle {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.7rem, 8vw, 5.6rem);
+    font-weight: 520;
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+}
+
+.lede {
+    max-width: 68ch;
+    margin: 1.25rem 0 0;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.7;
+}
+
+.mainExample,
+.referenceSection,
+.propsSection,
+.playground,
+.accessibility {
+    margin-top: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.mainExample {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.85fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.mainExamplePreview h2,
+.sectionHeader h2,
+.playgroundHeader h2,
+.accessibility h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 540;
+}
+
+.mainExamplePreview > p:not(.kicker),
+.sectionHeader > p:last-child,
+.playgroundHeader p:last-child {
+    margin: 0.55rem 0 1.25rem;
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.mainExampleCode {
+    max-width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    padding: 1.25rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-main);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.65;
+}
+
+.referenceSection,
+.propsSection {
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.sectionHeader {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.toneGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.example {
+    display: grid;
+    align-content: start;
+    gap: 0.85rem;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.example h3,
+.example p {
+    margin: 0;
+}
+
+.example h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 540;
+}
+
+.example p {
+    min-height: 3.7em;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.55;
+}
+
+.example > code {
+    width: fit-content;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+}
+
+.playgroundHeader {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.playgroundHeader p:last-child {
+    max-width: 62ch;
+    margin-bottom: 0;
+}
+
+.reset {
+    flex: 0 0 auto;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.reset:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.62fr) minmax(0, 1.38fr);
+}
+
+.controls {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-right: 1px solid var(--border-subtle);
+    background: var(--bg-main);
+}
+
+.controlGroup {
+    display: grid;
+    gap: 0.8rem;
+    min-width: 0;
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+}
+
+.controlGroup legend {
+    padding: 0 0.4rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.control {
+    display: grid;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.control > span,
+.checkControl {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+}
+
+.control input,
+.control select {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.35rem;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    font: inherit;
+    font-size: 0.78rem;
+}
+
+.checkControl {
+    display: flex;
+    gap: 0.55rem;
+    align-items: flex-start;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.checkControl input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0.05rem 0 0;
+    accent-color: var(--gold);
+}
+
+.output {
+    display: grid;
+    align-content: start;
+    min-width: 0;
+}
+
+.preview,
+.codePanel {
+    min-width: 0;
+    padding: 1.25rem;
+}
+
+.preview {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.outputLabel {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.canvas {
+    min-height: 14rem;
+    padding: clamp(1rem, 4vw, 2rem);
+    border: 1px dashed var(--border-soft);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.resolvedValues {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+}
+
+.resolvedValues div {
+    min-width: 0;
+}
+
+.resolvedValues dt {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.resolvedValues dd {
+    margin: 0.25rem 0 0;
+    overflow-wrap: anywhere;
+    color: var(--text-primary);
+    font-size: 0.76rem;
+}
+
+.codePanel pre {
+    max-width: 100%;
+    max-height: 24rem;
+    margin: 0;
+    overflow: auto;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-main);
+    font-family: var(--font-mono);
+    font-size: 0.69rem;
+    line-height: 1.6;
+}
+
+.tableScroll {
+    overflow-x: auto;
+    margin-top: 1.25rem;
+}
+
+.tableScroll table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    text-align: left;
+}
+
+.tableScroll th,
+.tableScroll td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: top;
+}
+
+.tableScroll thead th {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tableScroll tbody th {
+    color: var(--gold);
+}
+
+.tableScroll code {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.accessibility {
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.accessibility ul {
+    display: grid;
+    gap: 0.65rem;
+    margin: 1rem 0 0;
+    padding-left: 1.2rem;
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .mainExample,
+    .workspace {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .controls {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .toneGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .example p {
+        min-height: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    .wrap {
+        width: min(100% - 1rem, 72rem);
+    }
+
+    .playgroundHeader {
+        flex-direction: column;
+    }
+
+    .resolvedValues {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

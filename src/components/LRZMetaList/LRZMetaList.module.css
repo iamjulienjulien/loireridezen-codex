@@ -1,0 +1,192 @@
+.list {
+    --meta-list-color: var(--lrz-faune-ocre);
+    --meta-list-label-width: minmax(92px, 0.8fr);
+    --meta-list-column-gap: 10px;
+    --meta-list-row-gap: 0px;
+    --meta-list-item-padding: 7px 0;
+    --meta-list-label-size: 9px;
+    --meta-list-value-size: 12.5px;
+    --meta-list-hint-size: 10.5px;
+
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--meta-list-row-gap) var(--meta-list-column-gap);
+    min-width: 0;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.list[data-columns="2"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.list[data-columns="3"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.list[data-columns="auto"] {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.item {
+    display: grid;
+    grid-template-columns:
+        var(--meta-list-label-width)
+        minmax(0, 1.2fr);
+    gap: 4px var(--meta-list-column-gap);
+    min-width: 0;
+    padding: var(--meta-list-item-padding);
+}
+
+.item:first-child {
+    padding-top: 0;
+}
+
+.item:last-child {
+    padding-bottom: 0;
+}
+
+.item[data-span="2"] {
+    grid-column: span 2;
+}
+
+.item[data-span="3"] {
+    grid-column: span 3;
+}
+
+.item[data-span="full"] {
+    grid-column: 1 / -1;
+}
+
+.label {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+    min-width: 0;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: var(--meta-list-label-size);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1.45;
+    text-transform: uppercase;
+}
+
+.icon {
+    display: inline-grid;
+    width: 1.25em;
+    height: 1.25em;
+    flex: 0 0 auto;
+    place-items: center;
+    color: var(--meta-list-color);
+    font-size: 1.15em;
+}
+
+.icon :where(svg) {
+    width: 1em;
+    height: 1em;
+}
+
+.value {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--meta-list-value-size);
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+.valueContent {
+    min-width: 0;
+}
+
+.hint {
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: var(--meta-list-hint-size);
+    font-weight: 400;
+    line-height: 1.45;
+}
+
+.item[data-emphasized="true"] .valueContent {
+    color: var(--meta-list-color);
+    font-weight: 650;
+}
+
+.list[data-value-align="end"] .value {
+    justify-items: end;
+    text-align: end;
+}
+
+.list[data-layout="stacked"] .item {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.list[data-tone="divided"] .item {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.list[data-tone="divided"] .item:last-child {
+    border-bottom: 0;
+}
+
+.list[data-tone="soft"] {
+    --meta-list-row-gap: 8px;
+}
+
+.list[data-tone="soft"] .item {
+    padding: 10px 12px;
+    border: 1px solid
+        color-mix(in srgb, var(--meta-list-color) 18%, var(--border-subtle));
+    border-radius: var(--radius-md);
+    background: color-mix(
+        in srgb,
+        var(--meta-list-color) 6%,
+        var(--bg-surface)
+    );
+}
+
+.list[data-size="sm"] {
+    --meta-list-label-width: minmax(82px, 0.72fr);
+    --meta-list-column-gap: 8px;
+    --meta-list-item-padding: 5px 0;
+    --meta-list-label-size: 8.5px;
+    --meta-list-value-size: 11.5px;
+    --meta-list-hint-size: 10px;
+}
+
+.list[data-size="lg"] {
+    --meta-list-label-width: minmax(108px, 0.85fr);
+    --meta-list-column-gap: 14px;
+    --meta-list-item-padding: 9px 0;
+    --meta-list-label-size: 10px;
+    --meta-list-value-size: 14px;
+    --meta-list-hint-size: 11.5px;
+}
+
+@container (max-width: 340px) {
+    .list[data-layout="responsive"] .item {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .list[data-layout="responsive"][data-value-align="end"] .value {
+        justify-items: start;
+        text-align: start;
+    }
+}
+
+@media (max-width: 620px) {
+    .list[data-columns="2"],
+    .list[data-columns="3"] {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .item[data-span] {
+        grid-column: auto;
+    }
+}
