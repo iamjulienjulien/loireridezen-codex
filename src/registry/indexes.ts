@@ -29,9 +29,10 @@ export interface IndexEntry {
     accent: string;
     color: LRZColor;
     /** Texte d'introduction (lede) affiché en tête de page. */
-    presentation: string;
+    presentation?: string;
     /** Même texte au format Markdown (paragraphes séparés). */
     presentation_md: string;
+    presentationFooter: string;
     /** Fin de la 2ᵉ ligne du footer, après le décompte. */
     footerNote: string;
     /** Fichier de données associé, dans /data. */
@@ -42,6 +43,26 @@ export interface IndexEntry {
 }
 
 export const INDEXES = [
+    {
+        slug: "chateaux",
+        href: "/chateaux",
+        mark: "🏰",
+        label: "Châteaux",
+        eyebrow: "Index",
+        title: "Châteaux de la Loire",
+        description:
+            "Des donjons aux jardins, le pouvoir change de visage au fil de la Loire.",
+        accent: "#b5883c",
+        color: "ocre",
+        presentation_md:
+            "À l\’amont, la pierre garde le souvenir des sièges, des frontières et des couronnes disputées. Loches dresse son donjon roman, Chinon veille sur la Vienne et Angers aligne ses dix-sept tours de schiste.\n\nPuis les murailles s\’ouvrent. Sous les rois de la Renaissance, le château devient demeure, théâtre et manifeste. Chambord invente un rêve de pierre, Chenonceau traverse le Cher et Blois rassemble plusieurs siècles dans une même cour.\n\nEnfin, le pouvoir apprivoise le paysage. À Villandry, les jardins deviennent architecture. Partout ailleurs, terrasses, perspectives et domaines prolongent les châteaux jusque dans le val.",
+        presentationFooter:
+            "**Cet index rassemble les forteresses, palais et demeures qui jalonnent le fil ligérien, du château confidentiel au monument-phare. Chaque lieu est raconté par son époque, son architecture, son paysage et les personnages qui l’ont façonné.**",
+        footerNote: "châteaux composant le patrimoine castral ligérien",
+        dataFile: "chateau.json",
+        etat: "publie",
+        env: ["development", "production"],
+    },
     {
         slug: "faune",
         href: "/faune",
@@ -57,6 +78,7 @@ export const INDEXES = [
             "Le fil ne traverse pas un décor : il longe un fleuve vivant. Voici ce qu'on peut croiser en chemin, de la source à l'Atlantique — du plus commun au plus rare, du grand jour à la pleine nuit.",
         presentation_md:
             "Le fil ne traverse pas un décor : il longe le **dernier grand fleuve sauvage d'Europe** 🌊. L'eau y décide de tout — elle creuse les berges, découvre les grèves, et redessine chaque année les bancs de sable où la vie s'installe.\n\nOn y croise l'**ordinaire** comme le **trésor** : le héron figé sur la levée 🪶, la sterne qui plonge sur le sable nu, et — pour qui sait attendre — la loutre à l'aube 🦦 ou la cigogne noire en lisière 🐦‍⬛.\n\nDu plus commun au plus rare, du grand jour à la pleine nuit. 🌒",
+        presentationFooter: "",
         footerNote: "espèces composant le bestiaire ligérien",
         dataFile: "faune.json",
         etat: "publie",
@@ -77,31 +99,13 @@ export const INDEXES = [
             "La Loire fait pousser autant qu'elle emporte. Du peuplier de la grève à l'endémique de l'estuaire, voici ce qui verdit le fil — l'indigène, le rare, et l'intrus qui gagne du terrain.",
         presentation_md:
             "La Loire fait pousser autant qu'elle emporte 🌊. Sur ses grèves mouvantes s'accroche une **forêt d'eau** — saules et peupliers noirs qui plient sans rompre et refont racine à chaque crue.\n\nDu pied de la levée au sel de l'estuaire, le fil mêle l'**indigène**, le **rare** et l'**intrus** : la fritillaire pintade 🌸 dans la prairie inondée, l'**angélique des estuaires** 🌿 qu'on ne trouve nulle part ailleurs au monde, et la renouée qui, elle, gagne du terrain saison après saison.\n\nCe qui verdit le fil ne tient jamais en place : il dérive, colonise, s'efface.",
+        presentationFooter: "",
         footerNote: "espèces composant l'herbier ligérien",
         dataFile: "flore.json",
         etat: "publie",
         env: ["development", "production"],
     },
-    {
-        slug: "chateaux",
-        href: "/chateaux",
-        mark: "🏰",
-        label: "Châteaux",
-        eyebrow: "Index",
-        title: "Châteaux de la Loire",
-        description:
-            "Ce qui couronne le fil, de la forteresse médiévale au rêve de la Renaissance.",
-        accent: "#b5883c",
-        color: "ocre",
-        presentation:
-            "Le fil royal remonte le temps autant que le fleuve. Voici les demeures qui le jalonnent, de la source à l'Atlantique — de la forteresse médiévale à la folie Renaissance, du confidentiel au phare.",
-        presentation_md:
-            "Le fil royal remonte le temps autant que le fleuve 👑. À l'amont, la pierre sait encore la **guerre** : le donjon roman de Loches, l'éperon de Chinon où Jeanne d'Arc reconnut le roi, les dix-sept tours noires d'Angers.\n\nPuis le val désarme et **la forteresse devient plaisir** 🏰 : Chambord, rêve de pierre de François Iᵉʳ ⚜️, Chenonceau posé sur les arches du Cher, les jardins en broderie de Villandry 🌿.\n\nDu château fort presque intact à la folie Renaissance, du confidentiel au phare.",
-        footerNote: "châteaux composant le patrimoine castral ligérien",
-        dataFile: "chateau.json",
-        etat: "publie",
-        env: ["development", "production"],
-    },
+
     {
         slug: "vignobles",
         href: "/vignobles",
@@ -117,6 +121,7 @@ export const INDEXES = [
             "Le fil se boit autant qu'il se longe. Des coteaux du Forez au melon de l'embouchure, voici les appellations qui jalonnent la Loire — du grand cru liquoreux au cru communal le plus discret.",
         presentation_md:
             "Le fil se boit autant qu'il se longe 🍷. D'amont en aval, **un même fleuve, cinq accents** : le silex de Sancerre, le chenin caméléon de Vouvray, le cabernet franc sur tuffeau de Chinon 🍇.\n\nPuis l'Anjou joue **l'or** : la Coulée de Serrant et ses sept hectares de monopole, le liquoreux du Layon, les Quarts de Chaume — **seul Grand Cru de la Loire**.\n\nEt tout finit dans le sel : le melon de Bourgogne du Muscadet 🌊, dernière gorgée avant l'Atlantique.",
+        presentationFooter: "",
         footerNote:
             "appellations du fil · les émojis attendent leur version LRZ",
         dataFile: "vignoble.json",
@@ -138,6 +143,7 @@ export const INDEXES = [
             "Un fleuve laisse sa mémoire dans les mots avant de la laisser dans les pierres. Voici le lexique de la Loire — du mot encore vivant à celui qui ne survit plus que dans les livres.",
         presentation_md:
             "Un fleuve laisse sa mémoire dans les mots avant de la laisser dans les pierres 📖. La Loire a la sienne : ici, on ne dit pas un bras mort mais une **boire**, pas une berge de sable mais une **grève**.\n\nPuis vient le peuple de la **marine de Loire** ⚓️ — le chaland, la toue cabanée du pêcheur, le fûtreau, plus petit des ligériens — et ses métiers effacés : marinier, sablier, passeur du bac.\n\nCertains mots vivent encore, d'autres ne survivent plus que dans les livres : le **mascaret** qui remonte l'estuaire 🌊, la débâcle des glaces, l'art d'avaler — descendre au fil du courant.",
+        presentationFooter: "",
         footerNote: "mots du fil · la mémoire déposée dans les mots",
         dataFile: "mot.json",
         etat: "relecture",
@@ -158,6 +164,7 @@ export const INDEXES = [
             "Face au fil royal des châteaux, voici le fleuve-travail : ce que l'homme a bâti pour vivre AVEC la Loire. Ponts, cales, fours à chaux, moulins — debout, restaurés, en vestige, ou disparus.",
         presentation_md:
             "Face au fil royal des châteaux, voici le **fleuve-travail** 🏛 : non plus ce qui dominait la Loire, mais ce qui vivait AVEC elle. La pierre y a les mains sales — celles des mariniers, des chaufourniers, des sabliers.\n\nOn y lit un fleuve **outil** : le pont médiéval de Beaugency et son arche marinière 🌉, la rivière de fer du pont-canal de Briare, les fours à chaux de Montjean-la-blanche 🏭, les cales pavées où accostaient les chalands ⚓️.\n\nDebout, restauré, en vestige ou **disparu** : du chevalement minier au bateau-moulin qui n'existe plus que dans les livres.",
+        presentationFooter: "",
         footerNote:
             "ouvrages du fleuve-travail · les émojis attendent leur version LRZ",
         dataFile: "patrimoine.json",

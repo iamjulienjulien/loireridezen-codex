@@ -5,12 +5,14 @@ import { getIndex, IndexEntry, IndexHref } from "@/registry/indexes";
 
 export default function IndexPresentation({
     description,
+    descriptionFooter,
     children,
     current,
     indexes,
 }: {
     /** Phrase d'accroche, affichée en tête avec lettrine. */
     description: string;
+    descriptionFooter?: string;
     /** Texte développé au format Markdown, sous l'accroche. */
     children: string;
     current: IndexHref;
@@ -29,6 +31,9 @@ export default function IndexPresentation({
             </p>
             <div className={styles.text}>
                 <ReactMarkdown>{children}</ReactMarkdown>
+                {descriptionFooter ? (
+                    <ReactMarkdown>{descriptionFooter}</ReactMarkdown>
+                ) : null}
             </div>
         </section>
     );
