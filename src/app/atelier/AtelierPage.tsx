@@ -374,6 +374,13 @@ export default function AtelierHomePage({
                             <span>LRZMetaList</span>
                             <span aria-hidden="true">→</span>
                         </Link>
+                        <Link
+                            className={styles.componentLink}
+                            href="/atelier/components/lrz-typography"
+                        >
+                            <span>LRZTypography</span>
+                            <span aria-hidden="true">→</span>
+                        </Link>
                     </nav>
                     <nav
                         className={styles.componentNav}

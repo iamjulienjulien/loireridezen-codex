@@ -1,0 +1,434 @@
+.page {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+    background-image: var(--ambient-glow);
+}
+
+.wrap {
+    width: min(100% - 2rem, 72rem);
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 5rem) 0 6rem;
+}
+
+.pageHeader {
+    display: grid;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.back {
+    width: fit-content;
+    margin-bottom: 1.5rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.back:hover {
+    color: var(--gold);
+}
+
+.back:focus-visible,
+.reset:focus-visible,
+.control input:focus-visible,
+.control select:focus-visible,
+.control textarea:focus-visible,
+.checkControl input:focus-visible,
+.tableScroll:focus-visible {
+    border-radius: var(--radius-sm);
+    outline: 3px solid var(--gold-soft);
+    outline-offset: 3px;
+}
+
+.pageTitle {
+    font-size: clamp(2.7rem, 8vw, 5.6rem);
+}
+
+.lede {
+    max-width: 68ch;
+}
+
+.referenceSection,
+.propsSection,
+.playground,
+.accessibility {
+    margin-top: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--bg-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.referenceSection,
+.propsSection,
+.accessibility {
+    padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.sectionHeader {
+    display: grid;
+    gap: 0.55rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.presetStack {
+    display: grid;
+    margin-top: 1.25rem;
+}
+
+.presetExample {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.3fr) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+    min-width: 0;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.presetExample:last-child {
+    border-bottom: 0;
+}
+
+.presetMeta {
+    display: grid;
+    gap: 0.3rem;
+}
+
+.presetMeta code {
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.presetMeta span {
+    color: var(--text-tertiary);
+    font-size: 0.72rem;
+}
+
+.fontGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.fontExample {
+    display: grid;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.fontExample > p:first-child {
+    color: var(--gold);
+    font-size: 2.6rem;
+}
+
+.fontExample > div {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.playgroundHeader {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.kicker {
+    margin: 0 0 0.55rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.playgroundHeader h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 540;
+}
+
+.playgroundHeader p:last-child {
+    max-width: 62ch;
+    margin: 0.55rem 0 0;
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.reset {
+    flex: 0 0 auto;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.reset:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.65fr) minmax(0, 1.35fr);
+}
+
+.controls {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-right: 1px solid var(--border-subtle);
+    background: var(--bg-main);
+}
+
+.controlGroup {
+    display: grid;
+    gap: 0.8rem;
+    min-width: 0;
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+}
+
+.controlGroup legend {
+    padding: 0 0.4rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.67rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.control {
+    display: grid;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.control > span,
+.checkControl {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+}
+
+.control input,
+.control select,
+.control textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.35rem;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    font: inherit;
+    font-size: 0.78rem;
+}
+
+.control textarea {
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.checkControl {
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkControl input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    accent-color: var(--gold);
+}
+
+.output {
+    display: grid;
+    align-content: start;
+    min-width: 0;
+}
+
+.preview,
+.codePanel {
+    min-width: 0;
+    padding: 1.25rem;
+}
+
+.preview {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.outputLabel {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
+.canvas {
+    display: grid;
+    min-height: 15rem;
+    align-content: center;
+    overflow: hidden;
+    padding: clamp(1rem, 4vw, 2rem);
+    border: 1px dashed var(--border-soft);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.resolvedValues {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+}
+
+.resolvedValues dt {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.resolvedValues dd {
+    margin: 0.25rem 0 0;
+    color: var(--text-primary);
+    font-size: 0.76rem;
+}
+
+.codePanel pre {
+    max-width: 100%;
+    max-height: 28rem;
+    margin: 0;
+    overflow: auto;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-main);
+    font-family: var(--font-mono);
+    font-size: 0.69rem;
+    line-height: 1.6;
+}
+
+.tableScroll {
+    overflow-x: auto;
+    margin-top: 1.25rem;
+}
+
+.tableScroll table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    text-align: left;
+}
+
+.tableScroll th,
+.tableScroll td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-subtle);
+    vertical-align: top;
+}
+
+.tableScroll thead th {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tableScroll tbody th {
+    color: var(--gold);
+}
+
+.tableScroll code {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.accessibility {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.accessibility ul {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0.5rem 0 0;
+    padding-left: 1.2rem;
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 920px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .controls {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .fontGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .presetExample {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fontGrid,
+    .resolvedValues {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .playgroundHeader {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 560px) {
+    .wrap {
+        width: min(100% - 1rem, 72rem);
+    }
+}
