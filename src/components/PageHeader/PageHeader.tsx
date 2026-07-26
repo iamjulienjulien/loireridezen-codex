@@ -12,6 +12,7 @@ import type {
 import styles from "./PageHeader.module.css";
 import LRZSeparateur from "../LRZSeparateur/LRZSeparateur";
 import { LRZColor } from "@/types/lrz";
+import { featureIsEnabled } from "@/registry/feature-flags";
 
 export type PageHeaderCurrent = IndexHref | CollectionHref;
 
@@ -140,12 +141,23 @@ export default function PageHeader({
                                         className={styles.navEmoji}
                                         aria-hidden="true"
                                     >
-                                        <Image
-                                            width={25}
-                                            height={25}
-                                            src={`/emoji/${index.slug}-symbol.png`}
-                                            alt=""
-                                        />
+                                        {featureIsEnabled(
+                                            "indexesCustomEmoji",
+                                        ) ? (
+                                            <Image
+                                                width={25}
+                                                height={25}
+                                                src={`/emoji/${index.slug}-symbol.png`}
+                                                alt=""
+                                            />
+                                        ) : (
+                                            <span
+                                                className={styles.navEmoji}
+                                                aria-hidden
+                                            >
+                                                {index.mark}
+                                            </span>
+                                        )}
                                     </span>
 
                                     <span className={styles.navText}>
@@ -160,7 +172,7 @@ export default function PageHeader({
             <LRZSeparateur
                 preset="spark"
                 scope="content"
-                size="md"
+                size="lg"
                 weight="thin"
                 tone="strong"
                 color={active.color}
@@ -174,7 +186,8 @@ export default function PageHeader({
 function PageMark({ active }: { active: ActivePage }) {
     return (
         <span className={styles.markBadge} aria-hidden="true">
-            {active.kind === "index" ? (
+            {active.kind === "index" &&
+            featureIsEnabled("indexesCustomEmoji") ? (
                 <Image
                     width={50}
                     height={50}
