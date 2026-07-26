@@ -41,10 +41,12 @@ curl --fail-with-body \
   http://localhost:3000/api/v1/indexes
 ```
 
-> **Licences en bref.** Les textes et données sont réutilisables sous
-> **CC BY-NC-SA 4.0** avec attribution. Les illustrations personnalisées,
-> logos et éléments de marque restent **tous droits réservés**. La présence
-> d’une `media.imageUrl` ne constitue pas une autorisation de reproduction.
+:::quote{variant=fieldNote}
+**Licences en bref.** Les textes et données sont réutilisables sous
+**CC BY-NC-SA 4.0** avec attribution. Les illustrations personnalisées,
+logos et éléments de marque restent **tous droits réservés**. La présence
+d’une `media.imageUrl` ne constitue pas une autorisation de reproduction.
+:::
 
 ## Parcours conseillé
 
@@ -367,6 +369,7 @@ application/problem+json; charset=utf-8
 
 Leur structure suit Problem Details :
 
+:::table
 | Champ      | Rôle                                             |
 | ---------- | ------------------------------------------------ |
 | `type`     | URI identifiant la famille du problème           |
@@ -374,6 +377,7 @@ Leur structure suit Problem Details :
 | `status`   | Statut HTTP                                      |
 | `detail`   | Explication destinée au développeur              |
 | `instance` | Chemin de la requête ayant rencontré le problème |
+:::
 
 Exemple complet :
 
