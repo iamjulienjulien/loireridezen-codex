@@ -1,0 +1,477 @@
+/* ==========================================================================
+   Carte
+   ========================================================================== */
+
+.fiche {
+    container-type: inline-size;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background-color 1.4s ease;
+}
+
+.fiche:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(
+        in srgb,
+        var(--epoque-accent, var(--gold)) 45%,
+        transparent
+    );
+    box-shadow:
+        var(--shadow-card),
+        0 12px 26px
+            color-mix(
+                in srgb,
+                var(--epoque-accent, var(--gold)) 18%,
+                transparent
+            );
+}
+
+/* ==========================================================================
+   Illustration et titre
+   ========================================================================== */
+
+.hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 218px;
+    overflow: hidden;
+    background: var(--bg-sky);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background-image: var(--star-field);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.4s ease;
+}
+
+[data-mode="nuit"] .hero::before {
+    opacity: 0.82;
+}
+
+.hero::after {
+    content: none;
+}
+
+.heroArtwork {
+    position: absolute;
+    z-index: 1;
+    inset: 10px 0 0;
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 72%,
+        rgba(0, 0, 0, 0.72) 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 72%,
+        rgba(0, 0, 0, 0.72) 100%
+    );
+    filter: drop-shadow(0 7px 7px rgba(34, 25, 17, 0.14));
+}
+
+.heroImage {
+    object-fit: contain;
+    object-position: 50% 100%;
+    transform: scale(1);
+    transform-origin: 50% 100%;
+    transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.heroFallback {
+    position: absolute;
+    inset: auto 0 12px;
+    text-align: center;
+    font-size: clamp(72px, 28cqi, 112px);
+    line-height: 1;
+    opacity: 0.72;
+    filter: saturate(0.78);
+    transform: scale(1);
+    transform-origin: 50% 100%;
+    transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fiche:hover .heroImage,
+.fiche:hover .heroFallback {
+    transform: scale(1.018);
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 20px 14px;
+    background: var(--bg-chateau-title);
+    box-shadow: inset 0 1px color-mix(in srgb, white 18%, transparent);
+    text-align: center;
+    top: -1px;
+}
+
+.heroEpoque {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+
+.heroEpoque::before {
+    content: "";
+    width: 18px;
+    height: 2px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: var(--epoque-accent, var(--gold));
+}
+
+.heroName {
+    display: grid;
+    gap: 2px;
+    max-width: 18ch;
+    margin-inline: auto;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+    font-family: var(--font-display);
+    font-size: clamp(20px, 6.2cqi, 23px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--lrz-faune-blanc);
+    text-shadow: 0 1px 2px rgba(34, 25, 17, 0.24);
+}
+
+.heroNamePrefix,
+.heroNameSecondLine {
+    display: block;
+}
+
+.heroNamePrefix,
+.heroNameConnector {
+    font-size: 0.78em;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: color-mix(in srgb, var(--lrz-faune-blanc) 66%, transparent);
+}
+
+.heroNameConnector,
+.heroNameMain {
+    display: inline;
+}
+
+.heroNameMain {
+    font-weight: 500;
+}
+
+.subtitleWrapper {
+    background: var(--bg-chateau-subtitle);
+    position: relative;
+    top: -1px;
+    padding: 0.25rem 0;
+}
+
+/* ==========================================================================
+   Contenu et informations
+   ========================================================================== */
+
+.body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+    padding: 10px 20px 10px;
+}
+
+.accordionTrigger {
+    width: 100%;
+    min-height: 44px;
+    padding: 9px 10px;
+    border-radius: var(--radius-md);
+    transition:
+        color 0.18s ease,
+        background-color 0.18s ease;
+}
+
+.accordionTrigger:focus-visible {
+    outline-offset: 1px;
+}
+
+.subtitle {
+    font-family: var(--font-edit, var(--font-display));
+    font-size: 13.5px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.infoGroups {
+    display: grid;
+    gap: 18px;
+}
+
+.infoGroup {
+    min-width: 0;
+}
+
+.infoTitle {
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--epoque-accent, var(--gold));
+}
+
+.infoList {
+    display: grid;
+    gap: 0;
+    margin: 0;
+}
+
+.infoRow {
+    display: grid;
+    grid-template-columns: minmax(92px, 0.8fr) minmax(0, 1.2fr);
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.infoRow:first-child {
+    padding-top: 0;
+}
+
+.infoRow:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.infoRow dt {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+
+.infoRow dd {
+    min-width: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.42;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Visite et protections
+   ========================================================================== */
+
+.status {
+    display: grid;
+    gap: 11px;
+    padding-top: 2px;
+}
+
+.visit {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    line-height: 1.4;
+    color: var(--text-secondary);
+}
+
+.visit > span:first-child {
+    display: grid;
+    width: 25px;
+    height: 25px;
+    place-items: center;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: color-mix(
+        in srgb,
+        var(--epoque-accent, var(--gold)) 13%,
+        transparent
+    );
+    color: var(--epoque-accent, var(--gold));
+}
+
+.visit strong {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.visit svg {
+    width: 16px;
+    height: 16px;
+}
+
+.protections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px 16px;
+}
+
+.protection {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.protectionLabel {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   Compléments
+   ========================================================================== */
+
+.complements {
+    display: grid;
+    gap: 10px;
+}
+
+.detailsButton {
+    width: fit-content;
+    min-height: 34px;
+    margin: -5px 0;
+    padding: 5px 4px 5px 0;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.detailsButton:focus-visible {
+    outline: 2px solid var(--epoque-accent, var(--gold));
+    outline-offset: 3px;
+}
+
+.caret {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.details {
+    display: grid;
+    gap: 9px;
+    padding: 12px 14px;
+    border-left: 2px solid
+        color-mix(in srgb, var(--epoque-accent, var(--gold)) 65%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--epoque-accent, var(--gold)) 6%,
+        transparent
+    );
+}
+
+.details[hidden] {
+    display: none;
+}
+
+.k {
+    display: block;
+    margin-bottom: 2px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+
+.v {
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.consNote {
+    font-family: var(--font-edit, var(--font-display));
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@container (min-width: 620px) {
+    .infoGroups {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 360px) {
+    .hero {
+        min-height: 172px;
+    }
+
+    .heroArtwork {
+        opacity: 0.88;
+    }
+
+    .heroContent {
+        padding-inline: 14px;
+    }
+
+    .body {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .infoRow {
+        grid-template-columns: minmax(86px, 0.75fr) minmax(0, 1.25fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fiche,
+    .heroImage,
+    .heroFallback {
+        transition: none;
+    }
+
+    .fiche:hover,
+    .fiche:hover .heroImage,
+    .fiche:hover .heroFallback {
+        transform: none;
+    }
+}

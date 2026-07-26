@@ -528,13 +528,7 @@ export default function AtelierHomePage({
                         }
                         render={(d, v, key, isOpen, onToggle) =>
                             v === 4 ? (
-                                <ChateauxCard
-                                    key={key}
-
-                                    d={d}
-                                    open={isOpen}
-                                    onToggle={onToggle}
-                                />
+                                <ChateauxCard key={key} d={d} open={isOpen} />
                             ) : (
                                 <ChateauxCardOld
                                     key={key}

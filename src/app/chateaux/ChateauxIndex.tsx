@@ -1,15 +1,29 @@
 "use client";
 
 import { useMemo, useState } from "react";
+
 import type { Chateau } from "@/types/chateau";
-import IndexHeader from "@/components/IndexHeader";
+import type { IndexEntry } from "@/registry/indexes";
+
+import PageHeader from "@/components/PageHeader";
+import { COLLECTIONS } from "@/registry/collections";
+
 import IndexFooter from "@/components/IndexFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
+
+import { CollectionCard } from "@/components/ui/collection-card";
+
 import { useAmbiance } from "@/hooks/useAmbiance";
-import { getIndex, type IndexEntry } from "@/registry/indexes";
+import { getIndex } from "@/registry/indexes";
+import { getCollectionsByIndex } from "@/registry/collections";
+
 import ChateauxCard from "./ChateauxCard";
+
 import styles from "./chateaux.module.css";
+import { LRZSection } from "@/components/LRZSection";
+import { featureIsEnabled } from "@/registry/feature-flags";
+import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 
 const EPOQUES = [
     { id: "all", label: "Tout" },
@@ -27,59 +41,92 @@ const RENOMMEES = [
     { id: "confidentiel", label: "Confidentiel" },
 ] as const;
 
-const norm = (s: string) =>
-    s
+const norm = (value: string) =>
+    value
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase();
 
+type ChateauxIndexProps = {
+    chateaux: Chateau[];
+    indexes: readonly IndexEntry[];
+};
+
 export default function ChateauxIndex({
     chateaux,
     indexes,
-}: {
-    chateaux: Chateau[];
-    indexes: readonly IndexEntry[];
-}) {
+}: ChateauxIndexProps) {
     const entry = getIndex("/chateaux")!;
+
     const [epoque, setEpoque] = useState<string>("all");
     const [renommee, setRenommee] = useState<string>("all");
     const [q, setQ] = useState("");
     const [ambiance, setAmbiance] = useAmbiance();
     const [expandAll, setExpandAll] = useState(false);
-    const [openOverrides, setOpenOverrides] = useState<Record<string, boolean>>(
-        {},
-    );
+
+    const collections = useMemo(() => {
+        const castleBySlug = new Map(
+            chateaux.map((castle) => [castle.slug, castle]),
+        );
+
+        return getCollectionsByIndex("chateaux").map((collection) => ({
+            href: collection.href,
+
+            data: {
+                slug: collection.slug,
+                titre: collection.title,
+                emoji: collection.mark,
+                sousTitre: collection.subtitle,
+                type: collection.type,
+
+                classement: collection.ranking.map((rankingEntry) => {
+                    const castle = castleBySlug.get(rankingEntry.slug);
+
+                    return {
+                        rang: rankingEntry.rang,
+                        slug: rankingEntry.slug,
+                        nom: castle?.nom ?? rankingEntry.slug,
+                    };
+                }),
+            },
+        }));
+    }, [chateaux]);
 
     const toggleAll = () => {
-        setExpandAll((v) => !v);
-        setOpenOverrides({});
+        setExpandAll((value) => !value);
     };
-    const toggleOne = (id: string) =>
-        setOpenOverrides((o) => ({
-            ...o,
-            [id]: !(o[id] ?? expandAll),
-        }));
 
     const countFor = (field: "epoque" | "renommee", id: string) =>
-        chateaux.filter((d) => d[field] === id).length;
+        chateaux.filter((castle) => castle[field] === id).length;
 
     const list = useMemo(() => {
-        const nq = norm(q.trim());
-        return chateaux.filter((d) => {
-            if (epoque !== "all" && d.epoque !== epoque) return false;
-            if (renommee !== "all" && d.renommee !== renommee) return false;
-            if (nq) {
-                const hay = norm(
+        const normalizedQuery = norm(q.trim());
+
+        return chateaux.filter((castle) => {
+            if (epoque !== "all" && castle.epoque !== epoque) {
+                return false;
+            }
+
+            if (renommee !== "all" && castle.renommee !== renommee) {
+                return false;
+            }
+
+            if (normalizedQuery) {
+                const searchableContent = norm(
                     [
-                        d.nom,
-                        d.commune,
-                        d.style,
-                        d.commanditaire ?? "",
-                        ...d.autresNoms,
+                        castle.nom,
+                        castle.commune,
+                        castle.style,
+                        castle.commanditaire ?? "",
+                        ...castle.autresNoms,
                     ].join(" "),
                 );
-                if (!hay.includes(nq)) return false;
+
+                if (!searchableContent.includes(normalizedQuery)) {
+                    return false;
+                }
             }
+
             return true;
         });
     }, [chateaux, epoque, renommee, q]);
@@ -87,80 +134,136 @@ export default function ChateauxIndex({
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
-                <IndexHeader current="/chateaux" indexes={indexes} />
+                <PageHeader
+                    current="/chateaux"
+                    indexes={indexes}
+                    collections={COLLECTIONS}
+                />
 
                 <IndexPresentation
                     description={entry.description}
+                    descriptionFooter={entry.presentationFooter}
                     current="/chateaux"
                     indexes={indexes}
                 >
                     {entry.presentation_md}
                 </IndexPresentation>
 
-                <IndexControls
-                    query={q}
-                    onQuery={setQ}
-                    placeholder="Chercher un château, une commune, un style…"
-                    resultCount={list.length}
-                    totalCount={chateaux.length}
-                    unit="châteaux"
-                    accent={entry.accent}
-                    groups={[
-                        {
-                            label: "Époque",
-                            active: epoque,
-                            onSelect: setEpoque,
-                            options: EPOQUES.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("epoque", it.id),
-                            })),
-                        },
-                        {
-                            label: "Renommée",
-                            active: renommee,
-                            onSelect: setRenommee,
-                            options: RENOMMEES.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("renommee", it.id),
-                            })),
-                        },
-                    ]}
-                    expand={{ all: expandAll, onToggle: toggleAll }}
-                />
-
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Aucun château à cet endroit du fil. Élargis la recherche
-                        ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <ChateauxCard
-                                key={d.slug}
-                                d={d}
-                                open={openOverrides[d.slug] ?? expandAll}
-                                onToggle={() => toggleOne(d.slug)}
-                            />
-                        ))}
-                    </div>
+                {featureIsEnabled("collections") && (
+                    <LRZSection
+                        eyebrow="Collections du Codex"
+                        title="Explorer les châteaux autrement"
+                        description="Des forteresses médiévales aux demeures de plaisance, ces collections relient les châteaux par époque, architecture, personnages et façons d’habiter le pouvoir."
+                        tone="tinted"
+                        color="ocre"
+                        spacing="sm"
+                        // separatorAfter="spark"
+                        // separatorBefore="spark"
+                    >
+                        <div className={styles.collectionsGrid}>
+                            {collections.map(({ data, href }) => (
+                                <CollectionCard
+                                    key={data.slug}
+                                    collection={data}
+                                    href={href}
+                                    variant="compact"
+                                />
+                            ))}
+                        </div>
+                    </LRZSection>
                 )}
+
+                <LRZSeparateur preset="spark" size="lg" />
+
+                <LRZSection
+                    eyebrow="Filtres & repères"
+                    title="Choisir son chemin parmi les châteaux"
+                    description="Remonte les siècles, compare les architectures et compose ton propre itinéraire à travers les grandes demeures du val de Loire."
+                    tone="surface"
+                    color="ocre"
+                    spacing="sm"
+                    // separatorAfter="spark"
+                    // separatorBefore="spark"
+                >
+                    <IndexControls
+                        query={q}
+                        onQuery={setQ}
+                        placeholder="Chercher un château, une commune, un style…"
+                        resultCount={list.length}
+                        totalCount={chateaux.length}
+                        unit="châteaux"
+                        accent={entry.accent}
+                        groups={[
+                            {
+                                label: "Époque",
+                                active: epoque,
+                                onSelect: setEpoque,
+                                options: EPOQUES.map((item) => ({
+                                    id: item.id,
+                                    label: item.label,
+                                    count:
+                                        item.id === "all"
+                                            ? undefined
+                                            : countFor("epoque", item.id),
+                                })),
+                            },
+                            {
+                                label: "Renommée",
+                                active: renommee,
+                                onSelect: setRenommee,
+                                options: RENOMMEES.map((item) => ({
+                                    id: item.id,
+                                    label: item.label,
+                                    count:
+                                        item.id === "all"
+                                            ? undefined
+                                            : countFor("renommee", item.id),
+                                })),
+                            },
+                        ]}
+                        expand={{
+                            all: expandAll,
+                            onToggle: toggleAll,
+                        }}
+                    />
+                </LRZSection>
+
+                <LRZSection
+                    eyebrow="Le grand inventaire"
+                    title="Tous les châteaux du fil royal"
+                    description="Parcours l’ensemble des forteresses, palais et demeures recensés dans le Codex, des monuments les plus célèbres aux silhouettes plus confidentielles."
+                    tone="soft"
+                    color="ocre"
+                    spacing="sm"
+                    className="mt-20"
+                    // separatorAfter="spark"
+                    // separatorBefore="spark"
+                >
+                    {list.length === 0 ? (
+                        <p className={styles.empty}>
+                            Aucun château à cet endroit du fil. Élargis la
+                            recherche ou change de filtre.
+                        </p>
+                    ) : (
+                        <div className={styles.grid}>
+                            {list.map((castle) => (
+                                <ChateauxCard
+                                    key={castle.slug}
+                                    d={castle}
+                                    open={expandAll}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </LRZSection>
 
                 <IndexFooter ambiance={ambiance} onAmbiance={setAmbiance}>
                     <span
                         style={{
                             display: "block",
-                            fontSize: "12px",
-                            color: "var(--text-secondary)",
                             marginBottom: "5px",
+                            color: "var(--text-secondary)",
+                            fontSize: "12px",
                         }}
                     >
                         {list.length} {entry.footerNote}

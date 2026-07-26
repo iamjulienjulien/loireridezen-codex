@@ -1,27 +1,29 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
 
 import type { Chateau } from "@/types/chateau";
+import type { Ambiance } from "@/registry/ambiances";
 
-import styles from "./chateaux.module.css";
+import styles from "./ChateauCard.module.css";
 import { LRZColor } from "@/types/lrz";
 import LRZBadge from "@/components/LRZBadge/LRZBadge";
 import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
-import { Footprints } from "lucide-react";
+import { Castle, MapPin, Ticket } from "lucide-react";
+import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
+import LRZMetaList from "@/components/LRZMetaList";
+import LRZCard, { LRZCardMedia } from "@/components/LRZCard";
+import LRZTypography from "@/components/LRZTypography";
+import { useAmbiance } from "@/hooks/useAmbiance";
+import { featureIsEnabled } from "@/registry/feature-flags";
 
-/** Couleur d'accent par époque. */
-const EPOQUE_ACCENT: Record<string, string> = {
-    Médiéval: "#795739",
-    Renaissance: "#b88945",
-    Classique: "#4d80a7",
-    Éclectique: "#a44842",
-};
-const EPOQUE_COLOR: Record<string, LRZColor> = {
-    Médiéval: "brun",
-    Renaissance: "ocre",
-    Classique: "eau",
-    Éclectique: "brique",
-};
+// const EPOQUE_COLOR: Record<string, LRZColor> = {
+//     Médiéval: "brun",
+//     Renaissance: "ocre",
+//     Classique: "eau",
+//     Éclectique: "brique",
+// };
 
 const MH: Record<string, { label: string; color: LRZColor }> = {
     classé: {
@@ -49,11 +51,134 @@ const UNESCO: Record<string, { label: string; color: LRZColor }> = {
     },
 };
 
+const Visite: Record<string, { label: string; color: LRZColor }> = {
+    "ouvert au public": {
+        label: "Ouvert au public",
+        color: "prairie",
+    },
+    "extérieurs & parc": {
+        label: "extérieurs & parc",
+        color: "eau",
+    },
+    "privé, non visitable": {
+        label: "Privé, non visitable",
+        color: "rouge",
+    },
+    inconnu: {
+        label: "Non renseigné",
+        color: "galet",
+    },
+};
+
+const CHATEAU_NAME_PREFIXES = [
+    "Forteresse royale de",
+    "Domaine royal de",
+    "Château royal de",
+    "Palais ducal de",
+    "Cité royale de",
+    "Château royal",
+    "Château des",
+    "Château de",
+    "Château du",
+    "Domaine de",
+] as const;
+
+function parseChateauName(name: string) {
+    const apostrophePrefix = ["Château d'", "Château d’"].find((candidate) =>
+        name.startsWith(candidate),
+    );
+
+    if (apostrophePrefix) {
+        return {
+            prefix: "Château",
+            connector: apostrophePrefix.slice("Château ".length),
+            name: name.slice(apostrophePrefix.length).trim(),
+        };
+    }
+
+    const prefix = CHATEAU_NAME_PREFIXES.find((candidate) =>
+        name.startsWith(`${candidate} `),
+    );
+
+    if (!prefix) {
+        return { prefix: null, connector: null, name };
+    }
+
+    return {
+        prefix,
+        connector: null,
+        name: name.slice(prefix.length).trim(),
+    };
+}
+
+function ucfirst(value: string) {
+    return value.length > 0
+        ? value.charAt(0).toLocaleUpperCase("fr-FR") + value.slice(1)
+        : value;
+}
+
+type ChateauHeroStyle = CSSProperties & {
+    "--star-field": string;
+};
+
+function hashString(value: string): number {
+    let hash = 2166136261;
+
+    for (let index = 0; index < value.length; index += 1) {
+        hash ^= value.charCodeAt(index);
+        hash = Math.imul(hash, 16777619);
+    }
+
+    return hash >>> 0;
+}
+
+function createSeededRandom(seed: number): () => number {
+    return () => {
+        seed += 0x6d2b79f5;
+
+        let value = seed;
+        value = Math.imul(value ^ (value >>> 15), value | 1);
+        value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+
+        return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+    };
+}
+
+function createStarField(slug: string, count = 18): string {
+    const random = createSeededRandom(hashString(slug));
+
+    return Array.from({ length: count }, () => {
+        const x = Math.round((4 + random() * 92) * 10) / 10;
+        const y = Math.round((4 + random() * 66) * 10) / 10;
+        const size = Math.round((0.45 + random() * 0.75) * 100) / 100;
+        const opacity = Math.round((0.35 + random() * 0.55) * 100) / 100;
+
+        return `radial-gradient(circle at ${x}% ${y}%, rgba(255, 247, 218, ${opacity}) 0 ${size}px, transparent ${size + 0.6}px)`;
+    }).join(", ");
+}
+
+export function getChateauIllustration(
+    chateau: Chateau,
+    ambiance: Ambiance,
+): string | undefined {
+    if (!featureIsEnabled("ambianceChateauxVisual")) return chateau.customEmoji;
+    return chateau.illustrationVariant?.[ambiance] ?? chateau.customEmoji;
+}
+
 export type ChateauCardProps = {
     d: Chateau;
     open: boolean;
-    onToggle: () => void;
 };
+
+type ChateauAccordionKey = "history" | "location" | "visit";
+
+function createAccordionState(open: boolean) {
+    return {
+        history: open,
+        location: open,
+        visit: open,
+    };
+}
 
 /**
  * Fiche château illustrée.
@@ -61,193 +186,242 @@ export type ChateauCardProps = {
  * Le château détouré habite le hero, tandis que les informations sont
  * regroupées par histoire, architecture, localisation et protections.
  */
-export default function ChateauCard({ d, open, onToggle }: ChateauCardProps) {
+export default function ChateauCard({ d, open }: ChateauCardProps) {
+    const [ambiance] = useAmbiance();
+    const illustration = getChateauIllustration(d, ambiance);
+    const starField = useMemo(() => createStarField(d.slug), [d.slug]);
     const mh = MH[d.protection.monumentHistorique] ?? MH.aucune;
+    const visite = Visite[d.visite] ?? Visite.inconnu;
     const unesco = d.protection.unesco ? UNESCO.oui : UNESCO.non;
-    const accent = EPOQUE_ACCENT[d.epoque] ?? "var(--gold)";
-    const color = EPOQUE_COLOR[d.epoque] ?? "galet";
-    const complementsId = `chateau-complements-${d.slug}`;
+    const title = parseChateauName(d.nom);
+    const [openSections, setOpenSections] = useState(() =>
+        createAccordionState(open),
+    );
+    const [globalOpen, setGlobalOpen] = useState(open);
 
-    const hasComplements =
-        d.autresNoms.length > 0 || Boolean(d.protection.note);
+    const color =
+        ambiance === "nuit"
+            ? "sable"
+            : ambiance === "soir"
+              ? "orange-cuivre"
+              : "brun";
+
+    if (globalOpen !== open) {
+        setGlobalOpen(open);
+        setOpenSections(createAccordionState(open));
+    }
+
+    function setSectionOpen(section: ChateauAccordionKey, nextOpen: boolean) {
+        setOpenSections((current) => ({
+            ...current,
+            [section]: nextOpen,
+        }));
+    }
 
     return (
-        <article
-            className={`${styles.fiche} ${styles.ficheV4}`}
-            style={
-                {
-                    "--epoque-accent": accent,
-                } as CSSProperties
-            }
-            data-epoque={d.epoque}
-        >
-            <header className={styles.heroV4}>
-                <div className={styles.heroArtworkV4} aria-hidden="true">
-                    {d.customEmoji ? (
-                        <Image
-                            className={styles.heroImageV4}
-                            src={d.customEmoji}
-                            alt=""
-                            fill
-                            sizes="(max-width: 560px) 85vw, (max-width: 1080px) 45vw, 320px"
-                        />
-                    ) : (
-                        <span className={styles.heroFallbackV4}>
-                            {d.emoji || "🏰"}
-                        </span>
-                    )}
-                </div>
-
-                <div className={styles.heroContentV4}>
-                    <p className={styles.heroEpoqueV4}>{d.epoque}</p>
-                    <h3 className={styles.heroNameV4}>{d.nom}</h3>
-                </div>
-            </header>
-
-            <div className={styles.bodyV4}>
-                <p className={styles.subtitleV4}>{d.sousTitre}</p>
-
-                <div className={styles.infoGroupsV4}>
-                    <section className={styles.infoGroupV4}>
-                        <h4 className={styles.infoTitleV4}>
-                            Histoire &amp; architecture
-                        </h4>
-
-                        <dl className={styles.infoListV4}>
-                            <div className={styles.infoRowV4}>
-                                <dt>Époque</dt>
-                                <dd>{d.epoque}</dd>
-                            </div>
-
-                            <div className={styles.infoRowV4}>
-                                <dt>Architecture</dt>
-                                <dd>{d.style}</dd>
-                            </div>
-
-                            <div className={styles.infoRowV4}>
-                                <dt>Construction</dt>
-                                <dd>{d.construction}</dd>
-                            </div>
-
-                            {d.commanditaire ? (
-                                <div className={styles.infoRowV4}>
-                                    <dt>Commanditaire</dt>
-                                    <dd>{d.commanditaire}</dd>
-                                </div>
-                            ) : null}
-                        </dl>
-                    </section>
-
-                    <section className={styles.infoGroupV4}>
-                        <h4 className={styles.infoTitleV4}>Localisation</h4>
-
-                        <dl className={styles.infoListV4}>
-                            <div className={styles.infoRowV4}>
-                                <dt>Commune</dt>
-                                <dd>{d.commune}</dd>
-                            </div>
-
-                            <div className={styles.infoRowV4}>
-                                <dt>Département</dt>
-                                <dd>{d.departement}</dd>
-                            </div>
-
-                            <div className={styles.infoRowV4}>
-                                <dt>Cours d’eau</dt>
-                                <dd>{d.riviere}</dd>
-                            </div>
-                        </dl>
-                    </section>
-                </div>
-
-                <section
-                    className={styles.statusV4}
-                    aria-label="Visite et protections"
+        <LRZCard className={styles.fiche} tone="surface" color={color}>
+            <LRZCardMedia ratio="auto">
+                <div
+                    className={styles.hero}
+                    style={{ "--star-field": starField } as ChateauHeroStyle}
                 >
-                    <p className={styles.visitV4}>
-                        <span aria-hidden="true">
-                            <Footprints />
-                        </span>
-
-                        <span>
-                            <strong>Visite</strong> · {d.visite}
-                        </span>
-                    </p>
-
-                    <div className={styles.protectionsV4}>
-                        <div className={styles.protectionV4}>
-                            <span className={styles.protectionLabelV4}>
-                                Monument historique
-                            </span>
-
-                            <LRZBadge color={mh.color} label={mh.label} />
-                        </div>
-
-                        <div className={styles.protectionV4}>
-                            <span className={styles.protectionLabelV4}>
-                                UNESCO
-                            </span>
-
-                            <LRZBadge
-                                color={unesco.color}
-                                label={unesco.label}
+                    <div className={styles.heroArtwork} aria-hidden="true">
+                        {illustration ? (
+                            <Image
+                                className={styles.heroImage}
+                                src={illustration}
+                                alt=""
+                                fill
+                                sizes="(max-width: 560px) 85vw, (max-width: 1080px) 45vw, 320px"
                             />
-                        </div>
-                    </div>
-                </section>
-
-                {hasComplements ? (
-                    <div className={styles.complementsV4}>
-                        <button
-                            className={styles.detailsBtnV4}
-                            type="button"
-                            aria-expanded={open}
-                            aria-controls={complementsId}
-                            onClick={onToggle}
-                        >
-                            <span
-                                className={styles.caret}
-                                style={{
-                                    transform: open ? "rotate(90deg)" : "none",
-                                    marginRight: "5px",
-                                }}
-                                aria-hidden="true"
-                            >
-                                ▸
+                        ) : (
+                            <span className={styles.heroFallback}>
+                                {d.emoji || "🏰"}
                             </span>
-                            Compléments
-                        </button>
-
-                        <div
-                            id={complementsId}
-                            className={styles.detailsV4}
-                            hidden={!open}
-                        >
-                            {d.autresNoms.length > 0 ? (
-                                <div>
-                                    <span className={styles.k}>
-                                        Autres noms
-                                    </span>
-
-                                    <span className={styles.v}>
-                                        {d.autresNoms.join(" · ")}
-                                    </span>
-                                </div>
-                            ) : null}
-
-                            {d.protection.note ? (
-                                <p className={styles.consNote}>
-                                    {d.protection.note}
-                                </p>
-                            ) : null}
-                        </div>
+                        )}
                     </div>
-                ) : null}
+                </div>
+            </LRZCardMedia>
 
-                {d.resume ? (
-                    <LRZAnecdote color={color}>{d.resume}</LRZAnecdote>
-                ) : null}
+            <div className={styles.heroContent}>
+                {/* <p className={styles.heroEpoque}>{d.epoque}</p> */}
+                <h3 className={styles.heroName}>
+                    {title.prefix ? (
+                        <span className={styles.heroNamePrefix}>
+                            {title.prefix}
+                        </span>
+                    ) : null}
+                    <span className={styles.heroNameSecondLine}>
+                        {title.connector ? (
+                            <span className={styles.heroNameConnector}>
+                                {title.connector}
+                            </span>
+                        ) : null}
+                        <span className={styles.heroNameMain}>
+                            {title.name}
+                        </span>
+                    </span>
+                </h3>
             </div>
-        </article>
+            <div className={styles.subtitleWrapper}>
+                <LRZTypography
+                    align="center"
+                    preset="editorial"
+                    italic={false}
+                    font="display"
+                >
+                    {ucfirst(d.sousTitre)}
+                </LRZTypography>
+            </div>
+
+            <div className={styles.body}>
+                <LRZAccordion
+                    title="Histoire &amp; architecture"
+                    id="histoire"
+                    icon={<Castle className="text-sm mr-1" />}
+                    open={openSections.history}
+                    onOpenChange={(nextOpen) =>
+                        setSectionOpen("history", nextOpen)
+                    }
+                    color={color}
+                    tone="plain"
+                    fullWidth
+                    headingLevel={4}
+                    size="sm"
+                    triggerClassName={styles.accordionTrigger}
+                >
+                    <div>
+                        <LRZMetaList
+                            className="pb-4"
+                            color="ocre"
+                            layout="responsive"
+                            hideEmpty
+                            items={[
+                                {
+                                    id: "epoque",
+                                    label: "Époque",
+                                    value: d.epoque,
+                                },
+                                {
+                                    id: "architecture",
+                                    label: "Architecture",
+                                    value: d.style,
+                                },
+
+                                {
+                                    id: "construction",
+                                    label: "Construction",
+                                    value: d.construction,
+                                },
+                                {
+                                    id: "commanditaire",
+                                    label: "Commanditaire",
+                                    value: d.commanditaire,
+                                },
+                                {
+                                    id: "autres-noms",
+                                    label: "Autres noms",
+                                    value: d.autresNoms.join(" · "),
+                                },
+                            ]}
+                        />
+                        {d.resume ? (
+                            <LRZAnecdote color={color}>{d.resume}</LRZAnecdote>
+                        ) : null}
+                    </div>
+                </LRZAccordion>
+
+                <LRZAccordion
+                    title="Localisation"
+                    id="localisation"
+                    icon={<MapPin className="text-sm mr-1" />}
+                    open={openSections.location}
+                    onOpenChange={(nextOpen) =>
+                        setSectionOpen("location", nextOpen)
+                    }
+                    color={color}
+                    tone="plain"
+                    fullWidth
+                    headingLevel={4}
+                    size="sm"
+                    triggerClassName={styles.accordionTrigger}
+                >
+                    <LRZMetaList
+                        color="ocre"
+                        layout="responsive"
+                        items={[
+                            {
+                                id: "commune",
+                                label: "Commune",
+                                value: d.commune,
+                            },
+                            {
+                                id: "departement",
+                                label: "Département",
+                                value: d.departement,
+                            },
+                            {
+                                id: "riviere",
+                                label: "Cours d’eau",
+                                value: d.riviere,
+                            },
+                        ]}
+                    />
+                </LRZAccordion>
+
+                <LRZAccordion
+                    title="Visite & patrimoine"
+                    id="visite"
+                    icon={<Ticket className="text-sm mr-1" />}
+                    open={openSections.visit}
+                    onOpenChange={(nextOpen) =>
+                        setSectionOpen("visit", nextOpen)
+                    }
+                    color={color}
+                    tone="plain"
+                    fullWidth
+                    headingLevel={4}
+                    size="sm"
+                    triggerClassName={styles.accordionTrigger}
+                >
+                    <LRZMetaList
+                        color="ocre"
+                        layout="responsive"
+                        items={[
+                            {
+                                id: "monument-historique",
+                                label: "Monument historique",
+                                value: (
+                                    <LRZBadge
+                                        color={mh.color}
+                                        label={mh.label}
+                                    />
+                                ),
+                            },
+                            {
+                                id: "unesco",
+                                label: "UNESCO",
+                                value: (
+                                    <LRZBadge
+                                        color={unesco.color}
+                                        label={unesco.label}
+                                    />
+                                ),
+                            },
+                            {
+                                id: "visite",
+                                label: "Visite",
+                                value: (
+                                    <LRZBadge
+                                        color={visite.color}
+                                        label={visite.label}
+                                    />
+                                ),
+                            },
+                        ]}
+                    />
+                </LRZAccordion>
+            </div>
+        </LRZCard>
     );
 }

@@ -30,6 +30,9 @@ body {
 /* ===== Loire Ride Zen — jetons & ambiances ===== */
 :root {
     --bg-main: #f5ecd9;
+    --bg-sky: linear-gradient(180deg, #cfe4ea 0%, #eef3e8 100%);
+    --bg-chateau-title: #805c3c;
+    --bg-chateau-subtitle: #f5ead4;
     --bg-surface: #faf3e5;
     --bg-elevated: #ffffff;
     --bg-overlay: rgba(40, 30, 15, 0.06);
@@ -56,6 +59,9 @@ body {
 }
 [data-mode="soir"] {
     --bg-main: #2d1f1a;
+    --bg-sky: linear-gradient(180deg, #554761 0%, #9b5f62 55%, #d49a68 100%);
+    --bg-chateau-title: #5c3f4b;
+    --bg-chateau-subtitle: #3d2d30;
     --bg-surface: #382821;
     --bg-elevated: #43322a;
     --bg-overlay: rgba(255, 200, 120, 0.05);
@@ -81,6 +87,9 @@ body {
 }
 [data-mode="aube"] {
     --bg-main: #f4e7e6;
+    --bg-sky: linear-gradient(180deg, #b9c8dc 0%, #edc5c5 55%, #f7dfbf 100%);
+    --bg-chateau-title: #80606c;
+    --bg-chateau-subtitle: #f5ded9;
     --bg-surface: #fbf0ee;
     --bg-elevated: #ffffff;
     --bg-overlay: rgba(60, 30, 40, 0.05);
@@ -107,6 +116,9 @@ body {
 }
 [data-mode="nuit"] {
     --bg-main: #0e1217;
+    --bg-sky: linear-gradient(180deg, #0d1726 0%, #24344a 100%);
+    --bg-chateau-title: #24344b;
+    --bg-chateau-subtitle: #182330;
     --bg-surface: #171c24;
     --bg-elevated: #1e2530;
     --bg-overlay: rgba(200, 180, 140, 0.04);
