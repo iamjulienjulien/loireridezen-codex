@@ -683,7 +683,6 @@
                     "description",
                     "mark",
                     "accent",
-                    "presentation",
                     "presentationMarkdown",
                     "state",
                     "entryCount",
@@ -1044,6 +1043,28 @@
                 },
                 "additionalProperties": false
             },
+            "ChateauIllustrationVariant": {
+                "type": "object",
+                "properties": {
+                    "aube": {
+                        "type": "string",
+                        "pattern": "^/illustrations/chateaux/"
+                    },
+                    "jour": {
+                        "type": "string",
+                        "pattern": "^/illustrations/chateaux/"
+                    },
+                    "soir": {
+                        "type": "string",
+                        "pattern": "^/illustrations/chateaux/"
+                    },
+                    "nuit": {
+                        "type": "string",
+                        "pattern": "^/illustrations/chateaux/"
+                    }
+                },
+                "additionalProperties": false
+            },
             "ChateauAttributes": {
                 "type": "object",
                 "required": [
@@ -1065,6 +1086,9 @@
                         "items": {
                             "type": "string"
                         }
+                    },
+                    "illustrationVariant": {
+                        "$ref": "#/components/schemas/ChateauIllustrationVariant"
                     },
                     "commune": {
                         "type": "string"
@@ -1108,7 +1132,8 @@
                         "enum": [
                             "ouvert au public",
                             "extérieurs & parc",
-                            "privé, non visitable"
+                            "privé, non visitable",
+                            "inconnu"
                         ]
                     }
                 },

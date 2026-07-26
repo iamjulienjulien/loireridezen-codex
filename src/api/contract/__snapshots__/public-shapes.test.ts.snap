@@ -143,6 +143,17 @@ exports[`public structural signatures > snapshots chateaux attributes 1`] = `
   },
   "departement": "string",
   "epoque": "string",
+  "illustrationVariant": {
+    "oneOf": [
+      "absent",
+      {
+        "aube": "string",
+        "jour": "string",
+        "nuit": "string",
+        "soir": "string",
+      },
+    ],
+  },
   "protection": {
     "monumentHistorique": "string",
     "note": "string",
@@ -356,7 +367,12 @@ exports[`public structural signatures > snapshots the index collection envelope 
         "self": "string",
       },
       "mark": "string",
-      "presentation": "string",
+      "presentation": {
+        "oneOf": [
+          "absent",
+          "string",
+        ],
+      },
       "presentationMarkdown": "string",
       "slug": "string",
       "source": "string",

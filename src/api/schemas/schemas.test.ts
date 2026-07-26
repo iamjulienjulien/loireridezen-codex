@@ -46,6 +46,24 @@ describe("catalog schemas", () => {
         expect(chateauCatalogSchema.safeParse(invalid).success).toBe(false);
     });
 
+    it("accepts unknown visit status for a chateau", () => {
+        const catalog = structuredClone(chateauData);
+        catalog.chateaux[0].visite = "inconnu";
+
+        expect(chateauCatalogSchema.safeParse(catalog).success).toBe(true);
+    });
+
+    it("rejects invalid chateau illustration variants", () => {
+        const catalog = structuredClone(chateauData) as unknown as {
+            chateaux: Array<Record<string, unknown>>;
+        };
+        catalog.chateaux[0].illustrationVariant = {
+            pluie: "/illustrations/chateaux/chambord/pluie.png",
+        };
+
+        expect(chateauCatalogSchema.safeParse(catalog).success).toBe(false);
+    });
+
     it("rejects unknown union values and unexpected fields", () => {
         const invalidUnion = structuredClone(fauneData) as unknown as {
             especes: Array<Record<string, unknown>>;

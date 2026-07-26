@@ -31,7 +31,7 @@ describe("publication registry", () => {
     it.each([
         ["faune", 49],
         ["flore", 51],
-        ["chateaux", 28],
+        ["chateaux", 52],
     ])("publishes %s with %i entries", (slug, count) => {
         expect(getPublishedEntries(slug)).toHaveLength(count);
     });

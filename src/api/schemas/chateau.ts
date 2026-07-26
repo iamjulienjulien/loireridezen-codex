@@ -7,10 +7,24 @@ import {
     stringArraySchema,
 } from "./common";
 
+const chateauIllustrationSchema = z
+    .string()
+    .startsWith("/illustrations/chateaux/");
+
+const chateauIllustrationVariantSchema = z
+    .object({
+        aube: chateauIllustrationSchema.optional(),
+        jour: chateauIllustrationSchema.optional(),
+        soir: chateauIllustrationSchema.optional(),
+        nuit: chateauIllustrationSchema.optional(),
+    })
+    .strict();
+
 export const chateauEntrySchema = z
     .object({
         emoji: z.string(),
         customEmoji: customEmojiSchema("chateau").optional(),
+        illustrationVariant: chateauIllustrationVariantSchema.optional(),
         slug: slugSchema,
         nom: z.string(),
         autresNoms: stringArraySchema,
@@ -36,6 +50,7 @@ export const chateauEntrySchema = z
             "ouvert au public",
             "extérieurs & parc",
             "privé, non visitable",
+            "inconnu",
         ]),
     })
     .strict();

@@ -23,7 +23,7 @@ export interface PublicIndex {
     description: string;
     mark: string;
     accent: string;
-    presentation: string;
+    presentation?: string;
     presentationMarkdown: string;
     state: IndexEtat;
     entryCount: number;

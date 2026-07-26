@@ -41,7 +41,7 @@ describe("public entry adapters", () => {
         [
             "chateaux",
             adaptChateau(chateauEntrySchema.parse(chateauData.chateaux[0])),
-            "Château de Gien",
+            "Palais ducal de Nevers",
             chateauData.chateaux[0].resume,
         ],
         [

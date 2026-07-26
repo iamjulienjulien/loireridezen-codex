@@ -1,6 +1,8 @@
 // src/types/chateau.ts
 // Château ligérien — sibling de FauneEspece (même grammaire de codex).
 
+import type { Ambiance } from "@/registry/ambiances";
+
 /** Époque dominante. Un château en cumule souvent ; `construction` porte le détail. */
 export type ChateauEpoque =
     "Médiéval" | "Renaissance" | "Classique" | "Éclectique";
@@ -10,7 +12,10 @@ export type ChateauRenommee = "phare" | "majeur" | "notable" | "confidentiel";
 
 /** Ouverture au visiteur. */
 export type ChateauVisite =
-    "ouvert au public" | "extérieurs & parc" | "privé, non visitable";
+    | "ouvert au public"
+    | "extérieurs & parc"
+    | "privé, non visitable"
+    | "inconnu";
 
 /** Protection patrimoniale — miroir de la conservation (UNESCO ≈ monde, MH ≈ national). */
 export interface ChateauProtection {
@@ -27,10 +32,14 @@ export interface ChateauCoordonnees {
     lng: number;
 }
 
+/** Illustration alternative sélectionnée selon l'ambiance active. */
+export type ChateauIllustrationVariant = Partial<Record<Ambiance, string>>;
+
 export interface Chateau {
     /** À remplir : l'emoji custom LRZ. */
     emoji: string;
     customEmoji?: string;
+    illustrationVariant?: ChateauIllustrationVariant;
     /** Identifiant d'URL, kebab-case sans accents. */
     slug: string;
     nom: string;
