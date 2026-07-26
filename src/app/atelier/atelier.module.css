@@ -469,3 +469,153 @@
         display: none;
     }
 }
+.collectionVariants {
+    display: grid;
+    gap: 32px;
+}
+
+.collectionVariant {
+    display: grid;
+    gap: 18px;
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background: var(--bg-overlay);
+}
+
+.variantCount {
+    flex: 0 0 auto;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+}
+
+.collectionGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    align-items: stretch;
+    gap: 18px;
+}
+
+.collectionCompactGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    align-items: stretch;
+    gap: 18px;
+}
+
+.collectionFeaturedList {
+    display: grid;
+    gap: 22px;
+}
+
+@media (max-width: 560px) {
+    .collectionVariant {
+        padding: 14px;
+    }
+
+    .collectionGrid,
+    .collectionCompactGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .variantCount {
+        display: none;
+    }
+}
+
+.collectionEntryList {
+    display: grid;
+    gap: 18px;
+    min-width: 0;
+}
+
+.collectionEntryCompactGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+    align-items: stretch;
+    gap: 18px;
+    min-width: 0;
+}
+
+.collectionEntryPodiumList {
+    display: grid;
+    gap: 22px;
+    min-width: 0;
+}
+
+/*
+ * Le premier du classement occupe toute la largeur.
+ * Les deuxième et troisième places se placent côte à côte
+ * lorsque l’espace disponible le permet.
+ */
+@media (min-width: 980px) {
+    .collectionEntryPodiumList {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .collectionEntryPodiumList > :first-child {
+        grid-column: 1 / -1;
+    }
+
+    /*
+     * Les cartes 2 et 3 repassent dans une composition
+     * verticale afin de conserver assez de largeur.
+     */
+    .collectionEntryPodiumList > :not(:first-child) {
+        min-width: 0;
+    }
+}
+
+@media (max-width: 680px) {
+    .collectionEntryCompactGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .collectionEntryList,
+    .collectionEntryCompactGrid,
+    .collectionEntryPodiumList {
+        gap: 14px;
+    }
+}
+
+.collectionHeroList {
+    display: grid;
+    gap: 28px;
+    min-width: 0;
+}
+
+.collectionHeroCompactGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr));
+    gap: 20px;
+    min-width: 0;
+}
+
+@media (max-width: 680px) {
+    .collectionHeroList {
+        gap: 20px;
+    }
+
+    .collectionHeroCompactGrid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+}
+
+.collectionBadgeRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-width: 0;
+}
+.collectionRankRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}

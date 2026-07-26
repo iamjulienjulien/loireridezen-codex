@@ -20,11 +20,44 @@ import styles from "./atelier.module.css";
 import type { IndexEntry } from "@/registry/indexes";
 import FauneCardOld from "../faune/FauneCardOld";
 import FloreCardOld from "../flore/FloreCardOld";
+import { CollectionCard } from "@/components/ui/collection-card";
+import { MOCK_COLLECTIONS } from "./mockCollection";
+import { CollectionEntryCard } from "@/components/ui/collection-entry-card";
+import { MOCK_COLLECTION_ENTRIES } from "./mockCollectionEntry";
+import { CollectionPodium } from "@/components/ui/collection-podium";
+import { MOCK_COLLECTION_PODIUM } from "./mockCollectionEntry";
+import { CollectionHero } from "@/components/ui/collection-hero";
+import { MOCK_COLLECTION_HEROES } from "./mockCollectionHero";
+import { CollectionBadge } from "@/components/ui/collection-badge";
+import { MOCK_COLLECTION_BADGES } from "./mockCollectionBadge";
+import { CollectionRank } from "@/components/ui/collection-rank";
+import { MOCK_COLLECTION_RANKS } from "./mockCollectionRank";
+import { CollectionCriteria } from "@/components/ui/collection-criteria";
+import { MOCK_COLLECTION_CRITERIA } from "./mockCollectionCriteria";
+import { CollectionList } from "@/components/ui/collection-list";
 
 const TOC_ITEMS: TocItem[] = [
     { id: "faune", label: "FauneCard" },
     { id: "flore", label: "FloreCard" },
     { id: "chateaux", label: "ChateauxCard" },
+    { id: "collections", label: "CollectionCard" },
+    {
+        id: "collection-entries",
+
+        label: "CollectionEntryCard",
+    },
+    {
+        id: "collection-podium",
+        label: "CollectionPodium",
+    },
+    {
+        id: "collection-heroes",
+        label: "CollectionHero",
+    },
+    {
+        id: "collection-badges",
+        label: "CollectionBadge",
+    },
     { id: "vignobles", label: "VignoblesCard" },
     { id: "vocabulaire", label: "VocabulaireCard" },
     { id: "patrimoine", label: "PatrimoineCard" },
@@ -261,8 +294,14 @@ export default function AtelierHomePage({
     return (
         <main className={styles.page}>
             <TableOfContents
-                items={TOC_ITEMS.filter((item) =>
-                    indexesList.includes(item.id),
+                items={TOC_ITEMS.filter(
+                    (item) =>
+                        item.id === "collections" ||
+                        item.id === "collection-heroes" ||
+                        item.id === "collection-entries" ||
+                        item.id === "collection-podium" ||
+                        item.id === "collection-badges" ||
+                        indexesList.includes(item.id),
                 )}
             />
 
@@ -498,6 +537,798 @@ export default function AtelierHomePage({
                         onToggleAll={toggleAll}
                     />
                 )}
+
+                <section id="collections" className={styles.section}>
+                    <div className={styles.sectionHead}>
+                        <h2 className={styles.sectionTitle}>CollectionCard</h2>
+
+                        <p className={styles.sectionDesc}>
+                            Carte éditoriale présentant une collection ou un
+                            classement thématique du Codex des Châteaux. Quatre
+                            collections permettent de comparer les accents, les
+                            longueurs de titres et les volumes de classement.
+                        </p>
+                    </div>
+
+                    <div className={styles.collectionVariants}>
+                        <section
+                            className={styles.collectionVariant}
+                            aria-labelledby="collection-default-title"
+                        >
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span
+                                        id="collection-default-title"
+                                        className={styles.variantLabel}
+                                    >
+                                        Default
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Carte principale pour la grille des
+                                        collections
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    {MOCK_COLLECTIONS.length} exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionGrid}>
+                                {MOCK_COLLECTIONS.map((collection) => (
+                                    <CollectionCard
+                                        key={`default-${collection.slug}`}
+                                        collection={collection}
+                                        variant="default"
+                                    />
+                                ))}
+                            </div>
+                        </section>
+
+                        <section
+                            className={styles.collectionVariant}
+                            aria-labelledby="collection-compact-title"
+                        >
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span
+                                        id="collection-compact-title"
+                                        className={styles.variantLabel}
+                                    >
+                                        Compact
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Navigation secondaire, recherche et
+                                        panneaux étroits
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    {MOCK_COLLECTIONS.length} exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionCompactGrid}>
+                                {MOCK_COLLECTIONS.map((collection) => (
+                                    <CollectionCard
+                                        key={`compact-${collection.slug}`}
+                                        collection={collection}
+                                        variant="compact"
+                                    />
+                                ))}
+                            </div>
+                        </section>
+
+                        <section
+                            className={styles.collectionVariant}
+                            aria-labelledby="collection-featured-title"
+                        >
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span
+                                        id="collection-featured-title"
+                                        className={styles.variantLabel}
+                                    >
+                                        Featured
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Collections mises en avant avec
+                                        composition éditoriale élargie
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    {MOCK_COLLECTIONS.length} exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionFeaturedList}>
+                                {MOCK_COLLECTIONS.map((collection) => (
+                                    <CollectionCard
+                                        key={`featured-${collection.slug}`}
+                                        collection={collection}
+                                        variant="featured"
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <section id="collection-entries" className={styles.section}>
+                    <div className={styles.sectionHead}>
+                        <h2 className={styles.sectionTitle}>
+                            CollectionEntryCard
+                        </h2>
+
+                        <p className={styles.sectionDesc}>
+                            Carte représentant un château à l’intérieur d’un
+                            classement éditorial. Le rang, l’illustration et la
+                            justification propre à la collection en constituent
+                            les principaux repères.
+                        </p>
+                    </div>
+
+                    <div className={styles.collectionVariants}>
+                        <section
+                            className={styles.collectionVariant}
+                            aria-labelledby="collection-entry-default-title"
+                        >
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span
+                                        id="collection-entry-default-title"
+                                        className={styles.variantLabel}
+                                    >
+                                        Default
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Entrée principale des pages de
+                                        classement
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    {MOCK_COLLECTION_ENTRIES.length} exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionEntryList}>
+                                {MOCK_COLLECTION_ENTRIES.map(
+                                    ({ collectionEntry, castle }) => (
+                                        <CollectionEntryCard
+                                            key={`default-${collectionEntry.slug}`}
+                                            collectionEntry={collectionEntry}
+                                            castle={castle}
+                                            variant="default"
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        </section>
+
+                        <section
+                            className={styles.collectionVariant}
+                            aria-labelledby="collection-entry-compact-title"
+                        >
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span
+                                        id="collection-entry-compact-title"
+                                        className={styles.variantLabel}
+                                    >
+                                        Compact
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Listes secondaires, recommandations et
+                                        espaces plus étroits
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    {MOCK_COLLECTION_ENTRIES.length} exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionEntryCompactGrid}>
+                                {MOCK_COLLECTION_ENTRIES.map(
+                                    ({ collectionEntry, castle }) => (
+                                        <CollectionEntryCard
+                                            key={`compact-${collectionEntry.slug}`}
+                                            collectionEntry={collectionEntry}
+                                            castle={castle}
+                                            variant="compact"
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        </section>
+
+                        <section
+                            className={styles.collectionVariant}
+                            aria-labelledby="collection-entry-podium-title"
+                        >
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span
+                                        id="collection-entry-podium-title"
+                                        className={styles.variantLabel}
+                                    >
+                                        Podium
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Mise en scène renforcée des trois
+                                        premières places
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    3 exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionEntryPodiumList}>
+                                {MOCK_COLLECTION_ENTRIES.slice(0, 3).map(
+                                    ({ collectionEntry, castle }) => (
+                                        <CollectionEntryCard
+                                            key={`podium-${collectionEntry.slug}`}
+                                            collectionEntry={collectionEntry}
+                                            castle={castle}
+                                            variant="podium"
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <section id="collection-podium" className={styles.section}>
+                    <div className={styles.sectionHead}>
+                        <h2 className={styles.sectionTitle}>
+                            CollectionPodium
+                        </h2>
+
+                        <p className={styles.sectionDesc}>
+                            Mise en scène des trois premières places d’une
+                            collection. Le premier château domine la
+                            composition, entouré des médaillés d’argent et de
+                            bronze.
+                        </p>
+                    </div>
+
+                    <div className={styles.collectionVariant}>
+                        <div className={styles.variantHead}>
+                            <div className={styles.activeVariant}>
+                                <span className={styles.variantLabel}>
+                                    Podium olympique
+                                </span>
+
+                                <span className={styles.variantNote}>
+                                    Ordre visuel 2 · 1 · 3, marches
+                                    hiérarchisées et médailles métalliques
+                                </span>
+                            </div>
+
+                            <span className={styles.variantCount}>
+                                3 finalistes
+                            </span>
+                        </div>
+
+                        <CollectionPodium
+                            eyebrow="Les incontournables du Val"
+                            title="Le trio de tête"
+                            entries={MOCK_COLLECTION_PODIUM}
+                        />
+                    </div>
+                </section>
+
+                <section id="collection-heroes" className={styles.section}>
+                    <div className={styles.sectionHead}>
+                        <h2 className={styles.sectionTitle}>CollectionHero</h2>
+
+                        <p className={styles.sectionDesc}>
+                            En-tête éditorial d’une page de collection. Il
+                            installe le thème, la promesse narrative, les
+                            métadonnées et l’illustration principale avant le
+                            podium et le classement.
+                        </p>
+                    </div>
+
+                    <div className={styles.collectionVariants}>
+                        <section
+                            className={styles.collectionVariant}
+                            aria-labelledby="collection-hero-default-title"
+                        >
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span
+                                        id="collection-hero-default-title"
+                                        className={styles.variantLabel}
+                                    >
+                                        Default
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        En-tête principal des pages de
+                                        collection
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    {MOCK_COLLECTION_HEROES.length} exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionHeroList}>
+                                {MOCK_COLLECTION_HEROES.map((collection) => (
+                                    <CollectionHero
+                                        key={`default-${collection.slug}`}
+                                        collection={collection}
+                                        variant="default"
+                                    />
+                                ))}
+                            </div>
+                        </section>
+
+                        <section
+                            className={styles.collectionVariant}
+                            aria-labelledby="collection-hero-immersive-title"
+                        >
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span
+                                        id="collection-hero-immersive-title"
+                                        className={styles.variantLabel}
+                                    >
+                                        Immersive
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Composition monumentale pour les
+                                        collections mises à l’honneur
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    3 exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionHeroList}>
+                                {MOCK_COLLECTION_HEROES.slice(0, 3).map(
+                                    (collection) => (
+                                        <CollectionHero
+                                            key={`immersive-${collection.slug}`}
+                                            collection={collection}
+                                            variant="immersive"
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        </section>
+
+                        <section
+                            className={styles.collectionVariant}
+                            aria-labelledby="collection-hero-compact-title"
+                        >
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span
+                                        id="collection-hero-compact-title"
+                                        className={styles.variantLabel}
+                                    >
+                                        Compact
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Introduction condensée pour les pages
+                                        secondaires et aperçus éditoriaux
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    {MOCK_COLLECTION_HEROES.length} exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionHeroCompactGrid}>
+                                {MOCK_COLLECTION_HEROES.map((collection) => (
+                                    <CollectionHero
+                                        key={`compact-${collection.slug}`}
+                                        collection={collection}
+                                        variant="compact"
+                                        href={`/codex/chateaux/collections/${collection.slug}`}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <section id="collection-badges" className={styles.section}>
+                    <div className={styles.sectionHead}>
+                        <h2 className={styles.sectionTitle}>CollectionBadge</h2>
+
+                        <p className={styles.sectionDesc}>
+                            Badge compact représentant l’appartenance à une
+                            collection. Il accompagne les fiches château, les
+                            résultats de recherche, les filtres et les marqueurs
+                            de la carte.
+                        </p>
+                    </div>
+
+                    <div className={styles.collectionVariants}>
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Default
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Badge principal avec identité complète
+                                    </span>
+                                </div>
+
+                                <span className={styles.variantCount}>
+                                    {MOCK_COLLECTION_BADGES.length} exemples
+                                </span>
+                            </div>
+
+                            <div className={styles.collectionBadgeRow}>
+                                {MOCK_COLLECTION_BADGES.map((collection) => (
+                                    <CollectionBadge
+                                        key={`default-${collection.slug}`}
+                                        collection={collection}
+                                        variant="default"
+                                    />
+                                ))}
+                            </div>
+                        </section>
+
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Compact
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Résultats de recherche et métadonnées
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className={styles.collectionBadgeRow}>
+                                {MOCK_COLLECTION_BADGES.map((collection) => (
+                                    <CollectionBadge
+                                        key={`compact-${collection.slug}`}
+                                        collection={collection}
+                                        variant="compact"
+                                        size="sm"
+                                    />
+                                ))}
+                            </div>
+                        </section>
+
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Icon
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Carte, marqueurs et espaces très réduits
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className={styles.collectionBadgeRow}>
+                                {MOCK_COLLECTION_BADGES.map((collection) => (
+                                    <CollectionBadge
+                                        key={`icon-${collection.slug}`}
+                                        collection={collection}
+                                        variant="icon"
+                                        size="lg"
+                                    />
+                                ))}
+                            </div>
+                        </section>
+
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Interactive
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Navigation vers une page de collection
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className={styles.collectionBadgeRow}>
+                                {MOCK_COLLECTION_BADGES.map((collection) => (
+                                    <CollectionBadge
+                                        key={`interactive-${collection.slug}`}
+                                        collection={collection}
+                                        href={`/codex/chateaux/collections/${collection.slug}`}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <section id="collection-ranks" className={styles.section}>
+                    <div className={styles.sectionHead}>
+                        <h2 className={styles.sectionTitle}>CollectionRank</h2>
+
+                        <p className={styles.sectionDesc}>
+                            Indicateur de rang centralisé pour les podiums,
+                            classements et cartes de collection. Les trois
+                            premières places reçoivent automatiquement leurs
+                            métaux.
+                        </p>
+                    </div>
+
+                    <div className={styles.collectionVariants}>
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Badge
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Rang compact pour les cartes de
+                                        classement
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className={styles.collectionRankRow}>
+                                {MOCK_COLLECTION_RANKS.map((rank) => (
+                                    <CollectionRank
+                                        key={`badge-${rank}`}
+                                        rank={rank}
+                                        variant="badge"
+                                    />
+                                ))}
+                            </div>
+                        </section>
+
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Medal
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Médailles pour le podium
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className={styles.collectionRankRow}>
+                                {[1, 2, 3].map((rank) => (
+                                    <CollectionRank
+                                        key={`medal-${rank}`}
+                                        rank={rank}
+                                        variant="medal"
+                                        size="lg"
+                                        showLabel
+                                    />
+                                ))}
+                            </div>
+                        </section>
+
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Plain
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Rang minimal pour les listes très denses
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className={styles.collectionRankRow}>
+                                {MOCK_COLLECTION_RANKS.map((rank) => (
+                                    <CollectionRank
+                                        key={`plain-${rank}`}
+                                        rank={rank}
+                                        variant="plain"
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    </div>
+                </section>
+
+                <section id="collection-criteria" className={styles.section}>
+                    <div className={styles.sectionHead}>
+                        <h2 className={styles.sectionTitle}>
+                            CollectionCriteria
+                        </h2>
+
+                        <p className={styles.sectionDesc}>
+                            Encadré méthodologique présentant les critères
+                            utilisés pour construire un classement éditorial.
+                        </p>
+                    </div>
+
+                    <div className={styles.collectionVariants}>
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Card
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Affichage permanent sur une page de
+                                        collection
+                                    </span>
+                                </div>
+                            </div>
+
+                            <CollectionCriteria
+                                description={
+                                    "Le classement croise plusieurs critères. Il ne cherche pas à produire une vérité absolue, mais une lecture éditoriale cohérente."
+                                }
+                                criteria={MOCK_COLLECTION_CRITERIA}
+                            />
+                        </section>
+
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Accordion
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Version repliable pour les pages plus
+                                        denses
+                                    </span>
+                                </div>
+                            </div>
+
+                            <CollectionCriteria
+                                variant="accordion"
+                                criteria={MOCK_COLLECTION_CRITERIA}
+                            />
+                        </section>
+                    </div>
+                </section>
+
+                <section id="collection-list" className={styles.section}>
+                    <div className={styles.sectionHead}>
+                        <h2 className={styles.sectionTitle}>CollectionList</h2>
+
+                        <p className={styles.sectionDesc}>
+                            Conteneur de layout pour le classement complet. Il
+                            gère uniquement l’espacement et l’empilement des
+                            entrées.
+                        </p>
+                    </div>
+
+                    <div className={styles.collectionVariants}>
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Default
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Espacement standard entre les entrées
+                                    </span>
+                                </div>
+                            </div>
+
+                            <CollectionList
+                                as="ol"
+                                aria-label="Classement complet des châteaux"
+                            >
+                                {MOCK_COLLECTION_ENTRIES.map(
+                                    ({ collectionEntry, castle }) => (
+                                        <li key={collectionEntry.slug}>
+                                            <CollectionEntryCard
+                                                collectionEntry={
+                                                    collectionEntry
+                                                }
+                                                castle={castle}
+                                            />
+                                        </li>
+                                    ),
+                                )}
+                            </CollectionList>
+                        </section>
+
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Compact
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Version dense pour les classements longs
+                                    </span>
+                                </div>
+                            </div>
+
+                            <CollectionList
+                                as="ol"
+                                gap="sm"
+                                aria-label="Classement compact des châteaux"
+                            >
+                                {MOCK_COLLECTION_ENTRIES.map(
+                                    ({ collectionEntry, castle }) => (
+                                        <li key={collectionEntry.slug}>
+                                            <CollectionEntryCard
+                                                collectionEntry={
+                                                    collectionEntry
+                                                }
+                                                castle={castle}
+                                                variant="compact"
+                                            />
+                                        </li>
+                                    ),
+                                )}
+                            </CollectionList>
+                        </section>
+
+                        <section className={styles.collectionVariant}>
+                            <div className={styles.variantHead}>
+                                <div className={styles.activeVariant}>
+                                    <span className={styles.variantLabel}>
+                                        Dividers
+                                    </span>
+
+                                    <span className={styles.variantNote}>
+                                        Liste continue sans espacement
+                                    </span>
+                                </div>
+                            </div>
+
+                            <CollectionList
+                                as="ol"
+                                dividers
+                                aria-label="Classement continu des châteaux"
+                            >
+                                {MOCK_COLLECTION_ENTRIES.map(
+                                    ({ collectionEntry, castle }) => (
+                                        <li key={collectionEntry.slug}>
+                                            <CollectionEntryCard
+                                                collectionEntry={
+                                                    collectionEntry
+                                                }
+                                                castle={castle}
+                                                variant="compact"
+                                            />
+                                        </li>
+                                    ),
+                                )}
+                            </CollectionList>
+                        </section>
+                    </div>
+                </section>
 
                 {indexesList.includes("vignobles") && (
                     <AtelierSection
