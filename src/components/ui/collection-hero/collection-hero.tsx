@@ -5,6 +5,9 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 
 import styles from "./collection-hero.module.css";
+import { LRZColor } from "@/types/lrz";
+import { getLRZColorValue } from "@/registry/colors";
+import { lighter } from "@/lib/colors";
 
 export type CollectionHeroVariant = "default" | "immersive" | "compact";
 
@@ -26,6 +29,7 @@ export type CollectionHeroData = {
     type: CollectionHeroType;
     totalEntries: number;
     illustration?: string;
+    color: LRZColor;
     eyebrow?: string;
     meta?: string[];
 };
@@ -101,6 +105,8 @@ export function CollectionHero({
     className,
 }: CollectionHeroProps) {
     const visual = getCollectionVisual(collection.type);
+    const color = getLRZColorValue(collection.color);
+    const colorSoft = lighter(color, 0.5);
 
     const meta = collection.meta ?? [
         `${collection.totalEntries} château${
@@ -115,6 +121,8 @@ export function CollectionHero({
             className={joinClassNames(styles.hero, styles[variant], className)}
             style={
                 {
+                    "--collection-color": color,
+                    "--collection-color-soft": colorSoft,
                     "--collection-accent": visual.accent,
                     "--collection-accent-soft": visual.accentSoft,
                 } as CSSProperties

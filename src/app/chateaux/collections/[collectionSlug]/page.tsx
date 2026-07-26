@@ -81,6 +81,8 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         slug: collection.slug,
         titre: collection.title,
         emoji: collection.mark,
+        illustration: collection.customEmoji ?? "",
+        color: collection.color,
         eyebrow: collection.eyebrow,
         sousTitre: collection.subtitle,
         description: collection.description,

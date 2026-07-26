@@ -14,6 +14,7 @@ export const MOCK_COLLECTION_HEROES: CollectionHeroData[] = [
         type: "general",
         totalEntries: 10,
         illustration: "/emoji/chateau/chambord.png",
+        color: "ocre",
         meta: ["10 châteaux", "Val de Loire", "Architecture & histoire"],
     },
     {
@@ -28,6 +29,7 @@ export const MOCK_COLLECTION_HEROES: CollectionHeroData[] = [
         type: "architecture",
         totalEntries: 8,
         illustration: "/emoji/chateau/blois.png",
+        color: "eau",
         meta: ["8 châteaux", "Renaissance", "Architecture"],
     },
     {
@@ -42,6 +44,7 @@ export const MOCK_COLLECTION_HEROES: CollectionHeroData[] = [
         type: "jardins",
         totalEntries: 6,
         illustration: "/emoji/chateau/villandry.png",
+        color: "prairie",
         meta: ["6 domaines", "Jardins", "Paysage & botanique"],
     },
     {
@@ -56,6 +59,7 @@ export const MOCK_COLLECTION_HEROES: CollectionHeroData[] = [
         type: "itineraire",
         totalEntries: 9,
         illustration: "/emoji/chateau/chinon.png",
+        color: "beige",
         meta: ["9 forteresses", "Anjou & Touraine", "Histoire militaire"],
     },
     {
@@ -70,6 +74,7 @@ export const MOCK_COLLECTION_HEROES: CollectionHeroData[] = [
         type: "decouverte",
         totalEntries: 6,
         illustration: "/emoji/chateau/montpoupon.png",
+        color: "brique",
         meta: ["6 demeures", "Hors des foules", "Découverte"],
     },
     {
@@ -84,6 +89,7 @@ export const MOCK_COLLECTION_HEROES: CollectionHeroData[] = [
         type: "histoire",
         totalEntries: 8,
         illustration: "/emoji/chateau/chenonceau.png",
+        color: "ardoise",
         meta: ["8 lieux", "Moyen Âge & Renaissance", "Personnages historiques"],
     },
 ];

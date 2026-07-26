@@ -15,6 +15,7 @@
  */
 
 import type { Env } from "@/registry/indexes";
+import { LRZColor } from "@/types/lrz";
 
 export type CollectionEtat = "publie" | "relecture" | "brouillon";
 
@@ -80,6 +81,10 @@ export interface CollectionRegistryEntry {
     /** Couleur d’accent de la collection. */
     accent: string;
 
+    color: LRZColor;
+
+    customEmoji?: string;
+
     /** Critères utilisés pour construire le classement. */
     criteria: readonly string[];
 
@@ -116,6 +121,9 @@ export const COLLECTIONS = [
 
         type: "general",
         accent: "#b88945",
+        color: "fauve",
+
+        customEmoji: "/emoji/collection/incontournables-du-val.png",
 
         criteria: [
             "renommée dans le catalogue",
@@ -201,6 +209,7 @@ export const COLLECTIONS = [
 
         type: "jardins",
         accent: "#5c8754",
+        color: "vert",
 
         criteria: [
             "importance explicite des jardins dans le résumé",
@@ -250,6 +259,7 @@ export const COLLECTIONS = [
 
         type: "architecture",
         accent: "#795739",
+        color: "brun",
 
         criteria: [
             "importance Renaissance dans le style",

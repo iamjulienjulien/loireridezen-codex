@@ -17,7 +17,7 @@
     background:
         radial-gradient(
             circle at 78% 24%,
-            color-mix(in srgb, var(--collection-accent) 13%, transparent),
+            color-mix(in srgb, var(--collection-color) 13%, transparent),
             transparent 34%
         ),
         linear-gradient(135deg, var(--bg-elevated), var(--bg-surface));
@@ -54,7 +54,7 @@
     background: linear-gradient(
         to bottom,
         transparent,
-        color-mix(in srgb, var(--collection-accent) 28%, var(--border-subtle)),
+        color-mix(in srgb, var(--collection-color) 28%, var(--border-subtle)),
         transparent
     );
     content: "";
@@ -86,13 +86,13 @@
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--collection-accent);
+    color: var(--collection-color);
 }
 
 .eyebrow::after {
     width: 42px;
     height: 1px;
-    background: linear-gradient(90deg, var(--collection-accent), transparent);
+    background: linear-gradient(90deg, var(--collection-color), transparent);
     content: "";
 }
 
@@ -102,16 +102,16 @@
     height: 34px;
     place-items: center;
     border: 1px solid
-        color-mix(in srgb, var(--collection-accent) 36%, var(--border-subtle));
+        color-mix(in srgb, var(--collection-color) 36%, var(--border-subtle));
     border-radius: 50%;
     background: color-mix(
         in srgb,
-        var(--collection-accent-soft) 28%,
+        var(--collection-color-soft) 28%,
         var(--bg-surface)
     );
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.52),
-        0 4px 12px color-mix(in srgb, var(--collection-accent) 12%, transparent);
+        0 4px 12px color-mix(in srgb, var(--collection-color) 12%, transparent);
     font-size: 17px;
 }
 
@@ -162,11 +162,11 @@
     min-height: 28px;
     padding: 5px 10px;
     border: 1px solid
-        color-mix(in srgb, var(--collection-accent) 18%, var(--border-subtle));
+        color-mix(in srgb, var(--collection-color) 18%, var(--border-subtle));
     border-radius: 999px;
     background: color-mix(
         in srgb,
-        var(--collection-accent) 5%,
+        var(--collection-color) 5%,
         var(--bg-surface)
     );
     font-family: var(--font-mono);
@@ -181,7 +181,7 @@
     height: 4px;
     margin-right: 7px;
     border-radius: 50%;
-    background: var(--collection-accent);
+    background: var(--collection-color);
     content: "";
 }
 
@@ -200,12 +200,12 @@
     gap: 10px;
     padding: 10px 15px;
     border: 1px solid
-        color-mix(in srgb, var(--collection-accent) 56%, var(--border-subtle));
+        color-mix(in srgb, var(--collection-color) 56%, var(--border-subtle));
     border-radius: 999px;
-    background: var(--collection-accent);
+    background: var(--collection-color);
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.24),
-        0 7px 18px color-mix(in srgb, var(--collection-accent) 20%, transparent);
+        0 7px 18px color-mix(in srgb, var(--collection-color) 20%, transparent);
     font-family: var(--font-mono);
     font-size: 9px;
     font-weight: 600;
@@ -222,14 +222,13 @@
 .primaryAction:hover {
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.28),
-        0 11px 22px
-            color-mix(in srgb, var(--collection-accent) 27%, transparent);
+        0 11px 22px color-mix(in srgb, var(--collection-color) 27%, transparent);
     filter: saturate(1.08);
     transform: translateY(-2px);
 }
 
 .primaryAction:focus-visible {
-    outline: 2px solid var(--collection-accent);
+    outline: 2px solid var(--collection-color);
     outline-offset: 4px;
 }
 
@@ -271,12 +270,12 @@
     bottom: 0;
     left: 9%;
     border: 1px solid
-        color-mix(in srgb, var(--collection-accent) 25%, var(--border-subtle));
+        color-mix(in srgb, var(--collection-color) 25%, var(--border-subtle));
     border-bottom: 0;
     border-radius: 999px 999px 0 0;
     background: linear-gradient(
         180deg,
-        color-mix(in srgb, var(--collection-accent) 5%, transparent),
+        color-mix(in srgb, var(--collection-color) 5%, transparent),
         transparent 68%
     );
 }
@@ -285,7 +284,7 @@
     position: absolute;
     inset: 18px;
     border: 1px dashed
-        color-mix(in srgb, var(--collection-accent) 20%, transparent);
+        color-mix(in srgb, var(--collection-color) 20%, transparent);
     border-bottom: 0;
     border-radius: inherit;
     content: "";
@@ -300,7 +299,7 @@
     background: linear-gradient(
         to bottom,
         transparent,
-        color-mix(in srgb, var(--collection-accent) 20%, transparent),
+        color-mix(in srgb, var(--collection-color) 20%, transparent),
         transparent
     );
     content: "";
@@ -312,18 +311,18 @@
     aspect-ratio: 1;
     overflow: hidden;
     border: 1px solid
-        color-mix(in srgb, var(--collection-accent) 38%, var(--border-subtle));
+        color-mix(in srgb, var(--collection-color) 38%, var(--border-subtle));
     border-radius: 50%;
     background: radial-gradient(
         circle at 50% 35%,
-        color-mix(in srgb, var(--collection-accent) 14%, var(--bg-surface)),
+        color-mix(in srgb, var(--collection-color) 14%, var(--bg-surface)),
         var(--bg-surface) 70%
     );
     box-shadow:
         inset 0 0 0 11px
-            color-mix(in srgb, var(--collection-accent) 5%, transparent),
+            color-mix(in srgb, var(--collection-color) 5%, transparent),
         inset 0 -22px 38px
-            color-mix(in srgb, var(--collection-accent) 8%, transparent),
+            color-mix(in srgb, var(--collection-color) 8%, transparent),
         0 22px 46px rgba(54, 40, 20, 0.13);
     transition:
         transform 0.3s ease,
@@ -333,9 +332,9 @@
 .hero:hover .medallion {
     box-shadow:
         inset 0 0 0 11px
-            color-mix(in srgb, var(--collection-accent) 7%, transparent),
+            color-mix(in srgb, var(--collection-color) 7%, transparent),
         inset 0 -22px 38px
-            color-mix(in srgb, var(--collection-accent) 10%, transparent),
+            color-mix(in srgb, var(--collection-color) 10%, transparent),
         0 28px 56px rgba(54, 40, 20, 0.17);
     transform: translateY(-5px);
 }
@@ -345,7 +344,7 @@
     z-index: 4;
     inset: 10%;
     border: 1px dashed
-        color-mix(in srgb, var(--collection-accent) 28%, transparent);
+        color-mix(in srgb, var(--collection-color) 28%, transparent);
     border-radius: inherit;
     content: "";
     pointer-events: none;
@@ -370,7 +369,7 @@
     z-index: 3;
     inset: 5%;
     border: 1px solid
-        color-mix(in srgb, var(--collection-accent) 15%, transparent);
+        color-mix(in srgb, var(--collection-color) 15%, transparent);
     border-radius: 50%;
     pointer-events: none;
 }
@@ -379,7 +378,7 @@
     z-index: 2;
     object-fit: contain;
     object-position: center bottom;
-    padding: 16% 4% 7%;
+    padding: 15% 15% 20%;
     filter: drop-shadow(0 16px 13px rgba(44, 32, 17, 0.22));
     transform-origin: center bottom;
     transition:
@@ -411,7 +410,7 @@
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid
-        color-mix(in srgb, var(--collection-accent) 22%, var(--border-subtle));
+        color-mix(in srgb, var(--collection-color) 22%, var(--border-subtle));
     padding-top: 10px;
     font-family: var(--font-mono);
     font-size: 8px;
@@ -424,7 +423,7 @@
     font-family: var(--font-display);
     font-size: 28px;
     letter-spacing: -0.04em;
-    color: var(--collection-accent);
+    color: var(--collection-color);
 }
 
 /* ============================================================
