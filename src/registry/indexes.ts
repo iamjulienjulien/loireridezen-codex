@@ -5,6 +5,8 @@
  * Données pures — importable côté serveur comme client.
  */
 
+import { LRZColor } from "@/types/lrz";
+
 export type Env = "development" | "production";
 export type IndexEtat = "publie" | "relecture" | "brouillon";
 
@@ -25,6 +27,7 @@ export interface IndexEntry {
     description: string;
     /** Couleur d'accent de la section. */
     accent: string;
+    color: LRZColor;
     /** Texte d'introduction (lede) affiché en tête de page. */
     presentation: string;
     /** Même texte au format Markdown (paragraphes séparés). */
@@ -49,6 +52,7 @@ export const INDEXES = [
         description:
             "Ce qui verdit le fil, du saule des grèves à l’angélique de l’estuaire.",
         accent: "#4f86c6",
+        color: "eau",
         presentation:
             "Le fil ne traverse pas un décor : il longe un fleuve vivant. Voici ce qu'on peut croiser en chemin, de la source à l'Atlantique — du plus commun au plus rare, du grand jour à la pleine nuit.",
         presentation_md:
@@ -68,6 +72,7 @@ export const INDEXES = [
         description:
             "Ce qui verdit le fil, du saule des grèves à l’angélique de l’estuaire.",
         accent: "#4fa25c",
+        color: "prairie",
         presentation:
             "La Loire fait pousser autant qu'elle emporte. Du peuplier de la grève à l'endémique de l'estuaire, voici ce qui verdit le fil — l'indigène, le rare, et l'intrus qui gagne du terrain.",
         presentation_md:
@@ -87,6 +92,7 @@ export const INDEXES = [
         description:
             "Ce qui couronne le fil, de la forteresse médiévale au rêve de la Renaissance.",
         accent: "#b5883c",
+        color: "ocre",
         presentation:
             "Le fil royal remonte le temps autant que le fleuve. Voici les demeures qui le jalonnent, de la source à l'Atlantique — de la forteresse médiévale à la folie Renaissance, du confidentiel au phare.",
         presentation_md:
@@ -106,6 +112,7 @@ export const INDEXES = [
         description:
             "Les appellations du fil, du grand cru liquoreux au cru communal.",
         accent: "#9c3f52",
+        color: "rouge",
         presentation:
             "Le fil se boit autant qu'il se longe. Des coteaux du Forez au melon de l'embouchure, voici les appellations qui jalonnent la Loire — du grand cru liquoreux au cru communal le plus discret.",
         presentation_md:
@@ -114,7 +121,7 @@ export const INDEXES = [
             "appellations du fil · les émojis attendent leur version LRZ",
         dataFile: "vignoble.json",
         etat: "relecture",
-        env: ["development"],
+        env: [],
     },
     {
         slug: "vocabulaire",
@@ -126,6 +133,7 @@ export const INDEXES = [
         description:
             "La mémoire déposée dans les mots, du terme vivant au mot oublié.",
         accent: "#4a7c8c",
+        color: "bleu-turquoise",
         presentation:
             "Un fleuve laisse sa mémoire dans les mots avant de la laisser dans les pierres. Voici le lexique de la Loire — du mot encore vivant à celui qui ne survit plus que dans les livres.",
         presentation_md:
@@ -133,7 +141,7 @@ export const INDEXES = [
         footerNote: "mots du fil · la mémoire déposée dans les mots",
         dataFile: "mot.json",
         etat: "relecture",
-        env: ["development"],
+        env: [],
     },
     {
         slug: "patrimoine",
@@ -145,6 +153,7 @@ export const INDEXES = [
         description:
             "Le fleuve-travail : ponts, cales, fours à chaux et moulins de la Loire.",
         accent: "#8a7256",
+        color: "fauve",
         presentation:
             "Face au fil royal des châteaux, voici le fleuve-travail : ce que l'homme a bâti pour vivre AVEC la Loire. Ponts, cales, fours à chaux, moulins — debout, restaurés, en vestige, ou disparus.",
         presentation_md:
@@ -153,7 +162,7 @@ export const INDEXES = [
             "ouvrages du fleuve-travail · les émojis attendent leur version LRZ",
         dataFile: "patrimoine.json",
         etat: "relecture",
-        env: ["development"],
+        env: [],
     },
 ] as const satisfies readonly IndexEntry[];
 
