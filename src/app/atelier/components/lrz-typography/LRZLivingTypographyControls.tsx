@@ -228,6 +228,89 @@ export function LRZTypewriterControls({ className }: { className: string }) {
     );
 }
 
+function ScramblePreview({
+    speed,
+    scrambleFrames,
+}: {
+    speed: number;
+    scrambleFrames: number;
+}) {
+    const playback = useLRZAnimationPlayback();
+
+    return (
+        <LRZLivingText.ScrambleText
+            key={`${playback.cycle}-${playback.playing ? "active" : "rest"}`}
+            preset="heading-2"
+            as="p"
+            playing={playback.playing}
+            speed={speed}
+            scrambleFrames={scrambleFrames}
+        >
+            CODEX LIGÉRIEN
+        </LRZLivingText.ScrambleText>
+    );
+}
+
+export function LRZScrambleTextControls({ className }: { className: string }) {
+    const [speed, setSpeed] = useState(58);
+    const [scrambleFrames, setScrambleFrames] = useState(8);
+
+    return (
+        <>
+            <LRZAnimationCard
+                className={className}
+                label="LRZLivingText.ScrambleText"
+                controlsPosition="above"
+                controls={
+                    <div className={styles.livingControls}>
+                        <label className={styles.livingControl}>
+                            <span>speed · {speed} ms</span>
+                            <input
+                                type="range"
+                                min={24}
+                                max={180}
+                                step={1}
+                                value={speed}
+                                onChange={(event) =>
+                                    setSpeed(Number(event.target.value))
+                                }
+                            />
+                        </label>
+                        <label className={styles.livingControl}>
+                            <span>scrambleFrames · {scrambleFrames}</span>
+                            <input
+                                type="range"
+                                min={2}
+                                max={16}
+                                step={1}
+                                value={scrambleFrames}
+                                onChange={(event) =>
+                                    setScrambleFrames(Number(event.target.value))
+                                }
+                            />
+                        </label>
+                    </div>
+                }
+            >
+                <ScramblePreview
+                    speed={speed}
+                    scrambleFrames={scrambleFrames}
+                />
+            </LRZAnimationCard>
+            <pre className={styles.compositionCode}>
+                <code>{`<LRZLivingText.ScrambleText
+  preset="heading-2"
+  as="p"
+  speed={${speed}}
+  scrambleFrames={${scrambleFrames}}
+>
+  CODEX LIGÉRIEN
+</LRZLivingText.ScrambleText>`}</code>
+            </pre>
+        </>
+    );
+}
+
 export function LRZPathTextControls({ className }: { className: string }) {
     const [path, setPath] = useState<LRZPathTextPath>("meander");
     const [direction, setDirection] = useState<PathDirection>("forward");

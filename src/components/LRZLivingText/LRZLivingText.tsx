@@ -2,6 +2,7 @@ import LRZAtmosphericText from "./atmospheric/LRZAtmosphericText";
 import LRZBreathingText from "./breathing/LRZBreathingText";
 import LRZCutoutText from "./cutout/LRZCutoutText";
 import LRZPathText from "./path/LRZPathText";
+import LRZScrambleText from "./scramble/LRZScrambleText";
 import LRZScrollStory from "./scroll-story/LRZScrollStory";
 import LRZTypewriter from "./typewriter/LRZTypewriter";
 
@@ -16,6 +17,7 @@ const LRZLivingText = {
     BreathingText: LRZBreathingText,
     CutoutText: LRZCutoutText,
     PathText: LRZPathText,
+    ScrambleText: LRZScrambleText,
     ScrollStory: LRZScrollStory,
     Typewriter: LRZTypewriter,
 } as const;

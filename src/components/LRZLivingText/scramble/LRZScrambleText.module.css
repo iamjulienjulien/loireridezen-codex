@@ -1,0 +1,7 @@
+.root {
+    min-height: 1.2em;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}

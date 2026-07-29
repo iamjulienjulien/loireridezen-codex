@@ -6,6 +6,7 @@ export type {
     LRZPathTextPath,
     LRZPathTextProps,
 } from "./path/LRZPathText";
+export type { LRZScrambleTextProps } from "./scramble/LRZScrambleText";
 export type { LRZScrollStoryProps } from "./scroll-story/LRZScrollStory";
 export type {
     LRZTypewriterCursor,

@@ -12,13 +12,14 @@ import {
     LRZBreathingTextControls,
     LRZCutoutTextControls,
     LRZPathTextControls,
+    LRZScrambleTextControls,
     LRZTypewriterControls,
 } from "../lrz-typography/LRZLivingTypographyControls";
 import {
     ConfluenceText,
     MirageText,
     PelotonText,
-    ScrambleExperiment,
+    SillageText,
     TopographicText,
     WaveExperiment,
 } from "../lrz-typography/LRZTypographyExperiments";
@@ -62,7 +63,7 @@ export default function LRZLivingTextPage() {
                             Compositions vivantes
                         </LRZTypography>
                         <LRZTypography preset="heading-2">
-                            Six façons de mettre le texte en mouvement
+                            Sept façons de mettre le texte en mouvement
                         </LRZTypography>
                         <LRZTypography preset="body-sm" color="secondary">
                             Chaque composition occupe sa propre séquence pour
@@ -80,6 +81,22 @@ export default function LRZLivingTextPage() {
                             </LRZTypography>
                         </header>
                         <LRZCutoutTextControls
+                            className={styles.compositionBody}
+                        />
+                    </article>
+
+                    <LRZLivingTextSeparator />
+
+                    <article className={styles.livingComposition}>
+                        <header className={styles.compositionHeader}>
+                            <LRZTypography preset="eyebrow">
+                                LRZLivingText.ScrambleText
+                            </LRZTypography>
+                            <LRZTypography preset="heading-3">
+                                Le message se clarifie dans le courant
+                            </LRZTypography>
+                        </header>
+                        <LRZScrambleTextControls
                             className={styles.compositionBody}
                         />
                     </article>
@@ -204,12 +221,12 @@ export default function LRZLivingTextPage() {
                         </LRZAnimationCard>
                         <LRZAnimationCard
                             className={styles.experimentCard}
-                            label="Scramble"
+                            label="Sillage"
                         >
                             <LRZTypography preset="caption" color="tertiary">
-                                Scramble
+                                Sillage
                             </LRZTypography>
-                            <ScrambleExperiment />
+                            <SillageText>LES ÎLES DÉFILENT</SillageText>
                         </LRZAnimationCard>
                         <article className={styles.experimentCard}>
                             <LRZTypography preset="caption" color="tertiary">
