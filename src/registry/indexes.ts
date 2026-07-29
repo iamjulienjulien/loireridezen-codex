@@ -105,7 +105,26 @@ export const INDEXES = [
         etat: "publie",
         env: ["development", "production"],
     },
-
+    {
+        slug: "guinguettes",
+        href: "/guinguettes",
+        mark: "🍷",
+        label: "Guinguettes",
+        eyebrow: "Index",
+        title: "Guinguettes de Loire",
+        description:
+            "Là où la Loire ralentit, les tables s’installent, les verres tintent et les soirées s’étirent.",
+        accent: "#c46a4b",
+        color: "brique",
+        presentation_md:
+            "Nées au bord des rivières, les guinguettes ont longtemps été des refuges de liberté. On y venait danser, partager un repas simple ou regarder passer les bateaux, loin du rythme des villes.\n\nLe long de la Loire, chacune raconte une manière différente d’habiter le fleuve. Certaines vivent au pied d’un château, d’autres s’abritent sous les peupliers ou s’ouvrent directement sur les bancs de sable. Toutes cultivent une même idée : prendre le temps.\n\nAujourd’hui encore, elles prolongent cette tradition. Cuisine locale, concerts, couchers de soleil, rencontres et départs à vélo s’y croisent naturellement. Elles sont devenues des haltes autant que des destinations.",
+        presentationFooter:
+            "**Cet index rassemble les guinguettes qui rythment les rives ligériennes. Chaque adresse est présentée à travers son cadre, son ambiance, sa cuisine, ses animations et son lien avec le fleuve.**",
+        footerNote: "guinguettes et haltes conviviales du Val de Loire",
+        dataFile: "guinguette.json",
+        etat: "publie",
+        env: ["development"],
+    },
     {
         slug: "vignobles",
         href: "/vignobles",
