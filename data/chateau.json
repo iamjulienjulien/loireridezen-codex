@@ -281,6 +281,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/cheverny.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-cheverny/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-cheverny/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-cheverny/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-cheverny/nuit@2x.png"
+            },
             "slug": "chateau-de-cheverny",
             "nom": "Château de Cheverny",
             "autresNoms": ["Moulinsart (inspiration de Hergé)"],
@@ -308,6 +314,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/beauregard.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-beauregard/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-beauregard/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-beauregard/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-beauregard/nuit@2x.png"
+            },
             "slug": "chateau-de-beauregard",
             "nom": "Château de Beauregard",
             "autresNoms": [],
@@ -335,6 +347,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/blois.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-royal-de-blois/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-royal-de-blois/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-royal-de-blois/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-royal-de-blois/nuit@2x.png"
+            },
             "slug": "chateau-royal-de-blois",
             "nom": "Château royal de Blois",
             "autresNoms": ["Château de Blois"],
@@ -416,6 +434,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/menars.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-menars/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-menars/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-menars/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-menars/nuit@2x.png"
+            },
             "slug": "chateau-de-menars",
             "nom": "Château de Menars",
             "autresNoms": ["Château de Ménars"],
@@ -443,6 +467,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/chaumont-sur-loire.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/domaine-de-chaumont-sur-loire/jour@2x.png",
+                "aube": "/illustrations/chateaux/domaine-de-chaumont-sur-loire/aube@2x.png",
+                "soir": "/illustrations/chateaux/domaine-de-chaumont-sur-loire/soir@2x.png",
+                "nuit": "/illustrations/chateaux/domaine-de-chaumont-sur-loire/nuit@2x.png"
+            },
             "slug": "domaine-de-chaumont-sur-loire",
             "nom": "Château de Chaumont-sur-Loire",
             "autresNoms": ["Domaine de Chaumont-sur-Loire"],
@@ -524,6 +554,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/clos-luce.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-du-clos-luce/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-du-clos-luce/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-du-clos-luce/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-du-clos-luce/nuit@2x.png"
+            },
             "slug": "chateau-du-clos-luce",
             "nom": "Château du Clos Lucé",
             "autresNoms": ["Manoir du Cloux"],
@@ -632,6 +668,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/loches.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/cite-royale-de-loches/jour@2x.png",
+                "aube": "/illustrations/chateaux/cite-royale-de-loches/aube@2x.png",
+                "soir": "/illustrations/chateaux/cite-royale-de-loches/soir@2x.png",
+                "nuit": "/illustrations/chateaux/cite-royale-de-loches/nuit@2x.png"
+            },
             "slug": "cite-royale-de-loches",
             "nom": "Cité royale de Loches",
             "autresNoms": ["Château de Loches", "Logis royal de Loches"],
@@ -713,6 +755,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/villandry.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-villandry/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-villandry/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-villandry/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-villandry/nuit@2x.png"
+            },
             "slug": "chateau-de-villandry",
             "nom": "Château de Villandry",
             "autresNoms": [],
@@ -740,6 +788,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/azay-le-rideau.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-d-azay-le-rideau/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-d-azay-le-rideau/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-d-azay-le-rideau/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-d-azay-le-rideau/nuit@2x.png"
+            },
             "slug": "chateau-d-azay-le-rideau",
             "nom": "Château d'Azay-le-Rideau",
             "autresNoms": [],
@@ -821,6 +875,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/langeais.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-langeais/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-langeais/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-langeais/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-langeais/nuit@2x.png"
+            },
             "slug": "chateau-de-langeais",
             "nom": "Château de Langeais",
             "autresNoms": [],
@@ -956,6 +1016,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/le-lude.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-du-lude/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-du-lude/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-du-lude/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-du-lude/nuit@2x.png"
+            },
             "slug": "chateau-du-lude",
             "nom": "Château du Lude",
             "autresNoms": [],
@@ -1064,6 +1130,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/breze.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-breze/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-breze/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-breze/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-breze/nuit@2x.png"
+            },
             "slug": "chateau-de-breze",
             "nom": "Château de Brézé",
             "autresNoms": ["Le château sous le château"],
@@ -1091,6 +1163,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/montreuil-bellay.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-montreuil-bellay/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-montreuil-bellay/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-montreuil-bellay/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-montreuil-bellay/nuit@2x.png"
+            },
             "slug": "chateau-de-montreuil-bellay",
             "nom": "Château de Montreuil-Bellay",
             "autresNoms": [],
@@ -1172,6 +1250,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/brissac.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-brissac/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-brissac/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-brissac/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-brissac/nuit@2x.png"
+            },
             "slug": "chateau-de-brissac",
             "nom": "Château de Brissac",
             "autresNoms": ["Le géant du Val de Loire"],
@@ -1253,6 +1337,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/angers.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-d-angers/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-d-angers/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-d-angers/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-d-angers/nuit@2x.png"
+            },
             "slug": "chateau-d-angers",
             "nom": "Château d'Angers",
             "autresNoms": ["Forteresse d'Angers"],
@@ -1280,6 +1370,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/serrant.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-serrant/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-serrant/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-serrant/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-serrant/nuit@2x.png"
+            },
             "slug": "chateau-de-serrant",
             "nom": "Château de Serrant",
             "autresNoms": [],
@@ -1361,6 +1457,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/goulaine.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-de-goulaine/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-de-goulaine/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-de-goulaine/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-de-goulaine/nuit@2x.png"
+            },
             "slug": "chateau-de-goulaine",
             "nom": "Château de Goulaine",
             "autresNoms": [],
@@ -1388,6 +1490,12 @@
         {
             "emoji": "🏰",
             "customEmoji": "/emoji/chateau/ducs-de-bretagne.png",
+            "illustrationVariant": {
+                "jour": "/illustrations/chateaux/chateau-des-ducs-de-bretagne/jour@2x.png",
+                "aube": "/illustrations/chateaux/chateau-des-ducs-de-bretagne/aube@2x.png",
+                "soir": "/illustrations/chateaux/chateau-des-ducs-de-bretagne/soir@2x.png",
+                "nuit": "/illustrations/chateaux/chateau-des-ducs-de-bretagne/nuit@2x.png"
+            },
             "slug": "chateau-des-ducs-de-bretagne",
             "nom": "Château des Ducs de Bretagne",
             "autresNoms": ["Château de Nantes"],
