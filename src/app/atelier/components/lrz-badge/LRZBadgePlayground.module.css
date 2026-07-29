@@ -60,7 +60,8 @@
 
 .reset:focus-visible,
 .control input:focus-visible,
-.control select:focus-visible {
+.control select:focus-visible,
+.toggle input:focus-visible {
     outline: 3px solid var(--gold-soft);
     outline-offset: 2px;
 }
@@ -110,6 +111,41 @@
     background: var(--bg-elevated);
     font-family: var(--font-body);
     font-size: 0.8rem;
+}
+
+.toggle {
+    display: flex;
+    gap: 0.65rem;
+    align-items: flex-start;
+    padding: 0.7rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    background: var(--bg-overlay);
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    cursor: pointer;
+}
+
+.toggle input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0.05rem 0 0;
+    accent-color: var(--gold);
+}
+
+.toggle span {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.toggle small {
+    color: var(--text-tertiary);
+    font-size: 0.65rem;
+}
+
+.toggle code {
+    font-family: var(--font-mono);
 }
 
 .output {

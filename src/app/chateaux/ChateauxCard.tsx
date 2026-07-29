@@ -221,7 +221,12 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
     }
 
     return (
-        <LRZCard className={styles.fiche} tone="surface" color={color}>
+        <LRZCard
+            className={styles.fiche}
+            tone="surface"
+            color={color}
+            customColor={t?.identite.accent ?? undefined}
+        >
             <LRZCardMedia ratio="auto">
                 <div
                     className={styles.hero}
@@ -387,36 +392,40 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
                     triggerClassName={styles.accordionTrigger}
                 >
                     <LRZMetaList
+                        className="pb-5"
                         color="ocre"
                         layout="responsive"
+                        tone="plain"
+                        valueAlign="center"
+                        size="sm"
                         items={[
                             {
                                 id: "monument-historique",
-                                label: "Monument historique",
+                                label: "",
                                 value: (
                                     <LRZBadge
-                                        color={mh.color}
-                                        label={mh.label}
+                                        preset="monument-historique-chateau"
+                                        value={d.protection.monumentHistorique}
                                     />
                                 ),
                             },
                             {
                                 id: "unesco",
-                                label: "UNESCO",
+                                label: "",
                                 value: (
                                     <LRZBadge
-                                        color={unesco.color}
-                                        label={unesco.label}
+                                        preset="unesco-chateau"
+                                        value={d.protection.unesco}
                                     />
                                 ),
                             },
                             {
                                 id: "visite",
-                                label: "Visite",
+                                label: "",
                                 value: (
                                     <LRZBadge
-                                        color={visite.color}
-                                        label={visite.label}
+                                        preset="visite-chateau"
+                                        value={d.visite}
                                     />
                                 ),
                             },

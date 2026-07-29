@@ -13,7 +13,7 @@ export type LRZMetaListLayout = "responsive" | "inline" | "stacked";
 
 export type LRZMetaListColumns = 1 | 2 | 3 | "auto";
 
-export type LRZMetaListValueAlign = "start" | "end";
+export type LRZMetaListValueAlign = "start" | "end" | "center";
 
 export type LRZMetaListItem = {
     /** Identifiant stable utilisé comme clé React. */

@@ -123,6 +123,11 @@
     text-align: end;
 }
 
+.list[data-value-align="center"] .value {
+    justify-items: center;
+    text-align: center;
+}
+
 .list[data-layout="stacked"] .item {
     grid-template-columns: minmax(0, 1fr);
 }

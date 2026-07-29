@@ -1,23 +1,56 @@
 .badge {
+    --badge-surface: color-mix(in srgb, var(--badge-color) 16%, transparent);
+
+    position: relative;
     display: inline-flex;
     align-items: center;
     width: fit-content;
     max-width: 100%;
     gap: 5px;
     padding: 2px 8px;
+    overflow: hidden;
+    border: 1px solid transparent;
     border-radius: var(--radius-sm);
+    color: var(--badge-color);
+    background: var(--badge-surface);
     font-family: var(--font-mono);
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 550;
     line-height: 1.45;
+    isolation: isolate;
 }
 
-.dot {
+.symbol {
+    display: grid;
     width: 6px;
     height: 6px;
     flex: 0 0 auto;
+    place-items: center;
+    border-radius: 999px;
+    background: transparent;
+}
+
+.symbol::after {
+    width: 6px;
+    height: 6px;
     border-radius: 999px;
     background: currentColor;
+    content: "";
+}
+
+.icon {
+    display: none;
+    width: 12px;
+    height: 12px;
+    place-items: center;
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1;
+}
+
+.icon > svg {
+    width: 100%;
+    height: 100%;
 }
 
 .label {
@@ -28,9 +61,430 @@
     overflow: hidden;
     font-family: var(--font-body);
     font-size: 10.5px;
-    font-weight: 400;
+    font-weight: 430;
     letter-spacing: 0.01em;
     text-overflow: ellipsis;
     white-space: nowrap;
-    opacity: 0.85;
+    opacity: 0.82;
+}
+
+.badge[data-gradient="true"] {
+    background:
+        linear-gradient(
+            105deg,
+            color-mix(in srgb, var(--badge-color) 22%, transparent),
+            color-mix(in srgb, var(--badge-color) 8%, transparent)
+        ),
+        var(--bg-surface);
+}
+
+.badge[data-variant]:not([data-variant="default"]) {
+    min-height: 24px;
+    gap: 6px;
+    padding: 3px 9px 3px 4px;
+    border-color: color-mix(in srgb, var(--badge-color) 28%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, white 12%, transparent),
+        0 1px 3px color-mix(in srgb, var(--badge-color) 8%, transparent);
+}
+
+.badge[data-variant]:not([data-variant="default"]) .symbol {
+    width: 18px;
+    height: 18px;
+}
+
+.badge[data-has-icon="true"] .symbol {
+    width: 18px;
+    height: 18px;
+    background: color-mix(in srgb, var(--badge-color) 16%, transparent);
+}
+
+.badge[data-has-icon="true"] .symbol::after {
+    display: none;
+}
+
+.badge[data-has-icon="true"] .icon {
+    display: grid;
+}
+
+.badge[data-icon-hidden="true"] .symbol {
+    display: none;
+}
+
+.badge[data-icon-hidden="true"][data-variant="ticket"]::before {
+    display: none;
+}
+
+.badge[data-icon-hidden="true"][data-variant="ticket"] .label {
+    margin-left: 0;
+}
+
+.badge[data-icon-hidden="true"][data-variant="ticket"][data-gradient="true"] {
+    background: color-mix(in srgb, var(--badge-color) 8%, var(--bg-surface));
+}
+
+/* Pill — capsule compacte, utilisée par défaut pour l’échelle UICN. */
+.badge[data-variant="pill"] {
+    border-radius: 999px;
+}
+
+.badge[data-variant="pill"][data-gradient="true"] {
+    background:
+        linear-gradient(
+            105deg,
+            color-mix(in srgb, var(--badge-color) 24%, transparent),
+            color-mix(in srgb, var(--badge-color) 10%, transparent)
+        ),
+        var(--bg-surface);
+}
+
+.badge[data-preset="extinction-faune"] .label {
+    min-width: 1.5rem;
+    font-weight: 760;
+    letter-spacing: 0.08em;
+}
+
+.badge[data-preset="extinction-faune"] .detail {
+    margin-left: -7px;
+}
+
+.badge[data-preset="extinction-faune"][data-value="CR"] {
+    border-color: color-mix(in srgb, var(--badge-color) 52%, transparent);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--badge-color) 12%, transparent),
+        0 2px 8px color-mix(in srgb, var(--badge-color) 18%, transparent);
+}
+
+/* Leaf — capsule végétale, pointe de feuille et motif de nervure. */
+.badge[data-variant="leaf"] {
+    padding-right: 11px;
+    border-radius: 999px 999px 999px 7px;
+}
+
+.badge[data-variant="leaf"][data-gradient="true"] {
+    background:
+        radial-gradient(
+            circle at 12% 50%,
+            color-mix(in srgb, var(--badge-color) 26%, transparent),
+            transparent 34%
+        ),
+        color-mix(in srgb, var(--badge-color) 11%, var(--bg-surface));
+}
+
+.badge[data-variant="leaf"]::after {
+    position: absolute;
+    right: 5px;
+    bottom: 2px;
+    width: 16px;
+    height: 1px;
+    background: currentColor;
+    content: "";
+    opacity: 0.18;
+    transform: rotate(-18deg);
+}
+
+.badge[data-variant="leaf"][data-preset="indigenat-flore"][data-value="envahissante"] {
+    border-style: dashed;
+    border-radius: 7px 999px 999px;
+}
+
+/* Shield — petit sceau administratif posé sur un bouclier. */
+.badge[data-variant="shield"] {
+    border-radius: 7px;
+}
+
+.badge[data-variant="shield"][data-gradient="true"] {
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--badge-color) 22%, transparent),
+            transparent 58%
+        ),
+        color-mix(in srgb, var(--badge-color) 9%, var(--bg-surface));
+}
+
+.badge[data-variant="shield"] .symbol {
+    border: 1px solid color-mix(in srgb, var(--badge-color) 35%, transparent);
+    border-radius: 5px 5px 8px 8px;
+}
+
+.badge[data-preset="protection-flore"][data-value="aucune"] {
+    border-style: dashed;
+    filter: saturate(0.65);
+}
+
+/* Plaque — cartouche minéral inspiré des plaques patrimoniales. */
+.badge[data-variant="plaque"] {
+    padding-left: 5px;
+    border-color: color-mix(
+        in srgb,
+        var(--badge-color) 35%,
+        var(--border-soft)
+    );
+    border-radius: 3px 9px 3px 9px;
+}
+
+.badge[data-variant="plaque"][data-gradient="true"] {
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--badge-color) 18%, transparent),
+            transparent 42%
+        ),
+        color-mix(in srgb, var(--lrz-patrimoine-tuffeau) 12%, var(--bg-surface));
+}
+
+.badge[data-variant="plaque"]::before {
+    position: absolute;
+    inset: 2px;
+    z-index: -1;
+    border: 1px solid color-mix(in srgb, var(--badge-color) 13%, transparent);
+    border-radius: 2px 7px 2px 7px;
+    content: "";
+    pointer-events: none;
+}
+
+.badge[data-variant="plaque"] .symbol {
+    background: transparent;
+}
+
+.badge[data-variant="plaque"] .label {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+/* Medallion — anneau-monde nocturne, sans reproduire le logotype UNESCO. */
+.badge[data-variant="medallion"] {
+    padding: 3px 10px 3px 4px;
+    border-color: color-mix(in srgb, var(--badge-color) 42%, transparent);
+    border-radius: 999px;
+}
+
+.badge[data-variant="medallion"][data-gradient="true"] {
+    background:
+        radial-gradient(
+            circle at 18% 45%,
+            color-mix(in srgb, var(--lrz-nature-eau-claire) 26%, transparent),
+            transparent 28%
+        ),
+        linear-gradient(
+            110deg,
+            color-mix(in srgb, var(--badge-color) 28%, var(--bg-surface)),
+            color-mix(in srgb, var(--badge-color) 9%, var(--bg-surface))
+        );
+}
+
+.badge[data-variant="medallion"] .symbol {
+    width: 19px;
+    height: 19px;
+    border: 1px solid color-mix(in srgb, currentColor 55%, transparent);
+    background: color-mix(in srgb, var(--badge-color) 16%, transparent);
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.badge[data-variant="medallion"] .label {
+    font-weight: 720;
+    letter-spacing: 0.08em;
+}
+
+.badge[data-preset="unesco-chateau"][data-value="non"] {
+    border-style: dashed;
+    filter: saturate(0.45);
+}
+
+/* Trail — une trace de passage qui devient découverte précieuse. */
+.badge[data-variant="trail"] {
+    border-radius: 999px;
+}
+
+.badge[data-variant="trail"][data-gradient="true"] {
+    background:
+        radial-gradient(
+            circle at 28px 50%,
+            color-mix(in srgb, var(--badge-color) 24%, transparent) 0 1px,
+            transparent 1.5px
+        ),
+        linear-gradient(
+            100deg,
+            color-mix(in srgb, var(--badge-color) 20%, transparent),
+            color-mix(in srgb, var(--badge-color) 7%, var(--bg-surface))
+        );
+    background-size:
+        5px 5px,
+        auto;
+}
+
+.badge[data-variant="trail"] .symbol {
+    transform: rotate(-7deg);
+}
+
+.badge[data-preset="rarete-faune"][data-value="rare"] {
+    border-style: dashed;
+}
+
+.badge[data-preset="rarete-faune"][data-value="trésor"] {
+    border-color: color-mix(in srgb, var(--badge-color) 55%, transparent);
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, white 10%, transparent),
+        0 2px 10px color-mix(in srgb, var(--badge-color) 22%, transparent);
+}
+
+/* Herbarium — étiquette d’herbier aux angles doucement végétaux. */
+.badge[data-variant="herbarium"] {
+    padding-right: 11px;
+    border-radius: 4px 999px 999px 4px;
+}
+
+.badge[data-variant="herbarium"][data-gradient="true"] {
+    background:
+        linear-gradient(
+            112deg,
+            color-mix(in srgb, var(--badge-color) 21%, transparent),
+            transparent 52%
+        ),
+        color-mix(in srgb, var(--badge-color) 8%, var(--bg-surface));
+}
+
+.badge[data-variant="herbarium"]::after {
+    position: absolute;
+    right: 4px;
+    width: 5px;
+    height: 12px;
+    border: 1px solid currentColor;
+    border-width: 0 0 1px 1px;
+    border-radius: 0 0 0 999px;
+    content: "";
+    opacity: 0.22;
+    transform: rotate(35deg);
+}
+
+.badge[data-variant="herbarium"] .symbol {
+    border-radius: 75% 25% 70% 30%;
+    transform: rotate(-8deg);
+}
+
+.badge[data-variant="herbarium"][data-preset="rarete-flore"][data-value="trésor"]
+    .symbol {
+    border-radius: 5px;
+    box-shadow: 0 0 8px color-mix(in srgb, var(--badge-color) 35%, transparent);
+    transform: rotate(4deg);
+}
+
+/* Crest — insigne héraldique dont le rang se lit dans la silhouette. */
+.badge[data-variant="crest"] {
+    padding: 3px 10px 3px 5px;
+    border-radius: 3px 3px 9px 9px;
+}
+
+.badge[data-variant="crest"][data-gradient="true"] {
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--badge-color) 26%, transparent),
+            transparent 46%
+        ),
+        color-mix(in srgb, var(--badge-color) 9%, var(--bg-surface));
+}
+
+.badge[data-variant="crest"]::after {
+    position: absolute;
+    right: 5px;
+    bottom: 2px;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    content: "";
+    opacity: 0.16;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+}
+
+.badge[data-variant="crest"] .symbol {
+    border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+    border-radius: 50% 50% 7px 7px;
+    background: color-mix(in srgb, var(--badge-color) 12%, transparent);
+}
+
+.badge[data-preset="renommee-chateau"][data-value="phare"] {
+    border-color: color-mix(in srgb, var(--badge-color) 56%, transparent);
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, white 18%, transparent),
+        0 2px 9px color-mix(in srgb, var(--badge-color) 20%, transparent);
+}
+
+.badge[data-preset="renommee-chateau"][data-value="confidentiel"] {
+    border-color: color-mix(
+        in srgb,
+        var(--badge-color) 42%,
+        var(--border-soft)
+    );
+    border-style: dashed;
+    color: color-mix(in srgb, var(--badge-color) 82%, var(--text-primary));
+    filter: saturate(0.88);
+}
+
+/* Ticket — billet compact, pictogramme détaché par une perforation. */
+.badge[data-variant="ticket"] {
+    gap: 10px;
+    padding: 3px 10px 3px 4px;
+    border-radius: 5px;
+}
+
+.badge[data-variant="ticket"][data-gradient="true"] {
+    background:
+        linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--badge-color) 22%, transparent) 0 27px,
+            transparent 27px
+        ),
+        color-mix(in srgb, var(--badge-color) 8%, var(--bg-surface));
+}
+
+.badge[data-variant="ticket"]::before {
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    left: 27px;
+    border-left: 1px dashed
+        color-mix(in srgb, var(--badge-color) 42%, transparent);
+    content: "";
+}
+
+.badge[data-variant="ticket"] .symbol {
+    background: transparent;
+}
+
+.badge[data-variant="ticket"] .label {
+    margin-left: 5px;
+}
+
+.badge[data-preset="visite-chateau"][data-value="privé, non visitable"] {
+    border-style: dashed;
+}
+
+.badge[data-preset="visite-chateau"][data-value="inconnu"] {
+    filter: saturate(0.5);
+}
+
+.badge[data-variant][data-dashed="true"] {
+    border-style: dashed;
+}
+
+.badge[data-variant][data-dashed="false"] {
+    border-style: solid;
+}
+
+@media (prefers-contrast: more) {
+    .badge[data-variant]:not([data-variant="default"]) {
+        border-color: currentColor;
+    }
+}
+
+@media (forced-colors: active) {
+    .badge {
+        border-color: currentColor;
+        color: CanvasText;
+        background: Canvas;
+        forced-color-adjust: none;
+    }
 }
