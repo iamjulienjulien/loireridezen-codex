@@ -10,11 +10,11 @@ import {
     LRZCardFooter,
     LRZCardHeader,
     LRZCardMedia,
+    type LRZCardLayout,
     type LRZCardAccent,
     type LRZCardElevation,
     type LRZCardFooterAlign,
     type LRZCardMediaRatio,
-    type LRZCardOrientation,
     type LRZCardPadding,
     type LRZCardTone,
 } from "@/components/LRZCard";
@@ -33,7 +33,12 @@ type PlaygroundState = {
     accent: LRZCardAccent;
     padding: LRZCardPadding;
     elevation: LRZCardElevation;
-    orientation: LRZCardOrientation;
+    layout: LRZCardLayout;
+    interactive: boolean;
+    selected: boolean;
+    active: boolean;
+    loading: boolean;
+    disabled: boolean;
     mediaRatio: LRZCardMediaRatio;
     footerAlign: LRZCardFooterAlign;
     equalHeight: boolean;
@@ -56,7 +61,12 @@ const INITIAL_STATE: PlaygroundState = {
     accent: "top",
     padding: "none",
     elevation: "card",
-    orientation: "vertical",
+    layout: "media-top",
+    interactive: false,
+    selected: false,
+    active: false,
+    loading: false,
+    disabled: false,
     mediaRatio: "wide",
     footerAlign: "between",
     equalHeight: false,
@@ -100,9 +110,12 @@ function playgroundCode(values: PlaygroundState) {
         values.elevation !== "card"
             ? `elevation="${values.elevation}"`
             : undefined,
-        values.orientation !== "vertical"
-            ? `orientation="${values.orientation}"`
-            : undefined,
+        values.layout !== "media-top" ? `layout="${values.layout}"` : undefined,
+        values.interactive ? "interactive" : undefined,
+        values.selected ? "selected" : undefined,
+        values.active ? "active" : undefined,
+        values.loading ? "loading" : undefined,
+        values.disabled ? "disabled" : undefined,
         values.equalHeight ? "equalHeight" : undefined,
     ].filter((prop): prop is string => Boolean(prop));
 
@@ -380,24 +393,28 @@ export default function LRZCardPlayground() {
                             </select>
                         </label>
 
-                        <label
-                            className={styles.control}
-                            htmlFor="card-orientation"
-                        >
-                            <span>orientation</span>
+                        <label className={styles.control} htmlFor="card-layout">
+                            <span>layout</span>
                             <select
-                                id="card-orientation"
-                                value={values.orientation}
+                                id="card-layout"
+                                value={values.layout}
                                 onChange={(event) =>
                                     updateValue(
-                                        "orientation",
-                                        event.target
-                                            .value as LRZCardOrientation,
+                                        "layout",
+                                        event.target.value as LRZCardLayout,
                                     )
                                 }
                             >
-                                <option value="vertical">vertical</option>
-                                <option value="horizontal">horizontal</option>
+                                {[
+                                    "media-top",
+                                    "media-bottom",
+                                    "media-start",
+                                    "media-end",
+                                ].map((layout) => (
+                                    <option key={layout} value={layout}>
+                                        {layout}
+                                    </option>
+                                ))}
                             </select>
                         </label>
                     </fieldset>
@@ -561,6 +578,27 @@ export default function LRZCardPlayground() {
                             />
                             <span>equalHeight</span>
                         </label>
+
+                        {(
+                            [
+                                "interactive",
+                                "selected",
+                                "active",
+                                "loading",
+                                "disabled",
+                            ] as const
+                        ).map((state) => (
+                            <label className={styles.checkControl} key={state}>
+                                <input
+                                    type="checkbox"
+                                    checked={values[state]}
+                                    onChange={(event) =>
+                                        updateValue(state, event.target.checked)
+                                    }
+                                />
+                                <span>{state}</span>
+                            </label>
+                        ))}
                     </fieldset>
                 </form>
 
@@ -575,7 +613,12 @@ export default function LRZCardPlayground() {
                                 accent={values.accent}
                                 padding={values.padding}
                                 elevation={values.elevation}
-                                orientation={values.orientation}
+                                layout={values.layout}
+                                interactive={values.interactive}
+                                selected={values.selected}
+                                active={values.active}
+                                loading={values.loading}
+                                disabled={values.disabled}
                                 equalHeight={values.equalHeight}
                             >
                                 {values.showMedia ? (

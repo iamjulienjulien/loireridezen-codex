@@ -5,6 +5,9 @@ export {
     LRZCardFooter,
     LRZCardHeader,
     LRZCardMedia,
+    LRZCardLink,
+    LRZCardOverlay,
+    LRZCardSection,
 } from "./LRZCard";
 
 export type {
@@ -16,9 +19,15 @@ export type {
     LRZCardHeaderProps,
     LRZCardMediaProps,
     LRZCardMediaRatio,
+    LRZCardLayout,
+    LRZCardLinkProps,
+    LRZCardOverlayPosition,
+    LRZCardOverlayProps,
     LRZCardOrientation,
     LRZCardPadding,
     LRZCardProps,
     LRZCardTitleElement,
     LRZCardTone,
+    LRZCardSectionProps,
+    LRZCardSectionTone,
 } from "./LRZCard";
