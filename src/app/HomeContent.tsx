@@ -4,6 +4,7 @@ import Link from "next/link";
 import PageFooter from "@/components/PageFooter";
 import type { IndexEntry } from "@/registry/indexes";
 import styles from "./HomeContent.module.css";
+import LRZLivingText from "@/components/LRZLivingText";
 
 export default function HomeContent({
     indexes,
@@ -12,7 +13,6 @@ export default function HomeContent({
     indexes: readonly IndexEntry[];
     showDevelopmentTools: boolean;
 }) {
-
     return (
         <main
             className={`${styles.page} flex min-h-dvh items-center justify-center px-6 py-16`}
@@ -21,9 +21,20 @@ export default function HomeContent({
                 <p className="font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.18em] text-[#a87029]">
                     Loire Ride Zen
                 </p>
-                <h1 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-medium tracking-tight sm:text-5xl">
-                    Le Codex ligérien
-                </h1>
+                <div className="mt-4">
+                    <LRZLivingText.ScrambleText
+                        preset="heading-1"
+                        as="h1"
+                        speed={130}
+                        align="center"
+                        size="4xl"
+                        preserveSpaces
+                        color="blanc"
+                        characterSet="ucfirst"
+                    >
+                        Le Codex Ligérien
+                    </LRZLivingText.ScrambleText>
+                </div>
                 <p className="mt-5 text-[15px] leading-relaxed text-[var(--text-secondary)]">
                     Explorer, observer, raconter la Loire.
                 </p>
