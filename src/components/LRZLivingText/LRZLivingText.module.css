@@ -7,7 +7,7 @@
 }
 
 .pathText {
-    fill: var(--living-color, var(--text-primary));
+    fill: var(--living-color, var(--color-ambiance-texte-primaire));
     font-family: var(--font-display);
     font-size: var(--living-path-size, 2rem);
     font-weight: 560;

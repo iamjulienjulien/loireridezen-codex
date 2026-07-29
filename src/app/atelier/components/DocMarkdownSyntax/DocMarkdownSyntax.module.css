@@ -9,7 +9,7 @@
             color-mix(in srgb, var(--gold) 7%, transparent),
             transparent 44%
         ),
-        var(--bg-surface);
+        var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -38,7 +38,7 @@
 .header > p:last-child,
 .note {
     margin: 0.65rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -51,8 +51,8 @@
     padding: clamp(1rem, 3vw, 1.35rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-primary);
-    background: var(--bg-main);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-fond);
     font-family: var(--font-mono);
     font-size: 0.76rem;
     line-height: 1.7;

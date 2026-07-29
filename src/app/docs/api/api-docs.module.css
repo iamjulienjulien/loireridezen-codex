@@ -1,13 +1,13 @@
 .page {
     min-height: 100vh;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     background:
         radial-gradient(
             circle at 12% 2%,
             color-mix(in srgb, var(--gold) 14%, transparent),
             transparent 28rem
         ),
-        var(--bg-main);
+        var(--color-ambiance-fond);
 }
 
 .topbar {
@@ -20,7 +20,7 @@
     min-height: 4rem;
     padding: 0.75rem clamp(1rem, 4vw, 3.5rem);
     border-bottom: 1px solid var(--border-soft);
-    background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 92%, transparent);
     backdrop-filter: blur(16px);
 }
 
@@ -28,7 +28,7 @@
     display: inline-flex;
     gap: 0.65rem;
     align-items: center;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-family: var(--font-display), serif;
     font-size: 1.05rem;
     font-weight: 650;
@@ -43,7 +43,7 @@
 
 .primaryNav a,
 .footer a {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.82rem;
     font-weight: 650;
     letter-spacing: 0.04em;
@@ -88,7 +88,7 @@
 
 .sidebarLabel {
     margin: 0 0 0.9rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-size: 0.72rem;
     font-weight: 750;
     letter-spacing: 0.13em;
@@ -107,7 +107,7 @@
     display: block;
     padding: 0.38rem 0.6rem;
     border-left: 2px solid var(--border-soft);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.88rem;
     line-height: 1.35;
     text-decoration: none;
@@ -115,7 +115,7 @@
 
 .sidebar a:hover {
     border-left-color: var(--gold);
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     background: var(--gold-soft);
 }
 
@@ -124,7 +124,7 @@
     padding: clamp(1.4rem, 4vw, 3.4rem);
     border: 1px solid var(--border-soft);
     border-radius: calc(var(--radius-lg) * 1.5);
-    background: color-mix(in srgb, var(--bg-surface) 96%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 96%, transparent);
     box-shadow: var(--shadow-card);
 }
 
@@ -141,7 +141,7 @@
 .content h1 + p {
     max-width: 45rem;
     margin: 0 0 3rem;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: clamp(1.05rem, 2.1vw, 1.3rem);
     line-height: 1.65;
 }
@@ -166,7 +166,7 @@
 
 .anchor {
     margin-left: 0.5rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono), monospace;
     font-size: 0.7em;
     text-decoration: none;
@@ -180,19 +180,19 @@
 }
 
 .content p {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 1rem;
     line-height: 1.75;
 }
 
 .content a {
-    color: color-mix(in srgb, var(--gold) 82%, var(--text-primary));
+    color: color-mix(in srgb, var(--gold) 82%, var(--color-ambiance-texte-primaire));
     text-decoration-thickness: 0.08em;
     text-underline-offset: 0.2em;
 }
 
 .content strong {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .notice {
@@ -206,7 +206,7 @@
 
 .notice p {
     margin: 0;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .tableScroll {
@@ -232,7 +232,7 @@
 }
 
 .tableScroll th {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     background: var(--bg-overlay);
 }
 
@@ -248,7 +248,7 @@
     margin: 0 auto;
     padding: 1.5rem 0 2.5rem;
     border-top: 1px solid var(--border-soft);
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-size: 0.85rem;
 }
 
@@ -270,7 +270,7 @@
         padding: 1rem;
         border: 1px solid var(--border-soft);
         border-radius: var(--radius-md);
-        background: var(--bg-surface);
+        background: var(--color-ambiance-surface);
     }
 
     .sidebar ol {

@@ -1,9 +1,9 @@
 .page {
     position: relative;
     min-height: 100dvh;
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     overflow-x: hidden;
     transition:
         background-color 1.4s ease,
@@ -34,7 +34,7 @@
 }
 
 .fiche {
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     padding: 20px 20px 18px;
@@ -73,7 +73,7 @@
     font-size: 10px;
     letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -137,13 +137,13 @@
     font-size: 19px;
     letter-spacing: -0.01em;
     line-height: 1.15;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 .fSub {
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
     font-size: 13.5px;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     margin-top: 2px;
 }
 
@@ -160,7 +160,7 @@
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
     font-size: 13.5px;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     margin-bottom: 12px;
 }
 .fMeta {
@@ -175,12 +175,12 @@
     font-size: 9px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     margin-bottom: 2px;
 }
 .v {
     font-size: 13px;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .rarete {
@@ -194,7 +194,7 @@
     border: 1px solid transparent;
 }
 .rCommun {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     border-color: var(--border-soft);
 }
 .rRegulier {
@@ -271,13 +271,13 @@
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
     font-size: 12.5px;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 .rang {
     font-family: var(--font-mono);
     font-size: 11px;
     line-height: 1.7;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     word-break: break-word;
 }
 
@@ -286,7 +286,7 @@
     padding: 60px 20px;
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-size: 15px;
 }
 @media (max-width: 560px) {
@@ -451,7 +451,7 @@
     font-size: 10px;
     letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .heroCatV3::before {
     content: "";
@@ -466,13 +466,13 @@
     font-size: 19px;
     letter-spacing: -0.01em;
     line-height: 1.15;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 .heroSciV3 {
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
     font-size: 12.5px;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     margin-top: 1px;
 }
 .subV3 {
@@ -480,7 +480,7 @@
     font-style: italic;
     font-size: 13px;
     line-height: 1.5;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 .statsV3 {
     display: grid;
@@ -501,14 +501,14 @@
     font-size: 8.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .statVV3 {
     font-family: var(--font-body);
     font-size: 12px;
     font-weight: 500;
     line-height: 1.3;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 .tagsV3 {
     display: flex;
@@ -525,7 +525,7 @@
     padding: 4px 10px;
     border: 1px solid var(--border-soft);
     border-radius: 999px;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 .anecdoteV3 {
     position: relative;
@@ -533,7 +533,7 @@
     font-style: italic;
     font-size: 13px;
     line-height: 1.55;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     padding: 10px 12px;
     border-left: 2px solid var(--cat-accent, var(--gold));
     border-radius: 0 6px 6px 0;

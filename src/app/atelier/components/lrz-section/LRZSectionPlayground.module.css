@@ -7,8 +7,8 @@
 .page {
     min-height: 100dvh;
     overflow-x: hidden;
-    color: var(--text-primary);
-    background-color: var(--bg-main);
+    color: var(--color-ambiance-texte-primaire);
+    background-color: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
 }
 
@@ -26,7 +26,7 @@
 .back {
     display: inline-flex;
     margin-bottom: 2.5rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
@@ -66,7 +66,7 @@
 .lede {
     max-width: 62rem;
     margin: 1.25rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.7;
@@ -86,7 +86,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -103,7 +103,7 @@
 
 .mainExamplePreview > p:not(.kicker) {
     margin: 0.65rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -118,7 +118,7 @@
     background:
         linear-gradient(var(--border-subtle) 1px, transparent 1px),
         linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
-        var(--bg-main);
+        var(--color-ambiance-fond);
     background-size: 24px 24px;
 }
 
@@ -133,8 +133,8 @@
     padding: clamp(1rem, 3vw, 1.5rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-main);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-fond);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.65;
@@ -153,7 +153,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -172,7 +172,7 @@
 .sectionHeader > p:last-child {
     max-width: 58ch;
     margin: 0.55rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -200,7 +200,7 @@
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--bg-surface) 94%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
 }
 
 .layoutCardHeader {
@@ -221,14 +221,14 @@
 
 .layoutCardHeader p {
     margin: 0.45rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.78rem;
     line-height: 1.55;
 }
 
 .layoutCardHeader code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.63rem;
     white-space: nowrap;
@@ -240,7 +240,7 @@
     background:
         linear-gradient(var(--border-subtle) 1px, transparent 1px),
         linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
-        var(--bg-main);
+        var(--color-ambiance-fond);
     background-size: 24px 24px;
 }
 
@@ -253,7 +253,7 @@
 /* -------------------------------------------------------------------------- */
 
 .demoCopy {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.82rem;
     line-height: 1.65;
@@ -274,7 +274,7 @@
     padding: 1rem;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     background: var(--bg-overlay);
     font-family: var(--font-mono);
     font-size: 0.67rem;
@@ -307,7 +307,7 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     background: var(--bg-overlay);
     font-family: var(--font-body);
     font-size: 0.8rem;
@@ -319,7 +319,7 @@
     min-height: 10rem;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     background:
         radial-gradient(
             circle at center,
@@ -343,8 +343,8 @@
     padding: 0.55rem 0.8rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-primary);
-    background: var(--bg-elevated);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-elevation);
     font-family: var(--font-mono);
     font-size: 0.66rem;
     cursor: pointer;
@@ -393,7 +393,7 @@
 }
 
 .widthExample > code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.66rem;
 }
@@ -431,14 +431,14 @@
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .toneCard > code {
     display: block;
     padding: 0.7rem 0.85rem;
     border-bottom: 1px solid var(--border-subtle);
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     background: var(--bg-overlay);
     font-family: var(--font-mono);
     font-size: 0.64rem;
@@ -466,7 +466,7 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--bg-surface) 94%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
 }
 
 .headerExampleMeta h3 {
@@ -478,7 +478,7 @@
 
 .headerExampleMeta p {
     margin: 0.5rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.8rem;
     line-height: 1.6;
@@ -487,7 +487,7 @@
 .headerExampleMeta code {
     display: inline-block;
     margin-top: 0.75rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.64rem;
 }
@@ -497,7 +497,7 @@
     overflow: hidden;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -509,7 +509,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -532,7 +532,7 @@
 .header p:last-child {
     max-width: 55ch;
     margin: 0.55rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -544,7 +544,7 @@
     padding: 0.55rem 0.75rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     background: var(--bg-overlay);
     font-family: var(--font-mono);
     font-size: 0.68rem;
@@ -610,7 +610,7 @@
 
 .control > span,
 .checkboxControl > span {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.7rem;
 }
@@ -618,7 +618,7 @@
 .control strong,
 .checkboxControl strong {
     margin-left: 0.35rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-body);
     font-size: 0.63rem;
     font-style: normal;
@@ -633,8 +633,8 @@
     padding: 0.55rem 0.65rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-primary);
-    background: var(--bg-elevated);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-elevation);
     font-family: var(--font-body);
     font-size: 0.8rem;
 }
@@ -674,7 +674,7 @@
     background:
         linear-gradient(var(--border-subtle) 1px, transparent 1px),
         linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
-        var(--bg-main);
+        var(--color-ambiance-fond);
     background-size: 24px 24px;
 }
 
@@ -691,7 +691,7 @@
 .outputLabel {
     display: block;
     margin-bottom: 1rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     letter-spacing: 0.12em;
@@ -704,7 +704,7 @@
     overflow: hidden;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 82%, transparent);
 }
 
 .canvas > * {
@@ -712,7 +712,7 @@
 }
 
 .previewBody {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.7;
@@ -746,7 +746,7 @@
 }
 
 .previewAside strong {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 540;
@@ -754,7 +754,7 @@
 
 .previewAside p {
     margin: 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.76rem;
     line-height: 1.55;
@@ -783,7 +783,7 @@
 }
 
 .previewCard strong {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-family: var(--font-display);
     font-size: 0.95rem;
     font-weight: 540;
@@ -791,7 +791,7 @@
 
 .previewCard p {
     margin: 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.72rem;
     line-height: 1.5;
@@ -804,8 +804,8 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-surface);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.65;
@@ -834,7 +834,7 @@
 .tableScroll td {
     padding: 0.8rem 1rem;
     border-bottom: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.75rem;
     line-height: 1.5;
@@ -843,7 +843,7 @@
 }
 
 .tableScroll thead th {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     background: var(--bg-overlay);
     font-family: var(--font-mono);
     font-size: 0.65rem;
@@ -853,7 +853,7 @@
 }
 
 .tableScroll tbody th {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-weight: 500;
 }
 

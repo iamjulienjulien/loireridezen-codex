@@ -35,7 +35,7 @@ export default function HomeContent({
                         Le Codex Ligérien
                     </LRZLivingText.ScrambleText>
                 </div>
-                <p className="mt-5 text-[15px] leading-relaxed text-[var(--text-secondary)]">
+                <p className="mt-5 text-[15px] leading-relaxed text-[var(--color-ambiance-texte-secondaire)]">
                     Explorer, observer, raconter la Loire.
                 </p>
 
@@ -46,7 +46,7 @@ export default function HomeContent({
                         <Link
                             key={entry.href}
                             href={entry.href}
-                            className="group flex items-center gap-4 rounded-[10px] border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-5 text-left shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[#c8893a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8893a]"
+                            className="group flex items-center gap-4 rounded-[10px] border border-[var(--border-subtle)] bg-[var(--color-ambiance-surface)] p-5 text-left shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[#c8893a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8893a]"
                         >
                             <span
                                 aria-hidden
@@ -55,10 +55,10 @@ export default function HomeContent({
                                 {entry.mark}
                             </span>
                             <span className="min-w-0 flex-1">
-                                <span className="mt-0.5 block font-[family-name:var(--font-display)] text-lg font-medium tracking-tight text-[var(--text-primary)]">
+                                <span className="mt-0.5 block font-[family-name:var(--font-display)] text-lg font-medium tracking-tight text-[var(--color-ambiance-texte-primaire)]">
                                     {entry.title}
                                 </span>
-                                <span className="mt-1 block text-[13px] leading-snug text-[var(--text-secondary)]">
+                                <span className="mt-1 block text-[13px] leading-snug text-[var(--color-ambiance-texte-secondaire)]">
                                     {entry.description}
                                 </span>
                             </span>
@@ -75,7 +75,7 @@ export default function HomeContent({
                 {showDevelopmentTools && (
                     <Link
                         href="/atelier"
-                        className="mt-8 inline-flex items-center gap-2 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[var(--text-tertiary)] transition-colors hover:text-[#c8893a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8893a]"
+                        className="mt-8 inline-flex items-center gap-2 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[var(--color-ambiance-texte-tertiaire)] transition-colors hover:text-[#c8893a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8893a]"
                     >
                         <span aria-hidden>✎</span>
                         Atelier — esquisses de composants

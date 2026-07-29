@@ -59,9 +59,9 @@
 }
 
 .standard {
-    --rank-light: var(--bg-elevated);
-    --rank-mid: color-mix(in srgb, var(--border-soft) 70%, var(--bg-surface));
-    --rank-dark: var(--text-tertiary);
+    --rank-light: var(--color-ambiance-elevation);
+    --rank-mid: color-mix(in srgb, var(--border-soft) 70%, var(--color-ambiance-surface));
+    --rank-dark: var(--color-ambiance-texte-tertiaire);
     --rank-shadow: rgba(55, 48, 40, 0.09);
 }
 
@@ -298,7 +298,7 @@
 .standard.badge::before,
 .standard.medal::before,
 .standard.medal::after {
-    border-color: color-mix(in srgb, var(--text-tertiary) 20%, transparent);
+    border-color: color-mix(in srgb, var(--color-ambiance-texte-tertiaire) 20%, transparent);
 }
 
 /* ============================================================

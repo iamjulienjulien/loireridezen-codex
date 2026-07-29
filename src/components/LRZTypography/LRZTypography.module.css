@@ -1,7 +1,7 @@
 .typography {
     margin: 0;
     overflow-wrap: anywhere;
-    color: var(--typography-color, var(--text-primary));
+    color: var(--typography-color, var(--color-ambiance-texte-primaire));
     font-family: var(--font-body);
     font-size: 1rem;
     font-style: normal;
@@ -52,7 +52,7 @@
 }
 
 .typography[data-preset="lede"] {
-    color: var(--typography-color, var(--text-secondary));
+    color: var(--typography-color, var(--color-ambiance-texte-secondaire));
     font-family: var(--font-body);
     font-size: clamp(1.05rem, 2vw, 1.2rem);
     font-weight: 400;
@@ -316,7 +316,7 @@
     text-shadow:
         0 0.035em 0 color-mix(in srgb, white 48%, transparent),
         0 -0.035em 0 color-mix(in srgb, currentColor 30%, transparent),
-        0 0.08em 0.16em color-mix(in srgb, var(--text-primary) 12%, transparent);
+        0 0.08em 0.16em color-mix(in srgb, var(--color-ambiance-texte-primaire) 12%, transparent);
 }
 
 .typography[data-effect="outline"] {
@@ -328,8 +328,8 @@
 
 .typography[data-effect="soft-shadow"] {
     text-shadow:
-        0 0.06em 0.08em color-mix(in srgb, var(--bg-main) 44%, transparent),
-        0 0.13em 0.28em color-mix(in srgb, var(--text-primary) 24%, transparent);
+        0 0.06em 0.08em color-mix(in srgb, var(--color-ambiance-fond) 44%, transparent),
+        0 0.13em 0.28em color-mix(in srgb, var(--color-ambiance-texte-primaire) 24%, transparent);
 }
 
 .typography[data-effect="moon-glow"] {

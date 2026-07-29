@@ -1,8 +1,8 @@
 .page {
     min-height: 100dvh;
     padding-bottom: 6rem;
-    background: var(--bg-main);
-    color: var(--text-primary);
+    background: var(--color-ambiance-fond);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .wrap {
@@ -17,7 +17,7 @@
 .back {
     display: inline-flex;
     margin-bottom: 2.5rem;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     text-decoration: none;
@@ -50,7 +50,7 @@
 .lede {
     max-width: 62ch;
     margin: 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-edit, var(--font-display));
     font-size: 1.1rem;
     line-height: 1.65;
@@ -79,7 +79,7 @@
 .sectionHeader p:last-child {
     max-width: 65ch;
     margin: 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     line-height: 1.6;
 }
 
@@ -90,17 +90,17 @@
     padding: clamp(1.2rem, 4vw, 2rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
 .previewDark {
-    background: var(--bg-elevated);
+    background: var(--color-ambiance-elevation);
 }
 
 .previewLabel {
     margin: 0;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.66rem;
     letter-spacing: 0.1em;
@@ -133,12 +133,12 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--bg-surface) 75%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 75%, transparent);
 }
 
 .exampleTitle {
     margin: 0;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
@@ -147,7 +147,7 @@
 
 .exampleDescription {
     margin: 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.86rem;
     line-height: 1.5;
 }
@@ -157,8 +157,8 @@
     overflow-x: auto;
     padding: 1rem;
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--bg-main) 75%, black);
-    color: var(--text-secondary);
+    background: color-mix(in srgb, var(--color-ambiance-fond) 75%, black);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.6;
@@ -188,7 +188,7 @@
 }
 
 .tableScroll th {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     letter-spacing: 0.08em;

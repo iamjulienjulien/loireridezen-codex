@@ -1,8 +1,8 @@
 .page {
     min-height: 100dvh;
     overflow-x: hidden;
-    color: var(--text-primary);
-    background-color: var(--bg-main);
+    color: var(--color-ambiance-texte-primaire);
+    background-color: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
 }
 
@@ -20,7 +20,7 @@
 .back {
     display: inline-flex;
     margin-bottom: 2.5rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
@@ -65,7 +65,7 @@
 .lede {
     max-width: 68ch;
     margin: 1.25rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.7;
@@ -80,7 +80,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -106,7 +106,7 @@
 .sectionHeader > p:last-child,
 .playgroundHeader p:last-child {
     margin: 0.55rem 0 1.25rem;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.84rem;
     line-height: 1.6;
 }
@@ -118,8 +118,8 @@
     padding: 1.25rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-main);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-fond);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.65;
@@ -150,7 +150,7 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .example h3,
@@ -166,7 +166,7 @@
 
 .example p {
     min-height: 3.7em;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.78rem;
     line-height: 1.55;
 }
@@ -197,7 +197,7 @@
     padding: 0.65rem 0.85rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     background: transparent;
     cursor: pointer;
     font-family: var(--font-mono);
@@ -222,7 +222,7 @@
     gap: 1rem;
     padding: 1.25rem;
     border-right: 1px solid var(--border-subtle);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .controlGroup {
@@ -252,7 +252,7 @@
 
 .control > span,
 .checkControl {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.68rem;
 }
@@ -265,8 +265,8 @@
     padding: 0.5rem 0.65rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-surface);
     font: inherit;
     font-size: 0.78rem;
 }
@@ -305,7 +305,7 @@
 .outputLabel {
     display: block;
     margin-bottom: 0.8rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     letter-spacing: 0.11em;
@@ -317,7 +317,7 @@
     padding: clamp(1rem, 4vw, 2rem);
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .resolvedValues {
@@ -332,7 +332,7 @@
 }
 
 .resolvedValues dt {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.08em;
@@ -342,7 +342,7 @@
 .resolvedValues dd {
     margin: 0.25rem 0 0;
     overflow-wrap: anywhere;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-size: 0.76rem;
 }
 
@@ -354,8 +354,8 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-main);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-fond);
     font-family: var(--font-mono);
     font-size: 0.69rem;
     line-height: 1.6;
@@ -381,7 +381,7 @@
 }
 
 .tableScroll thead th {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.64rem;
     letter-spacing: 0.08em;
@@ -406,7 +406,7 @@
     gap: 0.65rem;
     margin: 1rem 0 0;
     padding-left: 1.2rem;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.84rem;
     line-height: 1.6;
 }

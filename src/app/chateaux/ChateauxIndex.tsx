@@ -318,7 +318,7 @@ export default function ChateauxIndex({
                         style={{
                             display: "block",
                             marginBottom: "5px",
-                            color: "var(--text-secondary)",
+                            color: "var(--color-ambiance-texte-secondaire)",
                             fontSize: "12px",
                         }}
                     >

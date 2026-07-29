@@ -1,9 +1,9 @@
 .page {
     position: relative;
     overflow-x: hidden;
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     transition:
         background-color 1.4s ease,
         color 1.4s ease;

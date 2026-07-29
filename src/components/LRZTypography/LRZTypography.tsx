@@ -195,9 +195,9 @@ const DEFAULT_COLORS: Record<LRZTypographyPreset, LRZTypographySemanticColor> =
     };
 
 const SEMANTIC_COLORS: Record<LRZTypographySemanticColor, string> = {
-    primary: "var(--text-primary)",
-    secondary: "var(--text-secondary)",
-    tertiary: "var(--text-tertiary)",
+    primary: "var(--color-ambiance-texte-primaire)",
+    secondary: "var(--color-ambiance-texte-secondaire)",
+    tertiary: "var(--color-ambiance-texte-tertiaire)",
     accent: "var(--gold)",
     inherit: "inherit",
 };

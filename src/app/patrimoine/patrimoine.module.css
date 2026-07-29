@@ -1,9 +1,9 @@
 .page {
     position: relative;
     min-height: 100dvh;
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     overflow-x: hidden;
     transition:
         background-color 1.4s ease,
@@ -36,7 +36,7 @@
 /* ===== Fiche de relevé ===== */
 .fiche {
     position: relative;
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     border: 1px solid var(--border-strong);
     border-radius: 3px;
     padding: 16px 18px 14px;
@@ -146,7 +146,7 @@
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -191,14 +191,14 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
     line-height: 1.25;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     max-width: 78%;
 }
 .sub {
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
     font-size: 13px;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     margin-top: 4px;
     margin-bottom: 14px;
 }
@@ -243,7 +243,7 @@
     font-size: 8px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .releve {
     flex: 1;
@@ -261,19 +261,19 @@
     font-size: 8.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .releve dd {
     margin: 0;
     font-size: 12.5px;
     line-height: 1.35;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .fonction {
     font-size: 12.5px;
     line-height: 1.5;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     padding: 10px 0;
     border-top: 1px solid var(--border-subtle);
     margin-bottom: 12px;
@@ -303,12 +303,12 @@
     font-size: 8px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .cartV {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     white-space: nowrap;
 }
 
@@ -340,26 +340,26 @@
 .resume {
     font-size: 13px;
     line-height: 1.55;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 .autres {
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
     font-size: 12.5px;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .dept {
     font-family: var(--font-mono);
     font-size: 10.5px;
     letter-spacing: 0.04em;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .note {
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
     font-size: 12.5px;
     line-height: 1.55;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     padding-left: 12px;
     border-left: 2px solid var(--gold-soft);
 }
@@ -369,7 +369,7 @@
     padding: 60px 20px;
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-size: 15px;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -510,7 +510,7 @@
     font-size: 10px;
     letter-spacing: 0.13em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .heroTypeV3::before {
     content: "";
@@ -523,7 +523,7 @@
     font-family: var(--font-mono);
     font-size: 9.5px;
     letter-spacing: 0.06em;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .heroNameV3 {
     font-family: var(--font-display);
@@ -531,13 +531,13 @@
     font-size: 19px;
     letter-spacing: -0.01em;
     line-height: 1.15;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 .heroSciV3 {
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
     font-size: 12.5px;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     margin-top: 1px;
 }
 .subV3 {
@@ -545,7 +545,7 @@
     font-style: italic;
     font-size: 13px;
     line-height: 1.5;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 .statsV3 {
     display: grid;
@@ -566,14 +566,14 @@
     font-size: 8.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .statVV3 {
     font-family: var(--font-body);
     font-size: 12px;
     font-weight: 500;
     line-height: 1.3;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 .tagsV3 {
     display: flex;
@@ -590,13 +590,13 @@
     padding: 4px 10px;
     border: 1px solid var(--border-soft);
     border-radius: 999px;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 .coordV3 {
     font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: 0.04em;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 .anecdoteV3 {
     position: relative;
@@ -604,7 +604,7 @@
     font-style: italic;
     font-size: 13px;
     line-height: 1.55;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     padding: 10px 12px;
     border-left: 2px solid var(--type-accent, var(--gold));
     border-radius: 0 6px 6px 0;

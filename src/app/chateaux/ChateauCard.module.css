@@ -10,7 +10,7 @@
     gap: 0;
     padding: 0;
     overflow: hidden;
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
@@ -47,7 +47,7 @@
     isolation: isolate;
     min-height: 218px;
     overflow: hidden;
-    background: var(--bg-sky);
+    background: var(--gradient-ambiance-ciel);
 }
 
 .hero::before {
@@ -136,7 +136,7 @@
     font-size: 9.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 
 .heroEpoque::before {
@@ -226,7 +226,7 @@
     font-size: 13.5px;
     font-style: italic;
     line-height: 1.5;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 
 .infoGroups {
@@ -277,7 +277,7 @@
     line-height: 1.45;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 
 .infoRow dd {
@@ -288,7 +288,7 @@
     font-size: 12.5px;
     font-weight: 500;
     line-height: 1.42;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 /* ==========================================================================
@@ -307,7 +307,7 @@
     gap: 8px;
     font-size: 12.5px;
     line-height: 1.4;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 
 .visit > span:first-child {
@@ -327,7 +327,7 @@
 
 .visit strong {
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .visit svg {
@@ -352,7 +352,7 @@
     font-size: 8.5px;
     letter-spacing: 0.07em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 
 /* ==========================================================================
@@ -414,19 +414,19 @@
     font-size: 9px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 
 .v {
     font-size: 13px;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .consNote {
     font-family: var(--font-edit, var(--font-display));
     font-size: 12.5px;
     font-style: italic;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 
 /* ==========================================================================

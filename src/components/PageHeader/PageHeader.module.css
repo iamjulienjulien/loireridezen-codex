@@ -114,13 +114,13 @@
 }
 
 .identitySeparator {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     opacity: 0.7;
 }
 
 .siteName,
 .parentIndex {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 
     font-family: var(--font-display);
     font-size: 13.5px;
@@ -147,7 +147,7 @@
 .title {
     margin: 0;
 
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 
     font-family: var(--font-display);
     font-size: clamp(26px, 4.4vw, 36px);
@@ -193,7 +193,7 @@
 
     border-radius: 999px;
 
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 
     font-family: var(--font-mono);
     font-size: 11px;
@@ -207,25 +207,25 @@
 }
 
 .navButton:hover {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     background: var(--bg-overlay);
 }
 
 /* Index actuellement affiché. */
 
 .navButton[aria-current="page"] {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 
-    background: var(--bg-elevated);
+    background: var(--color-ambiance-elevation);
     box-shadow: var(--shadow-card);
 }
 
 /* Index parent lorsqu’une collection est affichée. */
 
 .navButton[data-current-section] {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 
-    background: color-mix(in srgb, var(--accent) 8%, var(--bg-elevated));
+    background: color-mix(in srgb, var(--accent) 8%, var(--color-ambiance-elevation));
 }
 
 /* L’index courant et l’index parent utilisent le même fil

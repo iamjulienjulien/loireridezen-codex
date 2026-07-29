@@ -1,8 +1,8 @@
 .page {
     min-height: 100dvh;
     overflow-x: clip;
-    color: var(--text-primary);
-    background-color: var(--bg-main);
+    color: var(--color-ambiance-texte-primaire);
+    background-color: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
 }
 
@@ -22,7 +22,7 @@
 .back {
     width: fit-content;
     margin-bottom: 1.5rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
@@ -67,7 +67,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -120,7 +120,7 @@
 }
 
 .presetMeta span {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-size: 0.72rem;
 }
 
@@ -138,7 +138,7 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .fontExample > p:first-child {
@@ -179,7 +179,7 @@
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .staticEffectExample {
@@ -212,8 +212,8 @@
     padding: 0.32rem 0.55rem;
     border: 1px solid var(--border-subtle);
     border-radius: 999px;
-    color: var(--text-tertiary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-tertiaire);
+    background: var(--color-ambiance-surface);
     cursor: pointer;
     font-family: var(--font-mono);
     font-size: 0.6rem;
@@ -265,7 +265,7 @@
 
 .effectExample code,
 .dropCapExample code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.68rem;
 }
@@ -277,7 +277,7 @@
     padding: clamp(1.1rem, 3vw, 1.5rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .dropCapExample > p {
@@ -332,7 +332,7 @@
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .compositionCode {
@@ -342,8 +342,8 @@
     overflow-x: auto;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    background: color-mix(in srgb, var(--bg-surface) 72%, transparent);
-    color: var(--text-tertiary);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 72%, transparent);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.68rem;
     line-height: 1.6;
@@ -367,12 +367,12 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .gradientExample code,
 .creativeCard code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
 }
@@ -436,7 +436,7 @@
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .livingSection {
@@ -467,7 +467,7 @@
     min-width: 0;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .pathScene {
@@ -492,7 +492,7 @@
 }
 
 .livingMeta code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.64rem;
 }
@@ -514,7 +514,7 @@
 
 .livingControl > span,
 .livingCheck {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.61rem;
     letter-spacing: 0.04em;
@@ -528,8 +528,8 @@
     padding: 0.38rem 0.48rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-surface);
     font: inherit;
     font-size: 0.72rem;
 }
@@ -968,7 +968,7 @@
 .playgroundHeader p:last-child {
     max-width: 62ch;
     margin: 0.55rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.84rem;
     line-height: 1.6;
 }
@@ -979,7 +979,7 @@
     padding: 0.65rem 0.85rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     background: transparent;
     cursor: pointer;
     font-family: var(--font-mono);
@@ -995,7 +995,7 @@
 }
 
 .playToggle[aria-pressed="true"] {
-    color: var(--bg-main);
+    color: var(--color-ambiance-fond);
     border-color: var(--gold);
     background: var(--gold);
 }
@@ -1012,7 +1012,7 @@
     gap: 1rem;
     padding: 1.25rem;
     border-right: 1px solid var(--border-subtle);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .controlGroup {
@@ -1042,7 +1042,7 @@
 
 .control > span,
 .checkControl {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.68rem;
 }
@@ -1056,8 +1056,8 @@
     padding: 0.5rem 0.65rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-surface);
     font: inherit;
     font-size: 0.78rem;
 }
@@ -1104,7 +1104,7 @@
 .outputLabel {
     display: block;
     margin-bottom: 0.8rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     letter-spacing: 0.11em;
@@ -1119,7 +1119,7 @@
     padding: clamp(1rem, 4vw, 2rem);
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .animationStage * {
@@ -1140,7 +1140,7 @@
 }
 
 .resolvedValues dt {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.08em;
@@ -1149,7 +1149,7 @@
 
 .resolvedValues dd {
     margin: 0.25rem 0 0;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-size: 0.76rem;
 }
 
@@ -1161,8 +1161,8 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-main);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-fond);
     font-family: var(--font-mono);
     font-size: 0.69rem;
     line-height: 1.6;
@@ -1188,7 +1188,7 @@
 }
 
 .tableScroll thead th {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.64rem;
     letter-spacing: 0.08em;
@@ -1214,7 +1214,7 @@
     gap: 0.65rem;
     margin: 0.5rem 0 0;
     padding-left: 1.2rem;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.84rem;
     line-height: 1.6;
 }

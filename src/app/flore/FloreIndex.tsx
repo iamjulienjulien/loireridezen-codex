@@ -159,7 +159,7 @@ export default function FloreIndex({
                         style={{
                             display: "block",
                             fontSize: "12px",
-                            color: "var(--text-secondary)",
+                            color: "var(--color-ambiance-texte-secondaire)",
                             marginBottom: "5px",
                         }}
                     >

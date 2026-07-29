@@ -1,13 +1,13 @@
 .root {
     --table-accent: var(--color-eau);
     --table-border:
-        color-mix(in srgb, var(--text-primary) 12%, transparent);
+        color-mix(in srgb, var(--color-ambiance-texte-primaire) 12%, transparent);
     --table-border-strong:
-        color-mix(in srgb, var(--text-primary) 18%, transparent);
+        color-mix(in srgb, var(--color-ambiance-texte-primaire) 18%, transparent);
     --table-header-bg:
-        color-mix(in srgb, var(--table-accent) 8%, var(--bg-surface));
+        color-mix(in srgb, var(--table-accent) 8%, var(--color-ambiance-surface));
     --table-row-alt:
-        color-mix(in srgb, var(--text-primary) 2.5%, transparent);
+        color-mix(in srgb, var(--color-ambiance-texte-primaire) 2.5%, transparent);
 
     width: 100%;
     margin: 1.5rem 0;
@@ -20,7 +20,7 @@
 }
 
 .title {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-family: var(--font-display);
     font-size: 1rem;
     font-weight: 650;
@@ -29,7 +29,7 @@
 
 .description {
     max-width: 52rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-body);
     font-size: 0.78rem;
     line-height: 1.6;
@@ -41,7 +41,7 @@
     overscroll-behavior-inline: contain;
     border: 1px solid var(--table-border);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow:
         0 1px 2px rgb(35 29 22 / 4%),
         0 8px 24px rgb(35 29 22 / 4%);
@@ -64,7 +64,7 @@
     min-width: 42rem;
     border-collapse: collapse;
     border-spacing: 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.55;
@@ -83,7 +83,7 @@
 }
 
 .tableFrame th {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-weight: 650;
 }
 
@@ -175,7 +175,7 @@
     position: sticky;
     left: 0;
     z-index: 1;
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow:
         1px 0 0 var(--table-border);
 }
@@ -189,7 +189,7 @@
 
 .root[data-emphasize-first-column="true"] .tableFrame tbody th:first-child,
 .root[data-emphasize-first-column="true"] .tableFrame tbody td:first-child {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-weight: 620;
 }
 

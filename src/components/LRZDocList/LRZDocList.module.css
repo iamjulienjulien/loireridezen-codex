@@ -7,7 +7,7 @@
     gap: var(--list-gap);
     margin: 1.25rem 0;
     padding: 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.9rem;
     line-height: 1.7;
@@ -71,7 +71,7 @@
 }
 
 .root strong {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-weight: 600;
 }
 
@@ -103,7 +103,7 @@
     display: grid;
     gap: 0.45rem;
     padding-left: 1.1rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     list-style: none;
 }
 

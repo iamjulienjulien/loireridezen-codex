@@ -9,7 +9,7 @@
 }
 
 .root[data-tone="cream"] {
-    --counter-accent: var(--text-primary);
+    --counter-accent: var(--color-ambiance-texte-primaire);
 }
 
 .root[data-tone="accent"] {
@@ -51,13 +51,13 @@
         180deg,
         var(
                 --counter-panel-top,
-                color-mix(in srgb, var(--bg-elevated) 88%, white)
+                color-mix(in srgb, var(--color-ambiance-elevation) 88%, white)
             )
             0%,
-        var(--counter-panel-middle, var(--bg-surface)) 48%,
+        var(--counter-panel-middle, var(--color-ambiance-surface)) 48%,
         var(
                 --counter-panel-bottom,
-                color-mix(in srgb, var(--bg-main) 90%, black)
+                color-mix(in srgb, var(--color-ambiance-fond) 90%, black)
             )
             100%
     );
@@ -191,7 +191,7 @@
 .affix {
     position: relative;
     z-index: 2;
-    color: color-mix(in srgb, var(--counter-accent) 70%, var(--text-secondary));
+    color: color-mix(in srgb, var(--counter-accent) 70%, var(--color-ambiance-texte-secondaire));
     letter-spacing: 0;
 }
 
@@ -209,7 +209,7 @@
 
 .label {
     max-width: 34ch;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.58rem;
     letter-spacing: 0.1em;

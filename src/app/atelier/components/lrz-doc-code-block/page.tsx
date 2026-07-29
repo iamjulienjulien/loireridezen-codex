@@ -62,7 +62,7 @@ export interface Chateau {
         code: `.card {
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
 }`,
     },
 ] as const;

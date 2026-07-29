@@ -10,7 +10,7 @@
     border: 1px solid var(--border-soft);
     border-radius: 999px;
     background: transparent;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     cursor: pointer;
     font-family: var(--font-mono);
     font-size: 0.7rem;
@@ -28,7 +28,7 @@
         var(--chip-accent) 55%,
         var(--border-strong)
     );
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     transform: translateY(-1px);
 }
 
@@ -62,7 +62,7 @@
     place-items: center;
     border-radius: 999px;
     background: var(--bg-overlay);
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-size: 0.6rem;
     line-height: 1;
 }
@@ -81,14 +81,14 @@
 .solid {
     border-color: var(--chip-accent);
     background: var(--chip-accent);
-    color: var(--bg-main);
+    color: var(--color-ambiance-fond);
 }
 
 .solid:hover:not(:disabled),
 .solid[aria-pressed="true"] {
     border-color: var(--chip-accent);
     background: color-mix(in srgb, var(--chip-accent) 82%, white);
-    color: var(--bg-main);
+    color: var(--color-ambiance-fond);
 }
 
 .quiet {

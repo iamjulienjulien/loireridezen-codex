@@ -1,20 +1,5 @@
 :root {
     /* ======================================================================
-       Nature
-       ====================================================================== */
-
-    --color-nature-prairie: #5c8754;
-    --color-nature-roseau: #707c40;
-    --color-nature-foret: #503827;
-    --color-nature-sable: #cfbe9f;
-    --color-nature-galet: #7c7c78;
-    --color-nature-eau: #4d80a7;
-    --color-nature-eau-claire: #3e93a7;
-    --color-nature-ciel: #f7f6f2;
-    --color-nature-soleil: #d8b548;
-    --color-nature-coucher: #d97a3e;
-
-    /* ======================================================================
        Palette naturaliste
        ====================================================================== */
 
@@ -100,6 +85,77 @@
     --color-bleu-loire: #397a91;
     --color-bleu-ardoise: #456476;
     --color-bleu-nuit: #304957;
+
+    /* ======================================================================
+       Ambiances
+       ====================================================================== */
+
+    /* Jour */
+    --color-jour-fond: #f5ecd9;
+    --color-jour-ciel-haut: #cfe4ea;
+    --color-jour-ciel-bas: #eef3e8;
+    --color-jour-fond-titre: #805c3c;
+    --color-jour-fond-sous-titre: #f5ead4;
+    --color-jour-surface: #faf3e5;
+    --color-jour-elevation: #ffffff;
+    --color-jour-texte-primaire: #2b2620;
+    --color-jour-texte-secondaire: #6b605c;
+    --color-jour-texte-tertiaire: #a0928c;
+    --color-jour-accent: #c8893a;
+
+    /* Aube */
+    --color-aube-fond: #f4e7e6;
+    --color-aube-ciel-haut: #b9c8dc;
+    --color-aube-ciel-bas: #f7dfbf;
+    --color-aube-fond-titre: #80606c;
+    --color-aube-fond-sous-titre: #f5ded9;
+    --color-aube-surface: #fbf0ee;
+    --color-aube-elevation: #ffffff;
+    --color-aube-texte-primaire: #34272a;
+    --color-aube-texte-secondaire: #75605f;
+    --color-aube-texte-tertiaire: #ab928f;
+    --color-aube-accent: #edc5c5;
+
+    /* Soir */
+    --color-soir-fond: #2d1f1a;
+    --color-soir-ciel-haut: #554761;
+    --color-soir-ciel-bas: #d49a68;
+    --color-soir-fond-titre: #5c3f4b;
+    --color-soir-fond-sous-titre: #3d2d30;
+    --color-soir-surface: #382821;
+    --color-soir-elevation: #43322a;
+    --color-soir-texte-primaire: #f0e0c8;
+    --color-soir-texte-secondaire: #c8a890;
+    --color-soir-texte-tertiaire: #8a7665;
+    --color-soir-accent: #d49a68;
+
+    /* Nuit */
+    --color-nuit-fond: #0e1217;
+    --color-nuit-ciel-haut: #0d1726;
+    --color-nuit-ciel-bas: #24344a;
+    --color-nuit-fond-titre: #24344b;
+    --color-nuit-fond-sous-titre: #182330;
+    --color-nuit-surface: #171c24;
+    --color-nuit-elevation: #1e2530;
+    --color-nuit-texte-primaire: #e8e0d0;
+    --color-nuit-texte-secondaire: #a0928c;
+    --color-nuit-texte-tertiaire: #6b605c;
+    --color-nuit-accent: #dcc8a0;
+
+    /* ======================================================================
+       Nature
+       ====================================================================== */
+
+    --color-nature-prairie: #5c8754;
+    --color-nature-roseau: #707c40;
+    --color-nature-foret: #503827;
+    --color-nature-sable: #cfbe9f;
+    --color-nature-galet: #7c7c78;
+    --color-nature-eau: #4d80a7;
+    --color-nature-eau-claire: #3e93a7;
+    --color-nature-ciel: #f7f6f2;
+    --color-nature-soleil: #d8b548;
+    --color-nature-coucher: #d97a3e;
 
     /* ======================================================================
        Patrimoine
