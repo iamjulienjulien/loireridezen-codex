@@ -113,16 +113,6 @@ const EFFECTS: Array<{
     sample: string;
 }> = [
     {
-        effect: "gold-leaf",
-        label: "Feuille d’or",
-        sample: "Le fil royal",
-    },
-    {
-        effect: "river",
-        label: "Reflets de Loire",
-        sample: "D’un rivage à l’autre",
-    },
-    {
         effect: "ink",
         label: "Encre éditoriale",
         sample: "La mémoire du fleuve",
@@ -187,6 +177,7 @@ const MOTIONS: Array<{
 ];
 
 const GRADIENTS = [
+    ["gold-leaf", "Feuille d’or"],
     ["royal", "Royal"],
     ["river", "Loire"],
     ["sunset", "Coucher"],

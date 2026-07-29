@@ -544,8 +544,6 @@ export default function LRZTypographyPlayground() {
                             >
                                 {[
                                     "none",
-                                    "gold-leaf",
-                                    "river",
                                     "ink",
                                     "highlight",
                                     "engraved",
@@ -577,6 +575,7 @@ export default function LRZTypographyPlayground() {
                             >
                                 <option value="">Aucun</option>
                                 {[
+                                    "gold-leaf",
                                     "royal",
                                     "river",
                                     "sunset",

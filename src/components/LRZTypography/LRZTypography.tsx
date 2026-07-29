@@ -63,8 +63,6 @@ export type LRZTypographyDecoration = "none" | "underline" | "line-through";
 
 export type LRZTypographyEffect =
     | "none"
-    | "gold-leaf"
-    | "river"
     | "ink"
     | "highlight"
     | "engraved"
@@ -80,7 +78,14 @@ export type LRZTypographyMotion =
     "none" | "fade-up" | "reveal" | "tracking-in" | "typewriter";
 
 export type LRZTypographyGradientPreset =
-    "royal" | "river" | "sunset" | "forest" | "tuffeau" | "moonlight" | "ember";
+    | "gold-leaf"
+    | "royal"
+    | "river"
+    | "sunset"
+    | "forest"
+    | "tuffeau"
+    | "moonlight"
+    | "ember";
 
 export type LRZTypographyCustomGradient = {
     from: LRZColor;

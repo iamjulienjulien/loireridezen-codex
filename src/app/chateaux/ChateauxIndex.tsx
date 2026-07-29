@@ -227,7 +227,7 @@ export default function ChateauxIndex({
                         title={
                             <LRZTypography
                                 preset="heading-2"
-                                effect="gold-leaf"
+                                gradient="gold-leaf"
                                 motion="typewriter"
                             >
                                 Explorer les châteaux autrement

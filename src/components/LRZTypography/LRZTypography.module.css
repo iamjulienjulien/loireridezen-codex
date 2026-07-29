@@ -306,37 +306,6 @@
 
 /* Effets éditoriaux */
 
-.typography[data-effect="gold-leaf"],
-.typography[data-effect="river"] {
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.typography[data-effect="gold-leaf"] {
-    background-image: linear-gradient(
-        112deg,
-        var(--lrz-faune-ocre) 4%,
-        var(--lrz-faune-jaune) 36%,
-        #f0cf7a 52%,
-        var(--gold) 72%,
-        var(--lrz-faune-ocre) 96%
-    );
-    text-shadow: 0 0.035em 0.08em
-        color-mix(in srgb, var(--lrz-faune-ocre) 24%, transparent);
-}
-
-.typography[data-effect="river"] {
-    background-image: linear-gradient(
-        102deg,
-        var(--lrz-nature-eau) 0%,
-        var(--lrz-nature-eau-claire) 44%,
-        color-mix(in srgb, var(--lrz-nature-eau-claire) 58%, white) 68%,
-        var(--lrz-nature-eau) 100%
-    );
-}
-
 .typography[data-effect="ink"] {
     text-shadow:
         0.018em 0.025em 0 color-mix(in srgb, currentColor 36%, transparent),
@@ -488,11 +457,26 @@
     );
 }
 
+.typography[data-gradient="gold-leaf"] {
+    background-image: linear-gradient(
+        112deg,
+        var(--lrz-faune-ocre) 4%,
+        var(--lrz-faune-jaune) 36%,
+        #f0cf7a 52%,
+        var(--gold) 72%,
+        var(--lrz-faune-ocre) 96%
+    );
+    text-shadow: 0 0.035em 0.08em
+        color-mix(in srgb, var(--lrz-faune-ocre) 24%, transparent);
+}
+
 .typography[data-gradient="river"] {
     background-image: linear-gradient(
         102deg,
-        var(--lrz-nature-eau),
-        var(--lrz-nature-eau-claire)
+        var(--lrz-nature-eau) 0%,
+        var(--lrz-nature-eau-claire) 44%,
+        color-mix(in srgb, var(--lrz-nature-eau-claire) 58%, white) 68%,
+        var(--lrz-nature-eau) 100%
     );
 }
 
@@ -693,8 +677,6 @@
 }
 
 @media (forced-colors: active) {
-    .typography[data-effect="gold-leaf"],
-    .typography[data-effect="river"],
     .typography[data-effect="foil"],
     .typography[data-effect="constellation"],
     .typography[data-gradient] {
