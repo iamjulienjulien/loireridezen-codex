@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import IndexFooter from "@/components/IndexFooter";
-import { useAmbiance } from "@/hooks/useAmbiance";
 import type { IndexEntry } from "@/registry/indexes";
 import styles from "./HomeContent.module.css";
 
@@ -13,7 +12,6 @@ export default function HomeContent({
     indexes: readonly IndexEntry[];
     showDevelopmentTools: boolean;
 }) {
-    const [ambiance, setAmbiance] = useAmbiance();
 
     return (
         <main
@@ -73,7 +71,7 @@ export default function HomeContent({
                     </Link>
                 )}
 
-                <IndexFooter ambiance={ambiance} onAmbiance={setAmbiance}>
+                <IndexFooter>
                     Le Codex Ligérien · Loire Ride Zen
                 </IndexFooter>
             </div>

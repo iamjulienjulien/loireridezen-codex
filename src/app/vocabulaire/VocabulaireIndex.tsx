@@ -6,7 +6,6 @@ import IndexHeader from "@/components/IndexHeader";
 import IndexFooter from "@/components/IndexFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
-import { useAmbiance } from "@/hooks/useAmbiance";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import VocabulaireCard from "./VocabulaireCard";
 import styles from "./vocabulaire.module.css";
@@ -44,7 +43,6 @@ export default function VocabulaireIndex({
     const [categorie, setCategorie] = useState<string>("all");
     const [usage, setUsage] = useState<string>("all");
     const [q, setQ] = useState("");
-    const [ambiance, setAmbiance] = useAmbiance();
     const [expandAll, setExpandAll] = useState(false);
     const [openOverrides, setOpenOverrides] = useState<Record<string, boolean>>(
         {},
@@ -154,7 +152,7 @@ export default function VocabulaireIndex({
                     </div>
                 )}
 
-                <IndexFooter ambiance={ambiance} onAmbiance={setAmbiance}>
+                <IndexFooter>
                     {entry.title} · Loire Ride Zen · Codex
                     <br />
                     {mots.length} {entry.footerNote}

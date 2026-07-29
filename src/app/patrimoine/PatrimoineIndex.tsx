@@ -6,7 +6,6 @@ import IndexHeader from "@/components/IndexHeader";
 import IndexFooter from "@/components/IndexFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
-import { useAmbiance } from "@/hooks/useAmbiance";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import PatrimoineCard from "./PatrimoineCard";
 import styles from "./patrimoine.module.css";
@@ -48,7 +47,6 @@ export default function PatrimoineIndex({
     const [type, setType] = useState<string>("all");
     const [etat, setEtat] = useState<string>("all");
     const [q, setQ] = useState("");
-    const [ambiance, setAmbiance] = useAmbiance();
     const [expandAll, setExpandAll] = useState(false);
     const [openOverrides, setOpenOverrides] = useState<Record<string, boolean>>(
         {},
@@ -166,7 +164,7 @@ export default function PatrimoineIndex({
                     </div>
                 )}
 
-                <IndexFooter ambiance={ambiance} onAmbiance={setAmbiance}>
+                <IndexFooter>
                     {entry.title} · Loire Ride Zen · Codex
                     <br />
                     {items.length} {entry.footerNote}

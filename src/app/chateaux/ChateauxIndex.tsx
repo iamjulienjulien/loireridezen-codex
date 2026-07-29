@@ -14,7 +14,6 @@ import { PageControls } from "@/components/PageControls";
 
 import { CollectionCard } from "@/components/ui/collection-card";
 
-import { useAmbiance } from "@/hooks/useAmbiance";
 import { getIndex } from "@/registry/indexes";
 import { getCollectionsByIndex } from "@/registry/collections";
 import LRZTypography from "@/components/LRZTypography";
@@ -64,7 +63,6 @@ export default function ChateauxIndex({
     const [epoque, setEpoque] = useState<string>("all");
     const [renommee, setRenommee] = useState<string>("all");
     const [q, setQ] = useState("");
-    const [ambiance, setAmbiance] = useAmbiance();
     const [expandAll, setExpandAll] = useState(false);
     const [groupByTerritory, setGroupByTerritory] = useState(true);
     const territoiresEnabled = featureIsEnabled("territoires");
@@ -325,7 +323,7 @@ export default function ChateauxIndex({
                     )}
                 </LRZSection>
 
-                <IndexFooter ambiance={ambiance} onAmbiance={setAmbiance}>
+                <IndexFooter>
                     <span
                         style={{
                             display: "block",
