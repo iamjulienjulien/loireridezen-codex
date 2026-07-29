@@ -1,97 +1,175 @@
 import Link from "next/link";
 import styles from "./ComponentsNavigation.module.css";
 
-const COMPONENTS = [
+const SECTIONS = [
     {
-        id: "lrz-badge",
-        label: "LRZBadge",
-        href: "/atelier/components/lrz-badge",
+        label: "Composants UI",
+        href: "/atelier/ui",
+        components: [
+            ["lrz-badge", "LRZBadge", "/atelier/components/lrz-badge"],
+            ["lrz-anecdote", "LRZAnecdote", "/atelier/components/lrz-anecdote"],
+            [
+                "lrz-accordion",
+                "LRZAccordion",
+                "/atelier/components/lrz-accordion",
+            ],
+            ["lrz-chip", "LRZChip", "/atelier/components/lrz-chip"],
+            ["lrz-compteur", "LRZCompteur", "/atelier/components/lrz-compteur"],
+            [
+                "lrz-filter-chip",
+                "LRZFilterChip",
+                "/atelier/components/lrz-filter-chip",
+            ],
+            [
+                "lrz-filter-group",
+                "LRZFilterGroup",
+                "/atelier/components/lrz-filter-group",
+            ],
+            [
+                "lrz-separateur",
+                "LRZSeparateur",
+                "/atelier/components/lrz-separateur",
+            ],
+            ["lrz-section", "LRZSection", "/atelier/components/lrz-section"],
+            ["lrz-card", "LRZCard", "/atelier/components/lrz-card"],
+            [
+                "lrz-meta-list",
+                "LRZMetaList",
+                "/atelier/components/lrz-meta-list",
+            ],
+            [
+                "lrz-typography",
+                "LRZTypography",
+                "/atelier/components/lrz-typography",
+            ],
+        ],
     },
     {
-        id: "lrz-anecdote",
-        label: "LRZAnecdote",
-        href: "/atelier/components/lrz-anecdote",
+        label: "Composants Doc",
+        href: "/atelier/doc",
+        components: [
+            [
+                "lrz-doc-code-block",
+                "LRZDocCodeBlock",
+                "/atelier/components/lrz-doc-code-block",
+            ],
+            [
+                "lrz-doc-code-inline",
+                "LRZDocCodeInline",
+                "/atelier/components/lrz-doc-code-inline",
+            ],
+            ["lrz-doc-list", "LRZDocList", "/atelier/components/lrz-doc-list"],
+            [
+                "lrz-doc-quote",
+                "LRZDocQuote",
+                "/atelier/components/lrz-doc-quote",
+            ],
+        ],
     },
     {
-        id: "lrz-accordion",
-        label: "LRZAccordion",
-        href: "/atelier/components/lrz-accordion",
+        label: "Composants Métier",
+        href: "/atelier/metier",
+        components: [
+            ["faune-card", "FauneCard", "/atelier/metier#faune-card"],
+            ["flore-card", "FloreCard", "/atelier/metier#flore-card"],
+            ["chateaux-card", "ChateauxCard", "/atelier/metier#chateaux-card"],
+        ],
     },
     {
-        id: "lrz-separateur",
-        label: "LRZSeparateur",
-        href: "/atelier/components/lrz-separateur",
-    },
-    {
-        id: "lrz-section",
-        label: "LRZSection",
-        href: "/atelier/components/lrz-section",
-    },
-    {
-        id: "lrz-card",
-        label: "LRZCard",
-        href: "/atelier/components/lrz-card",
-    },
-    {
-        id: "lrz-meta-list",
-        label: "LRZMetaList",
-        href: "/atelier/components/lrz-meta-list",
-    },
-    {
-        id: "lrz-typography",
-        label: "LRZTypography",
-        href: "/atelier/components/lrz-typography",
-    },
-    {
-        id: "lrz-doc-code-block",
-        label: "LRZDocCodeBlock",
-        href: "/atelier/components/lrz-doc-code-block",
-    },
-    {
-        id: "lrz-doc-code-inline",
-        label: "LRZDocCodeInline",
-        href: "/atelier/components/lrz-doc-code-inline",
-    },
-    {
-        id: "lrz-doc-list",
-        label: "LRZDocList",
-        href: "/atelier/components/lrz-doc-list",
-    },
-    {
-        id: "lrz-doc-quote",
-        label: "LRZDocQuote",
-        href: "/atelier/components/lrz-doc-quote",
+        label: "Composants Collections",
+        href: "/atelier/collections",
+        components: [
+            [
+                "collection-card",
+                "CollectionCard",
+                "/atelier/collections#collection-card",
+            ],
+            [
+                "collection-entry-card",
+                "CollectionEntryCard",
+                "/atelier/collections#collection-entry-card",
+            ],
+            [
+                "collection-list",
+                "CollectionList",
+                "/atelier/collections#collection-entry-card",
+            ],
+            [
+                "collection-hero",
+                "CollectionHero",
+                "/atelier/collections#collection-hero",
+            ],
+            [
+                "collection-podium",
+                "CollectionPodium",
+                "/atelier/collections#collection-hero",
+            ],
+            [
+                "collection-badge",
+                "CollectionBadge",
+                "/atelier/collections#collection-meta",
+            ],
+            [
+                "collection-rank",
+                "CollectionRank",
+                "/atelier/collections#collection-meta",
+            ],
+            [
+                "collection-criteria",
+                "CollectionCriteria",
+                "/atelier/collections#collection-meta",
+            ],
+        ],
     },
 ] as const;
 
-type ComponentId = (typeof COMPONENTS)[number]["id"];
+type ComponentId = (typeof SECTIONS)[number]["components"][number][0];
 
 export default function ComponentsNavigation({
     current,
 }: {
-    current: ComponentId;
+    current?: ComponentId;
 }) {
     return (
-        <nav className={styles.navigation} aria-label="Composants UI">
-            <span className={styles.title}>Composants UI</span>
-            <ul className={styles.list}>
-                {COMPONENTS.map((component) => {
-                    const isCurrent = component.id === current;
+        <nav className={styles.navigation} aria-label="Sommaire de l’Atelier">
+            <Link className={styles.title} href="/atelier">
+                Atelier
+            </Link>
+            <div className={styles.sections}>
+                {SECTIONS.map((section) => (
+                    <section className={styles.section} key={section.href}>
+                        <Link
+                            className={styles.sectionTitle}
+                            href={section.href}
+                        >
+                            {section.label}
+                        </Link>
+                        <ul className={styles.list}>
+                            {section.components.map(([id, label, href]) => {
+                                const isCurrent = id === current;
 
-                    return (
-                        <li key={component.id}>
-                            <Link
-                                className={`${styles.link} ${isCurrent ? styles.active : ""}`}
-                                href={component.href}
-                                aria-current={isCurrent ? "page" : undefined}
-                            >
-                                <span className={styles.dot} aria-hidden />
-                                {component.label}
-                            </Link>
-                        </li>
-                    );
-                })}
-            </ul>
+                                return (
+                                    <li key={id}>
+                                        <Link
+                                            className={`${styles.link} ${isCurrent ? styles.active : ""}`}
+                                            href={href}
+                                            aria-current={
+                                                isCurrent ? "page" : undefined
+                                            }
+                                        >
+                                            <span
+                                                className={styles.dot}
+                                                aria-hidden
+                                            />
+                                            {label}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </section>
+                ))}
+            </div>
         </nav>
     );
 }
