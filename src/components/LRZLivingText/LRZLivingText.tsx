@@ -1,11 +1,9 @@
-import LRZCutoutText from "@/components/LRZCutoutText";
-import {
-    LRZAtmosphericText,
-    LRZBreathingText,
-    LRZPathText,
-    LRZScrollStory,
-} from "@/components/LRZLivingTypography";
-import LRZTypewriter from "@/components/LRZTypewriter";
+import LRZAtmosphericText from "./atmospheric/LRZAtmosphericText";
+import LRZBreathingText from "./breathing/LRZBreathingText";
+import LRZCutoutText from "./cutout/LRZCutoutText";
+import LRZPathText from "./path/LRZPathText";
+import LRZScrollStory from "./scroll-story/LRZScrollStory";
+import LRZTypewriter from "./typewriter/LRZTypewriter";
 
 /**
  * Famille de textes animés et expressifs du Codex.

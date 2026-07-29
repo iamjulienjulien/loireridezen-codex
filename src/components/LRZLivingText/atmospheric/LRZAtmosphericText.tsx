@@ -3,7 +3,7 @@ import LRZTypography, {
 } from "@/components/LRZTypography";
 import type { Ambiance } from "@/registry/ambiances";
 
-import styles from "./LRZLivingTypography.module.css";
+import styles from "../LRZLivingText.module.css";
 
 export type LRZAtmosphericTextProps = LRZTypographyProps & {
     ambiance: Ambiance;

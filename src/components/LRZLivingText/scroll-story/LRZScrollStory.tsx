@@ -6,7 +6,7 @@ import LRZTypography, {
     type LRZTypographyProps,
 } from "@/components/LRZTypography";
 
-import styles from "./LRZLivingTypography.module.css";
+import styles from "../LRZLivingText.module.css";
 
 export type LRZScrollStoryProps = Omit<LRZTypographyProps, "children"> & {
     children: string;

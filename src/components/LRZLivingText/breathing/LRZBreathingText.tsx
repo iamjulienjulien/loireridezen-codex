@@ -4,7 +4,7 @@ import LRZTypography, {
     type LRZTypographyProps,
 } from "@/components/LRZTypography";
 
-import styles from "./LRZLivingTypography.module.css";
+import styles from "../LRZLivingText.module.css";
 
 export type LRZBreathingTextProps = LRZTypographyProps & {
     rhythm?: "calm" | "river" | "sleep" | "pulse";

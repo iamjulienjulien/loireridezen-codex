@@ -27,6 +27,7 @@ function joinClassNames(...classNames: Array<string | undefined>) {
     return classNames.filter(Boolean).join(" ");
 }
 
+/** Texte évidé dans une surface colorée. */
 export default function LRZCutoutText({
     children,
     surface,

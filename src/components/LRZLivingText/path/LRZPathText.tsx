@@ -3,7 +3,7 @@ import { useId, type CSSProperties, type SVGAttributes } from "react";
 import { LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 
-import styles from "./LRZLivingTypography.module.css";
+import styles from "../LRZLivingText.module.css";
 
 export type LRZPathTextPath =
     "meander" | "wave" | "arch" | "circle" | "horizon";

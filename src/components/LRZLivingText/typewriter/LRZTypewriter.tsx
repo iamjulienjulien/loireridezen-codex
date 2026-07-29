@@ -40,6 +40,7 @@ function segmentText(text: string) {
     return Array.from(text);
 }
 
+/** Frappe progressive respectant les graphèmes et les préférences système. */
 export default function LRZTypewriter({
     children,
     speed = 55,

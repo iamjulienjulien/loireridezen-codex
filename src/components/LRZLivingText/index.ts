@@ -1,13 +1,13 @@
 export { default, default as LRZLivingText } from "./LRZLivingText";
+export type { LRZAtmosphericTextProps } from "./atmospheric/LRZAtmosphericText";
+export type { LRZBreathingTextProps } from "./breathing/LRZBreathingText";
+export type { LRZCutoutTextProps } from "./cutout/LRZCutoutText";
 export type {
-    LRZAtmosphericTextProps,
-    LRZBreathingTextProps,
     LRZPathTextPath,
     LRZPathTextProps,
-    LRZScrollStoryProps,
-} from "@/components/LRZLivingTypography";
-export type { LRZCutoutTextProps } from "@/components/LRZCutoutText";
+} from "./path/LRZPathText";
+export type { LRZScrollStoryProps } from "./scroll-story/LRZScrollStory";
 export type {
     LRZTypewriterCursor,
     LRZTypewriterProps,
-} from "@/components/LRZTypewriter";
+} from "./typewriter/LRZTypewriter";
