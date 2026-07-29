@@ -2,6 +2,13 @@
     /* max-width: 74ch; */
     margin: 28px 8px 34px;
 }
+
+.leadBlock {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 34px;
+}
+
 /* Filet doré d'ouverture — rappel du motif de l'accueil */
 .rule {
     display: block;
@@ -14,13 +21,14 @@
 }
 /* Accroche (description) avec lettrine sérif — touche « codex » */
 .lead {
+    margin: 0;
     font-family: var(--font-display);
     font-weight: 500;
     font-size: 27px;
     line-height: 1.35;
     letter-spacing: -0.01em;
     color: var(--text-primary);
-    margin-bottom: 34px;
+    text-align: left;
 }
 .lead::first-letter {
     float: left;
@@ -46,4 +54,27 @@
 }
 .text p + p {
     margin-top: 0.75em;
+}
+
+.descriptionFooter {
+    max-width: 76ch;
+    margin: 1.6rem auto 0;
+    padding: 0.95rem 1.35rem;
+    border-top: 1px solid
+        color-mix(in srgb, var(--accent) 40%, var(--border-subtle));
+    border-bottom: 1px solid
+        color-mix(in srgb, var(--accent) 20%, var(--border-subtle));
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+    line-height: 1.5;
+    text-align: center;
+}
+
+.descriptionFooter p {
+    margin: 0;
+}
+
+.descriptionFooter strong {
+    font-weight: 600;
 }

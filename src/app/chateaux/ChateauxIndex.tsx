@@ -237,8 +237,6 @@ export default function ChateauxIndex({
                         tone="tinted"
                         color="ocre"
                         spacing="sm"
-                        // separatorAfter="spark"
-                        // separatorBefore="spark"
                     >
                         <div className={styles.collectionsGrid}>
                             {collections.map(({ data, href }) => (
@@ -253,8 +251,6 @@ export default function ChateauxIndex({
                     </LRZSection>
                 )}
 
-                <LRZSeparateur preset="spark" size="lg" />
-
                 {controlsInOwnSection && (
                     <LRZSection
                         eyebrow="Filtres & repères"
@@ -263,8 +259,6 @@ export default function ChateauxIndex({
                         tone="surface"
                         color="ocre"
                         spacing="sm"
-                        // separatorAfter="spark"
-                        // separatorBefore="spark"
                     >
                         {indexControls}
                     </LRZSection>
@@ -277,10 +271,16 @@ export default function ChateauxIndex({
                     tone="soft"
                     color="ocre"
                     spacing="sm"
-                    className="mt-20"
+                    headerClassName="mb-0!"
+                    // className="mt-10"
                     // separatorAfter="spark"
                     // separatorBefore="spark"
                 >
+                    <LRZSeparateur
+                        preset="ornament"
+                        size="md"
+                        scope="section"
+                    />
                     {!controlsInOwnSection && indexControls}
 
                     {list.length === 0 ? (
