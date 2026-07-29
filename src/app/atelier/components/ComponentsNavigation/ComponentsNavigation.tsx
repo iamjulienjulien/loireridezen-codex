@@ -3,6 +3,14 @@ import styles from "./ComponentsNavigation.module.css";
 
 const SECTIONS = [
     {
+        label: "Fondations visuelles",
+        href: "/atelier",
+        components: [
+            ["colors", "Couleurs", "/atelier/colors"],
+            ["typography", "Typographie", "/atelier/typography"],
+        ],
+    },
+    {
         label: "Composants UI",
         href: "/atelier/ui",
         components: [

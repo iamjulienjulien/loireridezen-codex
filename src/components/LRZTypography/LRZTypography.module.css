@@ -81,6 +81,14 @@
     line-height: 1.7;
 }
 
+.typography[data-preset="signature"] {
+    font-family: var(--font-signature, var(--font-edit, var(--font-display)));
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-weight: 400;
+    letter-spacing: 0.015em;
+    line-height: 1;
+}
+
 .typography[data-preset="eyebrow"] {
     font-family: var(--font-mono);
     font-size: 0.625rem;
@@ -121,6 +129,12 @@
 
 .typography[data-font="editorial"] {
     font-family: var(--font-edit, var(--font-display));
+}
+
+.typography[data-font="signature"] {
+    font-family: var(--font-signature, var(--font-edit, var(--font-display)));
+    font-weight: 400;
+    letter-spacing: normal;
 }
 
 .typography[data-font="inherit"] {

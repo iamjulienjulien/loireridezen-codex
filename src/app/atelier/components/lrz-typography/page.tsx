@@ -65,6 +65,11 @@ const PRESETS: Array<{
         usage: "Anecdote, note et citation courte.",
     },
     {
+        preset: "signature",
+        sample: "Julien Julien",
+        usage: "Signature et crédit de création.",
+    },
+    {
         preset: "eyebrow",
         sample: "Patrimoine ligérien",
         usage: "Surtitre et catégorie.",
@@ -90,6 +95,7 @@ const FONTS: Array<{
     { font: "body", label: "Inter", role: "Lecture courante" },
     { font: "mono", label: "JetBrains Mono", role: "Données et labels" },
     { font: "editorial", label: "Lora", role: "Voix sensible" },
+    { font: "signature", label: "Allura", role: "Signature manuscrite" },
 ];
 
 const EFFECTS: Array<{

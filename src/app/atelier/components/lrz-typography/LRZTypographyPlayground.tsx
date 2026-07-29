@@ -79,6 +79,7 @@ const PRESET_ELEMENTS: Record<LRZTypographyPreset, LRZTypographyElement> = {
     body: "p",
     "body-sm": "p",
     editorial: "p",
+    signature: "span",
     eyebrow: "span",
     caption: "small",
     code: "code",
@@ -431,6 +432,7 @@ export default function LRZTypographyPlayground() {
                                     "body",
                                     "mono",
                                     "editorial",
+                                    "signature",
                                     "inherit",
                                 ].map((font) => (
                                     <option key={font} value={font}>

@@ -14,6 +14,7 @@ export type LRZTypographyPreset =
     | "body"
     | "body-sm"
     | "editorial"
+    | "signature"
     | "eyebrow"
     | "caption"
     | "code";
@@ -37,7 +38,7 @@ export type LRZTypographyElement =
     | "label";
 
 export type LRZTypographyFont =
-    "display" | "body" | "mono" | "editorial" | "inherit";
+    "display" | "body" | "mono" | "editorial" | "signature" | "inherit";
 
 export type LRZTypographySize =
     "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
@@ -174,6 +175,7 @@ const DEFAULT_ELEMENTS: Record<LRZTypographyPreset, LRZTypographyElement> = {
     body: "p",
     "body-sm": "p",
     editorial: "p",
+    signature: "span",
     eyebrow: "span",
     caption: "small",
     code: "code",
@@ -189,6 +191,7 @@ const DEFAULT_COLORS: Record<LRZTypographyPreset, LRZTypographySemanticColor> =
         body: "primary",
         "body-sm": "secondary",
         editorial: "secondary",
+        signature: "accent",
         eyebrow: "accent",
         caption: "tertiary",
         code: "primary",

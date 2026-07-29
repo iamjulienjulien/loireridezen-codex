@@ -1,0 +1,161 @@
+.atelier-foundation-page {
+    min-height: 100dvh;
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-fond);
+    background-image: var(--ambient-glow);
+}
+
+.atelier-foundation-wrap {
+    width: min(100% - 2rem, 76rem);
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 5rem) 0 7rem;
+}
+
+.atelier-doc-header {
+    max-width: 62rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.atelier-doc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: 2.75rem;
+}
+
+.atelier-doc-links a {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.atelier-doc-links a:hover {
+    color: var(--gold);
+}
+
+.atelier-kicker {
+    margin: 0 0 0.6rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.atelier-doc-header h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 500;
+    letter-spacing: -0.07em;
+    line-height: 0.88;
+}
+
+.atelier-doc-lede {
+    max-width: 60ch;
+    margin: 1.25rem 0 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-edit, var(--font-display));
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.65;
+}
+
+.atelier-section-card {
+    margin-top: 2rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--color-ambiance-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.atelier-intro-card {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.atelier-intro-card h2,
+.atelier-section-card h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 540;
+}
+
+.atelier-intro-card > p {
+    margin: 0;
+    color: var(--color-ambiance-texte-secondaire);
+    line-height: 1.65;
+}
+
+.atelier-intro-card pre {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-ambiance-fond);
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.7;
+}
+
+.atelier-section-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.4rem 1rem;
+    align-items: baseline;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 1rem;
+}
+
+.atelier-section-header .atelier-kicker {
+    margin: 0;
+    grid-column: 1 / -1;
+}
+
+.atelier-section-header > span {
+    grid-column: 2;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+}
+
+.atelier-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    gap: 0.85rem;
+    margin-top: 1.25rem;
+}
+
+.atelier-section-card-list {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.atelier-section-card-list > .atelier-section-card {
+    margin-top: 0;
+}
+
+.atelier-section-card > section + section {
+    margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+    .atelier-foundation-wrap {
+        width: min(100% - 1rem, 76rem);
+    }
+
+    .atelier-intro-card {
+        grid-template-columns: 1fr;
+    }
+}

@@ -11,6 +11,13 @@ const CATEGORIES = [
         count: "Palette V2",
     },
     {
+        title: "Typographie",
+        description:
+            "Les familles, presets et conventions qui donnent son rythme au Codex.",
+        href: "/atelier/typography",
+        count: "5 familles",
+    },
+    {
         title: "Composants UI",
         description:
             "Les briques visuelles du Codex : typographie, cartes, filtres, badges et navigation.",
