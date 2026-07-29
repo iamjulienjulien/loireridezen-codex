@@ -4,6 +4,7 @@ import Link from "next/link";
 import LRZDocCodeInline from "@/components/LRZDocCodeInline/LRZDocCodeInline";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 
 import styles from "../lrz-doc-code.module.css";
 
@@ -205,6 +206,13 @@ export default function LRZDocCodeInlinePage() {
                         ))}
                     </div>
                 </section>
+
+                <DocMarkdownSyntax
+                    title="Écrire du code dans une phrase"
+                    description="Entoure un fragment technique d’un accent grave : propriété, commande, valeur ou endpoint."
+                    code={"Utilisez `renommee=phare` pour limiter les résultats.\n\nL’endpoint est `/api/v1/chateaux`."}
+                    note="Les blocs délimités par trois accents graves restent des blocs de code et sont confiés à LRZDocCodeBlock."
+                />
 
                 <section
                     className={styles.integration}

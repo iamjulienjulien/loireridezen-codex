@@ -54,6 +54,11 @@ const SECTIONS = [
         href: "/atelier/doc",
         components: [
             [
+                "lrz-doc-callout",
+                "LRZDocCallout",
+                "/atelier/components/lrz-doc-callout",
+            ],
+            [
                 "lrz-doc-code-block",
                 "LRZDocCodeBlock",
                 "/atelier/components/lrz-doc-code-block",
@@ -68,6 +73,11 @@ const SECTIONS = [
                 "lrz-doc-quote",
                 "LRZDocQuote",
                 "/atelier/components/lrz-doc-quote",
+            ],
+            [
+                "lrz-doc-table",
+                "LRZDocTable",
+                "/atelier/components/lrz-doc-table",
             ],
         ],
     },

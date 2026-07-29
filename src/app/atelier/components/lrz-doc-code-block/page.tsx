@@ -4,6 +4,7 @@ import Link from "next/link";
 import LRZDocCodeBlock from "@/components/LRZDocCodeBlock/LRZDocCodeBlock";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 
 import styles from "../lrz-doc-code.module.css";
 
@@ -219,6 +220,13 @@ export default function LRZDocCodeBlockPage() {
                         ))}
                     </div>
                 </section>
+
+                <DocMarkdownSyntax
+                    title="Écrire un bloc de code"
+                    description="Utilise trois accents graves, puis ajoute le langage après l’ouverture pour activer la coloration."
+                    code={"```ts\nconst chateaux = await getChateaux();\n\nconsole.log(chateaux.length);\n```"}
+                    note="Le mapping React Markdown transmet la classe language-ts au composant, qui choisit alors la coloration adaptée."
+                />
 
                 <section
                     className={styles.integration}
