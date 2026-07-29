@@ -85,13 +85,13 @@
     color: transparent;
     background-image: linear-gradient(
         108deg,
-        var(--lrz-faune-argent) 0%,
-        var(--lrz-faune-blanc) 18%,
-        var(--lrz-faune-gris-ardoise) 32%,
-        var(--lrz-faune-blanc-gris) 48%,
-        var(--lrz-faune-argent) 64%,
+        var(--color-argent) 0%,
+        var(--color-blanc) 18%,
+        var(--color-gris-ardoise) 32%,
+        var(--color-blanc-gris) 48%,
+        var(--color-argent) 64%,
         white 76%,
-        var(--lrz-faune-gris) 100%
+        var(--color-gris) 100%
     );
     background-size: 240% 100%;
     background-clip: text;
@@ -101,7 +101,7 @@
     text-underline-offset: 0.2em;
     animation: page-footer-signature-shine 5.2s ease-in-out infinite;
     filter: drop-shadow(
-        0 0 0.18em color-mix(in srgb, var(--lrz-faune-argent) 36%, transparent)
+        0 0 0.18em color-mix(in srgb, var(--color-argent) 36%, transparent)
     );
     transition: filter 0.2s ease;
 }
@@ -110,7 +110,7 @@
     filter: brightness(1.16)
         drop-shadow(
             0 0 0.24em
-                color-mix(in srgb, var(--lrz-faune-blanc) 46%, transparent)
+                color-mix(in srgb, var(--color-blanc) 46%, transparent)
         );
 }
 

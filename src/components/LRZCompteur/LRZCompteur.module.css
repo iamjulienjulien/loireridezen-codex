@@ -13,7 +13,7 @@
 }
 
 .root[data-tone="accent"] {
-    --counter-accent: var(--lrz-nature-prairie, var(--gold));
+    --counter-accent: var(--color-nature-prairie, var(--gold));
 }
 
 .root[data-theme="ivory"] {

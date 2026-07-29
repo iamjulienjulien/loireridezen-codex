@@ -68,11 +68,11 @@ const EXAMPLES = [
     },
     {
         title: "Variable CSS",
-        content: "--lrz-nature-prairie",
+        content: "--color-nature-prairie",
         sentence: (
             <>
                 La prairie est exposée par la variable{" "}
-                <LRZDocCodeInline>--lrz-nature-prairie</LRZDocCodeInline>.
+                <LRZDocCodeInline>--color-nature-prairie</LRZDocCodeInline>.
             </>
         ),
     },

@@ -3,7 +3,7 @@ import Link from "next/link";
 import LRZSeparateur, {
     type LRZSeparateurProps,
 } from "@/components/LRZSeparateur/LRZSeparateur";
-import { LRZ_COLOR_GROUPS, LRZ_COLOR_VARIABLES } from "@/registry/colors";
+import { LRZ_COLOR_GROUPS, LRZ_COLOR_VARIABLES } from "@/registry/colorsV2";
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZSeparateurPlayground from "./LRZSeparateurPlayground";
 import styles from "./LRZSeparateurPlayground.module.css";

@@ -1,5 +1,5 @@
 .accordion {
-    --accordion-color: var(--lrz-faune-ocre);
+    --accordion-color: var(--color-ocre);
     --accordion-trigger-min-height: 40px;
     --accordion-trigger-padding: 7px 4px;
     --accordion-panel-padding: 12px 14px;

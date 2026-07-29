@@ -6,43 +6,43 @@ interface Props {
 }
 
 export const FAUNE_COULEURS: Record<FauneCouleur, string> = {
-    argent: "var(--lrz-faune-argent)",
-    beige: "var(--lrz-faune-beige)",
-    blanc: "var(--lrz-faune-blanc)",
-    "blanc gris": "var(--lrz-faune-blanc-gris)",
+    argent: "var(--color-argent)",
+    beige: "var(--color-beige)",
+    blanc: "var(--color-blanc)",
+    "blanc gris": "var(--color-blanc-gris)",
 
-    bleu: "var(--lrz-faune-bleu)",
-    "bleu gris": "var(--lrz-faune-bleu-gris)",
-    "bleu métallique": "var(--lrz-faune-bleu-metallise)",
-    "bleu turquoise": "var(--lrz-faune-bleu-turquoise)",
+    bleu: "var(--color-bleu)",
+    "bleu gris": "var(--color-bleu-gris)",
+    "bleu métallique": "var(--color-bleu-metallise)",
+    "bleu turquoise": "var(--color-bleu-turquoise)",
 
-    brun: "var(--lrz-faune-brun)",
-    "brun foncé": "var(--lrz-faune-brun-fonce)",
-    "brun roux": "var(--lrz-faune-brun-roux)",
+    brun: "var(--color-brun)",
+    "brun foncé": "var(--color-brun-fonce)",
+    "brun roux": "var(--color-brun-roux)",
 
-    crème: "var(--lrz-faune-creme)",
-    fauve: "var(--lrz-faune-fauve)",
+    crème: "var(--color-creme)",
+    fauve: "var(--color-fauve)",
 
-    gris: "var(--lrz-faune-gris)",
-    "gris ardoise": "var(--lrz-faune-gris-ardoise)",
-    "gris brun": "var(--lrz-faune-gris-brun)",
+    gris: "var(--color-gris)",
+    "gris ardoise": "var(--color-gris-ardoise)",
+    "gris brun": "var(--color-gris-brun)",
 
-    jaune: "var(--lrz-faune-jaune)",
+    jaune: "var(--color-jaune)",
 
-    noir: "var(--lrz-faune-noir)",
+    noir: "var(--color-noir)",
 
-    ocre: "var(--lrz-faune-ocre)",
+    ocre: "var(--color-ocre)",
 
-    orange: "var(--lrz-faune-orange)",
-    "orange cuivré": "var(--lrz-faune-orange-cuivre)",
+    orange: "var(--color-orange)",
+    "orange cuivré": "var(--color-orange-cuivre)",
 
-    rouge: "var(--lrz-faune-rouge)",
-    roux: "var(--lrz-faune-roux)",
+    rouge: "var(--color-rouge)",
+    roux: "var(--color-roux)",
 
-    vert: "var(--lrz-faune-vert)",
-    "vert métallique": "var(--lrz-faune-vert-metallise)",
-    "vert olive": "var(--lrz-faune-vert-olive)",
-    "vert vif": "var(--lrz-faune-vert-vif)",
+    vert: "var(--color-vert)",
+    "vert métallique": "var(--color-vert-metallise)",
+    "vert olive": "var(--color-vert-olive)",
+    "vert vif": "var(--color-vert-vif)",
 };
 
 export function FauneColors({ colors }: Props) {

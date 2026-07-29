@@ -5,7 +5,7 @@ import LRZBadge, {
     type LRZBadgeProps,
     type LRZBadgeVariant,
 } from "@/components/LRZBadge/LRZBadge";
-import { LRZ_COLOR_GROUPS } from "@/registry/colors";
+import { LRZ_COLOR_GROUPS } from "@/registry/colorsV2";
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZBadgePlayground from "./LRZBadgePlayground";
 import styles from "./lrz-badge.module.css";

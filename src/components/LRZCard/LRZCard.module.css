@@ -1,5 +1,5 @@
 .card {
-    --card-color: var(--lrz-faune-ocre);
+    --card-color: var(--color-ocre);
     --card-root-padding: 0px;
     --card-section-padding: 20px;
     --card-gap: 16px;

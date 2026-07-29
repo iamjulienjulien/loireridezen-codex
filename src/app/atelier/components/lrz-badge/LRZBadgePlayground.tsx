@@ -23,7 +23,7 @@ import LRZBadge, {
     type LRZMonumentHistoriqueValue,
     type LRZRareteValue,
 } from "@/components/LRZBadge/LRZBadge";
-import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
+import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colorsV2";
 import type { LRZColor } from "@/types/lrz";
 import styles from "./LRZBadgePlayground.module.css";
 
@@ -227,9 +227,9 @@ const INITIAL_STATE: PlaygroundState = {
 };
 
 const COLOR_OPTION_GROUPS = [
-    { label: "Nature", prefix: "--lrz-nature-" },
-    { label: "Faune", prefix: "--lrz-faune-" },
-    { label: "Patrimoine", prefix: "--lrz-patrimoine-" },
+    { label: "Nature", prefix: "--color-nature-" },
+    { label: "Faune", prefix: "--color-" },
+    { label: "Patrimoine", prefix: "--color-patrimoine-" },
 ].map(({ label, prefix }) => ({
     label,
     colors: LRZ_COLOR_NAMES.filter((color) =>

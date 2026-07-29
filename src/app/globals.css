@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@import "./lrz-colors.css";
+@import "./colors.css";
 
 :root {
     --background: #ffffff;

@@ -160,7 +160,7 @@
     font-weight: 500;
     line-height: 1.08;
     letter-spacing: -0.025em;
-    color: var(--lrz-faune-blanc);
+    color: var(--color-blanc);
     text-shadow: 0 1px 2px rgba(34, 25, 17, 0.24);
 }
 
@@ -175,7 +175,7 @@
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: -0.01em;
-    color: color-mix(in srgb, var(--lrz-faune-blanc) 66%, transparent);
+    color: color-mix(in srgb, var(--color-blanc) 66%, transparent);
 }
 
 .heroNameConnector,

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
-import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
+import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colorsV2";
 import type { LRZColor } from "@/types/lrz";
 import styles from "./LRZAnecdotePlayground.module.css";
 
@@ -31,9 +31,9 @@ const MARK_PRESETS = [
 ] as const;
 
 const COLOR_OPTION_GROUPS = [
-    { label: "Nature", prefix: "--lrz-nature-" },
-    { label: "Faune", prefix: "--lrz-faune-" },
-    { label: "Patrimoine", prefix: "--lrz-patrimoine-" },
+    { label: "Nature", prefix: "--color-nature-" },
+    { label: "Faune", prefix: "--color-" },
+    { label: "Patrimoine", prefix: "--color-patrimoine-" },
 ].map(({ label, prefix }) => ({
     label,
     colors: LRZ_COLOR_NAMES.filter((color) =>

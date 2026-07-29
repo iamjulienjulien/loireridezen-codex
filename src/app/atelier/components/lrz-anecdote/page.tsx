@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
-import { LRZ_COLOR_GROUPS } from "@/registry/colors";
+import { LRZ_COLOR_GROUPS } from "@/registry/colorsV2";
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZAnecdotePlayground from "./LRZAnecdotePlayground";
 import styles from "./lrz-anecdote.module.css";

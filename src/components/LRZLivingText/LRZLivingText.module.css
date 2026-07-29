@@ -116,34 +116,34 @@
     color: transparent;
     background-image: linear-gradient(
         105deg,
-        var(--lrz-nature-coucher),
-        var(--lrz-nature-soleil) 46%,
-        var(--lrz-faune-creme)
+        var(--color-nature-coucher),
+        var(--color-nature-soleil) 46%,
+        var(--color-creme)
     );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0.08em 0.3em
-        color-mix(in srgb, var(--lrz-nature-coucher) 18%, transparent);
+        color-mix(in srgb, var(--color-nature-coucher) 18%, transparent);
 }
 
 .atmospheric[data-ambiance="jour"] {
     color: color-mix(
         in srgb,
         var(--typography-color) 84%,
-        var(--lrz-nature-eau)
+        var(--color-nature-eau)
     );
     text-shadow: 0 0.05em 0
-        color-mix(in srgb, var(--lrz-nature-ciel) 70%, transparent);
+        color-mix(in srgb, var(--color-nature-ciel) 70%, transparent);
 }
 
 .atmospheric[data-ambiance="soir"] {
     color: transparent;
     background-image: linear-gradient(
         115deg,
-        var(--lrz-faune-orange-cuivre),
-        var(--lrz-patrimoine-brique),
-        var(--lrz-faune-bleu-gris)
+        var(--color-orange-cuivre),
+        var(--color-patrimoine-brique),
+        var(--color-bleu-gris)
     );
     background-clip: text;
     -webkit-background-clip: text;
@@ -153,13 +153,13 @@
 .atmospheric[data-ambiance="nuit"] {
     color: color-mix(
         in srgb,
-        var(--lrz-faune-argent) 78%,
-        var(--lrz-nature-eau-claire)
+        var(--color-argent) 78%,
+        var(--color-nature-eau-claire)
     );
     text-shadow:
         0 0 0.12em
-            color-mix(in srgb, var(--lrz-nature-eau-claire) 55%, transparent),
-        0 0 0.48em color-mix(in srgb, var(--lrz-nature-eau) 34%, transparent);
+            color-mix(in srgb, var(--color-nature-eau-claire) 55%, transparent),
+        0 0 0.48em color-mix(in srgb, var(--color-nature-eau) 34%, transparent);
 }
 
 .atmospheric[data-intensity="subtle"] {

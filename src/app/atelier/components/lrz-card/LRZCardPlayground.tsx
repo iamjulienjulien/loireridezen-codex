@@ -18,7 +18,7 @@ import {
     type LRZCardPadding,
     type LRZCardTone,
 } from "@/components/LRZCard";
-import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
+import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colorsV2";
 import type { LRZColor } from "@/types/lrz";
 
 import styles from "./LRZCardPlayground.module.css";
@@ -81,15 +81,15 @@ const INITIAL_STATE: PlaygroundState = {
 const COLOR_OPTION_GROUPS = [
     {
         label: "Nature",
-        prefix: "--lrz-nature-",
+        prefix: "--color-nature-",
     },
     {
         label: "Faune",
-        prefix: "--lrz-faune-",
+        prefix: "--color-",
     },
     {
         label: "Patrimoine",
-        prefix: "--lrz-patrimoine-",
+        prefix: "--color-patrimoine-",
     },
 ].map(({ label, prefix }) => ({
     label,

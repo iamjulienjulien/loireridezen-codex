@@ -4,6 +4,13 @@ import styles from "./atelier.module.css";
 
 const CATEGORIES = [
     {
+        title: "Couleurs",
+        description:
+            "La palette LRZ, ses familles, ses tokens CSS et les conventions de mise en œuvre.",
+        href: "/atelier/colors",
+        count: "Palette V2",
+    },
+    {
         title: "Composants UI",
         description:
             "Les briques visuelles du Codex : typographie, cartes, filtres, badges et navigation.",

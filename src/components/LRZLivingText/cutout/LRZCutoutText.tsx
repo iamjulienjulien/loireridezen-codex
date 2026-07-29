@@ -3,7 +3,7 @@ import { useId, type CSSProperties } from "react";
 import LRZTypography, {
     type LRZTypographyProps,
 } from "@/components/LRZTypography";
-import { LRZ_COLOR_VALUES } from "@/registry/colors";
+import { LRZ_COLOR_VALUES } from "@/registry/colorsV2";
 import type { LRZColor } from "@/types/lrz";
 
 import styles from "./LRZCutoutText.module.css";

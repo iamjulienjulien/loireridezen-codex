@@ -1,0 +1,112 @@
+:root {
+    /* ======================================================================
+       Nature
+       ====================================================================== */
+
+    --color-nature-prairie: #5c8754;
+    --color-nature-roseau: #707c40;
+    --color-nature-foret: #503827;
+    --color-nature-sable: #cfbe9f;
+    --color-nature-galet: #7c7c78;
+    --color-nature-eau: #4d80a7;
+    --color-nature-eau-claire: #3e93a7;
+    --color-nature-ciel: #f7f6f2;
+    --color-nature-soleil: #d8b548;
+    --color-nature-coucher: #d97a3e;
+
+    /* ======================================================================
+       Palette naturaliste
+       ====================================================================== */
+
+    /* Neutres */
+
+    --color-blanc: #f7f6f2;
+    --color-ivoire: #f3efe4;
+    --color-blanc-gris: #e5e7e3;
+    --color-argent: #bec5c8;
+
+    --color-gris-clair: #a8aaa5;
+    --color-gris: #7c7c78;
+    --color-gris-ardoise: #5c6772;
+    --color-gris-brun: #76695d;
+    --color-anthracite: #424540;
+    --color-noir: #2b2b29;
+
+    /* Beiges et terres claires */
+
+    --color-lin: #ded1b8;
+    --color-beige: #cfbe9f;
+    --color-creme: #f2e7cf;
+    --color-taupe: #9a8875;
+    --color-ocre-clair: #cea968;
+    --color-ocre: #b88945;
+    --color-fauve: #b37a43;
+
+    /* Bruns */
+
+    --color-noisette: #9a6c43;
+    --color-brun: #795739;
+    --color-brun-roux: #8f573c;
+    --color-brun-fonce: #503827;
+    --color-ecorce: #46352b;
+
+    /* Jaunes et ors */
+
+    --color-jaune-paille: #dfca7d;
+    --color-jaune: #d8b548;
+    --color-miel: #c7953e;
+    --color-ambre: #b87932;
+
+    /* Oranges et rouges */
+
+    --color-orange-clair: #e79a5d;
+    --color-orange: #d97a3e;
+    --color-orange-cuivre: #b96841;
+    --color-roux: #a55a35;
+    --color-terre-cuite: #ad5f49;
+
+    --color-corail: #c76858;
+    --color-rouge: #a44842;
+    --color-grenat: #7f3d3f;
+    --color-lie-de-vin: #663d49;
+
+    /* Roses et violets */
+
+    --color-rose-poudre: #d6aaa2;
+    --color-rose-sauvage: #b86f72;
+    --color-mauve: #8c7187;
+    --color-prune: #665064;
+
+    /* Verts */
+
+    --color-vert-clair: #92ad7d;
+    --color-vert: #5c8754;
+    --color-vert-vif: #6aa657;
+    --color-vert-sauge: #82947a;
+    --color-vert-mousse: #63734f;
+    --color-vert-olive: #707c40;
+    --color-vert-roseau: #7f884e;
+    --color-vert-pin: #3f6651;
+    --color-vert-metallise: #3e7f73;
+    --color-vert-fonce: #345443;
+
+    /* Bleus */
+
+    --color-bleu-clair: #8fb3c6;
+    --color-bleu: #4d80a7;
+    --color-bleu-gris: #6c8796;
+    --color-bleu-turquoise: #3e93a7;
+    --color-bleu-metallise: #2c708e;
+    --color-bleu-loire: #397a91;
+    --color-bleu-ardoise: #456476;
+    --color-bleu-nuit: #304957;
+
+    /* ======================================================================
+       Patrimoine
+       ====================================================================== */
+
+    --color-patrimoine-pierre: #d6d0c6;
+    --color-patrimoine-ardoise: #5c6772;
+    --color-patrimoine-brique: #a44842;
+    --color-patrimoine-tuffeau: #f2e7cf;
+}

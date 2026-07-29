@@ -231,7 +231,7 @@
             color-mix(in srgb, var(--badge-color) 18%, transparent),
             transparent 42%
         ),
-        color-mix(in srgb, var(--lrz-patrimoine-tuffeau) 12%, var(--bg-surface));
+        color-mix(in srgb, var(--color-patrimoine-tuffeau) 12%, var(--bg-surface));
 }
 
 .badge[data-variant="plaque"]::before {
@@ -265,7 +265,7 @@
     background:
         radial-gradient(
             circle at 18% 45%,
-            color-mix(in srgb, var(--lrz-nature-eau-claire) 26%, transparent),
+            color-mix(in srgb, var(--color-nature-eau-claire) 26%, transparent),
             transparent 28%
         ),
         linear-gradient(

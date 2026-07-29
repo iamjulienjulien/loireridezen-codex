@@ -336,8 +336,8 @@
     color: color-mix(in srgb, var(--typography-color) 72%, white);
     text-shadow:
         0 0 0.12em
-            color-mix(in srgb, var(--lrz-nature-eau-claire) 48%, transparent),
-        0 0 0.32em color-mix(in srgb, var(--lrz-nature-eau) 34%, transparent);
+            color-mix(in srgb, var(--color-nature-eau-claire) 48%, transparent),
+        0 0 0.32em color-mix(in srgb, var(--color-nature-eau) 34%, transparent);
 }
 
 .typography[data-effect="foil"],
@@ -351,13 +351,13 @@
 .typography[data-effect="foil"] {
     background-image: linear-gradient(
         108deg,
-        var(--lrz-faune-argent) 0%,
-        var(--lrz-faune-blanc) 18%,
-        var(--lrz-faune-gris-ardoise) 32%,
-        var(--lrz-faune-blanc-gris) 48%,
-        var(--lrz-faune-argent) 64%,
+        var(--color-argent) 0%,
+        var(--color-blanc) 18%,
+        var(--color-gris-ardoise) 32%,
+        var(--color-blanc-gris) 48%,
+        var(--color-argent) 64%,
         white 76%,
-        var(--lrz-faune-gris) 100%
+        var(--color-gris) 100%
     );
     background-size: 220% 100%;
     animation: typography-foil 4.2s ease-in-out infinite;
@@ -389,20 +389,20 @@
         radial-gradient(circle at 8% 25%, white 0 0.035em, transparent 0.045em),
         radial-gradient(
             circle at 32% 68%,
-            var(--lrz-faune-jaune) 0 0.045em,
+            var(--color-jaune) 0 0.045em,
             transparent 0.055em
         ),
         radial-gradient(circle at 62% 18%, white 0 0.025em, transparent 0.04em),
         radial-gradient(
             circle at 84% 72%,
-            var(--lrz-nature-eau-claire) 0 0.04em,
+            var(--color-nature-eau-claire) 0 0.04em,
             transparent 0.055em
         ),
         linear-gradient(
             110deg,
-            var(--lrz-faune-gris-ardoise),
-            var(--lrz-nature-eau),
-            var(--lrz-faune-noir)
+            var(--color-gris-ardoise),
+            var(--color-nature-eau),
+            var(--color-noir)
         );
     background-size:
         1.8em 1.25em,
@@ -415,9 +415,9 @@
 [data-mode="nuit"] .typography[data-effect="moon-glow"] {
     text-shadow:
         0 0 0.1em
-            color-mix(in srgb, var(--lrz-nature-eau-claire) 72%, transparent),
-        0 0 0.3em color-mix(in srgb, var(--lrz-nature-eau) 58%, transparent),
-        0 0 0.65em color-mix(in srgb, var(--lrz-nature-eau) 24%, transparent);
+            color-mix(in srgb, var(--color-nature-eau-claire) 72%, transparent),
+        0 0 0.3em color-mix(in srgb, var(--color-nature-eau) 58%, transparent),
+        0 0 0.65em color-mix(in srgb, var(--color-nature-eau) 24%, transparent);
 }
 
 .typography[data-effect="highlight"] {
@@ -452,71 +452,71 @@
 .typography[data-gradient="royal"] {
     background-image: linear-gradient(
         108deg,
-        var(--lrz-faune-ocre),
-        var(--lrz-faune-jaune)
+        var(--color-ocre),
+        var(--color-jaune)
     );
 }
 
 .typography[data-gradient="gold-leaf"] {
     background-image: linear-gradient(
         112deg,
-        var(--lrz-faune-ocre) 4%,
-        var(--lrz-faune-jaune) 36%,
+        var(--color-ocre) 4%,
+        var(--color-jaune) 36%,
         #f0cf7a 52%,
         var(--gold) 72%,
-        var(--lrz-faune-ocre) 96%
+        var(--color-ocre) 96%
     );
     text-shadow: 0 0.035em 0.08em
-        color-mix(in srgb, var(--lrz-faune-ocre) 24%, transparent);
+        color-mix(in srgb, var(--color-ocre) 24%, transparent);
 }
 
 .typography[data-gradient="river"] {
     background-image: linear-gradient(
         102deg,
-        var(--lrz-nature-eau) 0%,
-        var(--lrz-nature-eau-claire) 44%,
-        color-mix(in srgb, var(--lrz-nature-eau-claire) 58%, white) 68%,
-        var(--lrz-nature-eau) 100%
+        var(--color-nature-eau) 0%,
+        var(--color-nature-eau-claire) 44%,
+        color-mix(in srgb, var(--color-nature-eau-claire) 58%, white) 68%,
+        var(--color-nature-eau) 100%
     );
 }
 
 .typography[data-gradient="sunset"] {
     background-image: linear-gradient(
         112deg,
-        var(--lrz-nature-coucher),
-        var(--lrz-faune-orange-cuivre)
+        var(--color-nature-coucher),
+        var(--color-orange-cuivre)
     );
 }
 
 .typography[data-gradient="forest"] {
     background-image: linear-gradient(
         105deg,
-        var(--lrz-nature-foret),
-        var(--lrz-nature-prairie)
+        var(--color-nature-foret),
+        var(--color-nature-prairie)
     );
 }
 
 .typography[data-gradient="tuffeau"] {
     background-image: linear-gradient(
         105deg,
-        var(--lrz-patrimoine-tuffeau),
-        var(--lrz-nature-sable)
+        var(--color-patrimoine-tuffeau),
+        var(--color-nature-sable)
     );
 }
 
 .typography[data-gradient="moonlight"] {
     background-image: linear-gradient(
         105deg,
-        var(--lrz-faune-bleu-metallise),
-        var(--lrz-faune-argent)
+        var(--color-bleu-metallise),
+        var(--color-argent)
     );
 }
 
 .typography[data-gradient="ember"] {
     background-image: linear-gradient(
         105deg,
-        var(--lrz-patrimoine-brique),
-        var(--lrz-faune-fauve)
+        var(--color-patrimoine-brique),
+        var(--color-fauve)
     );
 }
 

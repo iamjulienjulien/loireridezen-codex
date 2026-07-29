@@ -22,7 +22,7 @@ import LRZTypography, {
     type LRZTypographyWeight,
 } from "@/components/LRZTypography";
 import type { Ambiance } from "@/registry/ambiances";
-import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
+import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colorsV2";
 
 import styles from "./LRZTypographyPlayground.module.css";
 
@@ -129,9 +129,9 @@ const SEMANTIC_COLORS = [
 ] as const;
 
 const COLOR_OPTION_GROUPS = [
-    { label: "Nature", prefix: "--lrz-nature-" },
-    { label: "Faune", prefix: "--lrz-faune-" },
-    { label: "Patrimoine", prefix: "--lrz-patrimoine-" },
+    { label: "Nature", prefix: "--color-nature-" },
+    { label: "Faune", prefix: "--color-" },
+    { label: "Patrimoine", prefix: "--color-patrimoine-" },
 ].map(({ label, prefix }) => ({
     label,
     colors: LRZ_COLOR_NAMES.filter((color) =>

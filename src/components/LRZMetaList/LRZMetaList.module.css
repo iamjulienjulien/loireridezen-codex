@@ -1,5 +1,5 @@
 .list {
-    --meta-list-color: var(--lrz-faune-ocre);
+    --meta-list-color: var(--color-ocre);
     --meta-list-label-width: minmax(92px, 0.8fr);
     --meta-list-column-gap: 10px;
     --meta-list-row-gap: 0px;
