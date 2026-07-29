@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import LRZTypewriter from "@/components/LRZTypewriter";
 import LRZTypography from "@/components/LRZTypography";
 
 import { useLRZAnimationPlayback } from "./LRZAnimationCard";
@@ -124,33 +123,14 @@ export function ScrambleText({
     );
 }
 
-export function TypewriterExperiment() {
-    const playback = useLRZAnimationPlayback();
-    const resting = playback.mode === "auto" && !playback.playing;
-
-    return (
-        <LRZTypewriter
-            key={`${playback.cycle}-${resting ? "rest" : "active"}`}
-            preset="heading-2"
-            as="p"
-            speed={62}
-            cursor="underscore"
-            autoPlay={playback.playing}
-        >
-            Prochaine halte : Saumur
-        </LRZTypewriter>
-    );
+export function WaveExperiment() {
+    return <WaveText>La Loire ondule</WaveText>;
 }
 
-export function KineticExperiment() {
+export function ScrambleExperiment() {
     const { playing } = useLRZAnimationPlayback();
 
-    return (
-        <>
-            <WaveText>La Loire ondule</WaveText>
-            <ScrambleText playing={playing}>CODEX LIGÉRIEN</ScrambleText>
-        </>
-    );
+    return <ScrambleText playing={playing}>CODEX LIGÉRIEN</ScrambleText>;
 }
 
 export function TopographicText({ children }: { children: string }) {

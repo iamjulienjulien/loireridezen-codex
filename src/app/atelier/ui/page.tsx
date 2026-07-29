@@ -16,6 +16,7 @@ const COMPONENTS = [
     ["LRZCard", "/atelier/components/lrz-card"],
     ["LRZMetaList", "/atelier/components/lrz-meta-list"],
     ["LRZTypography", "/atelier/components/lrz-typography"],
+    ["LRZLivingText", "/atelier/components/lrz-living-text"],
 ] as const;
 
 export default function AtelierUiPage() {

@@ -42,6 +42,11 @@ const SECTIONS = [
                 "LRZTypography",
                 "/atelier/components/lrz-typography",
             ],
+            [
+                "lrz-living-text",
+                "LRZLivingText",
+                "/atelier/components/lrz-living-text",
+            ],
         ],
     },
     {
