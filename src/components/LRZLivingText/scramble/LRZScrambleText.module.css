@@ -1,7 +1,19 @@
 .root {
     min-height: 1.2em;
-    color: var(--gold);
+    color: inherit;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+}
+
+.root[data-preserve-spaces] {
+    white-space: pre-wrap;
+}
+
+.root[data-mono] {
     font-family: var(--font-mono);
     letter-spacing: 0.06em;
-    white-space: nowrap;
+}
+
+.root[data-character-set="emoji"] {
+    letter-spacing: 0.12em;
 }

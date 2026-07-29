@@ -19,11 +19,33 @@ export type LRZScrambleTextProps = Omit<
     speed?: number;
     /** Nombre de caractères aléatoires visibles avant la stabilisation. */
     scrambleFrames?: number;
+    /** Alphabet utilisé durant le brouillage. */
+    characterSet?: LRZScrambleCharacterSet;
+    /** Utilise une chasse fixe pour donner un rendu plus technique. */
+    mono?: boolean;
+    /** Retire les espaces et retours à la ligne aux extrémités du texte. */
+    trim?: boolean;
+    /** Conserve les suites d’espaces et les retours à la ligne dans le rendu. */
+    preserveSpaces?: boolean;
     /** Redémarre la révélation au survol ou au focus si `playing` est absent. */
     playOnHover?: boolean;
 };
 
-const CHARACTERS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+export type LRZScrambleCharacterSet =
+    | "mixte"
+    | "upper"
+    | "lower"
+    | "ucfirst"
+    | "emoji"
+    | "symbol";
+
+const CHARACTER_SETS = {
+    mixte: "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789",
+    upper: "ABCDEFGHJKLMNPQRSTUVWXYZ",
+    lower: "abcdefghjkmnpqrstuvwxyz",
+    emoji: ["🌊", "🚲", "🏰", "🌿", "🦢", "☀️", "🍇", "🛶"],
+    symbol: ["✦", "✧", "✺", "✹", "✷", "◈", "◉", "⌁"],
+} as const;
 
 function splitGraphemes(text: string) {
     if (typeof Intl.Segmenter === "function") {
@@ -36,17 +58,48 @@ function splitGraphemes(text: string) {
     return Array.from(text);
 }
 
+function normalizeText(text: string, trim: boolean, preserveSpaces: boolean) {
+    const trimmedText = trim ? text.trim() : text;
+
+    return preserveSpaces ? trimmedText : trimmedText.replace(/\s+/g, " ");
+}
+
+function getScrambleCharacters(
+    characterSet: LRZScrambleCharacterSet,
+    index: number,
+) {
+    if (characterSet === "ucfirst") {
+        return index === 0
+            ? CHARACTER_SETS.upper
+            : CHARACTER_SETS.lower;
+    }
+
+    return CHARACTER_SETS[characterSet];
+}
+
 /** Révèle une phrase à travers un brouillage typographique. */
 export default function LRZScrambleText({
     children,
     playing: controlledPlaying,
     speed = 58,
     scrambleFrames = 8,
+    characterSet = "mixte",
+    mono = false,
+    trim = true,
+    preserveSpaces = false,
     playOnHover = true,
     className,
+    onBlur,
+    onFocus,
+    onPointerEnter,
+    onPointerLeave,
     ...props
 }: LRZScrambleTextProps) {
-    const target = useMemo(() => splitGraphemes(children), [children]);
+    const text = useMemo(
+        () => normalizeText(children, trim, preserveSpaces),
+        [children, preserveSpaces, trim],
+    );
+    const target = useMemo(() => splitGraphemes(text), [text]);
     const [frame, setFrame] = useState(0);
     const [hoverPlaying, setHoverPlaying] = useState(false);
     const playing = controlledPlaying ?? hoverPlaying;
@@ -83,17 +136,23 @@ export default function LRZScrambleText({
         }, resolvedSpeed);
 
         return () => window.clearInterval(interval);
-    }, [playing, resolvedSpeed, target.length, totalFrames]);
+    }, [playing, resolvedSpeed, text, totalFrames]);
+
+    const visibleFrame = playing ? frame : totalFrames;
 
     const visibleText = target
         .map((grapheme, index) => {
-            if (grapheme === " " || index < frame - resolvedFrames) {
+            if (
+                /\s/.test(grapheme) ||
+                index < visibleFrame - resolvedFrames
+            ) {
                 return grapheme;
             }
 
+            const characters = getScrambleCharacters(characterSet, index);
             const characterIndex =
-                (frame * 7 + index * 11) % CHARACTERS.length;
-            return CHARACTERS[characterIndex];
+                (visibleFrame * 7 + index * 11) % characters.length;
+            return characters[characterIndex];
         })
         .join("");
 
@@ -111,12 +170,27 @@ export default function LRZScrambleText({
     return (
         <LRZTypography
             {...props}
-            aria-label={children}
+            aria-label={text}
             className={[styles.root, className].filter(Boolean).join(" ")}
-            onBlur={stopHoverPlayback}
-            onFocus={startHoverPlayback}
-            onPointerEnter={startHoverPlayback}
-            onPointerLeave={stopHoverPlayback}
+            data-preserve-spaces={preserveSpaces || undefined}
+            data-character-set={characterSet}
+            data-mono={mono || undefined}
+            onBlur={(event) => {
+                stopHoverPlayback();
+                onBlur?.(event);
+            }}
+            onFocus={(event) => {
+                startHoverPlayback();
+                onFocus?.(event);
+            }}
+            onPointerEnter={(event) => {
+                startHoverPlayback();
+                onPointerEnter?.(event);
+            }}
+            onPointerLeave={(event) => {
+                stopHoverPlayback();
+                onPointerLeave?.(event);
+            }}
             tabIndex={
                 controlledPlaying === undefined && playOnHover
                     ? 0

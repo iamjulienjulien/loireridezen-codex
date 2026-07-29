@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import LRZLivingText, {
     type LRZPathTextPath,
+    type LRZScrambleCharacterSet,
 } from "@/components/LRZLivingText";
 import type { Ambiance } from "@/registry/ambiances";
 import { LRZ_COLOR_LABELS, LRZ_COLOR_NAMES } from "@/registry/colors";
@@ -35,6 +36,14 @@ const CUTOUT_PADDINGS = ["sm", "md", "lg"] as const;
 const CUTOUT_RADII = ["none", "sm", "md"] as const;
 const TYPEWRITER_CURSORS = ["bar", "block", "underscore", "none"] as const;
 const TYPEWRITER_CURSOR_AFTER = ["keep", "hide"] as const;
+const SCRAMBLE_CHARACTER_SETS = [
+    "mixte",
+    "upper",
+    "lower",
+    "ucfirst",
+    "emoji",
+    "symbol",
+] as const satisfies readonly LRZScrambleCharacterSet[];
 
 export function LRZCutoutTextControls({ className }: { className: string }) {
     const [surface, setSurface] = useState<LRZColor>("bleu-gris");
@@ -231,9 +240,17 @@ export function LRZTypewriterControls({ className }: { className: string }) {
 function ScramblePreview({
     speed,
     scrambleFrames,
+    characterSet,
+    mono,
+    trim,
+    preserveSpaces,
 }: {
     speed: number;
     scrambleFrames: number;
+    characterSet: LRZScrambleCharacterSet;
+    mono: boolean;
+    trim: boolean;
+    preserveSpaces: boolean;
 }) {
     const playback = useLRZAnimationPlayback();
 
@@ -245,8 +262,12 @@ function ScramblePreview({
             playing={playback.playing}
             speed={speed}
             scrambleFrames={scrambleFrames}
+            characterSet={characterSet}
+            mono={mono}
+            trim={trim}
+            preserveSpaces={preserveSpaces}
         >
-            CODEX LIGÉRIEN
+            {"  CODEX   LIGÉRIEN  "}
         </LRZLivingText.ScrambleText>
     );
 }
@@ -254,6 +275,11 @@ function ScramblePreview({
 export function LRZScrambleTextControls({ className }: { className: string }) {
     const [speed, setSpeed] = useState(58);
     const [scrambleFrames, setScrambleFrames] = useState(8);
+    const [characterSet, setCharacterSet] =
+        useState<LRZScrambleCharacterSet>("mixte");
+    const [mono, setMono] = useState(false);
+    const [trim, setTrim] = useState(true);
+    const [preserveSpaces, setPreserveSpaces] = useState(false);
 
     return (
         <>
@@ -276,6 +302,24 @@ export function LRZScrambleTextControls({ className }: { className: string }) {
                                 }
                             />
                         </label>
+                        <SelectControl
+                            label="characterSet"
+                            value={characterSet}
+                            options={SCRAMBLE_CHARACTER_SETS}
+                            onChange={(value) =>
+                                setCharacterSet(
+                                    value as LRZScrambleCharacterSet,
+                                )
+                            }
+                        />
+                        <label className={styles.livingCheck}>
+                            <input
+                                type="checkbox"
+                                checked={mono}
+                                onChange={(event) => setMono(event.target.checked)}
+                            />
+                            <span>mono</span>
+                        </label>
                         <label className={styles.livingControl}>
                             <span>scrambleFrames · {scrambleFrames}</span>
                             <input
@@ -289,12 +333,34 @@ export function LRZScrambleTextControls({ className }: { className: string }) {
                                 }
                             />
                         </label>
+                        <label className={styles.livingCheck}>
+                            <input
+                                type="checkbox"
+                                checked={trim}
+                                onChange={(event) => setTrim(event.target.checked)}
+                            />
+                            <span>trim</span>
+                        </label>
+                        <label className={styles.livingCheck}>
+                            <input
+                                type="checkbox"
+                                checked={preserveSpaces}
+                                onChange={(event) =>
+                                    setPreserveSpaces(event.target.checked)
+                                }
+                            />
+                            <span>preserveSpaces</span>
+                        </label>
                     </div>
                 }
             >
                 <ScramblePreview
                     speed={speed}
                     scrambleFrames={scrambleFrames}
+                    characterSet={characterSet}
+                    mono={mono}
+                    trim={trim}
+                    preserveSpaces={preserveSpaces}
                 />
             </LRZAnimationCard>
             <pre className={styles.compositionCode}>
@@ -303,8 +369,12 @@ export function LRZScrambleTextControls({ className }: { className: string }) {
   as="p"
   speed={${speed}}
   scrambleFrames={${scrambleFrames}}
+  characterSet="${characterSet}"
+  mono={${mono}}
+  trim={${trim}}
+  preserveSpaces={${preserveSpaces}}
 >
-  CODEX LIGÉRIEN
+  {"  CODEX   LIGÉRIEN  "}
 </LRZLivingText.ScrambleText>`}</code>
             </pre>
         </>
