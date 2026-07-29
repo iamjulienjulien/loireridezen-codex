@@ -23,7 +23,7 @@ import LRZBadge, {
     type LRZMonumentHistoriqueValue,
     type LRZRareteValue,
 } from "@/components/LRZBadge/LRZBadge";
-import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colorsV2";
+import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 import styles from "./LRZBadgePlayground.module.css";
 

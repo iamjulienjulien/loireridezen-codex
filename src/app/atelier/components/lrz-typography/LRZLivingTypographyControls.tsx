@@ -7,7 +7,7 @@ import LRZLivingText, {
     type LRZScrambleCharacterSet,
 } from "@/components/LRZLivingText";
 import type { Ambiance } from "@/registry/ambiances";
-import { LRZ_COLOR_LABELS, LRZ_COLOR_NAMES } from "@/registry/colorsV2";
+import { LRZ_COLOR_LABELS, LRZ_COLOR_NAMES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 
 import LRZAnimationCard, {

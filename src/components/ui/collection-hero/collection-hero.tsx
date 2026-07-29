@@ -6,7 +6,7 @@ import type { CSSProperties } from "react";
 
 import styles from "./collection-hero.module.css";
 import { LRZColor } from "@/types/lrz";
-import { getLRZColorValue } from "@/registry/colorsV2";
+import { getLRZColorValue } from "@/registry/colors";
 import { lighter } from "@/lib/colors";
 
 export type CollectionHeroVariant = "default" | "immersive" | "compact";

@@ -22,7 +22,7 @@ import LRZTypography, {
     type LRZTypographyWeight,
 } from "@/components/LRZTypography";
 import type { Ambiance } from "@/registry/ambiances";
-import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colorsV2";
+import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 
 import styles from "./LRZTypographyPlayground.module.css";
 

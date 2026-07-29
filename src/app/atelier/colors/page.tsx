@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LRZ_COLOR_GROUPS, LRZ_COLOR_REGISTRY } from "@/registry/colorsV2";
+import { LRZ_COLOR_GROUPS, LRZ_COLOR_REGISTRY } from "@/registry/colors";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = { title: "Couleurs — Atelier du Codex ligérien" };

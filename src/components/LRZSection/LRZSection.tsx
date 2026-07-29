@@ -4,7 +4,7 @@ import type { CSSProperties, ElementType, ReactNode } from "react";
 import LRZSeparateur, {
     type LRZSeparateurPreset,
 } from "@/components/LRZSeparateur/LRZSeparateur";
-import { LRZ_COLOR_VARIABLES } from "@/registry/colorsV2";
+import { LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 import styles from "./LRZSection.module.css";
 
