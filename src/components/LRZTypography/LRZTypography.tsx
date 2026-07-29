@@ -40,7 +40,7 @@ export type LRZTypographyFont =
     "display" | "body" | "mono" | "editorial" | "inherit";
 
 export type LRZTypographySize =
-    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
+    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
 
 export type LRZTypographyWeight = "regular" | "medium" | "semibold" | "bold";
 
@@ -60,6 +60,37 @@ export type LRZTypographyTransform =
     "none" | "uppercase" | "lowercase" | "capitalize";
 
 export type LRZTypographyDecoration = "none" | "underline" | "line-through";
+
+export type LRZTypographyEffect =
+    | "none"
+    | "gold-leaf"
+    | "river"
+    | "ink"
+    | "highlight"
+    | "engraved"
+    | "outline"
+    | "soft-shadow"
+    | "moon-glow"
+    | "foil"
+    | "ink-reveal"
+    | "weathered"
+    | "constellation";
+
+export type LRZTypographyMotion =
+    "none" | "fade-up" | "reveal" | "tracking-in" | "typewriter";
+
+export type LRZTypographyGradientPreset =
+    "royal" | "river" | "sunset" | "forest" | "tuffeau" | "moonlight" | "ember";
+
+export type LRZTypographyCustomGradient = {
+    from: LRZColor;
+    to: LRZColor;
+    angle?: number;
+    midpoint?: number;
+};
+
+export type LRZTypographyGradient =
+    LRZTypographyGradientPreset | LRZTypographyCustomGradient;
 
 export type LRZTypographyProps = Omit<
     HTMLAttributes<HTMLElement>,
@@ -99,6 +130,20 @@ export type LRZTypographyProps = Omit<
     lineClamp?: 1 | 2 | 3 | 4;
     /** Décoration appliquée au texte. */
     decoration?: LRZTypographyDecoration;
+    /** Effet visuel décoratif, indépendant du preset. */
+    effect?: LRZTypographyEffect;
+    /** Dégradé prédéfini ou composé avec deux couleurs LRZ. */
+    gradient?: LRZTypographyGradient;
+    /** Animation d’entrée, indépendante de l’effet visuel. */
+    motion?: LRZTypographyMotion;
+    /** Délai de l’animation d’entrée, en millisecondes. */
+    motionDelay?: number;
+    /** Vitesse du mouvement typewriter, en millisecondes par caractère. */
+    typewriterSpeed?: number;
+    /** Affiche le curseur du mouvement typewriter. */
+    cursor?: boolean;
+    /** Transforme la première lettre d’un texte éditorial en lettrine. */
+    dropCap?: boolean;
     /** Attribut `for` disponible lorsque la racine est un label. */
     htmlFor?: string;
 };
@@ -106,6 +151,13 @@ export type LRZTypographyProps = Omit<
 type LRZTypographyStyle = CSSProperties & {
     "--typography-color": string;
     "--typography-line-clamp"?: number;
+    "--typography-motion-delay"?: string;
+    "--typography-gradient-from"?: string;
+    "--typography-gradient-to"?: string;
+    "--typography-gradient-angle"?: string;
+    "--typography-gradient-midpoint"?: string;
+    "--typography-character-count"?: number;
+    "--typography-typewriter-duration"?: string;
 };
 
 const DEFAULT_ELEMENTS: Record<LRZTypographyPreset, LRZTypographyElement> = {
@@ -181,6 +233,13 @@ export default function LRZTypography({
     truncate = false,
     lineClamp,
     decoration,
+    effect = "none",
+    gradient,
+    motion = "none",
+    motionDelay = 0,
+    typewriterSpeed = 55,
+    cursor = true,
+    dropCap = false,
     htmlFor,
     className,
     style,
@@ -191,10 +250,51 @@ export default function LRZTypography({
     const resolvedNoWrap = !truncate && !resolvedLineClamp && noWrap;
     const disablesBalance =
         truncate || resolvedLineClamp !== undefined || resolvedNoWrap;
+    const supportsDropCap =
+        Component === "p" || Component === "div" || Component === "blockquote";
+    const resolvedDropCap =
+        dropCap &&
+        supportsDropCap &&
+        !truncate &&
+        resolvedLineClamp === undefined &&
+        !resolvedNoWrap;
+    const resolvedMotionDelay = Number.isFinite(motionDelay)
+        ? Math.max(0, motionDelay)
+        : 0;
+    const resolvedTypewriterSpeed = Number.isFinite(typewriterSpeed)
+        ? Math.max(1, typewriterSpeed)
+        : 55;
+    const characterCount =
+        motion === "typewriter" &&
+        (typeof children === "string" || typeof children === "number")
+            ? Math.max(1, Array.from(String(children)).length)
+            : undefined;
+    const customGradient =
+        gradient && typeof gradient === "object" ? gradient : undefined;
+    const gradientMidpoint = customGradient
+        ? Math.min(90, Math.max(10, customGradient.midpoint ?? 50))
+        : undefined;
     const typographyStyle: LRZTypographyStyle = {
         "--typography-color": resolveColor(color ?? DEFAULT_COLORS[preset]),
         ...(resolvedLineClamp
             ? { "--typography-line-clamp": resolvedLineClamp }
+            : undefined),
+        ...(motion !== "none"
+            ? { "--typography-motion-delay": `${resolvedMotionDelay}ms` }
+            : undefined),
+        ...(customGradient
+            ? {
+                  "--typography-gradient-from": `var(${LRZ_COLOR_VARIABLES[customGradient.from]})`,
+                  "--typography-gradient-to": `var(${LRZ_COLOR_VARIABLES[customGradient.to]})`,
+                  "--typography-gradient-angle": `${customGradient.angle ?? 105}deg`,
+                  "--typography-gradient-midpoint": `${gradientMidpoint}%`,
+              }
+            : undefined),
+        ...(characterCount
+            ? {
+                  "--typography-character-count": characterCount,
+                  "--typography-typewriter-duration": `${characterCount * resolvedTypewriterSpeed}ms`,
+              }
             : undefined),
         ...style,
     };
@@ -212,10 +312,31 @@ export default function LRZTypography({
                       : String(balance)
             }
             data-decoration={decoration}
+            data-drop-cap={resolvedDropCap || undefined}
+            data-effect={effect === "none" ? undefined : effect}
+            data-gradient={
+                typeof gradient === "string"
+                    ? gradient
+                    : gradient
+                      ? "custom"
+                      : undefined
+            }
             data-font={font}
             data-italic={italic === undefined ? undefined : String(italic)}
             data-leading={leading}
             data-line-clamp={resolvedLineClamp}
+            data-motion={
+                motion === "typewriter" && !characterCount
+                    ? undefined
+                    : motion === "none"
+                      ? undefined
+                      : motion
+            }
+            data-typewriter-cursor={
+                motion === "typewriter" && characterCount && cursor
+                    ? ""
+                    : undefined
+            }
             data-no-wrap={resolvedNoWrap || undefined}
             data-preset={preset}
             data-size={size}

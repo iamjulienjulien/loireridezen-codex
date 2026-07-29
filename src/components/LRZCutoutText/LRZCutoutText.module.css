@@ -1,0 +1,46 @@
+.root {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.root[data-radius="sm"] {
+    border-radius: var(--radius-sm);
+}
+
+.root[data-radius="md"] {
+    border-radius: var(--radius-md);
+}
+
+.definitions {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.text {
+    filter: var(--cutout-filter);
+}
+
+.root[data-padding="sm"] .text {
+    padding: 0.18em 0.3em;
+}
+
+.root[data-padding="md"] .text {
+    padding: 0.3em 0.48em;
+}
+
+.root[data-padding="lg"] .text {
+    padding: 0.42em 0.68em;
+}
+
+@media (forced-colors: active) {
+    .text {
+        color: CanvasText;
+        filter: none;
+        outline: 1px solid CanvasText;
+    }
+}

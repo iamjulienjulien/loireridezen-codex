@@ -161,6 +161,14 @@
     font-size: 2.75rem;
 }
 
+.typography[data-size="5xl"] {
+    font-size: 3.5rem;
+}
+
+.typography[data-size="6xl"] {
+    font-size: 4.25rem;
+}
+
 /* Graisses */
 
 .typography[data-weight="regular"] {
@@ -294,4 +302,447 @@
 
 .typography[data-decoration="line-through"] {
     text-decoration: line-through;
+}
+
+/* Effets éditoriaux */
+
+.typography[data-effect="gold-leaf"],
+.typography[data-effect="river"] {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.typography[data-effect="gold-leaf"] {
+    background-image: linear-gradient(
+        112deg,
+        var(--lrz-faune-ocre) 4%,
+        var(--lrz-faune-jaune) 36%,
+        #f0cf7a 52%,
+        var(--gold) 72%,
+        var(--lrz-faune-ocre) 96%
+    );
+    text-shadow: 0 0.035em 0.08em
+        color-mix(in srgb, var(--lrz-faune-ocre) 24%, transparent);
+}
+
+.typography[data-effect="river"] {
+    background-image: linear-gradient(
+        102deg,
+        var(--lrz-nature-eau) 0%,
+        var(--lrz-nature-eau-claire) 44%,
+        color-mix(in srgb, var(--lrz-nature-eau-claire) 58%, white) 68%,
+        var(--lrz-nature-eau) 100%
+    );
+}
+
+.typography[data-effect="ink"] {
+    text-shadow:
+        0.018em 0.025em 0 color-mix(in srgb, currentColor 36%, transparent),
+        -0.012em 0 0 color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.typography[data-effect="engraved"] {
+    text-shadow:
+        0 0.035em 0 color-mix(in srgb, white 48%, transparent),
+        0 -0.035em 0 color-mix(in srgb, currentColor 30%, transparent),
+        0 0.08em 0.16em color-mix(in srgb, var(--text-primary) 12%, transparent);
+}
+
+.typography[data-effect="outline"] {
+    color: transparent;
+    paint-order: stroke fill;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0.028em var(--typography-color);
+}
+
+.typography[data-effect="soft-shadow"] {
+    text-shadow:
+        0 0.06em 0.08em color-mix(in srgb, var(--bg-main) 44%, transparent),
+        0 0.13em 0.28em color-mix(in srgb, var(--text-primary) 24%, transparent);
+}
+
+.typography[data-effect="moon-glow"] {
+    color: color-mix(in srgb, var(--typography-color) 72%, white);
+    text-shadow:
+        0 0 0.12em
+            color-mix(in srgb, var(--lrz-nature-eau-claire) 48%, transparent),
+        0 0 0.32em color-mix(in srgb, var(--lrz-nature-eau) 34%, transparent);
+}
+
+.typography[data-effect="foil"],
+.typography[data-effect="constellation"] {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.typography[data-effect="foil"] {
+    background-image: linear-gradient(
+        108deg,
+        var(--lrz-faune-argent) 0%,
+        var(--lrz-faune-blanc) 18%,
+        var(--lrz-faune-gris-ardoise) 32%,
+        var(--lrz-faune-blanc-gris) 48%,
+        var(--lrz-faune-argent) 64%,
+        white 76%,
+        var(--lrz-faune-gris) 100%
+    );
+    background-size: 220% 100%;
+    animation: typography-foil 4.2s ease-in-out infinite;
+}
+
+.typography[data-effect="ink-reveal"] {
+    animation: typography-ink-reveal 1.05s var(--typography-motion-delay, 0ms)
+        cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.typography[data-effect="weathered"] {
+    -webkit-mask-image: repeating-radial-gradient(
+        ellipse at 22% 38%,
+        black 0 0.065em,
+        transparent 0.075em 0.105em,
+        black 0.115em 0.31em
+    );
+    mask-image: repeating-radial-gradient(
+        ellipse at 22% 38%,
+        black 0 0.065em,
+        transparent 0.075em 0.105em,
+        black 0.115em 0.31em
+    );
+}
+
+.typography[data-effect="constellation"] {
+    background-color: var(--typography-color);
+    background-image:
+        radial-gradient(circle at 8% 25%, white 0 0.035em, transparent 0.045em),
+        radial-gradient(
+            circle at 32% 68%,
+            var(--lrz-faune-jaune) 0 0.045em,
+            transparent 0.055em
+        ),
+        radial-gradient(circle at 62% 18%, white 0 0.025em, transparent 0.04em),
+        radial-gradient(
+            circle at 84% 72%,
+            var(--lrz-nature-eau-claire) 0 0.04em,
+            transparent 0.055em
+        ),
+        linear-gradient(
+            110deg,
+            var(--lrz-faune-gris-ardoise),
+            var(--lrz-nature-eau),
+            var(--lrz-faune-noir)
+        );
+    background-size:
+        1.8em 1.25em,
+        2.6em 1.8em,
+        2.1em 1.5em,
+        3em 2em,
+        100% 100%;
+}
+
+[data-mode="nuit"] .typography[data-effect="moon-glow"] {
+    text-shadow:
+        0 0 0.1em
+            color-mix(in srgb, var(--lrz-nature-eau-claire) 72%, transparent),
+        0 0 0.3em color-mix(in srgb, var(--lrz-nature-eau) 58%, transparent),
+        0 0 0.65em color-mix(in srgb, var(--lrz-nature-eau) 24%, transparent);
+}
+
+.typography[data-effect="highlight"] {
+    width: fit-content;
+    padding-inline: 0.08em;
+    background-image: linear-gradient(
+        to top,
+        color-mix(in srgb, var(--gold) 34%, transparent) 0 42%,
+        transparent 42% 100%
+    );
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+.typography[data-effect="highlight"][data-align="center"] {
+    margin-inline: auto;
+}
+
+.typography[data-effect="highlight"][data-align="end"] {
+    margin-inline-start: auto;
+}
+
+/* Dégradés */
+
+.typography[data-gradient] {
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.typography[data-gradient="royal"] {
+    background-image: linear-gradient(
+        108deg,
+        var(--lrz-faune-ocre),
+        var(--lrz-faune-jaune)
+    );
+}
+
+.typography[data-gradient="river"] {
+    background-image: linear-gradient(
+        102deg,
+        var(--lrz-nature-eau),
+        var(--lrz-nature-eau-claire)
+    );
+}
+
+.typography[data-gradient="sunset"] {
+    background-image: linear-gradient(
+        112deg,
+        var(--lrz-nature-coucher),
+        var(--lrz-faune-orange-cuivre)
+    );
+}
+
+.typography[data-gradient="forest"] {
+    background-image: linear-gradient(
+        105deg,
+        var(--lrz-nature-foret),
+        var(--lrz-nature-prairie)
+    );
+}
+
+.typography[data-gradient="tuffeau"] {
+    background-image: linear-gradient(
+        105deg,
+        var(--lrz-patrimoine-tuffeau),
+        var(--lrz-nature-sable)
+    );
+}
+
+.typography[data-gradient="moonlight"] {
+    background-image: linear-gradient(
+        105deg,
+        var(--lrz-faune-bleu-metallise),
+        var(--lrz-faune-argent)
+    );
+}
+
+.typography[data-gradient="ember"] {
+    background-image: linear-gradient(
+        105deg,
+        var(--lrz-patrimoine-brique),
+        var(--lrz-faune-fauve)
+    );
+}
+
+.typography[data-gradient="custom"] {
+    background-image: linear-gradient(
+        var(--typography-gradient-angle, 105deg),
+        var(--typography-gradient-from) 0%,
+        color-mix(
+                in srgb,
+                var(--typography-gradient-from) 50%,
+                var(--typography-gradient-to)
+            )
+            var(--typography-gradient-midpoint, 50%),
+        var(--typography-gradient-to) 100%
+    );
+}
+
+.typography[data-drop-cap]::first-letter {
+    float: inline-start;
+    margin: 0.06em 0.12em 0 0;
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: 3.35em;
+    font-style: normal;
+    font-weight: 540;
+    line-height: 0.78;
+    text-shadow: 0 0.035em 0.08em var(--gold-glow);
+    -webkit-text-fill-color: var(--gold);
+}
+
+/* Mouvement */
+
+.typography[data-motion] {
+    animation-delay: var(--typography-motion-delay, 0ms);
+    animation-duration: 720ms;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.typography[data-motion="fade-up"] {
+    animation-name: typography-fade-up;
+}
+
+.typography[data-motion="reveal"] {
+    animation-name: typography-reveal;
+    animation-duration: 820ms;
+}
+
+.typography[data-motion="tracking-in"] {
+    animation-name: typography-tracking-in;
+    animation-duration: 780ms;
+}
+
+.typography[data-motion="typewriter"] {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    animation-name: typography-typewriter;
+    animation-duration: var(--typography-typewriter-duration, 1600ms);
+    animation-timing-function: steps(
+        var(--typography-character-count, 24),
+        end
+    );
+    clip-path: inset(0 100% 0 0);
+    overflow: visible;
+    white-space: nowrap;
+}
+
+.typography[data-motion="typewriter"][data-align="center"] {
+    margin-inline: auto;
+}
+
+.typography[data-motion="typewriter"][data-align="end"] {
+    margin-inline-start: auto;
+}
+
+.typography[data-typewriter-cursor]::after {
+    position: absolute;
+    inset-block: 0.08em 0.08em;
+    left: 0;
+    width: 0.055em;
+    min-width: 1px;
+    background: currentColor;
+    content: "";
+    animation:
+        typography-typewriter-cursor
+            var(--typography-typewriter-duration, 1600ms)
+            steps(var(--typography-character-count, 24), end)
+            var(--typography-motion-delay, 0ms) both,
+        typography-cursor-blink 720ms
+            calc(
+                var(--typography-motion-delay, 0ms) +
+                    var(--typography-typewriter-duration, 1600ms)
+            )
+            step-end infinite;
+}
+
+@keyframes typography-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(0.35em);
+    }
+}
+
+@keyframes typography-reveal {
+    from {
+        opacity: 0.2;
+        clip-path: inset(0 100% 0 0);
+        transform: translateX(-0.18em);
+    }
+}
+
+@keyframes typography-tracking-in {
+    from {
+        opacity: 0;
+        letter-spacing: 0.16em;
+        transform: translateY(0.08em);
+    }
+}
+
+@keyframes typography-typewriter {
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes typography-typewriter-cursor {
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes typography-cursor-blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes typography-foil {
+    0%,
+    20%,
+    100% {
+        background-position: 100% 50%;
+    }
+
+    55% {
+        background-position: 0 50%;
+    }
+}
+
+@keyframes typography-ink-reveal {
+    from {
+        opacity: 0;
+        filter: blur(0.1em);
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+        transform: translateX(-0.08em);
+    }
+}
+
+@media (forced-colors: active) {
+    .typography[data-effect="gold-leaf"],
+    .typography[data-effect="river"],
+    .typography[data-effect="foil"],
+    .typography[data-effect="constellation"],
+    .typography[data-gradient] {
+        color: CanvasText;
+        background-image: none;
+        -webkit-text-fill-color: currentColor;
+        text-shadow: none;
+    }
+
+    .typography[data-effect="highlight"] {
+        padding-inline: 0;
+        background-image: none;
+        text-decoration: underline;
+        text-decoration-thickness: 0.12em;
+    }
+
+    .typography[data-effect="outline"] {
+        color: CanvasText;
+        -webkit-text-fill-color: currentColor;
+        -webkit-text-stroke: 0;
+    }
+
+    .typography[data-effect="engraved"],
+    .typography[data-effect="soft-shadow"],
+    .typography[data-effect="moon-glow"],
+    .typography[data-effect="weathered"] {
+        color: CanvasText;
+        text-shadow: none;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .typography[data-motion] {
+        animation: none;
+    }
+
+    .typography[data-motion="typewriter"] {
+        clip-path: none;
+    }
+
+    .typography[data-typewriter-cursor]::after {
+        display: none;
+    }
+
+    .typography[data-effect="foil"],
+    .typography[data-effect="ink-reveal"] {
+        animation: none;
+    }
 }
