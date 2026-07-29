@@ -85,6 +85,8 @@ export interface CollectionRegistryEntry {
 
     customEmoji?: string;
 
+    order: number;
+
     /** Critères utilisés pour construire le classement. */
     criteria: readonly string[];
 
@@ -112,6 +114,7 @@ export const COLLECTIONS = [
         mark: "👑",
         label: "Incontournables du Val",
         eyebrow: "Collection",
+        order: 1,
 
         title: "Les incontournables du Val",
         subtitle: "Dix châteaux pour comprendre l’essentiel du récit ligérien",
@@ -200,6 +203,7 @@ export const COLLECTIONS = [
         mark: "🌿",
         label: "Jardins & domaines",
         eyebrow: "Collection",
+        order: 6,
 
         title: "Les châteaux-jardins",
         subtitle: "Quand le domaine prolonge l’architecture",
@@ -250,6 +254,7 @@ export const COLLECTIONS = [
         mark: "🏛️",
         label: "Chefs-d’œuvre Renaissance",
         eyebrow: "Collection",
+        order: 3,
 
         title: "Les chefs-d’œuvre de la Renaissance",
         subtitle: "Quand le Val change de visage",
@@ -316,11 +321,232 @@ export const COLLECTIONS = [
         etat: "publie",
         env: ["development", "production"],
     },
+    {
+        slug: "plus-ligeriens",
+        href: "/chateaux/collections/plus-ligeriens",
+
+        indexSlug: "chateaux",
+        indexHref: "/chateaux",
+
+        mark: "🌊",
+        label: "Plus ligériens",
+        eyebrow: "Collection",
+        order: 4,
+
+        title: "Les plus ligériens",
+        subtitle: "Ceux dont le destin épouse le fleuve",
+
+        description:
+            "Un classement centré sur la relation physique, visuelle ou symbolique entre le château et la Loire.",
+
+        type: "territoire",
+        accent: "#4D80A7",
+        color: "eau",
+
+        criteria: [
+            "proximité immédiate de la Loire",
+            "relation paysagère avec le fleuve",
+            "position dans le corridor ligérien",
+            "force du récit fluvial",
+        ],
+
+        ranking: [
+            {
+                rang: 1,
+                slug: "chateau-de-montsoreau",
+                raison: "Le seul château du catalogue présenté comme construit directement dans le lit de la Loire.",
+            },
+            {
+                rang: 2,
+                slug: "domaine-de-chaumont-sur-loire",
+                raison: "Un véritable belvédère dominant le fleuve.",
+            },
+            {
+                rang: 3,
+                slug: "chateau-de-saumur",
+                raison: "Sa silhouette blanche domine durablement la Loire et la ville.",
+            },
+            {
+                rang: 4,
+                slug: "chateau-royal-d-amboise",
+                raison: "Un balcon royal installé au-dessus du fleuve.",
+            },
+            {
+                rang: 5,
+                slug: "chateau-de-sully-sur-loire",
+                raison: "Une forteresse au bord de la Loire et la borne orientale du Val inscrit.",
+            },
+            {
+                rang: 6,
+                slug: "chateau-de-langeais",
+                raison: "Un château directement associé à la Loire et à l’histoire politique du royaume.",
+            },
+            {
+                rang: 7,
+                slug: "chateau-royal-de-blois",
+                raison: "Une résidence royale majeure implantée au cœur d’une ville ligérienne.",
+            },
+            {
+                rang: 8,
+                slug: "chateau-des-ducs-de-bretagne",
+                raison: "La dernière grande forteresse du fil ligérien avant l’Atlantique.",
+            },
+        ],
+
+        footerNote: "8 châteaux dont le destin épouse le fleuve",
+
+        etat: "publie",
+        env: ["development", "production"],
+    },
+    {
+        slug: "pepites-confidentielles",
+        href: "/chateaux/collections/pepites-confidentielles",
+
+        indexSlug: "chateaux",
+        indexHref: "/chateaux",
+
+        mark: "💎",
+        label: "Pépites confidentielles",
+        eyebrow: "Collection",
+        order: 5,
+
+        title: "Les pépites confidentielles",
+        subtitle: "Les détours qui récompensent la curiosité",
+
+        description:
+            "Un top réservé aux châteaux classés comme confidentiels dans le catalogue, avec un intérêt marqué pour leur personnalité propre.",
+
+        type: "decouverte",
+        accent: "#D8B548",
+        color: "soleil",
+
+        criteria: [
+            "renommée confidentielle",
+            "singularité du récit",
+            "cohérence architecturale",
+            "potentiel de découverte",
+        ],
+
+        ranking: [
+            {
+                rang: 1,
+                slug: "chateau-de-fougeres-sur-bievre",
+                raison: "Une petite forteresse presque intacte, idéale pour lire l’architecture de la fin du Moyen Âge.",
+            },
+            {
+                rang: 2,
+                slug: "chateau-du-rivau",
+                raison: "Une alliance originale entre château fort et jardins contemporains enchantés.",
+            },
+            {
+                rang: 3,
+                slug: "chateau-de-talcy",
+                raison: "Une demeure Renaissance encore médiévale dans son allure, portée par un récit poétique rare.",
+            },
+            {
+                rang: 4,
+                slug: "chateau-de-villesavin",
+                raison: "La demeure de l’intendant du chantier de Chambord, surnommée sa cabane de chantier.",
+            },
+        ],
+
+        footerNote: "4 détours qui récompensent la curiosité",
+
+        etat: "publie",
+        env: ["development", "production"],
+    },
+    {
+        slug: "sur-les-traces-des-rois",
+        href: "/chateaux/collections/sur-les-traces-des-rois",
+
+        indexSlug: "chateaux",
+        indexHref: "/chateaux",
+
+        mark: "⚜️",
+        label: "Sur les traces des rois",
+        eyebrow: "Collection",
+        order: 2,
+
+        title: "Sur les traces des rois",
+        subtitle: "Le pouvoir royal de forteresse en résidence",
+
+        description:
+            "Un parcours à travers les châteaux explicitement liés aux rois de France, aux Valois, aux grandes décisions dynastiques ou à la vie de cour.",
+
+        type: "histoire",
+        accent: "#B37A43",
+        color: "fauve",
+
+        criteria: [
+            "présence royale dans le commanditaire ou le résumé",
+            "fonction de résidence royale",
+            "importance politique ou dynastique",
+        ],
+
+        ranking: [
+            {
+                rang: 1,
+                slug: "chateau-royal-de-blois",
+                raison: "Une résidence royale majeure, façonnée notamment par Louis XII et François Ier.",
+            },
+            {
+                rang: 2,
+                slug: "chateau-royal-d-amboise",
+                raison: "Une résidence des rois de France au tournant de la Renaissance.",
+            },
+            {
+                rang: 3,
+                slug: "chateau-de-chambord",
+                raison: "Le grand rêve architectural commandité par François Ier.",
+            },
+            {
+                rang: 4,
+                slug: "forteresse-royale-de-chinon",
+                raison: "Un lieu politique majeur du récit royal, lié au dauphin Charles.",
+            },
+            {
+                rang: 5,
+                slug: "chateau-de-langeais",
+                raison: "Le mariage royal qui relie Anne de Bretagne à Charles VIII donne au lieu une portée dynastique exceptionnelle.",
+            },
+            {
+                rang: 6,
+                slug: "cite-royale-de-loches",
+                raison: "Un ensemble associant donjon comtal et logis royal des Valois.",
+            },
+            {
+                rang: 7,
+                slug: "chateau-d-angers",
+                raison: "Une forteresse royale puis ducale, commandée sous Louis IX et Blanche de Castille.",
+            },
+            {
+                rang: 8,
+                slug: "chateau-des-ducs-de-bretagne",
+                raison: "Une résidence ducale devenue château royal à la porte de l’Atlantique.",
+            },
+        ],
+
+        footerNote: "8 châteaux sur les traces du pouvoir royal",
+
+        etat: "publie",
+        env: ["development", "production"],
+    },
 ] as const satisfies readonly CollectionRegistryEntry[];
 
 export type CollectionSlug = (typeof COLLECTIONS)[number]["slug"];
 
 export type CollectionHref = (typeof COLLECTIONS)[number]["href"];
+
+const sortCollectionsByOrder = (
+    collections: readonly CollectionRegistryEntry[],
+): CollectionRegistryEntry[] =>
+    collections
+        .map((collection, index) => ({ collection, index }))
+        .sort(
+            (a, b) =>
+                a.collection.order - b.collection.order || a.index - b.index,
+        )
+        .map(({ collection }) => collection);
 
 export const getCollection = (
     href: string,
@@ -335,7 +561,9 @@ export const getCollectionBySlug = (
 export const getCollectionsByIndex = (
     indexSlug: string,
 ): CollectionRegistryEntry[] =>
-    COLLECTIONS.filter((collection) => collection.indexSlug === indexSlug);
+    sortCollectionsByOrder(
+        COLLECTIONS.filter((collection) => collection.indexSlug === indexSlug),
+    );
 
 export const getCollectionsForEnv = (
     value: string | undefined,
@@ -344,8 +572,10 @@ export const getCollectionsForEnv = (
         throw new Error(`CURRENT_ENV invalide ou absent : ${value}`);
     }
 
-    return COLLECTIONS.filter((collection) =>
-        collection.env.some((environment) => environment === value),
+    return sortCollectionsByOrder(
+        COLLECTIONS.filter((collection) =>
+            collection.env.some((environment) => environment === value),
+        ),
     );
 };
 
@@ -353,6 +583,8 @@ export const getCollectionsByIndexForEnv = (
     indexSlug: string,
     value: string | undefined,
 ): CollectionRegistryEntry[] =>
-    getCollectionsForEnv(value).filter(
-        (collection) => collection.indexSlug === indexSlug,
+    sortCollectionsByOrder(
+        getCollectionsForEnv(value).filter(
+            (collection) => collection.indexSlug === indexSlug,
+        ),
     );
