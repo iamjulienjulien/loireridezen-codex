@@ -33,6 +33,12 @@
     gap: 18px;
 }
 
+.territories {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 2.75rem);
+}
+
 .fiche {
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);

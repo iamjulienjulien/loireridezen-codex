@@ -17,6 +17,7 @@ import LRZCard, { LRZCardMedia } from "@/components/LRZCard";
 import LRZTypography from "@/components/LRZTypography";
 import { useAmbiance } from "@/hooks/useAmbiance";
 import { featureIsEnabled } from "@/registry/feature-flags";
+import { Territoire } from "@/types/territoire";
 
 // const EPOQUE_COLOR: Record<string, LRZColor> = {
 //     Médiéval: "brun",
@@ -167,6 +168,7 @@ export function getChateauIllustration(
 
 export type ChateauCardProps = {
     d: Chateau;
+    t?: Territoire;
     open: boolean;
 };
 
@@ -186,7 +188,7 @@ function createAccordionState(open: boolean) {
  * Le château détouré habite le hero, tandis que les informations sont
  * regroupées par histoire, architecture, localisation et protections.
  */
-export default function ChateauCard({ d, open }: ChateauCardProps) {
+export default function ChateauCard({ d, t, open }: ChateauCardProps) {
     const [ambiance] = useAmbiance();
     const illustration = getChateauIllustration(d, ambiance);
     const starField = useMemo(() => createStarField(d.slug), [d.slug]);

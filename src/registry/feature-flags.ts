@@ -25,6 +25,8 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     indexesCustomEmoji: ["development"],
     ambianceChateauxVisual: ["development"],
     commandPalette: ["development"],
+    territoires: ["development"],
+    indexControlsSection: [],
 });
 
 export type FeatureFlagName = keyof typeof FEATURE_FLAGS;
