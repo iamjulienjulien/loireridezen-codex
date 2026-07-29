@@ -1,0 +1,126 @@
+.group {
+    --filter-group-accent: var(--gold);
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.card {
+    padding: 0.85rem 0.9rem 0.9rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--bg-overlay) 52%, transparent);
+}
+
+.legend {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.13em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.activeLabel {
+    overflow: hidden;
+    color: var(--filter-group-accent);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-overflow: ellipsis;
+    text-transform: none;
+    white-space: nowrap;
+}
+
+.options {
+    display: inline-flex;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    margin-top: 0.55rem;
+    padding: 2px;
+}
+
+.options > button {
+    position: relative;
+    flex: 0 0 auto;
+    margin-left: -1px;
+    border-radius: 0;
+}
+
+.options > button:first-child {
+    margin-left: 0;
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.options > button:last-child {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.options > button:hover:not(:disabled),
+.options > button:focus-visible,
+.options > button[aria-pressed="true"] {
+    z-index: 1;
+    transform: none;
+}
+
+.vertical .options {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    overflow: visible;
+}
+
+.vertical .options > button {
+    width: 100%;
+    margin-top: -1px;
+    margin-left: 0;
+    justify-content: space-between;
+    border-radius: 0;
+}
+
+.vertical .options > button:first-child {
+    margin-top: 0;
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.vertical .options > button:last-child {
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.inline {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.inline .legend {
+    width: auto;
+    flex: 0 0 auto;
+}
+
+.inline .options {
+    margin-top: 0;
+}
+
+@media (max-width: 640px) {
+    .inline {
+        display: block;
+    }
+
+    .inline .legend {
+        width: 100%;
+    }
+
+    .inline .options {
+        margin-top: 0.55rem;
+    }
+}

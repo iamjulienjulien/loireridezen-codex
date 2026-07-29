@@ -1,0 +1,107 @@
+.chip {
+    --chip-accent: var(--gold);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.42rem;
+    min-height: 2.35rem;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1;
+    transition:
+        border-color 0.18s ease,
+        background-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.chip:hover:not(:disabled) {
+    border-color: color-mix(
+        in srgb,
+        var(--chip-accent) 55%,
+        var(--border-strong)
+    );
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.chip:focus-visible {
+    outline: 2px solid var(--chip-accent);
+    outline-offset: 3px;
+}
+
+.chip[aria-pressed="true"] {
+    border-color: var(--chip-accent);
+    background: color-mix(in srgb, var(--chip-accent) 15%, transparent);
+    color: var(--chip-accent);
+}
+
+.chip:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.count {
+    display: inline-grid;
+    min-width: 1.2rem;
+    min-height: 1.2rem;
+    padding-inline: 0.25rem;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--bg-overlay);
+    color: var(--text-tertiary);
+    font-size: 0.6rem;
+    line-height: 1;
+}
+
+.chip[aria-pressed="true"] .count {
+    background: color-mix(in srgb, var(--chip-accent) 12%, transparent);
+    color: var(--chip-accent);
+}
+
+.sm {
+    min-height: 2rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.64rem;
+}
+
+.solid {
+    border-color: var(--chip-accent);
+    background: var(--chip-accent);
+    color: var(--bg-main);
+}
+
+.solid:hover:not(:disabled),
+.solid[aria-pressed="true"] {
+    border-color: var(--chip-accent);
+    background: color-mix(in srgb, var(--chip-accent) 82%, white);
+    color: var(--bg-main);
+}
+
+.quiet {
+    border-color: transparent;
+    background: transparent;
+}
+
+.quiet[aria-pressed="true"] {
+    border-color: color-mix(in srgb, var(--chip-accent) 35%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .chip {
+        transition: none;
+    }
+}
