@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Mot } from "@/types/mot";
-import IndexHeader from "@/components/IndexHeader";
+import PageHeader from "@/components/PageHeader";
 import IndexFooter from "@/components/IndexFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
@@ -84,7 +84,7 @@ export default function VocabulaireIndex({
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
-                <IndexHeader current="/vocabulaire" indexes={indexes} />
+                <PageHeader current="/vocabulaire" indexes={indexes} />
 
                 <IndexPresentation
                     description={entry.description}

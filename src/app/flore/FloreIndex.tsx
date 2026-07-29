@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Flore } from "@/types/flore";
-import IndexHeader from "@/components/IndexHeader";
+import PageHeader from "@/components/PageHeader";
 import IndexFooter from "@/components/IndexFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
@@ -87,7 +87,7 @@ export default function FloreIndex({
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
-                <IndexHeader current="/flore" indexes={indexes} />
+                <PageHeader current="/flore" indexes={indexes} />
 
                 <IndexPresentation
                     description={entry.description}

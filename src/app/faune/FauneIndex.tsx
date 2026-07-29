@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { FauneEspece } from "@/types/faune";
-import IndexHeader from "@/components/IndexHeader";
+import PageHeader from "@/components/PageHeader";
 import IndexFooter from "@/components/IndexFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
@@ -81,7 +81,7 @@ export default function FauneIndex({
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
-                <IndexHeader current="/faune" indexes={indexes} />
+                <PageHeader current="/faune" indexes={indexes} />
 
                 <IndexPresentation
                     description={entry.description}

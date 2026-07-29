@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Patrimoine } from "@/types/patrimoine";
-import IndexHeader from "@/components/IndexHeader";
+import PageHeader from "@/components/PageHeader";
 import IndexFooter from "@/components/IndexFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
@@ -95,7 +95,7 @@ export default function PatrimoineIndex({
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
-                <IndexHeader current="/patrimoine" indexes={indexes} />
+                <PageHeader current="/patrimoine" indexes={indexes} />
 
                 <IndexPresentation
                     description={entry.description}

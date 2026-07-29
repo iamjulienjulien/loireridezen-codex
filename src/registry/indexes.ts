@@ -1,6 +1,6 @@
 /**
  * Registre des index du Codex ligérien.
- * Source de vérité unique : navigation (IndexHeader), cartes d'accueil
+ * Source de vérité unique : navigation (PageHeader), cartes d'accueil
  * (app/page.tsx), présentation et footer de chaque page.
  * Données pures — importable côté serveur comme client.
  */

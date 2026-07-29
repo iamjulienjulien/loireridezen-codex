@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { Vignoble } from "@/types/vignoble";
-import IndexHeader from "@/components/IndexHeader";
+import PageHeader from "@/components/PageHeader";
 import IndexFooter from "@/components/IndexFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
@@ -98,7 +98,7 @@ export default function VignoblesIndex({
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
-                <IndexHeader current="/vignobles" indexes={indexes} />
+                <PageHeader current="/vignobles" indexes={indexes} />
 
                 <IndexPresentation
                     description={entry.description}
