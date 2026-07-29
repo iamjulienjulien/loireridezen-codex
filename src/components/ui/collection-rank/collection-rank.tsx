@@ -14,6 +14,7 @@ export type CollectionRankProps = {
     size?: CollectionRankSize;
     className?: string;
     showLabel?: boolean;
+    onlyLabel?: boolean;
 };
 
 type RankTier = "gold" | "silver" | "bronze" | "standard";
@@ -67,6 +68,7 @@ export function CollectionRank({
     size = "md",
     className,
     showLabel = false,
+    onlyLabel = false,
 }: CollectionRankProps) {
     const normalizedRank = Math.max(1, Math.floor(rank));
     const visual = getRankVisual(normalizedRank);
@@ -91,9 +93,11 @@ export function CollectionRank({
             data-rank={normalizedRank}
             data-tier={visual.tier}
         >
-            <span className={styles.number} aria-hidden="true">
-                {String(normalizedRank).padStart(2, "0")}
-            </span>
+            {!onlyLabel && (
+                <span className={styles.number} aria-hidden="true">
+                    {String(normalizedRank).padStart(2, "0")}
+                </span>
+            )}
 
             {showLabel ? (
                 <span className={styles.label}>

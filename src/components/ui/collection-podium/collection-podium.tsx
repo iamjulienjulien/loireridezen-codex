@@ -159,6 +159,7 @@ function PodiumPlace({ entry, position }: PodiumPlaceProps) {
                         rank={entry.rang}
                         variant="medal"
                         size="md"
+                        onlyLabel={true}
                         showLabel
                     />
                 </div>
