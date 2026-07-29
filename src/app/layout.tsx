@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono, Lora } from "next/font/google";
+import { Allura, Fraunces, Inter, JetBrains_Mono, Lora } from "next/font/google";
 import Script from "next/script";
 import AmbianceCommandPalette from "@/components/AmbianceCommandPalette";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
@@ -40,6 +40,12 @@ const mono = JetBrains_Mono({
 const lora = Lora({
     subsets: ["latin"],
     variable: "--font-edit",
+    display: "swap",
+});
+const allura = Allura({
+    subsets: ["latin"],
+    weight: "400",
+    variable: "--font-signature",
     display: "swap",
 });
 
@@ -86,7 +92,7 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${fraunces.variable} ${inter.variable} ${mono.variable} ${lora.variable} font-[family-name:var(--font-body)] antialiased`}
+                className={`${fraunces.variable} ${inter.variable} ${mono.variable} ${lora.variable} ${allura.variable} font-[family-name:var(--font-body)] antialiased`}
             >
                 <Script id="lrz-ambiance" strategy="beforeInteractive">
                     {AMBIANCE_INITIALIZATION_SCRIPT}

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import type { FauneEspece } from "@/types/faune";
 import PageHeader from "@/components/PageHeader";
-import IndexFooter from "@/components/IndexFooter";
+import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -151,7 +151,7 @@ export default function FauneIndex({
                     </div>
                 )}
 
-                <IndexFooter>
+                <PageFooter color={entry.color}>
                     <span
                         style={{
                             display: "block",
@@ -162,8 +162,9 @@ export default function FauneIndex({
                     >
                         {list.length} {entry.footerNote}
                     </span>
-                    {entry.title} · Le Codex Ligérien · Loire Ride Zen
-                </IndexFooter>
+                    Le Codex Ligérien ·{" "}
+                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
+                </PageFooter>
             </div>
         </main>
     );

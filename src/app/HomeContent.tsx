@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import IndexFooter from "@/components/IndexFooter";
+import PageFooter from "@/components/PageFooter";
 import type { IndexEntry } from "@/registry/indexes";
 import styles from "./HomeContent.module.css";
 
@@ -71,9 +71,10 @@ export default function HomeContent({
                     </Link>
                 )}
 
-                <IndexFooter>
-                    Le Codex Ligérien · Loire Ride Zen
-                </IndexFooter>
+                <PageFooter spacing="relaxed" signatureSpacing="none">
+                    Le Codex Ligérien ·{" "}
+                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
+                </PageFooter>
             </div>
         </main>
     );

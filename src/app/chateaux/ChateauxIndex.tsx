@@ -8,7 +8,7 @@ import type { IndexEntry } from "@/registry/indexes";
 import PageHeader from "@/components/PageHeader";
 import { COLLECTIONS } from "@/registry/collections";
 
-import IndexFooter from "@/components/IndexFooter";
+import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import { PageControls } from "@/components/PageControls";
 
@@ -313,7 +313,7 @@ export default function ChateauxIndex({
                     )}
                 </LRZSection>
 
-                <IndexFooter>
+                <PageFooter color={entry.color}>
                     <span
                         style={{
                             display: "block",
@@ -324,8 +324,9 @@ export default function ChateauxIndex({
                     >
                         {list.length} {entry.footerNote}
                     </span>
-                    {entry.title} · Le Codex Ligérien · Loire Ride Zen
-                </IndexFooter>
+                    Le Codex Ligérien ·{" "}
+                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
+                </PageFooter>
             </div>
         </main>
     );

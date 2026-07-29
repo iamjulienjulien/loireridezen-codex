@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import type { Patrimoine } from "@/types/patrimoine";
 import PageHeader from "@/components/PageHeader";
-import IndexFooter from "@/components/IndexFooter";
+import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -164,11 +164,12 @@ export default function PatrimoineIndex({
                     </div>
                 )}
 
-                <IndexFooter>
-                    {entry.title} · Loire Ride Zen · Codex
+                <PageFooter color={entry.color}>
+                    Le Codex Ligérien ·{" "}
+                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
                     <br />
                     {items.length} {entry.footerNote}
-                </IndexFooter>
+                </PageFooter>
             </div>
         </main>
     );
