@@ -17,6 +17,17 @@ export interface FilterGroup {
     onSelect: (id: string) => void;
 }
 
+export interface IndexControlsSwitcher {
+    /** Libellé accessible du mode d'affichage. */
+    label: string;
+    /** État actif du mode. */
+    checked: boolean;
+    /** Libellés court et long du mode inactif/actif. */
+    offLabel: string;
+    onLabel: string;
+    onToggle: () => void;
+}
+
 export default function IndexControls({
     query,
     onQuery,
@@ -27,6 +38,7 @@ export default function IndexControls({
     groups,
     accent,
     expand,
+    switcher,
 }: {
     query: string;
     onQuery: (v: string) => void;
@@ -42,6 +54,8 @@ export default function IndexControls({
         all: boolean;
         onToggle: () => void;
     };
+    /** Interrupteur de mode d'affichage, optionnel. */
+    switcher?: IndexControlsSwitcher;
 }) {
     const style = accent
         ? ({ "--accent": accent } as CSSProperties)
@@ -77,24 +91,60 @@ export default function IndexControls({
                         </button>
                     )}
                 </div>
-                <span className={styles.count}>
-                    <b>{resultCount}</b> / {totalCount}
-                    {unit ? ` ${unit}` : ""}
-                </span>
-                {expand && (
-                    <button
-                        type="button"
-                        className={styles.expandToggle}
-                        role="switch"
-                        aria-checked={expand.all}
-                        onClick={expand.onToggle}
-                    >
-                        <span className={styles.switchTrack} aria-hidden>
-                            <span className={styles.switchThumb} />
-                        </span>
-                        {expand.all ? "Tout replier" : "Tout déplier"}
-                    </button>
-                )}
+                <div className={styles.summary}>
+                    <span className={styles.count}>
+                        <b>{resultCount}</b> / {totalCount}
+                        {unit ? ` ${unit}` : ""}
+                    </span>
+                    {(switcher || expand) && (
+                        <div className={styles.actions}>
+                            {switcher && (
+                                <button
+                                    type="button"
+                                    className={styles.switchToggle}
+                                    role="switch"
+                                    aria-checked={switcher.checked}
+                                    aria-label={switcher.label}
+                                    onClick={switcher.onToggle}
+                                >
+                                    <span className={styles.switchText}>
+                                        <span className={styles.actionLabel}>
+                                            {switcher.label}
+                                        </span>
+                                        <span className={styles.actionValue}>
+                                            {switcher.checked
+                                                ? switcher.onLabel
+                                                : switcher.offLabel}
+                                        </span>
+                                    </span>
+                                    <span
+                                        className={styles.switchTrack}
+                                        aria-hidden
+                                    >
+                                        <span className={styles.switchThumb} />
+                                    </span>
+                                </button>
+                            )}
+                            {expand && (
+                                <button
+                                    type="button"
+                                    className={styles.expandToggle}
+                                    aria-pressed={expand.all}
+                                    aria-label={
+                                        expand.all
+                                            ? "Replier toutes les fiches"
+                                            : "Déplier toutes les fiches"
+                                    }
+                                    onClick={expand.onToggle}
+                                >
+                                    {expand.all
+                                        ? "Tout replier"
+                                        : "Tout déplier"}
+                                </button>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
 
             {groups.map((g) => (
