@@ -1,6 +1,6 @@
 .page {
     min-height: 100dvh;
-    overflow-x: hidden;
+    overflow-x: clip;
     color: var(--text-primary);
     background-color: var(--bg-main);
     background-image: var(--ambient-glow);
@@ -36,9 +36,13 @@
 
 .back:focus-visible,
 .reset:focus-visible,
+.playToggle:focus-visible,
 .control input:focus-visible,
 .control select:focus-visible,
 .control textarea:focus-visible,
+.livingControl input:focus-visible,
+.livingControl select:focus-visible,
+.livingCheck input:focus-visible,
 .checkControl input:focus-visible,
 .tableScroll:focus-visible {
     border-radius: var(--radius-sm);
@@ -55,6 +59,7 @@
 }
 
 .referenceSection,
+.livingSection,
 .propsSection,
 .playground,
 .accessibility {
@@ -66,7 +71,12 @@
     box-shadow: var(--shadow-card);
 }
 
+.playground {
+    overflow: visible;
+}
+
 .referenceSection,
+.livingSection,
 .propsSection,
 .accessibility {
     padding: clamp(1.25rem, 3vw, 2rem);
@@ -141,6 +151,660 @@
     gap: 0.2rem;
 }
 
+.effectGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.collectionSection {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.collectionHeader {
+    display: grid;
+    gap: 0.55rem;
+    max-width: 62rem;
+}
+
+.effectExample {
+    position: relative;
+    display: grid;
+    gap: 0.7rem;
+    min-width: 0;
+    padding: 3.2rem 1.15rem 1.15rem;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.staticEffectExample {
+    padding-top: 1.15rem;
+}
+
+.creativeCard.animationCard,
+.pathScene.animationCard,
+.livingCard.animationCard,
+.experimentCard.animationCard {
+    position: relative;
+    padding-top: 3.2rem;
+}
+
+.animationCardContent {
+    display: grid;
+    gap: 0.7rem;
+    min-width: 0;
+}
+
+.cardPlayback {
+    position: absolute;
+    z-index: 2;
+    top: 0.8rem;
+    right: 0.8rem;
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
+    min-height: 1.9rem;
+    padding: 0.32rem 0.55rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 999px;
+    color: var(--text-tertiary);
+    background: var(--bg-surface);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.cardPlayback:hover,
+.cardPlayback:focus-visible,
+.cardPlayback[aria-pressed="true"] {
+    color: var(--gold);
+    border-color: var(--gold);
+    outline: none;
+}
+
+.animationCard .animationCardContent * {
+    animation-play-state: paused !important;
+}
+
+.animationCard[data-playback="auto"]:hover .animationCardContent *,
+.animationCard[data-playback="auto"]:focus-within .animationCardContent *,
+.animationCard[data-playback="playing"] .animationCardContent * {
+    animation-play-state: running !important;
+}
+
+.animationCard[data-playback="paused"] .animationCardContent * {
+    animation-play-state: paused !important;
+}
+
+.effectExample code,
+.dropCapExample code {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+}
+
+.dropCapExample {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: clamp(1.1rem, 3vw, 1.5rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.dropCapExample > p {
+    max-width: 62ch;
+}
+
+.motionSection {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.motionSection > div:first-child {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.creativeBlock {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.creativeBlock > div:first-child {
+    display: grid;
+    gap: 0.45rem;
+}
+
+.gradientGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.gradientExample {
+    display: grid;
+    gap: 0.45rem;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.gradientExample code,
+.creativeCard code {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+}
+
+.cutoutScene {
+    display: grid;
+    gap: clamp(0.7rem, 2vw, 1.2rem);
+    justify-items: center;
+    padding: clamp(1.25rem, 5vw, 3rem);
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background-color: #142642;
+    background-image:
+        radial-gradient(circle at 18% 22%, #ffffff 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 13%, #d2daff 0 1px, transparent 2px),
+        radial-gradient(circle at 46% 77%, #f2c7e3 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 85% 64%, #ffffff 0 1px, transparent 2px),
+        radial-gradient(
+            ellipse at 35% 80%,
+            rgb(183 129 185 / 76%),
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse at 72% 24%,
+            rgb(54 100 174 / 82%),
+            transparent 52%
+        ),
+        linear-gradient(135deg, #07172f, #273a78 52%, #7f577e);
+    background-size:
+        83px 79px,
+        127px 109px,
+        151px 137px,
+        103px 113px,
+        100% 100%,
+        100% 100%,
+        100% 100%;
+}
+
+.cutoutScene > span:nth-child(2) {
+    transform: translateX(4%);
+}
+
+.cutoutScene > span:nth-child(3) {
+    transform: translateX(-3%);
+}
+
+.creativeColumns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.creativeCard {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+    align-content: center;
+    min-height: 15rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.livingSection {
+    position: relative;
+}
+
+.livingSection::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 11rem;
+    background: radial-gradient(
+        ellipse at 50% 0,
+        color-mix(in srgb, var(--lrz-nature-eau) 12%, transparent),
+        transparent 72%
+    );
+    content: "";
+    pointer-events: none;
+}
+
+.livingSection > * {
+    position: relative;
+}
+
+.pathScene,
+.livingCard,
+.scrollStoryScene,
+.experimentCard {
+    min-width: 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+}
+
+.pathScene {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    overflow: hidden;
+    padding: 1rem;
+    background-image: linear-gradient(
+        to bottom,
+        transparent,
+        color-mix(in srgb, var(--lrz-nature-eau) 7%, transparent)
+    );
+}
+
+.livingMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1rem;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.livingMeta code {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+}
+
+.livingControls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+    gap: 0.65rem;
+    align-items: end;
+}
+
+.livingControl {
+    display: grid;
+    gap: 0.3rem;
+    min-width: 0;
+}
+
+.livingControl > span,
+.livingCheck {
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.61rem;
+    letter-spacing: 0.04em;
+}
+
+.livingControl select,
+.livingControl input {
+    width: 100%;
+    min-width: 0;
+    min-height: 2rem;
+    padding: 0.38rem 0.48rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    font: inherit;
+    font-size: 0.72rem;
+}
+
+.livingControl input[type="range"] {
+    padding: 0;
+    accent-color: var(--gold);
+}
+
+.livingCheck {
+    display: flex;
+    gap: 0.45rem;
+    align-items: center;
+    min-height: 2rem;
+    cursor: pointer;
+}
+
+.livingCheck input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    accent-color: var(--gold);
+}
+
+.durationControl {
+    grid-column: span 2;
+}
+
+.livingGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.livingCard {
+    display: grid;
+    gap: 1.25rem;
+    min-height: 13rem;
+    align-content: center;
+    overflow: hidden;
+    padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.atmosphereRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+}
+
+.scrollStoryScene {
+    display: grid;
+    gap: 2rem;
+    min-height: min(70vh, 36rem);
+    align-content: space-between;
+    margin-top: 1rem;
+    padding: clamp(1.25rem, 5vw, 3rem);
+    background-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            color-mix(in srgb, var(--lrz-nature-sable) 14%, transparent)
+        ),
+        radial-gradient(
+            ellipse at 80% 80%,
+            color-mix(in srgb, var(--lrz-nature-eau) 12%, transparent),
+            transparent 55%
+        );
+}
+
+.experimentHeader {
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.experimentGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.experimentCard {
+    display: grid;
+    gap: 0.75rem;
+    align-content: center;
+    min-height: 13rem;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.waveText {
+    width: fit-content;
+    max-width: 100%;
+    color: var(--lrz-nature-eau);
+    white-space: nowrap;
+}
+
+.waveText span {
+    display: inline-block;
+    animation: typography-wave 1.65s ease-in-out calc(var(--wave-index) * 55ms)
+        infinite;
+}
+
+.scrambleText {
+    min-height: 1.2em;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    white-space: nowrap;
+}
+
+.topographicText {
+    color: transparent;
+    background-color: var(--lrz-nature-eau);
+    background-image:
+        repeating-radial-gradient(
+            ellipse at 35% 45%,
+            transparent 0 0.09em,
+            var(--lrz-nature-eau-claire) 0.1em 0.115em,
+            transparent 0.125em 0.22em
+        ),
+        linear-gradient(
+            110deg,
+            var(--lrz-nature-foret),
+            var(--lrz-nature-eau),
+            var(--lrz-nature-prairie)
+        );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(
+        0.035em 0.055em 0
+            color-mix(in srgb, var(--lrz-nature-foret) 44%, transparent)
+    );
+}
+
+.confluenceText {
+    position: relative;
+    display: grid;
+    min-height: 5rem;
+    place-items: center;
+    overflow: hidden;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 560;
+}
+
+.confluenceSource,
+.confluenceResult {
+    position: absolute;
+}
+
+.confluenceSource:first-child {
+    color: var(--lrz-nature-eau);
+    animation: confluence-left 5s ease-in-out infinite;
+}
+
+.confluenceSource:nth-child(2) {
+    color: var(--lrz-nature-eau-claire);
+    animation: confluence-right 5s ease-in-out infinite;
+}
+
+.confluenceResult {
+    color: transparent;
+    background-image: linear-gradient(
+        90deg,
+        var(--lrz-nature-eau),
+        var(--lrz-nature-eau-claire),
+        var(--lrz-nature-prairie)
+    );
+    background-clip: text;
+    opacity: 0;
+    transform: scale(0.92);
+    animation: confluence-result 5s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mirageText {
+    position: relative;
+    display: flex;
+    min-height: 2.35em;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0.45em 0.35em 0.75em;
+    color: var(--lrz-faune-creme);
+    background: linear-gradient(
+        var(--lrz-faune-bleu-gris),
+        var(--lrz-nature-eau)
+    );
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 7vw, 4.5rem);
+    font-weight: 560;
+    line-height: 1;
+}
+
+.mirageReflection {
+    position: absolute;
+    top: 0.45em;
+    left: 50%;
+    opacity: 0.4;
+    filter: blur(0.025em);
+    mask-image: linear-gradient(to bottom, black, transparent 82%);
+    transform: translate(-50%, 0.92em) scaleY(-0.72) skewX(-3deg);
+    transform-origin: center;
+    animation: mirage-ripple 3.8s ease-in-out infinite;
+    white-space: nowrap;
+}
+
+.pelotonText {
+    color: var(--lrz-nature-prairie);
+    white-space: nowrap;
+}
+
+.pelotonText span {
+    display: inline-block;
+    animation: peloton-ride 4.8s calc(var(--peloton-index) * -90ms)
+        cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+
+@keyframes typography-wave {
+    0%,
+    55%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    25% {
+        transform: translateY(-0.16em) rotate(-2deg);
+    }
+
+    40% {
+        transform: translateY(0.08em) rotate(1deg);
+    }
+}
+
+@keyframes confluence-left {
+    0%,
+    15% {
+        opacity: 1;
+        transform: translateX(-2.2em);
+    }
+
+    42%,
+    70% {
+        opacity: 0;
+        transform: translateX(-0.2em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-2.2em);
+    }
+}
+
+@keyframes confluence-right {
+    0%,
+    15% {
+        opacity: 1;
+        transform: translateX(2.2em);
+    }
+
+    42%,
+    70% {
+        opacity: 0;
+        transform: translateX(0.2em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(2.2em);
+    }
+}
+
+@keyframes confluence-result {
+    0%,
+    32%,
+    100% {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    48%,
+    76% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes mirage-ripple {
+    0%,
+    100% {
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            98% 18%,
+            2% 22%,
+            4% 42%,
+            96% 38%,
+            100% 62%,
+            0 68%
+        );
+        transform: translate(-50%, 0.92em) scaleY(-0.72) skewX(-3deg);
+    }
+
+    50% {
+        clip-path: polygon(
+            2% 0,
+            98% 0,
+            100% 22%,
+            0 18%,
+            3% 38%,
+            98% 44%,
+            96% 68%,
+            4% 62%
+        );
+        transform: translate(-49%, 0.92em) scaleY(-0.72) skewX(3deg);
+    }
+}
+
+@keyframes peloton-ride {
+    0%,
+    18%,
+    100% {
+        transform: translateX(0) translateY(0) rotate(0);
+    }
+
+    42% {
+        transform: translateX(0.08em) translateY(-0.1em) rotate(-2deg);
+    }
+
+    58% {
+        letter-spacing: -0.025em;
+        transform: translateX(-0.045em) translateY(0.04em) rotate(1deg);
+    }
+}
+
 .playgroundHeader {
     display: flex;
     gap: 1rem;
@@ -148,6 +812,14 @@
     justify-content: space-between;
     padding: clamp(1.25rem, 3vw, 2rem);
     border-bottom: 1px solid var(--border-subtle);
+}
+
+.playgroundActions {
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    justify-content: flex-end;
 }
 
 .kicker {
@@ -174,7 +846,8 @@
     line-height: 1.6;
 }
 
-.reset {
+.reset,
+.playToggle {
     flex: 0 0 auto;
     padding: 0.65rem 0.85rem;
     border: 1px solid var(--border-subtle);
@@ -188,14 +861,22 @@
     text-transform: uppercase;
 }
 
-.reset:hover {
+.reset:hover,
+.playToggle:hover {
     color: var(--gold);
     border-color: var(--gold);
+}
+
+.playToggle[aria-pressed="true"] {
+    color: var(--bg-main);
+    border-color: var(--gold);
+    background: var(--gold);
 }
 
 .workspace {
     display: grid;
     grid-template-columns: minmax(17rem, 0.65fr) minmax(0, 1.35fr);
+    align-items: start;
 }
 
 .controls {
@@ -274,8 +955,12 @@
 }
 
 .output {
+    position: sticky;
+    top: 1rem;
     display: grid;
+    height: fit-content;
     align-content: start;
+    align-self: start;
     min-width: 0;
 }
 
@@ -310,9 +995,19 @@
     background: var(--bg-main);
 }
 
+.animationStage * {
+    animation-play-state: paused !important;
+}
+
+.animationStage:hover *,
+.animationStage:focus-within *,
+.animationStage[data-playing="true"] * {
+    animation-play-state: running !important;
+}
+
 .resolvedValues {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
     gap: 0.75rem;
     margin: 1rem 0 0;
 }
@@ -333,7 +1028,7 @@
 
 .codePanel pre {
     max-width: 100%;
-    max-height: 28rem;
+    max-height: min(22rem, 34dvh);
     margin: 0;
     overflow: auto;
     padding: 1rem;
@@ -407,8 +1102,27 @@
         border-bottom: 1px solid var(--border-subtle);
     }
 
+    .output {
+        position: static;
+        max-height: none;
+        overflow: visible;
+    }
+
     .fontGrid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .effectGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .gradientGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .livingGrid,
+    .experimentGrid {
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
@@ -418,12 +1132,36 @@
     }
 
     .fontGrid,
-    .resolvedValues {
+    .resolvedValues,
+    .creativeColumns {
         grid-template-columns: minmax(0, 1fr);
     }
 
     .playgroundHeader {
         flex-direction: column;
+    }
+
+    .playgroundActions {
+        justify-content: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .waveText span,
+    .confluenceSource,
+    .confluenceResult,
+    .mirageReflection,
+    .pelotonText span {
+        animation: none;
+    }
+
+    .confluenceSource {
+        display: none;
+    }
+
+    .confluenceResult {
+        opacity: 1;
+        transform: none;
     }
 }
 

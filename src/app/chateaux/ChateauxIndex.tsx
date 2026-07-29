@@ -17,6 +17,7 @@ import { CollectionCard } from "@/components/ui/collection-card";
 import { useAmbiance } from "@/hooks/useAmbiance";
 import { getIndex } from "@/registry/indexes";
 import { getCollectionsByIndex } from "@/registry/collections";
+import LRZTypography from "@/components/LRZTypography";
 
 import ChateauxCard from "./ChateauxCard";
 
@@ -234,7 +235,15 @@ export default function ChateauxIndex({
                 {featureIsEnabled("collections") && (
                     <LRZSection
                         eyebrow="Collections du Codex"
-                        title="Explorer les châteaux autrement"
+                        title={
+                            <LRZTypography
+                                preset="heading-2"
+                                effect="gold-leaf"
+                                motion="typewriter"
+                            >
+                                Explorer les châteaux autrement
+                            </LRZTypography>
+                        }
                         description="Des forteresses médiévales aux demeures de plaisance, ces collections relient les châteaux par époque, architecture, personnages et façons d’habiter le pouvoir."
                         tone="tinted"
                         color="ocre"
