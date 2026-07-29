@@ -63,7 +63,6 @@ export default function ChateauxIndex({
     const [epoque, setEpoque] = useState<string>("all");
     const [renommee, setRenommee] = useState<string>("all");
     const [q, setQ] = useState("");
-    const [expandAll, setExpandAll] = useState(false);
     const [groupByTerritory, setGroupByTerritory] = useState(true);
     const territoiresEnabled = featureIsEnabled("territoires");
 
@@ -94,10 +93,6 @@ export default function ChateauxIndex({
             },
         }));
     }, [chateaux]);
-
-    const toggleAll = () => {
-        setExpandAll((value) => !value);
-    };
 
     const countFor = (field: "epoque" | "renommee", id: string) =>
         chateaux.filter((castle) => castle[field] === id).length;
@@ -159,7 +154,7 @@ export default function ChateauxIndex({
             placeholder="Chercher un château, une commune, un style…"
             resultCount={list.length}
             totalCount={chateaux.length}
-            unit="châteaux"
+            unit={list.length > 1 ? "châteaux" : "château"}
             accent={entry.accent}
             reset={{
                 active: hasActiveFilters,
@@ -193,10 +188,6 @@ export default function ChateauxIndex({
                     })),
                 },
             ]}
-            expand={{
-                all: expandAll,
-                onToggle: toggleAll,
-            }}
             switcher={
                 territoiresEnabled
                     ? {
@@ -305,7 +296,6 @@ export default function ChateauxIndex({
                                         key={territory.slug}
                                         territory={territory}
                                         chateaux={chateaux}
-                                        open={expandAll}
                                     />
                                 ),
                             )}
@@ -316,7 +306,7 @@ export default function ChateauxIndex({
                                 <ChateauxCard
                                     key={castle.slug}
                                     d={castle}
-                                    open={expandAll}
+                                    open={false}
                                 />
                             ))}
                         </div>

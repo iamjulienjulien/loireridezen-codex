@@ -56,19 +56,12 @@
 }
 
 .contextText {
-    max-width: 48ch;
     margin: 0.35rem 0 0;
     color: var(--text-secondary);
     font-family: var(--font-edit, var(--font-display));
     font-size: 0.92rem;
     line-height: 1.45;
-}
-
-.contextMark {
-    flex: 0 0 auto;
-    color: var(--page-controls-accent);
-    font-size: 0.75rem;
-    opacity: 0.8;
+    white-space: nowrap;
 }
 
 .toolbar {
@@ -188,8 +181,7 @@
     border-top: 1px solid var(--border-subtle);
 }
 
-.switchToggle,
-.expandToggle {
+.switchToggle {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
@@ -203,8 +195,7 @@
     text-align: left;
 }
 
-.switchToggle:hover,
-.expandToggle:hover {
+.switchToggle:hover {
     border-color: var(--border-strong);
     color: var(--text-primary);
 }
@@ -258,7 +249,7 @@
 
 .filters {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.9rem;
 }
 
@@ -273,14 +264,15 @@
         min-height: auto;
     }
 
+    .contextText {
+        white-space: normal;
+    }
+
     .actions {
         justify-content: flex-start;
         flex-wrap: wrap;
     }
 
-    .filters {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -38,10 +38,6 @@ type PageControlsProps = {
     groups: PageControlsFilterGroup[];
     accent?: string;
     variant?: PageControlsVariant;
-    expand?: {
-        all: boolean;
-        onToggle: () => void;
-    };
     switcher?: PageControlsSwitcher;
     reset?: {
         active: boolean;
@@ -63,7 +59,6 @@ export default function PageControls({
     groups,
     accent,
     variant = "default",
-    expand,
     switcher,
     reset,
 }: PageControlsProps) {
@@ -93,9 +88,6 @@ export default function PageControls({
                             d’habiter le fil royal.
                         </p>
                     </div>
-                    <span className={styles.contextMark} aria-hidden="true">
-                        ◆
-                    </span>
                 </div>
             )}
 
@@ -144,53 +136,33 @@ export default function PageControls({
                 </div>
             </div>
 
-            {(switcher || expand) && (
+            {switcher && (
                 <div
                     className={styles.actions}
                     aria-label="Options d’affichage"
                 >
-                    {switcher && (
-                        <button
-                            type="button"
-                            className={styles.switchToggle}
-                            role="switch"
-                            aria-checked={switcher.checked}
-                            aria-label={switcher.label}
-                            onClick={switcher.onToggle}
-                        >
-                            <span className={styles.actionCopy}>
-                                <span className={styles.actionLabel}>
-                                    {switcher.label}
-                                </span>
-                                <span className={styles.actionValue}>
-                                    {switcher.checked
-                                        ? switcher.onLabel
-                                        : switcher.offLabel}
-                                </span>
+                    <button
+                        type="button"
+                        className={styles.switchToggle}
+                        role="switch"
+                        aria-checked={switcher.checked}
+                        aria-label={switcher.label}
+                        onClick={switcher.onToggle}
+                    >
+                        <span className={styles.actionCopy}>
+                            <span className={styles.actionLabel}>
+                                {switcher.label}
                             </span>
-                            <span
-                                className={styles.switchTrack}
-                                aria-hidden="true"
-                            >
-                                <span className={styles.switchThumb} />
+                            <span className={styles.actionValue}>
+                                {switcher.checked
+                                    ? switcher.onLabel
+                                    : switcher.offLabel}
                             </span>
-                        </button>
-                    )}
-                    {expand && (
-                        <button
-                            type="button"
-                            className={styles.expandToggle}
-                            aria-pressed={expand.all}
-                            aria-label={
-                                expand.all
-                                    ? "Replier toutes les fiches"
-                                    : "Déplier toutes les fiches"
-                            }
-                            onClick={expand.onToggle}
-                        >
-                            {expand.all ? "Tout replier" : "Tout déplier"}
-                        </button>
-                    )}
+                        </span>
+                        <span className={styles.switchTrack} aria-hidden="true">
+                            <span className={styles.switchThumb} />
+                        </span>
+                    </button>
                 </div>
             )}
 

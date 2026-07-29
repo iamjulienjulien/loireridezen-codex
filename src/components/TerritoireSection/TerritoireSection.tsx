@@ -19,13 +19,11 @@ type TerritoireSectionStyle = CSSProperties & {
 type TerritoireSectionProps = {
     territory: Territoire;
     chateaux: readonly Chateau[];
-    open: boolean;
 };
 
 export default function TerritoireSection({
     territory,
     chateaux,
-    open,
 }: TerritoireSectionProps) {
     const { identite, limites } = territory;
 
@@ -110,7 +108,7 @@ export default function TerritoireSection({
                         key={chateau.slug}
                         d={chateau}
                         t={territory}
-                        open={open}
+                        open={false}
                     />
                 ))}
             </div>
