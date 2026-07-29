@@ -91,11 +91,7 @@ export default function RootLayout({
                 <Script id="lrz-ambiance" strategy="beforeInteractive">
                     {AMBIANCE_INITIALIZATION_SCRIPT}
                 </Script>
-                <AmbianceProvider
-                    showAmbianceSelector={
-                        process.env.CURRENT_ENV === "development"
-                    }
-                >
+                <AmbianceProvider>
                     {children}
                     {commandPaletteEnabled ? <AmbianceCommandPalette /> : null}
                 </AmbianceProvider>

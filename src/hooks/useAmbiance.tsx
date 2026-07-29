@@ -13,7 +13,6 @@ const AMBIANCE_REFRESH_INTERVAL = 60_000;
 interface AmbianceContextValue {
     ambiance: Ambiance;
     setAmbiance: (ambiance: Ambiance) => void;
-    showAmbianceSelector: boolean;
 }
 
 const AmbianceContext = createContext<AmbianceContextValue | null>(null);
@@ -27,10 +26,8 @@ export function detectAmbiance(hour: number): Ambiance {
 
 export function AmbianceProvider({
     children,
-    showAmbianceSelector,
 }: {
     children: ReactNode;
-    showAmbianceSelector: boolean;
 }) {
     const [forcedAmbiance, setForcedAmbiance] = useState<Ambiance | null>(null);
     const [autoAmbiance, setAutoAmbiance] = useState<Ambiance | null>(null);
@@ -59,7 +56,6 @@ export function AmbianceProvider({
             value={{
                 ambiance,
                 setAmbiance: setForcedAmbiance,
-                showAmbianceSelector,
             }}
         >
             {children}
@@ -80,8 +76,4 @@ function useAmbianceContext(): AmbianceContextValue {
 export function useAmbiance(): [Ambiance, (ambiance: Ambiance) => void] {
     const { ambiance, setAmbiance } = useAmbianceContext();
     return [ambiance, setAmbiance];
-}
-
-export function useAmbianceSelectorVisibility(): boolean {
-    return useAmbianceContext().showAmbianceSelector;
 }
