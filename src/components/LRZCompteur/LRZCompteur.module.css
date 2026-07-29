@@ -1,0 +1,275 @@
+.root {
+    --counter-accent: var(--gold);
+    --counter-duration: 650ms;
+
+    display: grid;
+    width: fit-content;
+    gap: 0.58rem;
+    color: var(--counter-accent);
+}
+
+.root[data-tone="cream"] {
+    --counter-accent: var(--text-primary);
+}
+
+.root[data-tone="accent"] {
+    --counter-accent: var(--lrz-nature-prairie, var(--gold));
+}
+
+.root[data-theme="ivory"] {
+    --counter-accent: #795739;
+    --counter-panel-top: #fff7e7;
+    --counter-panel-middle: #ead8b7;
+    --counter-panel-bottom: #c7aa7b;
+}
+
+.root[data-theme="slate"] {
+    --counter-accent: #d9e1e7;
+    --counter-panel-top: #34424f;
+    --counter-panel-middle: #202b35;
+    --counter-panel-bottom: #11191f;
+}
+
+.root[data-theme="river"] {
+    --counter-accent: #a5e2e8;
+    --counter-panel-top: #326d7c;
+    --counter-panel-middle: #174554;
+    --counter-panel-bottom: #0b2835;
+}
+
+.machine {
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    padding: 0.42em 0.5em;
+    overflow: hidden;
+    border: 1px solid
+        color-mix(in srgb, var(--counter-accent) 48%, var(--border-strong));
+    border-radius: var(--radius-sm);
+    background: linear-gradient(
+        180deg,
+        var(
+                --counter-panel-top,
+                color-mix(in srgb, var(--bg-elevated) 88%, white)
+            )
+            0%,
+        var(--counter-panel-middle, var(--bg-surface)) 48%,
+        var(
+                --counter-panel-bottom,
+                color-mix(in srgb, var(--bg-main) 90%, black)
+            )
+            100%
+    );
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, white 10%, transparent),
+        inset 0 -1px 0 color-mix(in srgb, black 35%, transparent),
+        0 8px 18px color-mix(in srgb, black 24%, transparent);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.08em;
+    line-height: 1;
+}
+
+.root[data-padded="false"] .machine {
+    padding: 0;
+}
+
+.root[data-variant="minimal"] .machine {
+    padding-inline: 0;
+    border-color: transparent;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.root[data-variant="minimal"] .machine::before,
+.root[data-variant="minimal"] .machine::after {
+    display: none;
+}
+
+.root[data-variant="panel"] .machine {
+    border-radius: var(--radius-md);
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, white 14%, transparent),
+        inset 0 -2px 0 color-mix(in srgb, black 45%, transparent),
+        0 12px 24px color-mix(in srgb, black 30%, transparent);
+}
+
+.root[data-variant="panel"] .label {
+    padding: 0.35rem 0.5rem;
+    border-left: 2px solid var(--counter-accent);
+    background: color-mix(in srgb, var(--counter-accent) 8%, transparent);
+}
+
+.machine::before,
+.machine::after {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    left: 0;
+    height: 50%;
+    pointer-events: none;
+    content: "";
+}
+
+.machine::before {
+    top: 0;
+    border-bottom: 1px solid color-mix(in srgb, black 38%, transparent);
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, white 8%, transparent),
+        transparent
+    );
+}
+
+.machine::after {
+    bottom: 0;
+    background: linear-gradient(
+        0deg,
+        color-mix(in srgb, black 20%, transparent),
+        transparent
+    );
+}
+
+.window {
+    display: inline-flex;
+    align-items: center;
+}
+
+.digit {
+    display: inline-block;
+    width: 0.68em;
+    height: 1em;
+    overflow: hidden;
+    border-inline: 1px solid
+        color-mix(in srgb, var(--counter-accent) 14%, transparent);
+    text-align: center;
+}
+
+.emptyDigit {
+    display: inline-block;
+    width: 0.68em;
+    height: 1em;
+    border-inline: 1px solid
+        color-mix(in srgb, var(--counter-accent) 8%, transparent);
+}
+
+.reel {
+    display: block;
+    transform: translateY(calc(var(--counter-position) * -1em));
+    will-change: transform;
+}
+
+.reel.moving {
+    transition: transform var(--counter-duration)
+        cubic-bezier(0.22, 0.75, 0.18, 1);
+    transition-delay: var(--counter-delay);
+}
+
+.reelDigit {
+    display: block;
+    height: 1em;
+    color: var(--counter-accent);
+    text-shadow: 0 0 0.72em
+        color-mix(in srgb, var(--counter-accent) 24%, transparent);
+}
+
+.staticDigit {
+    display: block;
+    height: 1em;
+    color: var(--counter-accent);
+    text-align: center;
+}
+
+.fading {
+    animation: counter-digit-fade var(--counter-duration) ease both;
+    animation-delay: var(--counter-delay);
+}
+
+.separator,
+.affix {
+    position: relative;
+    z-index: 2;
+    color: color-mix(in srgb, var(--counter-accent) 70%, var(--text-secondary));
+    letter-spacing: 0;
+}
+
+.separator {
+    width: 0.38em;
+    text-align: center;
+}
+
+.affix {
+    padding-inline: 0.38em;
+    font-size: 0.62em;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.label {
+    max-width: 34ch;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    line-height: 1.45;
+    text-transform: uppercase;
+}
+
+.xs {
+    gap: 0.28rem;
+    font-size: 1.05rem;
+}
+
+.xs .machine {
+    padding: 0.16em 0.22em;
+    border-radius: 2px;
+}
+
+.xs .digit {
+    width: 0.62em;
+}
+
+.xs .emptyDigit {
+    width: 0.62em;
+}
+
+.xs .label {
+    font-size: 0.48rem;
+    letter-spacing: 0.075em;
+}
+
+.sm {
+    font-size: 1.45rem;
+}
+
+.md {
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+}
+
+.lg {
+    font-size: clamp(3.2rem, 9vw, 6.4rem);
+}
+
+.lg .label {
+    font-size: 0.66rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reel.moving {
+        transition: none;
+    }
+}
+
+@keyframes counter-digit-fade {
+    0% {
+        opacity: 0;
+        transform: translateY(0.24em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
