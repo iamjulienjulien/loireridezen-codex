@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type CSSProperties } from "react";
+import { useId, useState, type CSSProperties, type ReactNode } from "react";
 
 import {
     LRZFilterGroup,
@@ -26,6 +26,14 @@ export interface PageControlsSwitcher {
     onToggle: () => void;
 }
 
+export interface PageControlsAction {
+    label: string;
+    activeLabel?: string;
+    active: boolean;
+    icon?: ReactNode;
+    onClick: () => void;
+}
+
 export type PageControlsVariant = "default" | "chateaux";
 export type PageControlsMode = "full" | "filters-toggle" | "compact";
 
@@ -42,6 +50,7 @@ type PageControlsProps = {
     mode?: PageControlsMode;
     defaultFiltersOpen?: boolean;
     switcher?: PageControlsSwitcher;
+    action?: PageControlsAction;
     reset?: {
         active: boolean;
         onReset: () => void;
@@ -65,6 +74,7 @@ export default function PageControls({
     mode = "full",
     defaultFiltersOpen = false,
     switcher,
+    action,
     reset,
 }: PageControlsProps) {
     const filtersId = useId();
@@ -153,6 +163,46 @@ export default function PageControls({
 
             {hasFilterToggle ? (
                 <div className={styles.filterToggleRow}>
+                    {action ? (
+                        <button
+                            aria-pressed={action.active}
+                            className={styles.toolbarAction}
+                            onClick={action.onClick}
+                            type="button"
+                        >
+                            {action.icon}
+                            {action.active
+                                ? (action.activeLabel ?? action.label)
+                                : action.label}
+                        </button>
+                    ) : null}
+                    {switcher ? (
+                        <button
+                            type="button"
+                            className={styles.switchToggle}
+                            role="switch"
+                            aria-checked={switcher.checked}
+                            aria-label={switcher.label}
+                            onClick={switcher.onToggle}
+                        >
+                            <span className={styles.actionCopy}>
+                                <span className={styles.actionLabel}>
+                                    {switcher.label}
+                                </span>
+                                <span className={styles.actionValue}>
+                                    {switcher.checked
+                                        ? switcher.onLabel
+                                        : switcher.offLabel}
+                                </span>
+                            </span>
+                            <span
+                                className={styles.switchTrack}
+                                aria-hidden="true"
+                            >
+                                <span className={styles.switchThumb} />
+                            </span>
+                        </button>
+                    ) : null}
                     <button
                         type="button"
                         className={styles.filterToggle}
@@ -178,39 +228,6 @@ export default function PageControls({
 
             {mode !== "compact" && filtersVisible ? (
                 <div id={filtersId} className={styles.filtersPanel}>
-                    {switcher ? (
-                        <div
-                            className={styles.actions}
-                            aria-label="Options d’affichage"
-                        >
-                            <button
-                                type="button"
-                                className={styles.switchToggle}
-                                role="switch"
-                                aria-checked={switcher.checked}
-                                aria-label={switcher.label}
-                                onClick={switcher.onToggle}
-                            >
-                                <span className={styles.actionCopy}>
-                                    <span className={styles.actionLabel}>
-                                        {switcher.label}
-                                    </span>
-                                    <span className={styles.actionValue}>
-                                        {switcher.checked
-                                            ? switcher.onLabel
-                                            : switcher.offLabel}
-                                    </span>
-                                </span>
-                                <span
-                                    className={styles.switchTrack}
-                                    aria-hidden="true"
-                                >
-                                    <span className={styles.switchThumb} />
-                                </span>
-                            </button>
-                        </div>
-                    ) : null}
-
                     <div className={styles.filters}>
                         {groups.map((group) => (
                             <LRZFilterGroup

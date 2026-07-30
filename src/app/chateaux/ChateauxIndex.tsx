@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Map as MapIcon } from "lucide-react";
 
 import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
@@ -29,6 +30,7 @@ import { TerritoireSection } from "@/components/TerritoireSection";
 import { getTerritoiresWithChateaux } from "@/registry/chateaux-territoires";
 import ChateauxViewportMapSpike from "./ChateauxViewportMapSpike";
 import ChateauxInteractiveMap from "./ChateauxInteractiveMap";
+import { CHATEAUX_MAP_CONFIG } from "./chateaux-map.config";
 import {
     CHATEAUX_MAP_SYNC_EVENT,
     dispatchChateauxMapSync,
@@ -85,6 +87,7 @@ export default function ChateauxIndex({
     const [renommee, setRenommee] = useState<string>("all");
     const [q, setQ] = useState("");
     const [groupByTerritory, setGroupByTerritory] = useState(true);
+    const [isMapOpen, setIsMapOpen] = useState(false);
     const catalogueRef = useRef<HTMLDivElement>(null);
     const territoiresEnabled = featureIsEnabled("territoires");
 
@@ -399,6 +402,17 @@ export default function ChateauxIndex({
                       }
                     : undefined
             }
+            action={
+                interactiveMapEnabled
+                    ? {
+                          label: "Afficher la carte",
+                          activeLabel: "Carte ouverte",
+                          active: isMapOpen,
+                          icon: <MapIcon aria-hidden="true" />,
+                          onClick: () => setIsMapOpen((open) => !open),
+                      }
+                    : undefined
+            }
         />
     );
 
@@ -568,7 +582,12 @@ export default function ChateauxIndex({
                     {!controlsInOwnSection && indexControls}
 
                     {interactiveMapEnabled ? (
-                        <ChateauxInteractiveMap chateaux={list} />
+                        <ChateauxInteractiveMap
+                            chateaux={list}
+                            open={isMapOpen}
+                            onOpenChange={setIsMapOpen}
+                            stickyMode={CHATEAUX_MAP_CONFIG.stickyMode}
+                        />
                     ) : null}
 
                     <div
