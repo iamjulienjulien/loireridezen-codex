@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Map as MapIcon } from "lucide-react";
+import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 
 import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
@@ -90,6 +90,7 @@ export default function ChateauxIndex({
     const [isMapOpen, setIsMapOpen] = useState(false);
     const catalogueRef = useRef<HTMLDivElement>(null);
     const territoiresEnabled = featureIsEnabled("territoires");
+    const renommeeEnabled = featureIsEnabled("chateauxRenommee");
 
     const collections = useMemo(() => {
         const castleBySlug = new Map(
@@ -149,7 +150,11 @@ export default function ChateauxIndex({
                 return false;
             }
 
-            if (renommee !== "all" && castle.renommee !== renommee) {
+            if (
+                renommeeEnabled &&
+                renommee !== "all" &&
+                castle.renommee !== renommee
+            ) {
                 return false;
             }
 
@@ -171,7 +176,7 @@ export default function ChateauxIndex({
 
             return true;
         });
-    }, [chateaux, epoque, renommee, q]);
+    }, [chateaux, epoque, renommee, renommeeEnabled, q]);
 
     const territorySections = useMemo(
         () =>
@@ -186,7 +191,8 @@ export default function ChateauxIndex({
         "chateauxViewportMapSpike",
     );
     const interactiveMapEnabled = featureIsEnabled("chateauxInteractiveMap");
-    const hasActiveFilters = epoque !== "all" || renommee !== "all" || q !== "";
+    const hasActiveFilters =
+        epoque !== "all" || (renommeeEnabled && renommee !== "all") || q !== "";
 
     useEffect(() => {
         if (!interactiveMapEnabled) return;
@@ -352,11 +358,12 @@ export default function ChateauxIndex({
             variant="chateaux"
             query={q}
             onQuery={setQ}
-            placeholder="Chercher un château, une commune, un style…"
+            placeholder="Chercher un château…"
             resultCount={list.length}
             totalCount={chateaux.length}
             unit={list.length > 1 ? "châteaux" : "château"}
             accent={entry.accent}
+            buttonColor={entry.color}
             mode="filters-toggle"
             reset={{
                 active: hasActiveFilters,
@@ -376,37 +383,51 @@ export default function ChateauxIndex({
                                 : countFor("epoque", item.id),
                     })),
                 },
-                {
-                    label: "Renommée",
-                    active: renommee,
-                    onSelect: setRenommee,
-                    options: RENOMMEES.map((item) => ({
-                        id: item.id,
-                        label: item.label,
-                        count:
-                            item.id === "all"
-                                ? undefined
-                                : countFor("renommee", item.id),
-                    })),
-                },
+                ...(renommeeEnabled
+                    ? [
+                          {
+                              label: "Renommée",
+                              active: renommee,
+                              onSelect: setRenommee,
+                              options: RENOMMEES.map((item) => ({
+                                  id: item.id,
+                                  label: item.label,
+                                  count:
+                                      item.id === "all"
+                                          ? undefined
+                                          : countFor("renommee", item.id),
+                              })),
+                          },
+                      ]
+                    : []),
             ]}
-            switcher={
+            viewGroup={
                 territoiresEnabled
                     ? {
-                          label: "Organisation",
-                          checked: groupByTerritory,
-                          offLabel: "Inventaire continu",
-                          onLabel: "Par territoires",
-                          onToggle: () =>
-                              setGroupByTerritory((value) => !value),
+                          value: groupByTerritory ? "territoires" : "catalogue",
+                          onValueChange: (value) =>
+                              setGroupByTerritory(value === "territoires"),
+                          ariaLabel: "Organisation du catalogue de châteaux",
+                          options: [
+                              {
+                                  value: "catalogue",
+                                  label: "Catalogue",
+                                  icon: <LayoutGrid aria-hidden="true" />,
+                              },
+                              {
+                                  value: "territoires",
+                                  label: "Territoires",
+                                  icon: <MapPinned aria-hidden="true" />,
+                              },
+                          ],
                       }
                     : undefined
             }
             action={
                 interactiveMapEnabled
                     ? {
-                          label: "Afficher la carte",
-                          activeLabel: "Carte ouverte",
+                          label: "Carte",
+                          activeLabel: "Carte",
                           active: isMapOpen,
                           icon: <MapIcon aria-hidden="true" />,
                           onClick: () => setIsMapOpen((open) => !open),

@@ -281,6 +281,14 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
             </div>
 
             <div className={styles.body}>
+                {featureIsEnabled('chateauxRenommee') &&<div>
+                    <LRZBadge
+                        preset="renommee-chateau"
+                        value={d.renommee}
+                        detail={false}
+                        variant="shield"
+                    />
+                </div>}
                 <LRZAccordion
                     title="Histoire &amp; architecture"
                     id="histoire"
