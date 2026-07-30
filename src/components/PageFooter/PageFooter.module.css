@@ -33,7 +33,7 @@
     gap: 0.9rem;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.35rem;
+    margin-bottom: 1.5rem;
 }
 
 .navigation a {
@@ -137,8 +137,7 @@
 .signatureName:hover {
     filter: brightness(1.16)
         drop-shadow(
-            0 0 0.24em
-                color-mix(in srgb, var(--color-blanc) 46%, transparent)
+            0 0 0.24em color-mix(in srgb, var(--color-blanc) 46%, transparent)
         );
 }
 

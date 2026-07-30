@@ -8,10 +8,8 @@ import LRZLivingText from "@/components/LRZLivingText";
 
 export default function HomeContent({
     indexes,
-    showDevelopmentTools,
 }: {
     indexes: readonly IndexEntry[];
-    showDevelopmentTools: boolean;
 }) {
     return (
         <main
@@ -71,16 +69,6 @@ export default function HomeContent({
                         </Link>
                     ))}
                 </div>
-
-                {showDevelopmentTools && (
-                    <Link
-                        href="/atelier"
-                        className="mt-8 inline-flex items-center gap-2 font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.14em] text-[var(--color-ambiance-texte-tertiaire)] transition-colors hover:text-[#c8893a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8893a]"
-                    >
-                        <span aria-hidden>✎</span>
-                        Atelier — esquisses de composants
-                    </Link>
-                )}
 
                 <PageFooter spacing="relaxed" signatureSpacing="none">
                     Le Codex Ligérien ·{" "}

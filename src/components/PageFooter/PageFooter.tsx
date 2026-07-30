@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
+import { featureIsEnabled } from "@/registry/feature-flags";
 import type { LRZColor } from "@/types/lrz";
 
 import styles from "./PageFooter.module.css";
@@ -44,6 +45,9 @@ export default function PageFooter({
                 >
                     <Link href="/docs">Documentation</Link>
                     <Link href="/a-propos">À propos</Link>
+                    {featureIsEnabled("atelier") ? (
+                        <Link href="/atelier">Atelier</Link>
+                    ) : null}
                 </nav>
                 <p className={styles.content}>{children}</p>
                 <p className={styles.signature}>
