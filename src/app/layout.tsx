@@ -79,19 +79,69 @@ const kalam = Kalam({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://codex.loireridezen.bike"),
+
     title: "Loire Ride Zen — Le Codex Ligérien",
     description: "Le codex du fil ligérien, de la source à l'Atlantique.",
+
     manifest: "/site.webmanifest",
+
     verification: {
         google: "d6xEn7osgIrSXI9ekloZhEOrQKWKqUv_PPRd8gIB6J8",
     },
+
     icons: {
         icon: [
-            { url: "/favicon.ico", sizes: "any" },
-            { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
-            { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+            {
+                url: "/favicon.ico",
+                sizes: "any",
+            },
+            {
+                url: "/favicon-16x16.png",
+                type: "image/png",
+                sizes: "16x16",
+            },
+            {
+                url: "/favicon-32x32.png",
+                type: "image/png",
+                sizes: "32x32",
+            },
         ],
-        apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+        apple: [
+            {
+                url: "/apple-touch-icon.png",
+                sizes: "180x180",
+            },
+        ],
+    },
+
+    openGraph: {
+        type: "website",
+        locale: "fr_FR",
+        siteName: "Loire Ride Zen",
+        title: "Loire Ride Zen — Le Codex Ligérien",
+        description: "Le codex du fil ligérien, de la source à l'Atlantique.",
+        url: "/",
+        images: [
+            {
+                url: "/api/og",
+                width: 1200,
+                height: 630,
+                alt: "Loire Ride Zen — Le Codex Ligérien",
+            },
+        ],
+    },
+
+    twitter: {
+        card: "summary_large_image",
+        title: "Loire Ride Zen — Le Codex Ligérien",
+        description: "Le codex du fil ligérien, de la source à l'Atlantique.",
+        images: [
+            {
+                url: "/api/og",
+                alt: "Loire Ride Zen — Le Codex Ligérien",
+            },
+        ],
     },
 };
 
