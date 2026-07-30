@@ -29,7 +29,7 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     territoires: ["development", "production"],
     indexControlsSection: [],
     chateauxViewportMapSpike: [],
-    chateauxInteractiveMap: ["development"],
+    chateauxInteractiveMap: ["development", "production"],
     detailDialogChateaux: [],
     personnages: [],
     chateauxRenommee: [],
