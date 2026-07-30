@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import {
     Allura,
     Bodoni_Moda,
@@ -133,6 +134,7 @@ export default function RootLayout({
                     {commandPaletteEnabled ? <AmbianceCommandPalette /> : null}
                 </AmbianceProvider>
             </body>
+            <Analytics />
         </html>
     );
 }
