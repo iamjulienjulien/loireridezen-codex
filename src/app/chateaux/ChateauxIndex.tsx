@@ -28,6 +28,7 @@ import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import { TerritoireSection } from "@/components/TerritoireSection";
 import { getTerritoiresWithChateaux } from "@/registry/chateaux-territoires";
 import ChateauxViewportMapSpike from "./ChateauxViewportMapSpike";
+import ChateauxInteractiveMap from "./ChateauxInteractiveMap";
 
 const EPOQUES = [
     { id: "all", label: "Tout" },
@@ -175,6 +176,7 @@ export default function ChateauxIndex({
     const viewportMapSpikeEnabled = featureIsEnabled(
         "chateauxViewportMapSpike",
     );
+    const interactiveMapEnabled = featureIsEnabled("chateauxInteractiveMap");
     const hasActiveFilters = epoque !== "all" || renommee !== "all" || q !== "";
 
     const resetFilters = () => {
@@ -261,7 +263,11 @@ export default function ChateauxIndex({
         ) : (
             <div className={styles.grid}>
                 {list.map((castle) => (
-                    <div data-chateau-map-slug={castle.slug} key={castle.slug}>
+                    <div
+                        id={`chateau-${castle.slug}`}
+                        data-chateau-map-slug={castle.slug}
+                        key={castle.slug}
+                    >
                         <ChateauxCard d={castle} open={false} />
                     </div>
                 ))}
@@ -398,6 +404,10 @@ export default function ChateauxIndex({
                         scope="section"
                     />
                     {!controlsInOwnSection && indexControls}
+
+                    {interactiveMapEnabled ? (
+                        <ChateauxInteractiveMap chateaux={list} />
+                    ) : null}
 
                     {viewportMapSpikeEnabled && list.length > 0 ? (
                         <ChateauxViewportMapSpike chateaux={list} variant="top">

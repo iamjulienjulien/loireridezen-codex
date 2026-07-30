@@ -108,6 +108,7 @@ export default function TerritoireSection({
             <div className={styles.grid}>
                 {chateaux.map((chateau) => (
                     <div
+                        id={`chateau-${chateau.slug}`}
                         data-chateau-map-slug={
                             mapSync ? chateau.slug : undefined
                         }

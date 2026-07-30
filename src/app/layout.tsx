@@ -13,6 +13,7 @@ import Script from "next/script";
 import AmbianceCommandPalette from "@/components/AmbianceCommandPalette";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
 import { featureIsEnabled } from "@/registry/feature-flags";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
 
 const AMBIANCE_INITIALIZATION_SCRIPT = `
