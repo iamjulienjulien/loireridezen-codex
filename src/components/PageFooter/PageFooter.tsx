@@ -8,7 +8,7 @@ import type { LRZColor } from "@/types/lrz";
 import styles from "./PageFooter.module.css";
 
 export type PageFooterProps = {
-    children: ReactNode;
+    children?: ReactNode;
     className?: string;
     color?: LRZColor;
     spacing?: "default" | "relaxed";
@@ -39,6 +39,11 @@ export default function PageFooter({
                 fadeEdges
             />
             <div className={styles.copy}>
+                <p className={styles.content}>{children}</p>
+                <p className={styles.navigationMain}>
+                    <Link href="/">Le Codex Ligérien</Link> ·{" "}
+                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
+                </p>
                 <nav
                     className={styles.navigation}
                     aria-label="Liens de pied de page"
@@ -52,7 +57,6 @@ export default function PageFooter({
                         <Link href="/atelier">Atelier</Link>
                     ) : null}
                 </nav>
-                <p className={styles.content}>{children}</p>
                 <p className={styles.signature}>
                     <span className={styles.signatureLabel}>
                         Imaginé et façonné par

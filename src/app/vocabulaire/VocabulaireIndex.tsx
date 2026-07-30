@@ -153,8 +153,6 @@ export default function VocabulaireIndex({
                 )}
 
                 <PageFooter color={entry.color}>
-                    Le Codex Ligérien ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
                     <br />
                     {mots.length} {entry.footerNote}
                 </PageFooter>

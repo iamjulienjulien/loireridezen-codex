@@ -70,10 +70,7 @@ export default function HomeContent({
                     ))}
                 </div>
 
-                <PageFooter spacing="relaxed" signatureSpacing="none">
-                    Le Codex Ligérien ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
-                </PageFooter>
+                <PageFooter spacing="relaxed" signatureSpacing="none" />
             </div>
         </main>
     );

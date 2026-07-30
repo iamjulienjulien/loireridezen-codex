@@ -180,8 +180,6 @@ export default function VignoblesIndex({
                 )}
 
                 <PageFooter color={entry.color}>
-                    Le Codex Ligérien ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
                     <br />
                     {vignobles.length} {entry.footerNote}
                 </PageFooter>

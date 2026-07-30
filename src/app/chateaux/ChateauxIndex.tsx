@@ -25,7 +25,6 @@ import ChateauxCard from "./ChateauxCard";
 import styles from "./chateaux.module.css";
 import { LRZSection } from "@/components/LRZSection";
 import { featureIsEnabled } from "@/registry/feature-flags";
-import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import { TerritoireSection } from "@/components/TerritoireSection";
 import { getTerritoiresWithChateaux } from "@/registry/chateaux-territoires";
 import ChateauxViewportMapSpike from "./ChateauxViewportMapSpike";
@@ -654,8 +653,6 @@ export default function ChateauxIndex({
                     >
                         {list.length} {entry.footerNote}
                     </span>
-                    Le Codex Ligérien ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
                 </PageFooter>
             </div>
         </main>

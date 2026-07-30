@@ -43,7 +43,10 @@ export default function PersonnagesPage() {
                     </p>
                 </section>
 
-                <section className={styles.grid} aria-label="Personnages du Codex">
+                <section
+                    className={styles.grid}
+                    aria-label="Personnages du Codex"
+                >
                     {personnages.map((personnage) => (
                         <PersonnageCard
                             key={personnage.id}
@@ -59,10 +62,7 @@ export default function PersonnagesPage() {
                     détaillées.
                 </p>
 
-                <PageFooter color="ocre">
-                    Le Codex Ligérien ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
-                </PageFooter>
+                <PageFooter color="ocre"></PageFooter>
             </div>
         </main>
     );

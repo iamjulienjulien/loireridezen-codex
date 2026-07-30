@@ -33,13 +33,13 @@
     gap: 0.9rem;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .navigation a {
     color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
-    font-size: 0.56rem;
+    font-size: 0.76rem;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-decoration-color: transparent;
@@ -50,9 +50,30 @@
         text-decoration-color 0.2s ease;
 }
 
+.navigation a:not(:first-child)::before {
+    display: inline-block;
+    margin-inline-end: 0.9rem;
+    color: var(--color-ambiance-texte-tertiaire);
+    content: "·";
+    pointer-events: none;
+}
+
 .navigation a:hover {
     color: var(--color-ambiance-texte-primaire);
     text-decoration-color: currentColor;
+}
+
+.navigationMain {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 0.925rem;
+    font-weight: 600;
+    line-height: 1.9;
+    margin-top: 1.5rem;
 }
 
 .content a {

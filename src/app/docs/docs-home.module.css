@@ -8,6 +8,7 @@
             transparent 28rem
         ),
         var(--color-ambiance-fond);
+    padding-bottom: 96px;
 }
 
 .topbar,
@@ -104,7 +105,11 @@
     padding: clamp(1.25rem, 3vw, 2rem);
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 94%,
+        transparent
+    );
     box-shadow: var(--shadow-card);
 }
 
@@ -147,12 +152,11 @@
     padding: clamp(1.25rem, 3vw, 1.75rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background:
-        linear-gradient(
-            145deg,
-            color-mix(in srgb, var(--gold) 9%, var(--color-ambiance-elevation)),
-            var(--color-ambiance-fond)
-        );
+    background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--gold) 9%, var(--color-ambiance-elevation)),
+        var(--color-ambiance-fond)
+    );
     color: var(--color-ambiance-texte-primaire);
     text-decoration: none;
     transition:

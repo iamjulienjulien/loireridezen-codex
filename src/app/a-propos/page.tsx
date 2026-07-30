@@ -57,9 +57,8 @@ export default function AboutPage() {
                 description={
                     <p>
                         Le Codex ligérien est la mémoire éditoriale de Loire
-                        Ride Zen : un lieu pour explorer lentement les
-                        paysages, les patrimoines et le vivant qui accompagnent
-                        le fleuve.
+                        Ride Zen : un lieu pour explorer lentement les paysages,
+                        les patrimoines et le vivant qui accompagnent le fleuve.
                     </p>
                 }
             >
@@ -111,10 +110,10 @@ export default function AboutPage() {
                 title="Un projet éditorial, en mouvement."
                 description={
                     <p>
-                        Les contenus sont composés à partir de sources publiques,
-                        de lectures, de traces de terrain et d’un travail de mise
-                        en relation. Ils sont appelés à être précisés, enrichis
-                        et parfois corrigés.
+                        Les contenus sont composés à partir de sources
+                        publiques, de lectures, de traces de terrain et d’un
+                        travail de mise en relation. Ils sont appelés à être
+                        précisés, enrichis et parfois corrigés.
                     </p>
                 }
                 aside={
@@ -124,7 +123,9 @@ export default function AboutPage() {
                             Donner à chaque donnée une place, un contexte et une
                             direction possible pour poursuivre l’exploration.
                         </p>
-                        <Link href="/docs">Voir la documentation du Codex →</Link>
+                        <Link href="/docs">
+                            Voir la documentation du Codex →
+                        </Link>
                     </div>
                 }
             >
@@ -173,10 +174,7 @@ export default function AboutPage() {
             </LRZSection>
 
             <div className={styles.footerWrap}>
-                <PageFooter color="eau">
-                    Le Codex Ligérien ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
-                </PageFooter>
+                <PageFooter color="eau"></PageFooter>
             </div>
         </main>
     );
