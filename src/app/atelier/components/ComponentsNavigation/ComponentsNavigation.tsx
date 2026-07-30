@@ -21,6 +21,7 @@ const SECTIONS = [
                 "LRZAccordion",
                 "/atelier/components/lrz-accordion",
             ],
+            ["lrz-dialog", "LRZDialog", "/atelier/components/lrz-dialog"],
             ["lrz-chip", "LRZChip", "/atelier/components/lrz-chip"],
             ["lrz-compteur", "LRZCompteur", "/atelier/components/lrz-compteur"],
             ["lrz-tooltip", "LRZTooltip", "/atelier/components/lrz-tooltip"],
