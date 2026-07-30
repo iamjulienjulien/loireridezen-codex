@@ -11,6 +11,8 @@ import ChateauxCard from "@/app/chateaux/ChateauxCard";
 
 import styles from "./TerritoireSection.module.css";
 import { lighter } from "@/lib/colors";
+import LRZSeparateur from "../LRZSeparateur/LRZSeparateur";
+import { getLRZColorValue } from "@/registry/colors";
 
 type TerritoireSectionStyle = CSSProperties & {
     "--territoire-accent": string;
@@ -30,6 +32,8 @@ export default function TerritoireSection({
 }: TerritoireSectionProps) {
     const { identite, limites } = territory;
 
+    const color = getLRZColorValue(identite.color);
+    const colorLighter = lighter(color, 0);
     const accentLighter = lighter(identite.accent, 0.1);
 
     return (
@@ -39,12 +43,23 @@ export default function TerritoireSection({
             data-map-sync-territory={mapSync ? territory.slug : undefined}
             style={
                 {
-                    "--territoire-accent": identite.accent,
-                    "--territoire-accent-lighter": accentLighter,
+                    "--territoire-accent": color,
+                    "--territoire-accent-lighter": colorLighter,
                 } as TerritoireSectionStyle
             }
             aria-labelledby={`territoire-${territory.slug}-title`}
         >
+            <div style={{ marginTop: "0rem", marginBottom: ".7rem" }}>
+                <LRZSeparateur
+                    preset="diamond"
+                    color={identite.color}
+                    size="lg"
+                    scope="content"
+                    marginBlock={"0"}
+                    weight="regular"
+                    tone="normal"
+                />
+            </div>
             <header className={styles.header}>
                 <div className={styles.eyebrowRow}>
                     <p className={styles.eyebrow}>

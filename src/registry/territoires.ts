@@ -36,6 +36,7 @@ export const TERRITOIRES = [
         identite: {
             mark: "⚓️",
             accent: "#CB2D2A",
+            color: "rouge",
             blason: "/emoji/blasons/nivernais.png",
             blasonAlt: "Blason du Nivernais",
             symboles: [
@@ -73,6 +74,7 @@ export const TERRITOIRES = [
         identite: {
             mark: "👑",
             accent: "#4C83CF",
+            color: "bleu",
             blason: "/emoji/blasons/orleanais.png",
             blasonAlt: "Blason de l'Orléanais",
             symboles: ["fleur de lys", "forteresse", "pont", "onde royale"],
@@ -98,6 +100,7 @@ export const TERRITOIRES = [
         identite: {
             mark: "🏰",
             accent: "#e9c12e",
+            color: "soleil",
             blason: "/emoji/blasons/blaisois.png",
             blasonAlt: "Blason du Blaisois",
             symboles: ["salamandre", "couronne", "forêt", "tour Renaissance"],
@@ -130,6 +133,7 @@ export const TERRITOIRES = [
         identite: {
             mark: "🌿",
             accent: "#e2dfd4",
+            color: "tuffeau",
             blason: "/emoji/blasons/touraine.png",
             blasonAlt: "Blason de la Touraine",
             symboles: [
@@ -161,6 +165,7 @@ export const TERRITOIRES = [
         identite: {
             mark: "⚔️",
             accent: "#df3a20",
+            color: "corail",
             blason: "/emoji/blasons/chinonais.png",
             blasonAlt: "Blason du Chinonais",
             symboles: [
@@ -191,6 +196,7 @@ export const TERRITOIRES = [
         identite: {
             mark: "🍇",
             accent: "#d0ab67",
+            color: "miel",
             blason: "/emoji/blasons/saumurois.png",
             blasonAlt: "Blason du Saumurois",
             symboles: [
@@ -230,6 +236,7 @@ export const TERRITOIRES = [
         identite: {
             mark: "⚜️",
             accent: "#2835CA",
+            color: "bleu",
             blason: "/emoji/blasons/anjou.png",
             blasonAlt: "Blason de l'Anjou",
             symboles: [
@@ -268,6 +275,7 @@ export const TERRITOIRES = [
         identite: {
             mark: "🐚",
             accent: "#e5dfd0",
+            color: "ivoire",
             blason: "/emoji/blasons/bretagne.png",
             blasonAlt: "Blason de la Bretagne ligérienne",
             symboles: ["hermine", "nef", "tour nantaise", "vague atlantique"],
