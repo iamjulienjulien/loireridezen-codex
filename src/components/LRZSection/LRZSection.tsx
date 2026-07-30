@@ -32,7 +32,7 @@ export type LRZSectionMobileAsidePosition = "before" | "after";
 export type LRZSectionSeparatorPreset =
     Exclude<LRZSeparateurPreset, "ornament"> | "none";
 
-export type LRZSectionTitleElement = "h2" | "h3" | "h4";
+export type LRZSectionTitleElement = "h1" | "h2" | "h3" | "h4";
 
 export type LRZSectionColumns = 2 | 3 | 4;
 

@@ -43,6 +43,7 @@ export default function PageFooter({
                     aria-label="Liens de pied de page"
                 >
                     <Link href="/docs">Documentation</Link>
+                    <Link href="/a-propos">À propos</Link>
                 </nav>
                 <p className={styles.content}>{children}</p>
                 <p className={styles.signature}>
