@@ -56,6 +56,10 @@
     margin-top: 0.75em;
 }
 
+.text p strong {
+    color: var(--accent);
+}
+
 .descriptionFooter {
     max-width: 76ch;
     margin: 1.6rem auto 0;
@@ -64,7 +68,7 @@
         color-mix(in srgb, var(--accent) 40%, var(--border-subtle));
     border-bottom: 1px solid
         color-mix(in srgb, var(--accent) 20%, var(--border-subtle));
-    color: var(--color-ambiance-texte-primaire);
+    color: var(--color-ambiance-texte-primaire) !important;
     font-family: var(--font-display);
     font-size: clamp(0.95rem, 1.8vw, 1.08rem);
     line-height: 1.5;
@@ -77,4 +81,5 @@
 
 .descriptionFooter strong {
     font-weight: 600;
+    color: var(--color-ambiance-texte-primaire) !important;
 }
