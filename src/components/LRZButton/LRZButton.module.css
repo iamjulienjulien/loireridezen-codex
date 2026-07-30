@@ -28,7 +28,7 @@
 }
 
 .button:hover:not(:disabled) {
-    transform: translateY(-1px);
+    transform: none;
 }
 
 .button:active:not(:disabled) {

@@ -32,6 +32,8 @@ export type LRZButtonGroupProps = {
     variant?: LRZButtonVariant;
     orientation?: LRZButtonGroupOrientation;
     fullWidth?: boolean;
+    withWrapper?: boolean;
+    attached?: boolean;
     ariaLabel: string;
     className?: string;
 };
@@ -74,6 +76,8 @@ export function LRZButtonGroup({
     variant = "quiet",
     orientation = "horizontal",
     fullWidth = false,
+    withWrapper = false,
+    attached = true,
     ariaLabel,
     className,
 }: LRZButtonGroupProps) {
@@ -141,6 +145,8 @@ export function LRZButtonGroup({
                 className,
             )}
             data-orientation={orientation}
+            data-wrapper={withWrapper || undefined}
+            data-attached={attached}
             role="radiogroup"
             aria-label={ariaLabel}
             onKeyDown={handleKeyDown}

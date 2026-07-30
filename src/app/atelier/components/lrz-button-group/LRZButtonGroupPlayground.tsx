@@ -24,6 +24,8 @@ type PlaygroundState = {
     size: NonNullable<LRZButtonGroupProps["size"]>;
     variant: LRZButtonVariant;
     fullWidth: boolean;
+    withWrapper: boolean;
+    attached: boolean;
 };
 
 const INITIAL_STATE: PlaygroundState = {
@@ -32,6 +34,8 @@ const INITIAL_STATE: PlaygroundState = {
     size: "md",
     variant: "quiet",
     fullWidth: false,
+    withWrapper: false,
+    attached: true,
 };
 
 const OPTIONS = [
@@ -56,6 +60,8 @@ export default function LRZButtonGroupPlayground() {
     size="${values.size}"
     variant="${values.variant}"
 ${values.fullWidth ? "    fullWidth\n" : ""}    value="${selected}"
+${values.withWrapper ? "    withWrapper\n" : ""}
+${values.attached ? "" : "    attached={false}\n"}
     onValueChange={setView}
 >`;
 
@@ -157,6 +163,28 @@ ${values.fullWidth ? "    fullWidth\n" : ""}    value="${selected}"
                             }
                         />
                         Pleine largeur
+                    </label>
+
+                    <label className={styles.check}>
+                        <input
+                            type="checkbox"
+                            checked={values.withWrapper}
+                            onChange={(event) =>
+                                update("withWrapper", event.target.checked)
+                            }
+                        />
+                        Wrapper visuel
+                    </label>
+
+                    <label className={styles.check}>
+                        <input
+                            type="checkbox"
+                            checked={values.attached}
+                            onChange={(event) =>
+                                update("attached", event.target.checked)
+                            }
+                        />
+                        Items attachés
                     </label>
 
                     <button

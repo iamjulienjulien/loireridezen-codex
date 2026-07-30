@@ -2,7 +2,7 @@ export { default as PageControls } from "./PageControls";
 export type {
     PageControlsFilterGroup,
     PageControlsFilterOption,
-    PageControlsSwitcher,
+    PageControlsViewGroup,
     PageControlsVariant,
     PageControlsMode,
 } from "./PageControls";
