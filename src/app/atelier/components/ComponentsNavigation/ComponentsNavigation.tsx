@@ -23,6 +23,11 @@ const SECTIONS = [
             ],
             ["lrz-dialog", "LRZDialog", "/atelier/components/lrz-dialog"],
             ["lrz-button", "LRZButton", "/atelier/components/lrz-button"],
+            [
+                "lrz-button-group",
+                "LRZButtonGroup",
+                "/atelier/components/lrz-button-group",
+            ],
             ["lrz-chip", "LRZChip", "/atelier/components/lrz-chip"],
             ["lrz-compteur", "LRZCompteur", "/atelier/components/lrz-compteur"],
             ["lrz-tooltip", "LRZTooltip", "/atelier/components/lrz-tooltip"],
