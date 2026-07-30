@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import type { LRZColor } from "@/types/lrz";
@@ -37,6 +38,12 @@ export default function PageFooter({
                 fadeEdges
             />
             <div className={styles.copy}>
+                <nav
+                    className={styles.navigation}
+                    aria-label="Liens de pied de page"
+                >
+                    <Link href="/docs">Documentation</Link>
+                </nav>
                 <p className={styles.content}>{children}</p>
                 <p className={styles.signature}>
                     <span className={styles.signatureLabel}>
