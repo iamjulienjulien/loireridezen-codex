@@ -21,11 +21,12 @@ const defineFeatureFlags = <
  * new_feature: ["development"],
  */
 export const FEATURE_FLAGS = defineFeatureFlags({
+    atelier: ["development"],
     collections: ["development"],
     indexesCustomEmoji: [],
     ambianceChateauxVisual: [],
     commandPalette: ["development"],
-    territoires: [],
+    territoires: ["development"],
     indexControlsSection: [],
 });
 
