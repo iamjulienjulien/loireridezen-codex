@@ -108,7 +108,11 @@
 .signature::after {
     width: 1.5rem;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-strong));
+    background: linear-gradient(
+        90deg,
+        transparent,
+        color-mix(in srgb, var(--color-ocre) 64%, transparent)
+    );
     content: "";
 }
 
@@ -117,7 +121,11 @@
 }
 
 .signatureLabel {
-    color: var(--color-ambiance-texte-tertiaire);
+    color: color-mix(
+        in srgb,
+        var(--color-miel) 72%,
+        var(--color-ambiance-texte-tertiaire)
+    );
     font-family: var(--font-mono);
     font-size: 0.5rem;
     letter-spacing: 0.1em;
@@ -134,13 +142,13 @@
     color: transparent;
     background-image: linear-gradient(
         108deg,
-        var(--color-argent) 0%,
-        var(--color-blanc) 18%,
-        var(--color-gris-ardoise) 32%,
-        var(--color-blanc-gris) 48%,
-        var(--color-argent) 64%,
-        white 76%,
-        var(--color-gris) 100%
+        var(--color-ambre) 0%,
+        var(--color-ocre) 16%,
+        var(--color-jaune-paille) 30%,
+        var(--color-jaune) 42%,
+        var(--color-miel) 58%,
+        var(--color-ocre) 76%,
+        var(--color-ambre) 100%
     );
     background-size: 240% 100%;
     background-clip: text;
@@ -150,15 +158,15 @@
     text-underline-offset: 0.2em;
     animation: page-footer-signature-shine 5.2s ease-in-out infinite;
     filter: drop-shadow(
-        0 0 0.18em color-mix(in srgb, var(--color-argent) 36%, transparent)
+        0 0 0.28em color-mix(in srgb, var(--color-jaune) 62%, transparent)
     );
     transition: filter 0.2s ease;
 }
 
 .signatureName:hover {
-    filter: brightness(1.16)
+    filter: brightness(1.22)
         drop-shadow(
-            0 0 0.24em color-mix(in srgb, var(--color-blanc) 46%, transparent)
+            0 0 0.34em color-mix(in srgb, var(--color-jaune-paille) 72%, transparent)
         );
 }
 
