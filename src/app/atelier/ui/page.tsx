@@ -11,6 +11,7 @@ const COMPONENTS = [
     ["LRZCompteur", "/atelier/components/lrz-compteur"],
     ["LRZTooltip", "/atelier/components/lrz-tooltip"],
     ["LRZTabs", "/atelier/components/lrz-tabs"],
+    ["LRZTimeline", "/atelier/components/lrz-timeline"],
     ["LRZFilterChip", "/atelier/components/lrz-filter-chip"],
     ["LRZFilterGroup", "/atelier/components/lrz-filter-group"],
     ["LRZSeparateur", "/atelier/components/lrz-separateur"],

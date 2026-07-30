@@ -25,6 +25,7 @@ const SECTIONS = [
             ["lrz-compteur", "LRZCompteur", "/atelier/components/lrz-compteur"],
             ["lrz-tooltip", "LRZTooltip", "/atelier/components/lrz-tooltip"],
             ["lrz-tabs", "LRZTabs", "/atelier/components/lrz-tabs"],
+            ["lrz-timeline", "LRZTimeline", "/atelier/components/lrz-timeline"],
             [
                 "lrz-filter-chip",
                 "LRZFilterChip",
