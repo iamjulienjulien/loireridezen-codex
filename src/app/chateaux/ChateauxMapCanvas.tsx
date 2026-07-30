@@ -10,6 +10,10 @@ import { getTerritoireSlugForChateau } from "@/registry/chateaux-territoires";
 import { TERRITOIRES } from "@/registry/territoires";
 import type { Chateau } from "@/types/chateau";
 
+import {
+    CHATEAUX_MAP_CONFIG,
+    CHATEAUX_MAP_PALETTES,
+} from "./chateaux-map.config";
 import styles from "./ChateauxMapCanvas.module.css";
 import {
     CHATEAUX_MAP_SYNC_EVENT,
@@ -27,86 +31,8 @@ const TERRITORY_ACCENTS = new Map(
     TERRITOIRES.map((territory) => [territory.slug, territory.identite.accent]),
 );
 
-const DEFAULT_CENTER: [number, number] = [1.7, 47.3];
-const MAPLIBRE_WORKER_URL =
-    "https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl-worker.mjs";
-const BASEMAP_STYLE = {
-    version: 8 as const,
-    sources: {
-        openstreetmap: {
-            type: "raster" as const,
-            tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
-            tileSize: 256,
-            attribution: "© OpenStreetMap contributors",
-        },
-    },
-    layers: [
-        {
-            id: "openstreetmap",
-            type: "raster" as const,
-            source: "openstreetmap",
-        },
-    ],
-};
-
-type MapPalette = {
-    water: string;
-    land: string;
-    forest: string;
-    road: string;
-    roadMinor: string;
-    building: string;
-    boundary: string;
-    label: string;
-};
-
-// Adaptation compacte des palettes du prototype cartographique : la carte
-// suit l'ambiance courante du Codex sans introduire de contrôle supplémentaire.
-const MAP_PALETTES: Record<Ambiance, MapPalette> = {
-    aube: {
-        water: "#dde6e8",
-        land: "#f5ead8",
-        forest: "#c8c8b0",
-        road: "#e8d8b8",
-        roadMinor: "#ede3cc",
-        building: "#e6dac5",
-        boundary: "rgba(116, 89, 57, 0.38)",
-        label: "#5c493a",
-    },
-    jour: {
-        water: "#a8c0c8",
-        land: "#faf3e5",
-        forest: "#a8b890",
-        road: "#d8b860",
-        roadMinor: "#eadab0",
-        building: "#e8ddc8",
-        boundary: "rgba(92, 78, 58, 0.35)",
-        label: "#3d3528",
-    },
-    soir: {
-        water: "#a8a0a8",
-        land: "#e8c898",
-        forest: "#7a6a4a",
-        road: "#c89048",
-        roadMinor: "#d8b878",
-        building: "#d8c0a0",
-        boundary: "rgba(96, 62, 42, 0.44)",
-        label: "#513c31",
-    },
-    nuit: {
-        water: "#2a3540",
-        land: "#1a1812",
-        forest: "#2c2820",
-        road: "#685830",
-        roadMinor: "#3c3525",
-        building: "#322d25",
-        boundary: "rgba(205, 183, 140, 0.28)",
-        label: "#d8c8a8",
-    },
-};
-
 function applyMapAmbiance(map: MapLibreMap, ambiance: Ambiance) {
-    const palette = MAP_PALETTES[ambiance];
+    const palette = CHATEAUX_MAP_PALETTES[ambiance];
     const layers = map.getStyle().layers ?? [];
 
     layers.forEach((layer) => {
@@ -202,8 +128,7 @@ export default function ChateauxMapCanvas({
                 const [chateau] = territoryChateaux;
                 map.easeTo({
                     center: [chateau.coordonnees.lng, chateau.coordonnees.lat],
-                    zoom: 10.5,
-                    duration: 550,
+                    ...CHATEAUX_MAP_CONFIG.singleTerritoryChateau,
                 });
                 return;
             }
@@ -217,9 +142,7 @@ export default function ChateauxMapCanvas({
                 new maplibregl.LngLatBounds(),
             );
             map.fitBounds(bounds, {
-                padding: 52,
-                maxZoom: 10,
-                duration: 550,
+                ...CHATEAUX_MAP_CONFIG.territoryFit,
             });
         },
         [chateaux],
@@ -275,13 +198,13 @@ export default function ChateauxMapCanvas({
         // composant reste néanmoins chargé à la demande depuis le toggle.
         // Turbopack ne résout pas correctement l'URL implicite du worker :
         // elle retombe sinon sur /chateaux en développement.
-        maplibregl.setWorkerUrl(MAPLIBRE_WORKER_URL);
+        maplibregl.setWorkerUrl(CHATEAUX_MAP_CONFIG.workerUrl);
         const map = new maplibregl.Map({
             container,
-            center: DEFAULT_CENTER,
-            zoom: 6,
+            center: CHATEAUX_MAP_CONFIG.defaultView.center,
+            zoom: CHATEAUX_MAP_CONFIG.defaultView.zoom,
             attributionControl: false,
-            style: BASEMAP_STYLE,
+            style: CHATEAUX_MAP_CONFIG.basemapStyle,
         });
         const resizeObserver = new ResizeObserver(() => map.resize());
 
@@ -323,7 +246,11 @@ export default function ChateauxMapCanvas({
         primarySlugRef.current = undefined;
 
         if (chateaux.length === 0) {
-            map.easeTo({ center: DEFAULT_CENTER, zoom: 6, duration: 350 });
+            map.easeTo({
+                center: CHATEAUX_MAP_CONFIG.defaultView.center,
+                zoom: CHATEAUX_MAP_CONFIG.defaultView.zoom,
+                duration: CHATEAUX_MAP_CONFIG.defaultView.resetDuration,
+            });
             return;
         }
 
@@ -383,14 +310,11 @@ export default function ChateauxMapCanvas({
                     chateaux[0].coordonnees.lng,
                     chateaux[0].coordonnees.lat,
                 ],
-                zoom: 11,
-                duration: 450,
+                ...CHATEAUX_MAP_CONFIG.singleChateau,
             });
         } else {
             map.fitBounds(bounds, {
-                padding: 64,
-                maxZoom: 10,
-                duration: 450,
+                ...CHATEAUX_MAP_CONFIG.catalogueFit,
             });
         }
         applyMarkerStates();
