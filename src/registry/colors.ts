@@ -1,333 +1,660 @@
-import type { LRZColor } from "@/types/lrz";
+// Registre de couleurs V2 — source de vérité de la palette LRZ.
 
 export type LRZHexColor = `#${string}`;
-export type LRZCssColorVariable = `--lrz-${string}`;
-export type LRZColorCategory = "nature" | "faune" | "patrimoine";
+export type LRZCssColorVariable = `--color-${string}`;
+
+export type LRZColorCategory = "nature" | "base" | "patrimoine";
+
+export type LRZColorFamily =
+    | "nature"
+    | "neutres"
+    | "terres"
+    | "bruns"
+    | "jaunes"
+    | "rouges"
+    | "roses"
+    | "verts"
+    | "bleus"
+    | "patrimoine";
 
 export type LRZColorDefinition = {
     label: string;
     category: LRZColorCategory;
+    family: LRZColorFamily;
     value: LRZHexColor;
     variable: LRZCssColorVariable;
 };
 
 /**
+ * Préserve les clés littérales et valide toutes les définitions du registre.
+ */
+function defineColorRegistry<
+    const TRegistry extends Record<string, LRZColorDefinition>,
+>(registry: TRegistry): TRegistry {
+    return registry;
+}
+
+/**
  * Registre central des couleurs Loire Ride Zen.
  *
- * Les clés correspondent aux valeurs publiques du type `LRZColor`.
- * Toutes les autres collections de couleurs sont dérivées de ce registre.
+ * Conventions :
+ *
+ * - Nature : `--color-nature-*`
+ * - Palette naturaliste de base : `--color-*`
+ * - Patrimoine : `--color-patrimoine-*`
+ *
+ * Les clés du registre constituent directement le type public `LRZColor`.
  */
-export const LRZ_COLOR_REGISTRY = {
-    // Nature
+export const LRZ_COLOR_REGISTRY = defineColorRegistry({
+    /* ======================================================================
+       Nature
+       ====================================================================== */
+
     prairie: {
         label: "Prairie",
         category: "nature",
+        family: "nature",
         value: "#5C8754",
-        variable: "--lrz-nature-prairie",
+        variable: "--color-nature-prairie",
     },
     roseau: {
         label: "Roseau",
         category: "nature",
+        family: "nature",
         value: "#707C40",
-        variable: "--lrz-nature-roseau",
+        variable: "--color-nature-roseau",
     },
     foret: {
         label: "Forêt",
         category: "nature",
+        family: "nature",
         value: "#503827",
-        variable: "--lrz-nature-foret",
+        variable: "--color-nature-foret",
     },
     sable: {
         label: "Sable",
         category: "nature",
+        family: "nature",
         value: "#CFBE9F",
-        variable: "--lrz-nature-sable",
+        variable: "--color-nature-sable",
     },
     galet: {
         label: "Galet",
         category: "nature",
+        family: "nature",
         value: "#7C7C78",
-        variable: "--lrz-nature-galet",
+        variable: "--color-nature-galet",
     },
     eau: {
         label: "Eau",
         category: "nature",
+        family: "nature",
         value: "#4D80A7",
-        variable: "--lrz-nature-eau",
+        variable: "--color-nature-eau",
     },
     "eau-claire": {
         label: "Eau claire",
         category: "nature",
+        family: "nature",
         value: "#3E93A7",
-        variable: "--lrz-nature-eau-claire",
+        variable: "--color-nature-eau-claire",
     },
     ciel: {
         label: "Ciel",
         category: "nature",
+        family: "nature",
         value: "#F7F6F2",
-        variable: "--lrz-nature-ciel",
+        variable: "--color-nature-ciel",
     },
     soleil: {
         label: "Soleil",
         category: "nature",
+        family: "nature",
         value: "#D8B548",
-        variable: "--lrz-nature-soleil",
+        variable: "--color-nature-soleil",
     },
     coucher: {
         label: "Coucher",
         category: "nature",
+        family: "nature",
         value: "#D97A3E",
-        variable: "--lrz-nature-coucher",
+        variable: "--color-nature-coucher",
     },
 
-    // Faune · Neutres
+    /* ======================================================================
+       Palette naturaliste · Neutres
+       ====================================================================== */
+
     blanc: {
         label: "Blanc",
-        category: "faune",
+        category: "base",
+        family: "neutres",
         value: "#F7F6F2",
-        variable: "--lrz-faune-blanc",
+        variable: "--color-blanc",
+    },
+    ivoire: {
+        label: "Ivoire",
+        category: "base",
+        family: "neutres",
+        value: "#F3EFE4",
+        variable: "--color-ivoire",
     },
     "blanc-gris": {
         label: "Blanc gris",
-        category: "faune",
+        category: "base",
+        family: "neutres",
         value: "#E5E7E3",
-        variable: "--lrz-faune-blanc-gris",
+        variable: "--color-blanc-gris",
     },
     argent: {
         label: "Argent",
-        category: "faune",
+        category: "base",
+        family: "neutres",
         value: "#BEC5C8",
-        variable: "--lrz-faune-argent",
+        variable: "--color-argent",
+    },
+    "gris-clair": {
+        label: "Gris clair",
+        category: "base",
+        family: "neutres",
+        value: "#A8AAA5",
+        variable: "--color-gris-clair",
     },
     gris: {
         label: "Gris",
-        category: "faune",
+        category: "base",
+        family: "neutres",
         value: "#7C7C78",
-        variable: "--lrz-faune-gris",
+        variable: "--color-gris",
     },
     "gris-ardoise": {
         label: "Gris ardoise",
-        category: "faune",
+        category: "base",
+        family: "neutres",
         value: "#5C6772",
-        variable: "--lrz-faune-gris-ardoise",
+        variable: "--color-gris-ardoise",
     },
     "gris-brun": {
         label: "Gris brun",
-        category: "faune",
+        category: "base",
+        family: "neutres",
         value: "#76695D",
-        variable: "--lrz-faune-gris-brun",
+        variable: "--color-gris-brun",
+    },
+    anthracite: {
+        label: "Anthracite",
+        category: "base",
+        family: "neutres",
+        value: "#424540",
+        variable: "--color-anthracite",
     },
     noir: {
         label: "Noir",
-        category: "faune",
+        category: "base",
+        family: "neutres",
         value: "#2B2B29",
-        variable: "--lrz-faune-noir",
+        variable: "--color-noir",
     },
 
-    // Faune · Bruns
+    /* ======================================================================
+       Palette naturaliste · Terres
+       ====================================================================== */
+
+    lin: {
+        label: "Lin",
+        category: "base",
+        family: "terres",
+        value: "#DED1B8",
+        variable: "--color-lin",
+    },
     beige: {
         label: "Beige",
-        category: "faune",
+        category: "base",
+        family: "terres",
         value: "#CFBE9F",
-        variable: "--lrz-faune-beige",
+        variable: "--color-beige",
     },
     creme: {
         label: "Crème",
-        category: "faune",
+        category: "base",
+        family: "terres",
         value: "#F2E7CF",
-        variable: "--lrz-faune-creme",
+        variable: "--color-creme",
+    },
+    taupe: {
+        label: "Taupe",
+        category: "base",
+        family: "terres",
+        value: "#9A8875",
+        variable: "--color-taupe",
+    },
+    "ocre-clair": {
+        label: "Ocre clair",
+        category: "base",
+        family: "terres",
+        value: "#CEA968",
+        variable: "--color-ocre-clair",
     },
     ocre: {
         label: "Ocre",
-        category: "faune",
+        category: "base",
+        family: "terres",
         value: "#B88945",
-        variable: "--lrz-faune-ocre",
+        variable: "--color-ocre",
     },
     fauve: {
         label: "Fauve",
-        category: "faune",
+        category: "base",
+        family: "terres",
         value: "#B37A43",
-        variable: "--lrz-faune-fauve",
+        variable: "--color-fauve",
+    },
+
+    /* ======================================================================
+       Palette naturaliste · Bruns
+       ====================================================================== */
+
+    noisette: {
+        label: "Noisette",
+        category: "base",
+        family: "bruns",
+        value: "#9A6C43",
+        variable: "--color-noisette",
     },
     brun: {
         label: "Brun",
-        category: "faune",
+        category: "base",
+        family: "bruns",
         value: "#795739",
-        variable: "--lrz-faune-brun",
+        variable: "--color-brun",
     },
     "brun-roux": {
         label: "Brun roux",
-        category: "faune",
+        category: "base",
+        family: "bruns",
         value: "#8F573C",
-        variable: "--lrz-faune-brun-roux",
+        variable: "--color-brun-roux",
     },
     "brun-fonce": {
         label: "Brun foncé",
-        category: "faune",
+        category: "base",
+        family: "bruns",
         value: "#503827",
-        variable: "--lrz-faune-brun-fonce",
+        variable: "--color-brun-fonce",
+    },
+    ecorce: {
+        label: "Écorce",
+        category: "base",
+        family: "bruns",
+        value: "#46352B",
+        variable: "--color-ecorce",
     },
 
-    // Faune · Rouges et oranges
+    /* ======================================================================
+       Palette naturaliste · Jaunes
+       ====================================================================== */
+
+    "jaune-paille": {
+        label: "Jaune paille",
+        category: "base",
+        family: "jaunes",
+        value: "#DFCA7D",
+        variable: "--color-jaune-paille",
+    },
+    jaune: {
+        label: "Jaune",
+        category: "base",
+        family: "jaunes",
+        value: "#D8B548",
+        variable: "--color-jaune",
+    },
+    miel: {
+        label: "Miel",
+        category: "base",
+        family: "jaunes",
+        value: "#C7953E",
+        variable: "--color-miel",
+    },
+    ambre: {
+        label: "Ambre",
+        category: "base",
+        family: "jaunes",
+        value: "#B87932",
+        variable: "--color-ambre",
+    },
+
+    /* ======================================================================
+       Palette naturaliste · Rouges et oranges
+       ====================================================================== */
+
+    "orange-clair": {
+        label: "Orange clair",
+        category: "base",
+        family: "rouges",
+        value: "#E79A5D",
+        variable: "--color-orange-clair",
+    },
     orange: {
         label: "Orange",
-        category: "faune",
+        category: "base",
+        family: "rouges",
         value: "#D97A3E",
-        variable: "--lrz-faune-orange",
+        variable: "--color-orange",
     },
     "orange-cuivre": {
         label: "Orange cuivré",
-        category: "faune",
+        category: "base",
+        family: "rouges",
         value: "#B96841",
-        variable: "--lrz-faune-orange-cuivre",
+        variable: "--color-orange-cuivre",
     },
     roux: {
         label: "Roux",
-        category: "faune",
+        category: "base",
+        family: "rouges",
         value: "#A55A35",
-        variable: "--lrz-faune-roux",
+        variable: "--color-roux",
+    },
+    "terre-cuite": {
+        label: "Terre cuite",
+        category: "base",
+        family: "rouges",
+        value: "#AD5F49",
+        variable: "--color-terre-cuite",
+    },
+    corail: {
+        label: "Corail",
+        category: "base",
+        family: "rouges",
+        value: "#C76858",
+        variable: "--color-corail",
     },
     rouge: {
         label: "Rouge",
-        category: "faune",
+        category: "base",
+        family: "rouges",
         value: "#A44842",
-        variable: "--lrz-faune-rouge",
+        variable: "--color-rouge",
+    },
+    grenat: {
+        label: "Grenat",
+        category: "base",
+        family: "rouges",
+        value: "#7F3D3F",
+        variable: "--color-grenat",
+    },
+    "lie-de-vin": {
+        label: "Lie-de-vin",
+        category: "base",
+        family: "rouges",
+        value: "#663D49",
+        variable: "--color-lie-de-vin",
     },
 
-    // Faune · Jaunes
-    jaune: {
-        label: "Jaune",
-        category: "faune",
-        value: "#D8B548",
-        variable: "--lrz-faune-jaune",
+    /* ======================================================================
+       Palette naturaliste · Roses et violets
+       ====================================================================== */
+
+    "rose-poudre": {
+        label: "Rose poudré",
+        category: "base",
+        family: "roses",
+        value: "#D6AAA2",
+        variable: "--color-rose-poudre",
+    },
+    "rose-sauvage": {
+        label: "Rose sauvage",
+        category: "base",
+        family: "roses",
+        value: "#B86F72",
+        variable: "--color-rose-sauvage",
+    },
+    mauve: {
+        label: "Mauve",
+        category: "base",
+        family: "roses",
+        value: "#8C7187",
+        variable: "--color-mauve",
+    },
+    prune: {
+        label: "Prune",
+        category: "base",
+        family: "roses",
+        value: "#665064",
+        variable: "--color-prune",
     },
 
-    // Faune · Verts
+    /* ======================================================================
+       Palette naturaliste · Verts
+       ====================================================================== */
+
+    "vert-clair": {
+        label: "Vert clair",
+        category: "base",
+        family: "verts",
+        value: "#92AD7D",
+        variable: "--color-vert-clair",
+    },
     vert: {
         label: "Vert",
-        category: "faune",
+        category: "base",
+        family: "verts",
         value: "#5C8754",
-        variable: "--lrz-faune-vert",
+        variable: "--color-vert",
     },
     "vert-vif": {
         label: "Vert vif",
-        category: "faune",
+        category: "base",
+        family: "verts",
         value: "#6AA657",
-        variable: "--lrz-faune-vert-vif",
+        variable: "--color-vert-vif",
+    },
+    "vert-sauge": {
+        label: "Vert sauge",
+        category: "base",
+        family: "verts",
+        value: "#82947A",
+        variable: "--color-vert-sauge",
+    },
+    "vert-mousse": {
+        label: "Vert mousse",
+        category: "base",
+        family: "verts",
+        value: "#63734F",
+        variable: "--color-vert-mousse",
     },
     "vert-olive": {
         label: "Vert olive",
-        category: "faune",
+        category: "base",
+        family: "verts",
         value: "#707C40",
-        variable: "--lrz-faune-vert-olive",
+        variable: "--color-vert-olive",
+    },
+    "vert-roseau": {
+        label: "Vert roseau",
+        category: "base",
+        family: "verts",
+        value: "#7F884E",
+        variable: "--color-vert-roseau",
+    },
+    "vert-pin": {
+        label: "Vert pin",
+        category: "base",
+        family: "verts",
+        value: "#3F6651",
+        variable: "--color-vert-pin",
     },
     "vert-metallise": {
         label: "Vert métallisé",
-        category: "faune",
+        category: "base",
+        family: "verts",
         value: "#3E7F73",
-        variable: "--lrz-faune-vert-metallise",
+        variable: "--color-vert-metallise",
+    },
+    "vert-fonce": {
+        label: "Vert foncé",
+        category: "base",
+        family: "verts",
+        value: "#345443",
+        variable: "--color-vert-fonce",
     },
 
-    // Faune · Bleus
+    /* ======================================================================
+       Palette naturaliste · Bleus
+       ====================================================================== */
+
+    "bleu-clair": {
+        label: "Bleu clair",
+        category: "base",
+        family: "bleus",
+        value: "#8FB3C6",
+        variable: "--color-bleu-clair",
+    },
     bleu: {
         label: "Bleu",
-        category: "faune",
+        category: "base",
+        family: "bleus",
         value: "#4D80A7",
-        variable: "--lrz-faune-bleu",
+        variable: "--color-bleu",
     },
     "bleu-gris": {
         label: "Bleu gris",
-        category: "faune",
+        category: "base",
+        family: "bleus",
         value: "#6C8796",
-        variable: "--lrz-faune-bleu-gris",
+        variable: "--color-bleu-gris",
     },
     "bleu-turquoise": {
         label: "Bleu turquoise",
-        category: "faune",
+        category: "base",
+        family: "bleus",
         value: "#3E93A7",
-        variable: "--lrz-faune-bleu-turquoise",
+        variable: "--color-bleu-turquoise",
     },
     "bleu-metallise": {
         label: "Bleu métallisé",
-        category: "faune",
+        category: "base",
+        family: "bleus",
         value: "#2C708E",
-        variable: "--lrz-faune-bleu-metallise",
+        variable: "--color-bleu-metallise",
+    },
+    "bleu-loire": {
+        label: "Bleu Loire",
+        category: "base",
+        family: "bleus",
+        value: "#397A91",
+        variable: "--color-bleu-loire",
+    },
+    "bleu-ardoise": {
+        label: "Bleu ardoise",
+        category: "base",
+        family: "bleus",
+        value: "#456476",
+        variable: "--color-bleu-ardoise",
+    },
+    "bleu-nuit": {
+        label: "Bleu nuit",
+        category: "base",
+        family: "bleus",
+        value: "#304957",
+        variable: "--color-bleu-nuit",
     },
 
-    // Patrimoine
+    /* ======================================================================
+       Patrimoine
+       ====================================================================== */
+
     pierre: {
         label: "Pierre",
         category: "patrimoine",
+        family: "patrimoine",
         value: "#D6D0C6",
-        variable: "--lrz-patrimoine-pierre",
+        variable: "--color-patrimoine-pierre",
     },
     ardoise: {
         label: "Ardoise",
         category: "patrimoine",
+        family: "patrimoine",
         value: "#5C6772",
-        variable: "--lrz-patrimoine-ardoise",
+        variable: "--color-patrimoine-ardoise",
     },
     brique: {
         label: "Brique",
         category: "patrimoine",
+        family: "patrimoine",
         value: "#A44842",
-        variable: "--lrz-patrimoine-brique",
+        variable: "--color-patrimoine-brique",
     },
     tuffeau: {
         label: "Tuffeau",
         category: "patrimoine",
+        family: "patrimoine",
         value: "#F2E7CF",
-        variable: "--lrz-patrimoine-tuffeau",
+        variable: "--color-patrimoine-tuffeau",
     },
-} as const satisfies Record<LRZColor, LRZColorDefinition>;
+});
 
 /**
- * Transforme les valeurs d’un objet en conservant précisément ses clés.
+ * Toutes les couleurs publiques sont dérivées du registre.
+ *
+ * Ajouter une entrée au registre suffit donc à faire évoluer ce type.
  */
-function mapRegistry<TValue>(
-    selector: (definition: LRZColorDefinition) => TValue,
-): Record<LRZColor, TValue> {
-    return Object.fromEntries(
-        LRZ_COLOR_NAMES.map((color) => [
-            color,
-            selector(LRZ_COLOR_REGISTRY[color]),
-        ]),
-    ) as Record<LRZColor, TValue>;
-}
+export type LRZColor = keyof typeof LRZ_COLOR_REGISTRY;
+
+/** Définition précise d'une couleur donnée. */
+export type LRZColorRegistryDefinition<TColor extends LRZColor = LRZColor> =
+    (typeof LRZ_COLOR_REGISTRY)[TColor];
 
 /** Tous les noms publics de couleurs disponibles. */
 export const LRZ_COLOR_NAMES = Object.keys(LRZ_COLOR_REGISTRY) as LRZColor[];
 
+/**
+ * Transforme le registre en conservant ses clés publiques.
+ */
+function mapRegistry<TValue>(
+    selector: (definition: LRZColorDefinition, color: LRZColor) => TValue,
+): Record<LRZColor, TValue> {
+    return Object.fromEntries(
+        LRZ_COLOR_NAMES.map((color) => [
+            color,
+            selector(LRZ_COLOR_REGISTRY[color], color),
+        ]),
+    ) as Record<LRZColor, TValue>;
+}
+
 /** Valeur hexadécimale associée à chaque couleur LRZ. */
-export const LRZ_COLOR_VALUES = mapRegistry(({ value }) => value) as Record<
-    LRZColor,
-    LRZHexColor
->;
+export const LRZ_COLOR_VALUES = mapRegistry(({ value }) => value);
 
 /** Variable CSS associée à chaque couleur LRZ. */
-export const LRZ_COLOR_VARIABLES = mapRegistry(
-    ({ variable }) => variable,
-) as Record<LRZColor, LRZCssColorVariable>;
+export const LRZ_COLOR_VARIABLES = mapRegistry(({ variable }) => variable);
 
-/** Libellé lisible associé à chaque couleur LRZ. */
+/** Libellé humain associé à chaque couleur LRZ. */
 export const LRZ_COLOR_LABELS = mapRegistry(({ label }) => label);
 
+/** Catégorie associée à chaque couleur LRZ. */
+export const LRZ_COLOR_CATEGORIES = mapRegistry(({ category }) => category);
+
+/** Famille chromatique associée à chaque couleur LRZ. */
+export const LRZ_COLOR_FAMILIES = mapRegistry(({ family }) => family);
+
 /**
- * Retourne la définition complète d’une couleur.
+ * Retourne la définition complète d'une couleur.
  *
  * @example
  * getLRZColor("prairie");
  */
-export function getLRZColor(color: LRZColor): LRZColorDefinition {
+export function getLRZColor<TColor extends LRZColor>(
+    color: TColor,
+): LRZColorRegistryDefinition<TColor> {
     return LRZ_COLOR_REGISTRY[color];
 }
 
 /**
- * Retourne la valeur hexadécimale d’une couleur.
+ * Retourne la valeur hexadécimale d'une couleur.
  *
  * @example
  * getLRZColorValue("prairie"); // "#5C8754"
- * getLRZColorValue("brun"); // "#795739"
+ * getLRZColorValue("fauve"); // "#B37A43"
  */
 export function getLRZColorValue(color: LRZColor): LRZHexColor {
     return LRZ_COLOR_REGISTRY[color].value;
@@ -337,7 +664,8 @@ export function getLRZColorValue(color: LRZColor): LRZHexColor {
  * Retourne la variable CSS associée à une couleur.
  *
  * @example
- * getLRZColorVariable("prairie"); // "--lrz-nature-prairie"
+ * getLRZColorVariable("prairie"); // "--color-nature-prairie"
+ * getLRZColorVariable("fauve"); // "--color-fauve"
  */
 export function getLRZColorVariable(color: LRZColor): LRZCssColorVariable {
     return LRZ_COLOR_REGISTRY[color].variable;
@@ -347,14 +675,14 @@ export function getLRZColorVariable(color: LRZColor): LRZCssColorVariable {
  * Retourne une expression CSS `var(...)`.
  *
  * @example
- * getLRZColorVar("prairie"); // "var(--lrz-nature-prairie)"
+ * getLRZColorVar("prairie"); // "var(--color-nature-prairie)"
  */
 export function getLRZColorVar(color: LRZColor): `var(${LRZCssColorVariable})` {
     return `var(${getLRZColorVariable(color)})`;
 }
 
 /**
- * Retourne le libellé humain d’une couleur.
+ * Retourne le libellé humain d'une couleur.
  *
  * @example
  * getLRZColorLabel("brun-fonce"); // "Brun foncé"
@@ -363,98 +691,136 @@ export function getLRZColorLabel(color: LRZColor): string {
     return LRZ_COLOR_REGISTRY[color].label;
 }
 
+/**
+ * Retourne la catégorie principale d'une couleur.
+ */
+export function getLRZColorCategory(color: LRZColor): LRZColorCategory {
+    return LRZ_COLOR_REGISTRY[color].category;
+}
+
+/**
+ * Retourne la famille chromatique d'une couleur.
+ */
+export function getLRZColorFamily(color: LRZColor): LRZColorFamily {
+    return LRZ_COLOR_REGISTRY[color].family;
+}
+
+/**
+ * Retourne toutes les couleurs appartenant à une catégorie.
+ */
+export function getLRZColorsByCategory(category: LRZColorCategory): LRZColor[] {
+    return LRZ_COLOR_NAMES.filter(
+        (color) => LRZ_COLOR_REGISTRY[color].category === category,
+    );
+}
+
+/**
+ * Retourne toutes les couleurs appartenant à une famille chromatique.
+ */
+export function getLRZColorsByFamily(family: LRZColorFamily): LRZColor[] {
+    return LRZ_COLOR_NAMES.filter(
+        (color) => LRZ_COLOR_REGISTRY[color].family === family,
+    );
+}
+
 export type LRZColorGroup = {
-    id: LRZColorCategory;
+    id: LRZColorFamily;
     title: string;
     colors: LRZColor[];
 };
 
-/** Groupes de couleurs utilisés dans la documentation et les composants UI. */
+/**
+ * Groupes détaillés utilisés dans la documentation,
+ * l'atelier UI et les sélecteurs de couleurs.
+ */
 export const LRZ_COLOR_GROUPS: LRZColorGroup[] = [
     {
         id: "nature",
         title: "Nature",
-        colors: LRZ_COLOR_NAMES.filter(
-            (color) => LRZ_COLOR_REGISTRY[color].category === "nature",
-        ),
+        colors: getLRZColorsByFamily("nature"),
     },
     {
-        id: "faune",
-        title: "Faune",
-        colors: LRZ_COLOR_NAMES.filter(
-            (color) => LRZ_COLOR_REGISTRY[color].category === "faune",
-        ),
+        id: "neutres",
+        title: "Neutres",
+        colors: getLRZColorsByFamily("neutres"),
+    },
+    {
+        id: "terres",
+        title: "Terres",
+        colors: getLRZColorsByFamily("terres"),
+    },
+    {
+        id: "bruns",
+        title: "Bruns",
+        colors: getLRZColorsByFamily("bruns"),
+    },
+    {
+        id: "jaunes",
+        title: "Jaunes et ors",
+        colors: getLRZColorsByFamily("jaunes"),
+    },
+    {
+        id: "rouges",
+        title: "Rouges et oranges",
+        colors: getLRZColorsByFamily("rouges"),
+    },
+    {
+        id: "roses",
+        title: "Roses et violets",
+        colors: getLRZColorsByFamily("roses"),
+    },
+    {
+        id: "verts",
+        title: "Verts",
+        colors: getLRZColorsByFamily("verts"),
+    },
+    {
+        id: "bleus",
+        title: "Bleus",
+        colors: getLRZColorsByFamily("bleus"),
     },
     {
         id: "patrimoine",
         title: "Patrimoine",
-        colors: LRZ_COLOR_NAMES.filter(
-            (color) => LRZ_COLOR_REGISTRY[color].category === "patrimoine",
-        ),
+        colors: getLRZColorsByFamily("patrimoine"),
     },
 ];
 
 /**
- * Palettes historiques conservées pour les usages existants.
+ * Palette naturaliste de base.
  *
- * Pour le nouveau code, privilégier `LRZ_COLOR_REGISTRY`
- * et les fonctions `getLRZColor*`.
+ * Elle exclut volontairement les tokens éditoriaux Nature et Patrimoine.
  */
-export const LRZ_NATURALIST_COLORS = {
-    blanc: getLRZColorValue("blanc"),
-    "blanc gris": getLRZColorValue("blanc-gris"),
-    argent: getLRZColorValue("argent"),
-    gris: getLRZColorValue("gris"),
-    "gris ardoise": getLRZColorValue("gris-ardoise"),
-    "gris brun": getLRZColorValue("gris-brun"),
-    noir: getLRZColorValue("noir"),
+export const LRZ_NATURALIST_COLORS = Object.fromEntries(
+    getLRZColorsByCategory("base").map((color) => [
+        color,
+        getLRZColorValue(color),
+    ]),
+) as {
+    readonly [
+        TColor in LRZColor as LRZColorRegistryDefinition<TColor>["category"] extends "base"
+            ? TColor
+            : never
+    ]: LRZHexColor;
+};
 
-    beige: getLRZColorValue("beige"),
-    crème: getLRZColorValue("creme"),
-    ocre: getLRZColorValue("ocre"),
-    fauve: getLRZColorValue("fauve"),
-    brun: getLRZColorValue("brun"),
-    "brun roux": getLRZColorValue("brun-roux"),
-    "brun foncé": getLRZColorValue("brun-fonce"),
-
-    orange: getLRZColorValue("orange"),
-    "orange cuivré": getLRZColorValue("orange-cuivre"),
-    roux: getLRZColorValue("roux"),
-    rouge: getLRZColorValue("rouge"),
-
-    jaune: getLRZColorValue("jaune"),
-
-    vert: getLRZColorValue("vert"),
-    "vert vif": getLRZColorValue("vert-vif"),
-    "vert olive": getLRZColorValue("vert-olive"),
-    "vert métallisé": getLRZColorValue("vert-metallise"),
-
-    bleu: getLRZColorValue("bleu"),
-    "bleu gris": getLRZColorValue("bleu-gris"),
-    "bleu turquoise": getLRZColorValue("bleu-turquoise"),
-    "bleu métallique": getLRZColorValue("bleu-metallise"),
-} as const;
-
+/**
+ * Accès structuré aux trois grandes catégories.
+ */
 export const LRZ_COLOR = {
-    nature: {
-        prairie: getLRZColorValue("prairie"),
-        roseau: getLRZColorValue("roseau"),
-        foret: getLRZColorValue("foret"),
-        sable: getLRZColorValue("sable"),
-        galet: getLRZColorValue("galet"),
-        eau: getLRZColorValue("eau"),
-        eauClaire: getLRZColorValue("eau-claire"),
-        ciel: getLRZColorValue("ciel"),
-        soleil: getLRZColorValue("soleil"),
-        coucher: getLRZColorValue("coucher"),
-    },
+    nature: Object.fromEntries(
+        getLRZColorsByCategory("nature").map((color) => [
+            color,
+            getLRZColorValue(color),
+        ]),
+    ),
 
-    faune: LRZ_NATURALIST_COLORS,
+    base: LRZ_NATURALIST_COLORS,
 
-    patrimoine: {
-        pierre: getLRZColorValue("pierre"),
-        ardoise: getLRZColorValue("ardoise"),
-        brique: getLRZColorValue("brique"),
-        tuffeau: getLRZColorValue("tuffeau"),
-    },
+    patrimoine: Object.fromEntries(
+        getLRZColorsByCategory("patrimoine").map((color) => [
+            color,
+            getLRZColorValue(color),
+        ]),
+    ),
 } as const;

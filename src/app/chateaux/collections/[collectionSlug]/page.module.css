@@ -5,9 +5,9 @@
     padding: clamp(18px, 3vw, 36px) 0 clamp(56px, 8vw, 112px);
     position: relative;
     min-height: 100dvh;
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     overflow-x: hidden;
     transition:
         background-color 1.4s ease,
@@ -61,7 +61,7 @@
 }
 
 .breadcrumbLink {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     text-decoration: none;
 
     transition:
@@ -81,7 +81,7 @@
     overflow: hidden;
     max-width: 40ch;
 
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -160,7 +160,7 @@
     line-height: 0.98;
     text-wrap: balance;
 
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .sectionDescription {
@@ -171,7 +171,7 @@
     font-size: 13px;
     line-height: 1.7;
 
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 
 /* ============================================================
@@ -237,7 +237,7 @@
     font-size: 16px;
     font-weight: 600;
 
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .footerNote {
@@ -248,7 +248,7 @@
     font-style: italic;
     line-height: 1.5;
 
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 
 .footerLink {
@@ -603,7 +603,7 @@
     line-height: 0.98;
     text-wrap: balance;
 
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .notFoundDescription {
@@ -614,7 +614,7 @@
     font-size: 14px;
     line-height: 1.7;
 
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 
 .notFoundActions {
@@ -654,5 +654,5 @@
 .notFoundSecondary {
     border: 1px solid var(--border-subtle);
     background: var(--surface-subtle);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }

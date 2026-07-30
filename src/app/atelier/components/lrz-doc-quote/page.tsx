@@ -7,6 +7,7 @@ import LRZDocQuote, {
 } from "@/components/LRZDocQuote/LRZDocQuote";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 
 import styles from "./lrz-doc-quote.module.css";
 
@@ -316,6 +317,13 @@ export default function LRZDocQuotePage() {
                         </article>
                     </div>
                 </section>
+
+                <DocMarkdownSyntax
+                    title="Écrire une citation"
+                    description="Place un chevron au début de chaque ligne citée. La source et l’auteur sont ensuite enrichis dans le contenu ou par la couche MDX."
+                    code={"> La Loire ne se traverse pas seulement : elle donne le rythme.\n>\n> — Carnet de route, Béhuard"}
+                    note="React Markdown produit un blockquote que le mapping enveloppe dans LRZDocQuote."
+                />
 
                 <section
                     className={styles.integration}

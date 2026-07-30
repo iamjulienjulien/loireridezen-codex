@@ -1,0 +1,236 @@
+/* Styles partagés des compositions vivantes. */
+.pathRoot {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.pathText {
+    fill: var(--living-color, var(--color-ambiance-texte-primaire));
+    font-family: var(--font-display);
+    font-size: var(--living-path-size, 2rem);
+    font-weight: 560;
+    letter-spacing: 0.015em;
+}
+
+.pathRoot[data-size="sm"] {
+    --living-path-size: 1.15rem;
+}
+
+.pathRoot[data-size="lg"] {
+    --living-path-size: 2.8rem;
+}
+
+.pathRoot[data-size="xl"] {
+    --living-path-size: 3.6rem;
+}
+
+.pathRoot[data-flow] .pathText {
+    animation: path-flow 8s ease-in-out infinite alternate;
+}
+
+.pathRoot[data-direction="reverse"] .pathText {
+    animation-direction: alternate-reverse;
+}
+
+.breathing {
+    width: fit-content;
+    animation: breathing-calm var(--breathing-duration, 6.5s) ease-in-out
+        infinite;
+    font-variation-settings:
+        "opsz" var(--breathing-optical-size, 24),
+        "wght" var(--breathing-weight, 520);
+    transform-origin: center;
+}
+
+.breathing[data-rhythm="river"] {
+    --breathing-duration: 5.2s;
+
+    animation-name: breathing-river;
+}
+
+.breathing[data-rhythm="sleep"] {
+    --breathing-duration: 8.5s;
+
+    animation-name: breathing-sleep;
+}
+
+.breathing[data-rhythm="pulse"] {
+    --breathing-duration: 2.8s;
+
+    animation-name: breathing-pulse;
+}
+
+.breathing[data-intensity="subtle"] {
+    --breathing-scale: 1.008;
+    --breathing-tracking: 0.008em;
+}
+
+.breathing[data-intensity="medium"] {
+    --breathing-scale: 1.018;
+    --breathing-tracking: 0.018em;
+}
+
+.breathing[data-intensity="expressive"] {
+    --breathing-scale: 1.035;
+    --breathing-tracking: 0.035em;
+}
+
+.scrollStoryRoot,
+.scrollStory {
+    width: fit-content;
+    max-width: 100%;
+}
+
+.scrollStory {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.1em 0.24em;
+    max-width: 24ch;
+}
+
+.scrollWord {
+    display: inline-block;
+    opacity: 0.14;
+    filter: blur(0.08em);
+    transform: translateY(0.2em);
+    transition:
+        opacity 420ms ease,
+        filter 520ms ease,
+        transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scrollWord[data-revealed] {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+.atmospheric {
+    width: fit-content;
+    isolation: isolate;
+}
+
+.atmospheric[data-ambiance="aube"] {
+    color: transparent;
+    background-image: linear-gradient(
+        105deg,
+        var(--color-nature-coucher),
+        var(--color-nature-soleil) 46%,
+        var(--color-creme)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0.08em 0.3em
+        color-mix(in srgb, var(--color-nature-coucher) 18%, transparent);
+}
+
+.atmospheric[data-ambiance="jour"] {
+    color: color-mix(
+        in srgb,
+        var(--typography-color) 84%,
+        var(--color-nature-eau)
+    );
+    text-shadow: 0 0.05em 0
+        color-mix(in srgb, var(--color-nature-ciel) 70%, transparent);
+}
+
+.atmospheric[data-ambiance="soir"] {
+    color: transparent;
+    background-image: linear-gradient(
+        115deg,
+        var(--color-orange-cuivre),
+        var(--color-patrimoine-brique),
+        var(--color-bleu-gris)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.atmospheric[data-ambiance="nuit"] {
+    color: color-mix(
+        in srgb,
+        var(--color-argent) 78%,
+        var(--color-nature-eau-claire)
+    );
+    text-shadow:
+        0 0 0.12em
+            color-mix(in srgb, var(--color-nature-eau-claire) 55%, transparent),
+        0 0 0.48em color-mix(in srgb, var(--color-nature-eau) 34%, transparent);
+}
+
+.atmospheric[data-intensity="subtle"] {
+    filter: saturate(0.88);
+}
+
+.atmospheric[data-intensity="expressive"] {
+    filter: saturate(1.25) contrast(1.05);
+}
+
+@keyframes path-flow {
+    to {
+        transform: translateX(2.5%);
+    }
+}
+
+@keyframes breathing-calm {
+    50% {
+        letter-spacing: var(--breathing-tracking);
+        transform: scale(var(--breathing-scale));
+    }
+}
+
+@keyframes breathing-river {
+    38% {
+        letter-spacing: var(--breathing-tracking);
+        transform: translateX(0.025em) scale(var(--breathing-scale));
+    }
+
+    72% {
+        transform: translateX(-0.012em);
+    }
+}
+
+@keyframes breathing-sleep {
+    50% {
+        opacity: 0.86;
+        text-shadow: 0 0 0.28em
+            color-mix(in srgb, currentColor 22%, transparent);
+        transform: scale(var(--breathing-scale));
+    }
+}
+
+@keyframes breathing-pulse {
+    50% {
+        letter-spacing: var(--breathing-tracking);
+        transform: scale(var(--breathing-scale));
+    }
+}
+
+@media (forced-colors: active) {
+    .atmospheric {
+        color: CanvasText;
+        background: none;
+        filter: none;
+        -webkit-text-fill-color: currentColor;
+        text-shadow: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pathRoot[data-flow] .pathText,
+    .breathing,
+    .scrollWord {
+        animation: none;
+    }
+
+    .scrollWord {
+        opacity: 1;
+        filter: none;
+        transform: none;
+        transition: none;
+    }
+}

@@ -7,7 +7,7 @@
     padding: 10px 12px;
     border-left: 2px solid;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-edit, var(--font-display));
     font-size: 13px;
     font-style: italic;

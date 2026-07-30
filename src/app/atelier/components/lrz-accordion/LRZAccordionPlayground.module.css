@@ -1,8 +1,8 @@
 .page {
     min-height: 100dvh;
     overflow-x: hidden;
-    color: var(--text-primary);
-    background-color: var(--bg-main);
+    color: var(--color-ambiance-texte-primaire);
+    background-color: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
 }
 
@@ -20,7 +20,7 @@
 .back {
     display: inline-flex;
     margin-bottom: 2.5rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
@@ -65,7 +65,7 @@
 .lede {
     max-width: 68ch;
     margin: 1.25rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.7;
@@ -80,7 +80,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -106,7 +106,7 @@
 .sectionHeader > p:last-child,
 .playgroundHeader p:last-child {
     margin: 0.55rem 0 1.25rem;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -119,8 +119,8 @@
     padding: clamp(1rem, 3vw, 1.5rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-main);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-fond);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.65;
@@ -143,7 +143,7 @@
 }
 
 .demoDetails dt {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.68rem;
     text-transform: uppercase;
@@ -200,7 +200,7 @@
 
 .exampleHeader p {
     margin: 0.4rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.78rem;
     line-height: 1.5;
@@ -208,7 +208,7 @@
 
 .example > code,
 .colorExample > code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
 }
@@ -258,7 +258,7 @@
 .tableScroll td {
     padding: 0.8rem 1rem;
     border-bottom: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.75rem;
     line-height: 1.5;
@@ -267,7 +267,7 @@
 }
 
 .tableScroll thead th {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     background: var(--bg-overlay);
     font-family: var(--font-mono);
     font-size: 0.65rem;
@@ -277,7 +277,7 @@
 }
 
 .tableScroll tbody th {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-weight: 500;
 }
 
@@ -317,7 +317,7 @@
     gap: 0.6rem;
     margin: 1rem 0 0;
     padding-left: 1.2rem;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -347,7 +347,7 @@
     padding: 0.55rem 0.75rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     background: var(--bg-overlay);
     font-family: var(--font-mono);
     font-size: 0.68rem;
@@ -403,14 +403,14 @@
 }
 
 .control > span {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.7rem;
 }
 
 .control strong {
     margin-left: 0.35rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-body);
     font-size: 0.63rem;
     font-weight: 400;
@@ -424,8 +424,8 @@
     padding: 0.55rem 0.65rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-primary);
-    background: var(--bg-elevated);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-elevation);
     font-family: var(--font-body);
     font-size: 0.8rem;
 }
@@ -439,7 +439,7 @@
     display: flex;
     gap: 0.6rem;
     align-items: center;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.7rem;
     cursor: pointer;
@@ -458,7 +458,7 @@
     background:
         linear-gradient(var(--border-subtle) 1px, transparent 1px),
         linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
-        var(--bg-main);
+        var(--color-ambiance-fond);
     background-size: 24px 24px;
 }
 
@@ -475,7 +475,7 @@
 .outputLabel {
     display: block;
     margin-bottom: 1rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     letter-spacing: 0.12em;
@@ -490,7 +490,7 @@
     overflow: hidden;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--bg-surface) 86%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 86%, transparent);
 }
 
 .canvas p {
@@ -513,7 +513,7 @@
 }
 
 .resolvedValues dt {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.6rem;
     letter-spacing: 0.08em;
@@ -523,7 +523,7 @@
 .resolvedValues dd {
     margin: 0.25rem 0 0;
     overflow: hidden;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.7rem;
     text-overflow: ellipsis;
@@ -536,8 +536,8 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-surface);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.65;

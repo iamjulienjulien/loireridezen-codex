@@ -21,12 +21,16 @@ const defineFeatureFlags = <
  * new_feature: ["development"],
  */
 export const FEATURE_FLAGS = defineFeatureFlags({
-    collections: ["development"],
+    atelier: ["development"],
+    collections: [],
     indexesCustomEmoji: [],
     ambianceChateauxVisual: ["development"],
     commandPalette: ["development"],
-    territoires: ["development"],
+    territoires: ["development", "production"],
     indexControlsSection: [],
+    chateauxViewportMapSpike: [],
+    chateauxInteractiveMap: ["development"],
+    personnages: ["development"],
 });
 
 export type FeatureFlagName = keyof typeof FEATURE_FLAGS;

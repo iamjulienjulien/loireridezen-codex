@@ -1,0 +1,248 @@
+.timeline {
+    --timeline-accent: var(--gold);
+    --timeline-line: color-mix(in srgb, var(--timeline-accent) 28%, var(--border-subtle));
+    display: grid;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--color-ambiance-texte-primaire);
+}
+
+.vertical {
+    gap: 0;
+}
+
+.item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 1rem;
+    min-width: 0;
+    padding-bottom: 2.2rem;
+}
+
+.item:last-child {
+    padding-bottom: 0;
+}
+
+.item:not(:last-child)::before {
+    position: absolute;
+    top: 1.65rem;
+    bottom: 0;
+    left: 0.7rem;
+    width: 1px;
+    background: var(--timeline-line);
+    content: "";
+}
+
+.marker {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 1.4rem;
+    height: 1.4rem;
+    place-items: center;
+    border: 1px solid var(--timeline-accent);
+    border-radius: 50%;
+    background: var(--color-ambiance-fond);
+    color: var(--timeline-accent);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1;
+}
+
+.marker span {
+    width: 0.34rem;
+    height: 0.34rem;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.content {
+    min-width: 0;
+}
+
+.heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.65rem;
+    margin-bottom: 0.4rem;
+}
+
+.date,
+.eyebrow,
+.meta {
+    color: var(--timeline-accent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.eyebrow,
+.meta {
+    color: var(--color-ambiance-texte-tertiaire);
+}
+
+.title {
+    margin: 0;
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+}
+
+.description {
+    max-width: 62ch;
+    margin-top: 0.55rem;
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.meta {
+    margin-top: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: none;
+}
+
+.cards .item {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+}
+
+.cards .content {
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-ambiance-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.cards .featured .content {
+    border-color: color-mix(in srgb, var(--timeline-accent) 48%, var(--border-subtle));
+    background: color-mix(in srgb, var(--timeline-accent) 7%, var(--color-ambiance-surface));
+}
+
+.compact .item {
+    grid-template-columns: 1.55rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-bottom: 1.2rem;
+}
+
+.compact .item:not(:last-child)::before {
+    top: 1.2rem;
+    left: 0.45rem;
+}
+
+.compact .marker {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-top: 0.2rem;
+}
+
+.compact .marker span {
+    width: 0.24rem;
+    height: 0.24rem;
+}
+
+.compact .title {
+    font-size: 1rem;
+}
+
+.compact .description {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.horizontal {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 0.75rem;
+    scroll-snap-type: x proximity;
+}
+
+.horizontal .item {
+    display: block;
+    flex: 0 0 min(18rem, 78vw);
+    padding: 0 1.2rem 0 0;
+    scroll-snap-align: start;
+}
+
+.horizontal .item:not(:last-child)::before {
+    top: 0.7rem;
+    right: 0.55rem;
+    bottom: auto;
+    left: 1.4rem;
+    width: auto;
+    height: 1px;
+}
+
+.horizontal .marker {
+    margin-bottom: 0.75rem;
+}
+
+.horizontal .content {
+    min-height: 8rem;
+}
+
+.horizontal.cards .content {
+    min-height: 10rem;
+}
+
+.sm .title {
+    font-size: 1.1rem;
+}
+
+.sm .description {
+    font-size: 0.82rem;
+}
+
+.lg .title {
+    font-size: 1.8rem;
+}
+
+.lg .description {
+    font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+    .horizontal {
+        display: grid;
+        overflow: visible;
+    }
+
+    .horizontal .item {
+        display: grid;
+        grid-template-columns: 2.25rem minmax(0, 1fr);
+        gap: 1rem;
+        width: auto;
+        padding: 0 0 2.2rem;
+    }
+
+    .horizontal .item:not(:last-child)::before {
+        top: 1.65rem;
+        right: auto;
+        bottom: 0;
+        left: 0.7rem;
+        width: 1px;
+        height: auto;
+    }
+
+    .horizontal .marker {
+        margin-bottom: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .horizontal {
+        scroll-behavior: auto;
+    }
+}

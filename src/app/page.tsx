@@ -5,10 +5,5 @@ export default function Home() {
     const currentEnv = process.env.CURRENT_ENV;
     const indexes = getIndexesForEnv(currentEnv);
 
-    return (
-        <HomeContent
-            indexes={indexes}
-            showDevelopmentTools={currentEnv === "development"}
-        />
-    );
+    return <HomeContent indexes={indexes} />;
 }

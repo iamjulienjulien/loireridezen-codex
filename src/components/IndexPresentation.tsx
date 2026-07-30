@@ -20,20 +20,28 @@ export default function IndexPresentation({
 }) {
     const active = getIndex(current) ?? indexes[0];
     return (
-        <section className={styles.presentation} aria-label="Présentation">
-            <span
-                className={styles.rule}
-                style={accentVar(active.accent)}
-                aria-hidden
-            />
-            <p className={styles.lead} style={accentVar(active.accent)}>
-                {description}
-            </p>
+        <section
+            className={styles.presentation}
+            style={accentVar(active.accent)}
+            aria-label="Présentation"
+        >
+            <div className={styles.leadBlock}>
+                <span
+                    className={styles.rule}
+                    style={accentVar(active.accent)}
+                    aria-hidden
+                />
+                <p className={styles.lead} style={accentVar(active.accent)}>
+                    {description}
+                </p>
+            </div>
             <div className={styles.text}>
-                <ReactMarkdown>{children}</ReactMarkdown>
                 {descriptionFooter ? (
-                    <ReactMarkdown>{descriptionFooter}</ReactMarkdown>
+                    <div className={styles.descriptionFooter}>
+                        <ReactMarkdown>{descriptionFooter}</ReactMarkdown>
+                    </div>
                 ) : null}
+                <ReactMarkdown>{children}</ReactMarkdown>
             </div>
         </section>
     );

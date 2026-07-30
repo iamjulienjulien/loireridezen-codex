@@ -1,14 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 
-import LRZTypewriter from "@/components/LRZTypewriter";
 import LRZTypography from "@/components/LRZTypography";
 
-import { useLRZAnimationPlayback } from "./LRZAnimationCard";
 import styles from "./LRZTypographyPlayground.module.css";
-
-const SCRAMBLE_CHARACTERS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
 function splitGraphemes(text: string) {
     if (typeof Intl.Segmenter === "function") {
@@ -44,113 +40,8 @@ export function WaveText({ children }: { children: string }) {
     );
 }
 
-export function ScrambleText({
-    children,
-    playing: controlledPlaying,
-}: {
-    children: string;
-    playing?: boolean;
-}) {
-    const target = useMemo(() => splitGraphemes(children), [children]);
-    const [frame, setFrame] = useState(0);
-    const [hoverPlaying, setHoverPlaying] = useState(false);
-    const playing = controlledPlaying ?? hoverPlaying;
-    const totalFrames = target.length + 10;
-
-    useEffect(() => {
-        if (!playing) return;
-
-        if (
-            window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-            target.length === 0
-        ) {
-            const timeout = window.setTimeout(() => setFrame(totalFrames), 0);
-            return () => window.clearTimeout(timeout);
-        }
-
-        let interval: number | undefined;
-        const startTimeout = window.setTimeout(() => {
-            setFrame(0);
-            interval = window.setInterval(() => {
-                setFrame((current) => {
-                    if (current >= totalFrames) {
-                        if (interval) window.clearInterval(interval);
-                        return current;
-                    }
-                    return current + 1;
-                });
-            }, 58);
-        }, 0);
-
-        return () => {
-            window.clearTimeout(startTimeout);
-            if (interval) window.clearInterval(interval);
-        };
-    }, [playing, target, totalFrames]);
-
-    const visibleText = playing
-        ? target
-              .map((grapheme, index) => {
-                  if (grapheme === " " || index < frame - 8) return grapheme;
-                  const characterIndex =
-                      (frame * 7 + index * 11) % SCRAMBLE_CHARACTERS.length;
-                  return SCRAMBLE_CHARACTERS[characterIndex];
-              })
-              .join("")
-        : children;
-
-    return (
-        <LRZTypography
-            preset="heading-2"
-            as="p"
-            aria-label={children}
-            className={styles.scrambleText}
-            onBlur={() => setHoverPlaying(false)}
-            onFocus={() => {
-                if (controlledPlaying !== undefined) return;
-                setFrame(0);
-                setHoverPlaying(true);
-            }}
-            onPointerEnter={() => {
-                if (controlledPlaying !== undefined) return;
-                setFrame(0);
-                setHoverPlaying(true);
-            }}
-            onPointerLeave={() => setHoverPlaying(false)}
-            tabIndex={controlledPlaying === undefined ? 0 : undefined}
-        >
-            <span aria-hidden="true">{visibleText}</span>
-        </LRZTypography>
-    );
-}
-
-export function TypewriterExperiment() {
-    const playback = useLRZAnimationPlayback();
-    const resting = playback.mode === "auto" && !playback.playing;
-
-    return (
-        <LRZTypewriter
-            key={`${playback.cycle}-${resting ? "rest" : "active"}`}
-            preset="heading-2"
-            as="p"
-            speed={62}
-            cursor="underscore"
-            autoPlay={playback.playing}
-        >
-            Prochaine halte : Saumur
-        </LRZTypewriter>
-    );
-}
-
-export function KineticExperiment() {
-    const { playing } = useLRZAnimationPlayback();
-
-    return (
-        <>
-            <WaveText>La Loire ondule</WaveText>
-            <ScrambleText playing={playing}>CODEX LIGÉRIEN</ScrambleText>
-        </>
-    );
+export function WaveExperiment() {
+    return <WaveText>La Loire ondule</WaveText>;
 }
 
 export function TopographicText({ children }: { children: string }) {
@@ -223,6 +114,20 @@ export function PelotonText({ children }: { children: string }) {
                     {grapheme === " " ? "\u00a0" : grapheme}
                 </span>
             ))}
+        </LRZTypography>
+    );
+}
+
+export function SillageText({ children }: { children: string }) {
+    return (
+        <LRZTypography
+            preset="heading-2"
+            as="p"
+            aria-label={children}
+            className={styles.sillageText}
+            data-text={children}
+        >
+            <span aria-hidden="true">{children}</span>
         </LRZTypography>
     );
 }

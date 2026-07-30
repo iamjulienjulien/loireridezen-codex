@@ -1,0 +1,191 @@
+.root {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--color-ambiance-elevation);
+}
+
+.canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.root::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+    background: var(--map-ambiance-wash);
+    content: "";
+    mix-blend-mode: multiply;
+    opacity: var(--map-ambiance-opacity);
+}
+
+.root[data-ambiance="aube"] {
+    --map-ambiance-wash: #eadcc6;
+    --map-ambiance-opacity: 0.32;
+}
+
+.root[data-ambiance="jour"] {
+    --map-ambiance-wash: #d8c686;
+    --map-ambiance-opacity: 0.22;
+}
+
+.root[data-ambiance="soir"] {
+    --map-ambiance-wash: #b2725a;
+    --map-ambiance-opacity: 0.38;
+}
+
+.root[data-ambiance="nuit"] {
+    --map-ambiance-wash: #27313d;
+    --map-ambiance-opacity: 0.42;
+}
+
+.canvas :global(.maplibregl-map) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.canvas :global(.maplibregl-canvas) {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.canvas :global(.maplibregl-marker) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+
+.marker {
+    position: relative;
+    width: 1.75rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0.46;
+    transition: opacity 0.18s ease;
+}
+
+.markerVisible {
+    opacity: 1;
+}
+
+.markerPrimary {
+    z-index: 2;
+}
+
+.markerHovered,
+.markerSelected {
+    z-index: 3;
+}
+
+.marker::before {
+    position: absolute;
+    top: 0.05rem;
+    left: 50%;
+    width: 1.32rem;
+    height: 1.32rem;
+    border: 2px solid var(--color-ambiance-surface);
+    border-radius: 50%;
+    background: var(--marker-color, var(--color-nature-eau));
+    box-shadow:
+        0 0 0 1px color-mix(in srgb, #0d1118 38%, transparent),
+        0 0.25rem 0.55rem color-mix(in srgb, #0d1118 38%, transparent);
+    content: "";
+    transform: translateX(-50%);
+    transition:
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+}
+
+.marker::after {
+    position: absolute;
+    top: 1.08rem;
+    left: 50%;
+    width: 0.64rem;
+    height: 0.72rem;
+    background: var(--marker-color, var(--color-nature-eau));
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: "";
+    filter: drop-shadow(
+        0 0.16rem 0.16rem color-mix(in srgb, #0d1118 34%, transparent)
+    );
+    transform: translateX(-50%);
+}
+
+.markerCore {
+    position: absolute;
+    z-index: 1;
+    top: 0.48rem;
+    left: 50%;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 50%;
+    background: var(--color-ambiance-surface);
+    box-shadow: 0 0 0 1px color-mix(in srgb, #0d1118 16%, transparent);
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.marker:hover::before,
+.markerHovered::before,
+.markerSelected::before {
+    box-shadow:
+        0 0 0 0.3rem color-mix(in srgb, var(--marker-color) 30%, transparent),
+        0 0 0 1px color-mix(in srgb, #0d1118 38%, transparent),
+        0 0.25rem 0.55rem color-mix(in srgb, #0d1118 38%, transparent);
+    transform: translateX(-50%) scale(1.16);
+}
+
+.markerPrimary::before {
+    box-shadow:
+        0 0 0 0.18rem color-mix(in srgb, var(--marker-color) 22%, transparent),
+        0 0 0 1px color-mix(in srgb, #0d1118 38%, transparent),
+        0 0.25rem 0.55rem color-mix(in srgb, #0d1118 38%, transparent);
+}
+
+.marker:focus-visible {
+    outline: 0;
+}
+
+.marker:focus-visible::before {
+    outline: 2px solid var(--color-ambiance-texte-primaire);
+    outline-offset: 3px;
+}
+
+.attribution {
+    position: absolute;
+    z-index: 2;
+    bottom: 0.35rem;
+    left: 0.5rem;
+    margin: 0;
+    padding: 0.18rem 0.3rem;
+    border-radius: 0.2rem;
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 88%,
+        transparent
+    );
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+}
+
+.attribution a {
+    color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marker::before {
+        transition: none;
+    }
+}

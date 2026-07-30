@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import LRZCutoutText from "@/components/LRZCutoutText";
-import { LRZScrollStory } from "@/components/LRZLivingTypography";
 import LRZTypography, {
     type LRZTypographyEffect,
     type LRZTypographyFont,
@@ -12,19 +10,6 @@ import LRZTypography, {
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZAnimationCard from "./LRZAnimationCard";
-import {
-    LRZAtmosphericTextControls,
-    LRZBreathingTextControls,
-    LRZPathTextControls,
-} from "./LRZLivingTypographyControls";
-import {
-    ConfluenceText,
-    KineticExperiment,
-    MirageText,
-    PelotonText,
-    TopographicText,
-    TypewriterExperiment,
-} from "./LRZTypographyExperiments";
 import LRZTypographyPlayground from "./LRZTypographyPlayground";
 import styles from "./LRZTypographyPlayground.module.css";
 
@@ -80,6 +65,11 @@ const PRESETS: Array<{
         usage: "Anecdote, note et citation courte.",
     },
     {
+        preset: "signature",
+        sample: "Julien Julien",
+        usage: "Signature et crédit de création.",
+    },
+    {
         preset: "eyebrow",
         sample: "Patrimoine ligérien",
         usage: "Surtitre et catégorie.",
@@ -105,6 +95,10 @@ const FONTS: Array<{
     { font: "body", label: "Inter", role: "Lecture courante" },
     { font: "mono", label: "JetBrains Mono", role: "Données et labels" },
     { font: "editorial", label: "Lora", role: "Voix sensible" },
+    { font: "signature", label: "Allura", role: "Signature manuscrite" },
+    { font: "bodoni", label: "Bodoni Moda", role: "Éditorial précieux" },
+    { font: "grotesk", label: "Space Grotesk", role: "Accent contemporain" },
+    { font: "note", label: "Kalam", role: "Note de carnet" },
 ];
 
 const EFFECTS: Array<{
@@ -112,16 +106,6 @@ const EFFECTS: Array<{
     label: string;
     sample: string;
 }> = [
-    {
-        effect: "gold-leaf",
-        label: "Feuille d’or",
-        sample: "Le fil royal",
-    },
-    {
-        effect: "river",
-        label: "Reflets de Loire",
-        sample: "D’un rivage à l’autre",
-    },
     {
         effect: "ink",
         label: "Encre éditoriale",
@@ -187,6 +171,7 @@ const MOTIONS: Array<{
 ];
 
 const GRADIENTS = [
+    ["gold-leaf", "Feuille d’or"],
     ["royal", "Royal"],
     ["river", "Loire"],
     ["sunset", "Coucher"],
@@ -339,15 +324,56 @@ export default function LRZTypographyPage() {
 
                 <section className={styles.referenceSection}>
                     <header className={styles.sectionHeader}>
-                        <LRZTypography preset="eyebrow">
-                            Laboratoire typographique
-                        </LRZTypography>
+                        <LRZTypography preset="eyebrow">Dégradés</LRZTypography>
                         <LRZTypography preset="heading-2">
-                            De la matière au paysage
+                            Sept atmosphères et une composition libre
                         </LRZTypography>
                         <LRZTypography preset="body-sm" color="secondary">
-                            Effets, compositions créatives et primitives
-                            vivantes réunis dans un même espace d’exploration.
+                            Des compositions colorées pour signer les titres du
+                            Codex sans affecter leur sémantique.
+                        </LRZTypography>
+                    </header>
+
+                    <div className={styles.gradientGrid}>
+                        {GRADIENTS.map(([gradient, label]) => (
+                            <article
+                                className={styles.gradientExample}
+                                key={gradient}
+                            >
+                                <LRZTypography
+                                    preset="heading-3"
+                                    gradient={gradient}
+                                >
+                                    {label}
+                                </LRZTypography>
+                                <code>{gradient}</code>
+                            </article>
+                        ))}
+                        <article className={styles.gradientExample}>
+                            <LRZTypography
+                                preset="heading-3"
+                                gradient={{
+                                    from: "eau",
+                                    to: "coucher",
+                                    angle: 120,
+                                }}
+                            >
+                                Eau × coucher
+                            </LRZTypography>
+                            <code>custom · 2 LRZColor</code>
+                        </article>
+                    </div>
+                </section>
+
+                <section className={styles.referenceSection}>
+                    <header className={styles.sectionHeader}>
+                        <LRZTypography preset="eyebrow">Effets</LRZTypography>
+                        <LRZTypography preset="heading-2">
+                            De l’encre à la gravure
+                        </LRZTypography>
+                        <LRZTypography preset="body-sm" color="secondary">
+                            Des traitements courts pour donner au texte une
+                            présence éditoriale sans en réduire la lisibilité.
                         </LRZTypography>
                     </header>
 
@@ -398,277 +424,45 @@ export default function LRZTypographyPage() {
                             modifier la structure du texte.
                         </LRZTypography>
                     </article>
+                </section>
 
-                    <div className={styles.motionSection}>
-                        <div>
-                            <LRZTypography preset="eyebrow">
-                                Mouvement
-                            </LRZTypography>
-                            <LRZTypography preset="heading-3">
-                                Quatre entrées mesurées
-                            </LRZTypography>
-                        </div>
+                <section className={styles.referenceSection}>
+                    <header className={styles.sectionHeader}>
+                        <LRZTypography preset="eyebrow">
+                            Mouvements
+                        </LRZTypography>
+                        <LRZTypography preset="heading-2">
+                            Quatre entrées mesurées
+                        </LRZTypography>
+                        <LRZTypography preset="body-sm" color="secondary">
+                            Des animations d’entrée sobres qui respectent la
+                            préférence système de réduction des mouvements.
+                        </LRZTypography>
+                    </header>
 
-                        <div className={styles.effectGrid}>
-                            {MOTIONS.map((item, index) => (
-                                <LRZAnimationCard
-                                    className={styles.effectExample}
-                                    key={item.motion}
-                                    label={item.label}
-                                >
-                                    <LRZTypography
-                                        preset="caption"
-                                        color="tertiary"
-                                    >
-                                        {item.label}
-                                    </LRZTypography>
-                                    <LRZTypography
-                                        preset="heading-3"
-                                        motion={item.motion}
-                                        motionDelay={index * 120}
-                                    >
-                                        Le fleuve se révèle
-                                    </LRZTypography>
-                                    <code>{`motion="${item.motion}"`}</code>
-                                </LRZAnimationCard>
-                            ))}
-                        </div>
-                    </div>
-                    <div className={styles.collectionSection}>
-                        <header className={styles.collectionHeader}>
-                            <LRZTypography preset="eyebrow">
-                                Matière & composition
-                            </LRZTypography>
-                            <LRZTypography preset="heading-2">
-                                Dégradés, découpes et mouvements précis
-                            </LRZTypography>
-                            <LRZTypography preset="body-sm" color="secondary">
-                                Des primitives réutilisables pour les titres
-                                signatures, complétées par un petit laboratoire
-                                cinétique dans l’Atelier.
-                            </LRZTypography>
-                        </header>
-
-                        <div className={styles.creativeBlock}>
-                            <div>
-                                <LRZTypography preset="eyebrow">
-                                    Dégradés
-                                </LRZTypography>
-                                <LRZTypography preset="heading-3">
-                                    Sept atmosphères et une composition libre
-                                </LRZTypography>
-                            </div>
-                            <div className={styles.gradientGrid}>
-                                {GRADIENTS.map(([gradient, label]) => (
-                                    <article
-                                        className={styles.gradientExample}
-                                        key={gradient}
-                                    >
-                                        <LRZTypography
-                                            preset="heading-3"
-                                            gradient={gradient}
-                                        >
-                                            {label}
-                                        </LRZTypography>
-                                        <code>{gradient}</code>
-                                    </article>
-                                ))}
-                                <article className={styles.gradientExample}>
-                                    <LRZTypography
-                                        preset="heading-3"
-                                        gradient={{
-                                            from: "eau",
-                                            to: "coucher",
-                                            angle: 120,
-                                        }}
-                                    >
-                                        Eau × coucher
-                                    </LRZTypography>
-                                    <code>custom · 2 LRZColor</code>
-                                </article>
-                            </div>
-                        </div>
-
-                        <div className={styles.creativeBlock}>
-                            <div>
-                                <LRZTypography preset="eyebrow">
-                                    Texte découpé
-                                </LRZTypography>
-                                <LRZTypography preset="heading-3">
-                                    La photographie traverse les lettres
-                                </LRZTypography>
-                            </div>
-                            <div className={styles.cutoutScene}>
-                                <LRZCutoutText
-                                    preset="display"
-                                    as="p"
-                                    surface="blanc"
-                                    padding="md"
-                                >
-                                    WHITE
-                                </LRZCutoutText>
-                                <LRZCutoutText
-                                    preset="display"
-                                    as="p"
-                                    surface="noir"
-                                    padding="md"
-                                >
-                                    BLACK
-                                </LRZCutoutText>
-                                <LRZCutoutText
-                                    preset="display"
-                                    as="p"
-                                    surface="bleu-gris"
-                                    padding="md"
-                                >
-                                    LOIRE
-                                </LRZCutoutText>
-                            </div>
-                        </div>
-
-                        <div className={styles.creativeColumns}>
+                    <div className={styles.effectGrid}>
+                        {MOTIONS.map((item, index) => (
                             <LRZAnimationCard
-                                className={styles.creativeCard}
-                                label="Typewriter exact"
-                            >
-                                <LRZTypography preset="eyebrow">
-                                    Typewriter exact
-                                </LRZTypography>
-                                <TypewriterExperiment />
-                                <code>{"<LRZTypewriter speed={62} />"}</code>
-                            </LRZAnimationCard>
-
-                            <LRZAnimationCard
-                                className={styles.creativeCard}
-                                label="Laboratoire cinétique"
-                            >
-                                <LRZTypography preset="eyebrow">
-                                    Laboratoire cinétique
-                                </LRZTypography>
-                                <KineticExperiment />
-                                <LRZTypography
-                                    preset="caption"
-                                    color="tertiary"
-                                >
-                                    Wave et scramble restent expérimentaux dans
-                                    l’Atelier.
-                                </LRZTypography>
-                            </LRZAnimationCard>
-                        </div>
-                    </div>
-
-                    <div className={styles.collectionSection}>
-                        <header className={styles.collectionHeader}>
-                            <LRZTypography preset="eyebrow">
-                                Territoire & paysage
-                            </LRZTypography>
-                            <LRZTypography preset="heading-2">
-                                Le Fleuve vivant
-                            </LRZTypography>
-                            <LRZTypography preset="body-sm" color="secondary">
-                                Quatre primitives publiques légères et quatre
-                                explorations pour donner au Codex un mouvement
-                                qui lui appartient.
-                            </LRZTypography>
-                        </header>
-
-                        <LRZAnimationCard
-                            className={styles.pathScene}
-                            label="LRZPathText"
-                        >
-                            <LRZPathTextControls />
-                        </LRZAnimationCard>
-
-                        <div className={styles.livingGrid}>
-                            <LRZAnimationCard
-                                className={styles.livingCard}
-                                label="LRZBreathingText"
-                            >
-                                <LRZBreathingTextControls />
-                            </LRZAnimationCard>
-
-                            <article className={styles.livingCard}>
-                                <LRZAtmosphericTextControls />
-                            </article>
-                        </div>
-
-                        <article className={styles.scrollStoryScene}>
-                            <div className={styles.livingMeta}>
-                                <LRZTypography preset="eyebrow">
-                                    LRZScrollStory
-                                </LRZTypography>
-                                <code>progression viewport</code>
-                            </div>
-                            <LRZScrollStory preset="heading-1" as="p">
-                                Quitter la ligne droite suivre les îles écouter
-                                le vent retrouver l’horizon
-                            </LRZScrollStory>
-                        </article>
-
-                        <div className={styles.experimentHeader}>
-                            <LRZTypography preset="eyebrow">
-                                Laboratoire
-                            </LRZTypography>
-                            <LRZTypography preset="heading-3">
-                                Quatre pistes indisciplinées
-                            </LRZTypography>
-                            <LRZTypography preset="body-sm" color="secondary">
-                                Ces traitements restent dans l’Atelier jusqu’à
-                                ce que leur usage soit suffisamment évident.
-                            </LRZTypography>
-                        </div>
-
-                        <div className={styles.experimentGrid}>
-                            <article className={styles.experimentCard}>
-                                <LRZTypography
-                                    preset="caption"
-                                    color="tertiary"
-                                >
-                                    Relief topographique
-                                </LRZTypography>
-                                <TopographicText>VAL DE LOIRE</TopographicText>
-                            </article>
-                            <LRZAnimationCard
-                                className={styles.experimentCard}
-                                label="Confluence"
+                                className={styles.effectExample}
+                                key={item.motion}
+                                label={item.label}
                             >
                                 <LRZTypography
                                     preset="caption"
                                     color="tertiary"
                                 >
-                                    Confluence
+                                    {item.label}
                                 </LRZTypography>
-                                <ConfluenceText
-                                    left="Loire"
-                                    right="Vienne"
-                                    result="Confluence"
-                                />
-                            </LRZAnimationCard>
-                            <LRZAnimationCard
-                                className={styles.experimentCard}
-                                label="Mirage"
-                            >
                                 <LRZTypography
-                                    preset="caption"
-                                    color="tertiary"
+                                    preset="heading-3"
+                                    motion={item.motion}
+                                    motionDelay={index * 120}
                                 >
-                                    Mirage
+                                    Le fleuve se révèle
                                 </LRZTypography>
-                                <MirageText>SAUMUR</MirageText>
+                                <code>{`motion="${item.motion}"`}</code>
                             </LRZAnimationCard>
-                            <LRZAnimationCard
-                                className={styles.experimentCard}
-                                label="Peloton"
-                            >
-                                <LRZTypography
-                                    preset="caption"
-                                    color="tertiary"
-                                >
-                                    Peloton
-                                </LRZTypography>
-                                <PelotonText>ROULEZ ZEN</PelotonText>
-                            </LRZAnimationCard>
-                        </div>
+                        ))}
                     </div>
                 </section>
 

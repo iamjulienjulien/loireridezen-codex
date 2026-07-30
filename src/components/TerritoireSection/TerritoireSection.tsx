@@ -11,6 +11,8 @@ import ChateauxCard from "@/app/chateaux/ChateauxCard";
 
 import styles from "./TerritoireSection.module.css";
 import { lighter } from "@/lib/colors";
+import LRZSeparateur from "../LRZSeparateur/LRZSeparateur";
+import { getLRZColorValue } from "@/registry/colors";
 
 type TerritoireSectionStyle = CSSProperties & {
     "--territoire-accent": string;
@@ -19,41 +21,70 @@ type TerritoireSectionStyle = CSSProperties & {
 type TerritoireSectionProps = {
     territory: Territoire;
     chateaux: readonly Chateau[];
-    open: boolean;
+    /** Ajoute un repère DOM pour la synchronisation expérimentale de carte. */
+    mapSync?: boolean;
 };
 
 export default function TerritoireSection({
     territory,
     chateaux,
-    open,
+    mapSync = false,
 }: TerritoireSectionProps) {
     const { identite, limites } = territory;
 
+    const color = getLRZColorValue(identite.color);
+    const colorLighter = lighter(color, 0);
     const accentLighter = lighter(identite.accent, 0.1);
 
     return (
         <section
             id={`territoire-${territory.slug}`}
             className={styles.section}
+            data-map-sync-territory={mapSync ? territory.slug : undefined}
             style={
                 {
-                    "--territoire-accent": identite.accent,
-                    "--territoire-accent-lighter": accentLighter,
+                    "--territoire-accent": color,
+                    "--territoire-accent-lighter": colorLighter,
+                    "--territoire-color": color,
+                    "--territoire-color-lighter": colorLighter,
                 } as TerritoireSectionStyle
             }
             aria-labelledby={`territoire-${territory.slug}-title`}
         >
+            {/* <div style={{ marginTop: "0rem", marginBottom: ".7rem" }}>
+                <LRZSeparateur
+                    preset="diamond"
+                    color={identite.color}
+                    size="lg"
+                    scope="content"
+                    marginBlock={"0"}
+                    weight="regular"
+                    tone="normal"
+                />
+            </div> */}
             <header className={styles.header}>
                 <div className={styles.eyebrowRow}>
                     <p className={styles.eyebrow}>
-                        De {limites.amont} à {limites.aval}
+                        De <strong>{limites.amont}</strong> à{" "}
+                        <strong>{limites.aval}</strong>
                     </p>
                     <p className={styles.count}>
                         <strong>{chateaux.length}</strong>{" "}
                         {chateaux.length > 1 ? "châteaux" : "château"}
                     </p>
                 </div>
-
+                <div style={{ marginTop: "1rem", marginBottom: ".7rem" }}>
+                    <LRZSeparateur
+                        preset="dot"
+                        color={identite.color}
+                        size="lg"
+                        scope="content"
+                        marginBlock={"0"}
+                        weight="regular"
+                        tone="subtle"
+                        // fadeEdges
+                    />
+                </div>
                 <div className={styles.identity}>
                     {identite.blason ? (
                         <Image
@@ -106,12 +137,16 @@ export default function TerritoireSection({
 
             <div className={styles.grid}>
                 {chateaux.map((chateau) => (
-                    <ChateauxCard
+                    <div
+                        id={`chateau-${chateau.slug}`}
+                        data-chateau-map-slug={
+                            mapSync ? chateau.slug : undefined
+                        }
+                        data-map-sync-card={mapSync ? "" : undefined}
                         key={chateau.slug}
-                        d={chateau}
-                        t={territory}
-                        open={open}
-                    />
+                    >
+                        <ChateauxCard d={chateau} t={territory} open={false} />
+                    </div>
                 ))}
             </div>
         </section>

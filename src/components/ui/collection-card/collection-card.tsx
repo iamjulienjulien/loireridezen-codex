@@ -3,6 +3,7 @@
 // src/components/ui/collection-card/collection-card.tsx
 
 import { useId, useState, type CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 import styles from "./collection-card.module.css";
@@ -19,6 +20,8 @@ export type CollectionCardData = {
     emoji: string;
     sousTitre: string;
     type: string;
+    accent?: string;
+    customEmoji?: string;
     classement: CollectionCardItem[];
 };
 
@@ -30,6 +33,7 @@ export type CollectionCardProps = {
     variant?: CollectionCardVariant;
     className?: string;
     defaultExpanded?: boolean;
+    stretchHero?: boolean;
 };
 
 type CollectionVisual = {
@@ -147,11 +151,13 @@ export function CollectionCard({
     variant = "default",
     className,
     defaultExpanded = false,
+    stretchHero = false,
 }: CollectionCardProps) {
     const detailsId = useId();
     const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
     const visual = getCollectionVisual(collection.type);
+    const accent = collection.accent ?? visual.accent;
     const itemCount = collection.classement.length;
 
     const previewLimit = variant === "featured" ? 5 : 3;
@@ -174,10 +180,11 @@ export function CollectionCard({
             )}
             style={
                 {
-                    "--collection-accent": visual.accent,
+                    "--collection-accent": accent,
                 } as CSSProperties
             }
             data-type={collection.type}
+            data-stretch-hero={stretchHero || undefined}
         >
             <Link
                 href={collectionHref}
@@ -187,7 +194,16 @@ export function CollectionCard({
 
             <header className={styles.hero}>
                 <div className={styles.emoji} aria-hidden="true">
-                    <span>{collection.emoji}</span>
+                    {collection.customEmoji ? (
+                        <Image
+                            src={collection.customEmoji}
+                            alt=""
+                            fill
+                            sizes="(max-width: 640px) 52px, 90px"
+                        />
+                    ) : (
+                        <span>{collection.emoji}</span>
+                    )}
                 </div>
 
                 <div className={styles.heading}>

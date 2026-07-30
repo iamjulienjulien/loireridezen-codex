@@ -4,4 +4,5 @@ export type {
     PageControlsFilterOption,
     PageControlsSwitcher,
     PageControlsVariant,
+    PageControlsMode,
 } from "./PageControls";

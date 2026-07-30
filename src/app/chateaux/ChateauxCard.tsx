@@ -224,8 +224,7 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
         <LRZCard
             className={styles.fiche}
             tone="surface"
-            color={color}
-            customColor={t?.identite.accent ?? undefined}
+            color={t?.identite.color ?? undefined}
         >
             <LRZCardMedia ratio="auto">
                 <div

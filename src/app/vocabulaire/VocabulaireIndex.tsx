@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from "react";
 import type { Mot } from "@/types/mot";
-import IndexHeader from "@/components/IndexHeader";
-import IndexFooter from "@/components/IndexFooter";
+import PageHeader from "@/components/PageHeader";
+import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -84,7 +84,7 @@ export default function VocabulaireIndex({
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
-                <IndexHeader current="/vocabulaire" indexes={indexes} />
+                <PageHeader current="/vocabulaire" indexes={indexes} />
 
                 <IndexPresentation
                     description={entry.description}
@@ -152,11 +152,12 @@ export default function VocabulaireIndex({
                     </div>
                 )}
 
-                <IndexFooter>
-                    {entry.title} · Loire Ride Zen · Codex
+                <PageFooter color={entry.color}>
+                    Le Codex Ligérien ·{" "}
+                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
                     <br />
                     {mots.length} {entry.footerNote}
-                </IndexFooter>
+                </PageFooter>
             </div>
         </main>
     );

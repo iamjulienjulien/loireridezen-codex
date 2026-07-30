@@ -1,8 +1,8 @@
 .page {
     min-height: 100dvh;
     overflow-x: clip;
-    color: var(--text-primary);
-    background-color: var(--bg-main);
+    color: var(--color-ambiance-texte-primaire);
+    background-color: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
 }
 
@@ -22,7 +22,7 @@
 .back {
     width: fit-content;
     margin-bottom: 1.5rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
@@ -67,7 +67,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -120,7 +120,7 @@
 }
 
 .presetMeta span {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-size: 0.72rem;
 }
 
@@ -138,7 +138,7 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .fontExample > p:first-child {
@@ -179,7 +179,7 @@
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .staticEffectExample {
@@ -212,8 +212,8 @@
     padding: 0.32rem 0.55rem;
     border: 1px solid var(--border-subtle);
     border-radius: 999px;
-    color: var(--text-tertiary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-tertiaire);
+    background: var(--color-ambiance-surface);
     cursor: pointer;
     font-family: var(--font-mono);
     font-size: 0.6rem;
@@ -227,6 +227,26 @@
     color: var(--gold);
     border-color: var(--gold);
     outline: none;
+}
+
+.animationControls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    align-items: end;
+    padding: 0.9rem 0;
+    border-block: 1px solid var(--border-subtle);
+}
+
+.animationControls .cardPlayback {
+    position: static;
+    flex: 0 0 auto;
+}
+
+.animationControls .livingControls {
+    flex: 1 1 28rem;
+    padding: 0;
+    border: 0;
 }
 
 .animationCard .animationCardContent * {
@@ -245,7 +265,7 @@
 
 .effectExample code,
 .dropCapExample code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.68rem;
 }
@@ -257,7 +277,7 @@
     padding: clamp(1.1rem, 3vw, 1.5rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .dropCapExample > p {
@@ -290,6 +310,50 @@
     gap: 0.45rem;
 }
 
+.livingComposition {
+    display: grid;
+    gap: 0.8rem;
+    min-width: 0;
+    margin-top: 1.75rem;
+}
+
+.compositionHeader {
+    display: grid;
+    gap: 0.45rem;
+    padding-inline: clamp(0.15rem, 1vw, 0.5rem);
+}
+
+.compositionBody {
+    display: grid;
+    gap: clamp(1rem, 3vw, 1.5rem);
+    min-width: 0;
+    min-height: 15rem;
+    padding: clamp(1.15rem, 3vw, 1.75rem);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-ambiance-fond);
+}
+
+.compositionCode {
+    align-self: stretch;
+    margin: auto 0 0;
+    padding: 0.85rem 1rem;
+    overflow-x: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 72%, transparent);
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    line-height: 1.6;
+    white-space: pre;
+}
+
+.compositionCode code {
+    font: inherit;
+}
+
 .gradientGrid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -303,12 +367,12 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .gradientExample code,
 .creativeCard code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
 }
@@ -372,7 +436,7 @@
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .livingSection {
@@ -385,7 +449,7 @@
     height: 11rem;
     background: radial-gradient(
         ellipse at 50% 0,
-        color-mix(in srgb, var(--lrz-nature-eau) 12%, transparent),
+        color-mix(in srgb, var(--color-nature-eau) 12%, transparent),
         transparent 72%
     );
     content: "";
@@ -403,7 +467,7 @@
     min-width: 0;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .pathScene {
@@ -415,7 +479,7 @@
     background-image: linear-gradient(
         to bottom,
         transparent,
-        color-mix(in srgb, var(--lrz-nature-eau) 7%, transparent)
+        color-mix(in srgb, var(--color-nature-eau) 7%, transparent)
     );
 }
 
@@ -428,7 +492,7 @@
 }
 
 .livingMeta code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.64rem;
 }
@@ -438,6 +502,8 @@
     grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
     gap: 0.65rem;
     align-items: end;
+    padding: 0.9rem 0;
+    border-block: 1px solid var(--border-subtle);
 }
 
 .livingControl {
@@ -448,7 +514,7 @@
 
 .livingControl > span,
 .livingCheck {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.61rem;
     letter-spacing: 0.04em;
@@ -462,8 +528,8 @@
     padding: 0.38rem 0.48rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-surface);
     font: inherit;
     font-size: 0.72rem;
 }
@@ -519,17 +585,17 @@
     gap: 2rem;
     min-height: min(70vh, 36rem);
     align-content: space-between;
-    margin-top: 1rem;
+    margin-top: 0;
     padding: clamp(1.25rem, 5vw, 3rem);
     background-image:
         linear-gradient(
             to bottom,
             transparent,
-            color-mix(in srgb, var(--lrz-nature-sable) 14%, transparent)
+            color-mix(in srgb, var(--color-nature-sable) 14%, transparent)
         ),
         radial-gradient(
             ellipse at 80% 80%,
-            color-mix(in srgb, var(--lrz-nature-eau) 12%, transparent),
+            color-mix(in srgb, var(--color-nature-eau) 12%, transparent),
             transparent 55%
         );
 }
@@ -561,7 +627,7 @@
 .waveText {
     width: fit-content;
     max-width: 100%;
-    color: var(--lrz-nature-eau);
+    color: var(--color-nature-eau);
     white-space: nowrap;
 }
 
@@ -571,35 +637,28 @@
         infinite;
 }
 
-.scrambleText {
-    min-height: 1.2em;
-    color: var(--gold);
-    font-family: var(--font-mono);
-    white-space: nowrap;
-}
-
 .topographicText {
     color: transparent;
-    background-color: var(--lrz-nature-eau);
+    background-color: var(--color-nature-eau);
     background-image:
         repeating-radial-gradient(
             ellipse at 35% 45%,
             transparent 0 0.09em,
-            var(--lrz-nature-eau-claire) 0.1em 0.115em,
+            var(--color-nature-eau-claire) 0.1em 0.115em,
             transparent 0.125em 0.22em
         ),
         linear-gradient(
             110deg,
-            var(--lrz-nature-foret),
-            var(--lrz-nature-eau),
-            var(--lrz-nature-prairie)
+            var(--color-nature-foret),
+            var(--color-nature-eau),
+            var(--color-nature-prairie)
         );
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(
         0.035em 0.055em 0
-            color-mix(in srgb, var(--lrz-nature-foret) 44%, transparent)
+            color-mix(in srgb, var(--color-nature-foret) 44%, transparent)
     );
 }
 
@@ -620,12 +679,12 @@
 }
 
 .confluenceSource:first-child {
-    color: var(--lrz-nature-eau);
+    color: var(--color-nature-eau);
     animation: confluence-left 5s ease-in-out infinite;
 }
 
 .confluenceSource:nth-child(2) {
-    color: var(--lrz-nature-eau-claire);
+    color: var(--color-nature-eau-claire);
     animation: confluence-right 5s ease-in-out infinite;
 }
 
@@ -633,9 +692,9 @@
     color: transparent;
     background-image: linear-gradient(
         90deg,
-        var(--lrz-nature-eau),
-        var(--lrz-nature-eau-claire),
-        var(--lrz-nature-prairie)
+        var(--color-nature-eau),
+        var(--color-nature-eau-claire),
+        var(--color-nature-prairie)
     );
     background-clip: text;
     opacity: 0;
@@ -653,10 +712,10 @@
     justify-content: center;
     overflow: hidden;
     padding: 0.45em 0.35em 0.75em;
-    color: var(--lrz-faune-creme);
+    color: var(--color-creme);
     background: linear-gradient(
-        var(--lrz-faune-bleu-gris),
-        var(--lrz-nature-eau)
+        var(--color-bleu-gris),
+        var(--color-nature-eau)
     );
     font-family: var(--font-display);
     font-size: clamp(2rem, 7vw, 4.5rem);
@@ -678,7 +737,7 @@
 }
 
 .pelotonText {
-    color: var(--lrz-nature-prairie);
+    color: var(--color-nature-prairie);
     white-space: nowrap;
 }
 
@@ -686,6 +745,36 @@
     display: inline-block;
     animation: peloton-ride 4.8s calc(var(--peloton-index) * -90ms)
         cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+
+.sillageText {
+    position: relative;
+    z-index: 0;
+    width: fit-content;
+    max-width: 100%;
+    color: var(--color-nature-eau-claire);
+    isolation: isolate;
+    letter-spacing: 0.025em;
+}
+
+.sillageText::before,
+.sillageText::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: attr(data-text);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sillageText::before {
+    color: var(--color-nature-eau);
+    animation: sillage-near 3.8s ease-out infinite;
+}
+
+.sillageText::after {
+    color: var(--color-nature-prairie);
+    animation: sillage-far 3.8s ease-out 0.45s infinite;
 }
 
 @keyframes typography-wave {
@@ -701,6 +790,44 @@
 
     40% {
         transform: translateY(0.08em) rotate(1deg);
+    }
+}
+
+@keyframes sillage-near {
+    0%,
+    16% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    42% {
+        opacity: 0.7;
+        transform: translateX(0.6em);
+    }
+
+    72%,
+    100% {
+        opacity: 0;
+        transform: translateX(1.5em);
+    }
+}
+
+@keyframes sillage-far {
+    0%,
+    18% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    50% {
+        opacity: 0.35;
+        transform: translateX(1.1em);
+    }
+
+    76%,
+    100% {
+        opacity: 0;
+        transform: translateX(2.35em);
     }
 }
 
@@ -841,7 +968,7 @@
 .playgroundHeader p:last-child {
     max-width: 62ch;
     margin: 0.55rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.84rem;
     line-height: 1.6;
 }
@@ -852,7 +979,7 @@
     padding: 0.65rem 0.85rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     background: transparent;
     cursor: pointer;
     font-family: var(--font-mono);
@@ -868,7 +995,7 @@
 }
 
 .playToggle[aria-pressed="true"] {
-    color: var(--bg-main);
+    color: var(--color-ambiance-fond);
     border-color: var(--gold);
     background: var(--gold);
 }
@@ -885,7 +1012,7 @@
     gap: 1rem;
     padding: 1.25rem;
     border-right: 1px solid var(--border-subtle);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .controlGroup {
@@ -915,7 +1042,7 @@
 
 .control > span,
 .checkControl {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.68rem;
 }
@@ -929,8 +1056,8 @@
     padding: 0.5rem 0.65rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    color: var(--text-primary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-surface);
     font: inherit;
     font-size: 0.78rem;
 }
@@ -977,7 +1104,7 @@
 .outputLabel {
     display: block;
     margin-bottom: 0.8rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     letter-spacing: 0.11em;
@@ -992,7 +1119,7 @@
     padding: clamp(1rem, 4vw, 2rem);
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .animationStage * {
@@ -1013,7 +1140,7 @@
 }
 
 .resolvedValues dt {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.08em;
@@ -1022,7 +1149,7 @@
 
 .resolvedValues dd {
     margin: 0.25rem 0 0;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-size: 0.76rem;
 }
 
@@ -1034,8 +1161,8 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-main);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-fond);
     font-family: var(--font-mono);
     font-size: 0.69rem;
     line-height: 1.6;
@@ -1061,7 +1188,7 @@
 }
 
 .tableScroll thead th {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.64rem;
     letter-spacing: 0.08em;
@@ -1087,7 +1214,7 @@
     gap: 0.65rem;
     margin: 0.5rem 0 0;
     padding-left: 1.2rem;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.84rem;
     line-height: 1.6;
 }
@@ -1151,7 +1278,9 @@
     .confluenceSource,
     .confluenceResult,
     .mirageReflection,
-    .pelotonText span {
+    .pelotonText span,
+    .sillageText::before,
+    .sillageText::after {
         animation: none;
     }
 

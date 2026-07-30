@@ -1,0 +1,203 @@
+.root {
+    --tooltip-gap: 0.65rem;
+
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.tooltip {
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 100;
+    width: max-content;
+    max-width: min(22rem, calc(100vw - 2rem));
+    padding: 0.5rem 0.7rem;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    pointer-events: none;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-surface);
+    box-shadow: var(--shadow-card);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    line-height: 1.35;
+    opacity: 0;
+    text-align: left;
+    transform: translateY(0.25rem);
+    transition:
+        opacity 0.16s ease var(--tooltip-delay),
+        transform 0.16s ease var(--tooltip-delay),
+        visibility 0s linear calc(var(--tooltip-delay) + 0.16s);
+    visibility: hidden;
+}
+
+.tooltip::after {
+    position: absolute;
+    width: 0.45rem;
+    height: 0.45rem;
+    border: solid var(--border-strong);
+    background: var(--color-ambiance-surface);
+    content: "";
+    transform: rotate(45deg);
+}
+
+.tooltip[data-portal-tooltip] {
+    position: fixed;
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    transform: none;
+    transition: opacity 0.16s ease;
+    visibility: visible;
+}
+
+.tooltip[data-portal-tooltip]:not([data-portal-ready="true"]) {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.tooltip[data-portal-tooltip][data-side="top"]::after {
+    top: calc(100% - 0.28rem);
+    left: calc(50% - 0.225rem);
+    border-width: 0 1px 1px 0;
+}
+
+.tooltip[data-portal-tooltip][data-side="right"]::after {
+    top: calc(50% - 0.225rem);
+    left: -0.28rem;
+    border-width: 0 0 1px 1px;
+}
+
+.tooltip[data-portal-tooltip][data-side="bottom"]::after {
+    top: -0.28rem;
+    left: calc(50% - 0.225rem);
+    border-width: 1px 1px 0 0;
+}
+
+.tooltip[data-portal-tooltip][data-side="left"]::after {
+    top: calc(50% - 0.225rem);
+    right: -0.28rem;
+    border-width: 1px 1px 0 0;
+}
+
+/* Le portal est détaché de .root : ces règles sont autonomes et explicites. */
+.portalTooltip {
+    box-sizing: border-box;
+    position: fixed !important;
+    z-index: 10000;
+    display: block;
+    inset: auto;
+    pointer-events: auto;
+    transform: none !important;
+}
+
+.portalTooltip[data-portal-ready="true"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.portalTooltip:not([data-portal-ready="true"]) {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.root:hover .tooltip,
+.root:focus-within .tooltip,
+.root[data-open="true"] .tooltip {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translate(0);
+    transition:
+        opacity 0.16s ease var(--tooltip-delay),
+        transform 0.16s ease var(--tooltip-delay),
+        visibility 0s linear var(--tooltip-delay);
+    visibility: visible;
+}
+
+/* Sides */
+.root[data-side="top"] .tooltip {
+    bottom: calc(100% + var(--tooltip-gap));
+    left: 50%;
+    transform: translate(-50%, 0.25rem);
+}
+
+.root[data-side="top"] .tooltip::after {
+    top: calc(100% - 0.28rem);
+    left: calc(50% - 0.225rem);
+    border-width: 0 1px 1px 0;
+}
+
+.root[data-side="right"] .tooltip {
+    top: 50%;
+    left: calc(100% + var(--tooltip-gap));
+    transform: translate(-0.25rem, -50%);
+}
+
+.root[data-side="right"] .tooltip::after {
+    top: calc(50% - 0.225rem);
+    left: -0.28rem;
+    border-width: 0 0 1px 1px;
+}
+
+.root[data-side="bottom"] .tooltip {
+    top: calc(100% + var(--tooltip-gap));
+    left: 50%;
+    transform: translate(-50%, -0.25rem);
+}
+
+.root[data-side="bottom"] .tooltip::after {
+    top: -0.28rem;
+    left: calc(50% - 0.225rem);
+    border-width: 1px 1px 0 0;
+}
+
+.root[data-side="left"] .tooltip {
+    top: 50%;
+    right: calc(100% + var(--tooltip-gap));
+    transform: translate(0.25rem, -50%);
+}
+
+.root[data-side="left"] .tooltip::after {
+    top: calc(50% - 0.225rem);
+    right: -0.28rem;
+    border-width: 1px 1px 0 0;
+}
+
+/* Alignments */
+.root[data-side="top"][data-align="start"] .tooltip,
+.root[data-side="bottom"][data-align="start"] .tooltip {
+    left: 0;
+    transform: translate(0, 0.25rem);
+}
+
+.root[data-side="top"][data-align="end"] .tooltip,
+.root[data-side="bottom"][data-align="end"] .tooltip {
+    right: 0;
+    left: auto;
+    transform: translate(0, 0.25rem);
+}
+
+.root[data-side="right"][data-align="start"] .tooltip,
+.root[data-side="left"][data-align="start"] .tooltip {
+    top: 0;
+    transform: translate(-0.25rem, 0);
+}
+
+.root[data-side="right"][data-align="end"] .tooltip,
+.root[data-side="left"][data-align="end"] .tooltip {
+    top: auto;
+    bottom: 0;
+    transform: translate(-0.25rem, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tooltip {
+        transition: none;
+    }
+}

@@ -1,0 +1,161 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.375rem;
+    margin-top: 4rem;
+}
+
+.footer[data-spacing="relaxed"] {
+    margin-top: 6rem;
+}
+
+.content {
+    margin: 0;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.copy {
+    display: grid;
+    justify-items: center;
+    gap: 0.45rem;
+}
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.navigation a {
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.3em;
+    text-transform: uppercase;
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.navigation a:hover {
+    color: var(--color-ambiance-texte-primaire);
+    text-decoration-color: currentColor;
+}
+
+.content a {
+    color: inherit;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.22em;
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.content a:hover {
+    color: var(--color-ambiance-texte-primaire);
+    text-decoration-color: currentColor;
+}
+
+.signature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2.5rem 0 0;
+    color: var(--color-ambiance-texte-secondaire);
+    line-height: 1;
+}
+
+.footer[data-signature-spacing="none"] .signature {
+    margin-top: 0.5rem;
+}
+
+.signature::before,
+.signature::after {
+    width: 1.5rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-strong));
+    content: "";
+}
+
+.signature::after {
+    transform: scaleX(-1);
+}
+
+.signatureLabel {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.signatureName {
+    font-family: var(--font-signature), cursive;
+    font-size: 2.15rem;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 0.8;
+    color: transparent;
+    background-image: linear-gradient(
+        108deg,
+        var(--color-argent) 0%,
+        var(--color-blanc) 18%,
+        var(--color-gris-ardoise) 32%,
+        var(--color-blanc-gris) 48%,
+        var(--color-argent) 64%,
+        white 76%,
+        var(--color-gris) 100%
+    );
+    background-size: 240% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.2em;
+    animation: page-footer-signature-shine 5.2s ease-in-out infinite;
+    filter: drop-shadow(
+        0 0 0.18em color-mix(in srgb, var(--color-argent) 36%, transparent)
+    );
+    transition: filter 0.2s ease;
+}
+
+.signatureName:hover {
+    filter: brightness(1.16)
+        drop-shadow(
+            0 0 0.24em color-mix(in srgb, var(--color-blanc) 46%, transparent)
+        );
+}
+
+@keyframes page-footer-signature-shine {
+    0%,
+    24%,
+    100% {
+        background-position: 100% 50%;
+    }
+
+    58% {
+        background-position: 0 50%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .signatureName {
+        animation: none;
+        background-position: 50% 50%;
+    }
+}

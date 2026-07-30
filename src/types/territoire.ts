@@ -1,6 +1,8 @@
 // src/types/territoire.ts
 // Territoire ligérien — chapitre géohistorique du Codex.
 
+import type { LRZColor } from "@/types/lrz";
+
 /**
  * Nature du territoire.
  *
@@ -51,6 +53,9 @@ export interface TerritoireIdentite {
 
     /** Couleur d’accent principale. */
     accent: string;
+
+    /** Token LRZ associé au territoire pour les composants du design system. */
+    color: LRZColor;
 
     /** Chemin vers le blason LRZ final. */
     blason?: string;

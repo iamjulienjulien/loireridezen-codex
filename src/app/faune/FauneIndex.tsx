@@ -2,8 +2,8 @@
 
 import { useMemo, useState } from "react";
 import type { FauneEspece } from "@/types/faune";
-import IndexHeader from "@/components/IndexHeader";
-import IndexFooter from "@/components/IndexFooter";
+import PageHeader from "@/components/PageHeader";
+import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -81,7 +81,7 @@ export default function FauneIndex({
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
-                <IndexHeader current="/faune" indexes={indexes} />
+                <PageHeader current="/faune" indexes={indexes} />
 
                 <IndexPresentation
                     description={entry.description}
@@ -151,19 +151,20 @@ export default function FauneIndex({
                     </div>
                 )}
 
-                <IndexFooter>
+                <PageFooter color={entry.color}>
                     <span
                         style={{
                             display: "block",
                             fontSize: "12px",
-                            color: "var(--text-secondary)",
+                            color: "var(--color-ambiance-texte-secondaire)",
                             marginBottom: "5px",
                         }}
                     >
                         {list.length} {entry.footerNote}
                     </span>
-                    {entry.title} · Le Codex Ligérien · Loire Ride Zen
-                </IndexFooter>
+                    Le Codex Ligérien ·{" "}
+                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
+                </PageFooter>
             </div>
         </main>
     );

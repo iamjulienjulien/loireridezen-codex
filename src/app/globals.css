@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
-@import "./lrz-colors.css";
+@import "./colors.css";
 
 :root {
+    --color-ambiance-fond: var(--color-jour-fond);
+    --color-ambiance-ciel-haut: var(--color-jour-ciel-haut);
+    --color-ambiance-ciel-bas: var(--color-jour-ciel-bas);
+    --color-ambiance-fond-titre: var(--color-jour-fond-titre);
+    --color-ambiance-fond-sous-titre: var(--color-jour-fond-sous-titre);
+    --color-ambiance-surface: var(--color-jour-surface);
+    --color-ambiance-elevation: var(--color-jour-elevation);
+    --color-ambiance-texte-primaire: var(--color-jour-texte-primaire);
+    --color-ambiance-texte-secondaire: var(--color-jour-texte-secondaire);
+    --color-ambiance-texte-tertiaire: var(--color-jour-texte-tertiaire);
+    --color-ambiance-accent: var(--color-jour-accent);
     --background: #ffffff;
     --foreground: #171717;
 }
@@ -29,20 +40,12 @@ body {
 
 /* ===== Loire Ride Zen — jetons & ambiances ===== */
 :root {
-    --bg-main: #f5ecd9;
-    --bg-sky: linear-gradient(180deg, #cfe4ea 0%, #eef3e8 100%);
-    --bg-chateau-title: #805c3c;
-    --bg-chateau-subtitle: #f5ead4;
-    --bg-surface: #faf3e5;
-    --bg-elevated: #ffffff;
+    --gradient-ambiance-ciel: linear-gradient(180deg, var(--color-jour-ciel-haut) 0%, var(--color-jour-ciel-bas) 100%);
     --bg-overlay: rgba(40, 30, 15, 0.06);
-    --text-primary: #2b2620;
-    --text-secondary: #6b605c;
-    --text-tertiary: #a0928c;
     --border-subtle: rgba(40, 30, 15, 0.1);
     --border-soft: rgba(40, 30, 15, 0.18);
     --border-strong: rgba(40, 30, 15, 0.3);
-    --gold: #c8893a;
+    --gold: var(--color-jour-accent);
     --gold-soft: rgba(200, 137, 58, 0.15);
     --gold-glow: rgba(200, 137, 58, 0.12);
     --radius-sm: 4px;
@@ -58,16 +61,19 @@ body {
     --noise-opacity: 0.025;
 }
 [data-mode="soir"] {
-    --bg-main: #2d1f1a;
-    --bg-sky: linear-gradient(180deg, #554761 0%, #9b5f62 55%, #d49a68 100%);
-    --bg-chateau-title: #5c3f4b;
-    --bg-chateau-subtitle: #3d2d30;
-    --bg-surface: #382821;
-    --bg-elevated: #43322a;
+    --color-ambiance-fond: var(--color-soir-fond);
+    --color-ambiance-ciel-haut: var(--color-soir-ciel-haut);
+    --color-ambiance-ciel-bas: var(--color-soir-ciel-bas);
+    --color-ambiance-fond-titre: var(--color-soir-fond-titre);
+    --color-ambiance-fond-sous-titre: var(--color-soir-fond-sous-titre);
+    --color-ambiance-surface: var(--color-soir-surface);
+    --color-ambiance-elevation: var(--color-soir-elevation);
+    --color-ambiance-texte-primaire: var(--color-soir-texte-primaire);
+    --color-ambiance-texte-secondaire: var(--color-soir-texte-secondaire);
+    --color-ambiance-texte-tertiaire: var(--color-soir-texte-tertiaire);
+    --color-ambiance-accent: var(--color-soir-accent);
+    --gradient-ambiance-ciel: linear-gradient(180deg, var(--color-soir-ciel-haut) 0%, #9b5f62 55%, var(--color-soir-ciel-bas) 100%);
     --bg-overlay: rgba(255, 200, 120, 0.05);
-    --text-primary: #f0e0c8;
-    --text-secondary: #c8a890;
-    --text-tertiary: #8a7665;
     --border-subtle: rgba(255, 200, 120, 0.08);
     --border-soft: rgba(255, 200, 120, 0.16);
     --border-strong: rgba(255, 200, 120, 0.28);
@@ -86,16 +92,19 @@ body {
     --noise-opacity: 0.04;
 }
 [data-mode="aube"] {
-    --bg-main: #f4e7e6;
-    --bg-sky: linear-gradient(180deg, #b9c8dc 0%, #edc5c5 55%, #f7dfbf 100%);
-    --bg-chateau-title: #80606c;
-    --bg-chateau-subtitle: #f5ded9;
-    --bg-surface: #fbf0ee;
-    --bg-elevated: #ffffff;
+    --color-ambiance-fond: var(--color-aube-fond);
+    --color-ambiance-ciel-haut: var(--color-aube-ciel-haut);
+    --color-ambiance-ciel-bas: var(--color-aube-ciel-bas);
+    --color-ambiance-fond-titre: var(--color-aube-fond-titre);
+    --color-ambiance-fond-sous-titre: var(--color-aube-fond-sous-titre);
+    --color-ambiance-surface: var(--color-aube-surface);
+    --color-ambiance-elevation: var(--color-aube-elevation);
+    --color-ambiance-texte-primaire: var(--color-aube-texte-primaire);
+    --color-ambiance-texte-secondaire: var(--color-aube-texte-secondaire);
+    --color-ambiance-texte-tertiaire: var(--color-aube-texte-tertiaire);
+    --color-ambiance-accent: var(--color-aube-accent);
+    --gradient-ambiance-ciel: linear-gradient(180deg, var(--color-aube-ciel-haut) 0%, var(--color-aube-accent) 55%, var(--color-aube-ciel-bas) 100%);
     --bg-overlay: rgba(60, 30, 40, 0.05);
-    --text-primary: #34272a;
-    --text-secondary: #75605f;
-    --text-tertiary: #ab928f;
     --border-subtle: rgba(60, 30, 40, 0.1);
     --border-soft: rgba(60, 30, 40, 0.16);
     --border-strong: rgba(60, 30, 40, 0.28);
@@ -115,16 +124,19 @@ body {
     --noise-opacity: 0.03;
 }
 [data-mode="nuit"] {
-    --bg-main: #0e1217;
-    --bg-sky: linear-gradient(180deg, #0d1726 0%, #24344a 100%);
-    --bg-chateau-title: #24344b;
-    --bg-chateau-subtitle: #182330;
-    --bg-surface: #171c24;
-    --bg-elevated: #1e2530;
+    --color-ambiance-fond: var(--color-nuit-fond);
+    --color-ambiance-ciel-haut: var(--color-nuit-ciel-haut);
+    --color-ambiance-ciel-bas: var(--color-nuit-ciel-bas);
+    --color-ambiance-fond-titre: var(--color-nuit-fond-titre);
+    --color-ambiance-fond-sous-titre: var(--color-nuit-fond-sous-titre);
+    --color-ambiance-surface: var(--color-nuit-surface);
+    --color-ambiance-elevation: var(--color-nuit-elevation);
+    --color-ambiance-texte-primaire: var(--color-nuit-texte-primaire);
+    --color-ambiance-texte-secondaire: var(--color-nuit-texte-secondaire);
+    --color-ambiance-texte-tertiaire: var(--color-nuit-texte-tertiaire);
+    --color-ambiance-accent: var(--color-nuit-accent);
+    --gradient-ambiance-ciel: linear-gradient(180deg, var(--color-nuit-ciel-haut) 0%, var(--color-nuit-ciel-bas) 100%);
     --bg-overlay: rgba(200, 180, 140, 0.04);
-    --text-primary: #e8e0d0;
-    --text-secondary: #a0928c;
-    --text-tertiary: #6b605c;
     --border-subtle: rgba(255, 240, 200, 0.07);
     --border-soft: rgba(255, 240, 200, 0.13);
     --border-strong: rgba(255, 240, 200, 0.22);

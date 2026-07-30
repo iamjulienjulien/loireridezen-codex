@@ -9,6 +9,9 @@ const COMPONENTS = [
     ["LRZAccordion", "/atelier/components/lrz-accordion"],
     ["LRZChip", "/atelier/components/lrz-chip"],
     ["LRZCompteur", "/atelier/components/lrz-compteur"],
+    ["LRZTooltip", "/atelier/components/lrz-tooltip"],
+    ["LRZTabs", "/atelier/components/lrz-tabs"],
+    ["LRZTimeline", "/atelier/components/lrz-timeline"],
     ["LRZFilterChip", "/atelier/components/lrz-filter-chip"],
     ["LRZFilterGroup", "/atelier/components/lrz-filter-group"],
     ["LRZSeparateur", "/atelier/components/lrz-separateur"],
@@ -16,6 +19,7 @@ const COMPONENTS = [
     ["LRZCard", "/atelier/components/lrz-card"],
     ["LRZMetaList", "/atelier/components/lrz-meta-list"],
     ["LRZTypography", "/atelier/components/lrz-typography"],
+    ["LRZLivingText", "/atelier/components/lrz-living-text"],
 ] as const;
 
 export default function AtelierUiPage() {

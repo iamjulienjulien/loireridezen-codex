@@ -75,7 +75,7 @@
             color-mix(in srgb, var(--badge-color) 22%, transparent),
             color-mix(in srgb, var(--badge-color) 8%, transparent)
         ),
-        var(--bg-surface);
+        var(--color-ambiance-surface);
 }
 
 .badge[data-variant]:not([data-variant="default"]) {
@@ -120,7 +120,7 @@
 }
 
 .badge[data-icon-hidden="true"][data-variant="ticket"][data-gradient="true"] {
-    background: color-mix(in srgb, var(--badge-color) 8%, var(--bg-surface));
+    background: color-mix(in srgb, var(--badge-color) 8%, var(--color-ambiance-surface));
 }
 
 /* Pill — capsule compacte, utilisée par défaut pour l’échelle UICN. */
@@ -135,7 +135,7 @@
             color-mix(in srgb, var(--badge-color) 24%, transparent),
             color-mix(in srgb, var(--badge-color) 10%, transparent)
         ),
-        var(--bg-surface);
+        var(--color-ambiance-surface);
 }
 
 .badge[data-preset="extinction-faune"] .label {
@@ -168,7 +168,7 @@
             color-mix(in srgb, var(--badge-color) 26%, transparent),
             transparent 34%
         ),
-        color-mix(in srgb, var(--badge-color) 11%, var(--bg-surface));
+        color-mix(in srgb, var(--badge-color) 11%, var(--color-ambiance-surface));
 }
 
 .badge[data-variant="leaf"]::after {
@@ -200,7 +200,7 @@
             color-mix(in srgb, var(--badge-color) 22%, transparent),
             transparent 58%
         ),
-        color-mix(in srgb, var(--badge-color) 9%, var(--bg-surface));
+        color-mix(in srgb, var(--badge-color) 9%, var(--color-ambiance-surface));
 }
 
 .badge[data-variant="shield"] .symbol {
@@ -231,7 +231,7 @@
             color-mix(in srgb, var(--badge-color) 18%, transparent),
             transparent 42%
         ),
-        color-mix(in srgb, var(--lrz-patrimoine-tuffeau) 12%, var(--bg-surface));
+        color-mix(in srgb, var(--color-patrimoine-tuffeau) 12%, var(--color-ambiance-surface));
 }
 
 .badge[data-variant="plaque"]::before {
@@ -265,13 +265,13 @@
     background:
         radial-gradient(
             circle at 18% 45%,
-            color-mix(in srgb, var(--lrz-nature-eau-claire) 26%, transparent),
+            color-mix(in srgb, var(--color-nature-eau-claire) 26%, transparent),
             transparent 28%
         ),
         linear-gradient(
             110deg,
-            color-mix(in srgb, var(--badge-color) 28%, var(--bg-surface)),
-            color-mix(in srgb, var(--badge-color) 9%, var(--bg-surface))
+            color-mix(in srgb, var(--badge-color) 28%, var(--color-ambiance-surface)),
+            color-mix(in srgb, var(--badge-color) 9%, var(--color-ambiance-surface))
         );
 }
 
@@ -308,7 +308,7 @@
         linear-gradient(
             100deg,
             color-mix(in srgb, var(--badge-color) 20%, transparent),
-            color-mix(in srgb, var(--badge-color) 7%, var(--bg-surface))
+            color-mix(in srgb, var(--badge-color) 7%, var(--color-ambiance-surface))
         );
     background-size:
         5px 5px,
@@ -343,7 +343,7 @@
             color-mix(in srgb, var(--badge-color) 21%, transparent),
             transparent 52%
         ),
-        color-mix(in srgb, var(--badge-color) 8%, var(--bg-surface));
+        color-mix(in srgb, var(--badge-color) 8%, var(--color-ambiance-surface));
 }
 
 .badge[data-variant="herbarium"]::after {
@@ -384,7 +384,7 @@
             color-mix(in srgb, var(--badge-color) 26%, transparent),
             transparent 46%
         ),
-        color-mix(in srgb, var(--badge-color) 9%, var(--bg-surface));
+        color-mix(in srgb, var(--badge-color) 9%, var(--color-ambiance-surface));
 }
 
 .badge[data-variant="crest"]::after {
@@ -419,7 +419,7 @@
         var(--border-soft)
     );
     border-style: dashed;
-    color: color-mix(in srgb, var(--badge-color) 82%, var(--text-primary));
+    color: color-mix(in srgb, var(--badge-color) 82%, var(--color-ambiance-texte-primaire));
     filter: saturate(0.88);
 }
 
@@ -437,7 +437,7 @@
             color-mix(in srgb, var(--badge-color) 22%, transparent) 0 27px,
             transparent 27px
         ),
-        color-mix(in srgb, var(--badge-color) 8%, var(--bg-surface));
+        color-mix(in srgb, var(--badge-color) 8%, var(--color-ambiance-surface));
 }
 
 .badge[data-variant="ticket"]::before {

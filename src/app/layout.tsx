@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono, Lora } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import {
+    Allura,
+    Bodoni_Moda,
+    Fraunces,
+    Inter,
+    JetBrains_Mono,
+    Kalam,
+    Lora,
+    Space_Grotesk,
+} from "next/font/google";
 import Script from "next/script";
 import AmbianceCommandPalette from "@/components/AmbianceCommandPalette";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
 import { featureIsEnabled } from "@/registry/feature-flags";
+import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
 
 const AMBIANCE_INITIALIZATION_SCRIPT = `
@@ -42,18 +53,95 @@ const lora = Lora({
     variable: "--font-edit",
     display: "swap",
 });
+const allura = Allura({
+    subsets: ["latin"],
+    weight: "400",
+    variable: "--font-signature",
+    display: "swap",
+});
+const bodoni = Bodoni_Moda({
+    subsets: ["latin"],
+    weight: "variable",
+    variable: "--font-bodoni",
+    display: "swap",
+});
+const spaceGrotesk = Space_Grotesk({
+    subsets: ["latin"],
+    weight: "variable",
+    variable: "--font-grotesk",
+    display: "swap",
+});
+const kalam = Kalam({
+    subsets: ["latin"],
+    weight: ["300", "400", "700"],
+    variable: "--font-note",
+    display: "swap",
+});
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://codex.loireridezen.bike"),
+
     title: "Loire Ride Zen — Le Codex Ligérien",
     description: "Le codex du fil ligérien, de la source à l'Atlantique.",
+
     manifest: "/site.webmanifest",
+
+    verification: {
+        google: "d6xEn7osgIrSXI9ekloZhEOrQKWKqUv_PPRd8gIB6J8",
+    },
+
     icons: {
         icon: [
-            { url: "/favicon.ico", sizes: "any" },
-            { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
-            { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+            {
+                url: "/favicon.ico",
+                sizes: "any",
+            },
+            {
+                url: "/favicon-16x16.png",
+                type: "image/png",
+                sizes: "16x16",
+            },
+            {
+                url: "/favicon-32x32.png",
+                type: "image/png",
+                sizes: "32x32",
+            },
         ],
-        apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+        apple: [
+            {
+                url: "/apple-touch-icon.png",
+                sizes: "180x180",
+            },
+        ],
+    },
+
+    openGraph: {
+        type: "website",
+        locale: "fr_FR",
+        siteName: "Loire Ride Zen",
+        title: "Loire Ride Zen — Le Codex Ligérien",
+        description: "Le codex du fil ligérien, de la source à l'Atlantique.",
+        url: "/",
+        images: [
+            {
+                url: "/api/og",
+                width: 1200,
+                height: 630,
+                alt: "Loire Ride Zen — Le Codex Ligérien",
+            },
+        ],
+    },
+
+    twitter: {
+        card: "summary_large_image",
+        title: "Loire Ride Zen — Le Codex Ligérien",
+        description: "Le codex du fil ligérien, de la source à l'Atlantique.",
+        images: [
+            {
+                url: "/api/og",
+                alt: "Loire Ride Zen — Le Codex Ligérien",
+            },
+        ],
     },
 };
 
@@ -86,20 +174,17 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${fraunces.variable} ${inter.variable} ${mono.variable} ${lora.variable} font-[family-name:var(--font-body)] antialiased`}
+                className={`${fraunces.variable} ${inter.variable} ${mono.variable} ${lora.variable} ${allura.variable} ${bodoni.variable} ${spaceGrotesk.variable} ${kalam.variable} font-[family-name:var(--font-body)] antialiased`}
             >
                 <Script id="lrz-ambiance" strategy="beforeInteractive">
                     {AMBIANCE_INITIALIZATION_SCRIPT}
                 </Script>
-                <AmbianceProvider
-                    showAmbianceSelector={
-                        process.env.CURRENT_ENV === "development"
-                    }
-                >
+                <AmbianceProvider>
                     {children}
                     {commandPaletteEnabled ? <AmbianceCommandPalette /> : null}
                 </AmbianceProvider>
             </body>
+            <Analytics />
         </html>
     );
 }

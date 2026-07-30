@@ -18,7 +18,7 @@
             color-mix(in srgb, #b88945 7%, transparent),
             transparent 58%
         ),
-        linear-gradient(180deg, var(--bg-elevated), var(--bg-surface));
+        linear-gradient(180deg, var(--color-ambiance-elevation), var(--color-ambiance-surface));
     box-shadow:
         var(--shadow-card),
         inset 0 1px 0 color-mix(in srgb, white 52%, transparent);
@@ -81,7 +81,7 @@
     font-weight: 500;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 
 .title {
@@ -93,7 +93,7 @@
     font-weight: 500;
     letter-spacing: -0.042em;
     line-height: 0.98;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .ornament {
@@ -224,8 +224,8 @@
         ),
         linear-gradient(
             180deg,
-            color-mix(in srgb, var(--castle-accent) 5%, var(--bg-elevated)),
-            var(--bg-surface)
+            color-mix(in srgb, var(--castle-accent) 5%, var(--color-ambiance-elevation)),
+            var(--color-ambiance-surface)
         );
 }
 
@@ -279,8 +279,8 @@
     border-radius: 50%;
     background: radial-gradient(
         circle at 50% 35%,
-        color-mix(in srgb, var(--castle-accent) 14%, var(--bg-surface)),
-        var(--bg-surface) 68%
+        color-mix(in srgb, var(--castle-accent) 14%, var(--color-ambiance-surface)),
+        var(--color-ambiance-surface) 68%
     );
     box-shadow:
         inset 0 0 0 8px color-mix(in srgb, var(--castle-accent) 5%, transparent),
@@ -385,7 +385,7 @@
     padding: 19px 16px 14px;
     border-right: 1px solid var(--border-subtle);
     border-left: 1px solid var(--border-subtle);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     text-align: center;
 }
 
@@ -408,7 +408,7 @@
     font-weight: 500;
     letter-spacing: -0.032em;
     line-height: 1.02;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .location {
@@ -416,7 +416,7 @@
     font-family: var(--font-body);
     font-size: 10px;
     line-height: 1.35;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
 }
 
 /* ============================================================
@@ -432,12 +432,12 @@
     padding: 16px 17px 19px;
     border-right: 1px solid var(--border-subtle);
     border-left: 1px solid var(--border-subtle);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     font-family: var(--font-edit, var(--font-display));
     font-size: 12.5px;
     font-style: italic;
     line-height: 1.53;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
 }
 
 .reason > span:first-child {
@@ -469,7 +469,7 @@
         ),
         linear-gradient(
             155deg,
-            color-mix(in srgb, var(--metal-light) 82%, var(--bg-surface)),
+            color-mix(in srgb, var(--metal-light) 82%, var(--color-ambiance-surface)),
             var(--metal-mid)
         );
     box-shadow:
@@ -721,7 +721,7 @@
         overflow: hidden;
         border: 1px solid var(--border-subtle);
         border-radius: var(--radius-lg);
-        background: var(--bg-surface);
+        background: var(--color-ambiance-surface);
         box-shadow: var(--shadow-card);
     }
 

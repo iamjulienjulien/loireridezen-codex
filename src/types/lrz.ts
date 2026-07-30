@@ -1,48 +1,5 @@
 /**
- * Noms publics de la palette Loire Ride Zen.
- *
- * Chaque valeur correspond au suffixe d'une variable déclarée dans
- * `src/app/lrz-colors.css`, sans le préfixe de famille.
+ * Alias de compatibilité pour les consommateurs historiques du type public.
+ * Le registre V2 est l’unique source de vérité de la palette.
  */
-export type LRZColor =
-    | "prairie"
-    | "roseau"
-    | "foret"
-    | "sable"
-    | "galet"
-    | "eau"
-    | "eau-claire"
-    | "ciel"
-    | "soleil"
-    | "coucher"
-    | "blanc"
-    | "blanc-gris"
-    | "argent"
-    | "gris"
-    | "gris-ardoise"
-    | "gris-brun"
-    | "noir"
-    | "beige"
-    | "creme"
-    | "ocre"
-    | "fauve"
-    | "brun"
-    | "brun-roux"
-    | "brun-fonce"
-    | "jaune"
-    | "orange"
-    | "orange-cuivre"
-    | "roux"
-    | "rouge"
-    | "vert"
-    | "vert-vif"
-    | "vert-olive"
-    | "vert-metallise"
-    | "bleu"
-    | "bleu-gris"
-    | "bleu-turquoise"
-    | "bleu-metallise"
-    | "pierre"
-    | "ardoise"
-    | "brique"
-    | "tuffeau";
+export type { LRZColor } from "@/registry/colors";

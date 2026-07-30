@@ -4,10 +4,12 @@ import AtelierCategoryLayout from "../AtelierCategoryLayout";
 import styles from "../atelier.module.css";
 
 const COMPONENTS = [
+    ["LRZDocCallout", "/atelier/components/lrz-doc-callout"],
     ["LRZDocCodeBlock", "/atelier/components/lrz-doc-code-block"],
     ["LRZDocCodeInline", "/atelier/components/lrz-doc-code-inline"],
     ["LRZDocList", "/atelier/components/lrz-doc-list"],
     ["LRZDocQuote", "/atelier/components/lrz-doc-quote"],
+    ["LRZDocTable", "/atelier/components/lrz-doc-table"],
 ] as const;
 
 export default function AtelierDocPage() {

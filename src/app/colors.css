@@ -1,0 +1,168 @@
+:root {
+    /* ======================================================================
+       Palette naturaliste
+       ====================================================================== */
+
+    /* Neutres */
+
+    --color-blanc: #f7f6f2;
+    --color-ivoire: #f3efe4;
+    --color-blanc-gris: #e5e7e3;
+    --color-argent: #bec5c8;
+
+    --color-gris-clair: #a8aaa5;
+    --color-gris: #7c7c78;
+    --color-gris-ardoise: #5c6772;
+    --color-gris-brun: #76695d;
+    --color-anthracite: #424540;
+    --color-noir: #2b2b29;
+
+    /* Beiges et terres claires */
+
+    --color-lin: #ded1b8;
+    --color-beige: #cfbe9f;
+    --color-creme: #f2e7cf;
+    --color-taupe: #9a8875;
+    --color-ocre-clair: #cea968;
+    --color-ocre: #b88945;
+    --color-fauve: #b37a43;
+
+    /* Bruns */
+
+    --color-noisette: #9a6c43;
+    --color-brun: #795739;
+    --color-brun-roux: #8f573c;
+    --color-brun-fonce: #503827;
+    --color-ecorce: #46352b;
+
+    /* Jaunes et ors */
+
+    --color-jaune-paille: #dfca7d;
+    --color-jaune: #d8b548;
+    --color-miel: #c7953e;
+    --color-ambre: #b87932;
+
+    /* Oranges et rouges */
+
+    --color-orange-clair: #e79a5d;
+    --color-orange: #d97a3e;
+    --color-orange-cuivre: #b96841;
+    --color-roux: #a55a35;
+    --color-terre-cuite: #ad5f49;
+
+    --color-corail: #c76858;
+    --color-rouge: #a44842;
+    --color-grenat: #7f3d3f;
+    --color-lie-de-vin: #663d49;
+
+    /* Roses et violets */
+
+    --color-rose-poudre: #d6aaa2;
+    --color-rose-sauvage: #b86f72;
+    --color-mauve: #8c7187;
+    --color-prune: #665064;
+
+    /* Verts */
+
+    --color-vert-clair: #92ad7d;
+    --color-vert: #5c8754;
+    --color-vert-vif: #6aa657;
+    --color-vert-sauge: #82947a;
+    --color-vert-mousse: #63734f;
+    --color-vert-olive: #707c40;
+    --color-vert-roseau: #7f884e;
+    --color-vert-pin: #3f6651;
+    --color-vert-metallise: #3e7f73;
+    --color-vert-fonce: #345443;
+
+    /* Bleus */
+
+    --color-bleu-clair: #8fb3c6;
+    --color-bleu: #4d80a7;
+    --color-bleu-gris: #6c8796;
+    --color-bleu-turquoise: #3e93a7;
+    --color-bleu-metallise: #2c708e;
+    --color-bleu-loire: #397a91;
+    --color-bleu-ardoise: #456476;
+    --color-bleu-nuit: #304957;
+
+    /* ======================================================================
+       Ambiances
+       ====================================================================== */
+
+    /* Jour */
+    --color-jour-fond: #f5ecd9;
+    --color-jour-ciel-haut: #cfe4ea;
+    --color-jour-ciel-bas: #eef3e8;
+    --color-jour-fond-titre: #805c3c;
+    --color-jour-fond-sous-titre: #f5ead4;
+    --color-jour-surface: #faf3e5;
+    --color-jour-elevation: #ffffff;
+    --color-jour-texte-primaire: #2b2620;
+    --color-jour-texte-secondaire: #6b605c;
+    --color-jour-texte-tertiaire: #a0928c;
+    --color-jour-accent: #c8893a;
+
+    /* Aube */
+    --color-aube-fond: #f4e7e6;
+    --color-aube-ciel-haut: #b9c8dc;
+    --color-aube-ciel-bas: #f7dfbf;
+    --color-aube-fond-titre: #80606c;
+    --color-aube-fond-sous-titre: #f5ded9;
+    --color-aube-surface: #fbf0ee;
+    --color-aube-elevation: #ffffff;
+    --color-aube-texte-primaire: #34272a;
+    --color-aube-texte-secondaire: #75605f;
+    --color-aube-texte-tertiaire: #ab928f;
+    --color-aube-accent: #edc5c5;
+
+    /* Soir */
+    --color-soir-fond: #2d1f1a;
+    --color-soir-ciel-haut: #554761;
+    --color-soir-ciel-bas: #d49a68;
+    --color-soir-fond-titre: #5c3f4b;
+    --color-soir-fond-sous-titre: #3d2d30;
+    --color-soir-surface: #382821;
+    --color-soir-elevation: #43322a;
+    --color-soir-texte-primaire: #f0e0c8;
+    --color-soir-texte-secondaire: #c8a890;
+    --color-soir-texte-tertiaire: #8a7665;
+    --color-soir-accent: #d49a68;
+
+    /* Nuit */
+    --color-nuit-fond: #0e1217;
+    --color-nuit-ciel-haut: #0d1726;
+    --color-nuit-ciel-bas: #24344a;
+    --color-nuit-fond-titre: #24344b;
+    --color-nuit-fond-sous-titre: #182330;
+    --color-nuit-surface: #171c24;
+    --color-nuit-elevation: #1e2530;
+    --color-nuit-texte-primaire: #e8e0d0;
+    --color-nuit-texte-secondaire: #a0928c;
+    --color-nuit-texte-tertiaire: #6b605c;
+    --color-nuit-accent: #dcc8a0;
+
+    /* ======================================================================
+       Nature
+       ====================================================================== */
+
+    --color-nature-prairie: #5c8754;
+    --color-nature-roseau: #707c40;
+    --color-nature-foret: #503827;
+    --color-nature-sable: #cfbe9f;
+    --color-nature-galet: #7c7c78;
+    --color-nature-eau: #4d80a7;
+    --color-nature-eau-claire: #3e93a7;
+    --color-nature-ciel: #f7f6f2;
+    --color-nature-soleil: #d8b548;
+    --color-nature-coucher: #d97a3e;
+
+    /* ======================================================================
+       Patrimoine
+       ====================================================================== */
+
+    --color-patrimoine-pierre: #d6d0c6;
+    --color-patrimoine-ardoise: #5c6772;
+    --color-patrimoine-brique: #a44842;
+    --color-patrimoine-tuffeau: #f2e7cf;
+}

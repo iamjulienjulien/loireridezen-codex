@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useId, useState, type CSSProperties, type ReactNode } from "react";
 
 import {
     LRZFilterGroup,
@@ -26,7 +26,16 @@ export interface PageControlsSwitcher {
     onToggle: () => void;
 }
 
+export interface PageControlsAction {
+    label: string;
+    activeLabel?: string;
+    active: boolean;
+    icon?: ReactNode;
+    onClick: () => void;
+}
+
 export type PageControlsVariant = "default" | "chateaux";
+export type PageControlsMode = "full" | "filters-toggle" | "compact";
 
 type PageControlsProps = {
     query: string;
@@ -38,11 +47,10 @@ type PageControlsProps = {
     groups: PageControlsFilterGroup[];
     accent?: string;
     variant?: PageControlsVariant;
-    expand?: {
-        all: boolean;
-        onToggle: () => void;
-    };
+    mode?: PageControlsMode;
+    defaultFiltersOpen?: boolean;
     switcher?: PageControlsSwitcher;
+    action?: PageControlsAction;
     reset?: {
         active: boolean;
         onReset: () => void;
@@ -63,20 +71,30 @@ export default function PageControls({
     groups,
     accent,
     variant = "default",
-    expand,
+    mode = "full",
+    defaultFiltersOpen = false,
     switcher,
+    action,
     reset,
 }: PageControlsProps) {
+    const filtersId = useId();
+    const [filtersOpen, setFiltersOpen] = useState(defaultFiltersOpen);
     const style = accent
         ? ({ "--page-controls-accent": accent } as PageControlsStyle)
         : undefined;
 
     const resultLabel = unit ?? "résultats";
+    const hasFilterToggle = mode === "filters-toggle";
+    const filtersVisible = mode === "full" || filtersOpen;
+    const activeFiltersCount = groups.filter(
+        (group) => group.active !== "all",
+    ).length;
 
     return (
         <section
             className={styles.panel}
             data-variant={variant}
+            data-mode={mode}
             style={style}
             aria-label={
                 variant === "chateaux"
@@ -84,7 +102,7 @@ export default function PageControls({
                     : "Recherche et filtres"
             }
         >
-            {variant === "chateaux" && (
+            {variant === "chateaux" && mode !== "compact" && false && (
                 <div className={styles.context}>
                     <div>
                         <p className={styles.eyebrow}>Explorer l’inventaire</p>
@@ -93,9 +111,6 @@ export default function PageControls({
                             d’habiter le fil royal.
                         </p>
                     </div>
-                    <span className={styles.contextMark} aria-hidden="true">
-                        ◆
-                    </span>
                 </div>
             )}
 
@@ -127,29 +142,41 @@ export default function PageControls({
                     </span>
                 </label>
 
-                <div className={styles.summary} aria-live="polite">
-                    <span className={styles.count}>
-                        <strong>{resultCount}</strong> / {totalCount}{" "}
-                        {resultLabel}
-                    </span>
-                    {reset?.active && (
-                        <button
-                            type="button"
-                            className={styles.reset}
-                            onClick={reset.onReset}
-                        >
-                            Réinitialiser
-                        </button>
-                    )}
-                </div>
+                {mode !== "compact" ? (
+                    <div className={styles.summary} aria-live="polite">
+                        <span className={styles.count}>
+                            <strong>{resultCount}</strong> / {totalCount}{" "}
+                            {resultLabel}
+                        </span>
+                        {reset?.active && (
+                            <button
+                                type="button"
+                                className={styles.reset}
+                                onClick={reset.onReset}
+                            >
+                                Réinitialiser
+                            </button>
+                        )}
+                    </div>
+                ) : null}
             </div>
 
-            {(switcher || expand) && (
-                <div
-                    className={styles.actions}
-                    aria-label="Options d’affichage"
-                >
-                    {switcher && (
+            {hasFilterToggle ? (
+                <div className={styles.filterToggleRow}>
+                    {action ? (
+                        <button
+                            aria-pressed={action.active}
+                            className={styles.toolbarAction}
+                            onClick={action.onClick}
+                            type="button"
+                        >
+                            {action.icon}
+                            {action.active
+                                ? (action.activeLabel ?? action.label)
+                                : action.label}
+                        </button>
+                    ) : null}
+                    {switcher ? (
                         <button
                             type="button"
                             className={styles.switchToggle}
@@ -175,38 +202,49 @@ export default function PageControls({
                                 <span className={styles.switchThumb} />
                             </span>
                         </button>
-                    )}
-                    {expand && (
-                        <button
-                            type="button"
-                            className={styles.expandToggle}
-                            aria-pressed={expand.all}
-                            aria-label={
-                                expand.all
-                                    ? "Replier toutes les fiches"
-                                    : "Déplier toutes les fiches"
-                            }
-                            onClick={expand.onToggle}
+                    ) : null}
+                    <button
+                        type="button"
+                        className={styles.filterToggle}
+                        aria-expanded={filtersOpen}
+                        aria-controls={filtersId}
+                        onClick={() => setFiltersOpen((open) => !open)}
+                    >
+                        <span>Filtres</span>
+                        {activeFiltersCount > 0 ? (
+                            <span className={styles.filterBadge}>
+                                {activeFiltersCount}
+                            </span>
+                        ) : null}
+                        <span
+                            className={styles.filterChevron}
+                            aria-hidden="true"
                         >
-                            {expand.all ? "Tout replier" : "Tout déplier"}
-                        </button>
-                    )}
+                            {filtersOpen ? "−" : "+"}
+                        </span>
+                    </button>
                 </div>
-            )}
+            ) : null}
 
-            <div className={styles.filters}>
-                {groups.map((group) => (
-                    <LRZFilterGroup
-                        key={group.label}
-                        label={group.label}
-                        activeId={group.active}
-                        options={group.options}
-                        onSelect={group.onSelect}
-                        accent={accent}
-                        variant={variant === "chateaux" ? "card" : "default"}
-                    />
-                ))}
-            </div>
+            {mode !== "compact" && filtersVisible ? (
+                <div id={filtersId} className={styles.filtersPanel}>
+                    <div className={styles.filters}>
+                        {groups.map((group) => (
+                            <LRZFilterGroup
+                                key={group.label}
+                                label={group.label}
+                                activeId={group.active}
+                                options={group.options}
+                                onSelect={group.onSelect}
+                                accent={accent}
+                                variant={
+                                    variant === "chateaux" ? "card" : "default"
+                                }
+                            />
+                        ))}
+                    </div>
+                </div>
+            ) : null}
         </section>
     );
 }

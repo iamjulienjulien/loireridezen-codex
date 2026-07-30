@@ -31,9 +31,9 @@ const MARK_PRESETS = [
 ] as const;
 
 const COLOR_OPTION_GROUPS = [
-    { label: "Nature", prefix: "--lrz-nature-" },
-    { label: "Faune", prefix: "--lrz-faune-" },
-    { label: "Patrimoine", prefix: "--lrz-patrimoine-" },
+    { label: "Nature", prefix: "--color-nature-" },
+    { label: "Faune", prefix: "--color-" },
+    { label: "Patrimoine", prefix: "--color-patrimoine-" },
 ].map(({ label, prefix }) => ({
     label,
     colors: LRZ_COLOR_NAMES.filter((color) =>

@@ -3,6 +3,14 @@ import styles from "./ComponentsNavigation.module.css";
 
 const SECTIONS = [
     {
+        label: "Fondations visuelles",
+        href: "/atelier",
+        components: [
+            ["colors", "Couleurs", "/atelier/colors"],
+            ["typography", "Typographie", "/atelier/typography"],
+        ],
+    },
+    {
         label: "Composants UI",
         href: "/atelier/ui",
         components: [
@@ -15,6 +23,9 @@ const SECTIONS = [
             ],
             ["lrz-chip", "LRZChip", "/atelier/components/lrz-chip"],
             ["lrz-compteur", "LRZCompteur", "/atelier/components/lrz-compteur"],
+            ["lrz-tooltip", "LRZTooltip", "/atelier/components/lrz-tooltip"],
+            ["lrz-tabs", "LRZTabs", "/atelier/components/lrz-tabs"],
+            ["lrz-timeline", "LRZTimeline", "/atelier/components/lrz-timeline"],
             [
                 "lrz-filter-chip",
                 "LRZFilterChip",
@@ -42,12 +53,22 @@ const SECTIONS = [
                 "LRZTypography",
                 "/atelier/components/lrz-typography",
             ],
+            [
+                "lrz-living-text",
+                "LRZLivingText",
+                "/atelier/components/lrz-living-text",
+            ],
         ],
     },
     {
         label: "Composants Doc",
         href: "/atelier/doc",
         components: [
+            [
+                "lrz-doc-callout",
+                "LRZDocCallout",
+                "/atelier/components/lrz-doc-callout",
+            ],
             [
                 "lrz-doc-code-block",
                 "LRZDocCodeBlock",
@@ -63,6 +84,11 @@ const SECTIONS = [
                 "lrz-doc-quote",
                 "LRZDocQuote",
                 "/atelier/components/lrz-doc-quote",
+            ],
+            [
+                "lrz-doc-table",
+                "LRZDocTable",
+                "/atelier/components/lrz-doc-table",
             ],
         ],
     },

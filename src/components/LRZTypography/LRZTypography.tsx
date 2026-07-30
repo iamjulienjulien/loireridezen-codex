@@ -14,6 +14,7 @@ export type LRZTypographyPreset =
     | "body"
     | "body-sm"
     | "editorial"
+    | "signature"
     | "eyebrow"
     | "caption"
     | "code";
@@ -37,7 +38,15 @@ export type LRZTypographyElement =
     | "label";
 
 export type LRZTypographyFont =
-    "display" | "body" | "mono" | "editorial" | "inherit";
+    | "display"
+    | "body"
+    | "mono"
+    | "editorial"
+    | "signature"
+    | "bodoni"
+    | "grotesk"
+    | "note"
+    | "inherit";
 
 export type LRZTypographySize =
     "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
@@ -63,8 +72,6 @@ export type LRZTypographyDecoration = "none" | "underline" | "line-through";
 
 export type LRZTypographyEffect =
     | "none"
-    | "gold-leaf"
-    | "river"
     | "ink"
     | "highlight"
     | "engraved"
@@ -80,7 +87,14 @@ export type LRZTypographyMotion =
     "none" | "fade-up" | "reveal" | "tracking-in" | "typewriter";
 
 export type LRZTypographyGradientPreset =
-    "royal" | "river" | "sunset" | "forest" | "tuffeau" | "moonlight" | "ember";
+    | "gold-leaf"
+    | "royal"
+    | "river"
+    | "sunset"
+    | "forest"
+    | "tuffeau"
+    | "moonlight"
+    | "ember";
 
 export type LRZTypographyCustomGradient = {
     from: LRZColor;
@@ -169,6 +183,7 @@ const DEFAULT_ELEMENTS: Record<LRZTypographyPreset, LRZTypographyElement> = {
     body: "p",
     "body-sm": "p",
     editorial: "p",
+    signature: "span",
     eyebrow: "span",
     caption: "small",
     code: "code",
@@ -184,15 +199,16 @@ const DEFAULT_COLORS: Record<LRZTypographyPreset, LRZTypographySemanticColor> =
         body: "primary",
         "body-sm": "secondary",
         editorial: "secondary",
+        signature: "accent",
         eyebrow: "accent",
         caption: "tertiary",
         code: "primary",
     };
 
 const SEMANTIC_COLORS: Record<LRZTypographySemanticColor, string> = {
-    primary: "var(--text-primary)",
-    secondary: "var(--text-secondary)",
-    tertiary: "var(--text-tertiary)",
+    primary: "var(--color-ambiance-texte-primaire)",
+    secondary: "var(--color-ambiance-texte-secondaire)",
+    tertiary: "var(--color-ambiance-texte-tertiaire)",
     accent: "var(--gold)",
     inherit: "inherit",
 };

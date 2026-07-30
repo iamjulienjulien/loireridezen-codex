@@ -1,5 +1,5 @@
 .accordion {
-    --accordion-color: var(--lrz-faune-ocre);
+    --accordion-color: var(--color-ocre);
     --accordion-trigger-min-height: 40px;
     --accordion-trigger-padding: 7px 4px;
     --accordion-panel-padding: 12px 14px;
@@ -8,7 +8,7 @@
 
     display: grid;
     gap: 10px;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
 }
 
 .heading {
@@ -75,7 +75,7 @@
 }
 
 .description {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
     font-size: var(--accordion-description-size);
     font-weight: 400;
@@ -110,7 +110,7 @@
 }
 
 .panel {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 13px;
     line-height: 1.55;
 }
@@ -141,7 +141,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
 }
 
 .accordion[data-tone="surface"] .heading,

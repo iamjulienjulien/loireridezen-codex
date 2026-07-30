@@ -2,10 +2,7 @@
 
 import { useState } from "react";
 
-import {
-    LRZAtmosphericText,
-    LRZBreathingText,
-} from "@/components/LRZLivingTypography";
+import LRZLivingText from "@/components/LRZLivingText";
 import LRZTypography, {
     type LRZTypographyAlign,
     type LRZTypographyColor,
@@ -82,6 +79,7 @@ const PRESET_ELEMENTS: Record<LRZTypographyPreset, LRZTypographyElement> = {
     body: "p",
     "body-sm": "p",
     editorial: "p",
+    signature: "span",
     eyebrow: "span",
     caption: "small",
     code: "code",
@@ -132,9 +130,9 @@ const SEMANTIC_COLORS = [
 ] as const;
 
 const COLOR_OPTION_GROUPS = [
-    { label: "Nature", prefix: "--lrz-nature-" },
-    { label: "Faune", prefix: "--lrz-faune-" },
-    { label: "Patrimoine", prefix: "--lrz-patrimoine-" },
+    { label: "Nature", prefix: "--color-nature-" },
+    { label: "Faune", prefix: "--color-" },
+    { label: "Patrimoine", prefix: "--color-patrimoine-" },
 ].map(({ label, prefix }) => ({
     label,
     colors: LRZ_COLOR_NAMES.filter((color) =>
@@ -172,9 +170,9 @@ function escapeText(value: string) {
 function playgroundCode(values: PlaygroundState) {
     const componentName =
         values.component === "breathing"
-            ? "LRZBreathingText"
+            ? "LRZLivingText.BreathingText"
             : values.component === "atmospheric"
-              ? "LRZAtmosphericText"
+              ? "LRZLivingText.AtmosphericText"
               : "LRZTypography";
     const props = [
         `preset="${values.preset}"`,
@@ -351,10 +349,10 @@ export default function LRZTypographyPlayground() {
                                     LRZTypography
                                 </option>
                                 <option value="breathing">
-                                    LRZBreathingText
+                                    LRZLivingText.BreathingText
                                 </option>
                                 <option value="atmospheric">
-                                    LRZAtmosphericText
+                                    LRZLivingText.AtmosphericText
                                 </option>
                             </select>
                         </label>
@@ -434,6 +432,10 @@ export default function LRZTypographyPlayground() {
                                     "body",
                                     "mono",
                                     "editorial",
+                                    "signature",
+                                    "bodoni",
+                                    "grotesk",
+                                    "note",
                                     "inherit",
                                 ].map((font) => (
                                     <option key={font} value={font}>
@@ -544,8 +546,6 @@ export default function LRZTypographyPlayground() {
                             >
                                 {[
                                     "none",
-                                    "gold-leaf",
-                                    "river",
                                     "ink",
                                     "highlight",
                                     "engraved",
@@ -577,6 +577,7 @@ export default function LRZTypographyPlayground() {
                             >
                                 <option value="">Aucun</option>
                                 {[
+                                    "gold-leaf",
                                     "royal",
                                     "river",
                                     "sunset",
@@ -993,22 +994,22 @@ export default function LRZTypographyPlayground() {
                             data-playing={values.playing}
                         >
                             {values.component === "breathing" ? (
-                                <LRZBreathingText
+                                <LRZLivingText.BreathingText
                                     {...previewProps}
                                     rhythm={values.breathingRhythm}
                                     intensity={values.livingIntensity}
                                     duration={values.breathingDuration}
                                 >
                                     {values.content}
-                                </LRZBreathingText>
+                                </LRZLivingText.BreathingText>
                             ) : values.component === "atmospheric" ? (
-                                <LRZAtmosphericText
+                                <LRZLivingText.AtmosphericText
                                     {...previewProps}
                                     ambiance={values.ambiance}
                                     intensity={values.livingIntensity}
                                 >
                                     {values.content}
-                                </LRZAtmosphericText>
+                                </LRZLivingText.AtmosphericText>
                             ) : (
                                 <LRZTypography {...previewProps}>
                                     {values.content}

@@ -19,7 +19,7 @@
             var(--callout-accent-soft),
             transparent 58%
         ),
-        color-mix(in srgb, var(--bg-surface) 96%, transparent);
+        color-mix(in srgb, var(--color-ambiance-surface) 96%, transparent);
     box-shadow:
         0 1px 2px rgb(35 29 22 / 4%),
         0 8px 24px rgb(35 29 22 / 5%);
@@ -51,7 +51,7 @@
         color-mix(in srgb, var(--callout-accent) 36%, transparent);
     border-radius: 999px;
     background:
-        color-mix(in srgb, var(--callout-accent) 10%, var(--bg-surface));
+        color-mix(in srgb, var(--callout-accent) 10%, var(--color-ambiance-surface));
     color: var(--callout-accent);
     font-family: var(--font-mono);
     font-size: 0.72rem;
@@ -60,7 +60,7 @@
 }
 
 .title {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-family: var(--font-body);
     font-size: 0.82rem;
     font-weight: 700;
@@ -69,7 +69,7 @@
 }
 
 .content {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.9rem;
     line-height: 1.72;
@@ -98,7 +98,7 @@
 }
 
 .content strong {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-weight: 650;
 }
 

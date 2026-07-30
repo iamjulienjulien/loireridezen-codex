@@ -7,7 +7,7 @@
 
 .header {
     position: relative;
-    padding-block: clamp(1.8rem, 4vw, 3.25rem) clamp(1.25rem, 2.5vw, 1.8rem);
+    padding-bottom: 2.25rem;
 }
 
 .identity {
@@ -48,12 +48,19 @@
     gap: 0.75rem 1rem;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid
-        color-mix(in srgb, var(--territoire-accent) 24%, var(--border-subtle));
+    padding-bottom: 0rem;
 }
 
-.eyebrow,
+.eyebrow {
+    margin: 0;
+    color: var(--territoire-accent-lighter);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
 .details dt {
     margin: 0;
     color: var(--territoire-accent-lighter);
@@ -70,22 +77,16 @@
     align-items: baseline;
     margin: 0;
     padding: 0.26rem 0.45rem;
-    border: 1px solid
-        color-mix(in srgb, var(--territoire-accent-lighter) 45%, transparent);
-    color: var(--text-secondary);
-    background: color-mix(
-        in srgb,
-        var(--territoire-accent-lighter) 8%,
-        transparent
-    );
+    color: var(--territoire-color);
     font-family: var(--font-mono);
-    font-size: 0.57rem;
+    font-size: 0.85rem;
     letter-spacing: 0.09em;
     line-height: 1;
     text-transform: uppercase;
     white-space: nowrap;
 }
 
+.eyebrow strong,
 .count strong {
     color: var(--territoire-accent-lighter);
     font-size: 0.9rem;
@@ -99,7 +100,7 @@
 .title {
     max-width: 14ch;
     margin: 0;
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 6vw, 4.65rem);
     font-weight: 500;
@@ -113,7 +114,7 @@
     color: color-mix(
         in srgb,
         var(--territoire-accent-lighter) 92%,
-        var(--text-primary)
+        var(--color-ambiance-texte-primaire)
     );
     font-family: var(--font-edit, var(--font-display));
     font-size: clamp(1rem, 2vw, 1.3rem);
@@ -151,7 +152,7 @@
 
 .details dd {
     margin: 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-edit, var(--font-display));
     font-size: 0.88rem;
     line-height: 1.4;

@@ -80,15 +80,15 @@ const INITIAL_STATE: PlaygroundState = {
 const COLOR_OPTION_GROUPS = [
     {
         label: "Nature",
-        prefix: "--lrz-nature-",
+        prefix: "--color-nature-",
     },
     {
         label: "Faune",
-        prefix: "--lrz-faune-",
+        prefix: "--color-",
     },
     {
         label: "Patrimoine",
-        prefix: "--lrz-patrimoine-",
+        prefix: "--color-patrimoine-",
     },
 ].map(({ label, prefix }) => ({
     label,

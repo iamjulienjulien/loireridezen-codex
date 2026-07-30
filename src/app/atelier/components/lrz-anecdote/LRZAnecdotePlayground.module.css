@@ -3,7 +3,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -35,7 +35,7 @@
 .header p:last-child {
     max-width: 55ch;
     margin: 0.55rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -46,7 +46,7 @@
     padding: 0.55rem 0.75rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     background: var(--bg-overlay);
     font-family: var(--font-mono);
     font-size: 0.68rem;
@@ -87,14 +87,14 @@
 
 .control > span,
 .control > label {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.7rem;
 }
 
 .control strong {
     margin-left: 0.35rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-body);
     font-size: 0.63rem;
     font-weight: 400;
@@ -115,7 +115,7 @@
     padding: 0 0.6rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     background: var(--bg-overlay);
     font-family: var(--font-display);
     font-size: 1rem;
@@ -149,8 +149,8 @@
     padding: 0.55rem 0.65rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-primary);
-    background: var(--bg-elevated);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-elevation);
     font-family: var(--font-body);
     font-size: 0.8rem;
 }
@@ -161,7 +161,7 @@
 }
 
 .controlHelp {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-body);
     font-size: 0.65rem;
     line-height: 1.4;
@@ -178,7 +178,7 @@
     background:
         linear-gradient(var(--border-subtle) 1px, transparent 1px),
         linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
-        var(--bg-main);
+        var(--color-ambiance-fond);
     background-size: 24px 24px;
 }
 
@@ -195,7 +195,7 @@
 .outputLabel {
     display: block;
     margin-bottom: 1rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     letter-spacing: 0.12em;
@@ -211,12 +211,12 @@
     overflow: hidden;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 82%, transparent);
 }
 
 .colorNotice {
     margin: 0.75rem 0 0;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-body);
     font-size: 0.72rem;
 }
@@ -232,8 +232,8 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-surface);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.65;

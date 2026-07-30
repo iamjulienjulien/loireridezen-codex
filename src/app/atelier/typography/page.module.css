@@ -1,0 +1,266 @@
+.card {
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-ambiance-fond);
+}
+
+.meta {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.8rem;
+}
+
+.meta strong {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 550;
+}
+
+.meta > span {
+    color: var(--color-ambiance-texte-secondaire);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.meta code {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    overflow-wrap: anywhere;
+}
+
+.specimen,
+.rule {
+    display: grid;
+    min-height: 8.5rem;
+    align-content: center;
+    padding: 1rem;
+    background: var(--color-ambiance-fond);
+}
+
+.specimen {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.familyIntro {
+    max-width: 62ch;
+    margin: 1.25rem 0 0;
+    color: var(--color-ambiance-texte-secondaire);
+    line-height: 1.65;
+}
+
+.fontList {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.fontCard {
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.6fr) minmax(0, 1.4fr);
+}
+
+.fontCard .specimen {
+    grid-column: 1;
+    grid-row: 1;
+    border-right: 1px solid var(--border-subtle);
+}
+
+.fontCard .meta {
+    grid-column: 1;
+    grid-row: 2;
+    border-right: 1px solid var(--border-subtle);
+}
+
+.fontDetails {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0.65rem 0 0.3rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.fontDetails div {
+    display: grid;
+    gap: 0.16rem;
+}
+
+.fontDetails dt {
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.fontDetails dd {
+    margin: 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-size: 0.74rem;
+    line-height: 1.45;
+}
+
+.fontReference {
+    display: grid;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    min-width: 0;
+    gap: 1.25rem;
+    padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.referenceLabel {
+    margin: 0 0 0.65rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.tableWrap {
+    overflow-x: auto;
+}
+
+.characterTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.characterTable th,
+.characterTable td {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    text-align: left;
+}
+
+.characterTable tr:last-child th,
+.characterTable tr:last-child td {
+    border-bottom: 0;
+}
+
+.characterTable th {
+    width: 8rem;
+    padding-right: 1rem;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 400;
+}
+
+.characterTable td {
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+    white-space: nowrap;
+}
+
+.fontLab {
+    display: grid;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.sizeSamples,
+.weightSamples {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.sizeSamples > div {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+}
+
+.sizeSamples > div > span {
+    flex: 0 0 auto;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+}
+
+.weightSamples {
+    align-content: start;
+}
+
+.weightSamples > div {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+}
+
+.weightSamples > div > span {
+    flex: 0 0 auto;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+}
+
+.presetList {
+    display: grid;
+    gap: 0;
+    margin-top: 1.25rem;
+}
+
+.preset {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, 0.35fr);
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.preset:first-child {
+    padding-top: 0;
+}
+
+.preset:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.preset > div {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.preset p {
+    margin: 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+    .fontCard {
+        grid-template-columns: 1fr;
+    }
+
+    .fontCard .specimen {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: 8.5rem;
+        border-right: 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .fontCard .meta {
+        grid-column: auto;
+        grid-row: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .fontReference {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .preset {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+}

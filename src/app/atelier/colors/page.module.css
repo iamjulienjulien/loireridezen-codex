@@ -1,0 +1,33 @@
+.swatch {
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-ambiance-fond);
+}
+.color {
+    display: flex;
+    min-height: 7.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.8rem;
+    color: #fff;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 40%);
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+}
+.meta {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.8rem;
+}
+.meta strong {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 550;
+}
+.meta code {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    overflow-wrap: anywhere;
+}

@@ -7,8 +7,8 @@
 .page {
     min-height: 100dvh;
     overflow-x: hidden;
-    color: var(--text-primary);
-    background-color: var(--bg-main);
+    color: var(--color-ambiance-texte-primaire);
+    background-color: var(--color-ambiance-fond);
     background-image: var(--ambient-glow);
 }
 
@@ -26,7 +26,7 @@
 .back {
     display: inline-flex;
     margin-bottom: 2.5rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 0.06em;
@@ -66,7 +66,7 @@
 .lede {
     max-width: 64rem;
     margin: 1.25rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: clamp(1rem, 2vw, 1.15rem);
     line-height: 1.7;
@@ -90,7 +90,7 @@
     padding: clamp(1.25rem, 3vw, 2rem);
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -107,7 +107,7 @@
 
 .mainExamplePreview > p:not(.kicker) {
     margin: 0.65rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -126,7 +126,7 @@
     background:
         linear-gradient(var(--border-subtle) 1px, transparent 1px),
         linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
-        var(--bg-main);
+        var(--color-ambiance-fond);
     background-size: 24px 24px;
 }
 
@@ -137,8 +137,8 @@
     padding: clamp(1rem, 3vw, 1.5rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-main);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-fond);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.65;
@@ -157,7 +157,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -176,7 +176,7 @@
 .sectionHeader > p:last-child {
     max-width: 58ch;
     margin: 0.55rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -200,7 +200,7 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--bg-surface) 94%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
 }
 
 .presetHeader {
@@ -219,14 +219,14 @@
 
 .presetHeader code {
     flex: 0 0 auto;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.64rem;
 }
 
 .presetDescription {
     margin: 0.45rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.78rem;
     line-height: 1.55;
@@ -242,7 +242,7 @@
     overflow: hidden;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -262,7 +262,7 @@
     padding: clamp(1.25rem, 3vw, 2rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--bg-surface) 94%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
 }
 
 .groupHeader h3 {
@@ -275,7 +275,7 @@
 
 .groupHeader p {
     margin: 0.65rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -308,13 +308,13 @@
 }
 
 .exampleName {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.8rem;
 }
 
 .exampleMeta code {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.64rem;
 }
@@ -328,7 +328,7 @@
     padding: 0.5rem;
     overflow: hidden;
     border-radius: var(--radius-md);
-    background: var(--bg-main);
+    background: var(--color-ambiance-fond);
 }
 
 .verticalExamplePreview {
@@ -344,7 +344,7 @@
     overflow: hidden;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
-    background: var(--bg-surface);
+    background: var(--color-ambiance-surface);
     box-shadow: var(--shadow-card);
 }
 
@@ -367,7 +367,7 @@
 .header p:last-child {
     max-width: 55ch;
     margin: 0.55rem 0 0;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.84rem;
     line-height: 1.6;
@@ -378,7 +378,7 @@
     padding: 0.55rem 0.75rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     background: var(--bg-overlay);
     font-family: var(--font-mono);
     font-size: 0.68rem;
@@ -439,7 +439,7 @@
 
 .control > span,
 .checkboxControl > span {
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
     font-size: 0.7rem;
 }
@@ -447,7 +447,7 @@
 .control strong,
 .checkboxControl strong {
     margin-left: 0.35rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-body);
     font-size: 0.63rem;
     font-style: normal;
@@ -461,8 +461,8 @@
     padding: 0.55rem 0.65rem;
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
-    color: var(--text-primary);
-    background: var(--bg-elevated);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-elevation);
     font-family: var(--font-body);
     font-size: 0.8rem;
 }
@@ -495,7 +495,7 @@
     background:
         linear-gradient(var(--border-subtle) 1px, transparent 1px),
         linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
-        var(--bg-main);
+        var(--color-ambiance-fond);
     background-size: 24px 24px;
 }
 
@@ -512,7 +512,7 @@
 .outputLabel {
     display: block;
     margin-bottom: 1rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.65rem;
     letter-spacing: 0.12em;
@@ -528,7 +528,7 @@
     overflow: hidden;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--bg-surface) 82%, transparent);
+    background: color-mix(in srgb, var(--color-ambiance-surface) 82%, transparent);
 }
 
 .verticalCanvas {
@@ -552,7 +552,7 @@
 
 .resolvedValues dt {
     margin: 0 0 0.25rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-body);
     font-size: 0.64rem;
 }
@@ -560,7 +560,7 @@
 .resolvedValues dd {
     margin: 0;
     overflow: hidden;
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-size: 0.7rem;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -572,7 +572,7 @@
 
 .overrideNotice {
     margin: 0.75rem 0 0;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-body);
     font-size: 0.72rem;
     line-height: 1.55;
@@ -589,8 +589,8 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    color: var(--text-secondary);
-    background: var(--bg-surface);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-surface);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     line-height: 1.65;
@@ -619,7 +619,7 @@
 .tableScroll td {
     padding: 0.8rem 1rem;
     border-bottom: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
+    color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: 0.75rem;
     line-height: 1.5;
@@ -628,7 +628,7 @@
 }
 
 .tableScroll thead th {
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     background: var(--bg-overlay);
     font-family: var(--font-mono);
     font-size: 0.65rem;
@@ -638,7 +638,7 @@
 }
 
 .tableScroll tbody th {
-    color: var(--text-primary);
+    color: var(--color-ambiance-texte-primaire);
     font-weight: 500;
 }
 
@@ -664,7 +664,7 @@
 
 .colorGroup h3 {
     margin: 0 0 0.8rem;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.68rem;
     font-weight: 500;
@@ -690,7 +690,7 @@
 
 .colorExample code {
     overflow: hidden;
-    color: var(--text-tertiary);
+    color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.62rem;
     text-overflow: ellipsis;
