@@ -81,6 +81,9 @@ export const metadata: Metadata = {
     title: "Loire Ride Zen — Le Codex Ligérien",
     description: "Le codex du fil ligérien, de la source à l'Atlantique.",
     manifest: "/site.webmanifest",
+    verification: {
+        google: "d6xEn7osgIrSXI9ekloZhEOrQKWKqUv_PPRd8gIB6J8",
+    },
     icons: {
         icon: [
             { url: "/favicon.ico", sizes: "any" },
