@@ -640,7 +640,37 @@
 
 .collectionsGrid {
     display: grid;
+    gap: clamp(12px, 2vw, 18px);
+}
+
+.collectionsGrid[data-layout="editorial"] {
+    grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+    align-items: stretch;
+}
+
+.collectionsGrid[data-layout="three-columns"] {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.collectionFeatured {
+    min-height: 100%;
+}
+
+.collectionsSecondary {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: clamp(12px, 2vw, 18px);
+    min-width: 0;
+}
+
+.collectionsSecondary > * {
+    min-height: 0;
+}
+
+.collectionsAdditional {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: clamp(12px, 2vw, 18px);
 }
 
@@ -672,13 +702,34 @@
 }
 
 @media (max-width: 900px) {
-    .collectionsGrid {
+    .collectionsGrid[data-layout="three-columns"] {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
+@media (max-width: 760px) {
+    .collectionsGrid[data-layout="editorial"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .collectionFeatured {
+        grid-column: 1 / -1;
+    }
+
+    .collectionsSecondary {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
+    }
+}
+
 @media (max-width: 600px) {
-    .collectionsGrid {
+    .collectionsGrid[data-layout],
+    .collectionsGrid[data-layout="three-columns"] {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .collectionsSecondary {
         grid-template-columns: minmax(0, 1fr);
     }
 }

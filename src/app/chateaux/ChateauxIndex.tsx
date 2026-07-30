@@ -6,7 +6,10 @@ import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
 
 import PageHeader from "@/components/PageHeader";
-import { COLLECTIONS } from "@/registry/collections";
+import {
+    COLLECTIONS,
+    getCollectionsByIndexForEnv,
+} from "@/registry/collections";
 
 import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
@@ -15,8 +18,6 @@ import { PageControls } from "@/components/PageControls";
 import { CollectionCard } from "@/components/ui/collection-card";
 
 import { getIndex } from "@/registry/indexes";
-import { getCollectionsByIndex } from "@/registry/collections";
-import LRZTypography from "@/components/LRZTypography";
 
 import ChateauxCard from "./ChateauxCard";
 
@@ -42,6 +43,19 @@ const RENOMMEES = [
     { id: "notable", label: "Notable" },
     { id: "confidentiel", label: "Confidentiel" },
 ] as const;
+
+const FEATURED_COLLECTION_SLUG = "incontournables-du-val";
+const SECONDARY_COLLECTION_SLUGS = [
+    "sur-les-traces-des-rois",
+    "chefs-doeuvre-renaissance",
+    "plus-ligeriens",
+] as const;
+
+type CollectionsLayout = "editorial" | "three-columns";
+
+// Option de test conservée : passer à "three-columns" pour comparer les deux
+// agencements sans changer les données ni les variantes de CollectionCard.
+const COLLECTIONS_LAYOUT: CollectionsLayout = "editorial";
 
 const norm = (value: string) =>
     value
@@ -71,7 +85,10 @@ export default function ChateauxIndex({
             chateaux.map((castle) => [castle.slug, castle]),
         );
 
-        return getCollectionsByIndex("chateaux").map((collection) => ({
+        return getCollectionsByIndexForEnv(
+            "chateaux",
+            process.env.NEXT_PUBLIC_CURRENT_ENV,
+        ).map((collection) => ({
             href: collection.href,
 
             data: {
@@ -80,6 +97,8 @@ export default function ChateauxIndex({
                 emoji: collection.mark,
                 sousTitre: collection.subtitle,
                 type: collection.type,
+                accent: collection.accent,
+                customEmoji: collection.customEmoji,
 
                 classement: collection.ranking.map((rankingEntry) => {
                     const castle = castleBySlug.get(rankingEntry.slug);
@@ -93,6 +112,20 @@ export default function ChateauxIndex({
             },
         }));
     }, [chateaux]);
+
+    const featuredCollection = collections.find(
+        ({ data }) => data.slug === FEATURED_COLLECTION_SLUG,
+    );
+    const secondaryCollections = SECONDARY_COLLECTION_SLUGS.flatMap((slug) =>
+        collections.filter(({ data }) => data.slug === slug),
+    );
+    const displayedCollectionSlugs = new Set([
+        featuredCollection?.data.slug,
+        ...secondaryCollections.map(({ data }) => data.slug),
+    ]);
+    const additionalCollections = collections.filter(
+        ({ data }) => !displayedCollectionSlugs.has(data.slug),
+    );
 
     const countFor = (field: "epoque" | "renommee", id: string) =>
         chateaux.filter((castle) => castle[field] === id).length;
@@ -224,29 +257,80 @@ export default function ChateauxIndex({
                 {featureIsEnabled("collections") && (
                     <LRZSection
                         eyebrow="Collections du Codex"
-                        title={
-                            <LRZTypography
-                                preset="heading-2"
-                                gradient="gold-leaf"
-                                motion="typewriter"
-                            >
-                                Explorer les châteaux autrement
-                            </LRZTypography>
-                        }
-                        description="Des forteresses médiévales aux demeures de plaisance, ces collections relient les châteaux par époque, architecture, personnages et façons d’habiter le pouvoir."
-                        tone="tinted"
+                        title="Explorer les châteaux autrement"
+                        // description="Des forteresses médiévales aux demeures de plaisance, ces collections relient les châteaux par époque, architecture, personnages et façons d’habiter le pouvoir."
+                        tone="surface"
                         color="ocre"
                         spacing="sm"
+                        className="mb-10"
                     >
-                        <div className={styles.collectionsGrid}>
-                            {collections.map(({ data, href }) => (
-                                <CollectionCard
-                                    key={data.slug}
-                                    collection={data}
+                        <div
+                            className={styles.collectionsGrid}
+                            data-layout={COLLECTIONS_LAYOUT}
+                        >
+                            {COLLECTIONS_LAYOUT === "three-columns" ? (
+                                collections.map(({ data, href }) => (
+                                                <CollectionCard
+                                                    key={data.slug}
+                                                    collection={data}
                                     href={href}
                                     variant="compact"
                                 />
-                            ))}
+                                ))
+                            ) : (
+                                <>
+                                    {featuredCollection ? (
+                                        <CollectionCard
+                                            collection={featuredCollection.data}
+                                            href={featuredCollection.href}
+                                            variant="featured"
+                                            className={
+                                                styles.collectionFeatured
+                                            }
+                                        />
+                                    ) : null}
+
+                                    {secondaryCollections.length > 0 ? (
+                                        <div
+                                            className={
+                                                styles.collectionsSecondary
+                                            }
+                                        >
+                                            {secondaryCollections.map(
+                                                ({ data, href }) => (
+                                                    <CollectionCard
+                                                        key={data.slug}
+                                                        collection={data}
+                                                        href={href}
+                                                        variant="compact"
+                                                        defaultExpanded={false}
+                                                        stretchHero
+                                                    />
+                                                ),
+                                            )}
+                                        </div>
+                                    ) : null}
+
+                                    {additionalCollections.length > 0 ? (
+                                        <div
+                                            className={
+                                                styles.collectionsAdditional
+                                            }
+                                        >
+                                            {additionalCollections.map(
+                                                ({ data, href }) => (
+                                                    <CollectionCard
+                                                        key={data.slug}
+                                                        collection={data}
+                                                        href={href}
+                                                        variant="default"
+                                                    />
+                                                ),
+                                            )}
+                                        </div>
+                                    ) : null}
+                                </>
+                            )}
                         </div>
                     </LRZSection>
                 )}
@@ -255,7 +339,7 @@ export default function ChateauxIndex({
                     <LRZSection
                         eyebrow="Filtres & repères"
                         title="Choisir son chemin parmi les châteaux"
-                        description="Remonte les siècles, compare les architectures et compose ton propre itinéraire à travers les grandes demeures du val de Loire."
+                        // description="Remonte les siècles, compare les architectures et compose ton propre itinéraire à travers les grandes demeures du val de Loire."
                         tone="surface"
                         color="ocre"
                         spacing="sm"
@@ -267,7 +351,7 @@ export default function ChateauxIndex({
                 <LRZSection
                     eyebrow="Le grand inventaire"
                     title="Tous les châteaux du fil royal"
-                    description="Parcours l’ensemble des forteresses, palais et demeures recensés dans le Codex, des monuments les plus célèbres aux silhouettes plus confidentielles."
+                    // description="Parcours l’ensemble des forteresses, palais et demeures recensés dans le Codex, des monuments les plus célèbres aux silhouettes plus confidentielles."
                     tone="soft"
                     color="ocre"
                     spacing="sm"

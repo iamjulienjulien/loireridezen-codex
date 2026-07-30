@@ -4,6 +4,8 @@
     --collection-accent: var(--gold);
 
     position: relative;
+    display: flex;
+    flex-direction: column;
     min-width: 0;
     overflow: hidden;
     border: 1px solid var(--border-subtle);
@@ -146,7 +148,18 @@
     transition: transform 0.2s ease;
 }
 
+.emoji img {
+    padding: 6px;
+    object-fit: contain;
+    filter: drop-shadow(0 1px 1px rgba(40, 30, 15, 0.12));
+    transition: transform 0.2s ease;
+}
+
 .card:hover .emoji span {
+    transform: scale(1.06) rotate(-2deg);
+}
+
+.card:hover .emoji img {
     transform: scale(1.06) rotate(-2deg);
 }
 
@@ -471,6 +484,10 @@
 .compact .hero {
     min-height: 104px;
     border-bottom: 0;
+}
+
+.compact[data-stretch-hero] .hero {
+    flex: 1;
 }
 
 .compact .emoji {

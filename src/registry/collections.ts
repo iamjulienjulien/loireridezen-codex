@@ -241,8 +241,8 @@ export const COLLECTIONS = [
 
         footerNote: "3 domaines où le paysage prolonge l’architecture",
 
-        etat: "publie",
-        env: ["development", "production"],
+        etat: "brouillon",
+        env: [],
     },
     {
         slug: "chefs-doeuvre-renaissance",
@@ -265,6 +265,8 @@ export const COLLECTIONS = [
         type: "architecture",
         accent: "#795739",
         color: "brun",
+
+        customEmoji: "/emoji/collection/chefs-doeuvre-renaissance.png",
 
         criteria: [
             "importance Renaissance dans le style",
@@ -453,7 +455,7 @@ export const COLLECTIONS = [
         footerNote: "4 détours qui récompensent la curiosité",
 
         etat: "publie",
-        env: ["development", "production"],
+        env: [],
     },
     {
         slug: "sur-les-traces-des-rois",
@@ -476,6 +478,8 @@ export const COLLECTIONS = [
         type: "histoire",
         accent: "#B37A43",
         color: "fauve",
+
+        customEmoji: "/emoji/collection/sur-les-traces-des-rois.png",
 
         criteria: [
             "présence royale dans le commanditaire ou le résumé",

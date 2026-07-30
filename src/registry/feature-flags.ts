@@ -23,9 +23,9 @@ const defineFeatureFlags = <
 export const FEATURE_FLAGS = defineFeatureFlags({
     collections: ["development"],
     indexesCustomEmoji: [],
-    ambianceChateauxVisual: ["development"],
+    ambianceChateauxVisual: [],
     commandPalette: ["development"],
-    territoires: ["development"],
+    territoires: [],
     indexControlsSection: [],
 });
 
