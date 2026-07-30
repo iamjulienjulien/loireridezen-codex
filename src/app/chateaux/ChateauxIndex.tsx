@@ -27,6 +27,7 @@ import { featureIsEnabled } from "@/registry/feature-flags";
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import { TerritoireSection } from "@/components/TerritoireSection";
 import { getTerritoiresWithChateaux } from "@/registry/chateaux-territoires";
+import ChateauxViewportMapSpike from "./ChateauxViewportMapSpike";
 
 const EPOQUES = [
     { id: "all", label: "Tout" },
@@ -171,6 +172,9 @@ export default function ChateauxIndex({
     );
 
     const controlsInOwnSection = featureIsEnabled("indexControlsSection");
+    const viewportMapSpikeEnabled = featureIsEnabled(
+        "chateauxViewportMapSpike",
+    );
     const hasActiveFilters = epoque !== "all" || renommee !== "all" || q !== "";
 
     const resetFilters = () => {
@@ -237,6 +241,33 @@ export default function ChateauxIndex({
         />
     );
 
+    const catalogue =
+        list.length === 0 ? (
+            <p className={styles.empty}>
+                Aucun château à cet endroit du fil. Élargis la recherche ou
+                change de filtre.
+            </p>
+        ) : territoiresEnabled && groupByTerritory ? (
+            <div className={styles.territories}>
+                {territorySections.map(({ territory, chateaux }) => (
+                    <TerritoireSection
+                        key={territory.slug}
+                        territory={territory}
+                        chateaux={chateaux}
+                        mapSync={viewportMapSpikeEnabled}
+                    />
+                ))}
+            </div>
+        ) : (
+            <div className={styles.grid}>
+                {list.map((castle) => (
+                    <div data-chateau-map-slug={castle.slug} key={castle.slug}>
+                        <ChateauxCard d={castle} open={false} />
+                    </div>
+                ))}
+            </div>
+        );
+
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
@@ -271,12 +302,12 @@ export default function ChateauxIndex({
                         >
                             {COLLECTIONS_LAYOUT === "three-columns" ? (
                                 collections.map(({ data, href }) => (
-                                                <CollectionCard
-                                                    key={data.slug}
-                                                    collection={data}
-                                    href={href}
-                                    variant="compact"
-                                />
+                                    <CollectionCard
+                                        key={data.slug}
+                                        collection={data}
+                                        href={href}
+                                        variant="compact"
+                                    />
                                 ))
                             ) : (
                                 <>
@@ -368,33 +399,12 @@ export default function ChateauxIndex({
                     />
                     {!controlsInOwnSection && indexControls}
 
-                    {list.length === 0 ? (
-                        <p className={styles.empty}>
-                            Aucun château à cet endroit du fil. Élargis la
-                            recherche ou change de filtre.
-                        </p>
-                    ) : territoiresEnabled && groupByTerritory ? (
-                        <div className={styles.territories}>
-                            {territorySections.map(
-                                ({ territory, chateaux }) => (
-                                    <TerritoireSection
-                                        key={territory.slug}
-                                        territory={territory}
-                                        chateaux={chateaux}
-                                    />
-                                ),
-                            )}
-                        </div>
+                    {viewportMapSpikeEnabled && list.length > 0 ? (
+                        <ChateauxViewportMapSpike chateaux={list} variant="top">
+                            {catalogue}
+                        </ChateauxViewportMapSpike>
                     ) : (
-                        <div className={styles.grid}>
-                            {list.map((castle) => (
-                                <ChateauxCard
-                                    key={castle.slug}
-                                    d={castle}
-                                    open={false}
-                                />
-                            ))}
-                        </div>
+                        catalogue
                     )}
                 </LRZSection>
 

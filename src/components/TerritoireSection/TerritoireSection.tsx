@@ -19,11 +19,14 @@ type TerritoireSectionStyle = CSSProperties & {
 type TerritoireSectionProps = {
     territory: Territoire;
     chateaux: readonly Chateau[];
+    /** Ajoute un repère DOM pour la synchronisation expérimentale de carte. */
+    mapSync?: boolean;
 };
 
 export default function TerritoireSection({
     territory,
     chateaux,
+    mapSync = false,
 }: TerritoireSectionProps) {
     const { identite, limites } = territory;
 
@@ -104,12 +107,14 @@ export default function TerritoireSection({
 
             <div className={styles.grid}>
                 {chateaux.map((chateau) => (
-                    <ChateauxCard
+                    <div
+                        data-chateau-map-slug={
+                            mapSync ? chateau.slug : undefined
+                        }
                         key={chateau.slug}
-                        d={chateau}
-                        t={territory}
-                        open={false}
-                    />
+                    >
+                        <ChateauxCard d={chateau} t={territory} open={false} />
+                    </div>
                 ))}
             </div>
         </section>
