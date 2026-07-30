@@ -433,6 +433,9 @@ export default function LRZTypographyPlayground() {
                                     "mono",
                                     "editorial",
                                     "signature",
+                                    "bodoni",
+                                    "grotesk",
+                                    "note",
                                     "inherit",
                                 ].map((font) => (
                                     <option key={font} value={font}>

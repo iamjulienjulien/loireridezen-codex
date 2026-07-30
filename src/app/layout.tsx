@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
-import { Allura, Fraunces, Inter, JetBrains_Mono, Lora } from "next/font/google";
+import {
+    Allura,
+    Bodoni_Moda,
+    Fraunces,
+    Inter,
+    JetBrains_Mono,
+    Kalam,
+    Lora,
+    Space_Grotesk,
+} from "next/font/google";
 import Script from "next/script";
 import AmbianceCommandPalette from "@/components/AmbianceCommandPalette";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
@@ -48,6 +57,24 @@ const allura = Allura({
     variable: "--font-signature",
     display: "swap",
 });
+const bodoni = Bodoni_Moda({
+    subsets: ["latin"],
+    weight: "variable",
+    variable: "--font-bodoni",
+    display: "swap",
+});
+const spaceGrotesk = Space_Grotesk({
+    subsets: ["latin"],
+    weight: "variable",
+    variable: "--font-grotesk",
+    display: "swap",
+});
+const kalam = Kalam({
+    subsets: ["latin"],
+    weight: ["300", "400", "700"],
+    variable: "--font-note",
+    display: "swap",
+});
 
 export const metadata: Metadata = {
     title: "Loire Ride Zen — Le Codex Ligérien",
@@ -92,7 +119,7 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${fraunces.variable} ${inter.variable} ${mono.variable} ${lora.variable} ${allura.variable} font-[family-name:var(--font-body)] antialiased`}
+                className={`${fraunces.variable} ${inter.variable} ${mono.variable} ${lora.variable} ${allura.variable} ${bodoni.variable} ${spaceGrotesk.variable} ${kalam.variable} font-[family-name:var(--font-body)] antialiased`}
             >
                 <Script id="lrz-ambiance" strategy="beforeInteractive">
                     {AMBIANCE_INITIALIZATION_SCRIPT}

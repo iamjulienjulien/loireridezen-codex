@@ -4,6 +4,7 @@ import Link from "next/link";
 import LRZTypography, {
     type LRZTypographyFont,
     type LRZTypographyPreset,
+    type LRZTypographyWeight,
 } from "@/components/LRZTypography";
 
 import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
@@ -21,6 +22,10 @@ const FONTS: Array<{
     variable: string;
     role: string;
     sample: string;
+    character: string;
+    idealFor: string;
+    avoid: string;
+    weights: Array<{ label: string; value: LRZTypographyWeight }>;
 }> = [
     {
         font: "display",
@@ -28,6 +33,15 @@ const FONTS: Array<{
         variable: "--font-display",
         role: "Titres, identité et grands repères éditoriaux.",
         sample: "Le fil royal",
+        character: "Serif organique et sculpturale.",
+        idealFor: "Le titre de page, un grand chapitre ou une collection.",
+        avoid: "Les paragraphes longs et les micro-libellés d’interface.",
+        weights: [
+            { label: "Regular", value: "regular" },
+            { label: "Medium", value: "medium" },
+            { label: "Semibold", value: "semibold" },
+            { label: "Bold", value: "bold" },
+        ],
     },
     {
         font: "body",
@@ -35,6 +49,15 @@ const FONTS: Array<{
         variable: "--font-body",
         role: "Lecture courante, contenus et interface.",
         sample: "La Loire relie les paysages.",
+        character: "Sans-serif neutre, très lisible.",
+        idealFor: "Les textes continus, les fiches et les contrôles UI.",
+        avoid: "Les titres à forte personnalité ou les signatures.",
+        weights: [
+            { label: "Regular", value: "regular" },
+            { label: "Medium", value: "medium" },
+            { label: "Semibold", value: "semibold" },
+            { label: "Bold", value: "bold" },
+        ],
     },
     {
         font: "editorial",
@@ -42,6 +65,15 @@ const FONTS: Array<{
         variable: "--font-edit",
         role: "Récits, notes sensibles et introductions.",
         sample: "La pierre garde la mémoire du fleuve.",
+        character: "Serif littéraire, souple et chaleureuse.",
+        idealFor: "Une introduction, une citation ou une note de contexte.",
+        avoid: "Les données compactes et les textes fonctionnels.",
+        weights: [
+            { label: "Regular", value: "regular" },
+            { label: "Medium", value: "medium" },
+            { label: "Semibold", value: "semibold" },
+            { label: "Bold", value: "bold" },
+        ],
     },
     {
         font: "mono",
@@ -49,6 +81,15 @@ const FONTS: Array<{
         variable: "--font-mono",
         role: "Données, légendes, labels et métadonnées.",
         sample: "CHÂTEAUX · 52 LIEUX",
+        character: "Monospace précis et technique.",
+        idealFor: "Les compteurs, tokens, dates, labels et légendes.",
+        avoid: "Toute lecture longue ou un titre éditorial.",
+        weights: [
+            { label: "Regular", value: "regular" },
+            { label: "Medium", value: "medium" },
+            { label: "Semibold", value: "semibold" },
+            { label: "Bold", value: "bold" },
+        ],
     },
     {
         font: "signature",
@@ -56,8 +97,67 @@ const FONTS: Array<{
         variable: "--font-signature",
         role: "Signature, crédit de création et touche manuscrite.",
         sample: "Julien Julien",
+        character: "Script fluide, cérémoniel et personnel.",
+        idealFor: "Une signature courte, isolée et généreusement espacée.",
+        avoid: "Les annotations, les titres et les textes de contenu.",
+        weights: [{ label: "Regular", value: "regular" }],
+    },
+    {
+        font: "bodoni",
+        name: "Bodoni Moda",
+        variable: "--font-bodoni",
+        role: "Éditorial précieux, citations et collections d’exception.",
+        sample: "Un art de vivre",
+        character: "Didone contrastée, raffinée et graphique.",
+        idealFor: "Une citation, une couverture ou une collection premium.",
+        avoid: "Les petites tailles et les surfaces textuelles denses.",
+        weights: [
+            { label: "Regular", value: "regular" },
+            { label: "Medium", value: "medium" },
+            { label: "Semibold", value: "semibold" },
+            { label: "Bold", value: "bold" },
+        ],
+    },
+    {
+        font: "grotesk",
+        name: "Space Grotesk",
+        variable: "--font-grotesk",
+        role: "Accent contemporain, données et interface expressive.",
+        sample: "52 CHÂTEAUX",
+        character: "Grotesk géométrique, nette et actuelle.",
+        idealFor: "Les chiffres-clés, accroches et composants exploratoires.",
+        avoid: "Le corps de texte quand Inter suffit à mieux respirer.",
+        weights: [
+            { label: "Regular", value: "regular" },
+            { label: "Medium", value: "medium" },
+            { label: "Semibold", value: "semibold" },
+            { label: "Bold", value: "bold" },
+        ],
+    },
+    {
+        font: "note",
+        name: "Kalam",
+        variable: "--font-note",
+        role: "Notes de carnet, annotations et repères personnels.",
+        sample: "À suivre le long du fleuve",
+        character: "Manuscrite franche, vivante et très lisible.",
+        idealFor: "Une annotation, un conseil ou un repère de parcours.",
+        avoid: "Les crédits formels, réservés à Allura, et les longs textes.",
+        weights: [
+            { label: "Regular", value: "regular" },
+            { label: "Bold", value: "bold" },
+        ],
     },
 ];
+
+const CHARACTER_ROWS = [
+    ["Majuscules", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"],
+    ["Minuscules", "abcdefghijklmnopqrstuvwxyz"],
+    ["Chiffres", "0123456789"],
+    ["Accents & signes", "ÀÉÎÖÙ àéîöù · & / — ! ? % €"],
+] as const;
+
+const SIZE_SAMPLES = ["xs", "md", "xl", "2xl"] as const;
 
 const PRESETS: Array<{
     preset: LRZTypographyPreset;
@@ -119,12 +219,17 @@ export default function AtelierTypographyPage() {
                 <section className="atelier-section-card">
                     <header className="atelier-section-header">
                         <p className="atelier-kicker">Familles</p>
-                        <h2>Les cinq voix du Codex</h2>
+                        <h2>Les huit voix du Codex</h2>
                         <span>{FONTS.length} familles</span>
                     </header>
-                    <div className="atelier-card-grid">
+                    <p className={styles.familyIntro}>
+                        Chaque famille possède un territoire précis. Choisis-la
+                        pour son rôle et sa texture, jamais comme un simple
+                        changement décoratif.
+                    </p>
+                    <div className={styles.fontList}>
                         {FONTS.map((font) => (
-                            <article className={styles.card} key={font.font}>
+                            <article className={`${styles.card} ${styles.fontCard}`} key={font.font}>
                                 <div className={styles.specimen}>
                                     <LRZTypography font={font.font} as="span">
                                         {font.sample}
@@ -133,8 +238,77 @@ export default function AtelierTypographyPage() {
                                 <div className={styles.meta}>
                                     <strong>{font.name}</strong>
                                     <span>{font.role}</span>
+                                    <dl className={styles.fontDetails}>
+                                        <div>
+                                            <dt>Caractère</dt>
+                                            <dd>{font.character}</dd>
+                                        </div>
+                                        <div>
+                                            <dt>À privilégier</dt>
+                                            <dd>{font.idealFor}</dd>
+                                        </div>
+                                        <div>
+                                            <dt>À éviter</dt>
+                                            <dd>{font.avoid}</dd>
+                                        </div>
+                                    </dl>
                                     <code>{font.variable}</code>
-                                    <code>{`font="${font.font}"`}</code>
+                                    <code>{`<LRZTypography font="${font.font}">…</LRZTypography>`}</code>
+                                </div>
+                                <div className={styles.fontReference}>
+                                    <div>
+                                        <p className={styles.referenceLabel}>
+                                            Jeu de caractères
+                                        </p>
+                                        <div className={styles.tableWrap}>
+                                            <table className={styles.characterTable}>
+                                                <tbody>
+                                                    {CHARACTER_ROWS.map(([label, characters]) => (
+                                                        <tr key={label}>
+                                                            <th scope="row">{label}</th>
+                                                            <td>
+                                                                <LRZTypography font={font.font} as="span">
+                                                                    {characters}
+                                                                </LRZTypography>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div className={styles.fontLab}>
+                                        <div>
+                                            <p className={styles.referenceLabel}>
+                                                Tailles · xs à 6xl
+                                            </p>
+                                            <div className={styles.sizeSamples}>
+                                                {SIZE_SAMPLES.map((size) => (
+                                                    <div key={size}>
+                                                        <span>{size}</span>
+                                                        <LRZTypography font={font.font} size={size} as="span">
+                                                            La Loire dessine le paysage
+                                                        </LRZTypography>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p className={styles.referenceLabel}>
+                                                Graisses disponibles
+                                            </p>
+                                                <div className={styles.weightSamples}>
+                                                {font.weights.map((weight) => (
+                                                    <div key={weight.value}>
+                                                        <span>{weight.value}</span>
+                                                        <LRZTypography font={font.font} weight={weight.value} as="span">
+                                                            {weight.label} · La Loire dessine le paysage
+                                                        </LRZTypography>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </article>
                         ))}

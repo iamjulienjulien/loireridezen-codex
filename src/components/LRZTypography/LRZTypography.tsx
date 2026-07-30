@@ -38,7 +38,15 @@ export type LRZTypographyElement =
     | "label";
 
 export type LRZTypographyFont =
-    "display" | "body" | "mono" | "editorial" | "signature" | "inherit";
+    | "display"
+    | "body"
+    | "mono"
+    | "editorial"
+    | "signature"
+    | "bodoni"
+    | "grotesk"
+    | "note"
+    | "inherit";
 
 export type LRZTypographySize =
     "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";

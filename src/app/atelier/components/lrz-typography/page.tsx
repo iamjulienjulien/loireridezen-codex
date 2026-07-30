@@ -96,6 +96,9 @@ const FONTS: Array<{
     { font: "mono", label: "JetBrains Mono", role: "Données et labels" },
     { font: "editorial", label: "Lora", role: "Voix sensible" },
     { font: "signature", label: "Allura", role: "Signature manuscrite" },
+    { font: "bodoni", label: "Bodoni Moda", role: "Éditorial précieux" },
+    { font: "grotesk", label: "Space Grotesk", role: "Accent contemporain" },
+    { font: "note", label: "Kalam", role: "Note de carnet" },
 ];
 
 const EFFECTS: Array<{

@@ -137,6 +137,20 @@
     letter-spacing: normal;
 }
 
+.typography[data-font="bodoni"] {
+    font-family: var(--font-bodoni, var(--font-display));
+}
+
+.typography[data-font="grotesk"] {
+    font-family: var(--font-grotesk, var(--font-body));
+}
+
+.typography[data-font="note"] {
+    font-family: var(--font-note, var(--font-signature));
+    font-weight: 400;
+    letter-spacing: normal;
+}
+
 .typography[data-font="inherit"] {
     font-family: inherit;
 }
