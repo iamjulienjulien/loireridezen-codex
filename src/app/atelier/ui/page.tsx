@@ -9,6 +9,7 @@ const COMPONENTS = [
     ["LRZAccordion", "/atelier/components/lrz-accordion"],
     ["LRZChip", "/atelier/components/lrz-chip"],
     ["LRZCompteur", "/atelier/components/lrz-compteur"],
+    ["LRZTooltip", "/atelier/components/lrz-tooltip"],
     ["LRZFilterChip", "/atelier/components/lrz-filter-chip"],
     ["LRZFilterGroup", "/atelier/components/lrz-filter-group"],
     ["LRZSeparateur", "/atelier/components/lrz-separateur"],

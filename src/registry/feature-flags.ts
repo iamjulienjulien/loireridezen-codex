@@ -30,6 +30,7 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     indexControlsSection: [],
     chateauxViewportMapSpike: [],
     chateauxInteractiveMap: ["development"],
+    personnages: ["development"],
 });
 
 export type FeatureFlagName = keyof typeof FEATURE_FLAGS;

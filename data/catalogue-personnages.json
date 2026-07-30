@@ -1,0 +1,1711 @@
+{
+    "meta": {
+        "titre": "Encyclopédie des personnages du Codex ligérien",
+        "source": "Loire Ride Zen — le fil royal",
+        "maj": "2026-07-25",
+        "schemaVersion": "1.0.0",
+        "description": "Catalogue normalisé des personnages liés aux châteaux de la Loire. Les relations constituent la source de vérité pour les liens vers les lieux.",
+        "nombrePersonnages": 74,
+        "nombreRelations": 96,
+        "taxonomie": {
+            "categories": "catégorie éditoriale principale conservée depuis la source",
+            "typesRelation": [
+                "commande",
+                "construction",
+                "propriete",
+                "residence",
+                "sejour",
+                "visite",
+                "captivite",
+                "protection",
+                "restauration",
+                "inspiration",
+                "evocation_litteraire",
+                "architecture",
+                "performance",
+                "inhumation",
+                "evenement",
+                "fondation",
+                "gestion",
+                "contexte"
+            ]
+        }
+    },
+    "personnages": [
+        {
+            "id": "agnes-sorel",
+            "nom": "Agnès Sorel",
+            "autresNoms": ["la Dame de Beauté"],
+            "categoriePrincipale": "courtisan",
+            "roles": ["favorite de Charles VII"],
+            "tags": ["femme", "inhumation", "royaute"]
+        },
+        {
+            "id": "albert-stapfer",
+            "nom": "Albert Stapfer",
+            "autresNoms": [],
+            "categoriePrincipale": "ecrivain",
+            "roles": ["traducteur et homme de lettres"],
+            "tags": ["litterature", "xixe-siecle"]
+        },
+        {
+            "id": "alexandre-dumas",
+            "nom": "Alexandre Dumas",
+            "autresNoms": [],
+            "categoriePrincipale": "ecrivain",
+            "roles": ["romancier"],
+            "tags": ["culture-populaire", "litterature", "roman"]
+        },
+        {
+            "id": "ann-coleman",
+            "nom": "Ann Coleman",
+            "autresNoms": [],
+            "categoriePrincipale": "mecene",
+            "roles": ["propriétaire et mécène"],
+            "tags": ["femme", "jardins", "mecenat"]
+        },
+        {
+            "id": "anne-de-bretagne",
+            "nom": "Anne de Bretagne",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": [
+                "duchesse de Bretagne et reine de France",
+                "reine de France",
+                "reine de France et duchesse de Bretagne"
+            ],
+            "tags": ["batisseuse", "bretagne", "femme", "mariage", "royaute"]
+        },
+        {
+            "id": "anne-de-france",
+            "nom": "Anne de France",
+            "autresNoms": ["Anne de Beaujeu"],
+            "categoriePrincipale": "souverain",
+            "roles": ["princesse et régente de France"],
+            "tags": ["batisseuse", "femme", "renaissance", "royaute"]
+        },
+        {
+            "id": "arthur-de-biencourt",
+            "nom": "Armand-François-Marie de Biencourt",
+            "autresNoms": ["Marquis de Biencourt"],
+            "categoriePrincipale": "noble",
+            "roles": ["propriétaire"],
+            "tags": ["restauration", "xixe-siecle"]
+        },
+        {
+            "id": "bernard-salviati",
+            "nom": "Bernard Salviati",
+            "autresNoms": [],
+            "categoriePrincipale": "marchand",
+            "roles": ["banquier florentin"],
+            "tags": ["batisseur", "florence", "renaissance"]
+        },
+        {
+            "id": "blanche-de-castille",
+            "nom": "Blanche de Castille",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["reine de France et régente"],
+            "tags": ["batisseuse", "femme", "moyen-age", "royaute"]
+        },
+        {
+            "id": "cassandre-salviati",
+            "nom": "Cassandre Salviati",
+            "autresNoms": [],
+            "categoriePrincipale": "muse",
+            "roles": ["figure littéraire"],
+            "tags": ["femme", "poesie", "renaissance"]
+        },
+        {
+            "id": "catherine-de-medicis",
+            "nom": "Catherine de Médicis",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["reine de France"],
+            "tags": ["femme", "renaissance", "royaute"]
+        },
+        {
+            "id": "charles-ii-de-cosse",
+            "nom": "Charles II de Cossé",
+            "autresNoms": ["maréchal de Brissac"],
+            "categoriePrincipale": "militaire",
+            "roles": ["maréchal de France"],
+            "tags": ["cosse-brissac", "militaire", "renaissance"]
+        },
+        {
+            "id": "charles-premier-d-amboise",
+            "nom": "Charles Ier d’Amboise",
+            "autresNoms": [],
+            "categoriePrincipale": "noble",
+            "roles": ["gouverneur de Champagne"],
+            "tags": ["batisseur", "famille-amboise", "gothique"]
+        },
+        {
+            "id": "charles-perrault",
+            "nom": "Charles Perrault",
+            "autresNoms": [],
+            "categoriePrincipale": "ecrivain",
+            "roles": ["auteur de contes"],
+            "tags": ["conte", "legende", "litterature"]
+        },
+        {
+            "id": "charles-vii",
+            "nom": "Charles VII",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi de France"],
+            "tags": ["guerre-de-cent-ans", "moyen-age", "royaute"]
+        },
+        {
+            "id": "charles-viii",
+            "nom": "Charles VIII",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi de France"],
+            "tags": ["batisseur", "bretagne", "gothique", "mariage", "royaute"]
+        },
+        {
+            "id": "charles-de-chambes",
+            "nom": "Charles de Chambes",
+            "autresNoms": [],
+            "categoriePrincipale": "noble",
+            "roles": ["comte de Montsoreau"],
+            "tags": ["drame", "guerres-de-religion", "proprietaire"]
+        },
+        {
+            "id": "charles-maurice-de-talleyrand",
+            "nom": "Charles-Maurice de Talleyrand-Périgord",
+            "autresNoms": ["Talleyrand"],
+            "categoriePrincipale": "homme-etat",
+            "roles": ["diplomate et ministre"],
+            "tags": ["diplomatie", "empire", "proprietaire"]
+        },
+        {
+            "id": "diane-de-poitiers",
+            "nom": "Diane de Poitiers",
+            "autresNoms": [],
+            "categoriePrincipale": "courtisan",
+            "roles": ["favorite d’Henri II"],
+            "tags": ["amenageuse", "femme", "proprietaire", "renaissance"]
+        },
+        {
+            "id": "ferdinand-vii",
+            "nom": "Ferdinand VII",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi d’Espagne"],
+            "tags": ["captivite", "empire", "espagne"]
+        },
+        {
+            "id": "foulques-nerra",
+            "nom": "Foulques Nerra",
+            "autresNoms": ["Foulques III d’Anjou"],
+            "categoriePrincipale": "noble",
+            "roles": ["comte d’Anjou"],
+            "tags": ["anjou", "batisseur", "moyen-age"]
+        },
+        {
+            "id": "francois-ii-de-bretagne",
+            "nom": "François II de Bretagne",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["duc de Bretagne"],
+            "tags": ["batisseur", "bretagne", "moyen-age"]
+        },
+        {
+            "id": "francois-premier",
+            "nom": "François Ier",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi de France"],
+            "tags": [
+                "batisseur",
+                "chambord",
+                "mecenat",
+                "renaissance",
+                "royaute"
+            ]
+        },
+        {
+            "id": "francois-villon",
+            "nom": "François Villon",
+            "autresNoms": [],
+            "categoriePrincipale": "ecrivain",
+            "roles": ["poète"],
+            "tags": ["litterature", "moyen-age", "prison"]
+        },
+        {
+            "id": "francois-de-beauvau",
+            "nom": "François de Beauvau",
+            "autresNoms": [],
+            "categoriePrincipale": "militaire",
+            "roles": ["capitaine de François Ier"],
+            "tags": ["militaire", "proprietaire", "renaissance"]
+        },
+        {
+            "id": "gaspard-d-estampes",
+            "nom": "Gaspard d’Estampes",
+            "autresNoms": [],
+            "categoriePrincipale": "noble",
+            "roles": ["seigneur de Valençay"],
+            "tags": ["batisseur", "renaissance"]
+        },
+        {
+            "id": "gaston-d-orleans",
+            "nom": "Gaston d’Orléans",
+            "autresNoms": [],
+            "categoriePrincipale": "prince",
+            "roles": ["frère de Louis XIII"],
+            "tags": ["batisseur", "classicisme", "prince"]
+        },
+        {
+            "id": "gilles-berthelot",
+            "nom": "Gilles Berthelot",
+            "autresNoms": [],
+            "categoriePrincipale": "homme-etat",
+            "roles": ["trésorier de France"],
+            "tags": ["batisseur", "finance", "renaissance"]
+        },
+        {
+            "id": "henri-hurault",
+            "nom": "Henri Hurault",
+            "autresNoms": [],
+            "categoriePrincipale": "noble",
+            "roles": ["comte de Cheverny"],
+            "tags": ["batisseur", "classicisme", "proprietaire"]
+        },
+        {
+            "id": "henri-ii-plantagenet",
+            "nom": "Henri II Plantagenêt",
+            "autresNoms": ["Henri II d’Angleterre"],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi d’Angleterre"],
+            "tags": ["angleterre", "moyen-age", "plantagenet"]
+        },
+        {
+            "id": "herge",
+            "nom": "Hergé",
+            "autresNoms": ["Georges Remi"],
+            "categoriePrincipale": "artiste",
+            "roles": ["auteur de bande dessinée"],
+            "tags": ["bande-dessinee", "culture-populaire", "tintin"]
+        },
+        {
+            "id": "honore-de-balzac",
+            "nom": "Honoré de Balzac",
+            "autresNoms": [],
+            "categoriePrincipale": "ecrivain",
+            "roles": ["romancier"],
+            "tags": ["description", "litterature", "romantisme"]
+        },
+        {
+            "id": "jacques-siegfried",
+            "nom": "Jacques Siegfried",
+            "autresNoms": [],
+            "categoriePrincipale": "mecene",
+            "roles": ["banquier et collectionneur"],
+            "tags": ["collection", "restauration", "xixe-siecle"]
+        },
+        {
+            "id": "jean-ii-de-chambes",
+            "nom": "Jean II de Chambes",
+            "autresNoms": [],
+            "categoriePrincipale": "homme-etat",
+            "roles": ["conseiller de Charles VII et Louis XI"],
+            "tags": ["batisseur", "moyen-age", "royaute"]
+        },
+        {
+            "id": "jean-le-breton",
+            "nom": "Jean Le Breton",
+            "autresNoms": [],
+            "categoriePrincipale": "homme-etat",
+            "roles": [
+                "ministre des Finances de François Ier",
+                "secrétaire des finances de François Ier"
+            ],
+            "tags": ["batisseur", "chambord", "renaissance"]
+        },
+        {
+            "id": "jean-v-de-bueil",
+            "nom": "Jean V de Bueil",
+            "autresNoms": ["le Fléau des Anglais"],
+            "categoriePrincipale": "militaire",
+            "roles": ["capitaine de Charles VII"],
+            "tags": ["batisseur", "guerre-de-cent-ans", "moyen-age"]
+        },
+        {
+            "id": "jean-de-berry",
+            "nom": "Jean de Berry",
+            "autresNoms": [],
+            "categoriePrincipale": "prince",
+            "roles": ["duc de Berry et mécène"],
+            "tags": ["enluminure", "mecenat", "moyen-age"]
+        },
+        {
+            "id": "jean-de-villebresme",
+            "nom": "Jean de Villebresme",
+            "autresNoms": [],
+            "categoriePrincipale": "noble",
+            "roles": ["seigneur de Fougères"],
+            "tags": ["proprietaire", "renaissance"]
+        },
+        {
+            "id": "jean-du-thier",
+            "nom": "Jean du Thier",
+            "autresNoms": [],
+            "categoriePrincipale": "homme-etat",
+            "roles": ["secrétaire d’État d’Henri II"],
+            "tags": ["batisseur", "collectionneur", "renaissance"]
+        },
+        {
+            "id": "jean-de-dunois",
+            "nom": "Jean d’Orléans",
+            "autresNoms": ["Dunois", "le Bâtard d’Orléans"],
+            "categoriePrincipale": "militaire",
+            "roles": ["compagnon d’armes de Jeanne d’Arc"],
+            "tags": ["batisseur", "guerre-de-cent-ans", "moyen-age"]
+        },
+        {
+            "id": "jean-d-orleans-longueville",
+            "nom": "Jean d’Orléans-Longueville",
+            "autresNoms": [],
+            "categoriePrincipale": "noble",
+            "roles": ["comte de Dunois"],
+            "tags": ["batisseur", "renaissance"]
+        },
+        {
+            "id": "jeanne-say",
+            "nom": "Jeanne Say",
+            "autresNoms": ["duchesse de Brissac"],
+            "categoriePrincipale": "mecene",
+            "roles": ["chanteuse et mécène"],
+            "tags": ["femme", "mecenat", "musique", "theatre"]
+        },
+        {
+            "id": "jeanne-d-arc",
+            "nom": "Jeanne d’Arc",
+            "autresNoms": [],
+            "categoriePrincipale": "militaire",
+            "roles": ["cheffe de guerre"],
+            "tags": [
+                "cheval",
+                "femme",
+                "guerre-de-cent-ans",
+                "moyen-age",
+                "royaute"
+            ]
+        },
+        {
+            "id": "joachim-carvallo",
+            "nom": "Joachim Carvallo",
+            "autresNoms": [],
+            "categoriePrincipale": "scientifique",
+            "roles": ["médecin et propriétaire"],
+            "tags": ["jardins", "restauration", "xxe-siecle"]
+        },
+        {
+            "id": "katherine-briconnet",
+            "nom": "Katherine Briçonnet",
+            "autresNoms": [],
+            "categoriePrincipale": "batisseur",
+            "roles": ["maîtresse d’ouvrage"],
+            "tags": ["batisseuse", "femme", "renaissance"]
+        },
+        {
+            "id": "louis-ix",
+            "nom": "Louis IX",
+            "autresNoms": ["Saint Louis"],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi de France"],
+            "tags": ["batisseur", "moyen-age", "royaute"]
+        },
+        {
+            "id": "louis-premier-d-anjou",
+            "nom": "Louis Ier d’Anjou",
+            "autresNoms": [],
+            "categoriePrincipale": "prince",
+            "roles": ["duc d’Anjou"],
+            "tags": ["anjou", "batisseur", "mecenat", "moyen-age", "tapisserie"]
+        },
+        {
+            "id": "louis-xi",
+            "nom": "Louis XI",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi de France"],
+            "tags": ["batisseur", "moyen-age", "royaute"]
+        },
+        {
+            "id": "louis-xii",
+            "nom": "Louis XII",
+            "autresNoms": ["le Père du peuple"],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi de France"],
+            "tags": ["batisseur", "bretagne", "gothique", "royaute"]
+        },
+        {
+            "id": "louis-xiv",
+            "nom": "Louis XIV",
+            "autresNoms": ["le Roi-Soleil"],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi de France"],
+            "tags": ["cour", "grand-siecle", "royaute"]
+        },
+        {
+            "id": "louise-dupin",
+            "nom": "Louise Dupin",
+            "autresNoms": [],
+            "categoriePrincipale": "mecene",
+            "roles": ["salonnière"],
+            "tags": ["femme", "lumieres", "salon"]
+        },
+        {
+            "id": "louise-de-savoie",
+            "nom": "Louise de Savoie",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["mère de François Ier et régente"],
+            "tags": ["femme", "renaissance", "royaute"]
+        },
+        {
+            "id": "ludovic-sforza",
+            "nom": "Ludovic Sforza",
+            "autresNoms": ["Ludovic le More"],
+            "categoriePrincipale": "souverain",
+            "roles": ["duc de Milan"],
+            "tags": ["italie", "prison", "renaissance"]
+        },
+        {
+            "id": "leonard-de-vinci",
+            "nom": "Léonard de Vinci",
+            "autresNoms": ["Leonardo da Vinci"],
+            "categoriePrincipale": "artiste",
+            "roles": ["artiste et ingénieur"],
+            "tags": [
+                "architecture",
+                "art",
+                "ingenierie",
+                "inhumation",
+                "renaissance"
+            ]
+        },
+        {
+            "id": "manasses-de-seignelay",
+            "nom": "Manassès de Seignelay",
+            "autresNoms": [],
+            "categoriePrincipale": "religieux",
+            "roles": ["évêque d’Orléans"],
+            "tags": ["batisseur", "eglise", "moyen-age"]
+        },
+        {
+            "id": "marguerite-gaillard-de-la-morinniere",
+            "nom": "Marguerite Gaillard de La Morinière",
+            "autresNoms": [],
+            "categoriePrincipale": "noble",
+            "roles": ["comtesse de Cheverny"],
+            "tags": ["batisseuse", "classicisme", "femme"]
+        },
+        {
+            "id": "marie-say",
+            "nom": "Marie Say",
+            "autresNoms": ["Princesse de Broglie"],
+            "categoriePrincipale": "mecene",
+            "roles": ["princesse et propriétaire"],
+            "tags": ["amenageuse", "femme", "xixe-siecle"]
+        },
+        {
+            "id": "marie-de-harcourt",
+            "nom": "Marie de Harcourt",
+            "autresNoms": [],
+            "categoriePrincipale": "noble",
+            "roles": ["comtesse de Dunois"],
+            "tags": ["femme", "moyen-age", "residente"]
+        },
+        {
+            "id": "maximilien-de-bethune",
+            "nom": "Maximilien de Béthune",
+            "autresNoms": ["Duc de Sully", "Sully"],
+            "categoriePrincipale": "homme-etat",
+            "roles": ["ministre d’Henri IV"],
+            "tags": ["amenageur", "henri-iv", "politique", "proprietaire"]
+        },
+        {
+            "id": "moliere",
+            "nom": "Molière",
+            "autresNoms": ["Jean-Baptiste Poquelin"],
+            "categoriePrincipale": "artiste",
+            "roles": ["dramaturge et comédien"],
+            "tags": ["litterature", "louis-xiv", "theatre"]
+        },
+        {
+            "id": "napoleon-premier",
+            "nom": "Napoléon Ier",
+            "autresNoms": [],
+            "categoriePrincipale": "souverain",
+            "roles": ["empereur des Français"],
+            "tags": ["diplomatie", "empire", "politique"]
+        },
+        {
+            "id": "paul-ardier",
+            "nom": "Paul Ardier",
+            "autresNoms": [],
+            "categoriePrincipale": "homme-etat",
+            "roles": ["contrôleur général des guerres"],
+            "tags": ["collection", "grand-siecle", "portraits"]
+        },
+        {
+            "id": "philippa-lesbahy",
+            "nom": "Philippa Lesbahy",
+            "autresNoms": [],
+            "categoriePrincipale": "batisseur",
+            "roles": ["maîtresse d’ouvrage"],
+            "tags": ["batisseuse", "femme", "renaissance"]
+        },
+        {
+            "id": "philippe-meaille",
+            "nom": "Philippe Méaille",
+            "autresNoms": [],
+            "categoriePrincipale": "collectionneur",
+            "roles": ["collectionneur d’art contemporain"],
+            "tags": ["art-contemporain", "collection", "musee"]
+        },
+        {
+            "id": "pierre-de-beaujeu",
+            "nom": "Pierre II de Bourbon",
+            "autresNoms": ["Pierre de Beaujeu"],
+            "categoriePrincipale": "noble",
+            "roles": ["duc de Bourbon"],
+            "tags": ["batisseur", "bourbon", "renaissance"]
+        },
+        {
+            "id": "pierre-de-beauvau",
+            "nom": "Pierre de Beauvau",
+            "autresNoms": [],
+            "categoriePrincipale": "militaire",
+            "roles": ["grand chambellan de Charles VII"],
+            "tags": ["batisseur", "militaire", "moyen-age"]
+        },
+        {
+            "id": "pierre-de-refuge",
+            "nom": "Pierre de Refuge",
+            "autresNoms": [],
+            "categoriePrincipale": "homme-etat",
+            "roles": ["conseiller du prince Charles d’Orléans"],
+            "tags": ["batisseur", "moyen-age"]
+        },
+        {
+            "id": "pierre-de-ronsard",
+            "nom": "Pierre de Ronsard",
+            "autresNoms": [],
+            "categoriePrincipale": "ecrivain",
+            "roles": ["poète"],
+            "tags": ["pleiade", "poesie", "renaissance"]
+        },
+        {
+            "id": "rene-de-cosse",
+            "nom": "René de Cossé",
+            "autresNoms": ["duc de Brissac"],
+            "categoriePrincipale": "noble",
+            "roles": ["duc de Brissac"],
+            "tags": ["batisseur", "cosse-brissac", "grand-siecle"]
+        },
+        {
+            "id": "rene-d-anjou",
+            "nom": "René d’Anjou",
+            "autresNoms": ["le roi René"],
+            "categoriePrincipale": "prince",
+            "roles": ["duc d’Anjou et mécène", "duc d’Anjou et roi de Naples"],
+            "tags": ["anjou", "arts", "jardins", "moyen-age"]
+        },
+        {
+            "id": "richard-coeur-de-lion",
+            "nom": "Richard Cœur de Lion",
+            "autresNoms": ["Richard Ier d’Angleterre"],
+            "categoriePrincipale": "souverain",
+            "roles": ["roi d’Angleterre"],
+            "tags": ["angleterre", "moyen-age", "plantagenet"]
+        },
+        {
+            "id": "simone-menier",
+            "nom": "Simone Menier",
+            "autresNoms": [],
+            "categoriePrincipale": "soignant",
+            "roles": ["infirmière-major"],
+            "tags": ["femme", "hopital", "premiere-guerre-mondiale"]
+        },
+        {
+            "id": "sebastien-vauban",
+            "nom": "Sébastien Le Prestre de Vauban",
+            "autresNoms": ["Vauban"],
+            "categoriePrincipale": "militaire",
+            "roles": ["ingénieur militaire"],
+            "tags": ["architecture", "grand-siecle", "jardins"]
+        },
+        {
+            "id": "voltaire",
+            "nom": "Voltaire",
+            "autresNoms": ["François-Marie Arouet"],
+            "categoriePrincipale": "ecrivain",
+            "roles": ["écrivain et philosophe"],
+            "tags": ["litterature", "lumieres", "theatre"]
+        }
+    ],
+    "relations": [
+        {
+            "personnageId": "agnes-sorel",
+            "lieuId": "cite-royale-de-loches",
+            "lieuNom": "Cité royale de Loches",
+            "types": ["residence"],
+            "libelle": "résidente",
+            "periodeAffichee": "XVe siècle",
+            "importance": "majeur",
+            "description": "Vit à Loches auprès de Charles VII ; son tombeau se trouve dans la collégiale Saint-Ours.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "albert-stapfer",
+            "lieuId": "chateau-de-talcy",
+            "lieuNom": "Château de Talcy",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "XIXe siècle",
+            "importance": "secondaire",
+            "description": "Appartient à la famille Stapfer, qui marque l’histoire intellectuelle moderne de Talcy.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "alexandre-dumas",
+            "lieuId": "chateau-de-montsoreau",
+            "lieuNom": "Château de Montsoreau",
+            "types": ["evocation_litteraire"],
+            "libelle": "évocation littéraire",
+            "periodeAffichee": "XIXe siècle",
+            "importance": "majeur",
+            "description": "Popularise le nom du château avec son roman La Dame de Monsoreau.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "ann-coleman",
+            "lieuId": "chateau-de-villandry",
+            "lieuNom": "Château de Villandry",
+            "types": ["restauration"],
+            "libelle": "restauratrice",
+            "periodeAffichee": "à partir de 1906",
+            "importance": "notable",
+            "description": "Finance et accompagne avec son époux Joachim Carvallo la renaissance du domaine.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "anne-de-bretagne",
+            "lieuId": "chateau-de-langeais",
+            "lieuNom": "Château de Langeais",
+            "types": ["evenement"],
+            "libelle": "mariée au château",
+            "periodeAffichee": "1491",
+            "importance": "majeur",
+            "description": "Son mariage avec Charles VIII constitue l’épisode historique le plus célèbre de Langeais.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "anne-de-bretagne",
+            "lieuId": "chateau-des-ducs-de-bretagne",
+            "lieuNom": "Château des Ducs de Bretagne",
+            "types": ["commande", "residence"],
+            "libelle": "commanditaire et résidente",
+            "periodeAffichee": "fin XVe–début XVIe siècle",
+            "importance": "majeur",
+            "description": "Poursuit les travaux de son père et transforme la forteresse en résidence ducale et royale.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "anne-de-bretagne",
+            "lieuId": "chateau-royal-d-amboise",
+            "lieuNom": "Château royal d'Amboise",
+            "types": ["residence"],
+            "libelle": "résidente",
+            "periodeAffichee": "fin XVe siècle",
+            "importance": "notable",
+            "description": "Réside à Amboise auprès de Charles VIII et y perd plusieurs de ses enfants en bas âge.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "anne-de-bretagne",
+            "lieuId": "chateau-royal-de-blois",
+            "lieuNom": "Château royal de Blois",
+            "types": ["residence"],
+            "libelle": "résidente",
+            "periodeAffichee": "fin XVe–début XVIe siècle",
+            "importance": "majeur",
+            "description": "Vit à Blois auprès de Louis XII et marque durablement la mémoire de la résidence royale.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "anne-de-france",
+            "lieuId": "chateau-de-gien",
+            "lieuNom": "Château de Gien",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1484–1500",
+            "importance": "majeur",
+            "description": "Fait reconstruire le château avec son époux et lui donne son caractère de résidence de plaisance entre gothique et Renaissance.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "arthur-de-biencourt",
+            "lieuId": "chateau-d-azay-le-rideau",
+            "lieuNom": "Château d'Azay-le-Rideau",
+            "types": ["restauration"],
+            "libelle": "restaurateur",
+            "periodeAffichee": "XIXe siècle",
+            "importance": "notable",
+            "description": "Conduit avec sa famille une importante restauration romantique du château.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "bernard-salviati",
+            "lieuId": "chateau-de-talcy",
+            "lieuNom": "Château de Talcy",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "années 1520",
+            "importance": "majeur",
+            "description": "Fait construire la demeure Renaissance de Talcy.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "blanche-de-castille",
+            "lieuId": "chateau-d-angers",
+            "lieuNom": "Château d'Angers",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "années 1230",
+            "importance": "majeur",
+            "description": "Supervise au nom de Louis IX la construction de la grande enceinte fortifiée.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "cassandre-salviati",
+            "lieuId": "chateau-de-talcy",
+            "lieuNom": "Château de Talcy",
+            "types": ["residence"],
+            "libelle": "résidente",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "majeur",
+            "description": "Fille de Bernard Salviati, elle inspire à Pierre de Ronsard les poèmes des Amours de Cassandre.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "catherine-de-medicis",
+            "lieuId": "chateau-de-chenonceau",
+            "lieuNom": "Château de Chenonceau",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "1559–1589",
+            "importance": "majeur",
+            "description": "Fait construire la galerie sur le pont et transforme Chenonceau en résidence de cour.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "catherine-de-medicis",
+            "lieuId": "chateau-royal-de-blois",
+            "lieuNom": "Château royal de Blois",
+            "types": ["residence"],
+            "libelle": "résidente",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "notable",
+            "description": "Séjourne fréquemment à Blois et y meurt en 1589.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "catherine-de-medicis",
+            "lieuId": "domaine-de-chaumont-sur-loire",
+            "lieuNom": "Château de Chaumont-sur-Loire",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "majeur",
+            "description": "Possède Chaumont avant de l’échanger contre Chenonceau à Diane de Poitiers.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "charles-de-chambes",
+            "lieuId": "chateau-de-montsoreau",
+            "lieuNom": "Château de Montsoreau",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "notable",
+            "description": "Figure historique associée à l’assassinat de Bussy d’Amboise et au récit romanesque de Montsoreau.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "charles-ii-de-cosse",
+            "lieuId": "chateau-de-brissac",
+            "lieuNom": "Château de Brissac",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "notable",
+            "description": "Figure majeure de la maison de Cossé-Brissac, il inscrit le domaine dans l’histoire politique et militaire du royaume.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "charles-maurice-de-talleyrand",
+            "lieuId": "chateau-de-valencay",
+            "lieuNom": "Château de Valençay",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "1803–1838",
+            "importance": "majeur",
+            "description": "Acquiert Valençay, le transforme en grande résidence diplomatique et y reçoit de nombreux souverains.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "charles-perrault",
+            "lieuId": "chateau-d-usse",
+            "lieuNom": "Château d'Ussé",
+            "types": ["inspiration"],
+            "libelle": "inspiration attribuée",
+            "periodeAffichee": "XVIIe siècle",
+            "importance": "majeur",
+            "description": "La tradition associe la silhouette d’Ussé à l’inspiration de La Belle au bois dormant.",
+            "niveauCertitude": "tradition"
+        },
+        {
+            "personnageId": "charles-premier-d-amboise",
+            "lieuId": "domaine-de-chaumont-sur-loire",
+            "lieuNom": "Château de Chaumont-sur-Loire",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "fin XVe siècle",
+            "importance": "majeur",
+            "description": "Lance la reconstruction du château après sa destruction sur ordre de Louis XI.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "charles-vii",
+            "lieuId": "cite-royale-de-loches",
+            "lieuNom": "Cité royale de Loches",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "XVe siècle",
+            "importance": "majeur",
+            "description": "Séjourne régulièrement au logis royal et en fait l’un de ses lieux de pouvoir.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "charles-vii",
+            "lieuId": "forteresse-royale-de-chinon",
+            "lieuNom": "Forteresse royale de Chinon",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "XVe siècle",
+            "importance": "majeur",
+            "description": "Installe sa cour à Chinon pendant la guerre de Cent Ans.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "charles-viii",
+            "lieuId": "chateau-de-langeais",
+            "lieuNom": "Château de Langeais",
+            "types": ["evenement"],
+            "libelle": "marié au château",
+            "periodeAffichee": "1491",
+            "importance": "majeur",
+            "description": "Épouse Anne de Bretagne à Langeais lors d’une union décisive pour le rapprochement de la Bretagne et du royaume.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "charles-viii",
+            "lieuId": "chateau-des-ducs-de-bretagne",
+            "lieuNom": "Château des Ducs de Bretagne",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "fin XVe siècle",
+            "importance": "notable",
+            "description": "Séjourne au château après son mariage avec Anne de Bretagne.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "charles-viii",
+            "lieuId": "chateau-royal-d-amboise",
+            "lieuNom": "Château royal d'Amboise",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1483–1498",
+            "importance": "majeur",
+            "description": "Transforme la forteresse médiévale en résidence royale monumentale.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "diane-de-poitiers",
+            "lieuId": "chateau-de-chenonceau",
+            "lieuNom": "Château de Chenonceau",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "1547–1559",
+            "importance": "majeur",
+            "description": "Fait aménager les jardins et lancer le pont qui relie le château à l’autre rive du Cher.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "diane-de-poitiers",
+            "lieuId": "domaine-de-chaumont-sur-loire",
+            "lieuNom": "Château de Chaumont-sur-Loire",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "1559–1566",
+            "importance": "majeur",
+            "description": "Reçoit Chaumont de Catherine de Médicis en échange de Chenonceau.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "ferdinand-vii",
+            "lieuId": "chateau-de-valencay",
+            "lieuNom": "Château de Valençay",
+            "types": ["captivite"],
+            "libelle": "prisonnier d’État",
+            "periodeAffichee": "1808–1814",
+            "importance": "notable",
+            "description": "Est retenu à Valençay avec la famille royale espagnole pendant les guerres napoléoniennes.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "foulques-nerra",
+            "lieuId": "cite-royale-de-loches",
+            "lieuNom": "Cité royale de Loches",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "début XIe siècle",
+            "importance": "majeur",
+            "description": "Fait édifier le puissant donjon roman qui domine encore la cité.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "francois-de-beauvau",
+            "lieuId": "chateau-du-rivau",
+            "lieuNom": "Château du Rivau",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "secondaire",
+            "description": "Appartient à la lignée qui maintient le Rivau au cœur de la noblesse militaire du royaume.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "francois-ii-de-bretagne",
+            "lieuId": "chateau-des-ducs-de-bretagne",
+            "lieuNom": "Château des Ducs de Bretagne",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1466–1488",
+            "importance": "majeur",
+            "description": "Lance la reconstruction de la forteresse et en fait le principal château ducal de Nantes.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "francois-premier",
+            "lieuId": "chateau-de-chambord",
+            "lieuNom": "Château de Chambord",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1519–1547",
+            "importance": "majeur",
+            "description": "Lance la construction de Chambord et en fait le manifeste monumental de son règne.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "francois-premier",
+            "lieuId": "chateau-de-villesavin",
+            "lieuNom": "Château de Villesavin",
+            "types": ["contexte"],
+            "libelle": "contexte historique",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "secondaire",
+            "description": "Son grand chantier de Chambord explique directement la naissance et la fonction de Villesavin.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "francois-premier",
+            "lieuId": "chateau-du-clos-luce",
+            "lieuNom": "Château du Clos Lucé",
+            "types": ["protection"],
+            "libelle": "protecteur",
+            "periodeAffichee": "1516–1519",
+            "importance": "majeur",
+            "description": "Invite Léonard de Vinci en France et met le manoir du Cloux à sa disposition.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "francois-premier",
+            "lieuId": "chateau-royal-d-amboise",
+            "lieuNom": "Château royal d'Amboise",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "début XVIe siècle",
+            "importance": "majeur",
+            "description": "Passe une partie de son enfance à Amboise et y entretient une cour ouverte aux idées de la Renaissance.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "francois-premier",
+            "lieuId": "chateau-royal-de-blois",
+            "lieuNom": "Château royal de Blois",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1515–1547",
+            "importance": "majeur",
+            "description": "Fait édifier l’aile Renaissance et son célèbre escalier monumental.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "francois-villon",
+            "lieuId": "chateau-de-meung-sur-loire",
+            "lieuNom": "Château de Meung-sur-Loire",
+            "types": ["captivite"],
+            "libelle": "prisonnier",
+            "periodeAffichee": "1461",
+            "importance": "majeur",
+            "description": "Aurait été emprisonné dans les geôles du château avant d’être libéré à l’avènement de Louis XI.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "gaspard-d-estampes",
+            "lieuId": "chateau-de-valencay",
+            "lieuNom": "Château de Valençay",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "majeur",
+            "description": "Lance la construction du grand château Renaissance.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "gaston-d-orleans",
+            "lieuId": "chateau-royal-de-blois",
+            "lieuNom": "Château royal de Blois",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "XVIIe siècle",
+            "importance": "notable",
+            "description": "Commande à François Mansart la grande aile classique restée inachevée.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "gilles-berthelot",
+            "lieuId": "chateau-d-azay-le-rideau",
+            "lieuNom": "Château d'Azay-le-Rideau",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1518–1527",
+            "importance": "majeur",
+            "description": "Lance la construction du château de la première Renaissance.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "henri-hurault",
+            "lieuId": "chateau-de-cheverny",
+            "lieuNom": "Château de Cheverny",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1624–1630",
+            "importance": "majeur",
+            "description": "Fait construire avec son épouse le château classique visible aujourd’hui.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "henri-ii-plantagenet",
+            "lieuId": "forteresse-royale-de-chinon",
+            "lieuNom": "Forteresse royale de Chinon",
+            "types": ["construction", "residence"],
+            "libelle": "bâtisseur et résident",
+            "periodeAffichee": "XIIe siècle",
+            "importance": "majeur",
+            "description": "Renforce Chinon et en fait l’une des principales forteresses de l’empire Plantagenêt.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "herge",
+            "lieuId": "chateau-de-cheverny",
+            "lieuNom": "Château de Cheverny",
+            "types": ["inspiration"],
+            "libelle": "inspiration",
+            "periodeAffichee": "XXe siècle",
+            "importance": "notable",
+            "description": "S’inspire de la silhouette de Cheverny, privée de ses ailes latérales, pour imaginer le château de Moulinsart.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "honore-de-balzac",
+            "lieuId": "chateau-d-azay-le-rideau",
+            "lieuNom": "Château d'Azay-le-Rideau",
+            "types": ["evocation_litteraire"],
+            "libelle": "évocation littéraire",
+            "periodeAffichee": "XIXe siècle",
+            "importance": "notable",
+            "description": "Immortalise Azay-le-Rideau en le décrivant comme un diamant taillé à facettes serti par l’Indre.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jacques-siegfried",
+            "lieuId": "chateau-de-langeais",
+            "lieuNom": "Château de Langeais",
+            "types": ["restauration"],
+            "libelle": "restaurateur",
+            "periodeAffichee": "1886–1904",
+            "importance": "notable",
+            "description": "Restaure, meuble et lègue le château à l’Institut de France.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jean-d-orleans-longueville",
+            "lieuId": "chateau-de-beaugency",
+            "lieuNom": "Château de Beaugency",
+            "types": ["construction"],
+            "libelle": "bâtisseur",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "notable",
+            "description": "Modernise le château et y introduit des aménagements de style Renaissance.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jean-de-berry",
+            "lieuId": "chateau-de-saumur",
+            "lieuNom": "Château de Saumur",
+            "types": ["commande"],
+            "libelle": "commanditaire artistique",
+            "periodeAffichee": "début XVe siècle",
+            "importance": "notable",
+            "description": "Fait représenter le château dans Les Très Riches Heures, image devenue emblématique de Saumur.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jean-de-dunois",
+            "lieuId": "chateau-de-beaugency",
+            "lieuNom": "Château de Beaugency",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "XVe siècle",
+            "importance": "majeur",
+            "description": "Restaure et agrandit le logis, qui reste connu sous le nom de château Dunois.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jean-de-villebresme",
+            "lieuId": "chateau-de-fougeres-sur-bievre",
+            "lieuNom": "Château de Fougères-sur-Bièvre",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "notable",
+            "description": "Poursuit les transformations du château et l’adapte progressivement aux usages de la Renaissance.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jean-du-thier",
+            "lieuId": "chateau-de-beauregard",
+            "lieuNom": "Château de Beauregard",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "majeur",
+            "description": "Transforme Beauregard en demeure Renaissance et constitue un cabinet précieux annonçant la future galerie.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jean-ii-de-chambes",
+            "lieuId": "chateau-de-montsoreau",
+            "lieuNom": "Château de Montsoreau",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1450–1460",
+            "importance": "majeur",
+            "description": "Fait construire le château actuel directement au bord de la Loire.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jean-le-breton",
+            "lieuId": "chateau-de-villandry",
+            "lieuNom": "Château de Villandry",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1532–1536",
+            "importance": "majeur",
+            "description": "Fait édifier le château Renaissance en conservant l’ancien donjon médiéval.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jean-le-breton",
+            "lieuId": "chateau-de-villesavin",
+            "lieuNom": "Château de Villesavin",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1527–1537",
+            "importance": "majeur",
+            "description": "Fait édifier Villesavin alors qu’il supervise les finances du chantier voisin de Chambord.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jean-v-de-bueil",
+            "lieuId": "chateau-d-usse",
+            "lieuNom": "Château d'Ussé",
+            "types": ["construction"],
+            "libelle": "bâtisseur",
+            "periodeAffichee": "XVe siècle",
+            "importance": "majeur",
+            "description": "Est associé aux premières grandes transformations de la forteresse en résidence.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jeanne-d-arc",
+            "lieuId": "chateau-de-sully-sur-loire",
+            "lieuNom": "Château de Sully-sur-Loire",
+            "types": ["sejour"],
+            "libelle": "hôte",
+            "periodeAffichee": "1429–1430",
+            "importance": "notable",
+            "description": "Séjourne à plusieurs reprises au château pendant les campagnes de la guerre de Cent Ans.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jeanne-d-arc",
+            "lieuId": "chateau-du-rivau",
+            "lieuNom": "Château du Rivau",
+            "types": ["visite"],
+            "libelle": "visiteuse",
+            "periodeAffichee": "1429",
+            "importance": "notable",
+            "description": "Vient chercher des chevaux au Rivau avant de poursuivre sa campagne vers Orléans.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jeanne-d-arc",
+            "lieuId": "forteresse-royale-de-chinon",
+            "lieuNom": "Forteresse royale de Chinon",
+            "types": ["visite"],
+            "libelle": "visiteuse",
+            "periodeAffichee": "1429",
+            "importance": "majeur",
+            "description": "Rencontre à Chinon le dauphin Charles et le convainc de soutenir sa mission.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "jeanne-say",
+            "lieuId": "chateau-de-brissac",
+            "lieuNom": "Château de Brissac",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "fin XIXe–début XXe siècle",
+            "importance": "notable",
+            "description": "Fait aménager le théâtre du château et anime sa vie musicale.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "joachim-carvallo",
+            "lieuId": "chateau-de-villandry",
+            "lieuNom": "Château de Villandry",
+            "types": ["restauration"],
+            "libelle": "restaurateur",
+            "periodeAffichee": "à partir de 1906",
+            "importance": "majeur",
+            "description": "Restaure le château et recrée les jardins Renaissance qui font aujourd’hui sa renommée.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "katherine-briconnet",
+            "lieuId": "chateau-de-chenonceau",
+            "lieuNom": "Château de Chenonceau",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1513–1521",
+            "importance": "majeur",
+            "description": "Supervise la construction du château Renaissance en l’absence fréquente de son époux Thomas Bohier.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "leonard-de-vinci",
+            "lieuId": "chateau-de-chambord",
+            "lieuNom": "Château de Chambord",
+            "types": ["inspiration"],
+            "libelle": "inspiration",
+            "periodeAffichee": "vers 1519",
+            "importance": "notable",
+            "description": "Son influence est régulièrement évoquée pour certains principes du château, notamment l’escalier à double révolution, sans attribution documentaire définitive.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "leonard-de-vinci",
+            "lieuId": "chateau-du-clos-luce",
+            "lieuNom": "Château du Clos Lucé",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "1516–1519",
+            "importance": "majeur",
+            "description": "Passe les trois dernières années de sa vie au Clos Lucé et y poursuit ses travaux.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "leonard-de-vinci",
+            "lieuId": "chateau-royal-d-amboise",
+            "lieuNom": "Château royal d'Amboise",
+            "types": ["inhumation"],
+            "libelle": "inhumé",
+            "periodeAffichee": "1519",
+            "importance": "majeur",
+            "description": "Repose dans la chapelle Saint-Hubert après avoir vécu ses dernières années à Amboise.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louis-ix",
+            "lieuId": "chateau-d-angers",
+            "lieuNom": "Château d'Angers",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "années 1230",
+            "importance": "majeur",
+            "description": "Ordonne l’édification de la puissante forteresse royale aux dix-sept tours.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louis-premier-d-anjou",
+            "lieuId": "chateau-d-angers",
+            "lieuNom": "Château d'Angers",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "XIVe siècle",
+            "importance": "majeur",
+            "description": "Commande la tenture de l’Apocalypse, aujourd’hui conservée dans le château.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louis-premier-d-anjou",
+            "lieuId": "chateau-de-saumur",
+            "lieuNom": "Château de Saumur",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "XIVe siècle",
+            "importance": "majeur",
+            "description": "Transforme la forteresse en résidence princière gothique.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louis-xi",
+            "lieuId": "chateau-de-langeais",
+            "lieuNom": "Château de Langeais",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1465–1469",
+            "importance": "majeur",
+            "description": "Fait construire le château actuel face à l’ancien donjon angevin.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louis-xi",
+            "lieuId": "chateau-de-meung-sur-loire",
+            "lieuNom": "Château de Meung-sur-Loire",
+            "types": ["visite"],
+            "libelle": "visiteur",
+            "periodeAffichee": "XVe siècle",
+            "importance": "secondaire",
+            "description": "Son passage dans l’histoire du lieu est notamment lié à la libération de prisonniers lors de son avènement.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louis-xii",
+            "lieuId": "chateau-des-ducs-de-bretagne",
+            "lieuNom": "Château des Ducs de Bretagne",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "début XVIe siècle",
+            "importance": "notable",
+            "description": "Fréquente la résidence nantaise après son mariage avec Anne de Bretagne.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louis-xii",
+            "lieuId": "chateau-royal-de-blois",
+            "lieuNom": "Château royal de Blois",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1498–1515",
+            "importance": "majeur",
+            "description": "Fait de Blois une résidence royale et construit l’aile gothique qui porte son nom.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louis-xiv",
+            "lieuId": "chateau-de-chambord",
+            "lieuNom": "Château de Chambord",
+            "types": ["sejour"],
+            "libelle": "hôte",
+            "periodeAffichee": "XVIIe siècle",
+            "importance": "notable",
+            "description": "Séjourne à Chambord, y fait aménager des appartements et y organise de grandes fêtes de cour.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louise-de-savoie",
+            "lieuId": "chateau-du-clos-luce",
+            "lieuNom": "Château du Clos Lucé",
+            "types": ["residence"],
+            "libelle": "résidente",
+            "periodeAffichee": "fin XVe–début XVIe siècle",
+            "importance": "notable",
+            "description": "Séjourne au manoir avant l’arrivée de Léonard de Vinci.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "louise-dupin",
+            "lieuId": "chateau-de-chenonceau",
+            "lieuNom": "Château de Chenonceau",
+            "types": ["residence"],
+            "libelle": "résidente",
+            "periodeAffichee": "XVIIIe siècle",
+            "importance": "notable",
+            "description": "Anime un salon intellectuel au château et contribue à le préserver pendant la Révolution.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "ludovic-sforza",
+            "lieuId": "cite-royale-de-loches",
+            "lieuNom": "Cité royale de Loches",
+            "types": ["captivite"],
+            "libelle": "prisonnier",
+            "periodeAffichee": "1504–1508",
+            "importance": "notable",
+            "description": "Est détenu dans le donjon après sa capture par les armées de Louis XII.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "manasses-de-seignelay",
+            "lieuId": "chateau-de-meung-sur-loire",
+            "lieuNom": "Château de Meung-sur-Loire",
+            "types": ["construction"],
+            "libelle": "bâtisseur",
+            "periodeAffichee": "début XIIIe siècle",
+            "importance": "majeur",
+            "description": "Est associé à la grande campagne médiévale qui donne au château sa fonction de résidence épiscopale.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "marguerite-gaillard-de-la-morinniere",
+            "lieuId": "chateau-de-cheverny",
+            "lieuNom": "Château de Cheverny",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1624–1630",
+            "importance": "notable",
+            "description": "Participe avec Henri Hurault à la création et au décor du château actuel.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "marie-de-harcourt",
+            "lieuId": "chateau-de-beaugency",
+            "lieuNom": "Château de Beaugency",
+            "types": ["residence"],
+            "libelle": "résidente",
+            "periodeAffichee": "XVe siècle",
+            "importance": "notable",
+            "description": "Occupe le château avec Jean de Dunois pendant sa grande campagne de restauration.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "marie-say",
+            "lieuId": "domaine-de-chaumont-sur-loire",
+            "lieuNom": "Château de Chaumont-sur-Loire",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "1875–1938",
+            "importance": "notable",
+            "description": "Transforme le domaine en résidence mondaine et fait aménager une grande partie du parc et des dépendances.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "maximilien-de-bethune",
+            "lieuId": "chateau-de-sully-sur-loire",
+            "lieuNom": "Château de Sully-sur-Loire",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "1602–1641",
+            "importance": "majeur",
+            "description": "Achète la baronnie, transforme le château et lui laisse durablement son nom.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "moliere",
+            "lieuId": "chateau-de-chambord",
+            "lieuNom": "Château de Chambord",
+            "types": ["performance"],
+            "libelle": "artiste invité",
+            "periodeAffichee": "1669–1670",
+            "importance": "notable",
+            "description": "Présente au château des œuvres de cour, dont Monsieur de Pourceaugnac et Le Bourgeois gentilhomme.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "napoleon-premier",
+            "lieuId": "chateau-de-valencay",
+            "lieuNom": "Château de Valençay",
+            "types": ["commande"],
+            "libelle": "commanditaire politique",
+            "periodeAffichee": "début XIXe siècle",
+            "importance": "notable",
+            "description": "Encourage Talleyrand à acquérir une résidence digne de recevoir les diplomates étrangers.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "paul-ardier",
+            "lieuId": "chateau-de-beauregard",
+            "lieuNom": "Château de Beauregard",
+            "types": ["propriete"],
+            "libelle": "propriétaire",
+            "periodeAffichee": "XVIIe siècle",
+            "importance": "majeur",
+            "description": "Conçoit la Galerie des Illustres et rassemble la grande série de portraits historiques.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "philippa-lesbahy",
+            "lieuId": "chateau-d-azay-le-rideau",
+            "lieuNom": "Château d'Azay-le-Rideau",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1518–1527",
+            "importance": "majeur",
+            "description": "Supervise largement le chantier en l’absence de son époux Gilles Berthelot.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "philippe-meaille",
+            "lieuId": "chateau-de-montsoreau",
+            "lieuNom": "Château de Montsoreau",
+            "types": ["fondation"],
+            "libelle": "fondateur du musée",
+            "periodeAffichee": "XXIe siècle",
+            "importance": "notable",
+            "description": "Fonde dans le château un musée consacré à l’art contemporain et à sa collection.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "pierre-de-beaujeu",
+            "lieuId": "chateau-de-gien",
+            "lieuNom": "Château de Gien",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "1484–1500",
+            "importance": "notable",
+            "description": "Participe avec Anne de France à la reconstruction du château de Gien.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "pierre-de-beauvau",
+            "lieuId": "chateau-du-rivau",
+            "lieuNom": "Château du Rivau",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "XVe siècle",
+            "importance": "majeur",
+            "description": "Fait reconstruire le Rivau en château fort adapté aux débuts de l’artillerie.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "pierre-de-refuge",
+            "lieuId": "chateau-de-fougeres-sur-bievre",
+            "lieuNom": "Château de Fougères-sur-Bièvre",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "fin XVe siècle",
+            "importance": "majeur",
+            "description": "Fait reconstruire la forteresse à la fin du Moyen Âge.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "pierre-de-ronsard",
+            "lieuId": "chateau-de-talcy",
+            "lieuNom": "Château de Talcy",
+            "types": ["visite"],
+            "libelle": "visiteur",
+            "periodeAffichee": "XVIe siècle",
+            "importance": "majeur",
+            "description": "Rencontre Cassandre Salviati à Talcy et inscrit le château dans l’histoire de la poésie française.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "rene-d-anjou",
+            "lieuId": "chateau-d-angers",
+            "lieuNom": "Château d'Angers",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "XVe siècle",
+            "importance": "majeur",
+            "description": "Fait du château une résidence raffinée et y développe jardins et bâtiments d’agrément.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "rene-d-anjou",
+            "lieuId": "chateau-de-saumur",
+            "lieuNom": "Château de Saumur",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "XVe siècle",
+            "importance": "majeur",
+            "description": "Séjourne à Saumur et appartient à la dynastie qui donne au château son éclat princier.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "rene-de-cosse",
+            "lieuId": "chateau-de-brissac",
+            "lieuNom": "Château de Brissac",
+            "types": ["commande"],
+            "libelle": "commanditaire",
+            "periodeAffichee": "à partir de 1611",
+            "importance": "majeur",
+            "description": "Lance la reconstruction monumentale qui donne au château sa haute silhouette actuelle.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "richard-coeur-de-lion",
+            "lieuId": "forteresse-royale-de-chinon",
+            "lieuNom": "Forteresse royale de Chinon",
+            "types": ["residence"],
+            "libelle": "résident",
+            "periodeAffichee": "XIIe siècle",
+            "importance": "notable",
+            "description": "Fréquente la forteresse dans le cadre des possessions continentales des Plantagenêts.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "sebastien-vauban",
+            "lieuId": "chateau-d-usse",
+            "lieuNom": "Château d'Ussé",
+            "types": ["architecture"],
+            "libelle": "architecte associé",
+            "periodeAffichee": "XVIIe siècle",
+            "importance": "notable",
+            "description": "Est traditionnellement associé à certains aménagements du domaine, notamment les terrasses.",
+            "niveauCertitude": "tradition"
+        },
+        {
+            "personnageId": "simone-menier",
+            "lieuId": "chateau-de-chenonceau",
+            "lieuNom": "Château de Chenonceau",
+            "types": ["gestion"],
+            "libelle": "gestionnaire",
+            "periodeAffichee": "1914–1918",
+            "importance": "notable",
+            "description": "Dirige l’hôpital militaire installé dans les galeries du château pendant la Première Guerre mondiale.",
+            "niveauCertitude": "etabli"
+        },
+        {
+            "personnageId": "voltaire",
+            "lieuId": "chateau-de-sully-sur-loire",
+            "lieuNom": "Château de Sully-sur-Loire",
+            "types": ["sejour"],
+            "libelle": "hôte",
+            "periodeAffichee": "1716 et 1719",
+            "importance": "notable",
+            "description": "Trouve refuge au château durant ses périodes d’exil et y participe à la vie théâtrale.",
+            "niveauCertitude": "etabli"
+        }
+    ]
+}
