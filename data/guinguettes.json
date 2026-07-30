@@ -1,0 +1,673 @@
+{
+    "meta": {
+        "titre": "Index des guinguettes ligériennes — Maine-et-Loire",
+        "source": "Loire Ride Zen — Codex des guinguettes",
+        "departement": "Maine-et-Loire",
+        "codeDepartement": "49",
+        "miseAJour": "2026-07-25",
+        "nombreEntrees": 18,
+        "note": "Catalogue initial fondé sur la sélection de 18 lieux. Les valeurs nulles signalent une information non confirmée, et non une absence. Les fiches marquées 'a_verifier' ou 'historique' ne doivent pas être publiées comme établissements actifs sans contrôle complémentaire."
+    },
+    "guinguettes": [
+        {
+            "id": "le-noe",
+            "nom": "Le Noë",
+            "autresNoms": ["Le Noé"],
+            "sousTitre": "Une table historique au confluent de la Maine et de la Loire",
+            "commune": "Bouchemaine",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Maine",
+            "type": "restaurant-guinguette",
+            "ambiance": ["traditionnelle", "familiale", "bord de rivière"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "rivière",
+            "periode": "toute l'année",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/sur-place/adresses-boire-manger-angers/guinguettes-angers/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Le+No%C3%AB%2C+Bouchemaine%2C+Maine-et-Loire"
+            },
+            "description": "Restaurant de bord de Maine installé à Bouchemaine, près de la confluence avec la Loire. Une halte ligérienne classique, accessible à vélo et davantage tournée vers la table que vers la guinguette saisonnière.",
+            "services": ["restauration", "terrasse"],
+            "tags": ["Bouchemaine", "Maine", "confluence", "Loire à Vélo"],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "guinguette-de-port-thibault",
+            "nom": "Guinguette de Port Thibault",
+            "autresNoms": ["Port-Thibault"],
+            "sousTitre": "Une grande terrasse festive au bord de la Loire",
+            "commune": "Sainte-Gemmes-sur-Loire",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loire",
+            "type": "guinguette",
+            "ambiance": ["festive", "familiale", "musicale", "conviviale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.anjou-tourisme.com/fr/diffusio/restaurants/guinguette-de-port-thibault-sainte-gemmes-sur-loire_TFORESTPORTTHIBAULT",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+de+Port+Thibault%2C+Sainte-Gemmes-sur-Loire%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette emblématique de Port-Thibault, appréciée pour son ambiance chaleureuse et festive face à la Loire.",
+            "services": ["restauration", "bar", "terrasse", "animations"],
+            "tags": ["Loire", "Port-Thibault", "musique", "Loire à Vélo"],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "le-port-de-l-ile",
+            "nom": "Le Port de l'Île",
+            "autresNoms": ["Guinguette du Port de l'Île"],
+            "sousTitre": "La halte bucolique de l'île Saint-Aubin",
+            "commune": "Angers",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Mayenne",
+            "type": "restaurant-guinguette",
+            "ambiance": ["bucolique", "familiale", "nature", "décontractée"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": false,
+            "vue": "île",
+            "periode": "avril-novembre",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/organiser-son-sejour/le-port-de-lile-angers-fr-1836682/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Le+Port+de+l%27%C3%8Ele%2C+Angers%2C+Maine-et-Loire"
+            },
+            "description": "Restaurant-guinguette de l'île Saint-Aubin, accessible après la traversée du bac. Cuisine maison, produits frais et ambiance de prairie inondable aux portes d'Angers.",
+            "services": [
+                "restauration",
+                "bar",
+                "terrasse",
+                "jeux",
+                "accès par bac"
+            ],
+            "tags": [
+                "Île Saint-Aubin",
+                "Mayenne",
+                "bac",
+                "Basses Vallées Angevines"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "la-cale",
+            "nom": "La Cale",
+            "autresNoms": [],
+            "sousTitre": null,
+            "commune": "Angers",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Maine",
+            "type": "bar-guinguette",
+            "ambiance": ["urbaine", "bord de rivière"],
+            "terrasse": null,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": false,
+            "vue": "rivière",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": null,
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Cale+guinguette%2C+Angers%2C+Maine-et-Loire"
+            },
+            "description": "Nom conservé depuis le premier recensement, mais l'établissement exact n'a pas été identifié de façon suffisamment fiable dans les sources touristiques actuelles.",
+            "services": [],
+            "tags": ["Angers", "Maine", "à vérifier"],
+            "statut": "a_verifier",
+            "verification": "nom_ambigu"
+        },
+        {
+            "id": "la-cabane-du-bosquet",
+            "nom": "La Cabane du Bosquet",
+            "autresNoms": [],
+            "sousTitre": "Une cabane gourmande au bord du Louet",
+            "commune": "Les Ponts-de-Cé",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Louet",
+            "type": "restaurant-guinguette",
+            "ambiance": ["nature", "paisible", "gourmande", "romantique"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "rivière",
+            "periode": "toute l'année",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/organiser-son-sejour/la-cabane-du-bosquet-les-ponts-de-ce-fr-2320760/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Cabane+du+Bosquet%2C+Les+Ponts-de-C%C3%A9%2C+Maine-et-Loire"
+            },
+            "description": "Table entourée de verdure au bord du Louet, proposant une cuisine généreuse et créative dans un cadre très calme.",
+            "services": ["restauration", "bar", "terrasse"],
+            "tags": ["Louet", "nature", "cuisine", "Les Ponts-de-Cé"],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "guinguette-la-gabare",
+            "nom": "Guinguette La Gabare",
+            "autresNoms": ["La Gabare"],
+            "sousTitre": "Une escale ligérienne aux Ponts-de-Cé",
+            "commune": "Les Ponts-de-Cé",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loire",
+            "type": "guinguette",
+            "ambiance": ["conviviale", "familiale", "bord de Loire"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/sur-place/adresses-boire-manger-angers/guinguettes-angers/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+La+Gabare%2C+Les+Ponts-de-C%C3%A9%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette des Ponts-de-Cé située dans l'univers des quais et de la navigation traditionnelle de Loire.",
+            "services": ["restauration", "bar", "terrasse"],
+            "tags": ["Loire", "gabare", "Les Ponts-de-Cé", "Loire à Vélo"],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "la-barbe-a-maman",
+            "nom": "La Barbe à Maman",
+            "autresNoms": [],
+            "sousTitre": "Une guinguette colorée à Port Maillard",
+            "commune": "Loire-Authion",
+            "communeDeleguee": "La Daguenière",
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loire",
+            "type": "restaurant-guinguette",
+            "ambiance": [
+                "conviviale",
+                "décontractée",
+                "familiale",
+                "bord de Loire"
+            ],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/organiser-son-sejour/la-barbe-a-maman-loire-authion-fr-5681693/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Barbe+%C3%A0+Maman+Port+Maillard%2C+Loire-Authion%2C+Maine-et-Loire"
+            },
+            "description": "Restaurant-guinguette de Port Maillard, directement placé sur l'itinéraire de La Loire à Vélo.",
+            "services": ["restauration", "bar", "terrasse"],
+            "tags": ["Port Maillard", "Loire", "Loire à Vélo", "La Daguenière"],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "les-tonnelles",
+            "nom": "Les Tonnelles",
+            "autresNoms": [],
+            "sousTitre": "Une table de rivière dans la vallée du Loir",
+            "commune": "Rives-du-Loir-en-Anjou",
+            "communeDeleguee": "Villevêque",
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loir",
+            "type": "restaurant-guinguette",
+            "ambiance": ["traditionnelle", "paisible", "familiale"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": false,
+            "vue": "rivière",
+            "periode": "toute l'année",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/sur-place/adresses-boire-manger-angers/guinguettes-angers/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Les+Tonnelles%2C+Rives-du-Loir-en-Anjou%2C+Maine-et-Loire"
+            },
+            "description": "Restaurant en bord de Loir intégré aux haltes de rivière recensées par Destination Angers.",
+            "services": ["restauration", "terrasse"],
+            "tags": ["Loir", "Villevêque", "vallée du Loir"],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "guinguette-du-moulin-de-la-boire",
+            "nom": "Guinguette du Moulin de la Boire",
+            "autresNoms": [],
+            "sousTitre": "Une halte champêtre près du moulin de Villevêque",
+            "commune": "Rives-du-Loir-en-Anjou",
+            "communeDeleguee": "Villevêque",
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loir",
+            "type": "guinguette",
+            "ambiance": ["champêtre", "familiale", "nature"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": false,
+            "vue": "rivière",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/sur-place/adresses-boire-manger-angers/guinguettes-angers/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+du+Moulin+de+la+Boire%2C+Rives-du-Loir-en-Anjou%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette de la vallée du Loir, proche de la baignade, du moulin et des circuits vélo de Villevêque.",
+            "services": ["restauration", "bar", "terrasse"],
+            "tags": ["Loir", "moulin", "Villevêque", "gravel"],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "le-kiviv",
+            "nom": "Le Kiviv",
+            "autresNoms": [],
+            "sousTitre": "Une guinguette à la confluence de la Sarthe et du Loir",
+            "commune": "Briollay",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Sarthe",
+            "type": "restaurant-guinguette",
+            "ambiance": ["musicale", "conviviale", "familiale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": false,
+            "vue": "rivière",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/sur-place/adresses-boire-manger-angers/guinguettes-angers/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Le+Kiviv%2C+Briollay%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette de Briollay connue pour sa terrasse en bord de rivière et son atmosphère musicale.",
+            "services": ["restauration", "bar", "terrasse", "concerts"],
+            "tags": [
+                "Briollay",
+                "Sarthe",
+                "Basses Vallées Angevines",
+                "musique"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "guinguette-les-tourbillons",
+            "nom": "Guinguette Les Tourbillons",
+            "autresNoms": ["Les Tourbillons"],
+            "sousTitre": "La Loire sauvage depuis un ancien village portuaire",
+            "commune": "La Possonnière",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loire",
+            "type": "guinguette",
+            "ambiance": [
+                "musicale",
+                "traditionnelle",
+                "coucher de soleil",
+                "portuaire"
+            ],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "port",
+            "periode": "mi-avril-mi-septembre",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.anjou-tourisme.com/fr/diffusio/restaurants/guinguette-les-tourbillons-la-possonniere_TFORES812120121",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+Les+Tourbillons%2C+La+Possonni%C3%A8re%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette installée dans l'ancien port de La Possonnière, face aux bateaux traditionnels, aux bancs de sable et à la Loire sauvage. Produits du terroir et soirées musicales.",
+            "services": ["restauration", "bar", "terrasse", "concerts"],
+            "tags": [
+                "Loire",
+                "port",
+                "bateaux traditionnels",
+                "produits du terroir",
+                "Loire à Vélo"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "port-gogane",
+            "nom": "Port Gogane",
+            "autresNoms": [],
+            "sousTitre": null,
+            "commune": "Rochefort-sur-Loire",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Louet",
+            "type": "restaurant-guinguette",
+            "ambiance": ["bord de rivière", "familiale"],
+            "terrasse": null,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "rivière",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": null,
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Port+Gogane+guinguette%2C+Rochefort-sur-Loire%2C+Maine-et-Loire"
+            },
+            "description": "Entrée issue du premier recensement. Le lieu de Port Gogane est bien identifié à Rochefort-sur-Loire, mais le nom commercial et le statut actuel de la guinguette restent à confirmer.",
+            "services": [],
+            "tags": ["Louet", "Rochefort-sur-Loire", "à vérifier"],
+            "statut": "a_verifier",
+            "verification": "etablissement_non_confirme"
+        },
+        {
+            "id": "la-guinguette-a-jojo",
+            "nom": "La Guinguette à Jojo",
+            "autresNoms": ["Chez Jojo", "Guinguette Chez Jojo"],
+            "sousTitre": "La doyenne des guinguettes angevines",
+            "commune": "Brissac-Loire-Aubance",
+            "communeDeleguee": "Saint-Saturnin-sur-Loire",
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loire",
+            "type": "guinguette",
+            "ambiance": [
+                "traditionnelle",
+                "musicale",
+                "populaire",
+                "familiale"
+            ],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/essentiel-pour-visiter-angers/sejour-velo-nature-loire-angers/guinguettes-riviere-plaisir-estival/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Guinguette+%C3%A0+Jojo%2C+Saint-Saturnin-sur-Loire%2C+Maine-et-Loire"
+            },
+            "description": "Installée au bord de la Loire depuis 1959, cette adresse historique cultive l'esprit populaire de la guinguette angevine, entre cuisine traditionnelle et musique.",
+            "services": ["restauration", "bar", "terrasse", "danse", "musique"],
+            "tags": [
+                "Loire",
+                "historique",
+                "1959",
+                "Saint-Saturnin-sur-Loire",
+                "Loire à Vélo"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "au-bout-de-l-ile",
+            "nom": "Au Bout de l'Île",
+            "autresNoms": [],
+            "sousTitre": "Une guinguette insulaire à Montjean-sur-Loire",
+            "commune": "Mauges-sur-Loire",
+            "communeDeleguee": "Montjean-sur-Loire",
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loire",
+            "type": "guinguette",
+            "ambiance": ["insulaire", "décontractée", "coucher de soleil"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "île",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.osezmauges.fr/nos-incontournables/bords-loire/restaurant-bord-de-loire/guinguette-bord-de-loire/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Au+Bout+de+l%27%C3%8Ele%2C+Montjean-sur-Loire%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette de bord de Loire située à Montjean-sur-Loire. La localisation initialement indiquée à Saint-Florent-le-Vieil a été corrigée.",
+            "services": ["restauration", "bar", "terrasse"],
+            "tags": [
+                "Loire",
+                "Montjean-sur-Loire",
+                "île",
+                "Mauges",
+                "Loire à Vélo"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "guinguette-du-pere-chapuis",
+            "nom": "Guinguette du Père Chapuis",
+            "autresNoms": [],
+            "sousTitre": "Cuisine locale et concerts au bord du Loir",
+            "commune": "Seiches-sur-le-Loir",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loir",
+            "type": "guinguette",
+            "ambiance": ["musicale", "locale", "conviviale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": false,
+            "vue": "rivière",
+            "periode": "saison estivale",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/organiser-son-sejour/guinguette-du-pere-chapuis-seiches-sur-le-loir-fr-3735811/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+du+P%C3%A8re+Chapuis%2C+Seiches-sur-le-Loir%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette estivale avec cuisine locale, bar, tapas et concerts annoncés chaque vendredi soir.",
+            "services": [
+                "restauration",
+                "bar",
+                "tapas",
+                "terrasse",
+                "concerts",
+                "animaux acceptés"
+            ],
+            "tags": [
+                "Loir",
+                "Seiches-sur-le-Loir",
+                "concerts",
+                "cuisine locale"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "la-guinguette-mazette",
+            "nom": "La Guinguette Mazette",
+            "autresNoms": ["Mazette"],
+            "sousTitre": "Une halte légère au bord de la Sarthe",
+            "commune": "Écouflant",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Sarthe",
+            "type": "guinguette",
+            "ambiance": ["décontractée", "familiale", "bord de rivière"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": false,
+            "vue": "rivière",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/sur-place/adresses-boire-manger-angers/guinguettes-angers/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Guinguette+Mazette%2C+%C3%89couflant%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette saisonnière d'Écouflant, en bord de Sarthe, recensée parmi les adresses de rivière de Destination Angers.",
+            "services": ["restauration", "bar", "terrasse"],
+            "tags": ["Sarthe", "Écouflant", "Basses Vallées Angevines"],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "la-cabane-du-chat-qui-peche",
+            "nom": "La Cabane du Chat-qui-Pêche",
+            "autresNoms": ["La Cabane du Chat qui Pêche"],
+            "sousTitre": "Une cabane au fil de la Mayenne",
+            "commune": "Cantenay-Épinard",
+            "communeDeleguee": null,
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Mayenne",
+            "type": "restaurant-guinguette",
+            "ambiance": ["bucolique", "musicale", "conviviale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": false,
+            "vue": "rivière",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-angers.com/tourisme/sur-place/adresses-boire-manger-angers/guinguettes-angers/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Cabane+du+Chat-qui-P%C3%AAche%2C+Cantenay-%C3%89pinard%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette de Cantenay-Épinard installée au bord de la Mayenne, connue pour son cadre chaleureux et ses rendez-vous musicaux.",
+            "services": ["restauration", "bar", "terrasse", "concerts"],
+            "tags": [
+                "Mayenne",
+                "Cantenay-Épinard",
+                "musique",
+                "Basses Vallées Angevines"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "id": "la-marbelle",
+            "nom": "La Marbelle",
+            "autresNoms": ["Guinguette La Marbelle"],
+            "sousTitre": "Une guinguette itinérante sur les chemins d'Anjou",
+            "commune": "Gennes-Val-de-Loire",
+            "communeDeleguee": "Les Rosiers-sur-Loire",
+            "departement": "Maine-et-Loire",
+            "coursDEau": "Loire",
+            "type": "guinguette-itinerante",
+            "ambiance": ["itinérante", "culturelle", "musicale", "éphémère"],
+            "terrasse": null,
+            "musiqueLive": true,
+            "accessibleVelo": null,
+            "loireAVelo": null,
+            "vue": "variable",
+            "periode": "saisonnière",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": null,
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Marbelle+guinguette%2C+Les+Rosiers-sur-Loire%2C+Maine-et-Loire"
+            },
+            "description": "Guinguette itinérante mentionnée dans les sélections touristiques angevines. Son emplacement et sa programmation peuvent changer selon la saison.",
+            "services": ["bar", "animations", "concerts"],
+            "tags": ["itinérante", "Loire", "culture", "éphémère"],
+            "statut": "a_verifier",
+            "verification": "concept_confirme_programmation_a_actualiser"
+        }
+    ]
+}
