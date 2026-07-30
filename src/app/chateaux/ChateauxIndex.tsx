@@ -189,6 +189,7 @@ export default function ChateauxIndex({
             totalCount={chateaux.length}
             unit={list.length > 1 ? "châteaux" : "château"}
             accent={entry.accent}
+            mode="filters-toggle"
             reset={{
                 active: hasActiveFilters,
                 onReset: resetFilters,

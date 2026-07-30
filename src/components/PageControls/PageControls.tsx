@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useId, useState, type CSSProperties } from "react";
 
 import {
     LRZFilterGroup,
@@ -27,6 +27,7 @@ export interface PageControlsSwitcher {
 }
 
 export type PageControlsVariant = "default" | "chateaux";
+export type PageControlsMode = "full" | "filters-toggle" | "compact";
 
 type PageControlsProps = {
     query: string;
@@ -38,6 +39,8 @@ type PageControlsProps = {
     groups: PageControlsFilterGroup[];
     accent?: string;
     variant?: PageControlsVariant;
+    mode?: PageControlsMode;
+    defaultFiltersOpen?: boolean;
     switcher?: PageControlsSwitcher;
     reset?: {
         active: boolean;
@@ -59,19 +62,29 @@ export default function PageControls({
     groups,
     accent,
     variant = "default",
+    mode = "full",
+    defaultFiltersOpen = false,
     switcher,
     reset,
 }: PageControlsProps) {
+    const filtersId = useId();
+    const [filtersOpen, setFiltersOpen] = useState(defaultFiltersOpen);
     const style = accent
         ? ({ "--page-controls-accent": accent } as PageControlsStyle)
         : undefined;
 
     const resultLabel = unit ?? "résultats";
+    const hasFilterToggle = mode === "filters-toggle";
+    const filtersVisible = mode === "full" || filtersOpen;
+    const activeFiltersCount = groups.filter(
+        (group) => group.active !== "all",
+    ).length;
 
     return (
         <section
             className={styles.panel}
             data-variant={variant}
+            data-mode={mode}
             style={style}
             aria-label={
                 variant === "chateaux"
@@ -79,7 +92,7 @@ export default function PageControls({
                     : "Recherche et filtres"
             }
         >
-            {variant === "chateaux" && (
+            {variant === "chateaux" && mode !== "compact" && false && (
                 <div className={styles.context}>
                     <div>
                         <p className={styles.eyebrow}>Explorer l’inventaire</p>
@@ -119,66 +132,102 @@ export default function PageControls({
                     </span>
                 </label>
 
-                <div className={styles.summary} aria-live="polite">
-                    <span className={styles.count}>
-                        <strong>{resultCount}</strong> / {totalCount}{" "}
-                        {resultLabel}
-                    </span>
-                    {reset?.active && (
-                        <button
-                            type="button"
-                            className={styles.reset}
-                            onClick={reset.onReset}
-                        >
-                            Réinitialiser
-                        </button>
-                    )}
-                </div>
+                {mode !== "compact" ? (
+                    <div className={styles.summary} aria-live="polite">
+                        <span className={styles.count}>
+                            <strong>{resultCount}</strong> / {totalCount}{" "}
+                            {resultLabel}
+                        </span>
+                        {reset?.active && (
+                            <button
+                                type="button"
+                                className={styles.reset}
+                                onClick={reset.onReset}
+                            >
+                                Réinitialiser
+                            </button>
+                        )}
+                    </div>
+                ) : null}
             </div>
 
-            {switcher && (
-                <div
-                    className={styles.actions}
-                    aria-label="Options d’affichage"
-                >
+            {hasFilterToggle ? (
+                <div className={styles.filterToggleRow}>
                     <button
                         type="button"
-                        className={styles.switchToggle}
-                        role="switch"
-                        aria-checked={switcher.checked}
-                        aria-label={switcher.label}
-                        onClick={switcher.onToggle}
+                        className={styles.filterToggle}
+                        aria-expanded={filtersOpen}
+                        aria-controls={filtersId}
+                        onClick={() => setFiltersOpen((open) => !open)}
                     >
-                        <span className={styles.actionCopy}>
-                            <span className={styles.actionLabel}>
-                                {switcher.label}
+                        <span>Filtres</span>
+                        {activeFiltersCount > 0 ? (
+                            <span className={styles.filterBadge}>
+                                {activeFiltersCount}
                             </span>
-                            <span className={styles.actionValue}>
-                                {switcher.checked
-                                    ? switcher.onLabel
-                                    : switcher.offLabel}
-                            </span>
-                        </span>
-                        <span className={styles.switchTrack} aria-hidden="true">
-                            <span className={styles.switchThumb} />
+                        ) : null}
+                        <span
+                            className={styles.filterChevron}
+                            aria-hidden="true"
+                        >
+                            {filtersOpen ? "−" : "+"}
                         </span>
                     </button>
                 </div>
-            )}
+            ) : null}
 
-            <div className={styles.filters}>
-                {groups.map((group) => (
-                    <LRZFilterGroup
-                        key={group.label}
-                        label={group.label}
-                        activeId={group.active}
-                        options={group.options}
-                        onSelect={group.onSelect}
-                        accent={accent}
-                        variant={variant === "chateaux" ? "card" : "default"}
-                    />
-                ))}
-            </div>
+            {mode !== "compact" && filtersVisible ? (
+                <div id={filtersId} className={styles.filtersPanel}>
+                    {switcher ? (
+                        <div
+                            className={styles.actions}
+                            aria-label="Options d’affichage"
+                        >
+                            <button
+                                type="button"
+                                className={styles.switchToggle}
+                                role="switch"
+                                aria-checked={switcher.checked}
+                                aria-label={switcher.label}
+                                onClick={switcher.onToggle}
+                            >
+                                <span className={styles.actionCopy}>
+                                    <span className={styles.actionLabel}>
+                                        {switcher.label}
+                                    </span>
+                                    <span className={styles.actionValue}>
+                                        {switcher.checked
+                                            ? switcher.onLabel
+                                            : switcher.offLabel}
+                                    </span>
+                                </span>
+                                <span
+                                    className={styles.switchTrack}
+                                    aria-hidden="true"
+                                >
+                                    <span className={styles.switchThumb} />
+                                </span>
+                            </button>
+                        </div>
+                    ) : null}
+
+                    <div className={styles.filters}>
+                        {groups.map((group) => (
+                            <LRZFilterGroup
+                                key={group.label}
+                                label={group.label}
+                                activeId={group.active}
+                                options={group.options}
+                                onSelect={group.onSelect}
+                                accent={accent}
+                                variant={
+                                    variant === "chateaux" ? "card" : "default"
+                                }
+                            />
+                        ))}
+                    </div>
+                </div>
+            ) : null}
         </section>
     );
 }
