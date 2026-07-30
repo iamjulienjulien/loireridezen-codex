@@ -36,6 +36,7 @@ export default function TerritoireSection({
         <section
             id={`territoire-${territory.slug}`}
             className={styles.section}
+            data-map-sync-territory={mapSync ? territory.slug : undefined}
             style={
                 {
                     "--territoire-accent": identite.accent,
@@ -112,6 +113,7 @@ export default function TerritoireSection({
                         data-chateau-map-slug={
                             mapSync ? chateau.slug : undefined
                         }
+                        data-map-sync-card={mapSync ? "" : undefined}
                         key={chateau.slug}
                     >
                         <ChateauxCard d={chateau} t={territory} open={false} />

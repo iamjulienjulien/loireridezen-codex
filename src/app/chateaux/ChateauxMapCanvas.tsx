@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as maplibregl from "maplibre-gl";
 import type { Map as MapLibreMap, Marker } from "maplibre-gl";
 
@@ -11,6 +11,13 @@ import { TERRITOIRES } from "@/registry/territoires";
 import type { Chateau } from "@/types/chateau";
 
 import styles from "./ChateauxMapCanvas.module.css";
+import {
+    CHATEAUX_MAP_SYNC_EVENT,
+    dispatchChateauxMapSync,
+    getLatestChateauxMapTerritory,
+    getLatestChateauxMapViewport,
+    type ChateauxMapSyncDetail,
+} from "./chateaux-map-sync";
 
 type ChateauxMapCanvasProps = {
     chateaux: readonly Chateau[];
@@ -150,16 +157,119 @@ export default function ChateauxMapCanvas({
     const containerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<MapLibreMap | null>(null);
     const markersRef = useRef<Marker[]>([]);
+    const markerElementsRef = useRef(new Map<string, HTMLButtonElement>());
     const ambianceRef = useRef(ambiance);
+    const selectedSlugRef = useRef<string | undefined>(undefined);
+    const visibleSlugsRef = useRef(new Set<string>());
+    const primarySlugRef = useRef<string | undefined>(undefined);
+    const hoveredSlugRef = useRef<string | undefined>(undefined);
     const [isReady, setIsReady] = useState(false);
     const [selectedSlug, setSelectedSlug] = useState<string>();
-    const selectedChateau = chateaux.find(
-        (chateau) => chateau.slug === selectedSlug,
+
+    const applyMarkerStates = useCallback(() => {
+        markerElementsRef.current.forEach((marker, slug) => {
+            marker.classList.toggle(
+                styles.markerVisible,
+                visibleSlugsRef.current.has(slug),
+            );
+            marker.classList.toggle(
+                styles.markerPrimary,
+                primarySlugRef.current === slug,
+            );
+            marker.classList.toggle(
+                styles.markerHovered,
+                hoveredSlugRef.current === slug,
+            );
+            marker.classList.toggle(
+                styles.markerSelected,
+                selectedSlugRef.current === slug,
+            );
+        });
+    }, []);
+
+    const focusTerritory = useCallback(
+        (territorySlug?: string) => {
+            const map = mapRef.current;
+            if (!map || !territorySlug) return;
+
+            const territoryChateaux = chateaux.filter(
+                (chateau) =>
+                    getTerritoireSlugForChateau(chateau) === territorySlug,
+            );
+            if (territoryChateaux.length === 0) return;
+
+            if (territoryChateaux.length === 1) {
+                const [chateau] = territoryChateaux;
+                map.easeTo({
+                    center: [chateau.coordonnees.lng, chateau.coordonnees.lat],
+                    zoom: 10.5,
+                    duration: 550,
+                });
+                return;
+            }
+
+            const bounds = territoryChateaux.reduce(
+                (nextBounds, chateau) =>
+                    nextBounds.extend([
+                        chateau.coordonnees.lng,
+                        chateau.coordonnees.lat,
+                    ]),
+                new maplibregl.LngLatBounds(),
+            );
+            map.fitBounds(bounds, {
+                padding: 52,
+                maxZoom: 10,
+                duration: 550,
+            });
+        },
+        [chateaux],
     );
+
+    useEffect(() => {
+        selectedSlugRef.current = selectedSlug;
+        applyMarkerStates();
+    }, [applyMarkerStates, selectedSlug]);
+
+    useEffect(() => {
+        const applyViewport = (
+            detail: Extract<ChateauxMapSyncDetail, { type: "viewport" }>,
+        ) => {
+            visibleSlugsRef.current = new Set(detail.visibleSlugs);
+            primarySlugRef.current = detail.primarySlug;
+            applyMarkerStates();
+        };
+        const onMapSync = (event: Event) => {
+            const detail = (event as CustomEvent<ChateauxMapSyncDetail>).detail;
+
+            if (detail.source !== "catalogue") return;
+            if (detail.type === "viewport") applyViewport(detail);
+            if (detail.type === "territory") {
+                focusTerritory(detail.territorySlug);
+            }
+            if (detail.type === "hover") {
+                hoveredSlugRef.current = detail.slug;
+                applyMarkerStates();
+            }
+        };
+        const latestViewport = getLatestChateauxMapViewport();
+        if (latestViewport) applyViewport(latestViewport);
+        const latestTerritory = getLatestChateauxMapTerritory();
+        if (latestTerritory) focusTerritory(latestTerritory.territorySlug);
+
+        window.addEventListener(CHATEAUX_MAP_SYNC_EVENT, onMapSync);
+        return () => {
+            window.removeEventListener(CHATEAUX_MAP_SYNC_EVENT, onMapSync);
+            dispatchChateauxMapSync({
+                source: "map",
+                type: "hover",
+            });
+        };
+    }, [applyMarkerStates, focusTerritory]);
 
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
+        const markerElements = markerElementsRef.current;
 
         // L'import statique conserve l'URL du worker dans le chunk Next. Le
         // composant reste néanmoins chargé à la demande depuis le toggle.
@@ -187,6 +297,7 @@ export default function ChateauxMapCanvas({
             resizeObserver.disconnect();
             markersRef.current.forEach((marker) => marker.remove());
             markersRef.current = [];
+            markerElements.clear();
             map.remove();
             mapRef.current = null;
         };
@@ -205,6 +316,11 @@ export default function ChateauxMapCanvas({
 
         markersRef.current.forEach((marker) => marker.remove());
         markersRef.current = [];
+        markerElementsRef.current.clear();
+        visibleSlugsRef.current = new Set(
+            chateaux.map((chateau) => chateau.slug),
+        );
+        primarySlugRef.current = undefined;
 
         if (chateaux.length === 0) {
             map.easeTo({ center: DEFAULT_CENTER, zoom: 6, duration: 350 });
@@ -221,12 +337,7 @@ export default function ChateauxMapCanvas({
                 : undefined;
 
             marker.type = "button";
-            marker.className = [
-                styles.marker,
-                chateau.slug === selectedSlug ? styles.markerSelected : "",
-            ]
-                .filter(Boolean)
-                .join(" ");
+            marker.className = styles.marker;
             if (accent) marker.style.setProperty("--marker-color", accent);
             const markerCore = document.createElement("span");
             markerCore.className = styles.markerCore;
@@ -240,6 +351,20 @@ export default function ChateauxMapCanvas({
             marker.addEventListener("click", () =>
                 setSelectedSlug(chateau.slug),
             );
+            const highlightMarker = () =>
+                dispatchChateauxMapSync({
+                    source: "map",
+                    type: "hover",
+                    slug: chateau.slug,
+                });
+            const resetMarker = () =>
+                dispatchChateauxMapSync({ source: "map", type: "hover" });
+            marker.addEventListener("mouseenter", highlightMarker);
+            marker.addEventListener("mouseleave", resetMarker);
+            marker.addEventListener("focus", highlightMarker);
+            marker.addEventListener("blur", resetMarker);
+
+            markerElementsRef.current.set(chateau.slug, marker);
 
             markersRef.current.push(
                 new maplibregl.Marker({ element: marker })
@@ -268,37 +393,17 @@ export default function ChateauxMapCanvas({
                 duration: 450,
             });
         }
-    }, [chateaux, isReady, selectedSlug]);
+        applyMarkerStates();
+    }, [applyMarkerStates, chateaux, isReady]);
 
-    const scrollToChateau = () => {
-        if (!selectedChateau) return;
-
-        document
-            .getElementById(`chateau-${selectedChateau.slug}`)
-            ?.scrollIntoView({ behavior: "smooth", block: "center" });
-    };
+    useEffect(() => {
+        if (!isReady) return;
+        focusTerritory(getLatestChateauxMapTerritory()?.territorySlug);
+    }, [focusTerritory, isReady]);
 
     return (
         <div className={styles.root} data-ambiance={ambiance}>
             <div className={styles.canvas} ref={containerRef} />
-
-            <aside
-                className={styles.preview}
-                data-visible={Boolean(selectedChateau)}
-            >
-                {selectedChateau ? (
-                    <>
-                        <p>{selectedChateau.epoque}</p>
-                        <strong>{selectedChateau.nom}</strong>
-                        <span>{selectedChateau.commune}</span>
-                        <button onClick={scrollToChateau} type="button">
-                            Voir la fiche <span aria-hidden="true">↓</span>
-                        </button>
-                    </>
-                ) : (
-                    <span>Sélectionne un marqueur pour ouvrir son aperçu.</span>
-                )}
-            </aside>
 
             <p className={styles.attribution}>
                 ©{" "}

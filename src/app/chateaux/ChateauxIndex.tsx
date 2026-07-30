@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
@@ -29,6 +29,11 @@ import { TerritoireSection } from "@/components/TerritoireSection";
 import { getTerritoiresWithChateaux } from "@/registry/chateaux-territoires";
 import ChateauxViewportMapSpike from "./ChateauxViewportMapSpike";
 import ChateauxInteractiveMap from "./ChateauxInteractiveMap";
+import {
+    CHATEAUX_MAP_SYNC_EVENT,
+    dispatchChateauxMapSync,
+    type ChateauxMapSyncDetail,
+} from "./chateaux-map-sync";
 
 const EPOQUES = [
     { id: "all", label: "Tout" },
@@ -80,6 +85,7 @@ export default function ChateauxIndex({
     const [renommee, setRenommee] = useState<string>("all");
     const [q, setQ] = useState("");
     const [groupByTerritory, setGroupByTerritory] = useState(true);
+    const catalogueRef = useRef<HTMLDivElement>(null);
     const territoiresEnabled = featureIsEnabled("territoires");
 
     const collections = useMemo(() => {
@@ -179,6 +185,159 @@ export default function ChateauxIndex({
     const interactiveMapEnabled = featureIsEnabled("chateauxInteractiveMap");
     const hasActiveFilters = epoque !== "all" || renommee !== "all" || q !== "";
 
+    useEffect(() => {
+        if (!interactiveMapEnabled) return;
+        if (window.matchMedia("(max-width: 760px)").matches) return;
+
+        const catalogue = catalogueRef.current;
+        if (!catalogue) return;
+
+        const cards = Array.from(
+            catalogue.querySelectorAll<HTMLElement>("[data-map-sync-card]"),
+        );
+        const territories = Array.from(
+            catalogue.querySelectorAll<HTMLElement>(
+                "[data-map-sync-territory]",
+            ),
+        );
+        const visibleSlugs = new Set<string>();
+        const visibleTerritories = new Set<string>();
+        let frame = 0;
+        let signature = "";
+        let territorySignature = "";
+
+        const emitViewport = () => {
+            frame = 0;
+            const centralY = window.innerHeight / 2;
+            const visibleCards = cards.filter((card) =>
+                visibleSlugs.has(card.dataset.chateauMapSlug ?? ""),
+            );
+            const primarySlug = visibleCards
+                .map((card) => {
+                    const rect = card.getBoundingClientRect();
+                    return {
+                        slug: card.dataset.chateauMapSlug,
+                        distance: Math.abs(
+                            rect.top + rect.height / 2 - centralY,
+                        ),
+                    };
+                })
+                .sort((a, b) => a.distance - b.distance)[0]?.slug;
+            const slugs = [...visibleSlugs].sort();
+            const nextSignature = `${slugs.join(",")}|${primarySlug ?? ""}`;
+
+            if (nextSignature !== signature) {
+                signature = nextSignature;
+                dispatchChateauxMapSync({
+                    source: "catalogue",
+                    type: "viewport",
+                    visibleSlugs: slugs,
+                    primarySlug,
+                });
+            }
+
+            const territorySlug = territories
+                .filter((territory) =>
+                    visibleTerritories.has(
+                        territory.dataset.mapSyncTerritory ?? "",
+                    ),
+                )
+                .map((territory) => {
+                    const rect = territory.getBoundingClientRect();
+                    return {
+                        slug: territory.dataset.mapSyncTerritory,
+                        distance: Math.abs(
+                            rect.top - window.innerHeight * 0.28,
+                        ),
+                    };
+                })
+                .sort((a, b) => a.distance - b.distance)[0]?.slug;
+
+            if (territorySlug === territorySignature) return;
+            territorySignature = territorySlug ?? "";
+            dispatchChateauxMapSync({
+                source: "catalogue",
+                type: "territory",
+                territorySlug,
+            });
+        };
+        const scheduleViewport = () => {
+            if (!frame) frame = requestAnimationFrame(emitViewport);
+        };
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const target = entry.target as HTMLElement;
+                    const slug = target.dataset.chateauMapSlug;
+                    const territorySlug = target.dataset.mapSyncTerritory;
+
+                    if (slug) {
+                        if (entry.isIntersecting) visibleSlugs.add(slug);
+                        else visibleSlugs.delete(slug);
+                    }
+                    if (territorySlug) {
+                        if (entry.isIntersecting) {
+                            visibleTerritories.add(territorySlug);
+                        } else {
+                            visibleTerritories.delete(territorySlug);
+                        }
+                    }
+                });
+                scheduleViewport();
+            },
+            { threshold: [0, 0.15, 0.5, 0.85] },
+        );
+
+        cards.forEach((card) => observer.observe(card));
+        territories.forEach((territory) => observer.observe(territory));
+        window.addEventListener("scroll", scheduleViewport, { passive: true });
+        scheduleViewport();
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener("scroll", scheduleViewport);
+            if (frame) cancelAnimationFrame(frame);
+        };
+    }, [groupByTerritory, interactiveMapEnabled, list]);
+
+    useEffect(() => {
+        if (!interactiveMapEnabled) return;
+
+        const onMapSync = (event: Event) => {
+            const detail = (event as CustomEvent<ChateauxMapSyncDetail>).detail;
+            if (detail.source !== "map" || detail.type !== "hover") return;
+
+            catalogueRef.current
+                ?.querySelectorAll<HTMLElement>("[data-map-sync-card]")
+                .forEach((card) => {
+                    card.toggleAttribute(
+                        "data-map-highlight",
+                        card.dataset.chateauMapSlug === detail.slug,
+                    );
+                });
+        };
+
+        window.addEventListener(CHATEAUX_MAP_SYNC_EVENT, onMapSync);
+        return () =>
+            window.removeEventListener(CHATEAUX_MAP_SYNC_EVENT, onMapSync);
+    }, [groupByTerritory, interactiveMapEnabled, list]);
+
+    const syncCatalogueHover = (
+        target: EventTarget | null,
+        active: boolean,
+    ) => {
+        const card = (target as HTMLElement | null)?.closest<HTMLElement>(
+            "[data-map-sync-card]",
+        );
+        if (!card) return;
+
+        dispatchChateauxMapSync({
+            source: "catalogue",
+            type: "hover",
+            slug: active ? card.dataset.chateauMapSlug : undefined,
+        });
+    };
+
     const resetFilters = () => {
         setEpoque("all");
         setRenommee("all");
@@ -256,7 +415,9 @@ export default function ChateauxIndex({
                         key={territory.slug}
                         territory={territory}
                         chateaux={chateaux}
-                        mapSync={viewportMapSpikeEnabled}
+                        mapSync={
+                            viewportMapSpikeEnabled || interactiveMapEnabled
+                        }
                     />
                 ))}
             </div>
@@ -266,6 +427,7 @@ export default function ChateauxIndex({
                     <div
                         id={`chateau-${castle.slug}`}
                         data-chateau-map-slug={castle.slug}
+                        data-map-sync-card=""
                         key={castle.slug}
                     >
                         <ChateauxCard d={castle} open={false} />
@@ -409,13 +571,42 @@ export default function ChateauxIndex({
                         <ChateauxInteractiveMap chateaux={list} />
                     ) : null}
 
-                    {viewportMapSpikeEnabled && list.length > 0 ? (
-                        <ChateauxViewportMapSpike chateaux={list} variant="top">
-                            {catalogue}
-                        </ChateauxViewportMapSpike>
-                    ) : (
-                        catalogue
-                    )}
+                    <div
+                        ref={catalogueRef}
+                        onPointerOver={(event) =>
+                            syncCatalogueHover(event.target, true)
+                        }
+                        onPointerOut={(event) => {
+                            const card = (
+                                event.target as HTMLElement
+                            ).closest<HTMLElement>("[data-map-sync-card]");
+                            if (
+                                card &&
+                                !card.contains(
+                                    event.relatedTarget as Node | null,
+                                )
+                            ) {
+                                syncCatalogueHover(event.target, false);
+                            }
+                        }}
+                        onFocus={(event) =>
+                            syncCatalogueHover(event.target, true)
+                        }
+                        onBlur={(event) =>
+                            syncCatalogueHover(event.target, false)
+                        }
+                    >
+                        {viewportMapSpikeEnabled && list.length > 0 ? (
+                            <ChateauxViewportMapSpike
+                                chateaux={list}
+                                variant="top"
+                            >
+                                {catalogue}
+                            </ChateauxViewportMapSpike>
+                        ) : (
+                            catalogue
+                        )}
+                    </div>
                 </LRZSection>
 
                 <PageFooter color={entry.color}>
