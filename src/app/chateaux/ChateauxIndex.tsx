@@ -570,16 +570,10 @@ export default function ChateauxIndex({
                     color="ocre"
                     spacing="sm"
                     headerClassName="mb-0!"
-                    // className="mt-10"
-                    // separatorAfter="spark"
-                    // separatorBefore="spark"
                 >
-                    <LRZSeparateur
-                        preset="ornament"
-                        size="md"
-                        scope="section"
-                    />
-                    {!controlsInOwnSection && indexControls}
+                    {!controlsInOwnSection && (
+                        <div className="mt-5">{indexControls}</div>
+                    )}
 
                     {interactiveMapEnabled ? (
                         <ChateauxInteractiveMap

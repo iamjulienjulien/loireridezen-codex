@@ -36,12 +36,12 @@ export default function IndexPresentation({
                 </p>
             </div>
             <div className={styles.text}>
-                <ReactMarkdown>{children}</ReactMarkdown>
                 {descriptionFooter ? (
                     <div className={styles.descriptionFooter}>
                         <ReactMarkdown>{descriptionFooter}</ReactMarkdown>
                     </div>
                 ) : null}
+                <ReactMarkdown>{children}</ReactMarkdown>
             </div>
         </section>
     );

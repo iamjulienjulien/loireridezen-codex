@@ -45,11 +45,13 @@ export default function TerritoireSection({
                 {
                     "--territoire-accent": color,
                     "--territoire-accent-lighter": colorLighter,
+                    "--territoire-color": color,
+                    "--territoire-color-lighter": colorLighter,
                 } as TerritoireSectionStyle
             }
             aria-labelledby={`territoire-${territory.slug}-title`}
         >
-            <div style={{ marginTop: "0rem", marginBottom: ".7rem" }}>
+            {/* <div style={{ marginTop: "0rem", marginBottom: ".7rem" }}>
                 <LRZSeparateur
                     preset="diamond"
                     color={identite.color}
@@ -59,18 +61,30 @@ export default function TerritoireSection({
                     weight="regular"
                     tone="normal"
                 />
-            </div>
+            </div> */}
             <header className={styles.header}>
                 <div className={styles.eyebrowRow}>
                     <p className={styles.eyebrow}>
-                        De {limites.amont} à {limites.aval}
+                        De <strong>{limites.amont}</strong> à{" "}
+                        <strong>{limites.aval}</strong>
                     </p>
                     <p className={styles.count}>
                         <strong>{chateaux.length}</strong>{" "}
                         {chateaux.length > 1 ? "châteaux" : "château"}
                     </p>
                 </div>
-
+                <div style={{ marginTop: "1rem", marginBottom: ".7rem" }}>
+                    <LRZSeparateur
+                        preset="dot"
+                        color={identite.color}
+                        size="lg"
+                        scope="content"
+                        marginBlock={"0"}
+                        weight="regular"
+                        tone="subtle"
+                        // fadeEdges
+                    />
+                </div>
                 <div className={styles.identity}>
                     {identite.blason ? (
                         <Image

@@ -6,7 +6,7 @@
 .leadBlock {
     width: fit-content;
     max-width: 100%;
-    margin: 0 auto 34px;
+    margin: 0 auto 30px;
 }
 
 /* Filet doré d'ouverture — rappel du motif de l'accueil */
@@ -62,7 +62,7 @@
 
 .descriptionFooter {
     max-width: 76ch;
-    margin: 1.6rem auto 0;
+    margin: 1rem auto 1.6rem;
     padding: 0.95rem 1.35rem;
     border-top: 1px solid
         color-mix(in srgb, var(--accent) 40%, var(--border-subtle));
