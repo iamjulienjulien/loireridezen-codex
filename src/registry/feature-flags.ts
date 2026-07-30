@@ -28,7 +28,7 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     commandPalette: ["development"],
     territoires: ["development"],
     indexControlsSection: [],
-    chateauxViewportMapSpike: ["development"],
+    chateauxViewportMapSpike: [],
     chateauxInteractiveMap: ["development"],
 });
 

@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import * as maplibregl from "maplibre-gl";
 import type { Map as MapLibreMap, Marker } from "maplibre-gl";
 
 import { useAmbiance } from "@/hooks/useAmbiance";
 import type { Ambiance } from "@/registry/ambiances";
-import type { Chateau, ChateauEpoque } from "@/types/chateau";
+import { getTerritoireSlugForChateau } from "@/registry/chateaux-territoires";
+import { TERRITOIRES } from "@/registry/territoires";
+import type { Chateau } from "@/types/chateau";
 
 import styles from "./ChateauxMapCanvas.module.css";
 
@@ -13,15 +16,31 @@ type ChateauxMapCanvasProps = {
     chateaux: readonly Chateau[];
 };
 
-const MARKER_TONES: Record<ChateauEpoque, string> = {
-    Médiéval: styles.medieval,
-    Renaissance: styles.renaissance,
-    Classique: styles.classique,
-    Éclectique: styles.eclectique,
-};
+const TERRITORY_ACCENTS = new Map(
+    TERRITOIRES.map((territory) => [territory.slug, territory.identite.accent]),
+);
 
 const DEFAULT_CENTER: [number, number] = [1.7, 47.3];
-const BASEMAP_STYLE_URL = "https://tiles.openfreemap.org/styles/positron";
+const MAPLIBRE_WORKER_URL =
+    "https://unpkg.com/maplibre-gl@6.0.0/dist/maplibre-gl-worker.mjs";
+const BASEMAP_STYLE = {
+    version: 8 as const,
+    sources: {
+        openstreetmap: {
+            type: "raster" as const,
+            tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+            tileSize: 256,
+            attribution: "© OpenStreetMap contributors",
+        },
+    },
+    layers: [
+        {
+            id: "openstreetmap",
+            type: "raster" as const,
+            source: "openstreetmap",
+        },
+    ],
+};
 
 type MapPalette = {
     water: string;
@@ -130,7 +149,6 @@ export default function ChateauxMapCanvas({
     const [ambiance] = useAmbiance();
     const containerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<MapLibreMap | null>(null);
-    const maplibreRef = useRef<typeof import("maplibre-gl") | null>(null);
     const markersRef = useRef<Marker[]>([]);
     const ambianceRef = useRef(ambiance);
     const [isReady, setIsReady] = useState(false);
@@ -143,33 +161,33 @@ export default function ChateauxMapCanvas({
         const container = containerRef.current;
         if (!container) return;
 
-        let cancelled = false;
-        let map: MapLibreMap | null = null;
+        // L'import statique conserve l'URL du worker dans le chunk Next. Le
+        // composant reste néanmoins chargé à la demande depuis le toggle.
+        // Turbopack ne résout pas correctement l'URL implicite du worker :
+        // elle retombe sinon sur /chateaux en développement.
+        maplibregl.setWorkerUrl(MAPLIBRE_WORKER_URL);
+        const map = new maplibregl.Map({
+            container,
+            center: DEFAULT_CENTER,
+            zoom: 6,
+            attributionControl: false,
+            style: BASEMAP_STYLE,
+        });
+        const resizeObserver = new ResizeObserver(() => map.resize());
 
-        void import("maplibre-gl").then((maplibregl) => {
-            if (cancelled) return;
-
-            maplibreRef.current = maplibregl;
-            map = new maplibregl.Map({
-                container,
-                center: DEFAULT_CENTER,
-                zoom: 6,
-                attributionControl: false,
-                style: BASEMAP_STYLE_URL,
-            });
-
-            mapRef.current = map;
-            map.once("load", () => {
-                applyMapAmbiance(map!, ambianceRef.current);
-                setIsReady(true);
-            });
+        mapRef.current = map;
+        resizeObserver.observe(container);
+        map.once("load", () => {
+            applyMapAmbiance(map, ambianceRef.current);
+            map.resize();
+            setIsReady(true);
         });
 
         return () => {
-            cancelled = true;
+            resizeObserver.disconnect();
             markersRef.current.forEach((marker) => marker.remove());
             markersRef.current = [];
-            map?.remove();
+            map.remove();
             mapRef.current = null;
         };
     }, []);
@@ -183,8 +201,7 @@ export default function ChateauxMapCanvas({
 
     useEffect(() => {
         const map = mapRef.current;
-        const maplibregl = maplibreRef.current;
-        if (!map || !maplibregl || !isReady) return;
+        if (!map || !isReady) return;
 
         markersRef.current.forEach((marker) => marker.remove());
         markersRef.current = [];
@@ -198,14 +215,23 @@ export default function ChateauxMapCanvas({
 
         chateaux.forEach((chateau) => {
             const marker = document.createElement("button");
+            const territorySlug = getTerritoireSlugForChateau(chateau);
+            const accent = territorySlug
+                ? TERRITORY_ACCENTS.get(territorySlug)
+                : undefined;
+
             marker.type = "button";
             marker.className = [
                 styles.marker,
-                MARKER_TONES[chateau.epoque],
                 chateau.slug === selectedSlug ? styles.markerSelected : "",
             ]
                 .filter(Boolean)
                 .join(" ");
+            if (accent) marker.style.setProperty("--marker-color", accent);
+            const markerCore = document.createElement("span");
+            markerCore.className = styles.markerCore;
+            markerCore.setAttribute("aria-hidden", "true");
+            marker.append(markerCore);
             marker.setAttribute(
                 "aria-label",
                 `${chateau.nom}, ${chateau.commune}`,
@@ -253,7 +279,7 @@ export default function ChateauxMapCanvas({
     };
 
     return (
-        <div className={styles.root}>
+        <div className={styles.root} data-ambiance={ambiance}>
             <div className={styles.canvas} ref={containerRef} />
 
             <aside
@@ -282,14 +308,6 @@ export default function ChateauxMapCanvas({
                     rel="noreferrer"
                 >
                     OpenStreetMap
-                </a>{" "}
-                ·{" "}
-                <a
-                    href="https://openfreemap.org/"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    OpenFreeMap
                 </a>
             </p>
         </div>

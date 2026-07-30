@@ -87,8 +87,30 @@
 }
 
 .mapWrap {
-    min-height: clamp(20rem, 48vw, 34rem);
+    height: clamp(20rem, 48vw, 34rem);
     border-top: 1px solid var(--border-subtle);
+    transition: height 0.28s ease;
+}
+
+@media (min-width: 901px) {
+    .root[data-open] {
+        position: sticky;
+        z-index: 4;
+        top: calc(var(--header-offset, 0px) + 0.75rem);
+        isolation: isolate;
+        background: var(--color-ambiance-surface);
+    }
+
+    .root[data-open] .mapWrap {
+        height: min(
+            clamp(18rem, 38vw, 30rem),
+            calc(100dvh - var(--header-offset, 0px) - 5.5rem)
+        );
+    }
+
+    .root[data-open][data-condensed] .mapWrap {
+        height: min(11rem, calc(100dvh - var(--header-offset, 0px) - 5.5rem));
+    }
 }
 
 .loading {
@@ -118,7 +140,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .toggle {
+    .toggle,
+    .mapWrap {
         transition: none;
     }
 }
