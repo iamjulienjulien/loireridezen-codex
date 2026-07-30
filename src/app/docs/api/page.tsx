@@ -272,6 +272,7 @@ export default function ApiDocumentationPage() {
                 </Link>
 
                 <nav className={styles.primaryNav} aria-label="Liens API">
+                    <Link href="/docs">Documentation</Link>
                     <a href="/api/v1">API</a>
                     <a href="/api/v1/openapi.json">OpenAPI</a>
                     <a href="https://github.com/iamjulienjulien/loireridezen-codex/tree/main/docs/api">
