@@ -165,8 +165,6 @@ export default function PatrimoineIndex({
                 )}
 
                 <PageFooter color={entry.color}>
-                    Le Codex Ligérien ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
                     <br />
                     {items.length} {entry.footerNote}
                 </PageFooter>

@@ -162,8 +162,6 @@ export default function FauneIndex({
                     >
                         {list.length} {entry.footerNote}
                     </span>
-                    Le Codex Ligérien ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
                 </PageFooter>
             </div>
         </main>

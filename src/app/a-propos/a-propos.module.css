@@ -9,6 +9,7 @@
             transparent 34rem
         ),
         var(--color-ambiance-fond);
+    padding-bottom: 96px;
 }
 
 .masthead {
@@ -72,7 +73,8 @@
 .navigation a:focus-visible,
 .primaryLink:focus-visible,
 .methodCard a:focus-visible {
-    outline: 3px solid color-mix(in srgb, var(--color-nature-eau) 65%, transparent);
+    outline: 3px solid
+        color-mix(in srgb, var(--color-nature-eau) 65%, transparent);
     outline-offset: 4px;
 }
 
@@ -179,9 +181,18 @@
     display: grid;
     gap: 1rem;
     padding: clamp(1.5rem, 4vw, 2.5rem);
-    border: 1px solid color-mix(in srgb, var(--color-nature-prairie) 35%, var(--border-subtle));
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--color-nature-prairie) 35%,
+            var(--border-subtle)
+        );
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 88%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 88%,
+        transparent
+    );
     box-shadow: var(--shadow-card);
 }
 
@@ -216,7 +227,12 @@
     justify-content: center;
     min-height: 3rem;
     padding: 0.8rem 1.1rem;
-    border: 1px solid color-mix(in srgb, var(--color-nature-coucher) 56%, var(--border-subtle));
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--color-nature-coucher) 56%,
+            var(--border-subtle)
+        );
     border-radius: 999px;
     color: var(--color-nature-coucher);
     transition:

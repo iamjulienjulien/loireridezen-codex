@@ -1,12 +1,23 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+    useCallback,
+    useEffect,
+    useRef,
+    useState,
+    useSyncExternalStore,
+    type CSSProperties,
+    type ReactElement,
+} from "react";
+import { createRoot, type Root } from "react-dom/client";
 import * as maplibregl from "maplibre-gl";
 import type { Map as MapLibreMap, Marker } from "maplibre-gl";
 
+import { LRZTooltip } from "@/components/LRZTooltip";
 import { useAmbiance } from "@/hooks/useAmbiance";
 import type { Ambiance } from "@/registry/ambiances";
 import { getTerritoireSlugForChateau } from "@/registry/chateaux-territoires";
+import { LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import { TERRITOIRES } from "@/registry/territoires";
 import type { Chateau } from "@/types/chateau";
 
@@ -19,6 +30,7 @@ import {
     CHATEAUX_MAP_SYNC_EVENT,
     dispatchChateauxMapSync,
     getLatestChateauxMapTerritory,
+    getLatestChateauxMapCatalogueHover,
     getLatestChateauxMapViewport,
     type ChateauxMapSyncDetail,
 } from "./chateaux-map-sync";
@@ -27,9 +39,54 @@ type ChateauxMapCanvasProps = {
     chateaux: readonly Chateau[];
 };
 
-const TERRITORY_ACCENTS = new Map(
-    TERRITOIRES.map((territory) => [territory.slug, territory.identite.accent]),
+const TERRITORY_COLORS = new Map(
+    TERRITOIRES.map((territory) => [territory.slug, territory.identite.color]),
 );
+
+let catalogueHoverSlug: string | undefined;
+const catalogueHoverListeners = new Set<() => void>();
+
+function subscribeToCatalogueHover(listener: () => void) {
+    catalogueHoverListeners.add(listener);
+    return () => catalogueHoverListeners.delete(listener);
+}
+
+function getCatalogueHoverSnapshot() {
+    return catalogueHoverSlug;
+}
+
+function setCatalogueHover(slug?: string) {
+    if (catalogueHoverSlug === slug) return;
+    catalogueHoverSlug = slug;
+    catalogueHoverListeners.forEach((listener) => listener());
+}
+
+function MarkerTooltip({
+    children,
+    label,
+    slug,
+}: {
+    children: ReactElement;
+    label: string;
+    slug: string;
+}) {
+    const activeSlug = useSyncExternalStore(
+        subscribeToCatalogueHover,
+        getCatalogueHoverSnapshot,
+        () => undefined,
+    );
+
+    return (
+        <LRZTooltip
+            content={label}
+            side="top"
+            portal
+            trigger={activeSlug === slug ? "open" : "hover"}
+        >
+            {children}
+        </LRZTooltip>
+    );
+}
 
 function applyMapAmbiance(map: MapLibreMap, ambiance: Ambiance) {
     const palette = CHATEAUX_MAP_PALETTES[ambiance];
@@ -83,6 +140,7 @@ export default function ChateauxMapCanvas({
     const containerRef = useRef<HTMLDivElement>(null);
     const mapRef = useRef<MapLibreMap | null>(null);
     const markersRef = useRef<Marker[]>([]);
+    const markerRootsRef = useRef(new Map<string, Root>());
     const markerElementsRef = useRef(new Map<string, HTMLButtonElement>());
     const ambianceRef = useRef(ambiance);
     const selectedSlugRef = useRef<string | undefined>(undefined);
@@ -171,6 +229,9 @@ export default function ChateauxMapCanvas({
             }
             if (detail.type === "hover") {
                 hoveredSlugRef.current = detail.slug;
+                if (detail.source === "catalogue") {
+                    setCatalogueHover(detail.slug);
+                }
                 applyMarkerStates();
             }
         };
@@ -178,6 +239,10 @@ export default function ChateauxMapCanvas({
         if (latestViewport) applyViewport(latestViewport);
         const latestTerritory = getLatestChateauxMapTerritory();
         if (latestTerritory) focusTerritory(latestTerritory.territorySlug);
+        const latestCatalogueHover = getLatestChateauxMapCatalogueHover();
+        if (latestCatalogueHover) {
+            setCatalogueHover(latestCatalogueHover.slug);
+        }
 
         window.addEventListener(CHATEAUX_MAP_SYNC_EVENT, onMapSync);
         return () => {
@@ -193,6 +258,7 @@ export default function ChateauxMapCanvas({
         const container = containerRef.current;
         if (!container) return;
         const markerElements = markerElementsRef.current;
+        const markerRoots = markerRootsRef.current;
 
         // L'import statique conserve l'URL du worker dans le chunk Next. Le
         // composant reste néanmoins chargé à la demande depuis le toggle.
@@ -220,6 +286,8 @@ export default function ChateauxMapCanvas({
             resizeObserver.disconnect();
             markersRef.current.forEach((marker) => marker.remove());
             markersRef.current = [];
+            markerRoots.forEach((root) => root.unmount());
+            markerRoots.clear();
             markerElements.clear();
             map.remove();
             mapRef.current = null;
@@ -239,6 +307,8 @@ export default function ChateauxMapCanvas({
 
         markersRef.current.forEach((marker) => marker.remove());
         markersRef.current = [];
+        markerRootsRef.current.forEach((root) => root.unmount());
+        markerRootsRef.current.clear();
         markerElementsRef.current.clear();
         visibleSlugsRef.current = new Set(
             chateaux.map((chateau) => chateau.slug),
@@ -257,27 +327,11 @@ export default function ChateauxMapCanvas({
         const bounds = new maplibregl.LngLatBounds();
 
         chateaux.forEach((chateau) => {
-            const marker = document.createElement("button");
+            const markerContainer = document.createElement("div");
             const territorySlug = getTerritoireSlugForChateau(chateau);
-            const accent = territorySlug
-                ? TERRITORY_ACCENTS.get(territorySlug)
+            const color = territorySlug
+                ? TERRITORY_COLORS.get(territorySlug)
                 : undefined;
-
-            marker.type = "button";
-            marker.className = styles.marker;
-            if (accent) marker.style.setProperty("--marker-color", accent);
-            const markerCore = document.createElement("span");
-            markerCore.className = styles.markerCore;
-            markerCore.setAttribute("aria-hidden", "true");
-            marker.append(markerCore);
-            marker.setAttribute(
-                "aria-label",
-                `${chateau.nom}, ${chateau.commune}`,
-            );
-            marker.title = chateau.nom;
-            marker.addEventListener("click", () =>
-                setSelectedSlug(chateau.slug),
-            );
             const highlightMarker = () =>
                 dispatchChateauxMapSync({
                     source: "map",
@@ -286,15 +340,47 @@ export default function ChateauxMapCanvas({
                 });
             const resetMarker = () =>
                 dispatchChateauxMapSync({ source: "map", type: "hover" });
-            marker.addEventListener("mouseenter", highlightMarker);
-            marker.addEventListener("mouseleave", resetMarker);
-            marker.addEventListener("focus", highlightMarker);
-            marker.addEventListener("blur", resetMarker);
 
-            markerElementsRef.current.set(chateau.slug, marker);
+            const markerRoot = createRoot(markerContainer);
+            markerRootsRef.current.set(chateau.slug, markerRoot);
+            markerRoot.render(
+                <MarkerTooltip label={chateau.nom} slug={chateau.slug}>
+                    <button
+                        ref={(element) => {
+                            if (element) {
+                                markerElementsRef.current.set(
+                                    chateau.slug,
+                                    element,
+                                );
+                                applyMarkerStates();
+                            }
+                        }}
+                        className={styles.marker}
+                        style={
+                            color
+                                ? ({
+                                      "--marker-color": `var(${LRZ_COLOR_VARIABLES[color]})`,
+                                  } as CSSProperties)
+                                : undefined
+                        }
+                        type="button"
+                        aria-label={`${chateau.nom}, ${chateau.commune}`}
+                        onClick={() => setSelectedSlug(chateau.slug)}
+                        onMouseEnter={highlightMarker}
+                        onMouseLeave={resetMarker}
+                        onFocus={highlightMarker}
+                        onBlur={resetMarker}
+                    >
+                        <span
+                            className={styles.markerCore}
+                            aria-hidden="true"
+                        />
+                    </button>
+                </MarkerTooltip>,
+            );
 
             markersRef.current.push(
-                new maplibregl.Marker({ element: marker })
+                new maplibregl.Marker({ element: markerContainer })
                     .setLngLat([
                         chateau.coordonnees.lng,
                         chateau.coordonnees.lat,

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { MapPinned, X } from "lucide-react";
+import { X } from "lucide-react";
 import {
     useEffect,
     useId,
@@ -67,7 +67,6 @@ export default function ChateauxInteractiveMap({
     const resizeOriginRef = useRef<DragPosition>({ x: 0, y: 0 });
     const mapSizeRef = useRef<MapSize>({ width: 0, height: 0 });
     const mapId = useId();
-    const markerLabel = chateaux.length > 1 ? "marqueurs" : "marqueur";
     const floatingDimensions = CHATEAUX_MAP_CONFIG.floating.dimensions;
     const floatingStyle: ChateauxMapStyle = {
         "--map-float-width": `${floatingDimensions.width}px`,
@@ -110,11 +109,10 @@ export default function ChateauxInteractiveMap({
         };
     }, [isOpen]);
 
-    const toggleMap = () => {
-        if (isOpen) setIsCondensed(false);
-        const nextOpen = !isOpen;
-        if (open === undefined) setUncontrolledOpen(nextOpen);
-        onOpenChange?.(nextOpen);
+    const closeMap = () => {
+        setIsCondensed(false);
+        if (open === undefined) setUncontrolledOpen(false);
+        onOpenChange?.(false);
     };
 
     const startDrag = (event: PointerEvent<HTMLElement>) => {
@@ -287,23 +285,14 @@ export default function ChateauxInteractiveMap({
                 onPointerMove={moveDrag}
                 onPointerUp={stopDrag}
             >
-                <div className={styles.copy}>
-                    <p className={styles.eyebrow}>Carte des châteaux</p>
-                    <p className={styles.count} aria-live="polite">
-                        <MapPinned aria-hidden="true" />
-                        {chateaux.length} {markerLabel} visible
-                    </p>
-                </div>
-
                 <button
                     aria-controls={mapId}
-                    aria-expanded={isOpen}
-                    className={styles.toggle}
-                    onClick={toggleMap}
+                    aria-label="Fermer la carte"
+                    className={styles.closeButton}
+                    onClick={closeMap}
                     type="button"
                 >
                     <X aria-hidden="true" />
-                    Masquer la carte
                 </button>
             </header>
 

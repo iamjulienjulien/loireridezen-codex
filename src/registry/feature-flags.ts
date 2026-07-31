@@ -24,13 +24,15 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     atelier: ["development"],
     collections: [],
     indexesCustomEmoji: [],
-    ambianceChateauxVisual: ["development"],
+    ambianceChateauxVisual: [],
     commandPalette: ["development"],
     territoires: ["development", "production"],
     indexControlsSection: [],
     chateauxViewportMapSpike: [],
-    chateauxInteractiveMap: ["development"],
-    personnages: ["development"],
+    chateauxInteractiveMap: ["development", "production"],
+    detailDialogChateaux: [],
+    personnages: [],
+    chateauxRenommee: [],
 });
 
 export type FeatureFlagName = keyof typeof FEATURE_FLAGS;

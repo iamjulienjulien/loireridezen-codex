@@ -23,13 +23,26 @@ type TerritorySyncDetail = Extract<
     ChateauxMapSyncDetail,
     { type: "territory" }
 >;
+type CatalogueHoverSyncDetail = {
+    source: "catalogue";
+    type: "hover";
+    slug?: string;
+};
 
 let latestViewport: ViewportSyncDetail | undefined;
 let latestTerritory: TerritorySyncDetail | undefined;
+let latestCatalogueHover: CatalogueHoverSyncDetail | undefined;
 
 export function dispatchChateauxMapSync(detail: ChateauxMapSyncDetail) {
     if (detail.type === "viewport") latestViewport = detail;
     if (detail.type === "territory") latestTerritory = detail;
+    if (detail.source === "catalogue" && detail.type === "hover") {
+        latestCatalogueHover = {
+            source: "catalogue",
+            type: "hover",
+            slug: detail.slug,
+        };
+    }
 
     window.dispatchEvent(
         new CustomEvent<ChateauxMapSyncDetail>(CHATEAUX_MAP_SYNC_EVENT, {
@@ -44,4 +57,10 @@ export function getLatestChateauxMapViewport() {
 
 export function getLatestChateauxMapTerritory() {
     return latestTerritory;
+}
+
+export function getLatestChateauxMapCatalogueHover():
+    | CatalogueHoverSyncDetail
+    | undefined {
+    return latestCatalogueHover;
 }

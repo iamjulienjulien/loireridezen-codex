@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import styles from "./docs-home.module.css";
+import PageFooter from "@/components/PageFooter";
 
 export const metadata: Metadata = {
     title: "Documentation — Le Codex ligérien",
-    description:
-        "Les guides et références techniques du Codex ligérien.",
+    description: "Les guides et références techniques du Codex ligérien.",
 };
 
 const SECTIONS = [
@@ -71,9 +71,7 @@ export default function DocumentationHomePage() {
                 </div>
             </section>
 
-            <footer className={styles.footer}>
-                Loire Ride Zen · Documentation du Codex
-            </footer>
+            <PageFooter />
         </main>
     );
 }

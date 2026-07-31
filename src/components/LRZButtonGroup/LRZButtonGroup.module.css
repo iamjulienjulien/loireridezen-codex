@@ -1,0 +1,99 @@
+.group {
+    display: inline-flex;
+    max-width: 100%;
+    align-items: stretch;
+    gap: 0.35rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.group[data-wrapper="true"] {
+    gap: 0;
+    padding: 3px;
+    border: 1px solid var(--border-subtle);
+    border-radius: calc(var(--radius-md, 6px) + 3px);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 88%,
+        transparent
+    );
+}
+
+.group[data-attached="true"] {
+    gap: 0;
+}
+
+.group[data-wrapper="true"][data-attached="false"] {
+    gap: 0.35rem;
+}
+
+.group::-webkit-scrollbar {
+    display: none;
+}
+
+.group[data-orientation="vertical"] {
+    flex-direction: column;
+    align-items: stretch;
+    overflow-x: visible;
+}
+
+.item {
+    flex: 0 0 auto;
+}
+
+.group[data-attached="true"] .item {
+    position: relative;
+    z-index: 0;
+    border-radius: 0;
+    margin-inline-start: -1px;
+}
+
+.group[data-attached="true"] .item:hover,
+.group[data-attached="true"] .item:focus-visible,
+.group[data-attached="true"] .item[aria-checked="true"] {
+    z-index: 1;
+}
+
+.group[data-attached="true"] .item:first-child {
+    margin-inline-start: 0;
+    border-top-left-radius: var(--radius-sm, 4px);
+    border-bottom-left-radius: var(--radius-sm, 4px);
+}
+
+.group[data-attached="true"] .item:last-child {
+    border-top-right-radius: var(--radius-sm, 4px);
+    border-bottom-right-radius: var(--radius-sm, 4px);
+}
+
+.group[data-attached="true"][data-orientation="vertical"] .item {
+    margin-inline-start: 0;
+    margin-block-start: -1px;
+}
+
+.group[data-attached="true"][data-orientation="vertical"] .item:first-child {
+    margin-block-start: 0;
+    border-radius: var(--radius-sm, 4px) var(--radius-sm, 4px) 0 0;
+}
+
+.group[data-attached="true"][data-orientation="vertical"] .item:last-child {
+    border-radius: 0 0 var(--radius-sm, 4px) var(--radius-sm, 4px);
+}
+
+.group[data-attached="true"][data-orientation="vertical"] .item:only-child {
+    border-radius: var(--radius-sm, 4px);
+}
+
+.fullWidth {
+    display: flex;
+    width: 100%;
+}
+
+.fullWidth .item {
+    flex: 1 1 0;
+}
+
+@media (max-width: 560px) {
+    .group:not([data-orientation="vertical"]) {
+        width: 100%;
+    }
+}

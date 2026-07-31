@@ -2,6 +2,7 @@ import "./atelier.css";
 
 import { notFound } from "next/navigation";
 
+import PageFooter from "@/components/PageFooter";
 import { featureIsEnabled } from "@/registry/feature-flags";
 
 export default function AtelierLayout({
@@ -13,5 +14,10 @@ export default function AtelierLayout({
         notFound();
     }
 
-    return children;
+    return (
+        <>
+            {children}
+            <PageFooter />
+        </>
+    );
 }
