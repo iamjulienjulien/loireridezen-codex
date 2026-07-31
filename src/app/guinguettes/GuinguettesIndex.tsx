@@ -6,28 +6,10 @@ import PageHeader from "@/components/PageHeader";
 import IndexControls from "@/components/IndexControls";
 import IndexPresentation from "@/components/IndexPresentation";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
+import { TERRITOIRES } from "@/registry/territoires";
 import type { Guinguette } from "@/types/guinguette";
 import GuinguetteCard from "./GuinguetteCardV3";
 import styles from "./guinguettes.module.css";
-
-const TERRITOIRES = [
-    { id: "all", label: "Tout" },
-    { id: "Loiret", label: "Loiret" },
-    { id: "Loir-et-Cher", label: "Loir-et-Cher" },
-    { id: "Indre-et-Loire", label: "Indre-et-Loire" },
-    { id: "Maine-et-Loire", label: "Maine-et-Loire" },
-    { id: "Loire-Atlantique", label: "Loire-Atlantique" },
-] as const;
-
-const COURS_EAU = [
-    { id: "all", label: "Tous" },
-    { id: "Loire", label: "Loire" },
-    { id: "Maine", label: "Maine" },
-    { id: "Mayenne", label: "Mayenne" },
-    { id: "Sarthe", label: "Sarthe" },
-    { id: "Loir", label: "Loir" },
-    { id: "Louet", label: "Louet" },
-] as const;
 
 const STATUTS = [
     { id: "all", label: "Tous" },
@@ -72,15 +54,41 @@ export default function GuinguettesIndex({
     };
 
     const countFor = (
-        field: "departement" | "coursDEau" | "statut",
+        field: "territoire" | "coursDEau" | "statut",
         value: string,
     ) => guinguettes.filter((item) => item[field] === value).length;
+
+    const territoireOptions = useMemo(
+        () => [
+            { id: "all", label: "Tout" },
+            ...TERRITOIRES.filter(({ slug }) =>
+                guinguettes.some((item) => item.territoire === slug),
+            ).map(({ slug, nom }) => ({ id: slug, label: nom })),
+        ],
+        [guinguettes],
+    );
+
+    const coursEauOptions = useMemo(
+        () => [
+            { id: "all", label: "Tous" },
+            ...Array.from(
+                new Set(
+                    guinguettes
+                        .map(({ coursDEau: value }) => value)
+                        .filter((value): value is string => Boolean(value)),
+                ),
+            )
+                .sort((a, b) => a.localeCompare(b, "fr"))
+                .map((value) => ({ id: value, label: value })),
+        ],
+        [guinguettes],
+    );
 
     const list = useMemo(() => {
         const normalizedQuery = normalize(query.trim());
 
         return guinguettes.filter((item) => {
-            if (territoire !== "all" && item.departement !== territoire) {
+            if (territoire !== "all" && item.territoire !== territoire) {
                 return false;
             }
             if (coursDEau !== "all" && item.coursDEau !== coursDEau) {
@@ -94,6 +102,7 @@ export default function GuinguettesIndex({
                         item.nom,
                         item.commune,
                         item.departement,
+                        item.territoire,
                         item.coursDEau,
                         item.description,
                         item.sousTitre,
@@ -140,19 +149,19 @@ export default function GuinguettesIndex({
                             label: "Territoire",
                             active: territoire,
                             onSelect: setTerritoire,
-                            options: TERRITOIRES.map((option) => ({
+                            options: territoireOptions.map((option) => ({
                                 ...option,
                                 count:
                                     option.id === "all"
                                         ? undefined
-                                        : countFor("departement", option.id),
+                                        : countFor("territoire", option.id),
                             })),
                         },
                         {
                             label: "Cours d’eau",
                             active: coursDEau,
                             onSelect: setCoursDEau,
-                            options: COURS_EAU.map((option) => ({
+                            options: coursEauOptions.map((option) => ({
                                 ...option,
                                 count:
                                     option.id === "all"

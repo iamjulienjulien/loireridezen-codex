@@ -91,7 +91,8 @@ export default function GuinguetteCard({
 
                     <h3 className={styles.name}>{guinguette.nom}</h3>
                     <p className={styles.setting}>
-                        {guinguette.coursDEau} · {TYPE_LABELS[guinguette.type]}
+                        {guinguette.coursDEau ?? "Cours d’eau à confirmer"} ·{" "}
+                        {TYPE_LABELS[guinguette.type]}
                     </p>
                 </div>
             </header>
@@ -182,7 +183,10 @@ export default function GuinguetteCard({
                             label="Département"
                             value={guinguette.departement}
                         />
-                        <Info label="Cours d’eau" value={guinguette.coursDEau} />
+                        <Info
+                            label="Cours d’eau"
+                            value={guinguette.coursDEau ?? "Non renseigné"}
+                        />
                         <Info
                             label="Vérification"
                             value={

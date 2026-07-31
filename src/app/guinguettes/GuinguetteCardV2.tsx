@@ -81,7 +81,9 @@ export default function GuinguetteCardV2({
         {
             id: "setting",
             label: "Cadre",
-            value: `${capitalize(guinguette.vue)} · ${guinguette.coursDEau}`,
+            value: [capitalize(guinguette.vue), guinguette.coursDEau]
+                .filter(Boolean)
+                .join(" · "),
             icon: "〰️",
         },
         {
@@ -161,7 +163,12 @@ export default function GuinguetteCardV2({
                     titleId={titleId}
                     titleAs="h3"
                     eyebrow={locality}
-                    description={`${TYPE_LABELS[guinguette.type]} · ${guinguette.coursDEau}`}
+                    description={[
+                        TYPE_LABELS[guinguette.type],
+                        guinguette.coursDEau,
+                    ]
+                        .filter(Boolean)
+                        .join(" · ")}
                     icon={<span className={styles.cardIcon}>{icon}</span>}
                     metadata={
                         <LRZBadge

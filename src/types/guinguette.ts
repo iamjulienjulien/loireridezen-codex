@@ -1,4 +1,5 @@
 import type { GuinguetteAmbience } from "@/registry/guinguette-ambiences";
+import type { TerritoireSlug } from "@/registry/territoires";
 
 export type GuinguetteType =
     | "guinguette"
@@ -33,8 +34,9 @@ export type GuinguetteLiens = {
 /**
  * Entrée brute du catalogue des guinguettes.
  *
- * Les booléens peuvent être `null` lorsqu'une information n'a pas encore été
- * confirmée. `null` ne doit donc jamais être assimilé à `false` dans l'UI.
+ * Les booléens et le cours d'eau peuvent être `null` lorsqu'une information
+ * n'a pas encore été confirmée. `null` ne doit donc jamais être assimilé à
+ * `false` dans l'UI.
  */
 export type Guinguette = {
     id: string;
@@ -44,7 +46,8 @@ export type Guinguette = {
     commune: string;
     communeDeleguee: string | null;
     departement: string;
-    coursDEau: string;
+    territoire: TerritoireSlug;
+    coursDEau: string | null;
     type: GuinguetteType;
     ambiance: GuinguetteAmbience[];
     terrasse: boolean | null;

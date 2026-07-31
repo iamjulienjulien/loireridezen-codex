@@ -22,10 +22,8 @@ import {
 
 import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
 import LRZBadge from "@/components/LRZBadge/LRZBadge";
-import {
-    getGuinguetteAmbienceDefinition,
-    type GuinguetteAmbience,
-} from "@/registry/guinguette-ambiences";
+import { getGuinguetteAmbienceDefinition } from "@/registry/guinguette-ambiences";
+import { getTerritoire } from "@/registry/territoires";
 import {
     LRZCard,
     LRZCardContent,
@@ -105,6 +103,7 @@ export default function GuinguetteCardV3({
     );
 
     const cardColor = getCardColor(guinguette);
+    const territoire = getTerritoire(guinguette.territoire);
     const isUnverified = guinguette.statut === "a_verifier";
     const isItinerant = guinguette.type === "guinguette-itinerante";
     const titleId = `guinguette-${guinguette.id}-title`;
@@ -120,7 +119,9 @@ export default function GuinguetteCardV3({
         {
             id: "setting",
             label: "Au fil de l’eau",
-            value: `${capitalize(guinguette.vue)} · ${guinguette.coursDEau}`,
+            value: [capitalize(guinguette.vue), guinguette.coursDEau]
+                .filter(Boolean)
+                .join(" · "),
             icon: <Waves size={14} />,
         },
         {
@@ -150,6 +151,11 @@ export default function GuinguetteCardV3({
             id: "department",
             label: "Département",
             value: guinguette.departement,
+        },
+        {
+            id: "territory",
+            label: "Territoire",
+            value: territoire?.nom ?? humanize(guinguette.territoire),
         },
         {
             id: "type",
@@ -216,7 +222,12 @@ export default function GuinguetteCardV3({
                     title={guinguette.nom}
                     titleAs="h3"
                     titleId={titleId}
-                    description={`${TYPE_LABELS[guinguette.type]} · ${guinguette.coursDEau}`}
+                    description={[
+                        TYPE_LABELS[guinguette.type],
+                        guinguette.coursDEau,
+                    ]
+                        .filter(Boolean)
+                        .join(" · ")}
                     icon={
                         <span className={styles.cardIcon}>
                             {isItinerant ? <TentTree /> : <Umbrella />}
