@@ -14,7 +14,9 @@ import type {
 
 type JsonObject = Record<string, unknown>;
 
-export const DATA_CATALOG_EXCLUSIONS: readonly string[] = [];
+export const DATA_CATALOG_EXCLUSIONS: readonly string[] = [
+    "catalogue-personnages.json",
+];
 export const LOIRE_CORRIDOR_BOUNDS = {
     latitude: { min: 44.5, max: 48.5 },
     longitude: { min: -2.5, max: 5 },

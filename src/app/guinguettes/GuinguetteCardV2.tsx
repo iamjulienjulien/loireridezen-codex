@@ -68,7 +68,7 @@ export default function GuinguetteCardV2({
     const isUnverified = guinguette.statut === "a_verifier";
     const cardColor = getCardColor(guinguette);
     const icon = guinguette.type === "guinguette-itinerante" ? "🎪" : "⛱️";
-    const titleId = `guinguette-${guinguette.id}-title`;
+    const titleId = `guinguette-${guinguette.slug}-title`;
 
     const primaryMetaItems: LRZMetaListItem[] = [
         {
@@ -174,9 +174,7 @@ export default function GuinguetteCardV2({
                         <LRZBadge
                             label={STATUS_LABELS[guinguette.statut]}
                             color={getStatusColor(guinguette.statut)}
-                            variant="soft"
-                            dot
-                            size="sm"
+                            variant="pill"
                         />
                     }
                     className={styles.cardHeader}
@@ -225,8 +223,8 @@ export default function GuinguetteCardV2({
                                 key={ambiance}
                                 label={ambiance}
                                 color="roseau"
-                                variant="outline"
-                                size="sm"
+                                variant="default"
+                                dashed
                             />
                         ))}
                         {guinguette.ambiance.length > 4 ? (
@@ -234,8 +232,7 @@ export default function GuinguetteCardV2({
                                 label={`+${guinguette.ambiance.length - 4}`}
                                 detail="ambiances"
                                 color="gris"
-                                variant="ghost"
-                                size="sm"
+                                variant="ticket"
                             />
                         ) : null}
                     </div>
@@ -267,7 +264,7 @@ export default function GuinguetteCardV2({
                 className={styles.accordionSection}
             >
                 <LRZAccordion
-                    id={`guinguette-${guinguette.id}-details`}
+                    id={`guinguette-${guinguette.slug}-details`}
                     title={open ? "Refermer l’escale" : "Explorer l’escale"}
                     description="Description, services et liens pratiques"
                     icon="🧭"
@@ -291,9 +288,9 @@ export default function GuinguetteCardV2({
                         {guinguette.services.length > 0 ? (
                             <section
                                 className={styles.detailSection}
-                                aria-labelledby={`services-${guinguette.id}`}
+                                aria-labelledby={`services-${guinguette.slug}`}
                             >
-                                <h5 id={`services-${guinguette.id}`}>
+                                <h5 id={`services-${guinguette.slug}`}>
                                     Sur place
                                 </h5>
                                 <div className={styles.badges}>
@@ -302,8 +299,7 @@ export default function GuinguetteCardV2({
                                             key={service}
                                             label={service}
                                             color={cardColor}
-                                            variant="soft"
-                                            size="sm"
+                                            variant="pill"
                                         />
                                     ))}
                                 </div>

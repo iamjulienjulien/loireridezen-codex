@@ -11,8 +11,8 @@ beforeAll(() => {
 });
 
 describe("publication registry", () => {
-    it("registers all six technical indexes", () => {
-        expect(getRegisteredIndexes()).toHaveLength(6);
+    it("registers all seven technical indexes", () => {
+        expect(getRegisteredIndexes()).toHaveLength(7);
         for (const { entries } of getRegisteredIndexes()) {
             const slugs = entries.map(({ slug }) => slug);
             expect(slugs.every(Boolean)).toBe(true);

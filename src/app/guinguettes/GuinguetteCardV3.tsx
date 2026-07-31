@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
-import LRZBadge from "@/components/LRZBadge/LRZBadge";
+import LRZBadge, { type LRZBadgeIcon } from "@/components/LRZBadge/LRZBadge";
 import { getGuinguetteAmbienceDefinition } from "@/registry/guinguette-ambiences";
 import { getTerritoire } from "@/registry/territoires";
 import {
@@ -59,7 +59,7 @@ const VERIFICATION_LABELS: Record<string, string> = {
         "Concept confirmé, programmation à actualiser",
 };
 
-const SERVICE_ICONS: Record<string, ReactNode> = {
+const SERVICE_ICONS: Record<string, LRZBadgeIcon> = {
     restauration: <UtensilsCrossed size={13} />,
     bar: <span aria-hidden>🍷</span>,
     terrasse: <Umbrella size={13} />,
@@ -106,7 +106,7 @@ export default function GuinguetteCardV3({
     const territoire = getTerritoire(guinguette.territoire);
     const isUnverified = guinguette.statut === "a_verifier";
     const isItinerant = guinguette.type === "guinguette-itinerante";
-    const titleId = `guinguette-${guinguette.id}-title`;
+    const titleId = `guinguette-${guinguette.slug}-title`;
 
     const primaryMetaItems: LRZMetaListItem[] = [
         {
@@ -366,7 +366,7 @@ export default function GuinguetteCardV3({
                 className={styles.accordionSection}
             >
                 <LRZAccordion
-                    id={`guinguette-${guinguette.id}-details`}
+                    id={`guinguette-${guinguette.slug}-details`}
                     title={open ? "Refermer l’escale" : "Explorer l’escale"}
                     description="Portrait, services et repères pratiques"
                     icon={<Navigation size={17} />}
@@ -400,9 +400,9 @@ export default function GuinguetteCardV3({
                         {guinguette.services.length > 0 ? (
                             <section
                                 className={styles.detailSection}
-                                aria-labelledby={`services-${guinguette.id}`}
+                                aria-labelledby={`services-${guinguette.slug}`}
                             >
-                                <h5 id={`services-${guinguette.id}`}>
+                                <h5 id={`services-${guinguette.slug}`}>
                                     Sur place
                                 </h5>
                                 <div className={styles.serviceCloud}>

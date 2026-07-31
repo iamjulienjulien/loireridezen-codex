@@ -1,6 +1,7 @@
 import chateauData from "@data/chateau.json";
 import fauneData from "@data/faune.json";
 import floreData from "@data/flore.json";
+import guinguetteData from "@data/guinguettes.json";
 import motData from "@data/mot.json";
 import patrimoineData from "@data/patrimoine.json";
 import vignobleData from "@data/vignoble.json";
@@ -9,6 +10,7 @@ import {
     adaptChateau,
     adaptFaune,
     adaptFlore,
+    adaptGuinguette,
     adaptMot,
     adaptPatrimoine,
     adaptVignoble,
@@ -18,6 +20,7 @@ import {
     chateauCatalogSchema,
     fauneCatalogSchema,
     floreCatalogSchema,
+    guinguetteCatalogSchema,
     motCatalogSchema,
     patrimoineCatalogSchema,
     vignobleCatalogSchema,
@@ -61,6 +64,15 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         schema: chateauCatalogSchema,
         adapter: adaptChateau as EntryAdapter,
         mediaDirectory: "chateau",
+    },
+    {
+        slug: "guinguettes",
+        dataFile: "guinguettes.json",
+        collectionKey: "guinguettes",
+        raw: guinguetteData,
+        schema: guinguetteCatalogSchema,
+        adapter: adaptGuinguette as EntryAdapter,
+        mediaDirectory: "guinguette",
     },
     {
         slug: "vignobles",

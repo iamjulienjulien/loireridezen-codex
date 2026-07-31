@@ -122,7 +122,7 @@ export const INDEXES = [
             "**Cet index rassemble les guinguettes qui rythment les rives ligériennes. Chaque adresse est présentée à travers son cadre, son ambiance, sa cuisine, ses animations et son lien avec le fleuve.**",
         footerNote: "guinguettes et haltes conviviales du Val de Loire",
         dataFile: "guinguettes.json",
-        etat: "publie",
+        etat: "relecture",
         env: ["development"],
     },
     {

@@ -433,10 +433,10 @@ describe("real editorial data", () => {
 
         console.log(formatDataQualityReport(report));
         expect(report.summary).toMatchObject({
-            indexes: 6,
-            entries: 282,
+            indexes: 7,
+            entries: 363,
             referencedMedia: 152,
-            mediaFiles: 155,
+            mediaFiles: 163,
             errors: 0,
         });
         expect(report.summary.warnings).toBeGreaterThanOrEqual(0);

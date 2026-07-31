@@ -39,7 +39,7 @@ export type GuinguetteLiens = {
  * `false` dans l'UI.
  */
 export type Guinguette = {
-    id: string;
+    slug: string;
     nom: string;
     autresNoms: string[];
     sousTitre: string | null;
@@ -68,10 +68,13 @@ export type Guinguette = {
 export type GuinguettesCatalogMeta = {
     titre: string;
     source: string;
-    departement: string;
-    codeDepartement: string;
-    miseAJour: string;
+    corridor: string;
+    maj: string;
     nombreEntrees: number;
+    departements: Array<{
+        nom: string;
+        code: string;
+    }>;
     note: string;
 };
 

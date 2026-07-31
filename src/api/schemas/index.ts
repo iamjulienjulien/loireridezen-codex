@@ -2,6 +2,7 @@ export * from "./chateau";
 export * from "./common";
 export * from "./faune";
 export * from "./flore";
+export * from "./guinguette";
 export * from "./mot";
 export * from "./patrimoine";
 export * from "./vignoble";

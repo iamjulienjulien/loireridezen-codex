@@ -2,6 +2,7 @@ import type {
     ValidatedChateauEntry,
     ValidatedFauneEntry,
     ValidatedFloreEntry,
+    ValidatedGuinguetteEntry,
     ValidatedMotEntry,
     ValidatedPatrimoineEntry,
     ValidatedVignobleEntry,
@@ -14,6 +15,7 @@ export type InternalEntry =
     | ValidatedChateauEntry
     | ValidatedFauneEntry
     | ValidatedFloreEntry
+    | ValidatedGuinguetteEntry
     | ValidatedMotEntry
     | ValidatedPatrimoineEntry
     | ValidatedVignobleEntry;
@@ -93,6 +95,24 @@ export const adaptChateau: EntryAdapter<ValidatedChateauEntry> = (entry) => {
         subtitle: sousTitre,
         summary: resume ?? null,
         media: media(emoji, customEmoji),
+        attributes: { autresNoms, ...attributes },
+    };
+};
+
+export const adaptGuinguette: EntryAdapter<ValidatedGuinguetteEntry> = (
+    entry,
+) => {
+    const { slug, nom, sousTitre, description, autresNoms, ...attributes } =
+        entry;
+
+    return {
+        id: publicEntryId("guinguettes", slug),
+        index: "guinguettes",
+        slug,
+        name: nom,
+        subtitle: sousTitre ?? "Guinguette ligérienne",
+        summary: description,
+        media: media("🍷"),
         attributes: { autresNoms, ...attributes },
     };
 };

@@ -140,7 +140,7 @@ export default function GuinguetteCard({
                 type="button"
                 className={styles.detailsButton}
                 aria-expanded={open}
-                aria-controls={`guinguette-details-${guinguette.id}`}
+                aria-controls={`guinguette-details-${guinguette.slug}`}
                 onClick={onToggle}
             >
                 <span
@@ -155,7 +155,7 @@ export default function GuinguetteCard({
 
             {open && (
                 <div
-                    id={`guinguette-details-${guinguette.id}`}
+                    id={`guinguette-details-${guinguette.slug}`}
                     className={styles.details}
                 >
                     <p className={styles.resume}>{guinguette.description}</p>

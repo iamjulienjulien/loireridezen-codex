@@ -193,10 +193,12 @@ export default function GuinguettesIndex({
                     <div className={styles.grid}>
                         {list.map((guinguette) => (
                             <GuinguetteCard
-                                key={guinguette.id}
+                                key={guinguette.slug}
                                 guinguette={guinguette}
-                                open={openOverrides[guinguette.id] ?? expandAll}
-                                onToggle={() => toggleOne(guinguette.id)}
+                                open={
+                                    openOverrides[guinguette.slug] ?? expandAll
+                                }
+                                onToggle={() => toggleOne(guinguette.slug)}
                             />
                         ))}
                     </div>

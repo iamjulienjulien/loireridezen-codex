@@ -2,15 +2,32 @@
     "meta": {
         "titre": "Index global des guinguettes ligériennes",
         "source": "Loire Ride Zen — compilation des registres départementaux",
-        "departement": "Loir-et-Cher, Indre-et-Loire et Maine-et-Loire",
-        "codeDepartement": "41, 37, 49",
-        "miseAJour": "2026-07-31",
-        "nombreEntrees": 52,
-        "note": "Catalogue global réunissant les registres du Loir-et-Cher, de l’Indre-et-Loire et du Maine-et-Loire. Chaque adresse est rattachée à un territoire éditorial officiel du Codex."
+        "corridor": "Val de Loire — Loir-et-Cher, Indre-et-Loire, Maine-et-Loire et Loire-Atlantique",
+        "maj": "2026-07-31",
+        "nombreEntrees": 81,
+        "departements": [
+            {
+                "nom": "Loir-et-Cher",
+                "code": "41"
+            },
+            {
+                "nom": "Indre-et-Loire",
+                "code": "37"
+            },
+            {
+                "nom": "Maine-et-Loire",
+                "code": "49"
+            },
+            {
+                "nom": "Loire-Atlantique",
+                "code": "44"
+            }
+        ],
+        "note": "Catalogue global réunissant les registres du Loir-et-Cher, de l’Indre-et-Loire, du Maine-et-Loire et de la Loire-Atlantique. Chaque adresse est rattachée à un territoire éditorial officiel du Codex."
     },
     "guinguettes": [
         {
-            "id": "le-max-lamotte-beuvron",
+            "slug": "le-max-lamotte-beuvron",
             "nom": "Le M.A.X",
             "autresNoms": [],
             "sousTitre": "Une terrasse flottante sur le bassin du canal",
@@ -57,7 +74,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-de-mennetou",
+            "slug": "guinguette-de-mennetou",
             "nom": "La Guinguette de Mennetou",
             "autresNoms": [],
             "sousTitre": "Une plage verte entre le Cher et le canal de Berry",
@@ -105,7 +122,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-o-ranch",
+            "slug": "guinguette-o-ranch",
             "nom": "Guinguette O'Ranch",
             "autresNoms": [],
             "sousTitre": "Une halte champêtre aux portes de Chambord",
@@ -147,7 +164,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-de-saint-viatre",
+            "slug": "guinguette-de-saint-viatre",
             "nom": "La Guinguette de Saint-Viâtre",
             "autresNoms": [],
             "sousTitre": "Concerts et soirées au bord de l'étang",
@@ -190,7 +207,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-rosalie",
+            "slug": "guinguette-rosalie",
             "nom": "Guinguette Rosalie",
             "autresNoms": ["Le Lamantin qui guinche"],
             "sousTitre": "Lampions et soirées dansantes sur la rive de Loire",
@@ -240,7 +257,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-chateau-de-laborde",
+            "slug": "guinguette-chateau-de-laborde",
             "nom": "Guinguette au château de La Borde",
             "autresNoms": [],
             "sousTitre": "Les soirées d'été d'un château de Sologne",
@@ -281,7 +298,7 @@
             "verification": "concept_confirme_programmation_a_actualiser"
         },
         {
-            "id": "guinguette-relais-des-braconniers",
+            "slug": "guinguette-relais-des-braconniers",
             "nom": "La Guinguette du Relais des Braconniers",
             "autresNoms": [],
             "sousTitre": "Une cour conviviale au cœur de Saint-Aignan",
@@ -322,7 +339,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "la-solognote-salbris",
+            "slug": "la-solognote-salbris",
             "nom": "La Solognote",
             "autresNoms": ["La Guinguette de Salbris"],
             "sousTitre": "Food trucks et musique au bord de la Sauldre",
@@ -362,7 +379,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "les-iles-de-troo",
+            "slug": "les-iles-de-troo",
             "nom": "Les Îles de Trôo",
             "autresNoms": ["La Guinguette des Îles"],
             "sousTitre": "Repas, bals et soirées au bord du Loir",
@@ -409,7 +426,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-du-domino",
+            "slug": "guinguette-du-domino",
             "nom": "La Guinguette du Domino",
             "autresNoms": [],
             "sousTitre": "Une base de loisirs gourmande sur la Loire à Vélo",
@@ -460,7 +477,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "pause-en-loire",
+            "slug": "pause-en-loire",
             "nom": "Pause en Loire",
             "autresNoms": ["Guinguette de la Creusille"],
             "sousTitre": "Le grand balcon blésois face au fleuve et à la ville",
@@ -507,7 +524,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-de-lestiou",
+            "slug": "guinguette-de-lestiou",
             "nom": "La Guinguette de Lestiou",
             "autresNoms": [],
             "sousTitre": "Un bistrot marin ouvert toute l'année",
@@ -547,7 +564,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-domaine-des-pierrettes",
+            "slug": "guinguette-domaine-des-pierrettes",
             "nom": "Guinguette du Domaine des Pierrettes",
             "autresNoms": ["Le Lamantin des Vignes"],
             "sousTitre": "Vins du domaine et saveurs ligériennes au milieu des vignes",
@@ -597,7 +614,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "pause-gourmande-muides-sur-loire",
+            "slug": "pause-gourmande-muides-sur-loire",
             "nom": "Pause gourmande de Muides-sur-Loire",
             "autresNoms": ["Cabane à crêpes"],
             "sousTitre": "Une halte saisonnière entre le camping et le pont",
@@ -642,7 +659,7 @@
             "verification": "nom_ambigu"
         },
         {
-            "id": "guinguette-l-apero-6",
+            "slug": "guinguette-l-apero-6",
             "nom": "Guinguette L'Apéro 6",
             "autresNoms": ["L'Apéro 6"],
             "sousTitre": "Une guinguette de village sur les bords de Cisse",
@@ -682,7 +699,7 @@
             "verification": "concept_confirme_programmation_a_actualiser"
         },
         {
-            "id": "tours-sur-loire",
+            "slug": "tours-sur-loire",
             "nom": "Tours sur Loire — Guinguette",
             "autresNoms": ["Guinguette de Tours", "La Petite Embarque"],
             "sousTitre": "Cinq ambiances festives au pied du pont Wilson",
@@ -733,7 +750,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-de-rochecorbon",
+            "slug": "guinguette-de-rochecorbon",
             "nom": "Guinguette de Rochecorbon",
             "autresNoms": ["Guinguette de Lulu Parc"],
             "sousTitre": "La grande piste de danse au bord de la Loire",
@@ -785,7 +802,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "port-avertin",
+            "slug": "port-avertin",
             "nom": "Guinguette Port-Avertin",
             "autresNoms": [],
             "sousTitre": "Une scène familiale et culturelle sur les bords du Cher",
@@ -836,7 +853,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "chez-oscar-et-suzette",
+            "slug": "chez-oscar-et-suzette",
             "nom": "Chez Oscar & Suzette",
             "autresNoms": ["Oscar et Suzette"],
             "sousTitre": "Grillades et détente face au château d'Amboise",
@@ -883,7 +900,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "sauvage-charge",
+            "slug": "sauvage-charge",
             "nom": "Sauvage",
             "autresNoms": ["Sauvage — La Guinguette", "Volupia"],
             "sousTitre": "Produits locaux et couchers de soleil sur la levée",
@@ -933,7 +950,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "a-la-soupette-de-memere",
+            "slug": "a-la-soupette-de-memere",
             "nom": "À la Soupette de Mémère",
             "autresNoms": ["La Soupette de Mémère"],
             "sousTitre": "Cuisine décalée et chaises longues sous les tilleuls",
@@ -986,7 +1003,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-ligaya",
+            "slug": "guinguette-ligaya",
             "nom": "La Guinguette Ligaya",
             "autresNoms": [],
             "sousTitre": "Un lieu de vie engagé face à l'étang des Marais",
@@ -1037,7 +1054,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-de-hommes",
+            "slug": "guinguette-de-hommes",
             "nom": "Guinguette de Hommes",
             "autresNoms": ["Guinguette du Lac d'Hommes"],
             "sousTitre": "Circuits courts, concerts et loisirs au bord du lac",
@@ -1088,7 +1105,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-langeais-loire",
+            "slug": "guinguette-langeais-loire",
             "nom": "Guinguette Langeais-Loire",
             "autresNoms": [],
             "sousTitre": "Une escale cyclable près du pont de Langeais",
@@ -1138,7 +1155,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-des-bateliers",
+            "slug": "guinguette-des-bateliers",
             "nom": "La Guinguette des Bateliers",
             "autresNoms": [],
             "sousTitre": "Pétanque, jeux et concerts sur l'île Buda",
@@ -1187,7 +1204,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "les-javanaises",
+            "slug": "les-javanaises",
             "nom": "Les Javanaises",
             "autresNoms": ["Guinguette Les Javanaises"],
             "sousTitre": "Une guinguette culturelle dans le jardin des Viantaises",
@@ -1237,7 +1254,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-de-montbazon",
+            "slug": "guinguette-de-montbazon",
             "nom": "La Guinguette de Montbazon",
             "autresNoms": [],
             "sousTitre": "Une grande terrasse animée au fil de l'Indre",
@@ -1288,7 +1305,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "la-burette",
+            "slug": "la-burette",
             "nom": "La Burette",
             "autresNoms": ["La Burette Guinguette"],
             "sousTitre": "Une guinguette solaire et écoresponsable au bord du Cher",
@@ -1339,7 +1356,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "le-soleil",
+            "slug": "le-soleil",
             "nom": "Le Soleil",
             "autresNoms": ["Le Soleil — Guinguette d'hiver", "Soleil Plage"],
             "sousTitre": "Une guinguette urbaine qui passe de l'hiver à la plage",
@@ -1390,7 +1407,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "luuma-nouvelle-plage",
+            "slug": "luuma-nouvelle-plage",
             "nom": "LUUMA — La Nouvelle Plage",
             "autresNoms": [
                 "LUMA Restaurant",
@@ -1445,7 +1462,7 @@
             "verification": "concept_confirme_programmation_a_actualiser"
         },
         {
-            "id": "guinguette-de-chinon",
+            "slug": "guinguette-de-chinon",
             "nom": "La Guinguette de Chinon",
             "autresNoms": ["Guinguette rabelaisienne"],
             "sousTitre": "La forteresse royale en majesté de l'autre côté de la Vienne",
@@ -1495,7 +1512,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "la-guimbarge",
+            "slug": "la-guimbarge",
             "nom": "La Guimbarge",
             "autresNoms": [],
             "sousTitre": "Une terrasse flottante au plus près du fleuve",
@@ -1540,7 +1557,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "bamboche-du-neman",
+            "slug": "bamboche-du-neman",
             "nom": "La Bamboche du Néman",
             "autresNoms": [],
             "sousTitre": "Une bamboche champêtre dans le parc d'une seigneurie",
@@ -1591,7 +1608,7 @@
             "verification": "concept_confirme_programmation_a_actualiser"
         },
         {
-            "id": "guinguette-du-bord-de-vienne",
+            "slug": "guinguette-du-bord-de-vienne",
             "nom": "Guinguette du Bord de Vienne",
             "autresNoms": [],
             "sousTitre": "Une terrasse de village au bord de la Vienne",
@@ -1625,7 +1642,7 @@
             "verification": "concept_confirme_programmation_a_actualiser"
         },
         {
-            "id": "la-marbelle",
+            "slug": "la-marbelle",
             "nom": "La Marbelle",
             "autresNoms": ["Guinguette La Marbelle"],
             "sousTitre": "Une guinguette itinérante sur les chemins d'Anjou",
@@ -1659,7 +1676,7 @@
             "verification": "concept_confirme_programmation_a_actualiser"
         },
         {
-            "id": "le-noe",
+            "slug": "le-noe",
             "nom": "Le Noë",
             "autresNoms": ["Le Noé"],
             "sousTitre": "Une table historique au confluent de la Maine et de la Loire",
@@ -1693,7 +1710,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-de-port-thibault",
+            "slug": "guinguette-de-port-thibault",
             "nom": "Guinguette de Port Thibault",
             "autresNoms": ["Port-Thibault"],
             "sousTitre": "Une grande terrasse festive au bord de la Loire",
@@ -1727,7 +1744,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "le-port-de-l-ile",
+            "slug": "le-port-de-l-ile",
             "nom": "Le Port de l'Île",
             "autresNoms": ["Guinguette du Port de l'Île"],
             "sousTitre": "La halte bucolique de l'île Saint-Aubin",
@@ -1772,7 +1789,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "la-cale",
+            "slug": "la-cale",
             "nom": "La Cale",
             "autresNoms": [],
             "sousTitre": null,
@@ -1806,7 +1823,7 @@
             "verification": "nom_ambigu"
         },
         {
-            "id": "la-cabane-du-bosquet",
+            "slug": "la-cabane-du-bosquet",
             "nom": "La Cabane du Bosquet",
             "autresNoms": [],
             "sousTitre": "Une cabane gourmande au bord du Louet",
@@ -1840,7 +1857,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-la-gabare",
+            "slug": "guinguette-la-gabare",
             "nom": "Guinguette La Gabare",
             "autresNoms": ["La Gabare"],
             "sousTitre": "Une escale ligérienne aux Ponts-de-Cé",
@@ -1874,7 +1891,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "la-barbe-a-maman",
+            "slug": "la-barbe-a-maman",
             "nom": "La Barbe à Maman",
             "autresNoms": [],
             "sousTitre": "Une guinguette colorée à Port Maillard",
@@ -1913,7 +1930,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "les-tonnelles",
+            "slug": "les-tonnelles",
             "nom": "Les Tonnelles",
             "autresNoms": [],
             "sousTitre": "Une table de rivière dans la vallée du Loir",
@@ -1947,7 +1964,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-du-moulin-de-la-boire",
+            "slug": "guinguette-du-moulin-de-la-boire",
             "nom": "Guinguette du Moulin de la Boire",
             "autresNoms": [],
             "sousTitre": "Une halte champêtre près du moulin de Villevêque",
@@ -1981,7 +1998,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "le-kiviv",
+            "slug": "le-kiviv",
             "nom": "Le Kiviv",
             "autresNoms": [],
             "sousTitre": "Une guinguette à la confluence de la Sarthe et du Loir",
@@ -2020,7 +2037,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-les-tourbillons",
+            "slug": "guinguette-les-tourbillons",
             "nom": "Guinguette Les Tourbillons",
             "autresNoms": ["Les Tourbillons"],
             "sousTitre": "La Loire sauvage depuis un ancien village portuaire",
@@ -2065,7 +2082,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "port-gogane",
+            "slug": "port-gogane",
             "nom": "Port Gogane",
             "autresNoms": [],
             "sousTitre": null,
@@ -2099,7 +2116,7 @@
             "verification": "etablissement_non_confirme"
         },
         {
-            "id": "la-guinguette-a-jojo",
+            "slug": "la-guinguette-a-jojo",
             "nom": "La Guinguette à Jojo",
             "autresNoms": ["Chez Jojo", "Guinguette Chez Jojo"],
             "sousTitre": "La doyenne des guinguettes angevines",
@@ -2144,7 +2161,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "au-bout-de-l-ile",
+            "slug": "au-bout-de-l-ile",
             "nom": "Au Bout de l'Île",
             "autresNoms": [],
             "sousTitre": "Une guinguette insulaire à Montjean-sur-Loire",
@@ -2184,7 +2201,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "guinguette-du-pere-chapuis",
+            "slug": "guinguette-du-pere-chapuis",
             "nom": "Guinguette du Père Chapuis",
             "autresNoms": [],
             "sousTitre": "Cuisine locale et concerts au bord du Loir",
@@ -2230,7 +2247,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "la-guinguette-mazette",
+            "slug": "la-guinguette-mazette",
             "nom": "La Guinguette Mazette",
             "autresNoms": ["Mazette"],
             "sousTitre": "Une halte légère au bord de la Sarthe",
@@ -2264,7 +2281,7 @@
             "verification": "confirme_par_office_de_tourisme"
         },
         {
-            "id": "la-cabane-du-chat-qui-peche",
+            "slug": "la-cabane-du-chat-qui-peche",
             "nom": "La Cabane du Chat-qui-Pêche",
             "autresNoms": ["La Cabane du Chat qui Pêche"],
             "sousTitre": "Une cabane au fil de la Mayenne",
@@ -2298,6 +2315,1244 @@
                 "Cantenay-Épinard",
                 "musique",
                 "Basses Vallées Angevines"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "la-guinchette-montrelais",
+            "nom": "La Guinch’ette",
+            "autresNoms": [],
+            "sousTitre": "Une pause familiale sur la Loire à Vélo",
+            "commune": "Montrelais",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "anjou",
+            "coursDEau": "Loire",
+            "type": "guinguette",
+            "ambiance": ["familiale", "festive", "bord de Loire"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "saison estivale 2026 — du mardi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/185151-Guinguette---La-Guinch-ette",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Guinch%E2%80%99ette%2C%20Rue%20de%20l%E2%80%99Abbaye%2C%20Montrelais"
+            },
+            "description": "Guinguette familiale aménagée sur l’aire naturelle de Montrelais, directement sur l’itinéraire de La Loire à Vélo. Boissons, restauration sur le pouce, jeux, food trucks et animations musicales rythment la saison.",
+            "services": [
+                "bar",
+                "petite restauration",
+                "food trucks",
+                "concerts",
+                "jeux"
+            ],
+            "tags": [
+                "Montrelais",
+                "Loire",
+                "Loire à Vélo",
+                "food trucks",
+                "rive nord"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-de-l-eperon",
+            "nom": "Guinguette de l’Éperon",
+            "autresNoms": [],
+            "sousTitre": "La grande terrasse ligérienne d’Ancenis",
+            "commune": "Ancenis-Saint-Géréon",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Loire",
+            "type": "restaurant-guinguette",
+            "ambiance": ["bord de Loire", "festive", "familiale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "saison 2026 — événements de mai à août, ouverture quotidienne",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/185156-Guinguette-de-l-Eperon",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%20de%20l%E2%80%99%C3%89peron%2C%20Jardin%20de%20l%E2%80%99%C3%89peron%2C%20La%20Charbonni%C3%A8re%2C%20Ancenis-Saint-G%C3%A9r%C3%A9on"
+            },
+            "description": "Adresse estivale du Jardin de l’Éperon, au bord de la Loire à Ancenis-Saint-Géréon. Elle associe restauration, bar et rendez-vous festifs chaque week-end.",
+            "services": ["bar", "restauration", "terrasse", "concerts"],
+            "tags": [
+                "Ancenis-Saint-Géréon",
+                "Loire",
+                "Ancenis",
+                "La Charbonnière",
+                "Loire à Vélo"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "le-gramophone-oudon",
+            "nom": "Le Gramophone",
+            "autresNoms": [],
+            "sousTitre": "Culture et transats au plan d’eau du Chêne",
+            "commune": "Oudon",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Plan d’eau du Chêne",
+            "type": "guinguette",
+            "ambiance": ["culturelle", "familiale", "musicale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "plan d’eau",
+            "periode": "de mi-mai à septembre 2026 — du vendredi au dimanche, puis du mercredi au dimanche en juillet-août",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/185157-Guinguette---Le-Gramophone",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Le%20Gramophone%2C%20Plan%20d%E2%80%99eau%20du%20Ch%C3%AAne%2C%20Oudon"
+            },
+            "description": "Guinguette culturelle installée sur le site de baignade du plan d’eau du Chêne. Terrasse, food trucks, jeux, concerts et spectacles composent une halte décontractée au pied d’Oudon.",
+            "services": [
+                "bar",
+                "food trucks",
+                "concerts",
+                "spectacles",
+                "jeux"
+            ],
+            "tags": ["Oudon", "Oudon", "plan d’eau", "baignade", "culture"],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-de-la-pierre-percee",
+            "nom": "Guinguette de la Pierre Percée",
+            "autresNoms": [],
+            "sousTitre": "Food trucks et musique au bord de la Divatte",
+            "commune": "Divatte-sur-Loire",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Divatte",
+            "type": "guinguette",
+            "ambiance": ["nature", "festive", "familiale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "rivière",
+            "periode": "saison estivale 2026 — programmation en ligne",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/187574-Guinguette-de-la-pierre-percee",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%20de%20la%20Pierre%20Perc%C3%A9e%2C%20Espace%20des%20Rives%20de%20Loire%2C%20202%20Lev%C3%A9e%20de%20la%20Divatte%2C%20Divatte-sur-Loire"
+            },
+            "description": "Guinguette libre et festive au bord de la Divatte, entre aire de jeux, pêche, pique-nique et grands espaces. La programmation mêle musique live, DJ sets et food trucks aux cuisines variées.",
+            "services": [
+                "bar",
+                "food trucks",
+                "concerts",
+                "DJ sets",
+                "jeux",
+                "pêche"
+            ],
+            "tags": [
+                "Divatte-sur-Loire",
+                "Divatte",
+                "Loire à Vélo",
+                "food trucks",
+                "DJ sets"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "mauves-balneaire",
+            "nom": "Mauves Balnéaire",
+            "autresNoms": [],
+            "sousTitre": "Une station balnéaire éphémère sous le pont de Mauves",
+            "commune": "Mauves-sur-Loire",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Loire",
+            "type": "bar-guinguette",
+            "ambiance": ["bord de Loire", "musicale", "décontractée"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "du 1er mai au 31 août 2026",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.levoyageanantes.fr/lieux/mauves-balneaire/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Mauves%20Baln%C3%A9aire%2C%20Quai%20des%20Mariniers%2C%20Mauves-sur-Loire"
+            },
+            "description": "Sous le pont cage de Mauves, des cabines de plage abritent une buvette et une petite scène. Food trucks, concerts et mobilier de détente redonnent à l’ancienne grève des airs de station balnéaire.",
+            "services": ["buvette", "food trucks", "concerts", "jeux de sable"],
+            "tags": [
+                "Mauves-sur-Loire",
+                "Loire",
+                "pont de Mauves",
+                "cabines de plage",
+                "Loire à Vélo"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-de-thouare",
+            "nom": "Guinguette de Thouaré",
+            "autresNoms": [],
+            "sousTitre": "Une halte animée sur les bords de Loire",
+            "commune": "Thouaré-sur-Loire",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Loire",
+            "type": "guinguette",
+            "ambiance": ["bord de Loire", "familiale", "festive"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "du 6 juin au 6 septembre 2026",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://metropole.nantes.fr/que-faire-a-nantes/les-guinguettes-enchantent-les-berges-de-la-metropole-nantaise",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%20de%20Thouar%C3%A9%2C%20Chemin%20dit%20des%20Halages%2C%20Thouar%C3%A9-sur-Loire"
+            },
+            "description": "Guinguette saisonnière posée sur le chemin des Halages. Elle propose boissons, restauration, concerts et spectacles, avec plusieurs week-ends festifs au cœur de l’été.",
+            "services": ["bar", "restauration", "concerts", "spectacles"],
+            "tags": [
+                "Thouaré-sur-Loire",
+                "Loire",
+                "halage",
+                "Loire à Vélo",
+                "spectacles"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "la-sabliere",
+            "nom": "La Sablière",
+            "autresNoms": [],
+            "sousTitre": "Crêpes, pétanque et couchers de soleil sur la Loire",
+            "commune": "Sainte-Luce-sur-Loire",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Loire",
+            "type": "bar-guinguette",
+            "ambiance": ["bord de Loire", "conviviale", "musicale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "du 2 avril au 13 septembre 2026",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.levoyageanantes.fr/lieux/la-sabliere/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Sabli%C3%A8re%2C%201%20all%C3%A9e%20Robert-Cheval%2C%20Sainte-Luce-sur-Loire"
+            },
+            "description": "Buvette paysagère installée sur l’ancien site des cafés de Bellevue. Grandes tablées, terrain de pétanque, crêpes et programmation culturelle en font une étape directe de La Loire à Vélo.",
+            "services": [
+                "bar",
+                "crêpes et galettes",
+                "concerts",
+                "pétanque",
+                "animations"
+            ],
+            "tags": [
+                "Sainte-Luce-sur-Loire",
+                "Loire",
+                "Bellevue",
+                "Loire à Vélo",
+                "pétanque"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "station-nuage",
+            "nom": "Station Nuage",
+            "autresNoms": [],
+            "sousTitre": "La maison bleue qui fait danser l’île Forget",
+            "commune": "Saint-Sébastien-sur-Loire",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Loire",
+            "type": "bar-guinguette",
+            "ambiance": ["insulaire", "culturelle", "festive"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "île",
+            "periode": "du 1er avril au 13 septembre 2026",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.levoyageanantes.fr/lieux/station-nuage/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Station%20Nuage%2C%20%C3%8Ele%20Forget%2C%20boulevard%20des%20Pas-Enchant%C3%A9s%2C%20Saint-S%C3%A9bastien-sur-Loire"
+            },
+            "description": "Maison bleue spectaculaire posée sur l’île Forget, Station Nuage abrite une buvette et une restauration légère. Concerts, DJ sets, hip-hop, jazz, stand-up et blind tests animent toute la saison.",
+            "services": [
+                "bar",
+                "petite restauration",
+                "concerts",
+                "DJ sets",
+                "spectacles"
+            ],
+            "tags": [
+                "Saint-Sébastien-sur-Loire",
+                "Loire",
+                "île Forget",
+                "DJ sets",
+                "art contemporain"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "la-cantine-du-voyage",
+            "nom": "La Cantine du Voyage",
+            "autresNoms": [],
+            "sousTitre": "Le grand banquet estival de l’île de Nantes",
+            "commune": "Nantes",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Loire",
+            "type": "restaurant-guinguette",
+            "ambiance": ["urbaine", "festive", "bord de Loire"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": true,
+            "vue": "fleuve",
+            "periode": "du 2 avril au 6 septembre 2026",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.levoyageanantes.fr/lieux/la-cantine-du-voyage/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Cantine%20du%20Voyage%2C%2020%20quai%20des%20Antilles%2C%20Nantes"
+            },
+            "description": "Grande cantine saisonnière sous serre au quai des Antilles, avec longues tablées, bar, potager, jeux et programmation musicale. La carte met en avant le poulet fermier d’Ancenis et les boissons locales.",
+            "services": ["bar", "restauration", "concerts", "pétanque", "jeux"],
+            "tags": [
+                "Nantes",
+                "Loire",
+                "île de Nantes",
+                "Voyage à Nantes",
+                "produits locaux"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-du-belvedere",
+            "nom": "Guinguette du Belvédère",
+            "autresNoms": [],
+            "sousTitre": "Deux étages ouverts sur le panorama de Loire",
+            "commune": "Nantes",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Loire",
+            "type": "restaurant-guinguette",
+            "ambiance": ["urbaine", "culturelle", "bord de Loire"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "fleuve",
+            "periode": "du 1er avril au 5 octobre 2026",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://metropole.nantes.fr/que-faire-a-nantes/les-guinguettes-enchantent-les-berges-de-la-metropole-nantaise",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%20du%20Belv%C3%A9d%C3%A8re%2C%2023%20boulevard%20Gaston-Doumergue%2C%20Nantes"
+            },
+            "description": "Guinguette contemporaine sur pilotis, ouverte sur deux niveaux face à la Loire. Cuisine de produits locaux, concerts, arts du cirque et soirées thématiques accompagnent le panorama.",
+            "services": ["bar", "restauration", "concerts", "spectacles"],
+            "tags": [
+                "Nantes",
+                "Loire",
+                "belvédère",
+                "pilotis",
+                "arts du cirque"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "bateau-lavoir-nantes",
+            "nom": "Bateau-Lavoir",
+            "autresNoms": [],
+            "sousTitre": "Une guinguette flottante au cœur de Nantes",
+            "commune": "Nantes",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Erdre",
+            "type": "restaurant-guinguette",
+            "ambiance": ["flottante", "urbaine", "musicale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "rivière",
+            "periode": "saison 2026 — à partir du 30 mars, ouverture quotidienne",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.levoyageanantes.fr/lieux/bateau-lavoir/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Bateau-Lavoir%2C%20Quai%20Ceineray%2C%20Nantes"
+            },
+            "description": "Guinguette flottante inspirée des anciens bateaux-lavoirs de l’Erdre. Sa terrasse-ponton accueille tapas, verres au coucher du soleil et concerts hebdomadaires en plein centre-ville.",
+            "services": ["bar", "restauration", "tapas", "concerts"],
+            "tags": [
+                "Nantes",
+                "Erdre",
+                "bateau-lavoir",
+                "centre-ville",
+                "terrasse flottante"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "la-cambuse-nantes",
+            "nom": "La Cambuse",
+            "autresNoms": [],
+            "sousTitre": "Une guinguette associative sur les berges de Sèvre",
+            "commune": "Nantes",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Sèvre Nantaise",
+            "type": "bar-guinguette",
+            "ambiance": ["associative", "conviviale", "musicale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "rivière",
+            "periode": "du 1er avril à fin septembre 2026 — du mardi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://metropole.nantes.fr/que-faire-a-nantes/les-guinguettes-enchantent-les-berges-de-la-metropole-nantaise",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Cambuse%2C%20Berge%20Sellier-Goudy%2C%20quartier%20Pirmil%2C%20Nantes"
+            },
+            "description": "Guinguette portée par l’association Rêver Sèvre dans un écrin de verdure près de Pirmil. Grandes tables, boulodrome et concerts du samedi structurent la saison.",
+            "services": ["bar", "petite restauration", "concerts", "pétanque"],
+            "tags": [
+                "Nantes",
+                "Sèvre Nantaise",
+                "Pirmil",
+                "association",
+                "boulodrome"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-saint-joseph-de-porterie",
+            "nom": "Guinguette de Saint-Joseph-de-Porterie",
+            "autresNoms": [],
+            "sousTitre": "Une escale éphémère imaginée avec le quartier",
+            "commune": "Nantes",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Erdre",
+            "type": "guinguette",
+            "ambiance": ["associative", "familiale", "culturelle"],
+            "terrasse": null,
+            "musiqueLive": true,
+            "accessibleVelo": null,
+            "loireAVelo": null,
+            "vue": "quartier",
+            "periode": "du 22 mai au 13 septembre 2026 — du vendredi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://metropole.nantes.fr/que-faire-a-nantes/les-guinguettes-enchantent-les-berges-de-la-metropole-nantaise",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%20de%20Saint-Joseph-de-Porterie%2C%20483%20route%20de%20Saint-Joseph%2C%20Nantes"
+            },
+            "description": "Guinguette éphémère animée par l’Accoord et les habitants de Saint-Joseph-de-Porterie. Concerts du vendredi et animations libres du dimanche composent un espace de rencontre ouvert au quartier.",
+            "services": ["bar", "concerts", "animations", "jeux"],
+            "tags": [
+                "Nantes",
+                "Erdre",
+                "Saint-Joseph-de-Porterie",
+                "Accoord",
+                "quartier"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "le-bivouac-du-petit-port",
+            "nom": "Guinguette du Bivouac du Petit Port",
+            "autresNoms": [],
+            "sousTitre": "Pergolas et jeux dans le parc de Nantes Camping",
+            "commune": "Nantes",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Cens",
+            "type": "bar-guinguette",
+            "ambiance": ["bucolique", "familiale", "décontractée"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "parc",
+            "periode": "du 4 avril au 20 septembre 2026",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.loire-atlantique.fr/44/reouverture-saisonniere-de-la-guinguette-du-bivouac-du-petit-port/INFOLOC-8830815",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%20du%20Bivouac%20du%20Petit%20Port%2C%2021%20boulevard%20du%20Petit-Port%2C%20Nantes"
+            },
+            "description": "Guinguette ouverte à tous dans le vaste parc de Nantes Camping. Pergolas, terrasses, pétanque, mini-golf, jeux, cocktails et snacks offrent une pause verte dans le quartier du Petit Port.",
+            "services": [
+                "bar",
+                "snacking",
+                "terrasse",
+                "pétanque",
+                "mini-golf",
+                "jeux"
+            ],
+            "tags": [
+                "Nantes",
+                "Petit Port",
+                "Nantes Camping",
+                "Cens",
+                "mini-golf"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "atypik-guinguette",
+            "nom": "L’Atypik Guinguette",
+            "autresNoms": [],
+            "sousTitre": "Cinq week-ends de fête au port Lavigne",
+            "commune": "Bouguenais",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Étier de Port Lavigne",
+            "type": "guinguette",
+            "ambiance": ["associative", "culturelle", "portuaire"],
+            "terrasse": null,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "port",
+            "periode": "du 5 juin au 5 juillet 2026 — du vendredi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://metropole.nantes.fr/que-faire-a-nantes/les-guinguettes-enchantent-les-berges-de-la-metropole-nantaise",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=L%E2%80%99Atypik%20Guinguette%2C%20Chemin%20des%20Canotiers%2C%20Port%20Lavigne%2C%20Bouguenais"
+            },
+            "description": "Guinguette associative éphémère au port Lavigne, sur un étier relié à la Loire. Bar, spectacles et ateliers de plein air se succèdent pendant cinq week-ends.",
+            "services": ["bar", "spectacles", "ateliers", "animations"],
+            "tags": [
+                "Bouguenais",
+                "Port Lavigne",
+                "étier",
+                "association",
+                "spectacles"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "la-dehale",
+            "nom": "La Déhale",
+            "autresNoms": [],
+            "sousTitre": "Un café associatif autour d’un ancien chaland",
+            "commune": "Saint-Jean-de-Boiseau",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Petite Rivière",
+            "type": "bar-guinguette",
+            "ambiance": ["associative", "portuaire", "musicale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "rivière",
+            "periode": "du 3 juillet au 22 août 2026 — vendredis et samedis",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://ladehale.wixsite.com/ladehale",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20D%C3%A9hale%2C%2016%20bis%20rue%20du%20Bac%2C%20Saint-Jean-de-Boiseau"
+            },
+            "description": "Café-guinguette associatif installé autour de la Providence, ancien chaland en fer amarré au bord de la Petite Rivière. Concerts, spectacles, buvette et petite restauration se vivent entre l’eau et les roseaux.",
+            "services": [
+                "bar",
+                "petite restauration",
+                "concerts",
+                "spectacles"
+            ],
+            "tags": [
+                "Saint-Jean-de-Boiseau",
+                "chaland",
+                "Petite Rivière",
+                "roseaux",
+                "café associatif"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-a-leon",
+            "nom": "La Guinguette à Léon",
+            "autresNoms": [],
+            "sousTitre": "Une guinguette citoyenne au bord de la Sèvre",
+            "commune": "Rezé",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Sèvre Nantaise",
+            "type": "bar-guinguette",
+            "ambiance": ["associative", "familiale", "musicale"],
+            "terrasse": null,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "rivière",
+            "periode": "du 13 juin au 5 juillet puis du 22 août au 6 septembre 2026 — les week-ends",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://metropole.nantes.fr/que-faire-a-nantes/les-guinguettes-enchantent-les-berges-de-la-metropole-nantaise",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Guinguette%20%C3%A0%20L%C3%A9on%2C%20Parking%20du%20Chemin%20Bleu%2C%20Rez%C3%A9"
+            },
+            "description": "Guinguette citoyenne gérée par des habitants bénévoles au bord de la Sèvre. Concerts, jeux et animations intergénérationnelles se regroupent autour d’un bar aménagé dans un container.",
+            "services": ["bar", "concerts", "jeux", "animations"],
+            "tags": [
+                "Rezé",
+                "Sèvre Nantaise",
+                "Chemin Bleu",
+                "bénévoles",
+                "quartier"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "les-nantais-saint-herblain",
+            "nom": "Les Nantais",
+            "autresNoms": [],
+            "sousTitre": "Une grande fabrique festive au bord du lac",
+            "commune": "Saint-Herblain",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Lac de la Carrière",
+            "type": "restaurant-guinguette",
+            "ambiance": ["festive", "gourmande", "musicale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "lac",
+            "periode": "du 17 avril au 27 septembre 2026 — du jeudi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.lesnantais.fr/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Les%20Nantais%2C%20Rue%20du%20Souvenir-Fran%C3%A7ais%2C%20Saint-Herblain"
+            },
+            "description": "Grande guinguette au bord du lac de la Carrière, avec plusieurs comptoirs gourmands, bars, boulodromes, chapiteau et longues tablées. Concerts, DJ sets, danse et marchés animent les week-ends.",
+            "services": [
+                "bars",
+                "restauration",
+                "concerts",
+                "DJ sets",
+                "pétanque",
+                "marchés"
+            ],
+            "tags": [
+                "Saint-Herblain",
+                "lac de la Carrière",
+                "street food",
+                "DJ sets",
+                "boulodrome"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "la-belle-saison-orvault",
+            "nom": "La Belle Saison",
+            "autresNoms": [],
+            "sousTitre": "Une terrasse culturelle au pied de la Gobinière",
+            "commune": "Orvault",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": null,
+            "type": "restaurant-guinguette",
+            "ambiance": ["bucolique", "culturelle", "musicale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "parc",
+            "periode": "saison 2026 — à partir du 4 avril, ouverture quotidienne",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://metropole.nantes.fr/que-faire-a-nantes/les-guinguettes-enchantent-les-berges-de-la-metropole-nantaise",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Belle%20Saison%2C%2037%20avenue%20de%20la%20Ferri%C3%A8re%2C%20Orvault"
+            },
+            "description": "Guinguette installée dans le parc Michel-Baudry, au pied du château de la Gobinière. Longues tables sur l’herbe, restauration et programmation musicale, artistique et culturelle rythment les beaux jours.",
+            "services": ["bar", "restauration", "concerts", "spectacles"],
+            "tags": [
+                "Orvault",
+                "Gobinière",
+                "parc Michel-Baudry",
+                "culture",
+                "château"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "cabane-de-port-jean",
+            "nom": "La Cabane de Port-Jean",
+            "autresNoms": [],
+            "sousTitre": "Plats locaux et concerts entre l’Erdre et les vignes",
+            "commune": "Carquefou",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Erdre",
+            "type": "restaurant-guinguette",
+            "ambiance": ["champêtre", "locale", "musicale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "rivière",
+            "periode": "du 30 avril au 27 septembre 2026 — du mardi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://lacabanedeportjean.fr/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Cabane%20de%20Port-Jean%2C%20Chemin%20de%20Port-Jean%2C%20Carquefou"
+            },
+            "description": "Guinguette champêtre du domaine de Port-Jean, posée entre l’Erdre et les pieds de vigne. Plats locaux, jeux, concerts et animations culturelles composent son programme estival.",
+            "services": [
+                "bar",
+                "restauration",
+                "concerts",
+                "jeux",
+                "animations"
+            ],
+            "tags": [
+                "Carquefou",
+                "Erdre",
+                "Port-Jean",
+                "vignes",
+                "produits locaux"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "la-huchette-chateau-thebaud",
+            "nom": "La Huchette",
+            "autresNoms": [],
+            "sousTitre": "Une halte gourmande au cœur des vignes",
+            "commune": "Château-Thébaud",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Maine",
+            "type": "restaurant-guinguette",
+            "ambiance": ["viticole", "bucolique", "gourmande"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "vignes",
+            "periode": "saison estivale 2026 — du vendredi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.destination-vignoble-nantais.com/toutes-les-tables-du-vignoble-nantais/ou-manger-vignoble-nantais/guinguette-la-huchette-chateau-thebaud-fr-6002295/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Huchette%2C%20La%20Chauvini%C3%A8re%2C%20Ch%C3%A2teau-Th%C3%A9baud"
+            },
+            "description": "Guinguette viticole proche de Pont-Caffino et du Porte-Vue de Château-Thébaud. Fruits de mer, planches et vins bio du domaine se dégustent sous la pergola, dans la prairie ou sur la terrasse couverte.",
+            "services": [
+                "bar à vins",
+                "restauration",
+                "fruits de mer",
+                "terrasse"
+            ],
+            "tags": [
+                "Château-Thébaud",
+                "Maine",
+                "Pont-Caffino",
+                "vignoble nantais",
+                "vins bio"
+            ],
+            "statut": "actif",
+            "verification": "concept_confirme_programmation_a_actualiser"
+        },
+        {
+            "slug": "guinguette-a-lono",
+            "nom": "La Guinguette à Lono",
+            "autresNoms": [],
+            "sousTitre": "Des couchers de soleil entre vignes et Sèvre",
+            "commune": "La Haie-Fouassière",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Sèvre Nantaise",
+            "type": "restaurant-guinguette",
+            "ambiance": ["viticole", "gourmande", "coucher de soleil"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "vignes et rivière",
+            "periode": "saison 2026 — du jeudi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/187575-La-guinguette-a-Lono",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Guinguette%20%C3%A0%20Lono%2C%20Chemin%20de%20la%20Roulerie%2C%20La%20Haie-Fouassi%C3%A8re"
+            },
+            "description": "Guinguette en pleine nature, ouverte sur les vignes et la vallée de la Sèvre nantaise. Cuisine, dégustations et concerts bimensuels accompagnent les couchers de soleil.",
+            "services": ["bar", "restauration", "concerts", "terrasse"],
+            "tags": [
+                "La Haie-Fouassière",
+                "Sèvre Nantaise",
+                "vignes",
+                "coucher de soleil",
+                "concerts"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "chateau-de-la-fremoire",
+            "nom": "Château de La Frémoire",
+            "autresNoms": [],
+            "sousTitre": "La guinguette chic du vignoble nantais",
+            "commune": "Vertou",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Sèvre Nantaise",
+            "type": "restaurant-guinguette",
+            "ambiance": ["élégante", "viticole", "bucolique"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "parc et vallée",
+            "periode": "du 6 mai au 6 septembre 2026 — du mercredi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://www.levoyageanantes.fr/lieux/chateau-de-la-fremoire/",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Ch%C3%A2teau%20de%20La%20Fr%C3%A9moire%2C%201%20route%20de%20la%20Fr%C3%A9moire%2C%20Vertou"
+            },
+            "description": "Étape du Voyage dans le Vignoble installée dans le parc de la Frémoire. Bar à vins de Nantes, cuisine entre terroir et littoral, grandes tablées et rencontres vigneronnes composent une halte plus élégante.",
+            "services": [
+                "bar à vins",
+                "restauration",
+                "dégustations",
+                "DJ sets",
+                "animations"
+            ],
+            "tags": [
+                "Vertou",
+                "Sèvre Nantaise",
+                "Muscadet",
+                "vignoble nantais",
+                "château"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-40-pieds-erdre",
+            "nom": "Guinguette 40 Pieds Erdre",
+            "autresNoms": [],
+            "sousTitre": "Danse et produits locaux au plan d’eau de Nort",
+            "commune": "Nort-sur-Erdre",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Erdre",
+            "type": "guinguette",
+            "ambiance": ["familiale", "dansante", "locale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "plan d’eau",
+            "periode": "de mai à septembre 2026 — du mercredi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/184820-GUINGUETTE-40-PIEDS-ERDRE",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%2040%20Pieds%20Erdre%2C%20Plan%20d%E2%80%99eau%2C%20rue%20des%20Orionnais%2C%20Nort-sur-Erdre"
+            },
+            "description": "Guinguette familiale sur le plan d’eau de Nort-sur-Erdre. Petite restauration fraîche et locale, scène musicale, concerts, DJ sets et soirées swing, tango ou salsa animent la semaine.",
+            "services": [
+                "bar",
+                "petite restauration",
+                "concerts",
+                "DJ sets",
+                "danse"
+            ],
+            "tags": [
+                "Nort-sur-Erdre",
+                "Erdre",
+                "plan d’eau",
+                "danse",
+                "produits locaux"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-des-janettes",
+            "nom": "Guinguette des Janettes",
+            "autresNoms": [],
+            "sousTitre": "Produits locaux et concerts à l’étang de Bout de Bois",
+            "commune": "Saffré",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Étang de Bout de Bois",
+            "type": "guinguette",
+            "ambiance": ["familiale", "locale", "bord de l’eau"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": null,
+            "loireAVelo": null,
+            "vue": "étang",
+            "periode": "de mai à septembre 2026 — du jeudi au dimanche",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/179818-GUINGUETTE-DES-JANETTES",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%20des%20Janettes%2C%20%C3%89tang%20de%20Bout%20de%20Bois%2C%20c%C3%B4t%C3%A9%20plage%2C%20Saffr%C3%A9"
+            },
+            "description": "Guinguette de plein air au bord de l’étang de Bout de Bois. Boissons et planches de produits locaux s’accompagnent de concerts, d’animations bien-être et de rendez-vous familiaux.",
+            "services": ["bar", "planches", "concerts", "animations", "goûter"],
+            "tags": [
+                "Saffré",
+                "étang",
+                "Bout de Bois",
+                "plage",
+                "produits locaux"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-les-pipelettes",
+            "nom": "Guinguette Les Pipelettes",
+            "autresNoms": [],
+            "sousTitre": "Cuisine locale et concerts au sommet du Mont Juillet",
+            "commune": "Les Touches",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": null,
+            "type": "restaurant-guinguette",
+            "ambiance": ["champêtre", "familiale", "locale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": null,
+            "loireAVelo": null,
+            "vue": "panorama",
+            "periode": "saison 2026 — à partir du 2 mai",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/186080-GUINGUETTE-LES-PIPELETTES",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%20Les%20Pipelettes%2C%20Parc%20du%20Mont%20Juillet%2C%20Les%20Touches"
+            },
+            "description": "Guinguette installée en haut du parc du Mont Juillet, avec vue dégagée et cuisine de produits locaux. Concerts gratuits, animations et événements se succèdent chaque week-end.",
+            "services": ["bar", "restauration", "concerts", "animations"],
+            "tags": [
+                "Les Touches",
+                "Mont Juillet",
+                "panorama",
+                "produits locaux",
+                "concerts"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-de-vioreau",
+            "nom": "Guinguette de Vioreau",
+            "autresNoms": [],
+            "sousTitre": "Une pause simple et associative au bord du lac",
+            "commune": "Joué-sur-Erdre",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Lac de Vioreau",
+            "type": "bar-guinguette",
+            "ambiance": ["paisible", "associative", "bord de l’eau"],
+            "terrasse": true,
+            "musiqueLive": null,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "lac",
+            "periode": "saison estivale 2026 — programmation en ligne",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/186259-Guinguette-de-Vioreau",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette%20de%20Vioreau%2C%20La%20Romeraye%2C%20lac%20de%20Vioreau%2C%20Jou%C3%A9-sur-Erdre"
+            },
+            "description": "Guinguette associative au bord du lac de Vioreau, pensée pour flâner, boire un verre et partager une planche apéritive dans un environnement naturel.",
+            "services": ["bar", "planches", "animations"],
+            "tags": [
+                "Joué-sur-Erdre",
+                "lac de Vioreau",
+                "La Romeraye",
+                "association",
+                "nature"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "a-la-bonheur-saint-philbert",
+            "nom": "À La Bonheur",
+            "autresNoms": [],
+            "sousTitre": "Un village d’été local et responsable",
+            "commune": "Saint-Philbert-de-Grand-Lieu",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Boulogne",
+            "type": "guinguette",
+            "ambiance": ["engagée", "familiale", "locale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "parc",
+            "periode": "saison estivale 2026 — à partir du 11 avril",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/185736-A-LA-BONHEUR---GUINGUETTE-ESTIVALE",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=%C3%80%20La%20Bonheur%2C%20Parc%20de%20la%20Boulogne%2C%20avenue%20de%20Nantes%2C%20Saint-Philbert-de-Grand-Lieu"
+            },
+            "description": "Village d’été convivial dans le parc de la Boulogne, consacré aux produits locaux et aux acteurs du territoire. Bar, petite restauration, animations et concerts s’inscrivent dans une démarche responsable.",
+            "services": [
+                "bar",
+                "petite restauration",
+                "concerts",
+                "animations"
+            ],
+            "tags": [
+                "Saint-Philbert-de-Grand-Lieu",
+                "Boulogne",
+                "produits locaux",
+                "écoresponsable",
+                "village d’été"
+            ],
+            "statut": "actif",
+            "verification": "confirme_par_office_de_tourisme"
+        },
+        {
+            "slug": "guinguette-de-la-plaine",
+            "nom": "La Guinguette de La Plaine",
+            "autresNoms": [],
+            "sousTitre": "Produits de la mer et musique près de la plage",
+            "commune": "La Plaine-sur-Mer",
+            "communeDeleguee": null,
+            "departement": "Loire-Atlantique",
+            "territoire": "bretagne-ligerienne",
+            "coursDEau": "Océan Atlantique",
+            "type": "restaurant-guinguette",
+            "ambiance": ["gourmande", "musicale", "littorale"],
+            "terrasse": true,
+            "musiqueLive": true,
+            "accessibleVelo": true,
+            "loireAVelo": null,
+            "vue": "littoral",
+            "periode": "ouverte à l’année — concerts et animations régulières",
+            "position": {
+                "latitude": null,
+                "longitude": null
+            },
+            "liens": {
+                "siteWeb": "https://rando.loire-atlantique.fr/service/189397-La-Guinguette-de-la-Plaine",
+                "instagram": null,
+                "facebook": null,
+                "googleMaps": "https://www.google.com/maps/search/?api=1&query=La%20Guinguette%20de%20La%20Plaine%2C%2060%20boulevard%20de%20la%20Pr%C3%A9e%2C%20La%20Plaine-sur-Mer"
+            },
+            "description": "Restaurant-guinguette proche de la plage de la Prée, tourné vers les produits frais et les saveurs de l’océan. Grande terrasse ombragée, bar, concerts et animations prolongent l’esprit balnéaire.",
+            "services": [
+                "bar",
+                "restauration",
+                "fruits de mer",
+                "concerts",
+                "terrasse"
+            ],
+            "tags": [
+                "La Plaine-sur-Mer",
+                "plage de la Prée",
+                "océan",
+                "fruits de mer",
+                "littoral"
             ],
             "statut": "actif",
             "verification": "confirme_par_office_de_tourisme"

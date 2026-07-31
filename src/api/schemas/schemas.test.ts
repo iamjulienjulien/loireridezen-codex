@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import chateauData from "@data/chateau.json";
 import fauneData from "@data/faune.json";
 import floreData from "@data/flore.json";
+import guinguetteData from "@data/guinguettes.json";
 import motData from "@data/mot.json";
 import patrimoineData from "@data/patrimoine.json";
 import vignobleData from "@data/vignoble.json";
@@ -9,6 +10,7 @@ import {
     chateauCatalogSchema,
     fauneCatalogSchema,
     floreCatalogSchema,
+    guinguetteCatalogSchema,
     isoDateSchema,
     motCatalogSchema,
     patrimoineCatalogSchema,
@@ -20,6 +22,7 @@ describe("catalog schemas", () => {
         ["faune", fauneCatalogSchema, fauneData],
         ["flore", floreCatalogSchema, floreData],
         ["chateaux", chateauCatalogSchema, chateauData],
+        ["guinguettes", guinguetteCatalogSchema, guinguetteData],
         ["vignobles", vignobleCatalogSchema, vignobleData],
         ["vocabulaire", motCatalogSchema, motData],
         ["patrimoine", patrimoineCatalogSchema, patrimoineData],

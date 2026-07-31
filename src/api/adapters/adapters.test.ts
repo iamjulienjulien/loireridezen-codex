@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import chateauData from "@data/chateau.json";
 import fauneData from "@data/faune.json";
 import floreData from "@data/flore.json";
+import guinguetteData from "@data/guinguettes.json";
 import motData from "@data/mot.json";
 import patrimoineData from "@data/patrimoine.json";
 import vignobleData from "@data/vignoble.json";
@@ -9,6 +10,7 @@ import {
     adaptChateau,
     adaptFaune,
     adaptFlore,
+    adaptGuinguette,
     adaptMot,
     adaptPatrimoine,
     adaptVignoble,
@@ -17,6 +19,7 @@ import {
     chateauEntrySchema,
     fauneEntrySchema,
     floreEntrySchema,
+    guinguetteEntrySchema,
     motEntrySchema,
     patrimoineEntrySchema,
     vignobleEntrySchema,
@@ -43,6 +46,14 @@ describe("public entry adapters", () => {
             adaptChateau(chateauEntrySchema.parse(chateauData.chateaux[0])),
             "Palais ducal de Nevers",
             chateauData.chateaux[0].resume,
+        ],
+        [
+            "guinguettes",
+            adaptGuinguette(
+                guinguetteEntrySchema.parse(guinguetteData.guinguettes[0]),
+            ),
+            "Le M.A.X",
+            guinguetteData.guinguettes[0].description,
         ],
         [
             "vignobles",
