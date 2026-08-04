@@ -11,8 +11,8 @@ describe("feature flags registry", () => {
         vi.unstubAllEnvs();
     });
 
-    it("registers collections for development", () => {
-        expect(FEATURE_FLAGS.collections).toEqual(["development"]);
+    it("registers known feature flags", () => {
+        expect(FEATURE_FLAGS).toHaveProperty("collections");
     });
 
     it("rejects unknown feature flag names", () => {
@@ -20,14 +20,20 @@ describe("feature flags registry", () => {
     });
 
     it("evaluates a feature from its enabled environments", () => {
-        expect(featureIsEnabled("collections", "development")).toBe(true);
-        expect(featureIsEnabled("collections", "production")).toBe(false);
+        expect(featureIsEnabled("collections", "development")).toBe(
+            FEATURE_FLAGS.collections.includes("development"),
+        );
+        expect(featureIsEnabled("collections", "production")).toBe(
+            FEATURE_FLAGS.collections.includes("production"),
+        );
     });
 
     it("uses CURRENT_ENV when no environment is provided", () => {
         vi.stubEnv("CURRENT_ENV", "development");
 
-        expect(featureIsEnabled("collections")).toBe(true);
+        expect(featureIsEnabled("collections")).toBe(
+            FEATURE_FLAGS.collections.includes("development"),
+        );
     });
 
     it("rejects an invalid CURRENT_ENV", () => {

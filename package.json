@@ -13,6 +13,8 @@
         "env:switch": "node scripts/switch-env.mjs",
         "env:development": "pnpm env:switch development",
         "env:production": "pnpm env:switch production",
+        "features": "node scripts/feature-flags-cli.mjs",
+        "features:list": "node scripts/feature-flags-cli.mjs --list",
         "test": "vitest run",
         "api:lint": "redocly lint codex@v1",
         "api:test:contract": "vitest run src/api/contract scripts/api-contract-diff.test.mjs",
