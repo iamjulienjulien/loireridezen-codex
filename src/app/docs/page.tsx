@@ -18,6 +18,14 @@ const SECTIONS = [
             "Démarrage rapide, ressources disponibles et référence narrative de l’API publique.",
         meta: "Guide & référence",
     },
+    {
+        href: "/docs/sdk",
+        label: "SDK TypeScript · V0.1",
+        title: "SDK du Codex",
+        description:
+            "Installation, client typé, gestion des erreurs et intégration React Native/Expo.",
+        meta: "Guide d’intégration",
+    },
 ] as const;
 
 export default function DocumentationHomePage() {
@@ -47,7 +55,7 @@ export default function DocumentationHomePage() {
                 <header className={styles.catalogHeader}>
                     <p className={styles.eyebrow}>Rubriques</p>
                     <h2 id="rubriques">Commencer ici</h2>
-                    <span>{SECTIONS.length} ressource</span>
+                    <span>{SECTIONS.length} ressources</span>
                 </header>
 
                 <div className={styles.grid}>

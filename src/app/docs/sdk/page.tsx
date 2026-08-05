@@ -3,29 +3,25 @@ import { join } from "node:path";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MarkdownAsync } from "react-markdown";
-import remarkGfm from "remark-gfm";
 import remarkDirective from "remark-directive";
+import remarkGfm from "remark-gfm";
 
 import remarkLrzDirectives from "@/lib/markdown/remark-lrz-directives";
+
+import styles from "../api/api-docs.module.css";
 import { createDocumentationComponents } from "../markdown-components";
-
-import {
-    API_DOCUMENTATION_SECTIONS,
-    documentationHref,
-    headingId,
-} from "./markdown";
-
-import styles from "./api-docs.module.css";
+import { headingId } from "../markdown";
+import { SDK_DOCUMENTATION_SECTIONS } from "./markdown";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-    title: "Documentation API — Le Codex ligérien",
+    title: "SDK TypeScript — Le Codex ligérien",
     description:
-        "Guide de démarrage et référence narrative de l’API publique du Codex ligérien.",
+        "Guide du SDK TypeScript officiel de l’API publique du Codex ligérien, avec intégration Expo et React Native.",
 };
 
-const GUIDE_PATH = join(process.cwd(), "docs", "api", "README.md");
+const GUIDE_PATH = join(process.cwd(), "packages", "codex-sdk", "README.md");
 
 const readGuide = () => {
     try {
@@ -38,7 +34,7 @@ const readGuide = () => {
         return guide;
     } catch (error) {
         throw new Error(
-            `Unable to build /docs/api from ${GUIDE_PATH}: ${
+            `Unable to build /docs/sdk from ${GUIDE_PATH}: ${
                 error instanceof Error ? error.message : String(error)
             }`,
         );
@@ -47,10 +43,9 @@ const readGuide = () => {
 
 const markdownComponents = createDocumentationComponents({
     anchorClassName: styles.anchor,
-    resolveHref: documentationHref,
 });
 
-export default function ApiDocumentationPage() {
+export default function SdkDocumentationPage() {
     const guide = readGuide();
 
     return (
@@ -61,12 +56,11 @@ export default function ApiDocumentationPage() {
                     <span>Le Codex ligérien</span>
                 </Link>
 
-                <nav className={styles.primaryNav} aria-label="Liens API">
+                <nav className={styles.primaryNav} aria-label="Liens SDK">
                     <Link href="/docs">Documentation</Link>
-                    <Link href="/docs/sdk">SDK TypeScript</Link>
-                    <a href="/api/v1">API</a>
+                    <Link href="/docs/api">API</Link>
                     <a href="/api/v1/openapi.json">OpenAPI</a>
-                    <a href="https://github.com/iamjulienjulien/loireridezen-codex/tree/main/docs/api">
+                    <a href="https://github.com/iamjulienjulien/loireridezen-codex/tree/main/packages/codex-sdk">
                         Source
                     </a>
                 </nav>
@@ -77,7 +71,7 @@ export default function ApiDocumentationPage() {
                     <p className={styles.sidebarLabel}>Sur cette page</p>
 
                     <ol>
-                        {API_DOCUMENTATION_SECTIONS.map((title) => (
+                        {SDK_DOCUMENTATION_SECTIONS.map((title) => (
                             <li key={title}>
                                 <a href={`#${headingId(title)}`}>{title}</a>
                             </li>
@@ -100,7 +94,7 @@ export default function ApiDocumentationPage() {
             </div>
 
             <footer className={styles.footer}>
-                <span>Loire Ride Zen · API publique V1</span>
+                <span>Loire Ride Zen · SDK TypeScript v0.1</span>
 
                 <a href="#demarrage-rapide">Revenir au démarrage rapide</a>
             </footer>

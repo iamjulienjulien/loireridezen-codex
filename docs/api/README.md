@@ -53,6 +53,11 @@ d’une `media.imageUrl` ne constitue pas une autorisation de reproduction.
 Le [contrat OpenAPI](https://codex.loireridezen.bike/api/v1/openapi.json)
 décrit exhaustivement les paramètres, schémas, contraintes et headers.
 
+Pour une intégration TypeScript ou React Native/Expo, utilisez le
+[guide du SDK officiel](https://codex.loireridezen.bike/docs/sdk). La présente
+page reste la référence du contrat HTTP ; le guide SDK documente le client
+typé qui l’encapsule.
+
 ### 1. Découvrir l’API
 
 `GET /api/v1` — identité de l’API, licences et liens de découverte.
@@ -370,6 +375,7 @@ application/problem+json; charset=utf-8
 Leur structure suit Problem Details :
 
 :::table
+
 | Champ      | Rôle                                             |
 | ---------- | ------------------------------------------------ |
 | `type`     | URI identifiant la famille du problème           |
@@ -377,7 +383,7 @@ Leur structure suit Problem Details :
 | `status`   | Statut HTTP                                      |
 | `detail`   | Explication destinée au développeur              |
 | `instance` | Chemin de la requête ayant rencontré le problème |
-:::
+| :::        |
 
 Exemple complet :
 
