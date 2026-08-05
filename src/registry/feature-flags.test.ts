@@ -31,6 +31,11 @@ describe("feature flags registry", () => {
         );
     });
 
+    it("keeps personnages available in development only", () => {
+        expect(featureIsEnabled("personnages", "development")).toBe(true);
+        expect(featureIsEnabled("personnages", "production")).toBe(false);
+    });
+
     it("uses CURRENT_ENV when no environment is provided", () => {
         vi.stubEnv("CURRENT_ENV", "development");
 
