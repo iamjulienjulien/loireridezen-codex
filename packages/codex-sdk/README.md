@@ -5,32 +5,20 @@ publique v1 du Codex ligérien. Il donne accès aux index et à leurs entrées a
 des types générés depuis OpenAPI, sans dépendre de React, Next.js, Expo ou
 d’une solution de stockage.
 
-:::callout{variant=info title="État de diffusion" icon="🔩"}
-La version `0.1.0` est disponible dans le monorepo du Codex et prête à être
-empaquetée. Sa publication dans un registre reste différée jusqu’à la
-validation de l’intégration dans Le Passeport.
-:::
+> **État de diffusion.** La version `0.1.0` est distribuée publiquement via
+> npm sous le nom `@loireridezen/codex-sdk`.
 
 ## Statut et installation
 
-Après publication, l’installation standard sera :
+Installez le SDK avec le gestionnaire de paquets du projet consommateur :
 
 ```bash
 pnpm add @loireridezen/codex-sdk
 ```
 
-Pour tester aujourd’hui le package dans une autre application, construisez et
-empaquetez-le depuis le dépôt du Codex :
-
-```bash
-pnpm sdk:build
-pnpm --dir packages/codex-sdk pack
-```
-
-Installez ensuite l’archive `.tgz` produite avec le gestionnaire de paquets de
-l’application consommatrice. Le package est ESM, nécessite Node.js `20.9` ou
-plus pour ses outils de développement, et s’appuie à l’exécution sur une
-implémentation standard de `fetch`.
+Le package est ESM et s’appuie à l’exécution sur une implémentation standard de
+`fetch`. Ses scripts de développement et de construction nécessitent Node.js
+`20.9` ou plus.
 
 ## Démarrage rapide
 

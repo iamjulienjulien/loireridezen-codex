@@ -18,7 +18,13 @@ const sdkPackage = JSON.parse(readFileSync(sdkPackagePath, "utf8")) as {
     version: string;
     license: string;
     sideEffects: boolean;
+    main: string;
+    types: string;
     files: string[];
+    repository: { type: string; url: string; directory: string };
+    homepage: string;
+    bugs: { url: string };
+    keywords: string[];
     publishConfig: { access: string };
 };
 const docsHome = readFileSync(docsHomePath, "utf8");
@@ -59,11 +65,12 @@ describe("SDK developer documentation", () => {
         expect(sdkGuide).toContain("CodexResponseError");
     });
 
-    it("sets accurate expectations for Expo, caching and publication", () => {
+    it("sets accurate expectations for Expo, caching and distribution", () => {
         expect(sdkGuide).toMatch(/React Native\/Expo/i);
         expect(sdkGuide).toContain("AsyncStorage");
         expect(sdkGuide).toMatch(/cache hors ligne[\s\S]*appartiennent à l’application/i);
-        expect(sdkGuide).toMatch(/publication[\s\S]*différée/i);
+        expect(sdkGuide).toMatch(/distribuée publiquement via[\s\S]*npm/i);
+        expect(sdkGuide).toContain("pnpm add @loireridezen/codex-sdk");
         expect(sdkGuide).toMatch(/localhost[\s\S]*appareil lui-même/i);
     });
 
@@ -87,7 +94,23 @@ describe("SDK developer documentation", () => {
         expect(sdkPackage.name).toBe("@loireridezen/codex-sdk");
         expect(sdkPackage.version).toBe("0.1.0");
         expect(sdkPackage.sideEffects).toBe(false);
+        expect(sdkPackage.main).toBe("./dist/index.js");
+        expect(sdkPackage.types).toBe("./dist/index.d.ts");
         expect(sdkPackage.files).toEqual(["dist", "README.md"]);
+        expect(sdkPackage.repository).toEqual({
+            type: "git",
+            url: "git+https://github.com/iamjulienjulien/loireridezen-codex.git",
+            directory: "packages/codex-sdk",
+        });
+        expect(sdkPackage.homepage).toBe(
+            "https://codex.loireridezen.bike/docs/sdk",
+        );
+        expect(sdkPackage.bugs.url).toBe(
+            "https://github.com/iamjulienjulien/loireridezen-codex/issues",
+        );
+        expect(sdkPackage.keywords).toEqual(
+            expect.arrayContaining(["typescript", "sdk", "expo", "react-native"]),
+        );
         expect(sdkPackage.publishConfig.access).toBe("public");
     });
 });

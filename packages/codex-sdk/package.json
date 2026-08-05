@@ -2,9 +2,19 @@
     "name": "@loireridezen/codex-sdk",
     "version": "0.1.0",
     "description": "TypeScript client for the Loire Ride Zen Codex public API.",
+    "keywords": [
+        "loire",
+        "codex",
+        "typescript",
+        "sdk",
+        "expo",
+        "react-native"
+    ],
     "license": "MIT",
     "type": "module",
     "sideEffects": false,
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "files": [
         "dist",
         "README.md"
@@ -14,6 +24,15 @@
             "types": "./dist/index.d.ts",
             "import": "./dist/index.js"
         }
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/iamjulienjulien/loireridezen-codex.git",
+        "directory": "packages/codex-sdk"
+    },
+    "homepage": "https://codex.loireridezen.bike/docs/sdk",
+    "bugs": {
+        "url": "https://github.com/iamjulienjulien/loireridezen-codex/issues"
     },
     "scripts": {
         "generate": "node scripts/generate-openapi.mjs",
