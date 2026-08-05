@@ -147,7 +147,7 @@ export default function PageHeader({
                                             <Image
                                                 width={25}
                                                 height={25}
-                                                src={`/emoji/${index.slug}-symbol.png`}
+                                                src={`/symbols/symbol-${index.slug}.png`}
                                                 alt=""
                                             />
                                         ) : (
@@ -211,12 +211,10 @@ function resolveActivePage({
     indexes: readonly IndexEntry[];
     collections: readonly CollectionRegistryEntry[];
 }): ActivePage {
-    console.log("c", current, "i", indexes, "cc", collections);
     const collection = collections.find((entry) => entry.href === current);
 
     if (collection) {
         const currentIndex = "/" + current.split("/")[1];
-        console.log("ci", currentIndex);
         const index =
             indexes.find((entry) => entry.href === currentIndex) ?? indexes[0];
         return {
@@ -250,7 +248,7 @@ function resolveActivePage({
         mark: index.mark,
         accent: index.accent,
         color: index.color,
-        symbolSrc: `/emoji/${index.slug}-symbol.png`,
+        symbolSrc: `/symbols/symbol-${index.slug}.png`,
     };
 }
 

@@ -23,7 +23,7 @@ const defineFeatureFlags = <
 export const FEATURE_FLAGS = defineFeatureFlags({
     atelier: ["development"],
     collections: [],
-    indexesCustomEmoji: [],
+    indexesCustomEmoji: ["development", "production"],
     ambianceChateauxVisual: [],
     commandPalette: ["development"],
     territoires: ["development", "production"],
