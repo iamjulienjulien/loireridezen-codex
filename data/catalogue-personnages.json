@@ -38,7 +38,8 @@
             "autresNoms": ["la Dame de Beauté"],
             "categoriePrincipale": "courtisan",
             "roles": ["favorite de Charles VII"],
-            "tags": ["femme", "inhumation", "royaute"]
+            "tags": ["femme", "inhumation", "royaute"],
+            "illustration": "/emoji/personnage/agnes-sorel.png"
         },
         {
             "id": "albert-stapfer",
@@ -46,7 +47,8 @@
             "autresNoms": [],
             "categoriePrincipale": "ecrivain",
             "roles": ["traducteur et homme de lettres"],
-            "tags": ["litterature", "xixe-siecle"]
+            "tags": ["litterature", "xixe-siecle"],
+            "illustration": "/emoji/personnage/albert-stapfer.png"
         },
         {
             "id": "alexandre-dumas",
@@ -54,7 +56,8 @@
             "autresNoms": [],
             "categoriePrincipale": "ecrivain",
             "roles": ["romancier"],
-            "tags": ["culture-populaire", "litterature", "roman"]
+            "tags": ["culture-populaire", "litterature", "roman"],
+            "illustration": "/emoji/personnage/alexandre-dumas.png"
         },
         {
             "id": "ann-coleman",
@@ -62,7 +65,8 @@
             "autresNoms": [],
             "categoriePrincipale": "mecene",
             "roles": ["propriétaire et mécène"],
-            "tags": ["femme", "jardins", "mecenat"]
+            "tags": ["femme", "jardins", "mecenat"],
+            "illustration": "/emoji/personnage/ann-coleman.png"
         },
         {
             "id": "anne-de-bretagne",
@@ -74,7 +78,8 @@
                 "reine de France",
                 "reine de France et duchesse de Bretagne"
             ],
-            "tags": ["batisseuse", "bretagne", "femme", "mariage", "royaute"]
+            "tags": ["batisseuse", "bretagne", "femme", "mariage", "royaute"],
+            "illustration": "/emoji/personnage/anne-de-bretagne.png"
         },
         {
             "id": "anne-de-france",
@@ -82,7 +87,8 @@
             "autresNoms": ["Anne de Beaujeu"],
             "categoriePrincipale": "souverain",
             "roles": ["princesse et régente de France"],
-            "tags": ["batisseuse", "femme", "renaissance", "royaute"]
+            "tags": ["batisseuse", "femme", "renaissance", "royaute"],
+            "illustration": "/emoji/personnage/anne-de-france.png"
         },
         {
             "id": "arthur-de-biencourt",
@@ -90,7 +96,8 @@
             "autresNoms": ["Marquis de Biencourt"],
             "categoriePrincipale": "noble",
             "roles": ["propriétaire"],
-            "tags": ["restauration", "xixe-siecle"]
+            "tags": ["restauration", "xixe-siecle"],
+            "illustration": "/emoji/personnage/armand-francois-marie-de-biencourt.png"
         },
         {
             "id": "bernard-salviati",
@@ -98,7 +105,8 @@
             "autresNoms": [],
             "categoriePrincipale": "marchand",
             "roles": ["banquier florentin"],
-            "tags": ["batisseur", "florence", "renaissance"]
+            "tags": ["batisseur", "florence", "renaissance"],
+            "illustration": "/emoji/personnage/bernard-salviati.png"
         },
         {
             "id": "blanche-de-castille",
@@ -106,7 +114,8 @@
             "autresNoms": [],
             "categoriePrincipale": "souverain",
             "roles": ["reine de France et régente"],
-            "tags": ["batisseuse", "femme", "moyen-age", "royaute"]
+            "tags": ["batisseuse", "femme", "moyen-age", "royaute"],
+            "illustration": "/emoji/personnage/blanche-de-castille.png"
         },
         {
             "id": "cassandre-salviati",
@@ -114,7 +123,8 @@
             "autresNoms": [],
             "categoriePrincipale": "muse",
             "roles": ["figure littéraire"],
-            "tags": ["femme", "poesie", "renaissance"]
+            "tags": ["femme", "poesie", "renaissance"],
+            "illustration": "/emoji/personnage/cassandre-salviati.png"
         },
         {
             "id": "catherine-de-medicis",
@@ -122,7 +132,8 @@
             "autresNoms": [],
             "categoriePrincipale": "souverain",
             "roles": ["reine de France"],
-            "tags": ["femme", "renaissance", "royaute"]
+            "tags": ["femme", "renaissance", "royaute"],
+            "illustration": "/emoji/personnage/catherine-de-medicis.png"
         },
         {
             "id": "charles-ii-de-cosse",
@@ -130,7 +141,8 @@
             "autresNoms": ["maréchal de Brissac"],
             "categoriePrincipale": "militaire",
             "roles": ["maréchal de France"],
-            "tags": ["cosse-brissac", "militaire", "renaissance"]
+            "tags": ["cosse-brissac", "militaire", "renaissance"],
+            "illustration": "/emoji/personnage/charles-ii-de-cosse.png"
         },
         {
             "id": "charles-premier-d-amboise",
@@ -138,7 +150,8 @@
             "autresNoms": [],
             "categoriePrincipale": "noble",
             "roles": ["gouverneur de Champagne"],
-            "tags": ["batisseur", "famille-amboise", "gothique"]
+            "tags": ["batisseur", "famille-amboise", "gothique"],
+            "illustration": "/emoji/personnage/charles-premier-d-amboise.png"
         },
         {
             "id": "charles-perrault",
@@ -146,7 +159,8 @@
             "autresNoms": [],
             "categoriePrincipale": "ecrivain",
             "roles": ["auteur de contes"],
-            "tags": ["conte", "legende", "litterature"]
+            "tags": ["conte", "legende", "litterature"],
+            "illustration": "/emoji/personnage/charles-perrault.png"
         },
         {
             "id": "charles-vii",
@@ -154,7 +168,8 @@
             "autresNoms": [],
             "categoriePrincipale": "souverain",
             "roles": ["roi de France"],
-            "tags": ["guerre-de-cent-ans", "moyen-age", "royaute"]
+            "tags": ["guerre-de-cent-ans", "moyen-age", "royaute"],
+            "illustration": "/emoji/personnage/charles-vii.png"
         },
         {
             "id": "charles-viii",
@@ -162,7 +177,8 @@
             "autresNoms": [],
             "categoriePrincipale": "souverain",
             "roles": ["roi de France"],
-            "tags": ["batisseur", "bretagne", "gothique", "mariage", "royaute"]
+            "tags": ["batisseur", "bretagne", "gothique", "mariage", "royaute"],
+            "illustration": "/emoji/personnage/charles-viii.png"
         },
         {
             "id": "charles-de-chambes",
@@ -170,7 +186,8 @@
             "autresNoms": [],
             "categoriePrincipale": "noble",
             "roles": ["comte de Montsoreau"],
-            "tags": ["drame", "guerres-de-religion", "proprietaire"]
+            "tags": ["drame", "guerres-de-religion", "proprietaire"],
+            "illustration": "/emoji/personnage/charles-de-chambes.png"
         },
         {
             "id": "charles-maurice-de-talleyrand",
@@ -178,7 +195,8 @@
             "autresNoms": ["Talleyrand"],
             "categoriePrincipale": "homme-etat",
             "roles": ["diplomate et ministre"],
-            "tags": ["diplomatie", "empire", "proprietaire"]
+            "tags": ["diplomatie", "empire", "proprietaire"],
+            "illustration": "/emoji/personnage/charles-maurice-de-talleyrand.png"
         },
         {
             "id": "diane-de-poitiers",
@@ -186,7 +204,8 @@
             "autresNoms": [],
             "categoriePrincipale": "courtisan",
             "roles": ["favorite d’Henri II"],
-            "tags": ["amenageuse", "femme", "proprietaire", "renaissance"]
+            "tags": ["amenageuse", "femme", "proprietaire", "renaissance"],
+            "illustration": "/emoji/personnage/diane-de-poitiers.png"
         },
         {
             "id": "ferdinand-vii",
@@ -194,7 +213,8 @@
             "autresNoms": [],
             "categoriePrincipale": "souverain",
             "roles": ["roi d’Espagne"],
-            "tags": ["captivite", "empire", "espagne"]
+            "tags": ["captivite", "empire", "espagne"],
+            "illustration": "/emoji/personnage/ferdinand-vii.png"
         },
         {
             "id": "foulques-nerra",
@@ -202,7 +222,8 @@
             "autresNoms": ["Foulques III d’Anjou"],
             "categoriePrincipale": "noble",
             "roles": ["comte d’Anjou"],
-            "tags": ["anjou", "batisseur", "moyen-age"]
+            "tags": ["anjou", "batisseur", "moyen-age"],
+            "illustration": "/emoji/personnage/foulques-nerra.png"
         },
         {
             "id": "francois-ii-de-bretagne",
@@ -210,7 +231,8 @@
             "autresNoms": [],
             "categoriePrincipale": "souverain",
             "roles": ["duc de Bretagne"],
-            "tags": ["batisseur", "bretagne", "moyen-age"]
+            "tags": ["batisseur", "bretagne", "moyen-age"],
+            "illustration": "/emoji/personnage/francois-ii-de-bretagne.png"
         },
         {
             "id": "francois-premier",
@@ -224,7 +246,8 @@
                 "mecenat",
                 "renaissance",
                 "royaute"
-            ]
+            ],
+            "illustration": "/emoji/personnage/francois-premier.png"
         },
         {
             "id": "francois-villon",
@@ -232,7 +255,8 @@
             "autresNoms": [],
             "categoriePrincipale": "ecrivain",
             "roles": ["poète"],
-            "tags": ["litterature", "moyen-age", "prison"]
+            "tags": ["litterature", "moyen-age", "prison"],
+            "illustration": "/emoji/personnage/francois-villon.png"
         },
         {
             "id": "francois-de-beauvau",
@@ -240,7 +264,8 @@
             "autresNoms": [],
             "categoriePrincipale": "militaire",
             "roles": ["capitaine de François Ier"],
-            "tags": ["militaire", "proprietaire", "renaissance"]
+            "tags": ["militaire", "proprietaire", "renaissance"],
+            "illustration": "/emoji/personnage/francois-de-beauvau.png"
         },
         {
             "id": "gaspard-d-estampes",
@@ -248,7 +273,8 @@
             "autresNoms": [],
             "categoriePrincipale": "noble",
             "roles": ["seigneur de Valençay"],
-            "tags": ["batisseur", "renaissance"]
+            "tags": ["batisseur", "renaissance"],
+            "illustration": "/emoji/personnage/gaspard-d-estampes.png"
         },
         {
             "id": "gaston-d-orleans",
@@ -256,7 +282,8 @@
             "autresNoms": [],
             "categoriePrincipale": "prince",
             "roles": ["frère de Louis XIII"],
-            "tags": ["batisseur", "classicisme", "prince"]
+            "tags": ["batisseur", "classicisme", "prince"],
+            "illustration": "/emoji/personnage/gaston-d-orleans.png"
         },
         {
             "id": "gilles-berthelot",
@@ -264,7 +291,8 @@
             "autresNoms": [],
             "categoriePrincipale": "homme-etat",
             "roles": ["trésorier de France"],
-            "tags": ["batisseur", "finance", "renaissance"]
+            "tags": ["batisseur", "finance", "renaissance"],
+            "illustration": "/emoji/personnage/gilles-berthelot.png"
         },
         {
             "id": "henri-hurault",
@@ -272,7 +300,8 @@
             "autresNoms": [],
             "categoriePrincipale": "noble",
             "roles": ["comte de Cheverny"],
-            "tags": ["batisseur", "classicisme", "proprietaire"]
+            "tags": ["batisseur", "classicisme", "proprietaire"],
+            "illustration": "/emoji/personnage/henri-hurault.png"
         },
         {
             "id": "henri-ii-plantagenet",
@@ -280,7 +309,8 @@
             "autresNoms": ["Henri II d’Angleterre"],
             "categoriePrincipale": "souverain",
             "roles": ["roi d’Angleterre"],
-            "tags": ["angleterre", "moyen-age", "plantagenet"]
+            "tags": ["angleterre", "moyen-age", "plantagenet"],
+            "illustration": "/emoji/personnage/henri-ii-plantagenet.png"
         },
         {
             "id": "herge",
@@ -288,7 +318,8 @@
             "autresNoms": ["Georges Remi"],
             "categoriePrincipale": "artiste",
             "roles": ["auteur de bande dessinée"],
-            "tags": ["bande-dessinee", "culture-populaire", "tintin"]
+            "tags": ["bande-dessinee", "culture-populaire", "tintin"],
+            "illustration": "/emoji/personnage/herge.png"
         },
         {
             "id": "honore-de-balzac",
@@ -296,7 +327,8 @@
             "autresNoms": [],
             "categoriePrincipale": "ecrivain",
             "roles": ["romancier"],
-            "tags": ["description", "litterature", "romantisme"]
+            "tags": ["description", "litterature", "romantisme"],
+            "illustration": "/emoji/personnage/honore-de-balzac.png"
         },
         {
             "id": "jacques-siegfried",
@@ -304,7 +336,8 @@
             "autresNoms": [],
             "categoriePrincipale": "mecene",
             "roles": ["banquier et collectionneur"],
-            "tags": ["collection", "restauration", "xixe-siecle"]
+            "tags": ["collection", "restauration", "xixe-siecle"],
+            "illustration": "/emoji/personnage/jacques-siegfried.png"
         },
         {
             "id": "jean-ii-de-chambes",
@@ -312,7 +345,8 @@
             "autresNoms": [],
             "categoriePrincipale": "homme-etat",
             "roles": ["conseiller de Charles VII et Louis XI"],
-            "tags": ["batisseur", "moyen-age", "royaute"]
+            "tags": ["batisseur", "moyen-age", "royaute"],
+            "illustration": "/emoji/personnage/jean-ii-de-chambes.png"
         },
         {
             "id": "jean-le-breton",
@@ -323,7 +357,8 @@
                 "ministre des Finances de François Ier",
                 "secrétaire des finances de François Ier"
             ],
-            "tags": ["batisseur", "chambord", "renaissance"]
+            "tags": ["batisseur", "chambord", "renaissance"],
+            "illustration": "/emoji/personnage/jean-le-breton.png"
         },
         {
             "id": "jean-v-de-bueil",
@@ -331,7 +366,8 @@
             "autresNoms": ["le Fléau des Anglais"],
             "categoriePrincipale": "militaire",
             "roles": ["capitaine de Charles VII"],
-            "tags": ["batisseur", "guerre-de-cent-ans", "moyen-age"]
+            "tags": ["batisseur", "guerre-de-cent-ans", "moyen-age"],
+            "illustration": "/emoji/personnage/jean-v-de-bueil.png"
         },
         {
             "id": "jean-de-berry",
@@ -339,7 +375,8 @@
             "autresNoms": [],
             "categoriePrincipale": "prince",
             "roles": ["duc de Berry et mécène"],
-            "tags": ["enluminure", "mecenat", "moyen-age"]
+            "tags": ["enluminure", "mecenat", "moyen-age"],
+            "illustration": "/emoji/personnage/jean-de-berry.png"
         },
         {
             "id": "jean-de-villebresme",
@@ -347,7 +384,8 @@
             "autresNoms": [],
             "categoriePrincipale": "noble",
             "roles": ["seigneur de Fougères"],
-            "tags": ["proprietaire", "renaissance"]
+            "tags": ["proprietaire", "renaissance"],
+            "illustration": "/emoji/personnage/jean-de-villebresme.png"
         },
         {
             "id": "jean-du-thier",
@@ -355,7 +393,8 @@
             "autresNoms": [],
             "categoriePrincipale": "homme-etat",
             "roles": ["secrétaire d’État d’Henri II"],
-            "tags": ["batisseur", "collectionneur", "renaissance"]
+            "tags": ["batisseur", "collectionneur", "renaissance"],
+            "illustration": "/emoji/personnage/jean-du-thier.png"
         },
         {
             "id": "jean-de-dunois",
@@ -363,7 +402,8 @@
             "autresNoms": ["Dunois", "le Bâtard d’Orléans"],
             "categoriePrincipale": "militaire",
             "roles": ["compagnon d’armes de Jeanne d’Arc"],
-            "tags": ["batisseur", "guerre-de-cent-ans", "moyen-age"]
+            "tags": ["batisseur", "guerre-de-cent-ans", "moyen-age"],
+            "illustration": "/emoji/personnage/jean-de-dunois.png"
         },
         {
             "id": "jean-d-orleans-longueville",
@@ -371,7 +411,8 @@
             "autresNoms": [],
             "categoriePrincipale": "noble",
             "roles": ["comte de Dunois"],
-            "tags": ["batisseur", "renaissance"]
+            "tags": ["batisseur", "renaissance"],
+            "illustration": "/emoji/personnage/jean-d-orleans-longueville.png"
         },
         {
             "id": "jeanne-say",
@@ -379,7 +420,8 @@
             "autresNoms": ["duchesse de Brissac"],
             "categoriePrincipale": "mecene",
             "roles": ["chanteuse et mécène"],
-            "tags": ["femme", "mecenat", "musique", "theatre"]
+            "tags": ["femme", "mecenat", "musique", "theatre"],
+            "illustration": "/emoji/personnage/jeanne-say.png"
         },
         {
             "id": "jeanne-d-arc",
@@ -393,7 +435,8 @@
                 "guerre-de-cent-ans",
                 "moyen-age",
                 "royaute"
-            ]
+            ],
+            "illustration": "/emoji/personnage/jeanne-d-arc.png"
         },
         {
             "id": "joachim-carvallo",
@@ -401,7 +444,8 @@
             "autresNoms": [],
             "categoriePrincipale": "scientifique",
             "roles": ["médecin et propriétaire"],
-            "tags": ["jardins", "restauration", "xxe-siecle"]
+            "tags": ["jardins", "restauration", "xxe-siecle"],
+            "illustration": "/emoji/personnage/joachim-carvallo.png"
         },
         {
             "id": "katherine-briconnet",
@@ -409,7 +453,8 @@
             "autresNoms": [],
             "categoriePrincipale": "batisseur",
             "roles": ["maîtresse d’ouvrage"],
-            "tags": ["batisseuse", "femme", "renaissance"]
+            "tags": ["batisseuse", "femme", "renaissance"],
+            "illustration": "/emoji/personnage/katherine-briconnet.png"
         },
         {
             "id": "louis-ix",
@@ -417,7 +462,8 @@
             "autresNoms": ["Saint Louis"],
             "categoriePrincipale": "souverain",
             "roles": ["roi de France"],
-            "tags": ["batisseur", "moyen-age", "royaute"]
+            "tags": ["batisseur", "moyen-age", "royaute"],
+            "illustration": "/emoji/personnage/louis-ix.png"
         },
         {
             "id": "louis-premier-d-anjou",
@@ -425,7 +471,8 @@
             "autresNoms": [],
             "categoriePrincipale": "prince",
             "roles": ["duc d’Anjou"],
-            "tags": ["anjou", "batisseur", "mecenat", "moyen-age", "tapisserie"]
+            "tags": ["anjou", "batisseur", "mecenat", "moyen-age", "tapisserie"],
+            "illustration": "/emoji/personnage/louis-premier-d-anjou.png"
         },
         {
             "id": "louis-xi",
@@ -433,7 +480,8 @@
             "autresNoms": [],
             "categoriePrincipale": "souverain",
             "roles": ["roi de France"],
-            "tags": ["batisseur", "moyen-age", "royaute"]
+            "tags": ["batisseur", "moyen-age", "royaute"],
+            "illustration": "/emoji/personnage/louis-xi.png"
         },
         {
             "id": "louis-xii",
@@ -441,7 +489,8 @@
             "autresNoms": ["le Père du peuple"],
             "categoriePrincipale": "souverain",
             "roles": ["roi de France"],
-            "tags": ["batisseur", "bretagne", "gothique", "royaute"]
+            "tags": ["batisseur", "bretagne", "gothique", "royaute"],
+            "illustration": "/emoji/personnage/louis-xii.png"
         },
         {
             "id": "louis-xiv",
@@ -449,7 +498,8 @@
             "autresNoms": ["le Roi-Soleil"],
             "categoriePrincipale": "souverain",
             "roles": ["roi de France"],
-            "tags": ["cour", "grand-siecle", "royaute"]
+            "tags": ["cour", "grand-siecle", "royaute"],
+            "illustration": "/emoji/personnage/louis-xiv.png"
         },
         {
             "id": "louise-dupin",
@@ -457,7 +507,8 @@
             "autresNoms": [],
             "categoriePrincipale": "mecene",
             "roles": ["salonnière"],
-            "tags": ["femme", "lumieres", "salon"]
+            "tags": ["femme", "lumieres", "salon"],
+            "illustration": "/emoji/personnage/louise-dupin.png"
         },
         {
             "id": "louise-de-savoie",
@@ -465,7 +516,8 @@
             "autresNoms": [],
             "categoriePrincipale": "souverain",
             "roles": ["mère de François Ier et régente"],
-            "tags": ["femme", "renaissance", "royaute"]
+            "tags": ["femme", "renaissance", "royaute"],
+            "illustration": "/emoji/personnage/louise-de-savoie.png"
         },
         {
             "id": "ludovic-sforza",
@@ -473,7 +525,8 @@
             "autresNoms": ["Ludovic le More"],
             "categoriePrincipale": "souverain",
             "roles": ["duc de Milan"],
-            "tags": ["italie", "prison", "renaissance"]
+            "tags": ["italie", "prison", "renaissance"],
+            "illustration": "/emoji/personnage/ludovic-sforza.png"
         },
         {
             "id": "leonard-de-vinci",
@@ -487,7 +540,8 @@
                 "ingenierie",
                 "inhumation",
                 "renaissance"
-            ]
+            ],
+            "illustration": "/emoji/personnage/leonard-de-vinci.png"
         },
         {
             "id": "manasses-de-seignelay",
@@ -495,7 +549,8 @@
             "autresNoms": [],
             "categoriePrincipale": "religieux",
             "roles": ["évêque d’Orléans"],
-            "tags": ["batisseur", "eglise", "moyen-age"]
+            "tags": ["batisseur", "eglise", "moyen-age"],
+            "illustration": "/emoji/personnage/manasses-de-seignelay.png"
         },
         {
             "id": "marguerite-gaillard-de-la-morinniere",
@@ -503,7 +558,8 @@
             "autresNoms": [],
             "categoriePrincipale": "noble",
             "roles": ["comtesse de Cheverny"],
-            "tags": ["batisseuse", "classicisme", "femme"]
+            "tags": ["batisseuse", "classicisme", "femme"],
+            "illustration": "/emoji/personnage/marguerite-gaillard-de-la-morinniere.png"
         },
         {
             "id": "marie-say",
@@ -511,7 +567,8 @@
             "autresNoms": ["Princesse de Broglie"],
             "categoriePrincipale": "mecene",
             "roles": ["princesse et propriétaire"],
-            "tags": ["amenageuse", "femme", "xixe-siecle"]
+            "tags": ["amenageuse", "femme", "xixe-siecle"],
+            "illustration": "/emoji/personnage/marie-say.png"
         },
         {
             "id": "marie-de-harcourt",
@@ -519,7 +576,8 @@
             "autresNoms": [],
             "categoriePrincipale": "noble",
             "roles": ["comtesse de Dunois"],
-            "tags": ["femme", "moyen-age", "residente"]
+            "tags": ["femme", "moyen-age", "residente"],
+            "illustration": "/emoji/personnage/marie-de-harcourt.png"
         },
         {
             "id": "maximilien-de-bethune",
@@ -527,7 +585,8 @@
             "autresNoms": ["Duc de Sully", "Sully"],
             "categoriePrincipale": "homme-etat",
             "roles": ["ministre d’Henri IV"],
-            "tags": ["amenageur", "henri-iv", "politique", "proprietaire"]
+            "tags": ["amenageur", "henri-iv", "politique", "proprietaire"],
+            "illustration": "/emoji/personnage/maximilien-de-bethune.png"
         },
         {
             "id": "moliere",
@@ -535,7 +594,8 @@
             "autresNoms": ["Jean-Baptiste Poquelin"],
             "categoriePrincipale": "artiste",
             "roles": ["dramaturge et comédien"],
-            "tags": ["litterature", "louis-xiv", "theatre"]
+            "tags": ["litterature", "louis-xiv", "theatre"],
+            "illustration": "/emoji/personnage/moliere.png"
         },
         {
             "id": "napoleon-premier",
@@ -543,7 +603,8 @@
             "autresNoms": [],
             "categoriePrincipale": "souverain",
             "roles": ["empereur des Français"],
-            "tags": ["diplomatie", "empire", "politique"]
+            "tags": ["diplomatie", "empire", "politique"],
+            "illustration": "/emoji/personnage/napoleon-premier.png"
         },
         {
             "id": "paul-ardier",
@@ -551,7 +612,8 @@
             "autresNoms": [],
             "categoriePrincipale": "homme-etat",
             "roles": ["contrôleur général des guerres"],
-            "tags": ["collection", "grand-siecle", "portraits"]
+            "tags": ["collection", "grand-siecle", "portraits"],
+            "illustration": "/emoji/personnage/paul-ardier.png"
         },
         {
             "id": "philippa-lesbahy",
@@ -559,7 +621,8 @@
             "autresNoms": [],
             "categoriePrincipale": "batisseur",
             "roles": ["maîtresse d’ouvrage"],
-            "tags": ["batisseuse", "femme", "renaissance"]
+            "tags": ["batisseuse", "femme", "renaissance"],
+            "illustration": "/emoji/personnage/philippa-lesbahy.png"
         },
         {
             "id": "philippe-meaille",
@@ -567,7 +630,8 @@
             "autresNoms": [],
             "categoriePrincipale": "collectionneur",
             "roles": ["collectionneur d’art contemporain"],
-            "tags": ["art-contemporain", "collection", "musee"]
+            "tags": ["art-contemporain", "collection", "musee"],
+            "illustration": "/emoji/personnage/philippe-meaille.png"
         },
         {
             "id": "pierre-de-beaujeu",
@@ -575,7 +639,8 @@
             "autresNoms": ["Pierre de Beaujeu"],
             "categoriePrincipale": "noble",
             "roles": ["duc de Bourbon"],
-            "tags": ["batisseur", "bourbon", "renaissance"]
+            "tags": ["batisseur", "bourbon", "renaissance"],
+            "illustration": "/emoji/personnage/pierre-de-beaujeu.png"
         },
         {
             "id": "pierre-de-beauvau",
@@ -583,7 +648,8 @@
             "autresNoms": [],
             "categoriePrincipale": "militaire",
             "roles": ["grand chambellan de Charles VII"],
-            "tags": ["batisseur", "militaire", "moyen-age"]
+            "tags": ["batisseur", "militaire", "moyen-age"],
+            "illustration": "/emoji/personnage/pierre-de-beauvau.png"
         },
         {
             "id": "pierre-de-refuge",
@@ -591,7 +657,8 @@
             "autresNoms": [],
             "categoriePrincipale": "homme-etat",
             "roles": ["conseiller du prince Charles d’Orléans"],
-            "tags": ["batisseur", "moyen-age"]
+            "tags": ["batisseur", "moyen-age"],
+            "illustration": "/emoji/personnage/pierre-de-refuge.png"
         },
         {
             "id": "pierre-de-ronsard",
@@ -599,7 +666,8 @@
             "autresNoms": [],
             "categoriePrincipale": "ecrivain",
             "roles": ["poète"],
-            "tags": ["pleiade", "poesie", "renaissance"]
+            "tags": ["pleiade", "poesie", "renaissance"],
+            "illustration": "/emoji/personnage/pierre-de-ronsard.png"
         },
         {
             "id": "rene-de-cosse",
@@ -607,7 +675,8 @@
             "autresNoms": ["duc de Brissac"],
             "categoriePrincipale": "noble",
             "roles": ["duc de Brissac"],
-            "tags": ["batisseur", "cosse-brissac", "grand-siecle"]
+            "tags": ["batisseur", "cosse-brissac", "grand-siecle"],
+            "illustration": "/emoji/personnage/rene-de-cosse.png"
         },
         {
             "id": "rene-d-anjou",
@@ -615,7 +684,8 @@
             "autresNoms": ["le roi René"],
             "categoriePrincipale": "prince",
             "roles": ["duc d’Anjou et mécène", "duc d’Anjou et roi de Naples"],
-            "tags": ["anjou", "arts", "jardins", "moyen-age"]
+            "tags": ["anjou", "arts", "jardins", "moyen-age"],
+            "illustration": "/emoji/personnage/rene-d-anjou.png"
         },
         {
             "id": "richard-coeur-de-lion",
@@ -623,7 +693,8 @@
             "autresNoms": ["Richard Ier d’Angleterre"],
             "categoriePrincipale": "souverain",
             "roles": ["roi d’Angleterre"],
-            "tags": ["angleterre", "moyen-age", "plantagenet"]
+            "tags": ["angleterre", "moyen-age", "plantagenet"],
+            "illustration": "/emoji/personnage/richard-coeur-de-lion.png"
         },
         {
             "id": "simone-menier",
@@ -631,7 +702,8 @@
             "autresNoms": [],
             "categoriePrincipale": "soignant",
             "roles": ["infirmière-major"],
-            "tags": ["femme", "hopital", "premiere-guerre-mondiale"]
+            "tags": ["femme", "hopital", "premiere-guerre-mondiale"],
+            "illustration": "/emoji/personnage/simone-menier.png"
         },
         {
             "id": "sebastien-vauban",
@@ -639,7 +711,8 @@
             "autresNoms": ["Vauban"],
             "categoriePrincipale": "militaire",
             "roles": ["ingénieur militaire"],
-            "tags": ["architecture", "grand-siecle", "jardins"]
+            "tags": ["architecture", "grand-siecle", "jardins"],
+            "illustration": "/emoji/personnage/sebastien-vauban.png"
         },
         {
             "id": "voltaire",
@@ -647,7 +720,8 @@
             "autresNoms": ["François-Marie Arouet"],
             "categoriePrincipale": "ecrivain",
             "roles": ["écrivain et philosophe"],
-            "tags": ["litterature", "lumieres", "theatre"]
+            "tags": ["litterature", "lumieres", "theatre"],
+            "illustration": "/emoji/personnage/voltaire.png"
         }
     ],
     "relations": [

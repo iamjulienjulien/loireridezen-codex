@@ -50,6 +50,7 @@ export type Personnage = {
     categoriePrincipale: string;
     roles: string[];
     tags: string[];
+    illustration?: string;
 };
 
 export type RelationPersonnageLieu = {
