@@ -34,9 +34,9 @@ const CATEGORIES = [
     {
         title: "Composants Métier",
         description:
-            "Les fiches spécialisées qui donnent corps aux index Faune, Flore et Châteaux.",
+            "Les fiches spécialisées qui donnent corps aux index Faune, Flore, Châteaux et Personnages.",
         href: "/atelier/metier",
-        count: "3 fiches",
+        count: "4 fiches",
     },
     {
         title: "Composants Collections",

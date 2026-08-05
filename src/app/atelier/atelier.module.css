@@ -192,6 +192,13 @@
     gap: 1rem;
 }
 
+.personnageShowcaseGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 21.25rem));
+    gap: 1rem;
+    align-items: start;
+}
+
 .collectionMetaGrid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -218,6 +225,7 @@
 @media (max-width: 760px) {
     .showcaseGrid,
     .collectionShowcaseGrid,
+    .personnageShowcaseGrid,
     .collectionMetaGrid {
         grid-template-columns: 1fr;
     }
