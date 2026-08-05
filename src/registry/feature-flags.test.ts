@@ -5,6 +5,9 @@ import {
     featureIsEnabled,
     isFeatureFlagName,
 } from "@/registry/feature-flags";
+import type { Env } from "@/registry/indexes";
+
+const collectionEnvironments: readonly Env[] = FEATURE_FLAGS.collections;
 
 describe("feature flags registry", () => {
     afterEach(() => {
@@ -21,10 +24,10 @@ describe("feature flags registry", () => {
 
     it("evaluates a feature from its enabled environments", () => {
         expect(featureIsEnabled("collections", "development")).toBe(
-            FEATURE_FLAGS.collections.includes("development"),
+            collectionEnvironments.includes("development"),
         );
         expect(featureIsEnabled("collections", "production")).toBe(
-            FEATURE_FLAGS.collections.includes("production"),
+            collectionEnvironments.includes("production"),
         );
     });
 
@@ -32,7 +35,7 @@ describe("feature flags registry", () => {
         vi.stubEnv("CURRENT_ENV", "development");
 
         expect(featureIsEnabled("collections")).toBe(
-            FEATURE_FLAGS.collections.includes("development"),
+            collectionEnvironments.includes("development"),
         );
     });
 
