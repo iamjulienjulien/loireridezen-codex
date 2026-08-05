@@ -1,0 +1,37 @@
+{
+    "name": "@loireridezen/codex-sdk",
+    "version": "0.1.0",
+    "description": "TypeScript client for the Loire Ride Zen Codex public API.",
+    "license": "MIT",
+    "type": "module",
+    "sideEffects": false,
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js"
+        }
+    },
+    "scripts": {
+        "generate": "node scripts/generate-openapi.mjs",
+        "check:generated": "node scripts/generate-openapi.mjs --check",
+        "typecheck": "tsc -p tsconfig.json --noEmit",
+        "test": "vitest run tests",
+        "build": "pnpm check:generated && node scripts/clean.mjs && tsc -p tsconfig.build.json",
+        "check": "pnpm check:generated && pnpm typecheck && pnpm test && pnpm build"
+    },
+    "devDependencies": {
+        "openapi-typescript": "^7.13.0",
+        "typescript": "^5.9.3",
+        "vitest": "^4.1.10"
+    },
+    "engines": {
+        "node": ">=20.9.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

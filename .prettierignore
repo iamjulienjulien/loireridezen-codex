@@ -6,3 +6,5 @@ out
 build
 .claude
 documentation
+packages/codex-sdk/dist
+packages/codex-sdk/src/generated/openapi.ts
