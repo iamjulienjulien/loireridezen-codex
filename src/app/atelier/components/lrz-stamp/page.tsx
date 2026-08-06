@@ -12,7 +12,12 @@ import {
 } from "@/components/LRZStamp";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getIndexBySlug } from "@/registry/indexes";
-import { LRZ_INDEX_SYMBOLS, type LRZIndexSymbolSlug } from "@/registry/symbols";
+import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
+import {
+    LRZ_INDEX_SYMBOLS,
+    type LRZFauneTypeSymbolSlug,
+    type LRZIndexSymbolSlug,
+} from "@/registry/symbols";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import shellStyles from "../filter-playground.module.css";
@@ -33,6 +38,11 @@ const INDEX_OPTIONS = (
     slug,
     label: getIndexBySlug(slug)?.label ?? slug,
 })) satisfies readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
+
+const FAUNE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZStampPlaygroundOption<LRZFauneTypeSymbolSlug>[];
 
 const PERSONNAGE_OPTIONS = CATEGORIES_PERSONNAGES.map(({ slug, nom }) => ({
     slug,
@@ -89,8 +99,18 @@ const FONTS: Array<{
 ];
 
 const API_PROPS = [
-    ["collection", '"index" | "personnage"', "—", "Collection métier."],
-    ["meta", '"categorie"', "undefined", "Sous-dossier optionnel."],
+    [
+        "collection",
+        '"index" | "faune" | "personnage"',
+        "—",
+        "Collection métier.",
+    ],
+    [
+        "meta",
+        '"type" | "categorie"',
+        "undefined",
+        "Sous-dossier optionnel.",
+    ],
     ["slug", "slug typé", "—", "Identité sélectionnée."],
     ["label", "ReactNode", "nom du registre", "Remplace le nom métier."],
     ["detail", "ReactNode | false", "undefined", "Texte secondaire."],
@@ -232,6 +252,7 @@ export default function LRZStampPage() {
 
                 <LRZStampPlayground
                     indexOptions={INDEX_OPTIONS}
+                    fauneOptions={FAUNE_OPTIONS}
                     personnageOptions={PERSONNAGE_OPTIONS}
                 />
 
@@ -260,6 +281,46 @@ export default function LRZStampPage() {
                             />
                         ))}
                     </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-faune-types"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection imbriquée
+                        </p>
+                        <h2 id="stamp-faune-types">Les types de faune</h2>
+                        <p>
+                            Chaque stamp résout son label et sa couleur depuis
+                            le registre <code>faune.type</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {FAUNE_TYPE_META.map((type) => (
+                            <LRZStamp
+                                collection="faune"
+                                meta="type"
+                                slug={type.slug}
+                                key={type.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+
+                    <pre className={shellStyles.code}>
+                        <code>{`<LRZStamp
+  collection="faune"
+  meta="type"
+  slug="oiseau"
+/>`}</code>
+                    </pre>
                 </section>
 
                 <section

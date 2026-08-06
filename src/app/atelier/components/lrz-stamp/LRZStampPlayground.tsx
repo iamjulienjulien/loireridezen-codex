@@ -27,7 +27,10 @@ import {
     LRZ_COLOR_NAMES,
     type LRZColor,
 } from "@/registry/colors";
-import type { LRZIndexSymbolSlug } from "@/registry/symbols";
+import type {
+    LRZFauneTypeSymbolSlug,
+    LRZIndexSymbolSlug,
+} from "@/registry/symbols";
 
 import styles from "./LRZStampPlayground.module.css";
 
@@ -38,6 +41,7 @@ export type LRZStampPlaygroundOption<TSlug extends string = string> = {
 
 type LRZStampPlaygroundProps = {
     indexOptions: readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
+    fauneOptions: readonly LRZStampPlaygroundOption<LRZFauneTypeSymbolSlug>[];
     personnageOptions: readonly LRZStampPlaygroundOption<CategoriePersonnageSlug>[];
 };
 
@@ -161,7 +165,19 @@ function codeValue(value: string) {
     return JSON.stringify(value);
 }
 
+function getMetaForCollection(collection: LRZSymbolCollection) {
+    switch (collection) {
+        case "faune":
+            return "type";
+        case "personnage":
+            return "categorie";
+        case "index":
+            return undefined;
+    }
+}
+
 function buildCode(values: PlaygroundState) {
+    const meta = getMetaForCollection(values.collection);
     const size =
         values.size === "custom"
             ? `{${values.customSize}}`
@@ -182,7 +198,7 @@ function buildCode(values: PlaygroundState) {
               : codeValue(values.labelSize);
     const props = [
         `collection=${codeValue(values.collection)}`,
-        ...(values.collection === "personnage" ? [`meta="categorie"`] : []),
+        ...(meta ? [`meta=${codeValue(meta)}`] : []),
         `slug=${codeValue(values.slug)}`,
         `variant=${codeValue(values.variant)}`,
         `tone=${codeValue(values.tone)}`,
@@ -217,17 +233,29 @@ function buildCode(values: PlaygroundState) {
 
 export default function LRZStampPlayground({
     indexOptions,
+    fauneOptions,
     personnageOptions,
 }: LRZStampPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
-    const activeOptions =
-        values.collection === "index" ? indexOptions : personnageOptions;
+    const optionsByCollection = {
+        index: indexOptions,
+        faune: fauneOptions,
+        personnage: personnageOptions,
+    } as const;
+    const activeOptions = optionsByCollection[values.collection];
+    const activeMeta = getMetaForCollection(values.collection);
     const locator: LRZSymbolLocator =
         values.collection === "index"
             ? {
                   collection: "index",
                   slug: values.slug as LRZIndexSymbolSlug,
               }
+            : values.collection === "faune"
+              ? {
+                    collection: "faune",
+                    meta: "type",
+                    slug: values.slug as LRZFauneTypeSymbolSlug,
+                }
             : {
                   collection: "personnage",
                   meta: "categorie",
@@ -246,8 +274,7 @@ export default function LRZStampPlayground({
               : values.labelSize;
 
     function selectCollection(collection: LRZSymbolCollection) {
-        const options =
-            collection === "index" ? indexOptions : personnageOptions;
+        const options = optionsByCollection[collection];
 
         setValues((current) => ({
             ...current,
@@ -262,8 +289,14 @@ export default function LRZStampPlayground({
     }
 
     function handleMetaChange(event: ChangeEvent<HTMLSelectElement>) {
+        const meta = event.target.value;
+
         selectCollection(
-            event.target.value === "categorie" ? "personnage" : "index",
+            meta === "type"
+                ? "faune"
+                : meta === "categorie"
+                  ? "personnage"
+                  : "index",
         );
     }
 
@@ -302,6 +335,7 @@ export default function LRZStampPlayground({
                                     onChange={handleCollectionChange}
                                 >
                                     <option value="index">index</option>
+                                    <option value="faune">faune</option>
                                     <option value="personnage">
                                         personnage
                                     </option>
@@ -310,14 +344,11 @@ export default function LRZStampPlayground({
                             <label className={styles.control}>
                                 <span>Meta</span>
                                 <select
-                                    value={
-                                        values.collection === "personnage"
-                                            ? "categorie"
-                                            : ""
-                                    }
+                                    value={activeMeta ?? ""}
                                     onChange={handleMetaChange}
                                 >
                                     <option value="">Aucun</option>
+                                    <option value="type">type</option>
                                     <option value="categorie">categorie</option>
                                 </select>
                             </label>

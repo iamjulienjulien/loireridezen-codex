@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
     LRZSymbol,
     LRZ_SYMBOL_SIZE_VALUES,
+    type LRZFauneTypeSymbolSlug,
     type LRZIndexSymbolSlug,
     type LRZSymbolFrame,
     type LRZSymbolPadding,
@@ -13,7 +14,9 @@ import {
     type LRZSymbolSize,
 } from "@/components/LRZSymbol";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
+import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
+import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { LRZ_INDEX_SYMBOLS } from "@/registry/symbols";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
@@ -93,21 +96,31 @@ const INDEX_SYMBOL_OPTIONS = (
     label: getIndexBySlug(slug)?.label ?? slug,
 })) satisfies readonly LRZSymbolPlaygroundOption<LRZIndexSymbolSlug>[];
 
+const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZSymbolPlaygroundOption<LRZFauneTypeSymbolSlug>[];
+
 const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
     ({ slug, nom }) => ({ slug, label: nom }),
 );
 
 const API_PROPS = [
-    ["collection", '"index" | "personnage"', "—", "Collection du symbole."],
+    [
+        "collection",
+        '"index" | "faune" | "personnage"',
+        "—",
+        "Collection du symbole.",
+    ],
     [
         "meta",
-        '"categorie"',
+        '"type" | "categorie"',
         "undefined",
         "Sous-dossier optionnel au sein de la collection.",
     ],
     [
         "slug",
-        "LRZIndexSymbolSlug | CategoriePersonnageSlug",
+        "LRZIndexSymbolSlug | LRZFauneTypeSymbolSlug | CategoriePersonnageSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -246,6 +259,7 @@ export default function LRZSymbolPage() {
 
                 <LRZSymbolPlayground
                     indexOptions={INDEX_SYMBOL_OPTIONS}
+                    fauneOptions={FAUNE_TYPE_OPTIONS}
                     personnageOptions={PERSONNAGE_SYMBOL_OPTIONS}
                 />
 
@@ -281,6 +295,60 @@ export default function LRZSymbolPage() {
                             </article>
                         ))}
                     </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-faune-types"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection imbriquée
+                        </p>
+                        <h2 id="symbol-faune-types">Les six types de faune</h2>
+                        <p>
+                            Le locator <code>faune.type</code> associe chaque
+                            slug à son symbole, son label et sa couleur LRZ.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {FAUNE_TYPE_META.map((type) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={type.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            type.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="faune"
+                                    meta="type"
+                                    slug={type.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{type.color}</span>
+                                    <h3>{type.label}</h3>
+                                    <code>{type.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+
+                    <pre className={shellStyles.code}>
+                        <code>{`<LRZSymbol
+  collection="faune"
+  meta="type"
+  slug="oiseau"
+/>`}</code>
+                    </pre>
                 </section>
 
                 <section
@@ -335,7 +403,7 @@ export default function LRZSymbolPage() {
                         <h2 id="symbol-sizes">Tailles prédéfinies et custom</h2>
                         <p>
                             La taille désigne toujours la boîte extérieure. Les
-                            masters actuels font 100 × 100 px.
+                            masters actuels font 192 × 192 px.
                         </p>
                     </div>
 
