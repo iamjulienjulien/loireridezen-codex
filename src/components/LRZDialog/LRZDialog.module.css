@@ -1,12 +1,31 @@
 .overlay {
+    --dialog-overlay-base: rgb(25 22 17 / 0.48);
+    --dialog-overlay-glow: color-mix(
+        in srgb,
+        var(--color-ambiance-ciel-haut, #cfe4ea) 14%,
+        transparent
+    );
+
     position: fixed;
     inset: 0;
     z-index: var(--z-dialog-overlay, 800);
     background:
-        linear-gradient(rgb(17 24 39 / 0.18), rgb(17 24 39 / 0.34)),
-        rgb(17 24 39 / 0.42);
+        linear-gradient(180deg, var(--dialog-overlay-glow), transparent 48%),
+        var(--dialog-overlay-base);
     backdrop-filter: blur(8px);
     animation: overlay-in 180ms ease-out;
+}
+
+:global(html[data-mode="aube"]) .overlay {
+    --dialog-overlay-base: rgb(38 24 30 / 0.46);
+}
+
+:global(html[data-mode="soir"]) .overlay {
+    --dialog-overlay-base: rgb(15 12 17 / 0.64);
+}
+
+:global(html[data-mode="nuit"]) .overlay {
+    --dialog-overlay-base: rgb(5 8 13 / 0.7);
 }
 
 .overlay[data-state="closed"] {
@@ -55,11 +74,21 @@
     --dialog-max-height: calc(100dvh - 48px);
     --dialog-padding: 0px;
     --dialog-radius: var(--radius-xl, 28px);
-    --dialog-background: var(--bg-surface, #ffffff);
-    --dialog-surface-soft: var(--bg-subtle, #f6f4ef);
-    --dialog-border: var(--border-subtle, #ded9cf);
+    --dialog-background: var(--color-ambiance-elevation, #ffffff);
+    --dialog-surface-soft: var(--color-ambiance-surface, #faf3e5);
+    --dialog-text-primary: var(--color-ambiance-texte-primaire, #2b2620);
+    --dialog-text-secondary: var(--color-ambiance-texte-secondaire, #6b605c);
+    --dialog-text-tertiary: var(--color-ambiance-texte-tertiaire, #a0928c);
+    --dialog-border: color-mix(
+        in srgb,
+        var(--dialog-text-primary) 14%,
+        transparent
+    );
     --dialog-shadow:
-        0 28px 90px rgb(17 24 39 / 0.22), 0 8px 24px rgb(17 24 39 / 0.12);
+        0 28px 90px rgb(25 22 17 / 0.22), 0 8px 24px rgb(25 22 17 / 0.12);
+    --dialog-control-shadow: 0 4px 14px rgb(25 22 17 / 0.08);
+    --dialog-control-shadow-hover: 0 7px 20px rgb(25 22 17 / 0.12);
+    --dialog-sticky-shadow: 0 -10px 30px rgb(25 22 17 / 0.06);
 
     position: relative;
     display: flex;
@@ -71,13 +100,40 @@
     padding: var(--dialog-padding);
     border: 1px solid var(--dialog-border);
     border-radius: var(--dialog-radius);
-    color: var(--text-primary, #25231f);
+    color: var(--dialog-text-primary);
     background: var(--dialog-background);
     box-shadow: var(--dialog-shadow);
     pointer-events: auto;
     outline: none;
     isolation: isolate;
+    color-scheme: light;
     animation: content-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:global(html[data-mode="aube"]) .content {
+    --dialog-shadow:
+        0 28px 90px rgb(60 30 40 / 0.2), 0 8px 24px rgb(60 30 40 / 0.11);
+    --dialog-control-shadow: 0 4px 14px rgb(60 30 40 / 0.08);
+    --dialog-control-shadow-hover: 0 7px 20px rgb(60 30 40 / 0.12);
+    --dialog-sticky-shadow: 0 -10px 30px rgb(60 30 40 / 0.06);
+}
+
+:global(html[data-mode="soir"]) .content {
+    --dialog-shadow:
+        0 32px 100px rgb(0 0 0 / 0.42), 0 10px 28px rgb(0 0 0 / 0.26);
+    --dialog-control-shadow: 0 4px 14px rgb(0 0 0 / 0.22);
+    --dialog-control-shadow-hover: 0 7px 20px rgb(0 0 0 / 0.3);
+    --dialog-sticky-shadow: 0 -10px 30px rgb(0 0 0 / 0.18);
+    color-scheme: dark;
+}
+
+:global(html[data-mode="nuit"]) .content {
+    --dialog-shadow:
+        0 32px 110px rgb(0 0 0 / 0.52), 0 10px 30px rgb(0 0 0 / 0.32);
+    --dialog-control-shadow: 0 4px 14px rgb(0 0 0 / 0.28);
+    --dialog-control-shadow-hover: 0 7px 20px rgb(0 0 0 / 0.36);
+    --dialog-sticky-shadow: 0 -10px 30px rgb(0 0 0 / 0.24);
+    color-scheme: dark;
 }
 
 .content::before {
@@ -142,17 +198,19 @@
     --dialog-background:
         linear-gradient(
             180deg,
-            color-mix(in srgb, var(--dialog-color) 5%, white),
+            color-mix(
+                in srgb,
+                var(--dialog-color) 6%,
+                var(--color-ambiance-elevation, #ffffff)
+            ),
             transparent 180px
         ),
-        var(--bg-surface, #ffffff);
+        var(--color-ambiance-elevation, #ffffff);
 }
 
 .content[data-variant="immersive"] {
     --dialog-radius: var(--radius-lg, 22px);
-    --dialog-background: var(--bg-canvas, #f3f1eb);
-    --dialog-shadow:
-        0 32px 110px rgb(17 24 39 / 0.3), 0 10px 32px rgb(17 24 39 / 0.16);
+    --dialog-background: var(--dialog-surface-soft);
 }
 
 .content[data-placement="top"] {
@@ -184,9 +242,9 @@
     place-items: center;
     border: 1px solid color-mix(in srgb, var(--dialog-border) 84%, transparent);
     border-radius: 999px;
-    color: var(--text-secondary, #6d675e);
-    background: color-mix(in srgb, var(--dialog-background) 86%, transparent);
-    box-shadow: 0 4px 14px rgb(17 24 39 / 0.08);
+    color: var(--dialog-text-secondary);
+    background: color-mix(in srgb, var(--dialog-surface-soft) 88%, transparent);
+    box-shadow: var(--dialog-control-shadow);
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition:
@@ -206,7 +264,7 @@
 
 .close:hover,
 .closePrimitive:hover {
-    color: var(--text-primary, #25231f);
+    color: var(--dialog-text-primary);
     border-color: color-mix(
         in srgb,
         var(--dialog-color) 40%,
@@ -215,9 +273,9 @@
     background: color-mix(
         in srgb,
         var(--dialog-color) 10%,
-        var(--dialog-background)
+        var(--dialog-surface-soft)
     );
-    box-shadow: 0 7px 20px rgb(17 24 39 / 0.12);
+    box-shadow: var(--dialog-control-shadow-hover);
     transform: translateY(-1px);
 }
 
@@ -301,7 +359,7 @@
     color: color-mix(
         in srgb,
         var(--dialog-color) 72%,
-        var(--text-secondary, #6d675e)
+        var(--dialog-text-secondary)
     );
     font-size: 0.75rem;
     font-weight: 760;
@@ -316,13 +374,13 @@
     flex-wrap: wrap;
     gap: 8px;
     align-items: center;
-    color: var(--text-secondary, #6d675e);
+    color: var(--dialog-text-secondary);
     font-size: 0.82rem;
 }
 
 .title {
     margin: 0;
-    color: var(--text-primary, #25231f);
+    color: var(--dialog-text-primary);
     font-size: clamp(1.5rem, 3vw, 2.35rem);
     font-weight: 760;
     letter-spacing: -0.035em;
@@ -333,7 +391,7 @@
 .description {
     max-width: 68ch;
     margin: 0;
-    color: var(--text-secondary, #6d675e);
+    color: var(--dialog-text-secondary);
     font-size: 0.98rem;
     line-height: 1.6;
     text-wrap: pretty;
@@ -416,7 +474,7 @@
     position: sticky;
     bottom: 0;
     z-index: 12;
-    box-shadow: 0 -10px 30px rgb(17 24 39 / 0.06);
+    box-shadow: var(--dialog-sticky-shadow);
     backdrop-filter: blur(14px);
 }
 
