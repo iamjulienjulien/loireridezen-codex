@@ -19,7 +19,7 @@ export default function AtelierMetierPage() {
         <AtelierCategoryLayout
             eyebrow="Atelier · Domaine"
             title="Composants Métier"
-            description="Les cartes qui traduisent les données du Codex en fiches éditoriales : espèces, flore, patrimoine castral et personnages de la Loire."
+            description="Les cartes qui traduisent les données du Codex en fiches éditoriales : espèces, flore, patrimoine castral, guinguettes et personnages de la Loire."
         >
             <MetierShowcase personnageExamples={personnageExamples} />
             <ComponentsNavigation />

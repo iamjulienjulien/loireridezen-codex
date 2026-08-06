@@ -110,6 +110,11 @@ const SECTIONS = [
             ["flore-card", "FloreCard", "/atelier/metier#flore-card"],
             ["chateaux-card", "ChateauxCard", "/atelier/metier#chateaux-card"],
             [
+                "guinguette-card",
+                "GuinguetteCardV3",
+                "/atelier/metier#guinguette-card",
+            ],
+            [
                 "personnage-card",
                 "PersonnageCard",
                 "/atelier/metier#personnage-card",
