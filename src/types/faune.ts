@@ -1,5 +1,6 @@
-export type FauneType =
-    "oiseau" | "mammifère" | "poisson" | "reptile" | "amphibien" | "insecte";
+import type { FauneType } from "@/registry/Meta/faune-type";
+
+export type { FauneType } from "@/registry/Meta/faune-type";
 export type FauneRarete = "commun" | "régulier" | "rare" | "trésor";
 export type FauneStatut = "LC" | "NT" | "VU" | "EN" | "CR" | "NA";
 
