@@ -1,19 +1,13 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import LRZLivingText from "@/components/LRZLivingText";
+import { LRZSymbol } from "@/components/LRZSymbol";
 import PageFooter from "@/components/PageFooter";
 import type { IndexEntry } from "@/registry/indexes";
 import { featureIsEnabled } from "@/registry/feature-flags";
+import { isLRZIndexSymbolSlug } from "@/registry/symbols";
 import styles from "./HomeContent.module.css";
-import LRZLivingText from "@/components/LRZLivingText";
-
-const INDEX_CUSTOM_EMOJI_SRC: Readonly<Record<string, string>> = {
-    chateaux: "/symbols/symbol-chateaux.png",
-    faune: "/symbols/symbol-faune.png",
-    flore: "/symbols/symbol-flore.png",
-    guinguettes: "/symbols/symbol-guinguettes.png",
-};
 
 export default function HomeContent({
     indexes,
@@ -51,49 +45,47 @@ export default function HomeContent({
                 <div className="mx-auto mt-8 h-px w-24 bg-[#c8893a]/50" />
 
                 <div className="mt-10 grid gap-4">
-                    {indexes.map((entry) => {
-                        const customEmojiSrc =
-                            INDEX_CUSTOM_EMOJI_SRC[entry.slug];
-
-                        return (
-                            <Link
-                                key={entry.href}
-                                href={entry.href}
-                                className="group flex items-center gap-4 rounded-[10px] border border-[var(--border-subtle)] bg-[var(--color-ambiance-surface)] p-5 text-left shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[#c8893a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8893a]"
-                            >
+                    {indexes.map((entry) => (
+                        <Link
+                            key={entry.href}
+                            href={entry.href}
+                            className="group flex items-center gap-4 rounded-[10px] border border-[var(--border-subtle)] bg-[var(--color-ambiance-surface)] p-5 text-left shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[#c8893a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8893a]"
+                        >
+                            {indexesCustomEmojiEnabled &&
+                            isLRZIndexSymbolSlug(entry.slug) ? (
+                                <LRZSymbol
+                                    collection="index"
+                                    slug={entry.slug}
+                                    size="lg"
+                                    frame="subtle"
+                                    shape="rounded"
+                                    padding="sm"
+                                    decorative
+                                />
+                            ) : (
                                 <span
                                     aria-hidden
                                     className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] bg-[var(--gold-soft)] text-2xl"
                                 >
-                                    {indexesCustomEmojiEnabled &&
-                                    customEmojiSrc ? (
-                                        <Image
-                                            src={customEmojiSrc}
-                                            width={40}
-                                            height={40}
-                                            alt=""
-                                        />
-                                    ) : (
-                                        entry.mark
-                                    )}
+                                    {entry.mark}
                                 </span>
-                                <span className="min-w-0 flex-1">
-                                    <span className="mt-0.5 block font-[family-name:var(--font-display)] text-lg font-medium tracking-tight text-[var(--color-ambiance-texte-primaire)]">
-                                        {entry.title}
-                                    </span>
-                                    <span className="mt-1 block text-[13px] leading-snug text-[var(--color-ambiance-texte-secondaire)]">
-                                        {entry.description}
-                                    </span>
+                            )}
+                            <span className="min-w-0 flex-1">
+                                <span className="mt-0.5 block font-[family-name:var(--font-display)] text-lg font-medium tracking-tight text-[var(--color-ambiance-texte-primaire)]">
+                                    {entry.title}
                                 </span>
-                                <span
-                                    aria-hidden
-                                    className="shrink-0 text-[#c8893a] transition-transform group-hover:translate-x-1"
-                                >
-                                    →
+                                <span className="mt-1 block text-[13px] leading-snug text-[var(--color-ambiance-texte-secondaire)]">
+                                    {entry.description}
                                 </span>
-                            </Link>
-                        );
-                    })}
+                            </span>
+                            <span
+                                aria-hidden
+                                className="shrink-0 text-[#c8893a] transition-transform group-hover:translate-x-1"
+                            >
+                                →
+                            </span>
+                        </Link>
+                    ))}
                 </div>
 
                 <PageFooter spacing="relaxed" signatureSpacing="none" />

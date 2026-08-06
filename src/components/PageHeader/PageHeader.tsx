@@ -1,8 +1,11 @@
 import type { CSSProperties } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
+import { LRZSymbol } from "@/components/LRZSymbol";
+import { featureIsEnabled } from "@/registry/feature-flags";
 import type { IndexEntry, IndexHref } from "@/registry/indexes";
+import { isLRZIndexSymbolSlug } from "@/registry/symbols";
+import type { LRZColor } from "@/types/lrz";
 
 import type {
     CollectionHref,
@@ -11,8 +14,6 @@ import type {
 
 import styles from "./PageHeader.module.css";
 import LRZSeparateur from "../LRZSeparateur/LRZSeparateur";
-import { LRZColor } from "@/types/lrz";
-import { featureIsEnabled } from "@/registry/feature-flags";
 
 export type PageHeaderCurrent = IndexHref | CollectionHref;
 
@@ -32,7 +33,6 @@ type ActiveIndexPage = {
     mark: string;
     accent: string;
     color: LRZColor;
-    symbolSrc: string;
 };
 
 type ActiveCollectionPage = {
@@ -45,7 +45,6 @@ type ActiveCollectionPage = {
     mark: string;
     accent: string;
     color: LRZColor;
-    symbolSrc?: undefined;
 };
 
 type ActivePage = ActiveIndexPage | ActiveCollectionPage;
@@ -137,28 +136,22 @@ export default function PageHeader({
                                             : undefined
                                     }
                                 >
-                                    <span
-                                        className={styles.navEmoji}
-                                        aria-hidden="true"
-                                    >
-                                        {featureIsEnabled(
-                                            "indexesCustomEmoji",
-                                        ) ? (
-                                            <Image
-                                                width={25}
-                                                height={25}
-                                                src={`/symbols/symbol-${index.slug}.png`}
-                                                alt=""
-                                            />
-                                        ) : (
-                                            <span
-                                                className={styles.navEmoji}
-                                                aria-hidden
-                                            >
-                                                {index.mark}
-                                            </span>
-                                        )}
-                                    </span>
+                                    {featureIsEnabled("indexesCustomEmoji") &&
+                                    isLRZIndexSymbolSlug(index.slug) ? (
+                                        <LRZSymbol
+                                            collection="index"
+                                            slug={index.slug}
+                                            size={25}
+                                            decorative
+                                        />
+                                    ) : (
+                                        <span
+                                            className={styles.navEmoji}
+                                            aria-hidden
+                                        >
+                                            {index.mark}
+                                        </span>
+                                    )}
 
                                     <span className={styles.navText}>
                                         {index.label}
@@ -184,20 +177,30 @@ export default function PageHeader({
 }
 
 function PageMark({ active }: { active: ActivePage }) {
+    if (
+        active.kind === "index" &&
+        featureIsEnabled("indexesCustomEmoji") &&
+        isLRZIndexSymbolSlug(active.slug)
+    ) {
+        return (
+            <LRZSymbol
+                collection="index"
+                slug={active.slug}
+                size={58}
+                frame="subtle"
+                shape="rounded"
+                padding="sm"
+                shadow="soft"
+                className={styles.markSymbol}
+                loading="eager"
+                decorative
+            />
+        );
+    }
+
     return (
         <span className={styles.markBadge} aria-hidden="true">
-            {active.kind === "index" &&
-            featureIsEnabled("indexesCustomEmoji") ? (
-                <Image
-                    width={50}
-                    height={50}
-                    src={active.symbolSrc}
-                    alt=""
-                    priority
-                />
-            ) : (
-                <span className={styles.collectionMark}>{active.mark}</span>
-            )}
+            <span className={styles.collectionMark}>{active.mark}</span>
         </span>
     );
 }
@@ -248,7 +251,6 @@ function resolveActivePage({
         mark: index.mark,
         accent: index.accent,
         color: index.color,
-        symbolSrc: `/symbols/symbol-${index.slug}.png`,
     };
 }
 
