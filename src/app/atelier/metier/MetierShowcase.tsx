@@ -36,7 +36,7 @@ export default function MetierShowcase({
                     <span>Les espèces, leurs statuts et leurs traces.</span>
                 </header>
                 <div className={styles.showcaseGrid}>
-                    {MOCK_FAUNE.slice(0, 2).map((item) => (
+                    {MOCK_FAUNE.slice(0, 3).map((item) => (
                         <FauneCard
                             key={item.slug}
                             d={item}
@@ -51,10 +51,12 @@ export default function MetierShowcase({
                 <header className={styles.showcaseHeader}>
                     <p>Fiche métier · 02</p>
                     <h2>FloreCard</h2>
-                    <span>Les plantes, leurs milieux et leurs protections.</span>
+                    <span>
+                        Les plantes, leurs milieux et leurs protections.
+                    </span>
                 </header>
                 <div className={styles.showcaseGrid}>
-                    {MOCK_FLORE.slice(0, 2).map((item) => (
+                    {MOCK_FLORE.slice(0, 3).map((item) => (
                         <FloreCard
                             key={item.slug}
                             d={item}
@@ -69,10 +71,12 @@ export default function MetierShowcase({
                 <header className={styles.showcaseHeader}>
                     <p>Fiche métier · 03</p>
                     <h2>ChateauxCard</h2>
-                    <span>Les demeures, les protections et leurs histoires.</span>
+                    <span>
+                        Les demeures, les protections et leurs histoires.
+                    </span>
                 </header>
                 <div className={styles.showcaseGrid}>
-                    {MOCK_CHATEAU.slice(0, 2).map((item) => (
+                    {MOCK_CHATEAU.slice(0, 3).map((item) => (
                         <ChateauxCard key={item.slug} d={item} open={false} />
                     ))}
                 </div>
