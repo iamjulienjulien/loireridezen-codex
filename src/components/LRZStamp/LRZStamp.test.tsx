@@ -64,6 +64,24 @@ describe("LRZStamp", () => {
         expect(markup).toContain("--lrz-stamp-label-color:var(--color-vert)");
     });
 
+    it("renders a Guinguette ambience with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp
+                collection="guinguette"
+                meta="ambience"
+                slug="coucher de soleil"
+            />,
+        );
+
+        expect(markup).toContain("Coucher de soleil");
+        expect(markup).toContain('data-collection="guinguette"');
+        expect(markup).toContain('data-meta="ambience"');
+        expect(markup).toContain(
+            "/symbols/guinguette/ambience/coucher-de-soleil.png",
+        );
+        expect(markup).toContain("--lrz-stamp-label-color:var(--color-orange)");
+    });
+
     it("allows the registry label to be overridden", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp

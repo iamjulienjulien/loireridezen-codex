@@ -262,6 +262,13 @@ export default function LRZStamp({
                 slug={slug}
                 {...symbolOptions}
             />
+        ) : collection === "guinguette" ? (
+            <LRZSymbol
+                collection="guinguette"
+                meta={meta}
+                slug={slug}
+                {...symbolOptions}
+            />
         ) : (
             <LRZSymbol
                 collection="personnage"

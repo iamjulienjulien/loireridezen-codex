@@ -9,6 +9,10 @@ import {
     getFloreCategorieMeta,
     type FloreCategorie,
 } from "@/registry/Meta/flore-categorie";
+import {
+    getGuinguetteAmbienceMeta,
+    type GuinguetteAmbience,
+} from "@/registry/Meta/guinguette-ambience";
 import type { LRZColor } from "@/types/lrz";
 
 export const LRZ_INDEX_SYMBOLS = {
@@ -44,6 +48,35 @@ export const LRZ_FLORE_CATEGORIE_SYMBOLS = {
 export type LRZFloreCategorieSymbolSlug =
     keyof typeof LRZ_FLORE_CATEGORIE_SYMBOLS;
 
+export const LRZ_GUINGUETTE_AMBIENCE_SYMBOLS = {
+    traditionnelle: "/symbols/guinguette/ambience/traditionnelle.png",
+    familiale: "/symbols/guinguette/ambience/familiale.png",
+    "bord de rivière": "/symbols/guinguette/ambience/bord-de-riviere.png",
+    festive: "/symbols/guinguette/ambience/festive.png",
+    musicale: "/symbols/guinguette/ambience/musicale.png",
+    conviviale: "/symbols/guinguette/ambience/conviviale.png",
+    bucolique: "/symbols/guinguette/ambience/bucolique.png",
+    nature: "/symbols/guinguette/ambience/nature.png",
+    décontractée: "/symbols/guinguette/ambience/decontractee.png",
+    urbaine: "/symbols/guinguette/ambience/urbaine.png",
+    paisible: "/symbols/guinguette/ambience/paisible.png",
+    gourmande: "/symbols/guinguette/ambience/gourmande.png",
+    romantique: "/symbols/guinguette/ambience/romantique.png",
+    "bord de Loire": "/symbols/guinguette/ambience/bord-de-loire.png",
+    champêtre: "/symbols/guinguette/ambience/champetre.png",
+    "coucher de soleil": "/symbols/guinguette/ambience/coucher-de-soleil.png",
+    portuaire: "/symbols/guinguette/ambience/portuaire.png",
+    populaire: "/symbols/guinguette/ambience/populaire.png",
+    insulaire: "/symbols/guinguette/ambience/insulaire.png",
+    locale: "/symbols/guinguette/ambience/locale.png",
+    itinérante: "/symbols/guinguette/ambience/itinerante.png",
+    culturelle: "/symbols/guinguette/ambience/culturelle.png",
+    éphémère: "/symbols/guinguette/ambience/ephemere.png",
+} as const satisfies Record<GuinguetteAmbience, string>;
+
+export type LRZGuinguetteAmbienceSymbolSlug =
+    keyof typeof LRZ_GUINGUETTE_AMBIENCE_SYMBOLS;
+
 export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
     souverain: "/symbols/personnage/categorie/souverain.png",
     prince: "/symbols/personnage/categorie/prince.png",
@@ -67,8 +100,8 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  * Registre des symboles illustrés du Codex.
  *
  * Une collection peut contenir directement ses symboles, comme `index`, ou
- * les regrouper par métadonnée, comme `faune.type`, `flore.categorie` et
- * `personnage.categorie`.
+ * les regrouper par métadonnée, comme `faune.type`, `flore.categorie`,
+ * `guinguette.ambience` et `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
     index: LRZ_INDEX_SYMBOLS,
@@ -77,6 +110,9 @@ export const LRZ_SYMBOLS = {
     },
     flore: {
         categorie: LRZ_FLORE_CATEGORIE_SYMBOLS,
+    },
+    guinguette: {
+        ambience: LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
     },
     personnage: {
         categorie: LRZ_PERSONNAGE_CATEGORIE_SYMBOLS,
@@ -88,12 +124,14 @@ export type LRZSymbolCollection = keyof typeof LRZ_SYMBOLS;
 export type LRZSymbolMeta =
     | keyof typeof LRZ_SYMBOLS.faune
     | keyof typeof LRZ_SYMBOLS.flore
+    | keyof typeof LRZ_SYMBOLS.guinguette
     | keyof typeof LRZ_SYMBOLS.personnage;
 
 export type LRZSymbolSlug =
     | LRZIndexSymbolSlug
     | LRZFauneTypeSymbolSlug
     | LRZFloreCategorieSymbolSlug
+    | LRZGuinguetteAmbienceSymbolSlug
     | CategoriePersonnageSlug;
 
 export type LRZSymbolDefinition = {
@@ -121,6 +159,12 @@ export type LRZSymbolLocator =
           collection: "flore";
           meta: "categorie";
           slug: LRZFloreCategorieSymbolSlug;
+      }
+    | {
+          /** Ambiances éditoriales de la collection Guinguette. */
+          collection: "guinguette";
+          meta: "ambience";
+          slug: LRZGuinguetteAmbienceSymbolSlug;
       }
     | {
           /** Collection de symboles classés par métadonnée. */
@@ -158,6 +202,16 @@ export function getLRZSymbolSource(
         Object.hasOwn(LRZ_SYMBOLS.flore.categorie, slug)
     ) {
         return LRZ_SYMBOLS.flore.categorie[slug as LRZFloreCategorieSymbolSlug];
+    }
+
+    if (
+        collection === "guinguette" &&
+        meta === "ambience" &&
+        Object.hasOwn(LRZ_SYMBOLS.guinguette.ambience, slug)
+    ) {
+        return LRZ_SYMBOLS.guinguette.ambience[
+            slug as LRZGuinguetteAmbienceSymbolSlug
+        ];
     }
 
     if (
@@ -219,6 +273,19 @@ export function getLRZSymbolDefinition(
                   label: category.label,
                   accent: getLRZColorValue(category.color),
                   color: category.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "guinguette" && meta === "ambience") {
+        const ambience = getGuinguetteAmbienceMeta(slug);
+
+        return ambience
+            ? {
+                  source,
+                  label: ambience.label,
+                  accent: getLRZColorValue(ambience.color),
+                  color: ambience.color,
               }
             : undefined;
     }

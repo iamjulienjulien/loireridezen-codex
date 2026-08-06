@@ -6,11 +6,13 @@ import { describe, expect, it } from "vitest";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
+import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
     getLRZSymbolDefinition,
     getLRZSymbolSource,
     LRZ_FAUNE_TYPE_SYMBOLS,
     LRZ_FLORE_CATEGORIE_SYMBOLS,
+    LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
     LRZ_INDEX_SYMBOLS,
     LRZ_SYMBOLS,
 } from "@/registry/symbols";
@@ -48,6 +50,22 @@ describe("LRZ symbol registry", () => {
             const source = getLRZSymbolSource("flore", "categorie", slug);
 
             expect(source).toBe(LRZ_FLORE_CATEGORIE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
+    it("contains one symbol for every Guinguette ambience", () => {
+        expect(Object.keys(LRZ_SYMBOLS.guinguette.ambience)).toEqual(
+            GUINGUETTE_AMBIENCE_META.map((ambience) => ambience.slug),
+        );
+    });
+
+    it.each(GUINGUETTE_AMBIENCE_META)(
+        "resolves guinguette/ambience/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("guinguette", "ambience", slug);
+
+            expect(source).toBe(LRZ_GUINGUETTE_AMBIENCE_SYMBOLS[slug]);
             expectPublicAsset(source);
         },
     );
@@ -96,6 +114,9 @@ describe("LRZ symbol registry", () => {
             getLRZSymbolSource("faune", undefined, "oiseau"),
         ).toBeUndefined();
         expect(getLRZSymbolSource("flore", undefined, "arbre")).toBeUndefined();
+        expect(
+            getLRZSymbolSource("guinguette", undefined, "festive"),
+        ).toBeUndefined();
     });
 
     it("resolves the label and accent of a root symbol", () => {
@@ -135,6 +156,17 @@ describe("LRZ symbol registry", () => {
             label: "Aquatique",
             accent: "#397A91",
             color: "bleu-loire",
+        });
+    });
+
+    it("resolves the LRZ color of a Guinguette ambience symbol", () => {
+        expect(
+            getLRZSymbolDefinition("guinguette", "ambience", "bord de Loire"),
+        ).toEqual({
+            source: LRZ_GUINGUETTE_AMBIENCE_SYMBOLS["bord de Loire"],
+            label: "Bord de Loire",
+            accent: "#6C8796",
+            color: "bleu-gris",
         });
     });
 });

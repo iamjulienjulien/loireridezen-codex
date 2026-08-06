@@ -14,6 +14,7 @@ export type {
 export type {
     LRZFauneTypeSymbolSlug,
     LRZFloreCategorieSymbolSlug,
+    LRZGuinguetteAmbienceSymbolSlug,
     LRZIndexSymbolSlug,
     LRZSymbolCollection,
     LRZSymbolDefinition,
