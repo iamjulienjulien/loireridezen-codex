@@ -24,7 +24,7 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     atelier: ["development"],
     collections: [],
     indexesCustomEmoji: ["development", "production"],
-    ambianceChateauxVisual: [],
+    ambianceChateauxVisual: ["development", "production"],
     commandPalette: ["development"],
     territoires: ["development", "production"],
     indexControlsSection: [],
