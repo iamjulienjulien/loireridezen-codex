@@ -89,15 +89,21 @@
     opacity: 0.8;
 }
 
-.categoryBadge {
+.categoryStamp,
+.categoryFallback {
     position: absolute;
     z-index: 2;
     top: 0.95rem;
     left: 0.9rem;
-    display: flex;
     max-width: calc(100% - 1.8rem);
-    align-items: center;
-    gap: 0.38rem;
+}
+
+.categoryStamp {
+    text-transform: uppercase;
+}
+
+.categoryFallback {
+    display: block;
     padding: 0.42rem 0.65rem 0.4rem;
     overflow: hidden;
     color: color-mix(
@@ -120,21 +126,8 @@
     letter-spacing: 0.08em;
     line-height: 1;
     text-transform: uppercase;
-    white-space: nowrap;
-}
-
-.categoryBadge > span:last-child {
-    overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.categoryMark {
-    flex: 0 0 auto;
-    font-family: var(--font-body);
-    font-size: 0.76rem;
-    letter-spacing: 0;
-    line-height: 1;
-    text-transform: none;
+    white-space: nowrap;
 }
 
 .illustration {

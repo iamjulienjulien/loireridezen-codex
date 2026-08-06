@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 
 import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
+import { LRZStamp } from "@/components/LRZStamp";
 import { getCategoriePersonnage } from "@/registry/categories-personnages";
 import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";
 
@@ -39,14 +40,31 @@ export default function PersonnageCard({
     return (
         <article className={styles.card} style={accentStyle}>
             <div className={styles.portraitStage}>
-                <div className={styles.categoryBadge}>
-                    <span className={styles.categoryMark} aria-hidden="true">
-                        {categorie?.identite.mark}
+                {categorie ? (
+                    <LRZStamp
+                        collection="personnage"
+                        meta="categorie"
+                        slug={categorie.slug}
+                        className={styles.categoryStamp}
+                        variant="pill"
+                        tone="solid"
+                        size="sm"
+                        font="grotesk"
+                        labelSize="sm"
+                        padding="md"
+                        gap="md"
+                        shadow="soft"
+                        maxWidth="calc(100% - 1.8rem)"
+                        style={{ paddingInline: "0.75rem" }}
+                        truncate
+                        gradient={false}
+                        symbolScale={0.8}
+                    />
+                ) : (
+                    <span className={styles.categoryFallback}>
+                        {personnage.categoriePrincipale}
                     </span>
-                    <span>
-                        {categorie?.nom ?? personnage.categoriePrincipale}
-                    </span>
-                </div>
+                )}
 
                 <div className={styles.arch} aria-hidden="true" />
 
@@ -83,7 +101,9 @@ export default function PersonnageCard({
                                 <span className={styles.aliasLabel}>
                                     Aussi connu·e sous le nom de
                                 </span>
-                                <span className={styles.aliasName}>{alias}</span>
+                                <span className={styles.aliasName}>
+                                    {alias}
+                                </span>
                             </p>
                         ) : null}
                     </div>
