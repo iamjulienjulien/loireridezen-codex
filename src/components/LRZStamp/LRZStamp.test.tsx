@@ -38,6 +38,24 @@ describe("LRZStamp", () => {
         expect(markup).toContain('data-dashed="true"');
     });
 
+    it("renders a Faune type with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp
+                collection="faune"
+                meta="type"
+                slug="poisson"
+            />,
+        );
+
+        expect(markup).toContain("Poisson");
+        expect(markup).toContain('data-collection="faune"');
+        expect(markup).toContain('data-meta="type"');
+        expect(markup).toContain("/symbols/faune/type/poisson.png");
+        expect(markup).toContain(
+            "--lrz-stamp-label-color:var(--color-bleu-turquoise)",
+        );
+    });
+
     it("allows the registry label to be overridden", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp

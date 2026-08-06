@@ -2,7 +2,12 @@ import {
     getCategoriePersonnage,
     type CategoriePersonnageSlug,
 } from "@/registry/categories-personnages";
+import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
+import {
+    getFauneTypeMeta,
+    type FauneType,
+} from "@/registry/Meta/faune-type";
 import type { LRZColor } from "@/types/lrz";
 
 export const LRZ_INDEX_SYMBOLS = {
@@ -13,6 +18,17 @@ export const LRZ_INDEX_SYMBOLS = {
 } as const;
 
 export type LRZIndexSymbolSlug = keyof typeof LRZ_INDEX_SYMBOLS;
+
+export const LRZ_FAUNE_TYPE_SYMBOLS = {
+    oiseau: "/symbols/faune/type/oiseau.png",
+    mammifère: "/symbols/faune/type/mammifere.png",
+    poisson: "/symbols/faune/type/poisson.png",
+    reptile: "/symbols/faune/type/reptile.png",
+    amphibien: "/symbols/faune/type/amphibien.png",
+    insecte: "/symbols/faune/type/insecte.png",
+} as const satisfies Record<FauneType, string>;
+
+export type LRZFauneTypeSymbolSlug = keyof typeof LRZ_FAUNE_TYPE_SYMBOLS;
 
 export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
     souverain: "/symbols/personnage/categorie/souverain.png",
@@ -37,10 +53,14 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  * Registre des symboles illustrés du Codex.
  *
  * Une collection peut contenir directement ses symboles, comme `index`, ou
- * les regrouper par métadonnée, comme `personnage.categorie`.
+ * les regrouper par métadonnée, comme `faune.type` et
+ * `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
     index: LRZ_INDEX_SYMBOLS,
+    faune: {
+        type: LRZ_FAUNE_TYPE_SYMBOLS,
+    },
     personnage: {
         categorie: LRZ_PERSONNAGE_CATEGORIE_SYMBOLS,
     },
@@ -48,9 +68,14 @@ export const LRZ_SYMBOLS = {
 
 export type LRZSymbolCollection = keyof typeof LRZ_SYMBOLS;
 
-export type LRZSymbolMeta = keyof typeof LRZ_SYMBOLS.personnage;
+export type LRZSymbolMeta =
+    | keyof typeof LRZ_SYMBOLS.faune
+    | keyof typeof LRZ_SYMBOLS.personnage;
 
-export type LRZSymbolSlug = LRZIndexSymbolSlug | CategoriePersonnageSlug;
+export type LRZSymbolSlug =
+    | LRZIndexSymbolSlug
+    | LRZFauneTypeSymbolSlug
+    | CategoriePersonnageSlug;
 
 export type LRZSymbolDefinition = {
     source: string;
@@ -65,6 +90,12 @@ export type LRZSymbolLocator =
           collection: "index";
           meta?: never;
           slug: LRZIndexSymbolSlug;
+      }
+    | {
+          /** Types taxinomiques de la collection Faune. */
+          collection: "faune";
+          meta: "type";
+          slug: LRZFauneTypeSymbolSlug;
       }
     | {
           /** Collection de symboles classés par métadonnée. */
@@ -86,6 +117,14 @@ export function getLRZSymbolSource(
 ): string | undefined {
     if (collection === "index" && meta === undefined) {
         return isLRZIndexSymbolSlug(slug) ? LRZ_SYMBOLS.index[slug] : undefined;
+    }
+
+    if (
+        collection === "faune" &&
+        meta === "type" &&
+        Object.hasOwn(LRZ_SYMBOLS.faune.type, slug)
+    ) {
+        return LRZ_SYMBOLS.faune.type[slug as LRZFauneTypeSymbolSlug];
     }
 
     if (
@@ -121,6 +160,19 @@ export function getLRZSymbolDefinition(
                   label: index.label,
                   accent: index.accent,
                   color: index.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "faune" && meta === "type") {
+        const type = getFauneTypeMeta(slug);
+
+        return type
+            ? {
+                  source,
+                  label: type.label,
+                  accent: getLRZColorValue(type.color),
+                  color: type.color,
               }
             : undefined;
     }

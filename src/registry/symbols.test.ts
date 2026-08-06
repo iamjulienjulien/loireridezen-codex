@@ -4,9 +4,11 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
+import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import {
     getLRZSymbolDefinition,
     getLRZSymbolSource,
+    LRZ_FAUNE_TYPE_SYMBOLS,
     LRZ_INDEX_SYMBOLS,
     LRZ_SYMBOLS,
 } from "@/registry/symbols";
@@ -19,6 +21,22 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every Faune type", () => {
+        expect(Object.keys(LRZ_SYMBOLS.faune.type)).toEqual(
+            FAUNE_TYPE_META.map((type) => type.slug),
+        );
+    });
+
+    it.each(FAUNE_TYPE_META)(
+        "resolves faune/type/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("faune", "type", slug);
+
+            expect(source).toBe(LRZ_FAUNE_TYPE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
     it("contains one symbol for every personnage category", () => {
         const categorySlugs = CATEGORIES_PERSONNAGES.map(
             (category) => category.slug,
@@ -59,6 +77,9 @@ describe("LRZ symbol registry", () => {
         expect(
             getLRZSymbolSource("personnage", undefined, "souverain"),
         ).toBeUndefined();
+        expect(
+            getLRZSymbolSource("faune", undefined, "oiseau"),
+        ).toBeUndefined();
     });
 
     it("resolves the label and accent of a root symbol", () => {
@@ -78,6 +99,17 @@ describe("LRZ symbol registry", () => {
             label: "Souverains et souveraines",
             accent: "#C99A2E",
             color: "miel",
+        });
+    });
+
+    it("resolves the LRZ color of a Faune type symbol", () => {
+        expect(
+            getLRZSymbolDefinition("faune", "type", "amphibien"),
+        ).toEqual({
+            source: LRZ_FAUNE_TYPE_SYMBOLS.amphibien,
+            label: "Amphibien",
+            accent: "#6AA657",
+            color: "vert-vif",
         });
     });
 });
