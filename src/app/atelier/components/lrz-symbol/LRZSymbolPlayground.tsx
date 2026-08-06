@@ -5,6 +5,7 @@ import { useState, type ChangeEvent } from "react";
 import {
     LRZSymbol,
     type LRZFauneTypeSymbolSlug,
+    type LRZFloreCategorieSymbolSlug,
     type LRZIndexSymbolSlug,
     type LRZSymbolCollection,
     type LRZSymbolFrame,
@@ -26,6 +27,7 @@ export type LRZSymbolPlaygroundOption<TSlug extends string = string> = {
 type LRZSymbolPlaygroundProps = {
     indexOptions: readonly LRZSymbolPlaygroundOption<LRZIndexSymbolSlug>[];
     fauneOptions: readonly LRZSymbolPlaygroundOption<LRZFauneTypeSymbolSlug>[];
+    floreOptions: readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
     personnageOptions: readonly LRZSymbolPlaygroundOption<CategoriePersonnageSlug>[];
 };
 
@@ -105,6 +107,7 @@ function getMetaForCollection(collection: LRZSymbolCollection) {
     switch (collection) {
         case "faune":
             return "type";
+        case "flore":
         case "personnage":
             return "categorie";
         case "index":
@@ -148,12 +151,14 @@ function buildCode(values: PlaygroundState) {
 export default function LRZSymbolPlayground({
     indexOptions,
     fauneOptions,
+    floreOptions,
     personnageOptions,
 }: LRZSymbolPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
     const optionsByCollection = {
         index: indexOptions,
         faune: fauneOptions,
+        flore: floreOptions,
         personnage: personnageOptions,
     } as const;
     const activeOptions = optionsByCollection[values.collection];
@@ -177,11 +182,17 @@ export default function LRZSymbolPlayground({
                     meta: "type",
                     slug: values.slug as LRZFauneTypeSymbolSlug,
                 }
-            : {
-                  collection: "personnage",
-                  meta: "categorie",
-                  slug: values.slug as CategoriePersonnageSlug,
-              };
+              : values.collection === "flore"
+                ? {
+                      collection: "flore",
+                      meta: "categorie",
+                      slug: values.slug as LRZFloreCategorieSymbolSlug,
+                  }
+                : {
+                      collection: "personnage",
+                      meta: "categorie",
+                      slug: values.slug as CategoriePersonnageSlug,
+                  };
     const accessibilityProps = values.informative
         ? {
               decorative: false as const,
@@ -212,7 +223,9 @@ export default function LRZSymbolPlayground({
             meta === "type"
                 ? "faune"
                 : meta === "categorie"
-                  ? "personnage"
+                  ? values.collection === "flore"
+                      ? "flore"
+                      : "personnage"
                   : "index",
         );
     }
@@ -250,6 +263,7 @@ export default function LRZSymbolPlayground({
                         >
                             <option value="index">index</option>
                             <option value="faune">faune</option>
+                            <option value="flore">flore</option>
                             <option value="personnage">personnage</option>
                         </select>
                     </label>

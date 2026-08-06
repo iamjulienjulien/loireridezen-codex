@@ -6,6 +6,7 @@ import {
     LRZSymbol,
     LRZ_SYMBOL_SIZE_VALUES,
     type LRZFauneTypeSymbolSlug,
+    type LRZFloreCategorieSymbolSlug,
     type LRZIndexSymbolSlug,
     type LRZSymbolFrame,
     type LRZSymbolPadding,
@@ -17,6 +18,7 @@ import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
+import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { LRZ_INDEX_SYMBOLS } from "@/registry/symbols";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
@@ -101,6 +103,11 @@ const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
     label,
 })) satisfies readonly LRZSymbolPlaygroundOption<LRZFauneTypeSymbolSlug>[];
 
+const FLORE_CATEGORIE_OPTIONS = FLORE_CATEGORIE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
+
 const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
     ({ slug, nom }) => ({ slug, label: nom }),
 );
@@ -108,7 +115,7 @@ const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
 const API_PROPS = [
     [
         "collection",
-        '"index" | "faune" | "personnage"',
+        '"index" | "faune" | "flore" | "personnage"',
         "—",
         "Collection du symbole.",
     ],
@@ -120,7 +127,7 @@ const API_PROPS = [
     ],
     [
         "slug",
-        "LRZIndexSymbolSlug | LRZFauneTypeSymbolSlug | CategoriePersonnageSlug",
+        "LRZIndexSymbolSlug | LRZFauneTypeSymbolSlug | LRZFloreCategorieSymbolSlug | CategoriePersonnageSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -260,6 +267,7 @@ export default function LRZSymbolPage() {
                 <LRZSymbolPlayground
                     indexOptions={INDEX_SYMBOL_OPTIONS}
                     fauneOptions={FAUNE_TYPE_OPTIONS}
+                    floreOptions={FLORE_CATEGORIE_OPTIONS}
                     personnageOptions={PERSONNAGE_SYMBOL_OPTIONS}
                 />
 
@@ -295,6 +303,63 @@ export default function LRZSymbolPage() {
                             </article>
                         ))}
                     </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-flore-categories"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection imbriquée
+                        </p>
+                        <h2 id="symbol-flore-categories">
+                            Les sept catégories de flore
+                        </h2>
+                        <p>
+                            Le locator <code>flore.categorie</code> associe
+                            chaque forme botanique à son symbole, son label et
+                            sa couleur LRZ.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {FLORE_CATEGORIE_META.map((category) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={category.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            category.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="flore"
+                                    meta="categorie"
+                                    slug={category.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{category.color}</span>
+                                    <h3>{category.label}</h3>
+                                    <code>{category.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+
+                    <pre className={shellStyles.code}>
+                        <code>{`<LRZSymbol
+  collection="flore"
+  meta="categorie"
+  slug="fougère"
+/>`}</code>
+                    </pre>
                 </section>
 
                 <section

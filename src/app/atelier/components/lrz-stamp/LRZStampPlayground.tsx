@@ -29,6 +29,7 @@ import {
 } from "@/registry/colors";
 import type {
     LRZFauneTypeSymbolSlug,
+    LRZFloreCategorieSymbolSlug,
     LRZIndexSymbolSlug,
 } from "@/registry/symbols";
 
@@ -42,6 +43,7 @@ export type LRZStampPlaygroundOption<TSlug extends string = string> = {
 type LRZStampPlaygroundProps = {
     indexOptions: readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
     fauneOptions: readonly LRZStampPlaygroundOption<LRZFauneTypeSymbolSlug>[];
+    floreOptions: readonly LRZStampPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
     personnageOptions: readonly LRZStampPlaygroundOption<CategoriePersonnageSlug>[];
 };
 
@@ -169,6 +171,7 @@ function getMetaForCollection(collection: LRZSymbolCollection) {
     switch (collection) {
         case "faune":
             return "type";
+        case "flore":
         case "personnage":
             return "categorie";
         case "index":
@@ -234,12 +237,14 @@ function buildCode(values: PlaygroundState) {
 export default function LRZStampPlayground({
     indexOptions,
     fauneOptions,
+    floreOptions,
     personnageOptions,
 }: LRZStampPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
     const optionsByCollection = {
         index: indexOptions,
         faune: fauneOptions,
+        flore: floreOptions,
         personnage: personnageOptions,
     } as const;
     const activeOptions = optionsByCollection[values.collection];
@@ -256,11 +261,17 @@ export default function LRZStampPlayground({
                     meta: "type",
                     slug: values.slug as LRZFauneTypeSymbolSlug,
                 }
-            : {
-                  collection: "personnage",
-                  meta: "categorie",
-                  slug: values.slug as CategoriePersonnageSlug,
-              };
+              : values.collection === "flore"
+                ? {
+                      collection: "flore",
+                      meta: "categorie",
+                      slug: values.slug as LRZFloreCategorieSymbolSlug,
+                  }
+                : {
+                      collection: "personnage",
+                      meta: "categorie",
+                      slug: values.slug as CategoriePersonnageSlug,
+                  };
     const resolvedSize =
         values.size === "custom" ? values.customSize : values.size;
     const resolvedPadding =
@@ -295,7 +306,9 @@ export default function LRZStampPlayground({
             meta === "type"
                 ? "faune"
                 : meta === "categorie"
-                  ? "personnage"
+                  ? values.collection === "flore"
+                      ? "flore"
+                      : "personnage"
                   : "index",
         );
     }
@@ -336,6 +349,7 @@ export default function LRZStampPlayground({
                                 >
                                     <option value="index">index</option>
                                     <option value="faune">faune</option>
+                                    <option value="flore">flore</option>
                                     <option value="personnage">
                                         personnage
                                     </option>
