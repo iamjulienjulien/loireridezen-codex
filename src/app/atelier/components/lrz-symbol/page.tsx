@@ -7,6 +7,7 @@ import {
     LRZ_SYMBOL_SIZE_VALUES,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
+    type LRZGuinguetteAmbienceSymbolSlug,
     type LRZIndexSymbolSlug,
     type LRZSymbolFrame,
     type LRZSymbolPadding,
@@ -19,6 +20,7 @@ import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
+import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import { LRZ_INDEX_SYMBOLS } from "@/registry/symbols";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
@@ -108,6 +110,10 @@ const FLORE_CATEGORIE_OPTIONS = FLORE_CATEGORIE_META.map(({ slug, label }) => ({
     label,
 })) satisfies readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
 
+const GUINGUETTE_AMBIENCE_OPTIONS = GUINGUETTE_AMBIENCE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZSymbolPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
+
 const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
     ({ slug, nom }) => ({ slug, label: nom }),
 );
@@ -115,19 +121,19 @@ const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
 const API_PROPS = [
     [
         "collection",
-        '"index" | "faune" | "flore" | "personnage"',
+        '"index" | "faune" | "flore" | "guinguette" | "personnage"',
         "—",
         "Collection du symbole.",
     ],
     [
         "meta",
-        '"type" | "categorie"',
+        '"type" | "categorie" | "ambience"',
         "undefined",
         "Sous-dossier optionnel au sein de la collection.",
     ],
     [
         "slug",
-        "LRZIndexSymbolSlug | LRZFauneTypeSymbolSlug | LRZFloreCategorieSymbolSlug | CategoriePersonnageSlug",
+        "LRZIndexSymbolSlug | LRZFauneTypeSymbolSlug | LRZFloreCategorieSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -268,6 +274,7 @@ export default function LRZSymbolPage() {
                     indexOptions={INDEX_SYMBOL_OPTIONS}
                     fauneOptions={FAUNE_TYPE_OPTIONS}
                     floreOptions={FLORE_CATEGORIE_OPTIONS}
+                    guinguetteOptions={GUINGUETTE_AMBIENCE_OPTIONS}
                     personnageOptions={PERSONNAGE_SYMBOL_OPTIONS}
                 />
 
@@ -352,14 +359,6 @@ export default function LRZSymbolPage() {
                             </article>
                         ))}
                     </div>
-
-                    <pre className={shellStyles.code}>
-                        <code>{`<LRZSymbol
-  collection="flore"
-  meta="categorie"
-  slug="fougère"
-/>`}</code>
-                    </pre>
                 </section>
 
                 <section
@@ -406,14 +405,55 @@ export default function LRZSymbolPage() {
                             </article>
                         ))}
                     </div>
+                </section>
 
-                    <pre className={shellStyles.code}>
-                        <code>{`<LRZSymbol
-  collection="faune"
-  meta="type"
-  slug="oiseau"
-/>`}</code>
-                    </pre>
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-guinguette-ambiences"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection imbriquée
+                        </p>
+                        <h2 id="symbol-guinguette-ambiences">
+                            Les 23 ambiances de guinguettes
+                        </h2>
+                        <p>
+                            Le locator <code>guinguette.ambience</code> relie
+                            chaque ambiance à son illustration, son label et sa
+                            couleur LRZ.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {GUINGUETTE_AMBIENCE_META.map((ambience) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={ambience.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            ambience.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="guinguette"
+                                    meta="ambience"
+                                    slug={ambience.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{ambience.color}</span>
+                                    <h3>{ambience.label}</h3>
+                                    <code>{ambience.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
                 </section>
 
                 <section

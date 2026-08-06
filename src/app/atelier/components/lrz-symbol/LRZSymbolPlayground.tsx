@@ -6,6 +6,7 @@ import {
     LRZSymbol,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
+    type LRZGuinguetteAmbienceSymbolSlug,
     type LRZIndexSymbolSlug,
     type LRZSymbolCollection,
     type LRZSymbolFrame,
@@ -28,6 +29,7 @@ type LRZSymbolPlaygroundProps = {
     indexOptions: readonly LRZSymbolPlaygroundOption<LRZIndexSymbolSlug>[];
     fauneOptions: readonly LRZSymbolPlaygroundOption<LRZFauneTypeSymbolSlug>[];
     floreOptions: readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
+    guinguetteOptions: readonly LRZSymbolPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZSymbolPlaygroundOption<CategoriePersonnageSlug>[];
 };
 
@@ -110,6 +112,8 @@ function getMetaForCollection(collection: LRZSymbolCollection) {
         case "flore":
         case "personnage":
             return "categorie";
+        case "guinguette":
+            return "ambience";
         case "index":
             return undefined;
     }
@@ -152,6 +156,7 @@ export default function LRZSymbolPlayground({
     indexOptions,
     fauneOptions,
     floreOptions,
+    guinguetteOptions,
     personnageOptions,
 }: LRZSymbolPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
@@ -159,6 +164,7 @@ export default function LRZSymbolPlayground({
         index: indexOptions,
         faune: fauneOptions,
         flore: floreOptions,
+        guinguette: guinguetteOptions,
         personnage: personnageOptions,
     } as const;
     const activeOptions = optionsByCollection[values.collection];
@@ -188,11 +194,17 @@ export default function LRZSymbolPlayground({
                       meta: "categorie",
                       slug: values.slug as LRZFloreCategorieSymbolSlug,
                   }
-                : {
-                      collection: "personnage",
-                      meta: "categorie",
-                      slug: values.slug as CategoriePersonnageSlug,
-                  };
+                : values.collection === "guinguette"
+                  ? {
+                        collection: "guinguette",
+                        meta: "ambience",
+                        slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                    }
+                  : {
+                        collection: "personnage",
+                        meta: "categorie",
+                        slug: values.slug as CategoriePersonnageSlug,
+                    };
     const accessibilityProps = values.informative
         ? {
               decorative: false as const,
@@ -220,13 +232,15 @@ export default function LRZSymbolPlayground({
         const meta = event.target.value;
 
         selectCollection(
-            meta === "type"
-                ? "faune"
-                : meta === "categorie"
-                  ? values.collection === "flore"
-                      ? "flore"
-                      : "personnage"
-                  : "index",
+            meta === "ambience"
+                ? "guinguette"
+                : meta === "type"
+                  ? "faune"
+                  : meta === "categorie"
+                    ? values.collection === "flore"
+                        ? "flore"
+                        : "personnage"
+                    : "index",
         );
     }
 
@@ -264,6 +278,7 @@ export default function LRZSymbolPlayground({
                             <option value="index">index</option>
                             <option value="faune">faune</option>
                             <option value="flore">flore</option>
+                            <option value="guinguette">guinguette</option>
                             <option value="personnage">personnage</option>
                         </select>
                     </label>
@@ -279,6 +294,7 @@ export default function LRZSymbolPlayground({
                             <option value="">Aucun — dossier racine</option>
                             <option value="type">type</option>
                             <option value="categorie">categorie</option>
+                            <option value="ambience">ambience</option>
                         </select>
                     </label>
 

@@ -30,6 +30,7 @@ import {
 import type {
     LRZFauneTypeSymbolSlug,
     LRZFloreCategorieSymbolSlug,
+    LRZGuinguetteAmbienceSymbolSlug,
     LRZIndexSymbolSlug,
 } from "@/registry/symbols";
 
@@ -44,6 +45,7 @@ type LRZStampPlaygroundProps = {
     indexOptions: readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
     fauneOptions: readonly LRZStampPlaygroundOption<LRZFauneTypeSymbolSlug>[];
     floreOptions: readonly LRZStampPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
+    guinguetteOptions: readonly LRZStampPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZStampPlaygroundOption<CategoriePersonnageSlug>[];
 };
 
@@ -174,6 +176,8 @@ function getMetaForCollection(collection: LRZSymbolCollection) {
         case "flore":
         case "personnage":
             return "categorie";
+        case "guinguette":
+            return "ambience";
         case "index":
             return undefined;
     }
@@ -238,6 +242,7 @@ export default function LRZStampPlayground({
     indexOptions,
     fauneOptions,
     floreOptions,
+    guinguetteOptions,
     personnageOptions,
 }: LRZStampPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
@@ -245,6 +250,7 @@ export default function LRZStampPlayground({
         index: indexOptions,
         faune: fauneOptions,
         flore: floreOptions,
+        guinguette: guinguetteOptions,
         personnage: personnageOptions,
     } as const;
     const activeOptions = optionsByCollection[values.collection];
@@ -267,11 +273,17 @@ export default function LRZStampPlayground({
                       meta: "categorie",
                       slug: values.slug as LRZFloreCategorieSymbolSlug,
                   }
-                : {
-                      collection: "personnage",
-                      meta: "categorie",
-                      slug: values.slug as CategoriePersonnageSlug,
-                  };
+                : values.collection === "guinguette"
+                  ? {
+                        collection: "guinguette",
+                        meta: "ambience",
+                        slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                    }
+                  : {
+                        collection: "personnage",
+                        meta: "categorie",
+                        slug: values.slug as CategoriePersonnageSlug,
+                    };
     const resolvedSize =
         values.size === "custom" ? values.customSize : values.size;
     const resolvedPadding =
@@ -303,13 +315,15 @@ export default function LRZStampPlayground({
         const meta = event.target.value;
 
         selectCollection(
-            meta === "type"
-                ? "faune"
-                : meta === "categorie"
-                  ? values.collection === "flore"
-                      ? "flore"
-                      : "personnage"
-                  : "index",
+            meta === "ambience"
+                ? "guinguette"
+                : meta === "type"
+                  ? "faune"
+                  : meta === "categorie"
+                    ? values.collection === "flore"
+                        ? "flore"
+                        : "personnage"
+                    : "index",
         );
     }
 
@@ -350,6 +364,9 @@ export default function LRZStampPlayground({
                                     <option value="index">index</option>
                                     <option value="faune">faune</option>
                                     <option value="flore">flore</option>
+                                    <option value="guinguette">
+                                        guinguette
+                                    </option>
                                     <option value="personnage">
                                         personnage
                                     </option>
@@ -364,6 +381,7 @@ export default function LRZStampPlayground({
                                     <option value="">Aucun</option>
                                     <option value="type">type</option>
                                     <option value="categorie">categorie</option>
+                                    <option value="ambience">ambience</option>
                                 </select>
                             </label>
                         </div>
