@@ -4,10 +4,11 @@ import {
 } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
+import { getFauneTypeMeta, type FauneType } from "@/registry/Meta/faune-type";
 import {
-    getFauneTypeMeta,
-    type FauneType,
-} from "@/registry/Meta/faune-type";
+    getFloreCategorieMeta,
+    type FloreCategorie,
+} from "@/registry/Meta/flore-categorie";
 import type { LRZColor } from "@/types/lrz";
 
 export const LRZ_INDEX_SYMBOLS = {
@@ -29,6 +30,19 @@ export const LRZ_FAUNE_TYPE_SYMBOLS = {
 } as const satisfies Record<FauneType, string>;
 
 export type LRZFauneTypeSymbolSlug = keyof typeof LRZ_FAUNE_TYPE_SYMBOLS;
+
+export const LRZ_FLORE_CATEGORIE_SYMBOLS = {
+    arbre: "/symbols/flore/categorie/arbre.png",
+    arbuste: "/symbols/flore/categorie/arbuste.png",
+    herbacée: "/symbols/flore/categorie/herbacee.png",
+    graminée: "/symbols/flore/categorie/graminee.png",
+    aquatique: "/symbols/flore/categorie/aquatique.png",
+    fougère: "/symbols/flore/categorie/fougere.png",
+    grimpante: "/symbols/flore/categorie/grimpante.png",
+} as const satisfies Record<FloreCategorie, string>;
+
+export type LRZFloreCategorieSymbolSlug =
+    keyof typeof LRZ_FLORE_CATEGORIE_SYMBOLS;
 
 export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
     souverain: "/symbols/personnage/categorie/souverain.png",
@@ -53,13 +67,16 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  * Registre des symboles illustrés du Codex.
  *
  * Une collection peut contenir directement ses symboles, comme `index`, ou
- * les regrouper par métadonnée, comme `faune.type` et
+ * les regrouper par métadonnée, comme `faune.type`, `flore.categorie` et
  * `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
     index: LRZ_INDEX_SYMBOLS,
     faune: {
         type: LRZ_FAUNE_TYPE_SYMBOLS,
+    },
+    flore: {
+        categorie: LRZ_FLORE_CATEGORIE_SYMBOLS,
     },
     personnage: {
         categorie: LRZ_PERSONNAGE_CATEGORIE_SYMBOLS,
@@ -70,11 +87,13 @@ export type LRZSymbolCollection = keyof typeof LRZ_SYMBOLS;
 
 export type LRZSymbolMeta =
     | keyof typeof LRZ_SYMBOLS.faune
+    | keyof typeof LRZ_SYMBOLS.flore
     | keyof typeof LRZ_SYMBOLS.personnage;
 
 export type LRZSymbolSlug =
     | LRZIndexSymbolSlug
     | LRZFauneTypeSymbolSlug
+    | LRZFloreCategorieSymbolSlug
     | CategoriePersonnageSlug;
 
 export type LRZSymbolDefinition = {
@@ -96,6 +115,12 @@ export type LRZSymbolLocator =
           collection: "faune";
           meta: "type";
           slug: LRZFauneTypeSymbolSlug;
+      }
+    | {
+          /** Catégories botaniques de la collection Flore. */
+          collection: "flore";
+          meta: "categorie";
+          slug: LRZFloreCategorieSymbolSlug;
       }
     | {
           /** Collection de symboles classés par métadonnée. */
@@ -125,6 +150,14 @@ export function getLRZSymbolSource(
         Object.hasOwn(LRZ_SYMBOLS.faune.type, slug)
     ) {
         return LRZ_SYMBOLS.faune.type[slug as LRZFauneTypeSymbolSlug];
+    }
+
+    if (
+        collection === "flore" &&
+        meta === "categorie" &&
+        Object.hasOwn(LRZ_SYMBOLS.flore.categorie, slug)
+    ) {
+        return LRZ_SYMBOLS.flore.categorie[slug as LRZFloreCategorieSymbolSlug];
     }
 
     if (
@@ -173,6 +206,19 @@ export function getLRZSymbolDefinition(
                   label: type.label,
                   accent: getLRZColorValue(type.color),
                   color: type.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "flore" && meta === "categorie") {
+        const category = getFloreCategorieMeta(slug);
+
+        return category
+            ? {
+                  source,
+                  label: category.label,
+                  accent: getLRZColorValue(category.color),
+                  color: category.color,
               }
             : undefined;
     }

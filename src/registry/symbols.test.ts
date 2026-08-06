@@ -5,10 +5,12 @@ import { describe, expect, it } from "vitest";
 
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
+import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import {
     getLRZSymbolDefinition,
     getLRZSymbolSource,
     LRZ_FAUNE_TYPE_SYMBOLS,
+    LRZ_FLORE_CATEGORIE_SYMBOLS,
     LRZ_INDEX_SYMBOLS,
     LRZ_SYMBOLS,
 } from "@/registry/symbols";
@@ -27,12 +29,25 @@ describe("LRZ symbol registry", () => {
         );
     });
 
-    it.each(FAUNE_TYPE_META)(
-        "resolves faune/type/$slug",
-        ({ slug }) => {
-            const source = getLRZSymbolSource("faune", "type", slug);
+    it.each(FAUNE_TYPE_META)("resolves faune/type/$slug", ({ slug }) => {
+        const source = getLRZSymbolSource("faune", "type", slug);
 
-            expect(source).toBe(LRZ_FAUNE_TYPE_SYMBOLS[slug]);
+        expect(source).toBe(LRZ_FAUNE_TYPE_SYMBOLS[slug]);
+        expectPublicAsset(source);
+    });
+
+    it("contains one symbol for every Flore category", () => {
+        expect(Object.keys(LRZ_SYMBOLS.flore.categorie)).toEqual(
+            FLORE_CATEGORIE_META.map((category) => category.slug),
+        );
+    });
+
+    it.each(FLORE_CATEGORIE_META)(
+        "resolves flore/categorie/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("flore", "categorie", slug);
+
+            expect(source).toBe(LRZ_FLORE_CATEGORIE_SYMBOLS[slug]);
             expectPublicAsset(source);
         },
     );
@@ -80,6 +95,7 @@ describe("LRZ symbol registry", () => {
         expect(
             getLRZSymbolSource("faune", undefined, "oiseau"),
         ).toBeUndefined();
+        expect(getLRZSymbolSource("flore", undefined, "arbre")).toBeUndefined();
     });
 
     it("resolves the label and accent of a root symbol", () => {
@@ -103,13 +119,22 @@ describe("LRZ symbol registry", () => {
     });
 
     it("resolves the LRZ color of a Faune type symbol", () => {
-        expect(
-            getLRZSymbolDefinition("faune", "type", "amphibien"),
-        ).toEqual({
+        expect(getLRZSymbolDefinition("faune", "type", "amphibien")).toEqual({
             source: LRZ_FAUNE_TYPE_SYMBOLS.amphibien,
             label: "Amphibien",
             accent: "#6AA657",
             color: "vert-vif",
+        });
+    });
+
+    it("resolves the LRZ color of a Flore category symbol", () => {
+        expect(
+            getLRZSymbolDefinition("flore", "categorie", "aquatique"),
+        ).toEqual({
+            source: LRZ_FLORE_CATEGORIE_SYMBOLS.aquatique,
+            label: "Aquatique",
+            accent: "#397A91",
+            color: "bleu-loire",
         });
     });
 });

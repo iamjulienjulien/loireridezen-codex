@@ -40,11 +40,7 @@ describe("LRZStamp", () => {
 
     it("renders a Faune type with its registry color", () => {
         const markup = renderToStaticMarkup(
-            <LRZStamp
-                collection="faune"
-                meta="type"
-                slug="poisson"
-            />,
+            <LRZStamp collection="faune" meta="type" slug="poisson" />,
         );
 
         expect(markup).toContain("Poisson");
@@ -54,6 +50,18 @@ describe("LRZStamp", () => {
         expect(markup).toContain(
             "--lrz-stamp-label-color:var(--color-bleu-turquoise)",
         );
+    });
+
+    it("renders a Flore category with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp collection="flore" meta="categorie" slug="fougère" />,
+        );
+
+        expect(markup).toContain("Fougère");
+        expect(markup).toContain('data-collection="flore"');
+        expect(markup).toContain('data-meta="categorie"');
+        expect(markup).toContain("/symbols/flore/categorie/fougere.png");
+        expect(markup).toContain("--lrz-stamp-label-color:var(--color-vert)");
     });
 
     it("allows the registry label to be overridden", () => {

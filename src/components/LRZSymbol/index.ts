@@ -13,6 +13,7 @@ export type {
 
 export type {
     LRZFauneTypeSymbolSlug,
+    LRZFloreCategorieSymbolSlug,
     LRZIndexSymbolSlug,
     LRZSymbolCollection,
     LRZSymbolDefinition,
