@@ -1,0 +1,601 @@
+import type { CSSProperties } from "react";
+import type { Metadata } from "next";
+import Link from "next/link";
+
+import {
+    LRZSymbol,
+    LRZ_SYMBOL_SIZE_VALUES,
+    type LRZIndexSymbolSlug,
+    type LRZSymbolFrame,
+    type LRZSymbolPadding,
+    type LRZSymbolShadow,
+    type LRZSymbolShape,
+    type LRZSymbolSize,
+} from "@/components/LRZSymbol";
+import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
+import { getIndexBySlug } from "@/registry/indexes";
+import { LRZ_INDEX_SYMBOLS } from "@/registry/symbols";
+
+import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import shellStyles from "../filter-playground.module.css";
+import LRZSymbolPlayground, {
+    type LRZSymbolPlaygroundOption,
+} from "./LRZSymbolPlayground";
+import styles from "./LRZSymbolShowcase.module.css";
+
+export const metadata: Metadata = {
+    title: "LRZSymbol — Atelier du Codex ligérien",
+    description:
+        "Registre, tailles et variantes des symboles illustrés Loire Ride Zen.",
+};
+
+type AccentStyle = CSSProperties & {
+    "--showcase-accent": string;
+};
+
+const SIZE_EXAMPLES: Array<{
+    size: LRZSymbolSize | number;
+    label: string;
+    detail: string;
+}> = [
+    { size: "xs", label: "xs", detail: "16 px" },
+    { size: "sm", label: "sm", detail: "24 px" },
+    { size: "md", label: "md", detail: "32 px" },
+    { size: "lg", label: "lg", detail: "48 px" },
+    { size: "xl", label: "xl", detail: "64 px" },
+    { size: "2xl", label: "2xl", detail: "96 px" },
+    { size: 72, label: "custom", detail: "72 px" },
+];
+
+const FRAME_EXAMPLES: Array<{
+    frame: LRZSymbolFrame;
+    label: string;
+}> = [
+    { frame: "none", label: "Sans cadre" },
+    { frame: "subtle", label: "Subtle" },
+    { frame: "outline", label: "Outline" },
+    { frame: "solid", label: "Solid" },
+];
+
+const SHAPE_EXAMPLES: Array<{
+    shape: LRZSymbolShape;
+    label: string;
+}> = [
+    { shape: "square", label: "Carré" },
+    { shape: "rounded", label: "Arrondi" },
+    { shape: "circle", label: "Cercle" },
+];
+
+const PADDING_EXAMPLES: Array<{
+    padding: LRZSymbolPadding | number;
+    label: string;
+}> = [
+    { padding: "none", label: "Aucun" },
+    { padding: "xs", label: "XS" },
+    { padding: "sm", label: "SM" },
+    { padding: "md", label: "MD" },
+    { padding: 12, label: "12 px" },
+];
+
+const SHADOW_EXAMPLES: Array<{
+    shadow: LRZSymbolShadow;
+    label: string;
+}> = [
+    { shadow: "none", label: "Aucune" },
+    { shadow: "soft", label: "Douce" },
+    { shadow: "strong", label: "Forte" },
+];
+
+const INDEX_SYMBOL_OPTIONS = (
+    Object.keys(LRZ_INDEX_SYMBOLS) as LRZIndexSymbolSlug[]
+).map((slug) => ({
+    slug,
+    label: getIndexBySlug(slug)?.label ?? slug,
+})) satisfies readonly LRZSymbolPlaygroundOption<LRZIndexSymbolSlug>[];
+
+const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
+    ({ slug, nom }) => ({ slug, label: nom }),
+);
+
+const API_PROPS = [
+    ["collection", '"index" | "personnage"', "—", "Collection du symbole."],
+    [
+        "meta",
+        '"categorie"',
+        "undefined",
+        "Sous-dossier optionnel au sein de la collection.",
+    ],
+    [
+        "slug",
+        "LRZIndexSymbolSlug | CategoriePersonnageSlug",
+        "—",
+        "Identifiant qui sélectionne le symbole.",
+    ],
+    [
+        "size",
+        '"xs" | "sm" | "md" | "lg" | "xl" | "2xl" | number',
+        '"md"',
+        "Taille extérieure, en preset ou en pixels.",
+    ],
+    [
+        "frame",
+        '"none" | "subtle" | "outline" | "solid"',
+        '"none"',
+        "Surface entourant le symbole.",
+    ],
+    [
+        "shape",
+        '"square" | "rounded" | "circle"',
+        '"rounded"',
+        "Forme du cadre.",
+    ],
+    [
+        "padding",
+        '"none" | "xs" | "sm" | "md" | number',
+        "auto",
+        "Espace intérieur, compris dans size.",
+    ],
+    [
+        "shadow",
+        '"none" | "soft" | "strong"',
+        '"none"',
+        "Ombre portée du symbole ou du cadre.",
+    ],
+    [
+        "accent",
+        "string",
+        "accent du registre",
+        "Couleur CSS du cadre et des ombres.",
+    ],
+    [
+        "decorative",
+        "boolean",
+        "true",
+        "Masque le symbole aux technologies d’assistance.",
+    ],
+    ["label", "string", "—", "Obligatoire lorsque decorative vaut false."],
+    [
+        "loading",
+        '"lazy" | "eager"',
+        '"lazy"',
+        "Stratégie de chargement de l’image.",
+    ],
+    [
+        "fallback",
+        "ReactNode",
+        "null",
+        "Contenu affiché si le registre ne trouve aucune source.",
+    ],
+] as const;
+
+export default function LRZSymbolPage() {
+    return (
+        <main className={shellStyles.page}>
+            <ComponentsNavigation current="lrz-symbol" />
+
+            <div className={shellStyles.wrap}>
+                <header className={shellStyles.header}>
+                    <Link className={shellStyles.back} href="/atelier">
+                        ← Retour à l’Atelier
+                    </Link>
+                    <p className={shellStyles.eyebrow}>
+                        Loire Ride Zen · Composants UI
+                    </p>
+                    <h1 className={shellStyles.title}>LRZSymbol</h1>
+                    <p className={shellStyles.lede}>
+                        La porte d’entrée unique vers les symboles illustrés du
+                        Codex. Le composant résout le bon visuel, sa couleur
+                        d’accent et son traitement sans exposer le chemin du
+                        fichier à l’écran qui l’utilise.
+                    </p>
+                </header>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-main-example"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Exemple principal</p>
+                        <h2 id="symbol-main-example">
+                            Un symbole, une identité métier
+                        </h2>
+                        <p>
+                            La combinaison collection, meta et slug suffit. La
+                            couleur du cadre provient automatiquement du
+                            registre métier.
+                        </p>
+                    </div>
+
+                    <div className={styles.heroPreview}>
+                        <LRZSymbol
+                            collection="personnage"
+                            meta="categorie"
+                            slug="souverain"
+                            size="2xl"
+                            frame="subtle"
+                            shape="circle"
+                            padding="sm"
+                            shadow="strong"
+                        />
+                        <div>
+                            <span className={styles.heroLabel}>
+                                Catégorie 01
+                            </span>
+                            <h3>Souverains et souveraines</h3>
+                            <p>
+                                Un visuel décoratif placé auprès d’un libellé
+                                visible : il reste silencieux pour les lecteurs
+                                d’écran.
+                            </p>
+                        </div>
+                    </div>
+
+                    <pre className={shellStyles.code}>
+                        <code>{`<LRZSymbol
+  collection="personnage"
+  meta="categorie"
+  slug="souverain"
+  size="2xl"
+  frame="subtle"
+  shape="circle"
+  padding="sm"
+  shadow="strong"
+/>`}</code>
+                    </pre>
+                </section>
+
+                <LRZSymbolPlayground
+                    indexOptions={INDEX_SYMBOL_OPTIONS}
+                    personnageOptions={PERSONNAGE_SYMBOL_OPTIONS}
+                />
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-index-collection"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection racine</p>
+                        <h2 id="symbol-index-collection">
+                            Les symboles des index
+                        </h2>
+                        <p>
+                            Sans prop meta, le composant cherche directement
+                            dans le dossier de la collection, ici
+                            <code> /symbols/index/</code>.
+                        </p>
+                    </div>
+
+                    <div className={styles.indexGrid}>
+                        {INDEX_SYMBOL_OPTIONS.map(({ slug, label }) => (
+                            <article className={styles.indexCard} key={slug}>
+                                <LRZSymbol
+                                    collection="index"
+                                    slug={slug}
+                                    size="2xl"
+                                    frame="subtle"
+                                    padding="sm"
+                                    shadow="soft"
+                                />
+                                <h3>{label}</h3>
+                                <code>{`slug="${slug}"`}</code>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-catalog"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Registre</p>
+                        <h2 id="symbol-catalog">Les 16 catégories</h2>
+                        <p>
+                            Chaque slug est strictement typé et relié à son
+                            fichier dans le registre central des symboles.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {CATEGORIES_PERSONNAGES.map((category) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={category.slug}
+                                style={
+                                    {
+                                        "--showcase-accent":
+                                            category.identite.accent,
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="personnage"
+                                    meta="categorie"
+                                    slug={category.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{category.famille}</span>
+                                    <h3>{category.nom}</h3>
+                                    <code>{category.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-sizes"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Dimensions</p>
+                        <h2 id="symbol-sizes">Tailles prédéfinies et custom</h2>
+                        <p>
+                            La taille désigne toujours la boîte extérieure. Les
+                            masters actuels font 100 × 100 px.
+                        </p>
+                    </div>
+
+                    <div className={styles.sizeGrid}>
+                        {SIZE_EXAMPLES.map(({ size, label, detail }) => (
+                            <div className={styles.sizeExample} key={label}>
+                                <div className={styles.sizeCanvas}>
+                                    <LRZSymbol
+                                        collection="personnage"
+                                        meta="categorie"
+                                        slug="scientifique"
+                                        size={size}
+                                        shadow="soft"
+                                    />
+                                </div>
+                                <strong>{label}</strong>
+                                <span>{detail}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className={styles.sizeReference}>
+                        {Object.entries(LRZ_SYMBOL_SIZE_VALUES).map(
+                            ([name, pixels]) => (
+                                <code key={name}>
+                                    {name} = {pixels}px
+                                </code>
+                            ),
+                        )}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-frames"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Cadres</p>
+                        <h2 id="symbol-frames">Quatre niveaux de présence</h2>
+                        <p>
+                            Le symbole reste inchangé ; seul son écrin exploite
+                            la couleur d’accent de la catégorie.
+                        </p>
+                    </div>
+
+                    <div className={styles.variantGrid}>
+                        {FRAME_EXAMPLES.map(({ frame, label }) => (
+                            <div className={styles.variantExample} key={frame}>
+                                <LRZSymbol
+                                    collection="personnage"
+                                    meta="categorie"
+                                    slug="mecene"
+                                    size="2xl"
+                                    frame={frame}
+                                    padding={frame === "none" ? "none" : "sm"}
+                                    shadow="soft"
+                                />
+                                <strong>{label}</strong>
+                                <code>frame=&quot;{frame}&quot;</code>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-customization"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Personnalisation</p>
+                        <h2 id="symbol-customization">
+                            Formes, espacements et ombres
+                        </h2>
+                        <p>
+                            Ces options s’additionnent sans changer les
+                            dimensions réservées par le composant.
+                        </p>
+                    </div>
+
+                    <div className={styles.customizationStack}>
+                        <div className={styles.optionGroup}>
+                            <h3>Formes</h3>
+                            <div className={styles.optionRow}>
+                                {SHAPE_EXAMPLES.map(({ shape, label }) => (
+                                    <div
+                                        className={styles.optionExample}
+                                        key={shape}
+                                    >
+                                        <LRZSymbol
+                                            collection="personnage"
+                                            meta="categorie"
+                                            slug="noble"
+                                            size="xl"
+                                            frame="outline"
+                                            shape={shape}
+                                            padding="sm"
+                                        />
+                                        <span>{label}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className={styles.optionGroup}>
+                            <h3>Padding</h3>
+                            <div className={styles.optionRow}>
+                                {PADDING_EXAMPLES.map(({ padding, label }) => (
+                                    <div
+                                        className={styles.optionExample}
+                                        key={label}
+                                    >
+                                        <LRZSymbol
+                                            collection="personnage"
+                                            meta="categorie"
+                                            slug="batisseur"
+                                            size="xl"
+                                            frame="subtle"
+                                            padding={padding}
+                                        />
+                                        <span>{label}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className={styles.optionGroup}>
+                            <h3>Ombres</h3>
+                            <div className={styles.optionRow}>
+                                {SHADOW_EXAMPLES.map(({ shadow, label }) => (
+                                    <div
+                                        className={styles.optionExample}
+                                        key={shadow}
+                                    >
+                                        <LRZSymbol
+                                            collection="personnage"
+                                            meta="categorie"
+                                            slug="courtisan"
+                                            size="xl"
+                                            frame="subtle"
+                                            padding="sm"
+                                            shadow={shadow}
+                                        />
+                                        <span>{label}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className={styles.optionGroup}>
+                            <h3>Accent personnalisé</h3>
+                            <div className={styles.optionRow}>
+                                <div className={styles.optionExample}>
+                                    <LRZSymbol
+                                        collection="personnage"
+                                        meta="categorie"
+                                        slug="artiste"
+                                        size="xl"
+                                        frame="solid"
+                                        padding="sm"
+                                        shadow="strong"
+                                        accent="#c46a4b"
+                                    />
+                                    <span>#c46a4b</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-accessibility"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Accessibilité</p>
+                        <h2 id="symbol-accessibility">
+                            Décoratif par défaut, informatif sur demande
+                        </h2>
+                        <p>
+                            Lorsqu’un nom de catégorie est déjà visible, aucune
+                            annonce supplémentaire n’est nécessaire. Dans les
+                            autres cas, decorative=false impose un label au
+                            niveau du typage.
+                        </p>
+                    </div>
+
+                    <div className={styles.accessibilityGrid}>
+                        <div className={styles.accessibilityExample}>
+                            <LRZSymbol
+                                collection="personnage"
+                                meta="categorie"
+                                slug="ecrivain"
+                                size="lg"
+                            />
+                            <div>
+                                <strong>Décoratif</strong>
+                                <p>Le nom « Écrivains » est déjà affiché.</p>
+                            </div>
+                        </div>
+                        <div className={styles.accessibilityExample}>
+                            <LRZSymbol
+                                collection="personnage"
+                                meta="categorie"
+                                slug="soignant"
+                                size="lg"
+                                decorative={false}
+                                label="Catégorie Soignants et soignantes"
+                            />
+                            <div>
+                                <strong>Informatif</strong>
+                                <p>Le symbole reçoit un équivalent textuel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-api"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Référence</p>
+                        <h2 id="symbol-api">API du composant</h2>
+                    </div>
+
+                    <div className={shellStyles.tableScroll}>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Prop</th>
+                                    <th>Type</th>
+                                    <th>Défaut</th>
+                                    <th>Rôle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {API_PROPS.map(
+                                    ([
+                                        name,
+                                        type,
+                                        defaultValue,
+                                        description,
+                                    ]) => (
+                                        <tr key={name}>
+                                            <td>
+                                                <code>{name}</code>
+                                            </td>
+                                            <td>
+                                                <code>{type}</code>
+                                            </td>
+                                            <td>{defaultValue}</td>
+                                            <td>{description}</td>
+                                        </tr>
+                                    ),
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    );
+}
