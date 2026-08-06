@@ -1,5 +1,7 @@
 // src/types/personnage.ts
 
+import type { LRZColor } from "@/types/lrz";
+
 export type ImportanceRelation = "majeur" | "notable" | "secondaire";
 
 export type NiveauCertitude = "etabli" | "tradition";
@@ -39,7 +41,7 @@ export type CategoriePersonnage = {
     identite: {
         mark: string;
         accent: string;
-        color: string;
+        color: LRZColor;
     };
 };
 

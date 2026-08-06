@@ -28,7 +28,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "👑",
             accent: "#C99A2E",
-            color: "or",
+            color: "miel",
         },
     },
     {
@@ -44,7 +44,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "⚜️",
             accent: "#395AA6",
-            color: "bleu royal",
+            color: "bleu",
         },
     },
     {
@@ -60,7 +60,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "🛡️",
             accent: "#7D4D35",
-            color: "terre cuite",
+            color: "terre-cuite",
         },
     },
     {
@@ -124,7 +124,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "🎨",
             accent: "#8968A8",
-            color: "violet",
+            color: "mauve",
         },
     },
     {
@@ -140,7 +140,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "🖌️",
             accent: "#A6537C",
-            color: "rose",
+            color: "rose-sauvage",
         },
     },
     {
@@ -156,7 +156,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "✒️",
             accent: "#4D6654",
-            color: "vert encre",
+            color: "vert-fonce",
         },
     },
     {
@@ -172,7 +172,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "🔭",
             accent: "#3B779D",
-            color: "azur",
+            color: "bleu-loire",
         },
     },
     {
@@ -188,7 +188,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "🌹",
             accent: "#B94B61",
-            color: "rose profond",
+            color: "rose-sauvage",
         },
     },
     {
@@ -204,7 +204,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "⛪",
             accent: "#735D99",
-            color: "pourpre",
+            color: "mauve",
         },
     },
     {
@@ -220,7 +220,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "⚖️",
             accent: "#92723E",
-            color: "bronze",
+            color: "brun",
         },
     },
     {
@@ -236,7 +236,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "🖼️",
             accent: "#3D7A77",
-            color: "vert profond",
+            color: "vert-metallise",
         },
     },
     {
@@ -252,7 +252,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "✚",
             accent: "#B34B4B",
-            color: "rouge soin",
+            color: "rouge",
         },
     },
     {
@@ -268,7 +268,7 @@ export const CATEGORIES_PERSONNAGES = [
         identite: {
             mark: "✨",
             accent: "#C77C9A",
-            color: "lilas",
+            color: "rose-poudre",
         },
     },
 ] as const satisfies readonly CategoriePersonnage[];
