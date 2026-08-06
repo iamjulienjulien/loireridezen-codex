@@ -25,6 +25,15 @@ export {
 } from "@/registry/Meta/flore-categorie";
 
 export {
+    getGuinguetteAmbienceMeta,
+    GUINGUETTE_AMBIENCE_META,
+    GUINGUETTE_AMBIENCE_META_REGISTRY,
+    isGuinguetteAmbience,
+    type GuinguetteAmbience,
+    type GuinguetteAmbienceMeta,
+} from "@/registry/Meta/guinguette-ambience";
+
+export {
     getPersonnageCategorieMeta,
     isPersonnageCategorieSlug,
     PERSONNAGE_CATEGORIE_META,

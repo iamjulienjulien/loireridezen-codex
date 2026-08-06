@@ -17,7 +17,6 @@ import {
     Palette,
     PartyPopper,
     ShipWheel,
-    Sparkles,
     Sunset,
     Trees,
     UsersRound,
@@ -27,6 +26,10 @@ import {
 } from "lucide-react";
 
 import type { LRZBadgeVariant } from "@/components/LRZBadge/LRZBadge";
+import {
+    isGuinguetteAmbience,
+    type GuinguetteAmbience,
+} from "@/registry/Meta/guinguette-ambience";
 import type { LRZColor } from "@/types/lrz";
 
 export const GUINGUETTE_AMBIENCE_REGISTRY = {
@@ -220,7 +223,7 @@ export const GUINGUETTE_AMBIENCE_REGISTRY = {
         description: "Une présence ponctuelle ou limitée à une programmation.",
     },
 } as const satisfies Record<
-    string,
+    GuinguetteAmbience,
     {
         label: string;
         icon: LucideIcon;
@@ -230,16 +233,13 @@ export const GUINGUETTE_AMBIENCE_REGISTRY = {
     }
 >;
 
-export type GuinguetteAmbience = keyof typeof GUINGUETTE_AMBIENCE_REGISTRY;
-
 export type GuinguetteAmbienceDefinition =
     (typeof GUINGUETTE_AMBIENCE_REGISTRY)[GuinguetteAmbience];
 
-export function isGuinguetteAmbience(
-    value: string,
-): value is GuinguetteAmbience {
-    return value in GUINGUETTE_AMBIENCE_REGISTRY;
-}
+export {
+    isGuinguetteAmbience,
+    type GuinguetteAmbience,
+} from "@/registry/Meta/guinguette-ambience";
 
 export function getGuinguetteAmbienceDefinition(
     value: string,

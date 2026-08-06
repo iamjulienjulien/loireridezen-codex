@@ -1,5 +1,7 @@
-import type { GuinguetteAmbience } from "@/registry/guinguette-ambiences";
+import type { GuinguetteAmbience } from "@/registry/Meta/guinguette-ambience";
 import type { TerritoireSlug } from "@/registry/territoires";
+
+export type { GuinguetteAmbience } from "@/registry/Meta/guinguette-ambience";
 
 export type GuinguetteType =
     | "guinguette"
