@@ -50,6 +50,7 @@ const SECTIONS = [
             ],
             ["lrz-section", "LRZSection", "/atelier/components/lrz-section"],
             ["lrz-card", "LRZCard", "/atelier/components/lrz-card"],
+            ["lrz-callout", "LRZCallout", "/atelier/components/lrz-callout"],
             [
                 "lrz-meta-list",
                 "LRZMetaList",

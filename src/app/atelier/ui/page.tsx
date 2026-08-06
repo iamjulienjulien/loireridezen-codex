@@ -17,6 +17,7 @@ const COMPONENTS = [
     ["LRZSeparateur", "/atelier/components/lrz-separateur"],
     ["LRZSection", "/atelier/components/lrz-section"],
     ["LRZCard", "/atelier/components/lrz-card"],
+    ["LRZCallout", "/atelier/components/lrz-callout"],
     ["LRZMetaList", "/atelier/components/lrz-meta-list"],
     ["LRZTypography", "/atelier/components/lrz-typography"],
     ["LRZLivingText", "/atelier/components/lrz-living-text"],
