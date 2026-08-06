@@ -16,6 +16,15 @@ export {
 } from "@/registry/Meta/faune-type";
 
 export {
+    FLORE_CATEGORIE_META,
+    FLORE_CATEGORIE_REGISTRY,
+    getFloreCategorieMeta,
+    isFloreCategorie,
+    type FloreCategorie,
+    type FloreCategorieMeta,
+} from "@/registry/Meta/flore-categorie";
+
+export {
     getPersonnageCategorieMeta,
     isPersonnageCategorieSlug,
     PERSONNAGE_CATEGORIE_META,

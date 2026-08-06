@@ -1,12 +1,6 @@
-// src/types/flore.ts
-export type FloreCategorie =
-    | "arbre"
-    | "arbuste"
-    | "herbacée"
-    | "graminée" // graminées & hélophytes du bord de l'eau
-    | "aquatique"
-    | "fougère"
-    | "grimpante";
+import type { FloreCategorie } from "@/registry/Meta/flore-categorie";
+
+export type { FloreCategorie } from "@/registry/Meta/flore-categorie";
 
 export type FloreRarete = "commun" | "régulier" | "rare" | "trésor";
 
