@@ -1,0 +1,329 @@
+.stamp {
+    --lrz-stamp-accent: currentColor;
+    --lrz-stamp-height: 36px;
+    --lrz-stamp-padding: calc(var(--lrz-stamp-height) * 0.14);
+    --lrz-stamp-gap: calc(var(--lrz-stamp-height) * 0.14);
+    --lrz-stamp-label-color: var(--color-ambiance-texte-primaire);
+    --lrz-stamp-max-width: 100%;
+
+    position: relative;
+    display: inline-flex;
+    box-sizing: border-box;
+    width: fit-content;
+    min-width: 0;
+    max-width: var(--lrz-stamp-max-width);
+    min-height: var(--lrz-stamp-height);
+    gap: var(--lrz-stamp-gap);
+    align-items: center;
+    padding: var(--lrz-stamp-padding);
+    overflow: hidden;
+    border: 1px solid transparent;
+    color: var(--color-ambiance-texte-primaire);
+    background: transparent;
+    isolation: isolate;
+    line-height: 1.1;
+    vertical-align: middle;
+}
+
+.copy {
+    display: grid;
+    min-width: 0;
+    gap: max(1px, calc(var(--lrz-stamp-height) * 0.03));
+    text-align: left;
+}
+
+.label {
+    min-width: 0;
+    color: var(--lrz-stamp-label-color);
+    font-family: var(--font-body);
+    font-size: var(
+        --lrz-stamp-label-size,
+        clamp(0.66rem, calc(var(--lrz-stamp-height) * 0.32), 1rem)
+    );
+    font-weight: 620;
+    letter-spacing: 0.005em;
+    line-height: 1.08;
+}
+
+/* Familles typographiques du label */
+
+.stamp[data-font="display"] .label {
+    font-family: var(--font-display);
+}
+
+.stamp[data-font="body"] .label {
+    font-family: var(--font-body);
+}
+
+.stamp[data-font="editorial"] .label {
+    font-family: var(--font-edit, var(--font-display));
+}
+
+.stamp[data-font="mono"] .label {
+    font-family: var(--font-mono);
+}
+
+.stamp[data-font="signature"] .label {
+    font-family: var(--font-signature, var(--font-edit, var(--font-display)));
+    font-weight: 400;
+    letter-spacing: normal;
+}
+
+.stamp[data-font="bodoni"] .label {
+    font-family: var(--font-bodoni, var(--font-display));
+}
+
+.stamp[data-font="grotesk"] .label {
+    font-family: var(--font-grotesk, var(--font-body));
+}
+
+.stamp[data-font="note"] .label {
+    font-family: var(--font-note, var(--font-signature));
+    font-weight: 400;
+    letter-spacing: normal;
+}
+
+.detail {
+    min-width: 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-body);
+    font-size: clamp(0.58rem, calc(var(--lrz-stamp-height) * 0.23), 0.78rem);
+    font-weight: 430;
+    line-height: 1.1;
+}
+
+/* Espacement */
+
+.stamp[data-padding="xs"] {
+    --lrz-stamp-padding: calc(var(--lrz-stamp-height) * 0.07);
+}
+
+.stamp[data-padding="sm"] {
+    --lrz-stamp-padding: calc(var(--lrz-stamp-height) * 0.1);
+}
+
+.stamp[data-padding="md"] {
+    --lrz-stamp-padding: calc(var(--lrz-stamp-height) * 0.14);
+}
+
+.stamp[data-padding="lg"] {
+    --lrz-stamp-padding: calc(var(--lrz-stamp-height) * 0.2);
+}
+
+.stamp[data-gap="xs"] {
+    --lrz-stamp-gap: calc(var(--lrz-stamp-height) * 0.06);
+}
+
+.stamp[data-gap="sm"] {
+    --lrz-stamp-gap: calc(var(--lrz-stamp-height) * 0.14);
+}
+
+.stamp[data-gap="md"] {
+    --lrz-stamp-gap: calc(var(--lrz-stamp-height) * 0.2);
+}
+
+.stamp[data-gap="lg"] {
+    --lrz-stamp-gap: calc(var(--lrz-stamp-height) * 0.28);
+}
+
+/* Formes */
+
+.stamp[data-variant="pill"] {
+    padding-inline: calc(var(--lrz-stamp-padding) * 1.55);
+    border-radius: 999px;
+}
+
+.stamp[data-variant="badge"] {
+    border-radius: var(--radius-sm);
+}
+
+.stamp[data-variant="chip"] {
+    padding-inline: calc(var(--lrz-stamp-padding) * 1.3);
+    border-radius: var(--radius-md);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, white 8%, transparent);
+}
+
+.stamp[data-variant="plaque"] {
+    padding-inline: calc(var(--lrz-stamp-padding) * 1.5);
+    border-radius: 4px 14px 4px 14px;
+}
+
+.stamp[data-variant="plaque"]::after {
+    position: absolute;
+    inset: 3px;
+    z-index: -1;
+    border: 1px solid
+        color-mix(in srgb, var(--lrz-stamp-accent) 12%, transparent);
+    border-radius: 2px 11px 2px 11px;
+    content: "";
+    pointer-events: none;
+}
+
+.stamp[data-variant="plaque"][data-font="body"] .label {
+    font-family: var(--font-display);
+    font-weight: 590;
+}
+
+.stamp[data-variant="seal"] {
+    min-width: calc(var(--lrz-stamp-height) * 1.6);
+    padding: calc(var(--lrz-stamp-padding) * 1.3);
+    border-radius: calc(var(--lrz-stamp-height) * 0.42);
+}
+
+/* Surfaces */
+
+.stamp[data-tone="subtle"] {
+    border-color: color-mix(
+        in srgb,
+        var(--lrz-stamp-accent) 27%,
+        var(--border-subtle)
+    );
+    background: color-mix(
+        in srgb,
+        var(--lrz-stamp-accent) 10%,
+        var(--color-ambiance-surface)
+    );
+}
+
+.stamp[data-tone="outline"] {
+    border-color: color-mix(
+        in srgb,
+        var(--lrz-stamp-accent) 58%,
+        var(--border-soft)
+    );
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 38%,
+        transparent
+    );
+}
+
+.stamp[data-tone="solid"] {
+    border-color: color-mix(
+        in srgb,
+        var(--lrz-stamp-accent) 68%,
+        var(--border-strong)
+    );
+    color: color-mix(
+        in srgb,
+        var(--lrz-stamp-accent) 42%,
+        var(--color-ambiance-texte-primaire)
+    );
+    background: color-mix(
+        in srgb,
+        var(--lrz-stamp-accent) 28%,
+        var(--color-ambiance-surface)
+    );
+}
+
+.stamp[data-tone="solid"] .detail {
+    color: color-mix(
+        in srgb,
+        var(--lrz-stamp-accent) 24%,
+        var(--color-ambiance-texte-secondaire)
+    );
+}
+
+.stamp[data-tone="ghost"] {
+    border-color: transparent;
+    background: transparent;
+}
+
+.stamp[data-gradient="true"]:not([data-tone="ghost"]) {
+    background:
+        radial-gradient(
+            circle at 17% 15%,
+            color-mix(in srgb, white 14%, transparent),
+            transparent 42%
+        ),
+        linear-gradient(
+            110deg,
+            color-mix(
+                in srgb,
+                var(--lrz-stamp-accent) 16%,
+                var(--color-ambiance-surface)
+            ),
+            color-mix(
+                in srgb,
+                var(--lrz-stamp-accent) 5%,
+                var(--color-ambiance-surface)
+            )
+        );
+}
+
+.stamp[data-tone="solid"][data-gradient="true"] {
+    background:
+        radial-gradient(
+            circle at 18% 18%,
+            color-mix(in srgb, white 18%, transparent),
+            transparent 40%
+        ),
+        linear-gradient(
+            110deg,
+            color-mix(
+                in srgb,
+                var(--lrz-stamp-accent) 36%,
+                var(--color-ambiance-surface)
+            ),
+            color-mix(
+                in srgb,
+                var(--lrz-stamp-accent) 18%,
+                var(--color-ambiance-surface)
+            )
+        );
+}
+
+/* Disposition */
+
+.stamp[data-position="end"] > :first-child {
+    order: 2;
+}
+
+.stamp[data-position="top"] {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stamp[data-position="top"] .copy {
+    justify-items: center;
+    text-align: center;
+}
+
+.stamp[data-full-width="true"] {
+    width: 100%;
+}
+
+.stamp[data-truncate="true"] .label,
+.stamp[data-truncate="true"] .detail {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.stamp[data-dashed="true"] {
+    border-style: dashed;
+}
+
+/* Ombres */
+
+.stamp[data-shadow="soft"] {
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, white 10%, transparent),
+        0 3px 9px color-mix(in srgb, var(--lrz-stamp-accent) 16%, transparent);
+}
+
+.stamp[data-shadow="strong"] {
+    box-shadow:
+        inset 0 1px 0 color-mix(in srgb, white 14%, transparent),
+        0 8px 22px color-mix(in srgb, var(--lrz-stamp-accent) 27%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .stamp {
+        transition:
+            border-color 160ms ease,
+            background-color 160ms ease,
+            box-shadow 160ms ease;
+    }
+}
