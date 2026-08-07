@@ -267,73 +267,7 @@ export default function LRZStamp({
         loading,
         decorative: true as const,
     };
-    const renderedSymbol =
-        collection === "index" ? (
-            <LRZSymbol collection="index" slug={slug} {...symbolOptions} />
-        ) : collection === "common" && meta === "epoque" ? (
-            <LRZSymbol
-                collection="common"
-                meta="epoque"
-                slug={slug}
-                {...symbolOptions}
-            />
-        ) : collection === "common" && meta === "architecture" ? (
-            <LRZSymbol
-                collection="common"
-                meta="architecture"
-                slug={slug}
-                {...symbolOptions}
-            />
-        ) : collection === "common" && meta === "milieu" ? (
-            <LRZSymbol
-                collection="common"
-                meta="milieu"
-                slug={slug}
-                {...symbolOptions}
-            />
-        ) : collection === "faune" && meta === "type" ? (
-            <LRZSymbol
-                collection="faune"
-                meta="type"
-                slug={slug}
-                {...symbolOptions}
-            />
-        ) : collection === "faune" && meta === "rarete" ? (
-            <LRZSymbol
-                collection="faune"
-                meta="rarete"
-                slug={slug}
-                {...symbolOptions}
-            />
-        ) : collection === "flore" && meta === "categorie" ? (
-            <LRZSymbol
-                collection="flore"
-                meta="categorie"
-                slug={slug}
-                {...symbolOptions}
-            />
-        ) : collection === "flore" && meta === "rarete" ? (
-            <LRZSymbol
-                collection="flore"
-                meta="rarete"
-                slug={slug}
-                {...symbolOptions}
-            />
-        ) : collection === "guinguette" ? (
-            <LRZSymbol
-                collection="guinguette"
-                meta={meta}
-                slug={slug}
-                {...symbolOptions}
-            />
-        ) : (
-            <LRZSymbol
-                collection="personnage"
-                meta={meta}
-                slug={slug}
-                {...symbolOptions}
-            />
-        );
+    const symbolLocator = { collection, meta, slug } as LRZSymbolLocator;
 
     return (
         <span
@@ -379,7 +313,7 @@ export default function LRZStamp({
             data-truncate={String(truncate)}
             data-has-detail={String(hasDetail)}
         >
-            {renderedSymbol}
+            <LRZSymbol {...symbolLocator} {...symbolOptions} />
             <span className={styles.copy}>
                 <span className={styles.label}>
                     {label ?? definition.label}
