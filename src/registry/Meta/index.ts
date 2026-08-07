@@ -7,6 +7,15 @@ export {
 } from "@/registry/Meta/registry";
 
 export {
+    CODEX_INDEX_META,
+    CODEX_INDEX_REGISTRY,
+    getCodexIndexMeta,
+    isCodexIndex,
+    type CodexIndex,
+    type CodexIndexMeta,
+} from "@/registry/Meta/codex-index";
+
+export {
     COMMON_EPOQUE_META,
     COMMON_EPOQUE_REGISTRY,
     getCommonEpoqueMeta,
