@@ -14,6 +14,7 @@ export type {
 export type {
     LRZCommonArchitectureSymbolSlug,
     LRZCommonEpoqueSymbolSlug,
+    LRZCommonExperienceSymbolSlug,
     LRZCommonMilieuSymbolSlug,
     LRZFauneRareteSymbolSlug,
     LRZFauneTypeSymbolSlug,

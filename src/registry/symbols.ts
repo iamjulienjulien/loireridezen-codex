@@ -13,6 +13,10 @@ import {
     type CommonEpoque,
 } from "@/registry/Meta/common-epoque";
 import {
+    getCommonExperienceMeta,
+    type CommonExperience,
+} from "@/registry/Meta/common-experience";
+import {
     getCommonMilieuMeta,
     type CommonMilieu,
 } from "@/registry/Meta/common-milieu";
@@ -121,6 +125,40 @@ export const LRZ_COMMON_MILIEU_SYMBOLS = {
 
 export type LRZCommonMilieuSymbolSlug = keyof typeof LRZ_COMMON_MILIEU_SYMBOLS;
 
+export const LRZ_COMMON_EXPERIENCE_SYMBOLS = {
+    "visite-libre": "/symbols/common/experience/visite-libre.png",
+    "visite-guidee": "/symbols/common/experience/visite-guidee.png",
+    exposition: "/symbols/common/experience/exposition.png",
+    reconstitution: "/symbols/common/experience/reconstitution.png",
+    demonstration: "/symbols/common/experience/demonstration.png",
+    atelier: "/symbols/common/experience/atelier.png",
+    "jeu-piste": "/symbols/common/experience/jeu-piste.png",
+    promenade: "/symbols/common/experience/promenade.png",
+    randonnee: "/symbols/common/experience/randonnee.png",
+    velo: "/symbols/common/experience/velo.png",
+    equitation: "/symbols/common/experience/equitation.png",
+    bateau: "/symbols/common/experience/bateau.png",
+    "canoe-kayak": "/symbols/common/experience/canoe-kayak.png",
+    baignade: "/symbols/common/experience/baignade.png",
+    peche: "/symbols/common/experience/peche.png",
+    "observation-nature": "/symbols/common/experience/observation-nature.png",
+    photographie: "/symbols/common/experience/photographie.png",
+    contemplation: "/symbols/common/experience/contemplation.png",
+    detente: "/symbols/common/experience/detente.png",
+    "pique-nique": "/symbols/common/experience/pique-nique.png",
+    repas: "/symbols/common/experience/repas.png",
+    degustation: "/symbols/common/experience/degustation.png",
+    "marche-local": "/symbols/common/experience/marche-local.png",
+    concert: "/symbols/common/experience/concert.png",
+    spectacle: "/symbols/common/experience/spectacle.png",
+    danse: "/symbols/common/experience/danse.png",
+    "fete-populaire": "/symbols/common/experience/fete-populaire.png",
+    montgolfiere: "/symbols/common/experience/montgolfiere.png",
+} as const satisfies Record<CommonExperience, string>;
+
+export type LRZCommonExperienceSymbolSlug =
+    keyof typeof LRZ_COMMON_EXPERIENCE_SYMBOLS;
+
 export const LRZ_FAUNE_TYPE_SYMBOLS = {
     oiseau: "/symbols/faune/type/oiseau.png",
     mammifère: "/symbols/faune/type/mammifere.png",
@@ -217,7 +255,7 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  * Une collection peut contenir directement ses symboles, comme `index`, ou
  * les regrouper par métadonnée, comme `faune.type`, `faune.rarete`,
  * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
- * `common.milieu`,
+ * `common.milieu`, `common.experience`,
  * `guinguette.ambience` et `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
@@ -226,6 +264,7 @@ export const LRZ_SYMBOLS = {
         epoque: LRZ_COMMON_EPOQUE_SYMBOLS,
         architecture: LRZ_COMMON_ARCHITECTURE_SYMBOLS,
         milieu: LRZ_COMMON_MILIEU_SYMBOLS,
+        experience: LRZ_COMMON_EXPERIENCE_SYMBOLS,
     },
     faune: {
         type: LRZ_FAUNE_TYPE_SYMBOLS,
@@ -257,6 +296,7 @@ export type LRZSymbolSlug =
     | LRZCommonEpoqueSymbolSlug
     | LRZCommonArchitectureSymbolSlug
     | LRZCommonMilieuSymbolSlug
+    | LRZCommonExperienceSymbolSlug
     | LRZFauneTypeSymbolSlug
     | LRZFauneRareteSymbolSlug
     | LRZFloreCategorieSymbolSlug
@@ -295,6 +335,12 @@ export type LRZSymbolLocator =
           collection: "common";
           meta: "milieu";
           slug: LRZCommonMilieuSymbolSlug;
+      }
+    | {
+          /** Expériences proposées à travers les collections du Codex. */
+          collection: "common";
+          meta: "experience";
+          slug: LRZCommonExperienceSymbolSlug;
       }
     | {
           /** Types taxinomiques de la collection Faune. */
@@ -372,6 +418,16 @@ export function getLRZSymbolSource(
         Object.hasOwn(LRZ_SYMBOLS.common.milieu, slug)
     ) {
         return LRZ_SYMBOLS.common.milieu[slug as LRZCommonMilieuSymbolSlug];
+    }
+
+    if (
+        collection === "common" &&
+        meta === "experience" &&
+        Object.hasOwn(LRZ_SYMBOLS.common.experience, slug)
+    ) {
+        return LRZ_SYMBOLS.common.experience[
+            slug as LRZCommonExperienceSymbolSlug
+        ];
     }
 
     if (
@@ -488,6 +544,19 @@ export function getLRZSymbolDefinition(
                   label: environment.label,
                   accent: getLRZColorValue(environment.color),
                   color: environment.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "common" && meta === "experience") {
+        const experience = getCommonExperienceMeta(slug);
+
+        return experience
+            ? {
+                  source,
+                  label: experience.label,
+                  accent: getLRZColorValue(experience.color),
+                  color: experience.color,
               }
             : undefined;
     }

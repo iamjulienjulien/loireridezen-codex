@@ -96,6 +96,24 @@ describe("LRZStamp", () => {
         );
     });
 
+    it("renders a common experience with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp
+                collection="common"
+                meta="experience"
+                slug="canoe-kayak"
+            />,
+        );
+
+        expect(markup).toContain("Canoë-kayak");
+        expect(markup).toContain('data-collection="common"');
+        expect(markup).toContain('data-meta="experience"');
+        expect(markup).toContain("/symbols/common/experience/canoe-kayak.png");
+        expect(markup).toContain(
+            "--lrz-stamp-label-color:var(--color-nature-eau-claire)",
+        );
+    });
+
     it("renders a Faune rarity with its registry color", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp collection="faune" meta="rarete" slug="trésor" />,
