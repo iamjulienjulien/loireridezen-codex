@@ -41,6 +41,12 @@ describe("HomeContent", () => {
             universe: "vivant",
             format: "naturaliste",
         });
+        expect(getIndexBySlug("territoires")).toMatchObject({
+            universe: "raconte",
+            format: "catalogue",
+            dataFile: "catalogue-territoires.json",
+            env: ["development"],
+        });
         expect(getIndexBySlug("personnages")).toMatchObject({
             universe: "raconte",
             format: "repertoire",

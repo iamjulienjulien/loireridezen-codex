@@ -178,6 +178,11 @@ const INDEX_PAGE_SEO = {
         description:
             "Découvrez les guinguettes de Loire et de ses affluents : tables au bord de l’eau, concerts, cuisine locale, couchers de soleil et haltes à vélo.",
     },
+    territoires: {
+        title: "Territoires et paysages du Val de Loire — Le Codex ligérien",
+        description:
+            "Parcourez les huit territoires ligériens, du Nivernais à l’estuaire, et découvrez leurs paysages, villes, cours d’eau, patrimoines et identités.",
+    },
     personnages: {
         title: "Personnages et figures de la Loire — Le Codex ligérien",
         description:
