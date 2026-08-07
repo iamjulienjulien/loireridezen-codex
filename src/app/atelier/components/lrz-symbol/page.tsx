@@ -222,6 +222,12 @@ const API_PROPS = [
     ],
     ["label", "string", "—", "Obligatoire lorsque decorative vaut false."],
     [
+        "tooltip",
+        "boolean",
+        "false",
+        "Affiche le libellé résolu du registre au survol et au focus.",
+    ],
+    [
         "loading",
         '"lazy" | "eager"',
         '"lazy"',
@@ -283,6 +289,7 @@ export default function LRZSymbolPage() {
                             shape="circle"
                             padding="sm"
                             shadow="strong"
+                            tooltip
                         />
                         <div>
                             <span className={styles.heroLabel}>
@@ -307,6 +314,7 @@ export default function LRZSymbolPage() {
   shape="circle"
   padding="sm"
   shadow="strong"
+  tooltip
 />`}</code>
                     </pre>
                 </section>
@@ -462,7 +470,7 @@ export default function LRZSymbolPage() {
                     <div className={shellStyles.sectionHeader}>
                         <p className={shellStyles.kicker}>Collection commune</p>
                         <h2 id="symbol-common-architectures">
-                            Les vingt architectures du Codex
+                            Les vingt-et-une architectures du Codex
                         </h2>
                         <p>
                             Le locator <code>common.architecture</code> associe

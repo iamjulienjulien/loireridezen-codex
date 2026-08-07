@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import Image from "next/image";
 
+import { LRZTooltip } from "@/components/LRZTooltip";
 import {
     getLRZSymbolDefinition,
     LRZ_COMMON_TERRITOIRE_SYMBOL_DIMENSIONS,
@@ -60,6 +61,8 @@ type LRZSymbolSharedProps = {
     fallback?: ReactNode;
     /** Identifiant HTML du conteneur. */
     id?: string;
+    /** Affiche le libellé résolu du registre dans une infobulle LRZ. */
+    tooltip?: boolean;
     /** Infobulle native facultative. */
     title?: string;
     /** Classe additionnelle appliquée au conteneur. */
@@ -106,6 +109,7 @@ export default function LRZSymbol({
     decorative = true,
     label,
     id,
+    tooltip = false,
     title,
     className,
     style,
@@ -151,7 +155,8 @@ export default function LRZSymbol({
             : { "--lrz-symbol-padding": `${customPadding}px` }),
     };
 
-    return (
+    const resolvedLabel = label ?? definition.label;
+    const symbol = (
         <span
             id={id}
             className={joinClassNames(styles.symbol, className)}
@@ -167,7 +172,8 @@ export default function LRZSymbol({
                 typeof resolvedPadding === "number" ? "custom" : resolvedPadding
             }
             data-shadow={shadow}
-            aria-hidden={decorative ? true : undefined}
+            aria-hidden={decorative && !tooltip ? true : undefined}
+            tabIndex={tooltip ? 0 : undefined}
         >
             <Image
                 className={styles.image}
@@ -180,5 +186,15 @@ export default function LRZSymbol({
                 unoptimized
             />
         </span>
+    );
+
+    if (!tooltip) {
+        return symbol;
+    }
+
+    return (
+        <LRZTooltip content={resolvedLabel} portal>
+            {symbol}
+        </LRZTooltip>
     );
 }
