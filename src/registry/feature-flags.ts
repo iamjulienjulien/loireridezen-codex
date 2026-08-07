@@ -30,6 +30,7 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     indexControlsSection: [],
     chateauxViewportMapSpike: [],
     chateauxInteractiveMap: ["development", "production"],
+    guinguettesInteractiveMap: ["development", "production"],
     detailDialogChateaux: [],
     personnages: ["development", "production"],
     chateauxRenommee: [],
