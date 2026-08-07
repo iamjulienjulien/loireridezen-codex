@@ -26,6 +26,10 @@ export const CODEX_INDEX_REGISTRY = defineCollectionMetaRegistry({
         label: "Personnages",
         color: "lie-de-vin",
     },
+    territoires: {
+        label: "Territoires",
+        color: "bleu-loire",
+    },
 });
 
 export type CodexIndex = keyof typeof CODEX_INDEX_REGISTRY;

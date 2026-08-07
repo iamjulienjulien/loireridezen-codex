@@ -52,6 +52,7 @@ export const LRZ_CODEX_INDEX_SYMBOLS = {
     flore: "/symbols/codex/index/flore.png",
     guinguettes: "/symbols/codex/index/guinguettes.png",
     personnages: "/symbols/codex/index/personnages.png",
+    territoires: "/symbols/codex/index/territoires.png",
 } as const satisfies Record<CodexIndex, string>;
 
 export type LRZCodexIndexSymbolSlug = keyof typeof LRZ_CODEX_INDEX_SYMBOLS;
