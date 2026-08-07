@@ -3,6 +3,7 @@ import { join, relative, sep } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { ATELIER_PAGE_DEFINITIONS } from "@/registry/atelier-pages";
 import { getIndexBySlug } from "@/registry/indexes";
 import { PAGE_CATEGORY_CONTRACT } from "@/types/page";
 
@@ -83,9 +84,29 @@ describe("page registry", () => {
     it("classifies every Atelier subpage through its dedicated route family", () => {
         expect(getPageKind("/atelier")).toBe("atelier");
         expect(getPageKind("/atelier/components/lrz-card")).toBe("atelier");
-        expect(getPageDefinition("/atelier/components/lrz-card")).toBe(
-            ATELIER_PAGE,
+        expect(getPageDefinition("/atelier/components/lrz-card")).toMatchObject(
+            {
+                kind: "atelier",
+                href: "/atelier/components/lrz-card",
+            },
         );
+        expect(getPageDefinition("/atelier/route-inconnue")).toBe(ATELIER_PAGE);
+    });
+
+    it("declares metadata for every Atelier page file", () => {
+        const atelierRoutes = getAppPageFiles(join(APP_DIRECTORY, "atelier"))
+            .map(toRoutePathname)
+            .sort();
+        const declaredRoutes = ATELIER_PAGE_DEFINITIONS.map(
+            (page) => page.href,
+        ).sort();
+
+        expect(declaredRoutes).toEqual(atelierRoutes);
+        expect(
+            ATELIER_PAGE_DEFINITIONS.every(
+                (page) => page.seo.indexable === false,
+            ),
+        ).toBe(true);
     });
 
     it("requires every collection to reference an existing parent index", () => {
@@ -101,6 +122,30 @@ describe("page registry", () => {
         const hrefs = PAGE_DEFINITIONS.map((definition) => definition.href);
 
         expect(new Set(hrefs).size).toBe(hrefs.length);
+    });
+
+    it("keeps public SEO copy within the validated target lengths", () => {
+        const publicPages = PAGE_DEFINITIONS.filter(
+            (definition) => definition.kind !== "atelier",
+        );
+
+        for (const page of publicPages) {
+            const title = page.seo?.title ?? page.title;
+            const description = page.seo?.description ?? page.description;
+
+            expect(title.length, `${page.href} title`).toBeGreaterThanOrEqual(
+                50,
+            );
+            expect(title.length, `${page.href} title`).toBeLessThanOrEqual(60);
+            expect(
+                description.length,
+                `${page.href} description`,
+            ).toBeGreaterThanOrEqual(120);
+            expect(
+                description.length,
+                `${page.href} description`,
+            ).toBeLessThanOrEqual(160);
+        }
     });
 
     it("normalizes trailing slashes, queries and fragments", () => {

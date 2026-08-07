@@ -38,6 +38,13 @@ export interface PageDefinitionBase<TKind extends PageKind> {
     seo?: PageSeoDefinition;
 }
 
+export interface AtelierPageDefinition extends PageDefinitionBase<"atelier"> {
+    label: string;
+    eyebrow: string;
+    featureFlag: "atelier";
+    seo: PageSeoDefinition & { indexable: false };
+}
+
 export interface PageCategoryContract {
     header: PageHeaderStrategy;
     shell: PageKind;
