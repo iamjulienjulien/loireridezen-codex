@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import PageFooter from "@/components/PageFooter";
@@ -8,15 +7,15 @@ import {
     getPersonnages,
     getRelationsForPersonnage,
 } from "@/lib/personnages";
+import { buildPageMetadata } from "@/lib/site-metadata";
 import { featureIsEnabled } from "@/registry/feature-flags";
+import { getContentPageDefinition } from "@/registry/pages";
 
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
-    title: "Personnages de la Loire — Codex",
-    description:
-        "Souverains, bâtisseurs, écrivains, mécènes et figures singulières : celles et ceux dont les vies ont laissé leur empreinte sur les châteaux ligériens.",
-};
+export const metadata = buildPageMetadata(
+    getContentPageDefinition("/personnages"),
+);
 
 export default function PersonnagesPage() {
     if (!featureIsEnabled("personnages")) notFound();

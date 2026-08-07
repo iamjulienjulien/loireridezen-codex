@@ -1,17 +1,11 @@
-import type { Metadata } from "next";
 import flore from "@data/flore.json";
 import type { Flore } from "@/types/flore";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";
+import { getIndexPageDefinition } from "@/registry/pages";
 import FloreIndex from "./FloreIndex";
 
-export const metadata: Metadata = {
-    title: "Flore ligérienne — Codex",
-    description: "Index de la flore du fil, de la source à l'Atlantique.",
-    alternates: {
-        canonical: getCanonicalUrl("/flore"),
-    },
-};
+export const metadata = buildPageMetadata(getIndexPageDefinition("/flore"));
 
 export default function FlorePage() {
     const flore_ = flore.flore as Flore[];

@@ -12,15 +12,16 @@ import {
 import { CollectionHero } from "@/components/ui/collection-hero";
 import { CollectionList } from "@/components/ui/collection-list";
 import { CollectionPodium } from "@/components/ui/collection-podium";
+import { buildPageMetadata } from "@/lib/site-metadata";
 
 import { COLLECTIONS, getCollectionBySlug } from "@/registry/collections";
+import { findCollectionPageDefinition } from "@/registry/pages";
 
 import { resolveCollectionPage } from "./lib";
 
 import styles from "./page.module.css";
 import PageHeader, { PageHeaderCurrent } from "@/components/PageHeader";
 import { getIndexesForEnv } from "@/registry/indexes";
-import { getCanonicalUrl } from "@/lib/site-metadata";
 
 type CollectionPageProps = {
     params: Promise<{
@@ -41,7 +42,7 @@ export async function generateMetadata({
 }: CollectionPageProps): Promise<Metadata> {
     const { collectionSlug } = await params;
 
-    const collection = getCollectionBySlug(collectionSlug);
+    const collection = findCollectionPageDefinition(collectionSlug);
 
     if (!collection) {
         return {
@@ -53,18 +54,7 @@ export async function generateMetadata({
         };
     }
 
-    return {
-        title: `${collection.title} | Châteaux | Le Codex`,
-        description: collection.description,
-        alternates: {
-            canonical: getCanonicalUrl(collection.href),
-        },
-        openGraph: {
-            title: collection.title,
-            description: collection.description,
-            type: "article",
-        },
-    };
+    return buildPageMetadata(collection, { openGraphType: "article" });
 }
 
 export default async function CollectionPage({ params }: CollectionPageProps) {

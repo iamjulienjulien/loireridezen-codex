@@ -1,14 +1,14 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import type { Metadata } from "next";
 import Link from "next/link";
 import { MarkdownAsync } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkDirective from "remark-directive";
 
 import remarkLrzDirectives from "@/lib/markdown/remark-lrz-directives";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import { buildPageMetadata } from "@/lib/site-metadata";
 import { createDocumentationComponents } from "../markdown-components";
+import { getContentPageDefinition } from "@/registry/pages";
 
 import {
     API_DOCUMENTATION_SECTIONS,
@@ -20,14 +20,9 @@ import styles from "./api-docs.module.css";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
-    title: "Documentation API — Le Codex ligérien",
-    description:
-        "Guide de démarrage et référence narrative de l’API publique du Codex ligérien.",
-    alternates: {
-        canonical: getCanonicalUrl("/docs/api"),
-    },
-};
+export const metadata = buildPageMetadata(
+    getContentPageDefinition("/docs/api"),
+);
 
 const GUIDE_PATH = join(process.cwd(), "docs", "api", "README.md");
 

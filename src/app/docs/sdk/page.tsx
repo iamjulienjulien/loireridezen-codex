@@ -1,13 +1,13 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import type { Metadata } from "next";
 import Link from "next/link";
 import { MarkdownAsync } from "react-markdown";
 import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 
 import remarkLrzDirectives from "@/lib/markdown/remark-lrz-directives";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import { buildPageMetadata } from "@/lib/site-metadata";
+import { getContentPageDefinition } from "@/registry/pages";
 
 import styles from "../api/api-docs.module.css";
 import { createDocumentationComponents } from "../markdown-components";
@@ -16,14 +16,9 @@ import { SDK_DOCUMENTATION_SECTIONS } from "./markdown";
 
 export const dynamic = "force-static";
 
-export const metadata: Metadata = {
-    title: "SDK TypeScript — Le Codex ligérien",
-    description:
-        "Guide du SDK TypeScript officiel de l’API publique du Codex ligérien, avec intégration Expo et React Native.",
-    alternates: {
-        canonical: getCanonicalUrl("/docs/sdk"),
-    },
-};
+export const metadata = buildPageMetadata(
+    getContentPageDefinition("/docs/sdk"),
+);
 
 const GUIDE_PATH = join(process.cwd(), "packages", "codex-sdk", "README.md");
 

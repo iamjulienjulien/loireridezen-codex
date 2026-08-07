@@ -1,17 +1,11 @@
-import type { Metadata } from "next";
 import chateau from "@data/chateau.json";
 import type { Chateau } from "@/types/chateau";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";
+import { getIndexPageDefinition } from "@/registry/pages";
 import ChateauxIndex from "./ChateauxIndex";
 
-export const metadata: Metadata = {
-    title: "Châteaux de la Loire — Codex",
-    description: "Index des châteaux du val, de la source à l'Atlantique.",
-    alternates: {
-        canonical: getCanonicalUrl("/chateaux"),
-    },
-};
+export const metadata = buildPageMetadata(getIndexPageDefinition("/chateaux"));
 
 export default function ChateauxPage() {
     const chateaux = chateau.chateaux as Chateau[];

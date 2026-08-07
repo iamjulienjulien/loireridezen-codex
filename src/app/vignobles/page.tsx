@@ -1,18 +1,11 @@
-import type { Metadata } from "next";
 import vignoble from "@data/vignoble.json";
 import type { Vignoble } from "@/types/vignoble";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";
+import { getIndexPageDefinition } from "@/registry/pages";
 import VignoblesIndex from "./VignoblesIndex";
 
-export const metadata: Metadata = {
-    title: "Vignobles & AOC ligériens — Codex",
-    description:
-        "Index des appellations de la Loire, de la source à l'Atlantique.",
-    alternates: {
-        canonical: getCanonicalUrl("/vignobles"),
-    },
-};
+export const metadata = buildPageMetadata(getIndexPageDefinition("/vignobles"));
 
 export default function VignoblesPage() {
     const vignobles = vignoble.vignobles as Vignoble[];

@@ -1,20 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import LRZSection from "@/components/LRZSection/LRZSection";
 import PageFooter from "@/components/PageFooter";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import { buildPageMetadata } from "@/lib/site-metadata";
+import { getContentPageDefinition } from "@/registry/pages";
 
 import styles from "./a-propos.module.css";
 
-export const metadata: Metadata = {
-    title: "À propos — Le Codex ligérien",
-    description:
-        "Le Codex ligérien : un atlas éditorial pour explorer, observer et raconter les paysages de la Loire.",
-    alternates: {
-        canonical: getCanonicalUrl("/a-propos"),
-    },
-};
+export const metadata = buildPageMetadata(
+    getContentPageDefinition("/a-propos"),
+);
 
 const PILLARS = [
     {

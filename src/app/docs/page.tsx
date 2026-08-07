@@ -1,17 +1,11 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
 import styles from "./docs-home.module.css";
 import PageFooter from "@/components/PageFooter";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import { buildPageMetadata } from "@/lib/site-metadata";
+import { getContentPageDefinition } from "@/registry/pages";
 
-export const metadata: Metadata = {
-    title: "Documentation — Le Codex ligérien",
-    description: "Les guides et références techniques du Codex ligérien.",
-    alternates: {
-        canonical: getCanonicalUrl("/docs"),
-    },
-};
+export const metadata = buildPageMetadata(getContentPageDefinition("/docs"));
 
 const SECTIONS = [
     {
