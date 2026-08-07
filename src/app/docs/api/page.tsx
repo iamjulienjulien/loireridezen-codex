@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import remarkDirective from "remark-directive";
 
 import remarkLrzDirectives from "@/lib/markdown/remark-lrz-directives";
+import { getCanonicalUrl } from "@/lib/site-metadata";
 import { createDocumentationComponents } from "../markdown-components";
 
 import {
@@ -23,6 +24,9 @@ export const metadata: Metadata = {
     title: "Documentation API — Le Codex ligérien",
     description:
         "Guide de démarrage et référence narrative de l’API publique du Codex ligérien.",
+    alternates: {
+        canonical: getCanonicalUrl("/docs/api"),
+    },
 };
 
 const GUIDE_PATH = join(process.cwd(), "docs", "api", "README.md");

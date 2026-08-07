@@ -7,6 +7,7 @@ import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 
 import remarkLrzDirectives from "@/lib/markdown/remark-lrz-directives";
+import { getCanonicalUrl } from "@/lib/site-metadata";
 
 import styles from "../api/api-docs.module.css";
 import { createDocumentationComponents } from "../markdown-components";
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
     title: "SDK TypeScript — Le Codex ligérien",
     description:
         "Guide du SDK TypeScript officiel de l’API publique du Codex ligérien, avec intégration Expo et React Native.",
+    alternates: {
+        canonical: getCanonicalUrl("/docs/sdk"),
+    },
 };
 
 const GUIDE_PATH = join(process.cwd(), "packages", "codex-sdk", "README.md");

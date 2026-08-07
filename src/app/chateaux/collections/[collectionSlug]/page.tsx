@@ -20,6 +20,7 @@ import { resolveCollectionPage } from "./lib";
 import styles from "./page.module.css";
 import PageHeader, { PageHeaderCurrent } from "@/components/PageHeader";
 import { getIndexesForEnv } from "@/registry/indexes";
+import { getCanonicalUrl } from "@/lib/site-metadata";
 
 type CollectionPageProps = {
     params: Promise<{
@@ -56,7 +57,7 @@ export async function generateMetadata({
         title: `${collection.title} | Châteaux | Le Codex`,
         description: collection.description,
         alternates: {
-            canonical: collection.href,
+            canonical: getCanonicalUrl(collection.href),
         },
         openGraph: {
             title: collection.title,

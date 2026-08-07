@@ -1,9 +1,8 @@
 import type { MetadataRoute } from "next";
 
+import { getCanonicalUrl } from "@/lib/site-metadata";
 import { getCollectionsForEnv } from "@/registry/collections";
 import { getIndexesForEnv } from "@/registry/indexes";
-
-const SITE_URL = "https://codex.loireridezen.bike";
 
 const STATIC_PUBLIC_PATHS = [
     "/",
@@ -23,6 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
 
     return paths.map((path) => ({
-        url: new URL(path, SITE_URL).toString(),
+        url: getCanonicalUrl(path).toString(),
     }));
 }
