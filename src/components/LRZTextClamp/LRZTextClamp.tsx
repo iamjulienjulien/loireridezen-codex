@@ -107,6 +107,34 @@ function joinClassNames(
     return classNames.filter(Boolean).join(" ");
 }
 
+function isTextActuallyClamped(element: HTMLElement) {
+    const clampedHeight = element.getBoundingClientRect().height;
+
+    if (clampedHeight === 0 || element.clientWidth === 0) {
+        return false;
+    }
+
+    const previousStyle = element.getAttribute("style");
+
+    try {
+        element.style.setProperty("display", "block");
+        element.style.setProperty("overflow", "visible");
+        element.style.setProperty("min-block-size", "0");
+        element.style.setProperty("-webkit-line-clamp", "unset");
+        element.style.setProperty("line-clamp", "unset");
+
+        const unclampedHeight = element.getBoundingClientRect().height;
+
+        return unclampedHeight > clampedHeight + 0.5;
+    } finally {
+        if (previousStyle === null) {
+            element.removeAttribute("style");
+        } else {
+            element.setAttribute("style", previousStyle);
+        }
+    }
+}
+
 export default function LRZTextClamp({
     children,
     as = "span",
@@ -138,9 +166,7 @@ export default function LRZTextClamp({
         const element = textRef.current;
         if (!element) return;
 
-        const nextIsTruncated =
-            element.scrollHeight > element.clientHeight + 1 ||
-            element.scrollWidth > element.clientWidth + 1;
+        const nextIsTruncated = isTextActuallyClamped(element);
 
         setIsTruncated((current) =>
             current === nextIsTruncated ? current : nextIsTruncated,
