@@ -6,6 +6,7 @@ import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import type { LRZColor } from "@/types/lrz";
 
 import styles from "./PageHeader.module.css";
+import LRZLivingText from "../LRZLivingText";
 
 export type PageHeaderVariant =
     | "home"
@@ -83,9 +84,19 @@ export default function PageHeader({
                     </div>
                     {description ? (
                         <div className={styles.homeDescription}>
-                            {description}
+                            <LRZLivingText.Typewriter
+                                preset="lede"
+                                as="p"
+                                speed={62}
+                                startDelay={0}
+                                cursor="bar"
+                                cursorAfter="hide"
+                            >
+                                {description as string}
+                            </LRZLivingText.Typewriter>
                         </div>
                     ) : null}
+
                     {navigation || actions ? (
                         <div className={styles.homeTools}>
                             {navigation}

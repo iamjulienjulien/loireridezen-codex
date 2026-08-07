@@ -301,10 +301,14 @@
 }
 
 .homeDescription {
-    margin-top: 1.25rem;
+    margin-top: 1rem;
     color: var(--color-ambiance-texte-secondaire);
     font-size: 0.9375rem;
     line-height: 1.625;
+}
+
+.homeDescription > span {
+    margin: auto;
 }
 
 .homeTools {
