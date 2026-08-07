@@ -100,6 +100,7 @@ describe("page shells", () => {
         expect(markup).toContain('data-width="wide"');
         expect(markup).toContain('data-page-header-variant="collection"');
         expect(markup).toContain('aria-label="Fil d’Ariane"');
+        expect(markup).toContain('data-collection-outro=""');
         expect(markup).toContain("Châteaux");
         expect(markup).toContain(page.footerNote);
     });
@@ -138,5 +139,19 @@ describe("page shells", () => {
         expect(markup).toContain('data-width="content"');
         expect(markup).toContain('data-page-header-variant="atelier"');
         expect(markup).toContain("Composants UI");
+    });
+
+    it("centralizes Atelier semantics when its internal header is retained", () => {
+        const page = getAtelierPageDefinition("/atelier");
+        const markup = renderToStaticMarkup(
+            <AtelierShell page={page} header={false} width="full">
+                <section>Sommaire interne</section>
+            </AtelierShell>,
+        );
+
+        expect(markup.match(/<header/g)).toBeNull();
+        expect(markup.match(/<main/g)).toHaveLength(1);
+        expect(markup.match(/<footer/g)).toHaveLength(1);
+        expect(markup).toContain("Sommaire interne");
     });
 });

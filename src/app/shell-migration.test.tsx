@@ -1,6 +1,8 @@
 import type { ReactElement } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import type { AtelierShellProps } from "@/components/layout/AtelierShell";
+import AtelierShell from "@/components/layout/AtelierShell";
 import type { CollectionShellProps } from "@/components/layout/CollectionShell";
 import CollectionShell from "@/components/layout/CollectionShell";
 import type { HomeShellProps } from "@/components/layout/HomeShell";
@@ -83,7 +85,7 @@ describe("pilot shell migration", () => {
         expect(route.type).toBe(CollectionShell);
         expect(route.props.page.kind).toBe("collection");
         expect(route.props.page.indexHref).toBe("/chateaux");
-        expect(route.props.footer).toBeDefined();
+        expect(route.props.footer).toBeUndefined();
     });
 
     it.each(COLLECTIONS)(
@@ -144,12 +146,11 @@ describe("pilot shell migration", () => {
 
     it("keeps Atelier in its feature-gated ambient layout", () => {
         const route = AtelierLayout({
-            children: <main>Atelier</main>,
-        }) as ReactElement<AmbientPageFrameProps>;
+            children: <section>Atelier</section>,
+        }) as ReactElement<AtelierShellProps>;
 
-        expect(route.type).toBe(AmbientPageFrame);
-        expect(route.props.kind).toBe("atelier");
+        expect(route.type).toBe(AtelierShell);
+        expect(route.props.page.kind).toBe("atelier");
+        expect(route.props.header).toBe(false);
     });
 });
-import type { AmbientPageFrameProps } from "@/components/layout/AmbientPageFrame";
-import AmbientPageFrame from "@/components/layout/AmbientPageFrame";
