@@ -1,8 +1,8 @@
 import type { FloreCategorie } from "@/registry/Meta/flore-categorie";
+import type { FloreRarete } from "@/registry/Meta/flore-rarete";
 
 export type { FloreCategorie } from "@/registry/Meta/flore-categorie";
-
-export type FloreRarete = "commun" | "régulier" | "rare" | "trésor";
+export type { FloreRarete } from "@/registry/Meta/flore-rarete";
 
 /** Origine biogéographique — l'axe clé sur la Loire. */
 export type FloreIndigenat = "indigène" | "exotique" | "envahissante";

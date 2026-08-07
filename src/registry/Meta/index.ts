@@ -34,6 +34,15 @@ export {
 } from "@/registry/Meta/flore-categorie";
 
 export {
+    FLORE_RARETE_META,
+    FLORE_RARETE_REGISTRY,
+    getFloreRareteMeta,
+    isFloreRarete,
+    type FloreRarete,
+    type FloreRareteMeta,
+} from "@/registry/Meta/flore-rarete";
+
+export {
     getGuinguetteAmbienceMeta,
     GUINGUETTE_AMBIENCE_META,
     GUINGUETTE_AMBIENCE_META_REGISTRY,
