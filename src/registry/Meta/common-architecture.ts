@@ -16,6 +16,10 @@ export const COMMON_ARCHITECTURE_REGISTRY = defineCollectionMetaRegistry({
         label: "Préromane",
         color: "taupe",
     },
+    medievale: {
+        label: "Médiévale",
+        color: "ocre",
+    },
     romane: {
         label: "Romane",
         color: "brun",

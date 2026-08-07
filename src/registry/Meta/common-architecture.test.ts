@@ -12,6 +12,7 @@ describe("Common architecture meta registry", () => {
         expect(COMMON_ARCHITECTURE_META.map(({ slug }) => slug)).toEqual([
             "gallo-romaine",
             "pre-romane",
+            "medievale",
             "romane",
             "gothique",
             "gothique-flamboyant",

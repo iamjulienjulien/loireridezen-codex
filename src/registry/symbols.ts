@@ -73,6 +73,7 @@ export type LRZCommonEpoqueSymbolSlug = keyof typeof LRZ_COMMON_EPOQUE_SYMBOLS;
 export const LRZ_COMMON_ARCHITECTURE_SYMBOLS = {
     "gallo-romaine": "/symbols/common/architecture/gallo-romaine.png",
     "pre-romane": "/symbols/common/architecture/pre-romane.png",
+    medievale: "/symbols/common/architecture/medievale.png",
     romane: "/symbols/common/architecture/romane.png",
     gothique: "/symbols/common/architecture/gothique.png",
     "gothique-flamboyant":
