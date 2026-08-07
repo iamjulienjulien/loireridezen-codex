@@ -1,0 +1,55 @@
+.container {
+    --shell-container-max-width: 68rem;
+    --shell-container-padding-start: clamp(2.5rem, 5vw, 4rem);
+    --shell-container-padding-end: clamp(5rem, 8vw, 6rem);
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: var(--shell-container-max-width);
+    min-width: 0;
+    margin-inline: auto;
+    padding-block: var(--shell-container-padding-start)
+        var(--shell-container-padding-end);
+    padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.container[data-width="narrow"] {
+    --shell-container-max-width: 38rem;
+}
+
+.container[data-width="reading"] {
+    --shell-container-max-width: 48rem;
+}
+
+.container[data-width="content"] {
+    --shell-container-max-width: 68rem;
+}
+
+.container[data-width="wide"] {
+    --shell-container-max-width: 88rem;
+}
+
+.container[data-width="full"] {
+    --shell-container-max-width: 100%;
+}
+
+.container[data-spacing="none"] {
+    --shell-container-padding-start: 0;
+    --shell-container-padding-end: 0;
+}
+
+.container[data-spacing="compact"] {
+    --shell-container-padding-start: clamp(1.5rem, 4vw, 2.5rem);
+    --shell-container-padding-end: clamp(4rem, 7vw, 5rem);
+}
+
+.container[data-spacing="relaxed"] {
+    --shell-container-padding-start: clamp(3.5rem, 7vw, 5rem);
+    --shell-container-padding-end: clamp(6rem, 10vw, 8rem);
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding-inline: 1rem;
+    }
+}

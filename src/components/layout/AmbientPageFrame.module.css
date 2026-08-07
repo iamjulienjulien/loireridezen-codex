@@ -1,0 +1,36 @@
+.frame {
+    position: relative;
+    min-height: 100dvh;
+    overflow-x: clip;
+    isolation: isolate;
+    background-color: var(--color-ambiance-fond);
+    background-image: var(--ambient-glow);
+    color: var(--color-ambiance-texte-primaire);
+    transition:
+        background-color 1.4s ease,
+        color 1.4s ease;
+}
+
+.frame::before {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    content: "";
+    opacity: var(--noise-opacity);
+    pointer-events: none;
+    transition: opacity 1.4s ease;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    min-height: 100dvh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .frame,
+    .frame::before {
+        transition: none;
+    }
+}
