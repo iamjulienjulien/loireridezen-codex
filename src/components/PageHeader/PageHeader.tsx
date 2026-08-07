@@ -1,261 +1,226 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 
-import { LRZSymbol } from "@/components/LRZSymbol";
-import { featureIsEnabled } from "@/registry/feature-flags";
-import type { IndexEntry, IndexHref } from "@/registry/indexes";
-import { isLRZIndexSymbolSlug } from "@/registry/symbols";
+import LRZScrambleText from "@/components/LRZLivingText/scramble/LRZScrambleText";
+import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import type { LRZColor } from "@/types/lrz";
 
-import type {
-    CollectionHref,
-    CollectionRegistryEntry,
-} from "@/registry/collections";
-
 import styles from "./PageHeader.module.css";
-import LRZSeparateur from "../LRZSeparateur/LRZSeparateur";
 
-export type PageHeaderCurrent = IndexHref | CollectionHref;
+export type PageHeaderVariant =
+    | "home"
+    | "index"
+    | "collection"
+    | "page"
+    | "editorial"
+    | "documentation"
+    | "atelier";
 
 export type PageHeaderProps = {
-    current: PageHeaderCurrent;
-    indexes: readonly IndexEntry[];
-    collections?: readonly CollectionRegistryEntry[];
-};
-
-type ActiveIndexPage = {
-    kind: "index";
-    slug: string;
-    href: string;
-    indexHref: string;
+    variant: PageHeaderVariant;
     title: string;
-    label: string;
-    mark: string;
-    accent: string;
-    color: LRZColor;
+    eyebrow?: ReactNode;
+    description?: ReactNode;
+    mark?: ReactNode;
+    identity?: ReactNode;
+    navigation?: ReactNode;
+    actions?: ReactNode;
+    breadcrumbs?: ReactNode;
+    separator?: ReactNode | false;
+    accent?: string;
+    color?: LRZColor;
+    className?: string;
 };
 
-type ActiveCollectionPage = {
-    kind: "collection";
-    slug: string;
-    href: string;
-    indexHref: string;
-    title: string;
-    label: string;
-    mark: string;
-    accent: string;
-    color: LRZColor;
+type PageHeaderStyle = CSSProperties & {
+    "--accent": string;
+    "--page-header-accent": string;
 };
-
-type ActivePage = ActiveIndexPage | ActiveCollectionPage;
 
 export default function PageHeader({
-    current,
-    indexes,
-    collections = [],
+    variant,
+    title,
+    eyebrow = "Loire Ride Zen",
+    description,
+    mark,
+    identity,
+    navigation,
+    actions,
+    breadcrumbs,
+    separator,
+    accent = "var(--gold)",
+    color = "galet",
+    className,
 }: PageHeaderProps) {
-    const active = resolveActivePage({
-        current,
-        indexes,
-        collections,
-    });
+    const style = {
+        "--accent": accent,
+        "--page-header-accent": accent,
+    } as PageHeaderStyle;
 
-    const activeIndexHref = active.indexHref;
+    if (variant === "index") {
+        return (
+            <div
+                className={[styles.root, className].filter(Boolean).join(" ")}
+                data-page-header-variant="index"
+                style={style}
+            >
+                <header className={styles.indexHeader}>
+                    <div className={styles.indexBrand}>
+                        {mark}
 
-    return (
-        <div>
-            <header className={styles.header} style={accentVar(active.accent)}>
-                <div className={styles.brand}>
-                    <PageMark active={active} />
-
-                    <div className={styles.brandText}>
-                        <span className={styles.identity}>
-                            <span
-                                className={styles.kickerBar}
-                                aria-hidden="true"
-                            />
-
-                            <span className={styles.brandName}>
-                                Loire Ride Zen
-                            </span>
-
-                            <span
-                                className={styles.identitySeparator}
-                                aria-hidden="true"
-                            >
-                                ·
-                            </span>
-
-                            <Link href="/" className={styles.siteName}>
-                                Le Codex ligérien
-                            </Link>
-
-                            {active.kind === "collection" ? (
-                                <>
+                        <div className={styles.indexBrandText}>
+                            {identity ?? (
+                                <span className={styles.indexIdentity}>
                                     <span
-                                        className={styles.identitySeparator}
-                                        aria-hidden="true"
+                                        className={styles.indexKickerBar}
+                                        aria-hidden
+                                    />
+                                    <span className={styles.indexBrandName}>
+                                        {eyebrow}
+                                    </span>
+                                    <span
+                                        className={
+                                            styles.indexIdentitySeparator
+                                        }
+                                        aria-hidden
                                     >
                                         ·
                                     </span>
-
                                     <Link
-                                        href={active.indexHref}
-                                        className={styles.parentIndex}
+                                        href="/"
+                                        className={styles.indexSiteName}
                                     >
-                                        Collection de l’index
+                                        Le Codex ligérien
                                     </Link>
-                                </>
-                            ) : null}
-                        </span>
+                                </span>
+                            )}
 
-                        <h1 className={styles.title}>{active.title}</h1>
+                            <h1 className={styles.indexTitle}>{title}</h1>
+                        </div>
                     </div>
+
+                    {navigation || actions ? (
+                        <div className={styles.indexTools}>
+                            {navigation}
+                            {actions}
+                        </div>
+                    ) : null}
+                </header>
+
+                {renderSeparator(separator, color, 5)}
+            </div>
+        );
+    }
+
+    return (
+        <div
+            className={[styles.root, className].filter(Boolean).join(" ")}
+            data-page-header-variant={variant}
+            style={style}
+        >
+            <header className={styles.header}>
+                <div className={styles.topbar}>
+                    {identity ?? (
+                        <Link href="/" className={styles.identity}>
+                            <span className={styles.identityKicker}>
+                                Loire Ride Zen
+                            </span>
+                            <span
+                                className={styles.identitySeparator}
+                                aria-hidden
+                            >
+                                ·
+                            </span>
+                            <span className={styles.identityName}>
+                                Le Codex ligérien
+                            </span>
+                        </Link>
+                    )}
+
+                    {navigation || actions ? (
+                        <div className={styles.tools}>
+                            {navigation}
+                            {actions ? (
+                                <div className={styles.actions}>{actions}</div>
+                            ) : null}
+                        </div>
+                    ) : null}
                 </div>
 
-                {indexes.length > 1 ? (
-                    <nav className={styles.nav} aria-label="Index du Codex">
-                        {indexes.map((index) => {
-                            const isCurrentPage = index.href === current;
+                <div className={styles.hero}>
+                    {mark ? (
+                        <span className={styles.mark} aria-hidden>
+                            {mark}
+                        </span>
+                    ) : null}
 
-                            const isCurrentSection =
-                                index.href === activeIndexHref;
-
-                            return (
-                                <Link
-                                    key={index.href}
-                                    href={index.href}
-                                    className={styles.navButton}
-                                    style={accentVar(index.accent)}
-                                    aria-current={
-                                        isCurrentPage ? "page" : undefined
-                                    }
-                                    data-current-section={
-                                        !isCurrentPage && isCurrentSection
-                                            ? ""
-                                            : undefined
-                                    }
-                                >
-                                    {featureIsEnabled("indexesCustomEmoji") &&
-                                    isLRZIndexSymbolSlug(index.slug) ? (
-                                        <LRZSymbol
-                                            collection="index"
-                                            slug={index.slug}
-                                            size={25}
-                                            decorative
-                                        />
-                                    ) : (
-                                        <span
-                                            className={styles.navEmoji}
-                                            aria-hidden
-                                        >
-                                            {index.mark}
-                                        </span>
-                                    )}
-
-                                    <span className={styles.navText}>
-                                        {index.label}
-                                    </span>
-                                </Link>
-                            );
-                        })}
-                    </nav>
-                ) : null}
+                    <div className={styles.copy}>
+                        {breadcrumbs ? (
+                            <div className={styles.breadcrumbs}>
+                                {breadcrumbs}
+                            </div>
+                        ) : null}
+                        {eyebrow ? (
+                            <p className={styles.eyebrow}>{eyebrow}</p>
+                        ) : null}
+                        <PageTitle
+                            title={title}
+                            animated={variant === "home"}
+                        />
+                        {description ? (
+                            <div className={styles.description}>
+                                {description}
+                            </div>
+                        ) : null}
+                    </div>
+                </div>
             </header>
-            <LRZSeparateur
-                preset="spark"
-                scope="content"
-                size="lg"
-                weight="thin"
-                tone="strong"
-                color={active.color}
-                marginBlock={"5px"}
-                fadeEdges
-            />
+
+            {renderSeparator(separator, color, 0)}
         </div>
     );
 }
 
-function PageMark({ active }: { active: ActivePage }) {
-    if (
-        active.kind === "index" &&
-        featureIsEnabled("indexesCustomEmoji") &&
-        isLRZIndexSymbolSlug(active.slug)
-    ) {
+function PageTitle({ title, animated }: { title: string; animated: boolean }) {
+    if (animated) {
         return (
-            <LRZSymbol
-                collection="index"
-                slug={active.slug}
-                size={58}
-                frame="subtle"
-                shape="rounded"
-                padding="sm"
-                shadow="soft"
-                className={styles.markSymbol}
-                loading="eager"
-                decorative
-            />
+            <LRZScrambleText
+                preset="heading-1"
+                as="h1"
+                speed={130}
+                align="start"
+                size="4xl"
+                preserveSpaces
+                color="blanc"
+                characterSet="ucfirst"
+                className={styles.title}
+            >
+                {title}
+            </LRZScrambleText>
         );
     }
+
+    return <h1 className={styles.title}>{title}</h1>;
+}
+
+function renderSeparator(
+    separator: ReactNode | false | undefined,
+    color: LRZColor,
+    marginBlock: number,
+) {
+    if (separator === false) return null;
+    if (separator !== undefined) return separator;
 
     return (
-        <span className={styles.markBadge} aria-hidden="true">
-            <span className={styles.collectionMark}>{active.mark}</span>
-        </span>
+        <LRZSeparateur
+            preset="spark"
+            scope="content"
+            size="lg"
+            weight="thin"
+            tone="strong"
+            color={color}
+            marginBlock={marginBlock}
+            fadeEdges
+        />
     );
-}
-
-function resolveActivePage({
-    current,
-    indexes,
-    collections,
-}: {
-    current: PageHeaderCurrent;
-    indexes: readonly IndexEntry[];
-    collections: readonly CollectionRegistryEntry[];
-}): ActivePage {
-    const collection = collections.find((entry) => entry.href === current);
-
-    if (collection) {
-        const currentIndex = "/" + current.split("/")[1];
-        const index =
-            indexes.find((entry) => entry.href === currentIndex) ?? indexes[0];
-        return {
-            kind: "collection",
-            slug: collection.slug,
-            href: collection.href,
-            indexHref: collection.indexHref,
-            title: collection.title,
-            label: collection.label,
-            mark: collection.mark,
-            accent: collection.accent,
-            color: index.color,
-        };
-    }
-
-    const index = indexes.find((entry) => entry.href === current) ?? indexes[0];
-
-    if (!index) {
-        throw new Error(
-            `PageHeader ne peut résoudre aucune page pour « ${current} ».`,
-        );
-    }
-
-    return {
-        kind: "index",
-        slug: index.slug,
-        href: index.href,
-        indexHref: index.href,
-        title: index.title,
-        label: index.label,
-        mark: index.mark,
-        accent: index.accent,
-        color: index.color,
-    };
-}
-
-function accentVar(color: string): CSSProperties {
-    return {
-        "--accent": color,
-    } as CSSProperties;
 }

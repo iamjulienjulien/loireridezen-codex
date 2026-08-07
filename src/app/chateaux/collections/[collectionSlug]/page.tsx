@@ -20,7 +20,10 @@ import { findCollectionPageDefinition } from "@/registry/pages";
 import { resolveCollectionPage } from "./lib";
 
 import styles from "./page.module.css";
-import PageHeader, { PageHeaderCurrent } from "@/components/PageHeader";
+import PageHeader, {
+    PageHeaderBreadcrumbs,
+    PageHeaderIndexNavigation,
+} from "@/components/PageHeader";
 import { getIndexesForEnv } from "@/registry/indexes";
 
 type CollectionPageProps = {
@@ -67,6 +70,11 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
     }
 
     const { entries, podium } = resolveCollectionPage(collection);
+    const pageDefinition = findCollectionPageDefinition(collection.slug);
+
+    if (!pageDefinition) {
+        notFound();
+    }
 
     const hero = {
         slug: collection.slug,
@@ -99,9 +107,30 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         >
             <div className={styles.wrap}>
                 <PageHeader
-                    current={collection.href as PageHeaderCurrent}
-                    indexes={indexes}
-                    collections={COLLECTIONS}
+                    variant="collection"
+                    title={pageDefinition.title}
+                    eyebrow={pageDefinition.eyebrow}
+                    accent={pageDefinition.accent}
+                    color={pageDefinition.color}
+                    mark={pageDefinition.mark}
+                    breadcrumbs={
+                        <PageHeaderBreadcrumbs
+                            items={[
+                                { href: "/", label: "Le Codex ligérien" },
+                                {
+                                    href: pageDefinition.indexHref,
+                                    label: "Châteaux",
+                                },
+                            ]}
+                        />
+                    }
+                    navigation={
+                        <PageHeaderIndexNavigation
+                            current={pageDefinition.href}
+                            indexes={indexes}
+                            activeSectionHref={pageDefinition.indexHref}
+                        />
+                    }
                 />
 
                 <CollectionHero

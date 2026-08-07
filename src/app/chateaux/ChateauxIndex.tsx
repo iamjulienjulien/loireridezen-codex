@@ -6,9 +6,11 @@ import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
 
-import PageHeader from "@/components/PageHeader";
+import PageHeader, {
+    PageHeaderIndexMark,
+    PageHeaderIndexNavigation,
+} from "@/components/PageHeader";
 import {
-    COLLECTIONS,
     getCollectionsByIndexForEnv,
 } from "@/registry/collections";
 
@@ -474,9 +476,17 @@ export default function ChateauxIndex({
         <main className={styles.page}>
             <div className={styles.wrap}>
                 <PageHeader
-                    current="/chateaux"
-                    indexes={indexes}
-                    collections={COLLECTIONS}
+                    variant="index"
+                    title={entry.title}
+                    accent={entry.accent}
+                    color={entry.color}
+                    mark={<PageHeaderIndexMark index={entry} />}
+                    navigation={
+                        <PageHeaderIndexNavigation
+                            current={entry.href}
+                            indexes={indexes}
+                        />
+                    }
                 />
 
                 <IndexPresentation

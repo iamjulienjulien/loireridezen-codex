@@ -2,7 +2,10 @@
 
 import { useMemo, useState } from "react";
 import PageFooter from "@/components/PageFooter";
-import PageHeader from "@/components/PageHeader";
+import PageHeader, {
+    PageHeaderIndexMark,
+    PageHeaderIndexNavigation,
+} from "@/components/PageHeader";
 import IndexControls from "@/components/IndexControls";
 import IndexPresentation from "@/components/IndexPresentation";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -125,7 +128,19 @@ export default function GuinguettesIndex({
     return (
         <main className={styles.page}>
             <div className={styles.wrap}>
-                <PageHeader current="/guinguettes" indexes={indexes} />
+                <PageHeader
+                    variant="index"
+                    title={entry.title}
+                    accent={entry.accent}
+                    color={entry.color}
+                    mark={<PageHeaderIndexMark index={entry} />}
+                    navigation={
+                        <PageHeaderIndexNavigation
+                            current={entry.href}
+                            indexes={indexes}
+                        />
+                    }
+                />
 
                 <IndexPresentation
                     description={entry.description}
