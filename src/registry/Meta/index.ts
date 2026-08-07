@@ -25,6 +25,15 @@ export {
 } from "@/registry/Meta/common-architecture";
 
 export {
+    COMMON_MILIEU_META,
+    COMMON_MILIEU_REGISTRY,
+    getCommonMilieuMeta,
+    isCommonMilieu,
+    type CommonMilieu,
+    type CommonMilieuMeta,
+} from "@/registry/Meta/common-milieu";
+
+export {
     FAUNE_TYPE_META,
     FAUNE_TYPE_REGISTRY,
     getFauneTypeMeta,
