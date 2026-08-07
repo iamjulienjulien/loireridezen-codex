@@ -2,11 +2,6 @@
 
 import { useMemo, useState } from "react";
 import type { Mot } from "@/types/mot";
-import PageHeader, {
-    PageHeaderIndexMark,
-    PageHeaderIndexNavigation,
-} from "@/components/PageHeader";
-import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -85,93 +80,72 @@ export default function VocabulaireIndex({
     }, [mots, categorie, usage, q]);
 
     return (
-        <main className={styles.page}>
-            <div className={styles.wrap}>
-                <PageHeader
-                    variant="index"
-                    title={entry.title}
-                    accent={entry.accent}
-                    color={entry.color}
-                    mark={<PageHeaderIndexMark index={entry} />}
-                    navigation={
-                        <PageHeaderIndexNavigation
-                            current={entry.href}
-                            indexes={indexes}
+        <>
+            <IndexPresentation
+                description={entry.description}
+                current="/vocabulaire"
+                indexes={indexes}
+            >
+                {entry.presentation_md}
+            </IndexPresentation>
+
+            <IndexControls
+                query={q}
+                onQuery={setQ}
+                placeholder="Chercher un mot, une définition, une variante…"
+                resultCount={list.length}
+                totalCount={mots.length}
+                unit="mots"
+                accent={entry.accent}
+                groups={[
+                    {
+                        label: "Catégorie",
+                        active: categorie,
+                        onSelect: setCategorie,
+                        options: CATEGORIES.map((it) => ({
+                            id: it.id,
+                            label: it.label,
+                            count:
+                                it.id === "all"
+                                    ? undefined
+                                    : countFor("categorie", it.id),
+                        })),
+                    },
+                    {
+                        label: "Usage",
+                        active: usage,
+                        onSelect: setUsage,
+                        options: USAGES.map((it) => ({
+                            id: it.id,
+                            label: it.label,
+                            count:
+                                it.id === "all"
+                                    ? undefined
+                                    : countFor("usage", it.id),
+                        })),
+                    },
+                ]}
+                expand={{ all: expandAll, onToggle: toggleAll }}
+            />
+
+            {list.length === 0 ? (
+                <p className={styles.empty}>
+                    Aucun mot à cet endroit du fil. Élargis la recherche ou
+                    change de filtre.
+                </p>
+            ) : (
+                <div className={styles.grid}>
+                    {list.map((d) => (
+                        <VocabulaireCard
+                            key={d.slug}
+                            version={2}
+                            d={d}
+                            open={openOverrides[d.slug] ?? expandAll}
+                            onToggle={() => toggleOne(d.slug)}
                         />
-                    }
-                />
-
-                <IndexPresentation
-                    description={entry.description}
-                    current="/vocabulaire"
-                    indexes={indexes}
-                >
-                    {entry.presentation_md}
-                </IndexPresentation>
-
-                <IndexControls
-                    query={q}
-                    onQuery={setQ}
-                    placeholder="Chercher un mot, une définition, une variante…"
-                    resultCount={list.length}
-                    totalCount={mots.length}
-                    unit="mots"
-                    accent={entry.accent}
-                    groups={[
-                        {
-                            label: "Catégorie",
-                            active: categorie,
-                            onSelect: setCategorie,
-                            options: CATEGORIES.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("categorie", it.id),
-                            })),
-                        },
-                        {
-                            label: "Usage",
-                            active: usage,
-                            onSelect: setUsage,
-                            options: USAGES.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("usage", it.id),
-                            })),
-                        },
-                    ]}
-                    expand={{ all: expandAll, onToggle: toggleAll }}
-                />
-
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Aucun mot à cet endroit du fil. Élargis la recherche ou
-                        change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <VocabulaireCard
-                                key={d.slug}
-                                version={2}
-                                d={d}
-                                open={openOverrides[d.slug] ?? expandAll}
-                                onToggle={() => toggleOne(d.slug)}
-                            />
-                        ))}
-                    </div>
-                )}
-
-                <PageFooter color={entry.color}>
-                    <br />
-                    {mots.length} {entry.footerNote}
-                </PageFooter>
-            </div>
-        </main>
+                    ))}
+                </div>
+            )}
+        </>
     );
 }

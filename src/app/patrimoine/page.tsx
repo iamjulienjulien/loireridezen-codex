@@ -1,16 +1,25 @@
 import patrimoine from "@data/patrimoine.json";
+import IndexShell from "@/components/layout/IndexShell";
 import type { Patrimoine } from "@/types/patrimoine";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";
 import { getIndexPageDefinition } from "@/registry/pages";
 import PatrimoineIndex from "./PatrimoineIndex";
 
-export const metadata = buildPageMetadata(
-    getIndexPageDefinition("/patrimoine"),
-);
+const PATRIMOINE_PAGE = getIndexPageDefinition("/patrimoine");
+
+export const metadata = buildPageMetadata(PATRIMOINE_PAGE);
 
 export default function PatrimoinePage() {
     const items = patrimoine.patrimoine as Patrimoine[];
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
-    return <PatrimoineIndex items={items} indexes={indexes} />;
+    return (
+        <IndexShell
+            page={PATRIMOINE_PAGE}
+            indexes={indexes}
+            totalEntries={items.length}
+        >
+            <PatrimoineIndex items={items} indexes={indexes} />
+        </IndexShell>
+    );
 }

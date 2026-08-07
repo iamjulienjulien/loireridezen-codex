@@ -2,11 +2,6 @@
 
 import { useMemo, useState } from "react";
 import type { Patrimoine } from "@/types/patrimoine";
-import PageHeader, {
-    PageHeaderIndexMark,
-    PageHeaderIndexNavigation,
-} from "@/components/PageHeader";
-import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -96,94 +91,73 @@ export default function PatrimoineIndex({
     }, [items, type, etat, q]);
 
     return (
-        <main className={styles.page}>
-            <div className={styles.wrap}>
-                <PageHeader
-                    variant="index"
-                    title={entry.title}
-                    accent={entry.accent}
-                    color={entry.color}
-                    mark={<PageHeaderIndexMark index={entry} />}
-                    navigation={
-                        <PageHeaderIndexNavigation
-                            current={entry.href}
-                            indexes={indexes}
+        <>
+            <IndexPresentation
+                description={entry.description}
+                current="/patrimoine"
+                indexes={indexes}
+            >
+                {entry.presentation_md}
+            </IndexPresentation>
+
+            <IndexControls
+                query={q}
+                onQuery={setQ}
+                placeholder="Chercher un ouvrage, une commune, une fonction…"
+                resultCount={list.length}
+                totalCount={items.length}
+                unit="ouvrages"
+                accent={entry.accent}
+                expand={{ all: expandAll, onToggle: toggleAll }}
+                groups={[
+                    {
+                        label: "Type",
+                        active: type,
+                        onSelect: setType,
+                        options: TYPES.map((it) => ({
+                            id: it.id,
+                            label: it.label,
+                            count:
+                                it.id === "all"
+                                    ? undefined
+                                    : countFor("type", it.id),
+                        })),
+                    },
+                    {
+                        label: "État",
+                        active: etat,
+                        onSelect: setEtat,
+                        options: ETATS.map((it) => ({
+                            id: it.id,
+                            label: it.label,
+                            count:
+                                it.id === "all"
+                                    ? undefined
+                                    : countFor("etat", it.id),
+                        })),
+                    },
+                ]}
+            />
+
+            {list.length === 0 ? (
+                <p className={styles.empty}>
+                    Aucun ouvrage à cet endroit du fil. Élargis la recherche ou
+                    change de filtre.
+                </p>
+            ) : (
+                <div className={styles.grid}>
+                    {list.map((d) => (
+                        <PatrimoineCard
+                            key={d.slug}
+                            version={2}
+                            d={d}
+                            numero={numeros.get(d.slug) ?? 0}
+                            open={openOverrides[d.slug] ?? expandAll}
+                            onToggle={() => toggleOne(d.slug)}
                         />
-                    }
-                />
-
-                <IndexPresentation
-                    description={entry.description}
-                    current="/patrimoine"
-                    indexes={indexes}
-                >
-                    {entry.presentation_md}
-                </IndexPresentation>
-
-                <IndexControls
-                    query={q}
-                    onQuery={setQ}
-                    placeholder="Chercher un ouvrage, une commune, une fonction…"
-                    resultCount={list.length}
-                    totalCount={items.length}
-                    unit="ouvrages"
-                    accent={entry.accent}
-                    expand={{ all: expandAll, onToggle: toggleAll }}
-                    groups={[
-                        {
-                            label: "Type",
-                            active: type,
-                            onSelect: setType,
-                            options: TYPES.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("type", it.id),
-                            })),
-                        },
-                        {
-                            label: "État",
-                            active: etat,
-                            onSelect: setEtat,
-                            options: ETATS.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("etat", it.id),
-                            })),
-                        },
-                    ]}
-                />
-
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Aucun ouvrage à cet endroit du fil. Élargis la recherche
-                        ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <PatrimoineCard
-                                key={d.slug}
-                                version={2}
-                                d={d}
-                                numero={numeros.get(d.slug) ?? 0}
-                                open={openOverrides[d.slug] ?? expandAll}
-                                onToggle={() => toggleOne(d.slug)}
-                            />
-                        ))}
-                    </div>
-                )}
-
-                <PageFooter color={entry.color}>
-                    <br />
-                    {items.length} {entry.footerNote}
-                </PageFooter>
-            </div>
-        </main>
+                    ))}
+                </div>
+            )}
+        </>
     );
 }

@@ -1,11 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import PageFooter from "@/components/PageFooter";
-import PageHeader, {
-    PageHeaderIndexMark,
-    PageHeaderIndexNavigation,
-} from "@/components/PageHeader";
 import IndexControls from "@/components/IndexControls";
 import IndexPresentation from "@/components/IndexPresentation";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -126,106 +121,81 @@ export default function GuinguettesIndex({
     }, [guinguettes, territoire, coursDEau, statut, query]);
 
     return (
-        <main className={styles.page}>
-            <div className={styles.wrap}>
-                <PageHeader
-                    variant="index"
-                    title={entry.title}
-                    accent={entry.accent}
-                    color={entry.color}
-                    mark={<PageHeaderIndexMark index={entry} />}
-                    navigation={
-                        <PageHeaderIndexNavigation
-                            current={entry.href}
-                            indexes={indexes}
+        <>
+            <IndexPresentation
+                description={entry.description}
+                current="/guinguettes"
+                indexes={indexes}
+            >
+                {entry.presentation_md}
+            </IndexPresentation>
+
+            <IndexControls
+                query={query}
+                onQuery={setQuery}
+                placeholder="Chercher une guinguette, une commune, un cours d’eau…"
+                resultCount={list.length}
+                totalCount={guinguettes.length}
+                unit="guinguettes"
+                accent={entry.accent}
+                expand={{ all: expandAll, onToggle: toggleAll }}
+                groups={[
+                    {
+                        label: "Territoire",
+                        active: territoire,
+                        onSelect: setTerritoire,
+                        options: territoireOptions.map((option) => ({
+                            ...option,
+                            count:
+                                option.id === "all"
+                                    ? undefined
+                                    : countFor("territoire", option.id),
+                        })),
+                    },
+                    {
+                        label: "Cours d’eau",
+                        active: coursDEau,
+                        onSelect: setCoursDEau,
+                        options: coursEauOptions.map((option) => ({
+                            ...option,
+                            count:
+                                option.id === "all"
+                                    ? undefined
+                                    : countFor("coursDEau", option.id),
+                        })),
+                    },
+                    {
+                        label: "Statut",
+                        active: statut,
+                        onSelect: setStatut,
+                        options: STATUTS.map((option) => ({
+                            ...option,
+                            count:
+                                option.id === "all"
+                                    ? undefined
+                                    : countFor("statut", option.id),
+                        })),
+                    },
+                ]}
+            />
+
+            {list.length === 0 ? (
+                <p className={styles.empty}>
+                    Pas de lampions sur cette portion du fil. Élargis la
+                    recherche ou change de filtre.
+                </p>
+            ) : (
+                <div className={styles.grid}>
+                    {list.map((guinguette) => (
+                        <GuinguetteCard
+                            key={guinguette.slug}
+                            guinguette={guinguette}
+                            open={openOverrides[guinguette.slug] ?? expandAll}
+                            onToggle={() => toggleOne(guinguette.slug)}
                         />
-                    }
-                />
-
-                <IndexPresentation
-                    description={entry.description}
-                    current="/guinguettes"
-                    indexes={indexes}
-                >
-                    {entry.presentation_md}
-                </IndexPresentation>
-
-                <IndexControls
-                    query={query}
-                    onQuery={setQuery}
-                    placeholder="Chercher une guinguette, une commune, un cours d’eau…"
-                    resultCount={list.length}
-                    totalCount={guinguettes.length}
-                    unit="guinguettes"
-                    accent={entry.accent}
-                    expand={{ all: expandAll, onToggle: toggleAll }}
-                    groups={[
-                        {
-                            label: "Territoire",
-                            active: territoire,
-                            onSelect: setTerritoire,
-                            options: territoireOptions.map((option) => ({
-                                ...option,
-                                count:
-                                    option.id === "all"
-                                        ? undefined
-                                        : countFor("territoire", option.id),
-                            })),
-                        },
-                        {
-                            label: "Cours d’eau",
-                            active: coursDEau,
-                            onSelect: setCoursDEau,
-                            options: coursEauOptions.map((option) => ({
-                                ...option,
-                                count:
-                                    option.id === "all"
-                                        ? undefined
-                                        : countFor("coursDEau", option.id),
-                            })),
-                        },
-                        {
-                            label: "Statut",
-                            active: statut,
-                            onSelect: setStatut,
-                            options: STATUTS.map((option) => ({
-                                ...option,
-                                count:
-                                    option.id === "all"
-                                        ? undefined
-                                        : countFor("statut", option.id),
-                            })),
-                        },
-                    ]}
-                />
-
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Pas de lampions sur cette portion du fil. Élargis la
-                        recherche ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((guinguette) => (
-                            <GuinguetteCard
-                                key={guinguette.slug}
-                                guinguette={guinguette}
-                                open={
-                                    openOverrides[guinguette.slug] ?? expandAll
-                                }
-                                onToggle={() => toggleOne(guinguette.slug)}
-                            />
-                        ))}
-                    </div>
-                )}
-
-                <PageFooter color={entry.color}>
-                    Le Codex Ligérien ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
-                    <br />
-                    {guinguettes.length} {entry.footerNote}
-                </PageFooter>
-            </div>
-        </main>
+                    ))}
+                </div>
+            )}
+        </>
     );
 }

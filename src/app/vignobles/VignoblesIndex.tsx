@@ -2,11 +2,6 @@
 
 import { useMemo, useState } from "react";
 import type { Vignoble } from "@/types/vignoble";
-import PageHeader, {
-    PageHeaderIndexMark,
-    PageHeaderIndexNavigation,
-} from "@/components/PageHeader";
-import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -99,106 +94,85 @@ export default function VignoblesIndex({
     }, [vignobles, couleur, rive, notoriete, q]);
 
     return (
-        <main className={styles.page}>
-            <div className={styles.wrap}>
-                <PageHeader
-                    variant="index"
-                    title={entry.title}
-                    accent={entry.accent}
-                    color={entry.color}
-                    mark={<PageHeaderIndexMark index={entry} />}
-                    navigation={
-                        <PageHeaderIndexNavigation
-                            current={entry.href}
-                            indexes={indexes}
+        <>
+            <IndexPresentation
+                description={entry.description}
+                current="/vignobles"
+                indexes={indexes}
+            >
+                {entry.presentation_md}
+            </IndexPresentation>
+
+            <IndexControls
+                query={q}
+                onQuery={setQ}
+                placeholder="Chercher une appellation, un cépage, une commune…"
+                resultCount={list.length}
+                totalCount={vignobles.length}
+                unit="appellations"
+                accent={entry.accent}
+                expand={{ all: expandAll, onToggle: toggleAll }}
+                groups={[
+                    {
+                        label: "Couleur",
+                        active: couleur,
+                        onSelect: setCouleur,
+                        options: COULEURS.map((it) => ({
+                            id: it.id,
+                            label: it.label,
+                            count:
+                                it.id === "all"
+                                    ? undefined
+                                    : countFor("couleur", it.id),
+                        })),
+                    },
+                    {
+                        label: "Rive",
+                        active: rive,
+                        onSelect: setRive,
+                        options: RIVES.map((it) => ({
+                            id: it.id,
+                            label: it.label,
+                            count:
+                                it.id === "all"
+                                    ? undefined
+                                    : countFor("rive", it.id),
+                        })),
+                    },
+                    {
+                        label: "Notoriété",
+                        active: notoriete,
+                        onSelect: setNotoriete,
+                        options: NOTORIETES.map((it) => ({
+                            id: it.id,
+                            label: it.label,
+                            count:
+                                it.id === "all"
+                                    ? undefined
+                                    : countFor("notoriete", it.id),
+                        })),
+                    },
+                ]}
+            />
+
+            {list.length === 0 ? (
+                <p className={styles.empty}>
+                    Aucune appellation à cet endroit du fil. Élargis la
+                    recherche ou change de filtre.
+                </p>
+            ) : (
+                <div className={styles.grid}>
+                    {list.map((d) => (
+                        <VignoblesCard
+                            key={d.slug}
+                            version={2}
+                            d={d}
+                            open={openOverrides[d.slug] ?? expandAll}
+                            onToggle={() => toggleOne(d.slug)}
                         />
-                    }
-                />
-
-                <IndexPresentation
-                    description={entry.description}
-                    current="/vignobles"
-                    indexes={indexes}
-                >
-                    {entry.presentation_md}
-                </IndexPresentation>
-
-                <IndexControls
-                    query={q}
-                    onQuery={setQ}
-                    placeholder="Chercher une appellation, un cépage, une commune…"
-                    resultCount={list.length}
-                    totalCount={vignobles.length}
-                    unit="appellations"
-                    accent={entry.accent}
-                    expand={{ all: expandAll, onToggle: toggleAll }}
-                    groups={[
-                        {
-                            label: "Couleur",
-                            active: couleur,
-                            onSelect: setCouleur,
-                            options: COULEURS.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("couleur", it.id),
-                            })),
-                        },
-                        {
-                            label: "Rive",
-                            active: rive,
-                            onSelect: setRive,
-                            options: RIVES.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("rive", it.id),
-                            })),
-                        },
-                        {
-                            label: "Notoriété",
-                            active: notoriete,
-                            onSelect: setNotoriete,
-                            options: NOTORIETES.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("notoriete", it.id),
-                            })),
-                        },
-                    ]}
-                />
-
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Aucune appellation à cet endroit du fil. Élargis la
-                        recherche ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <VignoblesCard
-                                key={d.slug}
-                                version={2}
-                                d={d}
-                                open={openOverrides[d.slug] ?? expandAll}
-                                onToggle={() => toggleOne(d.slug)}
-                            />
-                        ))}
-                    </div>
-                )}
-
-                <PageFooter color={entry.color}>
-                    <br />
-                    {vignobles.length} {entry.footerNote}
-                </PageFooter>
-            </div>
-        </main>
+                    ))}
+                </div>
+            )}
+        </>
     );
 }

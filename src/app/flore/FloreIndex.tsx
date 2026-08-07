@@ -2,11 +2,6 @@
 
 import { useMemo, useState } from "react";
 import type { Flore } from "@/types/flore";
-import PageHeader, {
-    PageHeaderIndexMark,
-    PageHeaderIndexNavigation,
-} from "@/components/PageHeader";
-import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -77,99 +72,70 @@ export default function FloreIndex({
     }, [flore, categorie, rarete, q]);
 
     return (
-        <main className={styles.page}>
-            <div className={styles.wrap}>
-                <PageHeader
-                    variant="index"
-                    title={entry.title}
-                    accent={entry.accent}
-                    color={entry.color}
-                    mark={<PageHeaderIndexMark index={entry} />}
-                    navigation={
-                        <PageHeaderIndexNavigation
-                            current={entry.href}
-                            indexes={indexes}
+        <>
+            <IndexPresentation
+                description={entry.description}
+                current="/flore"
+                indexes={indexes}
+            >
+                {entry.presentation_md}
+            </IndexPresentation>
+
+            <IndexControls
+                query={q}
+                onQuery={setQ}
+                placeholder="Chercher une plante, un nom scientifique, une famille…"
+                resultCount={list.length}
+                totalCount={flore.length}
+                unit="espèces"
+                accent={entry.accent}
+                groups={[
+                    {
+                        label: "Catégorie",
+                        active: categorie,
+                        onSelect: setCategorie,
+                        options: CATEGORIES.map((it) => ({
+                            id: it.id,
+                            label: it.label,
+                            count:
+                                it.id === "all"
+                                    ? undefined
+                                    : countFor("categorie", it.id),
+                        })),
+                    },
+                    {
+                        label: "Rareté",
+                        active: rarete,
+                        onSelect: setRarete,
+                        options: RARETES.map((it) => ({
+                            id: it.id,
+                            label: it.label,
+                            count:
+                                it.id === "all"
+                                    ? undefined
+                                    : countFor("rarete", it.id),
+                        })),
+                    },
+                ]}
+                expand={{ all: expandAll, onToggle: toggleAll }}
+            />
+
+            {list.length === 0 ? (
+                <p className={styles.empty}>
+                    Rien ne pousse à cet endroit du fil. Élargis la recherche ou
+                    change de filtre.
+                </p>
+            ) : (
+                <div className={styles.grid}>
+                    {list.map((d) => (
+                        <FloreCard
+                            key={`${d.slug}-${expandAll}`}
+                            d={d}
+                            expandAll={expandAll}
                         />
-                    }
-                />
-
-                <IndexPresentation
-                    description={entry.description}
-                    current="/flore"
-                    indexes={indexes}
-                >
-                    {entry.presentation_md}
-                </IndexPresentation>
-
-                <IndexControls
-                    query={q}
-                    onQuery={setQ}
-                    placeholder="Chercher une plante, un nom scientifique, une famille…"
-                    resultCount={list.length}
-                    totalCount={flore.length}
-                    unit="espèces"
-                    accent={entry.accent}
-                    groups={[
-                        {
-                            label: "Catégorie",
-                            active: categorie,
-                            onSelect: setCategorie,
-                            options: CATEGORIES.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("categorie", it.id),
-                            })),
-                        },
-                        {
-                            label: "Rareté",
-                            active: rarete,
-                            onSelect: setRarete,
-                            options: RARETES.map((it) => ({
-                                id: it.id,
-                                label: it.label,
-                                count:
-                                    it.id === "all"
-                                        ? undefined
-                                        : countFor("rarete", it.id),
-                            })),
-                        },
-                    ]}
-                    expand={{ all: expandAll, onToggle: toggleAll }}
-                />
-
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Rien ne pousse à cet endroit du fil. Élargis la
-                        recherche ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <FloreCard
-                                key={`${d.slug}-${expandAll}`}
-                                d={d}
-                                expandAll={expandAll}
-                            />
-                        ))}
-                    </div>
-                )}
-
-                <PageFooter color={entry.color}>
-                    <span
-                        style={{
-                            display: "block",
-                            fontSize: "12px",
-                            color: "var(--color-ambiance-texte-secondaire)",
-                            marginBottom: "5px",
-                        }}
-                    >
-                        {list.length} {entry.footerNote}
-                    </span>
-                </PageFooter>
-            </div>
-        </main>
+                    ))}
+                </div>
+            )}
+        </>
     );
 }
