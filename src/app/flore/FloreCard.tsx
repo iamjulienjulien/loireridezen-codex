@@ -1,83 +1,34 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import type { Flore } from "@/types/flore";
-import styles from "./flore.module.css";
-import { LRZColor } from "@/types/lrz";
+import { Flower2, Leaf, ShieldCheck } from "lucide-react";
+
+import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
+import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
 import LRZBadge from "@/components/LRZBadge/LRZBadge";
+import LRZMetaList from "@/components/LRZMetaList";
+import { LRZStamp } from "@/components/LRZStamp";
+import { LRZTextClamp } from "@/components/LRZTextClamp";
+import { getLRZColorValue } from "@/registry/colors";
+import { getFloreCategorieMeta } from "@/registry/Meta/flore-categorie";
+import type { Flore } from "@/types/flore";
 
-const CATEGORIE_LABEL: Record<string, string> = {
-    arbre: "Arbre",
-    arbuste: "Arbuste",
-    herbacée: "Herbacée",
-    graminée: "Graminée",
-    aquatique: "Aquatique",
-    fougère: "Fougère",
-    grimpante: "Grimpante",
-};
-
-/** Couleur d'accent par catégorie (reprend les pastilles de catégorie). */
-const CATEGORIE_ACCENT: Record<string, string> = {
-    arbre: "#6a7d4a",
-    arbuste: "#8a9a56",
-    herbacée: "#c58a3a",
-    graminée: "#a89a5a",
-    aquatique: "#4f7d8c",
-    fougère: "#4a7d5a",
-    grimpante: "#7a8a5a",
-};
-
-const RARETE_CLASS: Record<string, string> = {
-    commun: styles.rCommun,
-    régulier: styles.rRegulier,
-    rare: styles.rRare,
-    trésor: styles.rTresor,
-};
-
-// Indigénat — l'intrus se voit (rouge d'alerte).
-const INDIGENAT: Record<string, { label: string; color: LRZColor }> = {
-    indigène: {
-        label: "Indigène",
-        color: "vert-metallise",
-    },
-    exotique: {
-        label: "Exotique",
-        color: "galet",
-    },
-    envahissante: {
-        label: "Envahissante",
-        color: "orange-cuivre",
-    },
-};
-// Protection — teintes bleues, distinctes de l'indigénat.
-const PROTECTION: Record<string, { label: string; color: LRZColor }> = {
-    nationale: {
-        label: "Nationale",
-        color: "gris-ardoise",
-    },
-    régionale: {
-        label: "Régionale",
-        color: "bleu-gris",
-    },
-    aucune: {
-        label: "Non protégée",
-        color: "galet",
-    },
-};
+import styles from "./flore.module.css";
 
 export type FloreCardProps = {
     d: Flore;
-    open: boolean;
-    onToggle: () => void;
+    expandAll?: boolean;
 };
 
 /**
- * Carte flore principale — ancienne version 2.
- * Identité colorée par catégorie, bande d’accent latérale et emoji teinté.
+ * Carte principale de l’index Flore.
+ *
+ * Elle partage la hiérarchie de FauneCard tout en conservant le vocabulaire
+ * botanique : observation, classification, indigénat et protection.
  */
-export default function FloreCard({ d, open, onToggle }: FloreCardProps) {
-    const ind = INDIGENAT[d.statut.indigenat] ?? INDIGENAT.exotique;
-    const prot = PROTECTION[d.statut.protection] ?? PROTECTION.aucune;
-    const accent = CATEGORIE_ACCENT[d.categorie] ?? "var(--gold)";
+export default function FloreCard({ d, expandAll = false }: FloreCardProps) {
+    const categoryColor =
+        getFloreCategorieMeta(d.categorie)?.color ?? "vert-olive";
+    const accent = getLRZColorValue(categoryColor);
 
     return (
         <article
@@ -85,19 +36,6 @@ export default function FloreCard({ d, open, onToggle }: FloreCardProps) {
             style={{ "--cat-accent": accent } as CSSProperties}
             data-categorie={d.categorie}
         >
-            <div className={styles.fEyebrow}>
-                <span
-                    className={styles.fCategorie}
-                    data-categorie={d.categorie}
-                >
-                    {CATEGORIE_LABEL[d.categorie] ?? d.categorie}
-                </span>
-                <span
-                    className={`${styles.rarete} ${RARETE_CLASS[d.rarete] ?? ""}`}
-                >
-                    {d.rarete}
-                </span>
-            </div>
             <div className={styles.fHead}>
                 <span
                     className={`${styles.fEmoji} ${d.customEmoji ? styles.fEmojiCustomV2 : styles.fEmojiBadgeV2}`}
@@ -108,80 +46,210 @@ export default function FloreCard({ d, open, onToggle }: FloreCardProps) {
                             className={styles.fEmojiImg}
                             src={d.customEmoji}
                             alt=""
-                            width={58}
-                            height={58}
+                            width={68}
+                            height={61}
                         />
                     ) : (
                         d.emoji || "•"
                     )}
                 </span>
-                <div>
-                    <h3 className={styles.fName}>{d.nomCommun}</h3>
+                <div className={styles.fIdentity}>
+                    <LRZTextClamp
+                        as="h3"
+                        className={styles.fNameClamp}
+                        lines={1}
+                        fixedHeight
+                    >
+                        {d.nomCommun}
+                    </LRZTextClamp>
+                    <div className={styles.fSci}>{d.nomScientifique}</div>
                     <p className={styles.fSub}>{d.sousTitre}</p>
                 </div>
             </div>
+
             <div className={styles.wave} aria-hidden />
-            <div className={styles.fSci}>{d.nomScientifique}</div>
-            <div className={styles.fMeta}>
-                <div>
-                    <span className={styles.k}>Milieu</span>
-                    <span className={styles.v}>{d.milieu}</span>
-                </div>
-                <div>
-                    <span className={styles.k}>Floraison</span>
-                    <span className={styles.v}>{d.floraison}</span>
-                </div>
+
+            <div className={styles.fEyebrow}>
+                <LRZStamp
+                    collection="flore"
+                    meta="categorie"
+                    slug={d.categorie}
+                    variant="chip"
+                    tone="outline"
+                    size="xs"
+                    font="mono"
+                    labelSize={11}
+                    paddingX={10}
+                    paddingY={4}
+                    gap="lg"
+                    shadow="none"
+                    symbolScale={0.9}
+                    gradient={false}
+                />
+                <LRZStamp
+                    collection="flore"
+                    meta="rarete"
+                    slug={d.rarete}
+                    variant="chip"
+                    tone="outline"
+                    size="xs"
+                    font="mono"
+                    labelSize={11}
+                    paddingX={10}
+                    paddingY={4}
+                    gap="lg"
+                    shadow="none"
+                    symbolScale={0.9}
+                    gradient={false}
+                />
             </div>
-            <div className={styles.fCons}>
-                <div className={styles.consItem}>
-                    <span className={styles.k}>Indigénat</span>
-                    <LRZBadge color={ind.color} label={ind.label} />
-                </div>
-                <div className={styles.consItem}>
-                    <span className={styles.k}>Protection</span>
-                    <LRZBadge color={prot.color} label={prot.label} />
-                </div>
-            </div>
-            <button
-                className={styles.detailsBtn}
-                aria-expanded={open}
-                onClick={onToggle}
+
+            <LRZAccordion
+                id={`flore-${d.slug}-observation`}
+                title="Observation"
+                description="Milieu et période de floraison"
+                icon={<Flower2 className={styles.accordionIcon} />}
+                color={categoryColor}
+                tone="surface"
+                size="sm"
+                fullWidth
+                headingLevel={4}
+                defaultOpen={expandAll}
+                unmountOnClose
+                className={styles.botanyAccordion}
             >
-                <span
-                    className={styles.caret}
-                    style={{ transform: open ? "rotate(90deg)" : "none" }}
-                >
-                    ▸
-                </span>{" "}
-                Botanique &amp; notes
-            </button>
-            {open && (
-                <div className={styles.details}>
-                    <div>
-                        <span className={styles.k}>Taille</span>
-                        <span className={styles.v}>{d.taille}</span>
+                <LRZMetaList
+                    color={categoryColor}
+                    layout="responsive"
+                    items={[
+                        {
+                            id: "milieu",
+                            label: "Milieu",
+                            value: d.milieu,
+                        },
+                        {
+                            id: "floraison",
+                            label: "Floraison",
+                            value: d.floraison,
+                        },
+                    ]}
+                />
+                {d.anecdote ? (
+                    <LRZAnecdote
+                        className={styles.cardAnecdote}
+                        color={categoryColor}
+                    >
+                        {d.anecdote}
+                    </LRZAnecdote>
+                ) : null}
+            </LRZAccordion>
+
+            <LRZAccordion
+                id={`flore-${d.slug}-botanique`}
+                title="Botanique"
+                description="Taille, famille et classification"
+                icon={<Leaf className={styles.accordionIcon} />}
+                color={categoryColor}
+                tone="surface"
+                size="sm"
+                fullWidth
+                headingLevel={4}
+                defaultOpen={expandAll}
+                unmountOnClose
+                className={styles.botanyAccordion}
+            >
+                <LRZMetaList
+                    color={categoryColor}
+                    layout="responsive"
+                    hideEmpty
+                    items={[
+                        {
+                            id: "taille",
+                            label: "Taille",
+                            value: d.taille,
+                        },
+                        {
+                            id: "regne",
+                            label: "Règne",
+                            value: d.regne,
+                        },
+                        {
+                            id: "famille",
+                            label: "Famille",
+                            value: d.famille,
+                        },
+                        {
+                            id: "usages",
+                            label: "Usages",
+                            value: d.usages,
+                        },
+                        {
+                            id: "autres-noms",
+                            label: "Autres noms",
+                            value: d.autresNoms.join(" · "),
+                        },
+                        {
+                            id: "rang-taxinomique",
+                            label: "Rang taxinomique",
+                            value: (
+                                <span className={styles.rang}>
+                                    {d.rangTaxinomique}
+                                </span>
+                            ),
+                        },
+                    ]}
+                />
+            </LRZAccordion>
+
+            <LRZAccordion
+                id={`flore-${d.slug}-protection`}
+                title="Protection"
+                description="Indigénat, protection et statut"
+                icon={<ShieldCheck className={styles.accordionIcon} />}
+                color={categoryColor}
+                tone="surface"
+                size="sm"
+                fullWidth
+                headingLevel={4}
+                defaultOpen={expandAll}
+                unmountOnClose
+            >
+                <LRZMetaList
+                    color={categoryColor}
+                    layout="responsive"
+                    tone="plain"
+                    size="sm"
+                    items={[
+                        {
+                            id: "indigenat",
+                            label: "Indigénat",
+                            value: (
+                                <LRZBadge
+                                    preset="indigenat-flore"
+                                    value={d.statut.indigenat}
+                                />
+                            ),
+                        },
+                        {
+                            id: "protection",
+                            label: "Protection",
+                            value: (
+                                <LRZBadge
+                                    preset="protection-flore"
+                                    value={d.statut.protection}
+                                />
+                            ),
+                        },
+                    ]}
+                />
+                {d.statut.note ? (
+                    <div className={styles.protectionNote}>
+                        <LRZAnecdote color={categoryColor}>
+                            {d.statut.note}
+                        </LRZAnecdote>
                     </div>
-                    <div>
-                        <span className={styles.k}>Famille</span>
-                        <span className={styles.v}>{d.famille}</span>
-                    </div>
-                    {d.autresNoms.length > 0 && (
-                        <div>
-                            <span className={styles.k}>Autres noms</span>
-                            <span className={styles.v}>
-                                {d.autresNoms.join(" · ")}
-                            </span>
-                        </div>
-                    )}
-                    <div>
-                        <span className={styles.k}>Rang taxinomique</span>
-                        <span className={styles.rang}>{d.rangTaxinomique}</span>
-                    </div>
-                    {d.statut.note && (
-                        <p className={styles.consNote}>{d.statut.note}</p>
-                    )}
-                </div>
-            )}
+                ) : null}
+            </LRZAccordion>
         </article>
     );
 }

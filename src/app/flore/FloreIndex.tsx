@@ -47,19 +47,8 @@ export default function FloreIndex({
     const [rarete, setRarete] = useState<string>("all");
     const [q, setQ] = useState("");
     const [expandAll, setExpandAll] = useState(false);
-    const [openOverrides, setOpenOverrides] = useState<Record<string, boolean>>(
-        {},
-    );
 
-    const toggleAll = () => {
-        setExpandAll((v) => !v);
-        setOpenOverrides({});
-    };
-    const toggleOne = (id: string) =>
-        setOpenOverrides((o) => ({
-            ...o,
-            [id]: !(o[id] ?? expandAll),
-        }));
+    const toggleAll = () => setExpandAll((value) => !value);
 
     const countFor = (field: "categorie" | "rarete", id: string) =>
         flore.filter((d) => d[field] === id).length;
@@ -145,10 +134,9 @@ export default function FloreIndex({
                     <div className={styles.grid}>
                         {list.map((d) => (
                             <FloreCard
-                                key={d.slug}
+                                key={`${d.slug}-${expandAll}`}
                                 d={d}
-                                open={openOverrides[d.slug] ?? expandAll}
-                                onToggle={() => toggleOne(d.slug)}
+                                expandAll={expandAll}
                             />
                         ))}
                     </div>

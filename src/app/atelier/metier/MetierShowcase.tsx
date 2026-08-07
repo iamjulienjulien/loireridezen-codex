@@ -54,12 +54,7 @@ export default function MetierShowcase({
                 </header>
                 <div className={styles.showcaseGrid}>
                     {MOCK_FLORE.slice(0, 3).map((item) => (
-                        <FloreCard
-                            key={item.slug}
-                            d={item}
-                            open={Boolean(open[item.slug])}
-                            onToggle={() => toggle(item.slug)}
-                        />
+                        <FloreCard key={item.slug} d={item} />
                     ))}
                 </div>
             </section>
