@@ -5,6 +5,10 @@ import {
 import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
 import {
+    getCommonArchitectureMeta,
+    type CommonArchitecture,
+} from "@/registry/Meta/common-architecture";
+import {
     getCommonEpoqueMeta,
     type CommonEpoque,
 } from "@/registry/Meta/common-epoque";
@@ -50,6 +54,33 @@ export const LRZ_COMMON_EPOQUE_SYMBOLS = {
 } as const satisfies Record<CommonEpoque, string>;
 
 export type LRZCommonEpoqueSymbolSlug = keyof typeof LRZ_COMMON_EPOQUE_SYMBOLS;
+
+export const LRZ_COMMON_ARCHITECTURE_SYMBOLS = {
+    "gallo-romaine": "/symbols/common/architecture/gallo-romaine.png",
+    "pre-romane": "/symbols/common/architecture/pre-romane.png",
+    romane: "/symbols/common/architecture/romane.png",
+    gothique: "/symbols/common/architecture/gothique.png",
+    "gothique-flamboyant":
+        "/symbols/common/architecture/gothique-flamboyant.png",
+    renaissance: "/symbols/common/architecture/renaissance.png",
+    classique: "/symbols/common/architecture/classique.png",
+    baroque: "/symbols/common/architecture/baroque.png",
+    rocaille: "/symbols/common/architecture/rocaille.png",
+    neoclassique: "/symbols/common/architecture/neoclassique.png",
+    neogothique: "/symbols/common/architecture/neogothique.png",
+    historiciste: "/symbols/common/architecture/historiciste.png",
+    industrielle: "/symbols/common/architecture/industrielle.png",
+    "art-nouveau": "/symbols/common/architecture/art-nouveau.png",
+    "art-deco": "/symbols/common/architecture/art-deco.png",
+    moderniste: "/symbols/common/architecture/moderniste.png",
+    brutaliste: "/symbols/common/architecture/brutaliste.png",
+    contemporaine: "/symbols/common/architecture/contemporaine.png",
+    vernaculaire: "/symbols/common/architecture/vernaculaire.png",
+    troglodytique: "/symbols/common/architecture/troglodytique.png",
+} as const satisfies Record<CommonArchitecture, string>;
+
+export type LRZCommonArchitectureSymbolSlug =
+    keyof typeof LRZ_COMMON_ARCHITECTURE_SYMBOLS;
 
 export const LRZ_FAUNE_TYPE_SYMBOLS = {
     oiseau: "/symbols/faune/type/oiseau.png",
@@ -146,13 +177,14 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  *
  * Une collection peut contenir directement ses symboles, comme `index`, ou
  * les regrouper par métadonnée, comme `faune.type`, `faune.rarete`,
- * `flore.categorie`, `flore.rarete`, `common.epoque`,
+ * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
  * `guinguette.ambience` et `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
     index: LRZ_INDEX_SYMBOLS,
     common: {
         epoque: LRZ_COMMON_EPOQUE_SYMBOLS,
+        architecture: LRZ_COMMON_ARCHITECTURE_SYMBOLS,
     },
     faune: {
         type: LRZ_FAUNE_TYPE_SYMBOLS,
@@ -182,6 +214,7 @@ export type LRZSymbolMeta =
 export type LRZSymbolSlug =
     | LRZIndexSymbolSlug
     | LRZCommonEpoqueSymbolSlug
+    | LRZCommonArchitectureSymbolSlug
     | LRZFauneTypeSymbolSlug
     | LRZFauneRareteSymbolSlug
     | LRZFloreCategorieSymbolSlug
@@ -208,6 +241,12 @@ export type LRZSymbolLocator =
           collection: "common";
           meta: "epoque";
           slug: LRZCommonEpoqueSymbolSlug;
+      }
+    | {
+          /** Courants architecturaux communs aux collections du Codex. */
+          collection: "common";
+          meta: "architecture";
+          slug: LRZCommonArchitectureSymbolSlug;
       }
     | {
           /** Types taxinomiques de la collection Faune. */
@@ -267,6 +306,16 @@ export function getLRZSymbolSource(
         Object.hasOwn(LRZ_SYMBOLS.common.epoque, slug)
     ) {
         return LRZ_SYMBOLS.common.epoque[slug as LRZCommonEpoqueSymbolSlug];
+    }
+
+    if (
+        collection === "common" &&
+        meta === "architecture" &&
+        Object.hasOwn(LRZ_SYMBOLS.common.architecture, slug)
+    ) {
+        return LRZ_SYMBOLS.common.architecture[
+            slug as LRZCommonArchitectureSymbolSlug
+        ];
     }
 
     if (
@@ -357,6 +406,19 @@ export function getLRZSymbolDefinition(
                   label: period.label,
                   accent: getLRZColorValue(period.color),
                   color: period.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "common" && meta === "architecture") {
+        const architecture = getCommonArchitectureMeta(slug);
+
+        return architecture
+            ? {
+                  source,
+                  label: architecture.label,
+                  accent: getLRZColorValue(architecture.color),
+                  color: architecture.color,
               }
             : undefined;
     }

@@ -64,6 +64,24 @@ describe("LRZStamp", () => {
         expect(markup).toContain("--lrz-stamp-label-color:var(--color-miel)");
     });
 
+    it("renders a common architecture with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp
+                collection="common"
+                meta="architecture"
+                slug="gothique"
+            />,
+        );
+
+        expect(markup).toContain("Gothique");
+        expect(markup).toContain('data-collection="common"');
+        expect(markup).toContain('data-meta="architecture"');
+        expect(markup).toContain("/symbols/common/architecture/gothique.png");
+        expect(markup).toContain(
+            "--lrz-stamp-label-color:var(--color-bleu-nuit)",
+        );
+    });
+
     it("renders a Faune rarity with its registry color", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp collection="faune" meta="rarete" slug="trésor" />,

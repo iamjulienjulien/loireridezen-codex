@@ -270,10 +270,17 @@ export default function LRZStamp({
     const renderedSymbol =
         collection === "index" ? (
             <LRZSymbol collection="index" slug={slug} {...symbolOptions} />
-        ) : collection === "common" ? (
+        ) : collection === "common" && meta === "epoque" ? (
             <LRZSymbol
                 collection="common"
                 meta="epoque"
+                slug={slug}
+                {...symbolOptions}
+            />
+        ) : collection === "common" && meta === "architecture" ? (
+            <LRZSymbol
+                collection="common"
+                meta="architecture"
                 slug={slug}
                 {...symbolOptions}
             />

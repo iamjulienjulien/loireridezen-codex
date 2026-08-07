@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
+import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
@@ -13,6 +14,7 @@ import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
     getLRZSymbolDefinition,
     getLRZSymbolSource,
+    LRZ_COMMON_ARCHITECTURE_SYMBOLS,
     LRZ_COMMON_EPOQUE_SYMBOLS,
     LRZ_FAUNE_RARETE_SYMBOLS,
     LRZ_FAUNE_TYPE_SYMBOLS,
@@ -31,6 +33,22 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every common architecture", () => {
+        expect(Object.keys(LRZ_SYMBOLS.common.architecture)).toEqual(
+            COMMON_ARCHITECTURE_META.map((architecture) => architecture.slug),
+        );
+    });
+
+    it.each(COMMON_ARCHITECTURE_META)(
+        "resolves common/architecture/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("common", "architecture", slug);
+
+            expect(source).toBe(LRZ_COMMON_ARCHITECTURE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
     it("contains one symbol for every common period", () => {
         expect(Object.keys(LRZ_SYMBOLS.common.epoque)).toEqual(
             COMMON_EPOQUE_META.map((period) => period.slug),
@@ -192,6 +210,17 @@ describe("LRZ symbol registry", () => {
             getLRZSymbolDefinition("common", "epoque", "renaissance"),
         ).toEqual({
             source: LRZ_COMMON_EPOQUE_SYMBOLS.renaissance,
+            label: "Renaissance",
+            accent: "#C7953E",
+            color: "miel",
+        });
+    });
+
+    it("resolves the LRZ color of a common architecture symbol", () => {
+        expect(
+            getLRZSymbolDefinition("common", "architecture", "renaissance"),
+        ).toEqual({
+            source: LRZ_COMMON_ARCHITECTURE_SYMBOLS.renaissance,
             label: "Renaissance",
             accent: "#C7953E",
             color: "miel",
