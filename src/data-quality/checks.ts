@@ -14,7 +14,9 @@ import type {
 
 type JsonObject = Record<string, unknown>;
 
-export const DATA_CATALOG_EXCLUSIONS: readonly string[] = [];
+export const DATA_CATALOG_EXCLUSIONS: readonly string[] = [
+    "catalogue-villes-villages.json",
+];
 export const LOIRE_CORRIDOR_BOUNDS = {
     latitude: { min: 44.5, max: 48.5 },
     longitude: { min: -2.5, max: 5 },
@@ -168,6 +170,7 @@ export const inspectDataQuality = (
     }
 
     const sourcesBySlug = new Map<string, (typeof input.sources)[number]>();
+    const catalogExclusions = new Set(input.catalogExclusions ?? []);
     for (const duplicate of duplicateValues(
         input.sources.map(({ slug }) => slug),
     )) {
@@ -215,13 +218,17 @@ export const inspectDataQuality = (
             });
         }
         const source = sourcesBySlug.get(index.slug);
-        if (!source) {
+        const stagedWithoutSource =
+            index.etat === "brouillon" &&
+            index.env.length === 0 &&
+            catalogExclusions.has(index.dataFile);
+        if (!source && !stagedWithoutSource) {
             add("REGISTRY_SOURCE_MISSING", "error", {
                 index: index.slug,
                 path: "TECHNICAL_INDEX_SOURCES",
                 message: "Aucune source technique ne correspond à cet index.",
             });
-        } else if (source.dataFile !== index.dataFile) {
+        } else if (source && source.dataFile !== index.dataFile) {
             add("REGISTRY_DATAFILE_MISMATCH", "error", {
                 index: index.slug,
                 file: `data/${source.dataFile}`,
@@ -262,14 +269,13 @@ export const inspectDataQuality = (
     }
 
     const dataDirectory = join(input.rootDir, "data");
-    const exclusions = new Set(input.catalogExclusions ?? []);
     const discoveredCatalogs = existsSync(dataDirectory)
         ? readdirSync(dataDirectory, { withFileTypes: true })
               .filter(
                   (entry) =>
                       entry.isFile() &&
                       entry.name.endsWith(".json") &&
-                      !exclusions.has(entry.name),
+                      !catalogExclusions.has(entry.name),
               )
               .map(({ name }) => name)
         : [];

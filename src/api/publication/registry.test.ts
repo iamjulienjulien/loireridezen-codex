@@ -38,6 +38,7 @@ describe("publication registry", () => {
 
     it("does not distinguish a review index from an unknown index", () => {
         expect(getPublishedIndex("vignobles")).toBeUndefined();
+        expect(getPublishedIndex("villes-villages")).toBeUndefined();
         expect(getPublishedIndex("inconnu")).toBeUndefined();
     });
 

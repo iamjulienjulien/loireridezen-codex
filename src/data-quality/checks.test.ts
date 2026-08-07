@@ -31,6 +31,7 @@ type Fixture = {
     skipMedia: Set<string>;
     directories: string[];
     extraFiles: Record<string, string>;
+    catalogExclusions: string[];
 };
 
 const fixtureSchema = z.object({
@@ -141,6 +142,7 @@ const runFixture = (
         skipMedia: new Set(),
         directories: [],
         extraFiles: {},
+        catalogExclusions: [],
     };
     addBundle(fixture, "faune", "faune", "faune.json");
     try {
@@ -152,7 +154,7 @@ const runFixture = (
             siteUrl,
             indexes: fixture.indexes,
             sources: fixture.sources,
-            catalogExclusions: [],
+            catalogExclusions: fixture.catalogExclusions,
         };
         return inspectDataQuality(input);
     } finally {
@@ -181,6 +183,25 @@ const expectIssue = (
 describe("data quality mutations", () => {
     it("accepts a coherent minimal catalog", () => {
         expect(runFixture().summary).toMatchObject({ errors: 0, warnings: 0 });
+    });
+
+    it("allows an explicitly staged draft catalog without a technical source", () => {
+        const report = runFixture((fixture) => {
+            const dataFile = "catalogue-villes-villages.json";
+            const definition = buildDefinition(
+                "villes-villages",
+                dataFile,
+                "brouillon",
+            );
+
+            definition.env = [];
+            fixture.indexes.push(definition);
+            fixture.catalogExclusions.push(dataFile);
+            fixture.extraFiles[`data/${dataFile}`] = "{}\n";
+        });
+
+        expect(issuesWith(report, "REGISTRY_SOURCE_MISSING")).toHaveLength(0);
+        expect(issuesWith(report, "CATALOG_FILE_UNREGISTERED")).toHaveLength(0);
     });
 
     it("detects a duplicate entry slug and public ID", () => {
@@ -313,6 +334,7 @@ describe("data quality mutations", () => {
             skipMedia: new Set(),
             directories: [],
             extraFiles: {},
+            catalogExclusions: [],
         };
         addBundle(fixture, "faune", "faune", "faune.json");
         try {

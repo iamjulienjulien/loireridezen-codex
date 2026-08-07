@@ -24,8 +24,15 @@ const formatIssues = (issues: z.core.$ZodIssue[]) =>
         .join("; ");
 
 const buildRegistry = (): ReadonlyMap<IndexSlug, RegisteredIndex> => {
-    const expected = new Set(INDEXES.map(({ slug }) => slug));
     const actual = new Set(TECHNICAL_INDEX_SOURCES.map(({ slug }) => slug));
+    const expected = new Set(
+        INDEXES.filter(
+            (index) =>
+                actual.has(index.slug) ||
+                index.etat !== "brouillon" ||
+                index.env.length > 0,
+        ).map(({ slug }) => slug),
+    );
 
     if (
         expected.size !== TECHNICAL_INDEX_SOURCES.length ||
