@@ -7,6 +7,7 @@ import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
+import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
     getLRZSymbolDefinition,
@@ -14,6 +15,7 @@ import {
     LRZ_FAUNE_RARETE_SYMBOLS,
     LRZ_FAUNE_TYPE_SYMBOLS,
     LRZ_FLORE_CATEGORIE_SYMBOLS,
+    LRZ_FLORE_RARETE_SYMBOLS,
     LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
     LRZ_INDEX_SYMBOLS,
     LRZ_SYMBOLS,
@@ -68,6 +70,19 @@ describe("LRZ symbol registry", () => {
             expectPublicAsset(source);
         },
     );
+
+    it("contains one symbol for every Flore rarity", () => {
+        expect(Object.keys(LRZ_SYMBOLS.flore.rarete)).toEqual(
+            FLORE_RARETE_META.map((rarity) => rarity.slug),
+        );
+    });
+
+    it.each(FLORE_RARETE_META)("resolves flore/rarete/$slug", ({ slug }) => {
+        const source = getLRZSymbolSource("flore", "rarete", slug);
+
+        expect(source).toBe(LRZ_FLORE_RARETE_SYMBOLS[slug]);
+        expectPublicAsset(source);
+    });
 
     it("contains one symbol for every Guinguette ambience", () => {
         expect(Object.keys(LRZ_SYMBOLS.guinguette.ambience)).toEqual(
@@ -180,6 +195,15 @@ describe("LRZ symbol registry", () => {
             label: "Aquatique",
             accent: "#397A91",
             color: "bleu-loire",
+        });
+    });
+
+    it("resolves the LRZ color of a Flore rarity symbol", () => {
+        expect(getLRZSymbolDefinition("flore", "rarete", "trésor")).toEqual({
+            source: LRZ_FLORE_RARETE_SYMBOLS.trésor,
+            label: "Trésor",
+            accent: "#D8B548",
+            color: "soleil",
         });
     });
 

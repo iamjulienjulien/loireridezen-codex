@@ -78,6 +78,20 @@ describe("LRZStamp", () => {
         expect(markup).toContain("--lrz-stamp-label-color:var(--color-vert)");
     });
 
+    it("renders a Flore rarity with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp collection="flore" meta="rarete" slug="trésor" />,
+        );
+
+        expect(markup).toContain("Trésor");
+        expect(markup).toContain('data-collection="flore"');
+        expect(markup).toContain('data-meta="rarete"');
+        expect(markup).toContain("/symbols/flore/rarete/tresor.png");
+        expect(markup).toContain(
+            "--lrz-stamp-label-color:var(--color-nature-soleil)",
+        );
+    });
+
     it("renders a Guinguette ambience with its registry color", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp

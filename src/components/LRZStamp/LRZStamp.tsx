@@ -284,10 +284,17 @@ export default function LRZStamp({
                 slug={slug}
                 {...symbolOptions}
             />
-        ) : collection === "flore" ? (
+        ) : collection === "flore" && meta === "categorie" ? (
             <LRZSymbol
                 collection="flore"
-                meta={meta}
+                meta="categorie"
+                slug={slug}
+                {...symbolOptions}
+            />
+        ) : collection === "flore" && meta === "rarete" ? (
+            <LRZSymbol
+                collection="flore"
+                meta="rarete"
                 slug={slug}
                 {...symbolOptions}
             />

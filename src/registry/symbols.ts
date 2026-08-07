@@ -14,6 +14,10 @@ import {
     type FloreCategorie,
 } from "@/registry/Meta/flore-categorie";
 import {
+    getFloreRareteMeta,
+    type FloreRarete,
+} from "@/registry/Meta/flore-rarete";
+import {
     getGuinguetteAmbienceMeta,
     type GuinguetteAmbience,
 } from "@/registry/Meta/guinguette-ambience";
@@ -60,6 +64,15 @@ export const LRZ_FLORE_CATEGORIE_SYMBOLS = {
 
 export type LRZFloreCategorieSymbolSlug =
     keyof typeof LRZ_FLORE_CATEGORIE_SYMBOLS;
+
+export const LRZ_FLORE_RARETE_SYMBOLS = {
+    commun: "/symbols/flore/rarete/commun.png",
+    régulier: "/symbols/flore/rarete/regulier.png",
+    rare: "/symbols/flore/rarete/rare.png",
+    trésor: "/symbols/flore/rarete/tresor.png",
+} as const satisfies Record<FloreRarete, string>;
+
+export type LRZFloreRareteSymbolSlug = keyof typeof LRZ_FLORE_RARETE_SYMBOLS;
 
 export const LRZ_GUINGUETTE_AMBIENCE_SYMBOLS = {
     traditionnelle: "/symbols/guinguette/ambience/traditionnelle.png",
@@ -114,7 +127,7 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  *
  * Une collection peut contenir directement ses symboles, comme `index`, ou
  * les regrouper par métadonnée, comme `faune.type`, `faune.rarete`,
- * `flore.categorie`,
+ * `flore.categorie`, `flore.rarete`,
  * `guinguette.ambience` et `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
@@ -125,6 +138,7 @@ export const LRZ_SYMBOLS = {
     },
     flore: {
         categorie: LRZ_FLORE_CATEGORIE_SYMBOLS,
+        rarete: LRZ_FLORE_RARETE_SYMBOLS,
     },
     guinguette: {
         ambience: LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
@@ -147,6 +161,7 @@ export type LRZSymbolSlug =
     | LRZFauneTypeSymbolSlug
     | LRZFauneRareteSymbolSlug
     | LRZFloreCategorieSymbolSlug
+    | LRZFloreRareteSymbolSlug
     | LRZGuinguetteAmbienceSymbolSlug
     | CategoriePersonnageSlug;
 
@@ -181,6 +196,12 @@ export type LRZSymbolLocator =
           collection: "flore";
           meta: "categorie";
           slug: LRZFloreCategorieSymbolSlug;
+      }
+    | {
+          /** Niveaux de rareté de la collection Flore. */
+          collection: "flore";
+          meta: "rarete";
+          slug: LRZFloreRareteSymbolSlug;
       }
     | {
           /** Ambiances éditoriales de la collection Guinguette. */
@@ -232,6 +253,14 @@ export function getLRZSymbolSource(
         Object.hasOwn(LRZ_SYMBOLS.flore.categorie, slug)
     ) {
         return LRZ_SYMBOLS.flore.categorie[slug as LRZFloreCategorieSymbolSlug];
+    }
+
+    if (
+        collection === "flore" &&
+        meta === "rarete" &&
+        Object.hasOwn(LRZ_SYMBOLS.flore.rarete, slug)
+    ) {
+        return LRZ_SYMBOLS.flore.rarete[slug as LRZFloreRareteSymbolSlug];
     }
 
     if (
@@ -316,6 +345,19 @@ export function getLRZSymbolDefinition(
                   label: category.label,
                   accent: getLRZColorValue(category.color),
                   color: category.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "flore" && meta === "rarete") {
+        const rarity = getFloreRareteMeta(slug);
+
+        return rarity
+            ? {
+                  source,
+                  label: rarity.label,
+                  accent: getLRZColorValue(rarity.color),
+                  color: rarity.color,
               }
             : undefined;
     }
