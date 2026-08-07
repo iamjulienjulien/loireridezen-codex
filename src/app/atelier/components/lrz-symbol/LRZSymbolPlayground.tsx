@@ -4,6 +4,7 @@ import { useState, type ChangeEvent } from "react";
 
 import {
     LRZSymbol,
+    type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
@@ -11,6 +12,7 @@ import {
     type LRZSymbolCollection,
     type LRZSymbolFrame,
     type LRZSymbolLocator,
+    type LRZSymbolMeta,
     type LRZSymbolPadding,
     type LRZSymbolShadow,
     type LRZSymbolShape,
@@ -27,7 +29,8 @@ export type LRZSymbolPlaygroundOption<TSlug extends string = string> = {
 
 type LRZSymbolPlaygroundProps = {
     indexOptions: readonly LRZSymbolPlaygroundOption<LRZIndexSymbolSlug>[];
-    fauneOptions: readonly LRZSymbolPlaygroundOption<LRZFauneTypeSymbolSlug>[];
+    fauneTypeOptions: readonly LRZSymbolPlaygroundOption<LRZFauneTypeSymbolSlug>[];
+    fauneRareteOptions: readonly LRZSymbolPlaygroundOption<LRZFauneRareteSymbolSlug>[];
     floreOptions: readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
     guinguetteOptions: readonly LRZSymbolPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZSymbolPlaygroundOption<CategoriePersonnageSlug>[];
@@ -38,6 +41,7 @@ type PaddingChoice = LRZSymbolPadding | "custom";
 
 type PlaygroundState = {
     collection: LRZSymbolCollection;
+    meta: LRZSymbolMeta | undefined;
     slug: string;
     size: SizeChoice;
     customSize: number;
@@ -54,6 +58,7 @@ type PlaygroundState = {
 
 const INITIAL_STATE: PlaygroundState = {
     collection: "index",
+    meta: undefined,
     slug: "chateaux",
     size: "xl",
     customSize: 72,
@@ -101,26 +106,23 @@ const PADDING_OPTIONS: readonly PaddingChoice[] = [
 
 const SHADOW_OPTIONS: readonly LRZSymbolShadow[] = ["none", "soft", "strong"];
 
+const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
+    index: [],
+    faune: ["type", "rarete"],
+    flore: ["categorie"],
+    guinguette: ["ambience"],
+    personnage: ["categorie"],
+};
+
 function codeValue(value: string) {
     return JSON.stringify(value);
 }
 
-function getMetaForCollection(collection: LRZSymbolCollection) {
-    switch (collection) {
-        case "faune":
-            return "type";
-        case "flore":
-        case "personnage":
-            return "categorie";
-        case "guinguette":
-            return "ambience";
-        case "index":
-            return undefined;
-    }
+function getDefaultMeta(collection: LRZSymbolCollection) {
+    return META_OPTIONS[collection][0];
 }
 
 function buildCode(values: PlaygroundState) {
-    const meta = getMetaForCollection(values.collection);
     const size =
         values.size === "custom"
             ? `{${values.customSize}}`
@@ -131,7 +133,7 @@ function buildCode(values: PlaygroundState) {
             : codeValue(values.padding);
     const props = [
         `collection=${codeValue(values.collection)}`,
-        ...(meta ? [`meta=${codeValue(meta)}`] : []),
+        ...(values.meta ? [`meta=${codeValue(values.meta)}`] : []),
         `slug=${codeValue(values.slug)}`,
         `size=${size}`,
         `frame=${codeValue(values.frame)}`,
@@ -154,21 +156,34 @@ function buildCode(values: PlaygroundState) {
 
 export default function LRZSymbolPlayground({
     indexOptions,
-    fauneOptions,
+    fauneTypeOptions,
+    fauneRareteOptions,
     floreOptions,
     guinguetteOptions,
     personnageOptions,
 }: LRZSymbolPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
-    const optionsByCollection = {
-        index: indexOptions,
-        faune: fauneOptions,
-        flore: floreOptions,
-        guinguette: guinguetteOptions,
-        personnage: personnageOptions,
-    } as const;
-    const activeOptions = optionsByCollection[values.collection];
-    const activeMeta = getMetaForCollection(values.collection);
+    function getOptions(
+        collection: LRZSymbolCollection,
+        meta: LRZSymbolMeta | undefined,
+    ): readonly LRZSymbolPlaygroundOption[] {
+        switch (collection) {
+            case "index":
+                return indexOptions;
+            case "faune":
+                return meta === "rarete"
+                    ? fauneRareteOptions
+                    : fauneTypeOptions;
+            case "flore":
+                return floreOptions;
+            case "guinguette":
+                return guinguetteOptions;
+            case "personnage":
+                return personnageOptions;
+        }
+    }
+
+    const activeOptions = getOptions(values.collection, values.meta);
     const selectedOption = activeOptions.find(
         (option) => option.slug === values.slug,
     );
@@ -182,29 +197,35 @@ export default function LRZSymbolPlayground({
                   collection: "index",
                   slug: values.slug as LRZIndexSymbolSlug,
               }
-            : values.collection === "faune"
+            : values.collection === "faune" && values.meta === "rarete"
               ? {
                     collection: "faune",
-                    meta: "type",
-                    slug: values.slug as LRZFauneTypeSymbolSlug,
+                    meta: "rarete",
+                    slug: values.slug as LRZFauneRareteSymbolSlug,
                 }
-              : values.collection === "flore"
+              : values.collection === "faune"
                 ? {
-                      collection: "flore",
-                      meta: "categorie",
-                      slug: values.slug as LRZFloreCategorieSymbolSlug,
+                      collection: "faune",
+                      meta: "type",
+                      slug: values.slug as LRZFauneTypeSymbolSlug,
                   }
-                : values.collection === "guinguette"
+                : values.collection === "flore"
                   ? {
-                        collection: "guinguette",
-                        meta: "ambience",
-                        slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
-                    }
-                  : {
-                        collection: "personnage",
+                        collection: "flore",
                         meta: "categorie",
-                        slug: values.slug as CategoriePersonnageSlug,
-                    };
+                        slug: values.slug as LRZFloreCategorieSymbolSlug,
+                    }
+                  : values.collection === "guinguette"
+                    ? {
+                          collection: "guinguette",
+                          meta: "ambience",
+                          slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                      }
+                    : {
+                          collection: "personnage",
+                          meta: "categorie",
+                          slug: values.slug as CategoriePersonnageSlug,
+                      };
     const accessibilityProps = values.informative
         ? {
               decorative: false as const,
@@ -214,11 +235,13 @@ export default function LRZSymbolPlayground({
         : { decorative: true as const };
 
     function selectCollection(collection: LRZSymbolCollection) {
-        const options = optionsByCollection[collection];
+        const meta = getDefaultMeta(collection);
+        const options = getOptions(collection, meta);
 
         setValues((current) => ({
             ...current,
             collection,
+            meta,
             slug: options[0]?.slug ?? "",
             label: "",
         }));
@@ -229,19 +252,16 @@ export default function LRZSymbolPlayground({
     }
 
     function handleMetaChange(event: ChangeEvent<HTMLSelectElement>) {
-        const meta = event.target.value;
+        const meta = (event.target.value || undefined) as
+            LRZSymbolMeta | undefined;
+        const options = getOptions(values.collection, meta);
 
-        selectCollection(
-            meta === "ambience"
-                ? "guinguette"
-                : meta === "type"
-                  ? "faune"
-                  : meta === "categorie"
-                    ? values.collection === "flore"
-                        ? "flore"
-                        : "personnage"
-                    : "index",
-        );
+        setValues((current) => ({
+            ...current,
+            meta,
+            slug: options[0]?.slug ?? "",
+            label: "",
+        }));
     }
 
     return (
@@ -288,13 +308,18 @@ export default function LRZSymbolPlayground({
                             Meta <small>optionnel</small>
                         </span>
                         <select
-                            value={activeMeta ?? ""}
+                            value={values.meta ?? ""}
                             onChange={handleMetaChange}
                         >
-                            <option value="">Aucun — dossier racine</option>
-                            <option value="type">type</option>
-                            <option value="categorie">categorie</option>
-                            <option value="ambience">ambience</option>
+                            {values.collection === "index" ? (
+                                <option value="">Aucun — dossier racine</option>
+                            ) : (
+                                META_OPTIONS[values.collection].map((meta) => (
+                                    <option key={meta} value={meta}>
+                                        {meta}
+                                    </option>
+                                ))
+                            )}
                         </select>
                     </label>
 
@@ -551,7 +576,7 @@ export default function LRZSymbolPlayground({
                             Dossier résolu :
                             <code>
                                 /symbols/{values.collection}/
-                                {activeMeta ? `${activeMeta}/` : ""}
+                                {values.meta ? `${values.meta}/` : ""}
                             </code>
                         </p>
                     </div>

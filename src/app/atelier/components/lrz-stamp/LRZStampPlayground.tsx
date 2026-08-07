@@ -18,6 +18,7 @@ import type {
     LRZSymbolCollection,
     LRZSymbolFrame,
     LRZSymbolLocator,
+    LRZSymbolMeta,
     LRZSymbolShadow,
     LRZSymbolShape,
 } from "@/components/LRZSymbol";
@@ -28,6 +29,7 @@ import {
     type LRZColor,
 } from "@/registry/colors";
 import type {
+    LRZFauneRareteSymbolSlug,
     LRZFauneTypeSymbolSlug,
     LRZFloreCategorieSymbolSlug,
     LRZGuinguetteAmbienceSymbolSlug,
@@ -43,7 +45,8 @@ export type LRZStampPlaygroundOption<TSlug extends string = string> = {
 
 type LRZStampPlaygroundProps = {
     indexOptions: readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
-    fauneOptions: readonly LRZStampPlaygroundOption<LRZFauneTypeSymbolSlug>[];
+    fauneTypeOptions: readonly LRZStampPlaygroundOption<LRZFauneTypeSymbolSlug>[];
+    fauneRareteOptions: readonly LRZStampPlaygroundOption<LRZFauneRareteSymbolSlug>[];
     floreOptions: readonly LRZStampPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
     guinguetteOptions: readonly LRZStampPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZStampPlaygroundOption<CategoriePersonnageSlug>[];
@@ -56,6 +59,7 @@ type LabelSizeChoice = LRZStampLabelSize | "auto" | "custom";
 
 type PlaygroundState = {
     collection: LRZSymbolCollection;
+    meta: LRZSymbolMeta | undefined;
     slug: string;
     variant: LRZStampVariant;
     tone: LRZStampTone;
@@ -89,6 +93,7 @@ type PlaygroundState = {
 
 const INITIAL_STATE: PlaygroundState = {
     collection: "index",
+    meta: undefined,
     slug: "chateaux",
     variant: "pill",
     tone: "subtle",
@@ -165,26 +170,23 @@ const LABEL_SIZES: readonly LabelSizeChoice[] = [
     "custom",
 ];
 
+const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
+    index: [],
+    faune: ["type", "rarete"],
+    flore: ["categorie"],
+    guinguette: ["ambience"],
+    personnage: ["categorie"],
+};
+
 function codeValue(value: string) {
     return JSON.stringify(value);
 }
 
-function getMetaForCollection(collection: LRZSymbolCollection) {
-    switch (collection) {
-        case "faune":
-            return "type";
-        case "flore":
-        case "personnage":
-            return "categorie";
-        case "guinguette":
-            return "ambience";
-        case "index":
-            return undefined;
-    }
+function getDefaultMeta(collection: LRZSymbolCollection) {
+    return META_OPTIONS[collection][0];
 }
 
 function buildCode(values: PlaygroundState) {
-    const meta = getMetaForCollection(values.collection);
     const size =
         values.size === "custom"
             ? `{${values.customSize}}`
@@ -205,7 +207,7 @@ function buildCode(values: PlaygroundState) {
               : codeValue(values.labelSize);
     const props = [
         `collection=${codeValue(values.collection)}`,
-        ...(meta ? [`meta=${codeValue(meta)}`] : []),
+        ...(values.meta ? [`meta=${codeValue(values.meta)}`] : []),
         `slug=${codeValue(values.slug)}`,
         `variant=${codeValue(values.variant)}`,
         `tone=${codeValue(values.tone)}`,
@@ -240,50 +242,69 @@ function buildCode(values: PlaygroundState) {
 
 export default function LRZStampPlayground({
     indexOptions,
-    fauneOptions,
+    fauneTypeOptions,
+    fauneRareteOptions,
     floreOptions,
     guinguetteOptions,
     personnageOptions,
 }: LRZStampPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
-    const optionsByCollection = {
-        index: indexOptions,
-        faune: fauneOptions,
-        flore: floreOptions,
-        guinguette: guinguetteOptions,
-        personnage: personnageOptions,
-    } as const;
-    const activeOptions = optionsByCollection[values.collection];
-    const activeMeta = getMetaForCollection(values.collection);
+    function getOptions(
+        collection: LRZSymbolCollection,
+        meta: LRZSymbolMeta | undefined,
+    ): readonly LRZStampPlaygroundOption[] {
+        switch (collection) {
+            case "index":
+                return indexOptions;
+            case "faune":
+                return meta === "rarete"
+                    ? fauneRareteOptions
+                    : fauneTypeOptions;
+            case "flore":
+                return floreOptions;
+            case "guinguette":
+                return guinguetteOptions;
+            case "personnage":
+                return personnageOptions;
+        }
+    }
+
+    const activeOptions = getOptions(values.collection, values.meta);
     const locator: LRZSymbolLocator =
         values.collection === "index"
             ? {
                   collection: "index",
                   slug: values.slug as LRZIndexSymbolSlug,
               }
-            : values.collection === "faune"
+            : values.collection === "faune" && values.meta === "rarete"
               ? {
                     collection: "faune",
-                    meta: "type",
-                    slug: values.slug as LRZFauneTypeSymbolSlug,
+                    meta: "rarete",
+                    slug: values.slug as LRZFauneRareteSymbolSlug,
                 }
-              : values.collection === "flore"
+              : values.collection === "faune"
                 ? {
-                      collection: "flore",
-                      meta: "categorie",
-                      slug: values.slug as LRZFloreCategorieSymbolSlug,
+                      collection: "faune",
+                      meta: "type",
+                      slug: values.slug as LRZFauneTypeSymbolSlug,
                   }
-                : values.collection === "guinguette"
+                : values.collection === "flore"
                   ? {
-                        collection: "guinguette",
-                        meta: "ambience",
-                        slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
-                    }
-                  : {
-                        collection: "personnage",
+                        collection: "flore",
                         meta: "categorie",
-                        slug: values.slug as CategoriePersonnageSlug,
-                    };
+                        slug: values.slug as LRZFloreCategorieSymbolSlug,
+                    }
+                  : values.collection === "guinguette"
+                    ? {
+                          collection: "guinguette",
+                          meta: "ambience",
+                          slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                      }
+                    : {
+                          collection: "personnage",
+                          meta: "categorie",
+                          slug: values.slug as CategoriePersonnageSlug,
+                      };
     const resolvedSize =
         values.size === "custom" ? values.customSize : values.size;
     const resolvedPadding =
@@ -297,11 +318,13 @@ export default function LRZStampPlayground({
               : values.labelSize;
 
     function selectCollection(collection: LRZSymbolCollection) {
-        const options = optionsByCollection[collection];
+        const meta = getDefaultMeta(collection);
+        const options = getOptions(collection, meta);
 
         setValues((current) => ({
             ...current,
             collection,
+            meta,
             slug: options[0]?.slug ?? "",
             label: "",
         }));
@@ -312,19 +335,16 @@ export default function LRZStampPlayground({
     }
 
     function handleMetaChange(event: ChangeEvent<HTMLSelectElement>) {
-        const meta = event.target.value;
+        const meta = (event.target.value || undefined) as
+            LRZSymbolMeta | undefined;
+        const options = getOptions(values.collection, meta);
 
-        selectCollection(
-            meta === "ambience"
-                ? "guinguette"
-                : meta === "type"
-                  ? "faune"
-                  : meta === "categorie"
-                    ? values.collection === "flore"
-                        ? "flore"
-                        : "personnage"
-                    : "index",
-        );
+        setValues((current) => ({
+            ...current,
+            meta,
+            slug: options[0]?.slug ?? "",
+            label: "",
+        }));
     }
 
     return (
@@ -375,13 +395,20 @@ export default function LRZStampPlayground({
                             <label className={styles.control}>
                                 <span>Meta</span>
                                 <select
-                                    value={activeMeta ?? ""}
+                                    value={values.meta ?? ""}
                                     onChange={handleMetaChange}
                                 >
-                                    <option value="">Aucun</option>
-                                    <option value="type">type</option>
-                                    <option value="categorie">categorie</option>
-                                    <option value="ambience">ambience</option>
+                                    {values.collection === "index" ? (
+                                        <option value="">Aucun</option>
+                                    ) : (
+                                        META_OPTIONS[values.collection].map(
+                                            (meta) => (
+                                                <option key={meta} value={meta}>
+                                                    {meta}
+                                                </option>
+                                            ),
+                                        )
+                                    )}
                                 </select>
                             </label>
                         </div>
