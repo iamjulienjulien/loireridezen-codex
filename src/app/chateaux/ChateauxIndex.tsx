@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 
 import type { ChateauV2 } from "@/types/chateauV2";
@@ -350,6 +350,15 @@ export default function ChateauxIndex({
         setQ("");
     };
 
+    const showChateauOnMap = useCallback((slug: string) => {
+        setIsMapOpen(true);
+        dispatchChateauxMapSync({
+            source: "catalogue",
+            type: "focus",
+            slug,
+        });
+    }, []);
+
     const indexControls = (
         <PageControls
             variant="chateaux"
@@ -451,6 +460,9 @@ export default function ChateauxIndex({
                         mapSync={
                             viewportMapSpikeEnabled || interactiveMapEnabled
                         }
+                        onShowOnMap={
+                            interactiveMapEnabled ? showChateauOnMap : undefined
+                        }
                     />
                 ))}
             </div>
@@ -468,6 +480,11 @@ export default function ChateauxIndex({
                             open={false}
                             personnages={
                                 personnagesByChateau[castle.slug] ?? []
+                            }
+                            onShowOnMap={
+                                interactiveMapEnabled
+                                    ? showChateauOnMap
+                                    : undefined
                             }
                         />
                     </div>

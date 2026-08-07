@@ -26,6 +26,7 @@ type TerritoireSectionProps = {
     personnagesByChateau: PersonnagesParLieu;
     /** Ajoute un repère DOM pour la synchronisation expérimentale de carte. */
     mapSync?: boolean;
+    onShowOnMap?: (slug: string) => void;
 };
 
 export default function TerritoireSection({
@@ -33,6 +34,7 @@ export default function TerritoireSection({
     chateaux,
     personnagesByChateau,
     mapSync = false,
+    onShowOnMap,
 }: TerritoireSectionProps) {
     const { identite, limites } = territory;
 
@@ -156,6 +158,7 @@ export default function TerritoireSection({
                             personnages={
                                 personnagesByChateau[chateau.slug] ?? []
                             }
+                            onShowOnMap={onShowOnMap}
                         />
                     </div>
                 ))}

@@ -16,6 +16,11 @@ export type ChateauxMapSyncDetail =
           source: "catalogue" | "map";
           type: "hover";
           slug?: string;
+      }
+    | {
+          source: "catalogue";
+          type: "focus";
+          slug: string;
       };
 
 type ViewportSyncDetail = Extract<ChateauxMapSyncDetail, { type: "viewport" }>;
@@ -28,10 +33,12 @@ type CatalogueHoverSyncDetail = {
     type: "hover";
     slug?: string;
 };
+type FocusSyncDetail = Extract<ChateauxMapSyncDetail, { type: "focus" }>;
 
 let latestViewport: ViewportSyncDetail | undefined;
 let latestTerritory: TerritorySyncDetail | undefined;
 let latestCatalogueHover: CatalogueHoverSyncDetail | undefined;
+let latestFocus: FocusSyncDetail | undefined;
 
 export function dispatchChateauxMapSync(detail: ChateauxMapSyncDetail) {
     if (detail.type === "viewport") latestViewport = detail;
@@ -43,6 +50,7 @@ export function dispatchChateauxMapSync(detail: ChateauxMapSyncDetail) {
             slug: detail.slug,
         };
     }
+    if (detail.type === "focus") latestFocus = detail;
 
     window.dispatchEvent(
         new CustomEvent<ChateauxMapSyncDetail>(CHATEAUX_MAP_SYNC_EVENT, {
@@ -60,7 +68,10 @@ export function getLatestChateauxMapTerritory() {
 }
 
 export function getLatestChateauxMapCatalogueHover():
-    | CatalogueHoverSyncDetail
-    | undefined {
+    CatalogueHoverSyncDetail | undefined {
     return latestCatalogueHover;
+}
+
+export function getLatestChateauxMapFocus(): FocusSyncDetail | undefined {
+    return latestFocus;
 }

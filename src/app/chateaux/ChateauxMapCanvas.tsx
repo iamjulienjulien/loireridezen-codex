@@ -29,6 +29,7 @@ import styles from "./ChateauxMapCanvas.module.css";
 import {
     CHATEAUX_MAP_SYNC_EVENT,
     dispatchChateauxMapSync,
+    getLatestChateauxMapFocus,
     getLatestChateauxMapTerritory,
     getLatestChateauxMapCatalogueHover,
     getLatestChateauxMapViewport,
@@ -206,6 +207,21 @@ export default function ChateauxMapCanvas({
         [chateaux],
     );
 
+    const focusChateau = useCallback(
+        (slug: string) => {
+            const map = mapRef.current;
+            const chateau = chateaux.find((item) => item.slug === slug);
+            if (!map || !chateau) return;
+
+            setSelectedSlug(slug);
+            map.flyTo({
+                center: [chateau.coordonnees.lng, chateau.coordonnees.lat],
+                ...CHATEAUX_MAP_CONFIG.singleChateau,
+            });
+        },
+        [chateaux],
+    );
+
     useEffect(() => {
         selectedSlugRef.current = selectedSlug;
         applyMarkerStates();
@@ -234,6 +250,7 @@ export default function ChateauxMapCanvas({
                 }
                 applyMarkerStates();
             }
+            if (detail.type === "focus") focusChateau(detail.slug);
         };
         const latestViewport = getLatestChateauxMapViewport();
         if (latestViewport) applyViewport(latestViewport);
@@ -252,7 +269,7 @@ export default function ChateauxMapCanvas({
                 type: "hover",
             });
         };
-    }, [applyMarkerStates, focusTerritory]);
+    }, [applyMarkerStates, focusChateau, focusTerritory]);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -410,6 +427,13 @@ export default function ChateauxMapCanvas({
         if (!isReady) return;
         focusTerritory(getLatestChateauxMapTerritory()?.territorySlug);
     }, [focusTerritory, isReady]);
+
+    useEffect(() => {
+        if (!isReady) return;
+
+        const focus = getLatestChateauxMapFocus();
+        if (focus) focusChateau(focus.slug);
+    }, [focusChateau, isReady]);
 
     return (
         <div className={styles.root} data-ambiance={ambiance}>
