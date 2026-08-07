@@ -43,6 +43,15 @@ export {
 } from "@/registry/Meta/common-experience";
 
 export {
+    COMMON_TERRITOIRE_META,
+    COMMON_TERRITOIRE_REGISTRY,
+    getCommonTerritoireMeta,
+    isCommonTerritoire,
+    type CommonTerritoire,
+    type CommonTerritoireMeta,
+} from "@/registry/Meta/common-territoire";
+
+export {
     FAUNE_TYPE_META,
     FAUNE_TYPE_REGISTRY,
     getFauneTypeMeta,
