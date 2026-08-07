@@ -9,7 +9,7 @@ import {
 
 describe("Codex index meta registry", () => {
     it("exposes every illustrated Codex index", () => {
-        expect(CODEX_INDEX_META).toHaveLength(6);
+        expect(CODEX_INDEX_META).toHaveLength(7);
         expect(CODEX_INDEX_META.map((index) => index.slug)).toEqual([
             "chateaux",
             "faune",
@@ -17,6 +17,7 @@ describe("Codex index meta registry", () => {
             "guinguettes",
             "personnages",
             "territoires",
+            "villes-villages",
         ]);
     });
 
