@@ -15,6 +15,7 @@ import {
     type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
     type LRZCodexIndexSymbolSlug,
+    type LRZPersonnageCategorieSymbolSlug,
     type LRZSymbolCollection,
     type LRZSymbolFrame,
     type LRZSymbolLocator,
@@ -24,7 +25,6 @@ import {
     type LRZSymbolShape,
     type LRZSymbolSize,
 } from "@/components/LRZSymbol";
-import type { CategoriePersonnageSlug } from "@/registry/categories-personnages";
 
 import styles from "./LRZSymbolPlayground.module.css";
 
@@ -45,7 +45,7 @@ type LRZSymbolPlaygroundProps = {
     floreCategorieOptions: readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
     floreRareteOptions: readonly LRZSymbolPlaygroundOption<LRZFloreRareteSymbolSlug>[];
     guinguetteOptions: readonly LRZSymbolPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
-    personnageOptions: readonly LRZSymbolPlaygroundOption<CategoriePersonnageSlug>[];
+    personnageOptions: readonly LRZSymbolPlaygroundOption<LRZPersonnageCategorieSymbolSlug>[];
 };
 
 type SizeChoice = LRZSymbolSize | "custom";
@@ -295,7 +295,7 @@ export default function LRZSymbolPlayground({
                                 : {
                                       collection: "personnage",
                                       meta: "categorie",
-                                      slug: values.slug as CategoriePersonnageSlug,
+                                      slug: values.slug as LRZPersonnageCategorieSymbolSlug,
                                   };
     const accessibilityProps = values.informative
         ? {

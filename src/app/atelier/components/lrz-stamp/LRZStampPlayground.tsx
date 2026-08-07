@@ -22,7 +22,6 @@ import type {
     LRZSymbolShadow,
     LRZSymbolShape,
 } from "@/components/LRZSymbol";
-import type { CategoriePersonnageSlug } from "@/registry/categories-personnages";
 import {
     LRZ_COLOR_LABELS,
     LRZ_COLOR_NAMES,
@@ -40,6 +39,7 @@ import type {
     LRZFloreRareteSymbolSlug,
     LRZGuinguetteAmbienceSymbolSlug,
     LRZCodexIndexSymbolSlug,
+    LRZPersonnageCategorieSymbolSlug,
 } from "@/registry/symbols";
 
 import styles from "./LRZStampPlayground.module.css";
@@ -61,7 +61,7 @@ type LRZStampPlaygroundProps = {
     floreCategorieOptions: readonly LRZStampPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
     floreRareteOptions: readonly LRZStampPlaygroundOption<LRZFloreRareteSymbolSlug>[];
     guinguetteOptions: readonly LRZStampPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
-    personnageOptions: readonly LRZStampPlaygroundOption<CategoriePersonnageSlug>[];
+    personnageOptions: readonly LRZStampPlaygroundOption<LRZPersonnageCategorieSymbolSlug>[];
 };
 
 type SizeChoice = LRZStampSize | "custom";
@@ -398,7 +398,7 @@ export default function LRZStampPlayground({
                                 : {
                                       collection: "personnage",
                                       meta: "categorie",
-                                      slug: values.slug as CategoriePersonnageSlug,
+                                      slug: values.slug as LRZPersonnageCategorieSymbolSlug,
                                   };
     const resolvedSize =
         values.size === "custom" ? values.customSize : values.size;

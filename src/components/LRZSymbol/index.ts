@@ -23,6 +23,7 @@ export type {
     LRZFloreRareteSymbolSlug,
     LRZGuinguetteAmbienceSymbolSlug,
     LRZCodexIndexSymbolSlug,
+    LRZPersonnageCategorieSymbolSlug,
     LRZSymbolCollection,
     LRZSymbolDefinition,
     LRZSymbolLocator,

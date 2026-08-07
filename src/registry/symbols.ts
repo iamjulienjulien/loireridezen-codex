@@ -285,6 +285,9 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
     muse: "/symbols/personnage/categorie/muse.png",
 } as const satisfies Record<CategoriePersonnageSlug, string>;
 
+export type LRZPersonnageCategorieSymbolSlug =
+    keyof typeof LRZ_PERSONNAGE_CATEGORIE_SYMBOLS;
+
 /**
  * Registre des symboles illustrés du Codex.
  *
@@ -343,7 +346,7 @@ export type LRZSymbolSlug =
     | LRZFloreCategorieSymbolSlug
     | LRZFloreRareteSymbolSlug
     | LRZGuinguetteAmbienceSymbolSlug
-    | CategoriePersonnageSlug;
+    | LRZPersonnageCategorieSymbolSlug;
 
 export type LRZSymbolDefinition = {
     source: string;
@@ -423,7 +426,7 @@ export type LRZSymbolLocator =
           /** Collection de symboles classés par métadonnée. */
           collection: "personnage";
           meta: "categorie";
-          slug: CategoriePersonnageSlug;
+          slug: LRZPersonnageCategorieSymbolSlug;
       };
 
 export function isLRZCodexIndexSymbolSlug(
@@ -539,7 +542,7 @@ export function getLRZSymbolSource(
         Object.hasOwn(LRZ_SYMBOLS.personnage.categorie, slug)
     ) {
         return LRZ_SYMBOLS.personnage.categorie[
-            slug as CategoriePersonnageSlug
+            slug as LRZPersonnageCategorieSymbolSlug
         ];
     }
 
