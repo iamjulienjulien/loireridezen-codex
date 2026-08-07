@@ -7,6 +7,15 @@ export {
 } from "@/registry/Meta/registry";
 
 export {
+    COMMON_EPOQUE_META,
+    COMMON_EPOQUE_REGISTRY,
+    getCommonEpoqueMeta,
+    isCommonEpoque,
+    type CommonEpoque,
+    type CommonEpoqueMeta,
+} from "@/registry/Meta/common-epoque";
+
+export {
     FAUNE_TYPE_META,
     FAUNE_TYPE_REGISTRY,
     getFauneTypeMeta,
