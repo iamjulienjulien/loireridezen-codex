@@ -223,7 +223,7 @@ const PROPS = [
 
 export default function LRZTypographyPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-typography" />
 
             <div className={styles.wrap}>
@@ -564,6 +564,6 @@ export default function LRZTypographyPage() {
                     </ul>
                 </aside>
             </div>
-        </main>
+        </>
     );
 }

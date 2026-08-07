@@ -14,6 +14,7 @@ export type AtelierShellProps = ShellSharedProps &
     ShellHeaderSlots &
     ConfigurableShellLayoutProps & {
         page: AtelierPageDefinition;
+        header?: ReactNode | false;
         description?: ReactNode;
         mark?: ReactNode;
     };
@@ -23,6 +24,7 @@ export default function AtelierShell({
     children,
     width = "wide",
     spacing = "compact",
+    header,
     description = page.description,
     mark = page.mark,
     identity,
@@ -33,6 +35,27 @@ export default function AtelierShell({
     headerClassName,
     ...shellProps
 }: AtelierShellProps) {
+    const resolvedHeader =
+        header === undefined ? (
+            <PageHeader
+                variant="atelier"
+                title={page.title}
+                eyebrow={page.eyebrow}
+                description={description}
+                mark={mark}
+                accent={page.accent}
+                color={page.color}
+                identity={identity}
+                navigation={navigation}
+                actions={actions}
+                breadcrumbs={breadcrumbs}
+                separator={separator}
+                className={headerClassName}
+            />
+        ) : (
+            header
+        );
+
     return (
         <ShellScaffold
             {...shellProps}
@@ -41,23 +64,7 @@ export default function AtelierShell({
             color={page.color}
             width={width}
             spacing={spacing}
-            header={
-                <PageHeader
-                    variant="atelier"
-                    title={page.title}
-                    eyebrow={page.eyebrow}
-                    description={description}
-                    mark={mark}
-                    accent={page.accent}
-                    color={page.color}
-                    identity={identity}
-                    navigation={navigation}
-                    actions={actions}
-                    breadcrumbs={breadcrumbs}
-                    separator={separator}
-                    className={headerClassName}
-                />
-            }
+            header={resolvedHeader}
         >
             {children}
         </ShellScaffold>

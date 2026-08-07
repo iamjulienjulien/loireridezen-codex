@@ -11,7 +11,7 @@ export const metadata = getAtelierPageMetadata("/atelier/components/lrz-chip");
 
 export default function LRZChipPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-chip" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -54,6 +54,6 @@ export default function LRZChipPage() {
 
                 <LRZChipPlayground />
             </div>
-        </main>
+        </>
     );
 }

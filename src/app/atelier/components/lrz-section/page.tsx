@@ -403,7 +403,7 @@ const PROPS = [
 
 export default function LRZSectionPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-section" />
 
             <div className={styles.wrap}>
@@ -680,6 +680,6 @@ export default function LRZSectionPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

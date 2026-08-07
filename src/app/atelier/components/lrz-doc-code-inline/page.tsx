@@ -110,7 +110,7 @@ const PROPS = [
 
 export default function LRZDocCodeInlinePage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-doc-code-inline" />
 
             <div className={styles.wrap}>
@@ -308,6 +308,6 @@ export default function LRZDocCodeInlinePage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

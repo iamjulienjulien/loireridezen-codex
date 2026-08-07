@@ -80,7 +80,7 @@ const PROPS = [
 
 export default function LRZAnecdotePage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-anecdote" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -233,6 +233,6 @@ export default function LRZAnecdotePage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

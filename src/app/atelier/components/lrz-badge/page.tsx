@@ -394,7 +394,7 @@ const PROPS = [
 
 export default function LRZBadgePage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-badge" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -605,6 +605,6 @@ export default function LRZBadgePage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

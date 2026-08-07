@@ -19,7 +19,7 @@ const EXAMPLE_CODE = `<LRZTextClamp
 
 export default function LRZTextClampPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-text-clamp" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -211,6 +211,6 @@ export default function LRZTextClampPage() {
                     <pre className={styles.code}>{EXAMPLE_CODE}</pre>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

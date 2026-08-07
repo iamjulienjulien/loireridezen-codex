@@ -15,7 +15,7 @@ const EXAMPLE_CODE = `<LRZTooltip content="Ouvrir la fiche du château">
 
 export default function LRZTooltipPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-tooltip" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -153,6 +153,6 @@ export default function LRZTooltipPage() {
                     <pre className={styles.code}>{EXAMPLE_CODE}</pre>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

@@ -49,7 +49,7 @@ const CATEGORIES = [
 
 export default function AtelierHomePage() {
     return (
-        <main className={styles.page}>
+        <>
             <div className={styles.wrap}>
                 <header className={styles.homeHeader}>
                     <Link className={styles.siteLink} href="/">
@@ -89,6 +89,6 @@ export default function AtelierHomePage() {
                     ))}
                 </nav>
             </div>
-        </main>
+        </>
     );
 }

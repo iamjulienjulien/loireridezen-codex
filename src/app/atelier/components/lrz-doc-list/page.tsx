@@ -113,7 +113,7 @@ const PROPS = [
 
 export default function LRZDocListPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-doc-list" />
 
             <div className={styles.wrap}>
@@ -390,6 +390,6 @@ ol: ({ children, ...props }) => (
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

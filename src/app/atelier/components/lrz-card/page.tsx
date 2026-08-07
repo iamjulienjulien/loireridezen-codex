@@ -187,7 +187,7 @@ const PARTS = [
 
 export default function LRZCardPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-card" />
 
             <div className={styles.wrap}>
@@ -479,6 +479,6 @@ export default function LRZCardPage() {
                     </p>
                 </aside>
             </div>
-        </main>
+        </>
     );
 }

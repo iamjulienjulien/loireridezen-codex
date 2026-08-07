@@ -3,8 +3,7 @@ import "./atelier.css";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import AmbientPageFrame from "@/components/layout/AmbientPageFrame";
-import PageFooter from "@/components/PageFooter";
+import AtelierShell from "@/components/layout/AtelierShell";
 import { ATELIER_PAGE } from "@/registry/atelier-pages";
 import { featureIsEnabled } from "@/registry/feature-flags";
 
@@ -25,13 +24,14 @@ export default function AtelierLayout({
     }
 
     return (
-        <AmbientPageFrame
-            kind="atelier"
-            accent={ATELIER_PAGE.accent}
-            className="atelier-layout"
+        <AtelierShell
+            page={ATELIER_PAGE}
+            width="full"
+            spacing="none"
+            header={false}
+            containerClassName="atelier-layout"
         >
             {children}
-            <PageFooter color={ATELIER_PAGE.color} />
-        </AmbientPageFrame>
+        </AtelierShell>
     );
 }

@@ -26,7 +26,7 @@ const PRESETS = [
 
 export default function LRZButtonPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-button" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -152,6 +152,6 @@ export default function LRZButtonPage() {
 
                 <LRZButtonPlayground />
             </div>
-        </main>
+        </>
     );
 }

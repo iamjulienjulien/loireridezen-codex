@@ -391,7 +391,7 @@ const PROPS = [
 
 export default function LRZSeparateurPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-separateur" />
 
             <div className={styles.wrap}>
@@ -715,6 +715,6 @@ export default function LRZSeparateurPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

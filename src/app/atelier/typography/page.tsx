@@ -182,7 +182,7 @@ const RULES = [
 
 export default function AtelierTypographyPage() {
     return (
-        <main className="atelier-foundation-page">
+        <>
             <ComponentsNavigation current="typography" />
             <div className="atelier-foundation-wrap">
                 <header className="atelier-doc-header">
@@ -356,6 +356,6 @@ export default function AtelierTypographyPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

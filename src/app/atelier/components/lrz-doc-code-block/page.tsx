@@ -122,7 +122,7 @@ console.log(species.meta.total);`;
 
 export default function LRZDocCodeBlockPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-doc-code-block" />
 
             <div className={styles.wrap}>
@@ -306,6 +306,6 @@ export default function LRZDocCodeBlockPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

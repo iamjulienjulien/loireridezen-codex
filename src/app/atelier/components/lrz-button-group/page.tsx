@@ -15,7 +15,7 @@ export const metadata = getAtelierPageMetadata("/atelier/components/lrz-button-g
 
 export default function LRZButtonGroupPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-button-group" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -130,6 +130,6 @@ export default function LRZButtonGroupPage() {
 
                 <LRZButtonGroupPlayground />
             </div>
-        </main>
+        </>
     );
 }

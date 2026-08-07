@@ -125,7 +125,7 @@ const PROPS = [
 
 export default function LRZMetaListPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-meta-list" />
 
             <div className={styles.wrap}>
@@ -280,6 +280,6 @@ export default function LRZMetaListPage() {
                     </ul>
                 </aside>
             </div>
-        </main>
+        </>
     );
 }

@@ -17,7 +17,7 @@ export default function AtelierCategoryLayout({
     children,
 }: AtelierCategoryLayoutProps) {
     return (
-        <main className={styles.page}>
+        <>
             <div className={styles.wrap}>
                 <header className={styles.categoryHeader}>
                     <div className={styles.categoryLinks}>
@@ -34,6 +34,6 @@ export default function AtelierCategoryLayout({
                 </header>
                 {children}
             </div>
-        </main>
+        </>
     );
 }

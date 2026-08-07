@@ -216,7 +216,7 @@ const API_PROPS = [
 
 export default function LRZStampPage() {
     return (
-        <main className={shellStyles.page}>
+        <>
             <ComponentsNavigation current="lrz-stamp" />
 
             <div className={shellStyles.wrap}>
@@ -725,6 +725,6 @@ export default function LRZStampPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

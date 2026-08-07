@@ -9,7 +9,7 @@ export const metadata = getAtelierPageMetadata("/atelier/components/lrz-tabs");
 
 export default function LRZTabsPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-tabs" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -76,6 +76,6 @@ export default function LRZTabsPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

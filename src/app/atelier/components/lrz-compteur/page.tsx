@@ -154,7 +154,7 @@ export const metadata = getAtelierPageMetadata("/atelier/components/lrz-compteur
 
 export default function LRZCompteurPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-compteur" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -258,6 +258,6 @@ export default function LRZCompteurPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

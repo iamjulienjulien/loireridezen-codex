@@ -280,7 +280,7 @@ const PROPS = [
 
 export default function LRZAccordionPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-accordion" />
 
             <div className={styles.wrap}>
@@ -565,6 +565,6 @@ export default function LRZAccordionPage() {
                     </ul>
                 </aside>
             </div>
-        </main>
+        </>
     );
 }

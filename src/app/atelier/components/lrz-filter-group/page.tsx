@@ -9,7 +9,7 @@ export const metadata = getAtelierPageMetadata("/atelier/components/lrz-filter-g
 
 export default function LRZFilterGroupPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-filter-group" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -87,6 +87,6 @@ export default function LRZFilterGroupPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

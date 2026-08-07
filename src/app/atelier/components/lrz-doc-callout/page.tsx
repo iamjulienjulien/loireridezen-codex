@@ -19,7 +19,7 @@ const variants: { variant: LRZDocCalloutVariant; title: string; text: string }[]
 ];
 
 export default function LRZDocCalloutPage() {
-    return <main className={styles.page}>
+    return <>
         <ComponentsNavigation current="lrz-doc-callout" />
         <div className={styles.wrap}>
             <header className={styles.header}>
@@ -36,5 +36,5 @@ export default function LRZDocCalloutPage() {
             <DocMarkdownSyntax title="Écrire un callout" description="Les callouts ne font pas partie du Markdown standard. Cette directive est une convention MDX qui nécessite remark-directive, ou le composant JSX dans un fichier MDX." code={':::tip{title="Conseil de terrain"}\nPréparez une phrase courte et directement utile.\n:::'} note={'Sans plugin de directives, utilise : <LRZDocCallout variant="tip">…</LRZDocCallout>.'} />
             <section className={styles.integration} aria-labelledby="callout-mdx"><div className={styles.sectionHeader}><p className={styles.kicker}>MDX</p><h2 id="callout-mdx">Un composant explicite</h2><p>La forme MDX est la plus directe lorsque le parser de directives n’est pas configuré.</p></div><LRZDocCodeBlock language="mdx" filename="guide.mdx"><code className="language-mdx">{'<LRZDocCallout variant="tip" title="Conseil">\n  Préparez une phrase courte et directement utile.\n</LRZDocCallout>'}</code></LRZDocCodeBlock></section>
         </div>
-    </main>;
+    </>;
 }

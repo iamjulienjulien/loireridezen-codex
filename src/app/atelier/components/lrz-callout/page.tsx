@@ -65,7 +65,7 @@ const PARTS = [
 
 export default function LRZCalloutPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-callout" />
 
             <div className={styles.wrap}>
@@ -246,6 +246,6 @@ export default function LRZCalloutPage() {
                     </div>
                 </aside>
             </div>
-        </main>
+        </>
     );
 }

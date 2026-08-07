@@ -29,7 +29,7 @@ export const metadata = getAtelierPageMetadata("/atelier/components/lrz-living-t
 
 export default function LRZLivingTextPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-living-text" />
 
             <div className={styles.wrap}>
@@ -264,6 +264,6 @@ export default function LRZLivingTextPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

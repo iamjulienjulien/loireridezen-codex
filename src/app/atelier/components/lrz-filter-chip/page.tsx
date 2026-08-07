@@ -17,7 +17,7 @@ const VARIANTS = [
 
 export default function LRZFilterChipPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-filter-chip" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -166,6 +166,6 @@ export default function LRZFilterChipPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

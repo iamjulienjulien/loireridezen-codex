@@ -206,7 +206,7 @@ const API_PROPS = [
 
 export default function LRZSymbolPage() {
     return (
-        <main className={shellStyles.page}>
+        <>
             <ComponentsNavigation current="lrz-symbol" />
 
             <div className={shellStyles.wrap}>
@@ -878,6 +878,6 @@ export default function LRZSymbolPage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

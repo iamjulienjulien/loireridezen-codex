@@ -183,7 +183,7 @@ const PARTS = [
 
 export default function LRZDialogPage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-dialog" />
 
             <div className={styles.wrap}>
@@ -511,6 +511,6 @@ export default function LRZDialogPage() {
 
                 <LRZDialogPlayground />
             </div>
-        </main>
+        </>
     );
 }

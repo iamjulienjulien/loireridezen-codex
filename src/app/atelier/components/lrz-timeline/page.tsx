@@ -9,7 +9,7 @@ export const metadata = getAtelierPageMetadata("/atelier/components/lrz-timeline
 
 export default function LRZTimelinePage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-timeline" />
             <div className={styles.wrap}>
                 <header className={styles.header}>
@@ -71,6 +71,6 @@ export default function LRZTimelinePage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }

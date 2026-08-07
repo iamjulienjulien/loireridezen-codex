@@ -129,7 +129,7 @@ const PROPS = [
 
 export default function LRZDocQuotePage() {
     return (
-        <main className={styles.page}>
+        <>
             <ComponentsNavigation current="lrz-doc-quote" />
 
             <div className={styles.wrap}>
@@ -401,6 +401,6 @@ export default function LRZDocQuotePage() {
                     </div>
                 </section>
             </div>
-        </main>
+        </>
     );
 }
