@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
+import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { COMMON_EXPERIENCE_META } from "@/registry/Meta/common-experience";
@@ -27,7 +28,7 @@ import {
     LRZ_FLORE_CATEGORIE_SYMBOLS,
     LRZ_FLORE_RARETE_SYMBOLS,
     LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
-    LRZ_INDEX_SYMBOLS,
+    LRZ_CODEX_INDEX_SYMBOLS,
     LRZ_SYMBOLS,
 } from "@/registry/symbols";
 
@@ -204,23 +205,27 @@ describe("LRZ symbol registry", () => {
         },
     );
 
-    it.each(Object.keys(LRZ_INDEX_SYMBOLS))(
-        "resolves index/%s without meta",
-        (slug) => {
-            const source = getLRZSymbolSource("index", undefined, slug);
+    it("contains one symbol for every illustrated Codex index", () => {
+        expect(Object.keys(LRZ_SYMBOLS.codex.index)).toEqual(
+            CODEX_INDEX_META.map((index) => index.slug),
+        );
+    });
 
-            expect(source).toBe(`/symbols/index/${slug}.png`);
-            expectPublicAsset(source);
-        },
-    );
+    it.each(CODEX_INDEX_META)("resolves codex/index/$slug", ({ slug }) => {
+        const source = getLRZSymbolSource("codex", "index", slug);
 
-    it("does not resolve an unknown root symbol", () => {
+        expect(source).toBe(LRZ_CODEX_INDEX_SYMBOLS[slug]);
+        expectPublicAsset(source);
+    });
+
+    it("does not resolve an unknown Codex index symbol", () => {
         expect(
-            getLRZSymbolSource("index", undefined, "vignobles"),
+            getLRZSymbolSource("codex", "index", "vignobles"),
         ).toBeUndefined();
     });
 
     it("does not resolve a nested symbol without its meta", () => {
+        expect(getLRZSymbolSource("codex", undefined, "flore")).toBeUndefined();
         expect(
             getLRZSymbolSource("personnage", undefined, "souverain"),
         ).toBeUndefined();
@@ -236,11 +241,11 @@ describe("LRZ symbol registry", () => {
         ).toBeUndefined();
     });
 
-    it("resolves the label and accent of a root symbol", () => {
-        expect(getLRZSymbolDefinition("index", undefined, "flore")).toEqual({
-            source: "/symbols/index/flore.png",
+    it("resolves the label and accent of a Codex index symbol", () => {
+        expect(getLRZSymbolDefinition("codex", "index", "flore")).toEqual({
+            source: "/symbols/codex/index/flore.png",
             label: "Flore",
-            accent: "#4fa25c",
+            accent: "#5C8754",
             color: "prairie",
         });
     });

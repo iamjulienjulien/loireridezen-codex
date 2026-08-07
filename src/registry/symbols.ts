@@ -3,7 +3,10 @@ import {
     type CategoriePersonnageSlug,
 } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
-import { getIndexBySlug } from "@/registry/indexes";
+import {
+    getCodexIndexMeta,
+    type CodexIndex,
+} from "@/registry/Meta/codex-index";
 import {
     getCommonArchitectureMeta,
     type CommonArchitecture,
@@ -43,14 +46,14 @@ import {
 } from "@/registry/Meta/guinguette-ambience";
 import type { LRZColor } from "@/types/lrz";
 
-export const LRZ_INDEX_SYMBOLS = {
-    chateaux: "/symbols/index/chateaux.png",
-    faune: "/symbols/index/faune.png",
-    flore: "/symbols/index/flore.png",
-    guinguettes: "/symbols/index/guinguettes.png",
-} as const;
+export const LRZ_CODEX_INDEX_SYMBOLS = {
+    chateaux: "/symbols/codex/index/chateaux.png",
+    faune: "/symbols/codex/index/faune.png",
+    flore: "/symbols/codex/index/flore.png",
+    guinguettes: "/symbols/codex/index/guinguettes.png",
+} as const satisfies Record<CodexIndex, string>;
 
-export type LRZIndexSymbolSlug = keyof typeof LRZ_INDEX_SYMBOLS;
+export type LRZCodexIndexSymbolSlug = keyof typeof LRZ_CODEX_INDEX_SYMBOLS;
 
 export const LRZ_COMMON_EPOQUE_SYMBOLS = {
     prehistoire: "/symbols/common/epoque/prehistoire.png",
@@ -285,14 +288,16 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
 /**
  * Registre des symboles illustrés du Codex.
  *
- * Une collection peut contenir directement ses symboles, comme `index`, ou
- * les regrouper par métadonnée, comme `faune.type`, `faune.rarete`,
+ * Les symboles sont regroupés par collection et métadonnée, comme
+ * `codex.index`, `faune.type`, `faune.rarete`,
  * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
  * `common.milieu`, `common.experience`, `common.territoire`,
  * `guinguette.ambience` et `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
-    index: LRZ_INDEX_SYMBOLS,
+    codex: {
+        index: LRZ_CODEX_INDEX_SYMBOLS,
+    },
     common: {
         epoque: LRZ_COMMON_EPOQUE_SYMBOLS,
         architecture: LRZ_COMMON_ARCHITECTURE_SYMBOLS,
@@ -319,6 +324,7 @@ export const LRZ_SYMBOLS = {
 export type LRZSymbolCollection = keyof typeof LRZ_SYMBOLS;
 
 export type LRZSymbolMeta =
+    | keyof typeof LRZ_SYMBOLS.codex
     | keyof typeof LRZ_SYMBOLS.common
     | keyof typeof LRZ_SYMBOLS.faune
     | keyof typeof LRZ_SYMBOLS.flore
@@ -326,7 +332,7 @@ export type LRZSymbolMeta =
     | keyof typeof LRZ_SYMBOLS.personnage;
 
 export type LRZSymbolSlug =
-    | LRZIndexSymbolSlug
+    | LRZCodexIndexSymbolSlug
     | LRZCommonEpoqueSymbolSlug
     | LRZCommonArchitectureSymbolSlug
     | LRZCommonMilieuSymbolSlug
@@ -348,10 +354,10 @@ export type LRZSymbolDefinition = {
 
 export type LRZSymbolLocator =
     | {
-          /** Collection dont les symboles sont rangés directement à la racine. */
-          collection: "index";
-          meta?: never;
-          slug: LRZIndexSymbolSlug;
+          /** Index illustrés du Codex. */
+          collection: "codex";
+          meta: "index";
+          slug: LRZCodexIndexSymbolSlug;
       }
     | {
           /** Époques communes aux différentes collections du Codex. */
@@ -420,10 +426,10 @@ export type LRZSymbolLocator =
           slug: CategoriePersonnageSlug;
       };
 
-export function isLRZIndexSymbolSlug(
+export function isLRZCodexIndexSymbolSlug(
     value: string,
-): value is LRZIndexSymbolSlug {
-    return Object.hasOwn(LRZ_INDEX_SYMBOLS, value);
+): value is LRZCodexIndexSymbolSlug {
+    return Object.hasOwn(LRZ_CODEX_INDEX_SYMBOLS, value);
 }
 
 export function getLRZSymbolSource(
@@ -431,8 +437,12 @@ export function getLRZSymbolSource(
     meta: LRZSymbolMeta | undefined,
     slug: string,
 ): string | undefined {
-    if (collection === "index" && meta === undefined) {
-        return isLRZIndexSymbolSlug(slug) ? LRZ_SYMBOLS.index[slug] : undefined;
+    if (
+        collection === "codex" &&
+        meta === "index" &&
+        isLRZCodexIndexSymbolSlug(slug)
+    ) {
+        return LRZ_SYMBOLS.codex.index[slug];
     }
 
     if (
@@ -547,14 +557,14 @@ export function getLRZSymbolDefinition(
         return undefined;
     }
 
-    if (collection === "index") {
-        const index = getIndexBySlug(slug);
+    if (collection === "codex" && meta === "index") {
+        const index = getCodexIndexMeta(slug);
 
         return index
             ? {
                   source,
                   label: index.label,
-                  accent: index.accent,
+                  accent: getLRZColorValue(index.color),
                   color: index.color,
               }
             : undefined;

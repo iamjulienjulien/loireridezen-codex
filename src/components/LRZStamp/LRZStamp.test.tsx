@@ -6,13 +6,14 @@ import LRZStamp from "./LRZStamp";
 describe("LRZStamp", () => {
     it("renders the registry label and locator", () => {
         const markup = renderToStaticMarkup(
-            <LRZStamp collection="index" slug="flore" />,
+            <LRZStamp collection="codex" meta="index" slug="flore" />,
         );
 
         expect(markup).toContain("Flore");
-        expect(markup).toContain('data-collection="index"');
+        expect(markup).toContain('data-collection="codex"');
+        expect(markup).toContain('data-meta="index"');
         expect(markup).toContain('data-slug="flore"');
-        expect(markup).toContain("/symbols/index/flore.png");
+        expect(markup).toContain("/symbols/codex/index/flore.png");
     });
 
     it("renders nested labels, details and visual options", () => {
@@ -201,7 +202,8 @@ describe("LRZStamp", () => {
     it("uses a selectable font and an LRZ label color", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp
-                collection="index"
+                collection="codex"
+                meta="index"
                 slug="flore"
                 font="signature"
                 labelColor="rouge"
@@ -214,10 +216,20 @@ describe("LRZStamp", () => {
 
     it("supports preset and custom label sizes", () => {
         const presetMarkup = renderToStaticMarkup(
-            <LRZStamp collection="index" slug="flore" labelSize="lg" />,
+            <LRZStamp
+                collection="codex"
+                meta="index"
+                slug="flore"
+                labelSize="lg"
+            />,
         );
         const customMarkup = renderToStaticMarkup(
-            <LRZStamp collection="index" slug="flore" labelSize={18} />,
+            <LRZStamp
+                collection="codex"
+                meta="index"
+                slug="flore"
+                labelSize={18}
+            />,
         );
 
         expect(presetMarkup).toContain('data-label-size="lg"');
@@ -229,7 +241,8 @@ describe("LRZStamp", () => {
     it("supports independent horizontal and vertical padding", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp
-                collection="index"
+                collection="codex"
+                meta="index"
                 slug="faune"
                 padding="sm"
                 paddingX="lg"
@@ -245,7 +258,7 @@ describe("LRZStamp", () => {
 
     it("uses the item LRZ color when labelColor is omitted", () => {
         const markup = renderToStaticMarkup(
-            <LRZStamp collection="index" slug="flore" />,
+            <LRZStamp collection="codex" meta="index" slug="flore" />,
         );
 
         expect(markup).toContain(
