@@ -13,6 +13,10 @@ import {
     type CommonEpoque,
 } from "@/registry/Meta/common-epoque";
 import {
+    getCommonMilieuMeta,
+    type CommonMilieu,
+} from "@/registry/Meta/common-milieu";
+import {
     getFauneRareteMeta,
     type FauneRarete,
 } from "@/registry/Meta/faune-rarete";
@@ -81,6 +85,41 @@ export const LRZ_COMMON_ARCHITECTURE_SYMBOLS = {
 
 export type LRZCommonArchitectureSymbolSlug =
     keyof typeof LRZ_COMMON_ARCHITECTURE_SYMBOLS;
+
+export const LRZ_COMMON_MILIEU_SYMBOLS = {
+    fleuve: "/symbols/common/milieu/fleuve.png",
+    riviere: "/symbols/common/milieu/riviere.png",
+    ruisseau: "/symbols/common/milieu/ruisseau.png",
+    source: "/symbols/common/milieu/source.png",
+    canal: "/symbols/common/milieu/canal.png",
+    estuaire: "/symbols/common/milieu/estuaire.png",
+    "bras-mort": "/symbols/common/milieu/bras-mort.png",
+    etang: "/symbols/common/milieu/etang.png",
+    mare: "/symbols/common/milieu/mare.png",
+    marais: "/symbols/common/milieu/marais.png",
+    roseliere: "/symbols/common/milieu/roseliere.png",
+    "prairie-humide": "/symbols/common/milieu/prairie-humide.png",
+    berge: "/symbols/common/milieu/berge.png",
+    greve: "/symbols/common/milieu/greve.png",
+    ile: "/symbols/common/milieu/ile.png",
+    "foret-alluviale": "/symbols/common/milieu/foret-alluviale.png",
+    foret: "/symbols/common/milieu/foret.png",
+    lisiere: "/symbols/common/milieu/lisiere.png",
+    bocage: "/symbols/common/milieu/bocage.png",
+    haie: "/symbols/common/milieu/haie.png",
+    prairie: "/symbols/common/milieu/prairie.png",
+    "coteau-sec": "/symbols/common/milieu/coteau-sec.png",
+    "falaise-rocheuse": "/symbols/common/milieu/falaise-rocheuse.png",
+    "cavite-souterraine": "/symbols/common/milieu/cavite-souterraine.png",
+    friche: "/symbols/common/milieu/friche.png",
+    cultures: "/symbols/common/milieu/cultures.png",
+    verger: "/symbols/common/milieu/verger.png",
+    vignoble: "/symbols/common/milieu/vignoble.png",
+    "parc-jardin": "/symbols/common/milieu/parc-jardin.png",
+    "urbain-bati": "/symbols/common/milieu/urbain-bati.png",
+} as const satisfies Record<CommonMilieu, string>;
+
+export type LRZCommonMilieuSymbolSlug = keyof typeof LRZ_COMMON_MILIEU_SYMBOLS;
 
 export const LRZ_FAUNE_TYPE_SYMBOLS = {
     oiseau: "/symbols/faune/type/oiseau.png",
@@ -178,6 +217,7 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  * Une collection peut contenir directement ses symboles, comme `index`, ou
  * les regrouper par métadonnée, comme `faune.type`, `faune.rarete`,
  * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
+ * `common.milieu`,
  * `guinguette.ambience` et `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
@@ -185,6 +225,7 @@ export const LRZ_SYMBOLS = {
     common: {
         epoque: LRZ_COMMON_EPOQUE_SYMBOLS,
         architecture: LRZ_COMMON_ARCHITECTURE_SYMBOLS,
+        milieu: LRZ_COMMON_MILIEU_SYMBOLS,
     },
     faune: {
         type: LRZ_FAUNE_TYPE_SYMBOLS,
@@ -215,6 +256,7 @@ export type LRZSymbolSlug =
     | LRZIndexSymbolSlug
     | LRZCommonEpoqueSymbolSlug
     | LRZCommonArchitectureSymbolSlug
+    | LRZCommonMilieuSymbolSlug
     | LRZFauneTypeSymbolSlug
     | LRZFauneRareteSymbolSlug
     | LRZFloreCategorieSymbolSlug
@@ -247,6 +289,12 @@ export type LRZSymbolLocator =
           collection: "common";
           meta: "architecture";
           slug: LRZCommonArchitectureSymbolSlug;
+      }
+    | {
+          /** Milieux naturels et anthropisés communs aux collections. */
+          collection: "common";
+          meta: "milieu";
+          slug: LRZCommonMilieuSymbolSlug;
       }
     | {
           /** Types taxinomiques de la collection Faune. */
@@ -316,6 +364,14 @@ export function getLRZSymbolSource(
         return LRZ_SYMBOLS.common.architecture[
             slug as LRZCommonArchitectureSymbolSlug
         ];
+    }
+
+    if (
+        collection === "common" &&
+        meta === "milieu" &&
+        Object.hasOwn(LRZ_SYMBOLS.common.milieu, slug)
+    ) {
+        return LRZ_SYMBOLS.common.milieu[slug as LRZCommonMilieuSymbolSlug];
     }
 
     if (
@@ -419,6 +475,19 @@ export function getLRZSymbolDefinition(
                   label: architecture.label,
                   accent: getLRZColorValue(architecture.color),
                   color: architecture.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "common" && meta === "milieu") {
+        const environment = getCommonMilieuMeta(slug);
+
+        return environment
+            ? {
+                  source,
+                  label: environment.label,
+                  accent: getLRZColorValue(environment.color),
+                  color: environment.color,
               }
             : undefined;
     }

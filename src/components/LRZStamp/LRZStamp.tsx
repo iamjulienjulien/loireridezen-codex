@@ -284,6 +284,13 @@ export default function LRZStamp({
                 slug={slug}
                 {...symbolOptions}
             />
+        ) : collection === "common" && meta === "milieu" ? (
+            <LRZSymbol
+                collection="common"
+                meta="milieu"
+                slug={slug}
+                {...symbolOptions}
+            />
         ) : collection === "faune" && meta === "type" ? (
             <LRZSymbol
                 collection="faune"

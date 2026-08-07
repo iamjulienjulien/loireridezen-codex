@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
+import { COMMON_MILIEU_META } from "@/registry/Meta/common-milieu";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
@@ -16,6 +17,7 @@ import {
     getLRZSymbolSource,
     LRZ_COMMON_ARCHITECTURE_SYMBOLS,
     LRZ_COMMON_EPOQUE_SYMBOLS,
+    LRZ_COMMON_MILIEU_SYMBOLS,
     LRZ_FAUNE_RARETE_SYMBOLS,
     LRZ_FAUNE_TYPE_SYMBOLS,
     LRZ_FLORE_CATEGORIE_SYMBOLS,
@@ -33,6 +35,19 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every common environment", () => {
+        expect(Object.keys(LRZ_SYMBOLS.common.milieu)).toEqual(
+            COMMON_MILIEU_META.map((environment) => environment.slug),
+        );
+    });
+
+    it.each(COMMON_MILIEU_META)("resolves common/milieu/$slug", ({ slug }) => {
+        const source = getLRZSymbolSource("common", "milieu", slug);
+
+        expect(source).toBe(LRZ_COMMON_MILIEU_SYMBOLS[slug]);
+        expectPublicAsset(source);
+    });
+
     it("contains one symbol for every common architecture", () => {
         expect(Object.keys(LRZ_SYMBOLS.common.architecture)).toEqual(
             COMMON_ARCHITECTURE_META.map((architecture) => architecture.slug),
@@ -224,6 +239,15 @@ describe("LRZ symbol registry", () => {
             label: "Renaissance",
             accent: "#C7953E",
             color: "miel",
+        });
+    });
+
+    it("resolves the LRZ color of a common environment symbol", () => {
+        expect(getLRZSymbolDefinition("common", "milieu", "fleuve")).toEqual({
+            source: LRZ_COMMON_MILIEU_SYMBOLS.fleuve,
+            label: "Fleuve",
+            accent: "#4D80A7",
+            color: "eau",
         });
     });
 

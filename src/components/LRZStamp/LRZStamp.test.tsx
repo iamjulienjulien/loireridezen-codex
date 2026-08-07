@@ -82,6 +82,20 @@ describe("LRZStamp", () => {
         );
     });
 
+    it("renders a common environment with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp collection="common" meta="milieu" slug="fleuve" />,
+        );
+
+        expect(markup).toContain("Fleuve");
+        expect(markup).toContain('data-collection="common"');
+        expect(markup).toContain('data-meta="milieu"');
+        expect(markup).toContain("/symbols/common/milieu/fleuve.png");
+        expect(markup).toContain(
+            "--lrz-stamp-label-color:var(--color-nature-eau)",
+        );
+    });
+
     it("renders a Faune rarity with its registry color", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp collection="faune" meta="rarete" slug="trésor" />,
