@@ -49,9 +49,6 @@ export default function PageFooter({
                     aria-label="Liens de pied de page"
                 >
                     <Link href="/docs">Documentation</Link>
-                    {featureIsEnabled("personnages") ? (
-                        <Link href="/personnages">Personnages</Link>
-                    ) : null}
                     <Link href="/a-propos">À propos</Link>
                     {featureIsEnabled("atelier") ? (
                         <Link href="/atelier">Atelier</Link>

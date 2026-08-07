@@ -103,26 +103,6 @@ export const CONTENT_PAGES = [
     },
     {
         kind: "page",
-        href: "/personnages",
-        label: "Personnages",
-        eyebrow: "Annexe du Codex",
-        variant: "editorial",
-        title: "Personnages de la Loire",
-        description:
-            "Souverains, bâtisseurs, écrivains, mécènes et figures singulières : celles et ceux dont les vies ont laissé leur empreinte sur les châteaux ligériens.",
-        accent: "#b5883c",
-        color: "ocre",
-        mark: "♜",
-        featureFlag: "personnages",
-        seo: {
-            title: "Personnages et figures de la Loire — Le Codex ligérien",
-            description:
-                "Rencontrez les souverains, bâtisseurs, écrivains, mécènes et figures dont les vies ont façonné les châteaux, les paysages et les récits de la Loire.",
-            indexable: false,
-        },
-    },
-    {
-        kind: "page",
         href: "/docs",
         label: "Documentation",
         eyebrow: "Documentation",
@@ -197,6 +177,11 @@ const INDEX_PAGE_SEO = {
         title: "Guinguettes et haltes au fil de la Loire — Le Codex ligérien",
         description:
             "Découvrez les guinguettes de Loire et de ses affluents : tables au bord de l’eau, concerts, cuisine locale, couchers de soleil et haltes à vélo.",
+    },
+    personnages: {
+        title: "Personnages et figures de la Loire — Le Codex ligérien",
+        description:
+            "Rencontrez les souverains, bâtisseurs, écrivains, mécènes et figures dont les vies ont façonné les châteaux, les paysages et les récits de la Loire.",
     },
     patrimoine: {
         title: "Patrimoine de la Loire, ponts et moulins — Le Codex ligérien",

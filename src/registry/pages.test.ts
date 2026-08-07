@@ -71,13 +71,14 @@ describe("page registry", () => {
         );
     });
 
-    it("keeps Personnages as a feature-gated Page", () => {
-        expect(
-            CONTENT_PAGES.find((page) => page.href === "/personnages"),
-        ).toMatchObject({
-            kind: "page",
-            variant: "editorial",
-            featureFlag: "personnages",
+    it("classifies Personnages as a repertoire index", () => {
+        expect(CONTENT_PAGES.map((page) => page.href)).not.toContain(
+            "/personnages",
+        );
+        expect(getPageDefinition("/personnages")).toMatchObject({
+            kind: "index",
+            universe: "raconte",
+            format: "repertoire",
         });
     });
 

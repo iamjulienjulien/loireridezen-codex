@@ -28,6 +28,7 @@ import GuinguettesPage from "./guinguettes/page";
 import HomeContent from "./HomeContent";
 import HomePage from "./page";
 import PatrimoinePage from "./patrimoine/page";
+import PersonnagesIndex from "./personnages/PersonnagesIndex";
 import PersonnagesPage from "./personnages/page";
 import VignoblesPage from "./vignobles/page";
 import VocabulairePage from "./vocabulaire/page";
@@ -109,12 +110,15 @@ describe("pilot shell migration", () => {
         expect(route.props.navigation).toBeDefined();
     });
 
-    it("composes Personnages through PageShell behind its feature flag", () => {
-        const route = PersonnagesPage() as ReactElement<PageShellProps>;
+    it("composes Personnages through IndexShell behind its feature flag", () => {
+        const route = PersonnagesPage() as ReactElement<IndexShellProps>;
+        const catalogue = route.props.children as ReactElement;
 
-        expect(route.type).toBe(PageShell);
+        expect(route.type).toBe(IndexShell);
         expect(route.props.page.href).toBe("/personnages");
-        expect(route.props.description).toBeDefined();
+        expect(route.props.page.format).toBe("repertoire");
+        expect(route.props.totalEntries).toBeGreaterThan(0);
+        expect(catalogue.type).toBe(PersonnagesIndex);
     });
 
     it("composes the documentation landing page through PageShell", () => {

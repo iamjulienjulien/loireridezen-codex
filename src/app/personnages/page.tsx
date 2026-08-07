@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 
-import PageShell from "@/components/layout/PageShell";
-import { PersonnageCard } from "@/components/personnages";
+import IndexShell from "@/components/layout/IndexShell";
 import {
     getCataloguePersonnages,
     getPersonnages,
@@ -9,11 +8,14 @@ import {
 } from "@/lib/personnages";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { featureIsEnabled } from "@/registry/feature-flags";
-import { getContentPageDefinition } from "@/registry/pages";
+import { getIndexesForEnv } from "@/registry/indexes";
+import { getIndexPageDefinition } from "@/registry/pages";
 
-import styles from "./page.module.css";
+import PersonnagesIndex, {
+    type PersonnageIndexEntry,
+} from "./PersonnagesIndex";
 
-const PERSONNAGES_PAGE = getContentPageDefinition("/personnages");
+const PERSONNAGES_PAGE = getIndexPageDefinition("/personnages");
 
 export const metadata = buildPageMetadata(PERSONNAGES_PAGE);
 
@@ -22,35 +24,23 @@ export default function PersonnagesPage() {
 
     const catalogue = getCataloguePersonnages();
     const personnages = getPersonnages();
+    const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
+    const entries: PersonnageIndexEntry[] = personnages.map((personnage) => ({
+        personnage,
+        relations: getRelationsForPersonnage(personnage.id),
+    }));
 
     return (
-        <PageShell
+        <IndexShell
             page={PERSONNAGES_PAGE}
-            description={
-                <>
-                    <span>{PERSONNAGES_PAGE.description}</span>
-                    <span className={styles.context}>
-                        {catalogue.meta.nombrePersonnages} personnages ·{" "}
-                        {catalogue.meta.nombreRelations} liens avec les châteaux
-                    </span>
-                </>
-            }
+            indexes={indexes}
+            totalEntries={personnages.length}
         >
-            <section className={styles.grid} aria-label="Personnages du Codex">
-                {personnages.map((personnage) => (
-                    <PersonnageCard
-                        key={personnage.id}
-                        personnage={personnage}
-                        relations={getRelationsForPersonnage(personnage.id)}
-                    />
-                ))}
-            </section>
-
-            <p className={styles.note}>
-                Cette annexe relie les personnages aux châteaux du Codex ; elle
-                n’a pas vocation à remplacer leurs notices historiques
-                détaillées.
-            </p>
-        </PageShell>
+            <PersonnagesIndex
+                entries={entries}
+                indexes={indexes}
+                relationCount={catalogue.meta.nombreRelations}
+            />
+        </IndexShell>
     );
 }

@@ -22,6 +22,10 @@ export const CODEX_INDEX_REGISTRY = defineCollectionMetaRegistry({
         label: "Guinguettes",
         color: "brique",
     },
+    personnages: {
+        label: "Personnages",
+        color: "lie-de-vin",
+    },
 });
 
 export type CodexIndex = keyof typeof CODEX_INDEX_REGISTRY;

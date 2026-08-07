@@ -9,12 +9,13 @@ import {
 
 describe("Codex index meta registry", () => {
     it("exposes every illustrated Codex index", () => {
-        expect(CODEX_INDEX_META).toHaveLength(4);
+        expect(CODEX_INDEX_META).toHaveLength(5);
         expect(CODEX_INDEX_META.map((index) => index.slug)).toEqual([
             "chateaux",
             "faune",
             "flore",
             "guinguettes",
+            "personnages",
         ]);
     });
 

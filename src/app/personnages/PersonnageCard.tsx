@@ -94,7 +94,7 @@ export default function PersonnageCard({
             <div className={styles.content}>
                 <div className={styles.biography}>
                     <div className={styles.identity}>
-                        <h2 className={styles.name}>{personnage.nom}</h2>
+                        <h3 className={styles.name}>{personnage.nom}</h3>
 
                         {alias ? (
                             <p className={styles.alias}>
@@ -132,7 +132,7 @@ export default function PersonnageCard({
                             description={formatLieuCount(lieuCount)}
                             icon={<Castle aria-hidden="true" size={15} />}
                             fullWidth
-                            headingLevel={3}
+                            headingLevel={4}
                             size="sm"
                             tone="surface"
                             unmountOnClose

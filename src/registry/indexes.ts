@@ -150,6 +150,30 @@ export const INDEXES = [
         env: ["development"],
     },
     {
+        slug: "personnages",
+        href: "/personnages",
+        mark: "♜",
+        label: "Personnages",
+        eyebrow: "Répertoire",
+        title: "Personnages de la Loire",
+        description:
+            "Des souverains aux artistes, les destins se croisent au fil de la Loire.",
+        universe: "raconte",
+        format: "repertoire",
+        accent: "#b5883c",
+        color: "ocre",
+        presentation:
+            "Souverains, bâtisseurs, écrivains, mécènes et figures singulières : leurs vies relient les lieux, les œuvres et les récits du Codex ligérien.",
+        presentation_md:
+            "Les monuments ne racontent jamais seuls l’histoire de la Loire. Derrière leurs pierres apparaissent des **souverains**, des **bâtisseurs**, des **artistes**, des **écrivains** et des figures plus discrètes dont les destins ont marqué le fleuve.\n\nLeurs parcours se croisent d’un château à l’autre : commandes, résidences, séjours, restaurations ou inspirations composent un réseau vivant entre les lieux et les époques.\n\nCe répertoire rassemble ces présences et rend visibles les liens humains qui parcourent le Codex ligérien.",
+        presentationFooter:
+            "**Ce répertoire rassemble les personnages reliés aux lieux du Codex. Chaque fiche présente leurs rôles, leurs autres noms et les relations documentées avec les châteaux de la Loire.**",
+        footerNote: "personnages reliés aux lieux et aux récits du Codex",
+        dataFile: "catalogue-personnages.json",
+        etat: "relecture",
+        env: ["development"],
+    },
+    {
         slug: "vignobles",
         href: "/vignobles",
         mark: "🍷",
