@@ -16,6 +16,7 @@ export type {
     LRZCommonEpoqueSymbolSlug,
     LRZCommonExperienceSymbolSlug,
     LRZCommonMilieuSymbolSlug,
+    LRZCommonTerritoireSymbolSlug,
     LRZFauneRareteSymbolSlug,
     LRZFauneTypeSymbolSlug,
     LRZFloreCategorieSymbolSlug,

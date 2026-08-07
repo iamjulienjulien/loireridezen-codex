@@ -8,6 +8,7 @@ import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { COMMON_EXPERIENCE_META } from "@/registry/Meta/common-experience";
 import { COMMON_MILIEU_META } from "@/registry/Meta/common-milieu";
+import { COMMON_TERRITOIRE_META } from "@/registry/Meta/common-territoire";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
@@ -20,6 +21,7 @@ import {
     LRZ_COMMON_EPOQUE_SYMBOLS,
     LRZ_COMMON_EXPERIENCE_SYMBOLS,
     LRZ_COMMON_MILIEU_SYMBOLS,
+    LRZ_COMMON_TERRITOIRE_SYMBOLS,
     LRZ_FAUNE_RARETE_SYMBOLS,
     LRZ_FAUNE_TYPE_SYMBOLS,
     LRZ_FLORE_CATEGORIE_SYMBOLS,
@@ -37,6 +39,22 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every common territory", () => {
+        expect(Object.keys(LRZ_SYMBOLS.common.territoire)).toEqual(
+            COMMON_TERRITOIRE_META.map((territory) => territory.slug),
+        );
+    });
+
+    it.each(COMMON_TERRITOIRE_META)(
+        "resolves common/territoire/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("common", "territoire", slug);
+
+            expect(source).toBe(LRZ_COMMON_TERRITOIRE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
     it("contains one symbol for every common experience", () => {
         expect(Object.keys(LRZ_SYMBOLS.common.experience)).toEqual(
             COMMON_EXPERIENCE_META.map((experience) => experience.slug),
@@ -277,6 +295,17 @@ describe("LRZ symbol registry", () => {
             label: "Canoë-kayak",
             accent: "#3E93A7",
             color: "eau-claire",
+        });
+    });
+
+    it("resolves the LRZ color of a common territory symbol", () => {
+        expect(
+            getLRZSymbolDefinition("common", "territoire", "touraine"),
+        ).toEqual({
+            source: LRZ_COMMON_TERRITOIRE_SYMBOLS.touraine,
+            label: "Touraine",
+            accent: "#5C8754",
+            color: "vert",
         });
     });
 

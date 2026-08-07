@@ -114,6 +114,18 @@ describe("LRZStamp", () => {
         );
     });
 
+    it("renders a common territory with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp collection="common" meta="territoire" slug="touraine" />,
+        );
+
+        expect(markup).toContain("Touraine");
+        expect(markup).toContain('data-collection="common"');
+        expect(markup).toContain('data-meta="territoire"');
+        expect(markup).toContain("/symbols/common/territoire/touraine.png");
+        expect(markup).toContain("--lrz-stamp-label-color:var(--color-vert)");
+    });
+
     it("renders a Faune rarity with its registry color", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp collection="faune" meta="rarete" slug="trésor" />,

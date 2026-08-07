@@ -21,6 +21,10 @@ import {
     type CommonMilieu,
 } from "@/registry/Meta/common-milieu";
 import {
+    getCommonTerritoireMeta,
+    type CommonTerritoire,
+} from "@/registry/Meta/common-territoire";
+import {
     getFauneRareteMeta,
     type FauneRarete,
 } from "@/registry/Meta/faune-rarete";
@@ -159,6 +163,20 @@ export const LRZ_COMMON_EXPERIENCE_SYMBOLS = {
 export type LRZCommonExperienceSymbolSlug =
     keyof typeof LRZ_COMMON_EXPERIENCE_SYMBOLS;
 
+export const LRZ_COMMON_TERRITOIRE_SYMBOLS = {
+    nivernais: "/symbols/common/territoire/nivernais.png",
+    orleanais: "/symbols/common/territoire/orleanais.png",
+    blaisois: "/symbols/common/territoire/blaisois.png",
+    touraine: "/symbols/common/territoire/touraine.png",
+    chinonais: "/symbols/common/territoire/chinonais.png",
+    saumurois: "/symbols/common/territoire/saumurois.png",
+    anjou: "/symbols/common/territoire/anjou.png",
+    "bretagne-ligerienne": "/symbols/common/territoire/bretagne-ligerienne.png",
+} as const satisfies Record<CommonTerritoire, string>;
+
+export type LRZCommonTerritoireSymbolSlug =
+    keyof typeof LRZ_COMMON_TERRITOIRE_SYMBOLS;
+
 export const LRZ_FAUNE_TYPE_SYMBOLS = {
     oiseau: "/symbols/faune/type/oiseau.png",
     mammifère: "/symbols/faune/type/mammifere.png",
@@ -255,7 +273,7 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  * Une collection peut contenir directement ses symboles, comme `index`, ou
  * les regrouper par métadonnée, comme `faune.type`, `faune.rarete`,
  * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
- * `common.milieu`, `common.experience`,
+ * `common.milieu`, `common.experience`, `common.territoire`,
  * `guinguette.ambience` et `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
@@ -265,6 +283,7 @@ export const LRZ_SYMBOLS = {
         architecture: LRZ_COMMON_ARCHITECTURE_SYMBOLS,
         milieu: LRZ_COMMON_MILIEU_SYMBOLS,
         experience: LRZ_COMMON_EXPERIENCE_SYMBOLS,
+        territoire: LRZ_COMMON_TERRITOIRE_SYMBOLS,
     },
     faune: {
         type: LRZ_FAUNE_TYPE_SYMBOLS,
@@ -297,6 +316,7 @@ export type LRZSymbolSlug =
     | LRZCommonArchitectureSymbolSlug
     | LRZCommonMilieuSymbolSlug
     | LRZCommonExperienceSymbolSlug
+    | LRZCommonTerritoireSymbolSlug
     | LRZFauneTypeSymbolSlug
     | LRZFauneRareteSymbolSlug
     | LRZFloreCategorieSymbolSlug
@@ -341,6 +361,12 @@ export type LRZSymbolLocator =
           collection: "common";
           meta: "experience";
           slug: LRZCommonExperienceSymbolSlug;
+      }
+    | {
+          /** Territoires ligériens communs aux collections du Codex. */
+          collection: "common";
+          meta: "territoire";
+          slug: LRZCommonTerritoireSymbolSlug;
       }
     | {
           /** Types taxinomiques de la collection Faune. */
@@ -427,6 +453,16 @@ export function getLRZSymbolSource(
     ) {
         return LRZ_SYMBOLS.common.experience[
             slug as LRZCommonExperienceSymbolSlug
+        ];
+    }
+
+    if (
+        collection === "common" &&
+        meta === "territoire" &&
+        Object.hasOwn(LRZ_SYMBOLS.common.territoire, slug)
+    ) {
+        return LRZ_SYMBOLS.common.territoire[
+            slug as LRZCommonTerritoireSymbolSlug
         ];
     }
 
@@ -557,6 +593,19 @@ export function getLRZSymbolDefinition(
                   label: experience.label,
                   accent: getLRZColorValue(experience.color),
                   color: experience.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "common" && meta === "territoire") {
+        const territory = getCommonTerritoireMeta(slug);
+
+        return territory
+            ? {
+                  source,
+                  label: territory.label,
+                  accent: getLRZColorValue(territory.color),
+                  color: territory.color,
               }
             : undefined;
     }
