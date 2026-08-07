@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 
+import chateauData from "@data/catalogue-chateaux.json";
+
 import robots from "./robots";
 import sitemap from "./sitemap";
 
@@ -15,6 +17,11 @@ describe("SEO discovery routes", () => {
 
         expect(urls).toContain("https://codex.loireridezen.bike/");
         expect(urls).toContain("https://codex.loireridezen.bike/chateaux");
+        for (const chateau of chateauData.chateaux) {
+            expect(urls).toContain(
+                `https://codex.loireridezen.bike/chateau/${chateau.slug}`,
+            );
+        }
         expect(urls).toContain("https://codex.loireridezen.bike/faune");
         expect(urls).toContain("https://codex.loireridezen.bike/flore");
         expect(urls).not.toContain(
