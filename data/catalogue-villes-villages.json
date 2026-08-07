@@ -1,0 +1,2837 @@
+{
+    "meta": {
+        "titre": "Catalogue des villes et villages de la Loire",
+        "source": "Loire Ride Zen — répertoire urbain et villageois du Codex ligérien",
+        "corridor": "Corridor ligérien, du Nivernais à l’estuaire de la Loire",
+        "maj": "2026-08-07",
+        "schemaVersion": "1.1.0",
+        "nombreEntrees": 39,
+        "departements": [
+            {
+                "nom": "Nièvre",
+                "code": "58"
+            },
+            {
+                "nom": "Loiret",
+                "code": "45"
+            },
+            {
+                "nom": "Loir-et-Cher",
+                "code": "41"
+            },
+            {
+                "nom": "Indre-et-Loire",
+                "code": "37"
+            },
+            {
+                "nom": "Maine-et-Loire",
+                "code": "49"
+            },
+            {
+                "nom": "Loire-Atlantique",
+                "code": "44"
+            }
+        ],
+        "note": "Catalogue initial des villes, bourgs et villages cités comme repères dans les huit territoires ligériens. Les domaines du Rivau, de Serrant et de Goulaine sont rattachés à leurs communes respectives ; les anciennes communes conservent une fiche propre lorsqu’elles demeurent un repère éditorial."
+    },
+    "villesVillages": [
+        {
+            "slug": "amboise",
+            "nom": "Amboise",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la cité royale au tournant de la Loire",
+            "description": "Dominée par son château royal, Amboise relie la mémoire des rois, les dernières années de Léonard de Vinci et les paysages de Touraine.",
+            "presentationMd": "Amboise s’étage sur le coteau au-dessus de la **Loire**. Le château royal, le Clos Lucé et Château Gaillard composent un ensemble où se croisent pouvoir, Renaissance et jardins, tandis que l’île d’Or maintient la ville au contact direct du fleuve.",
+            "administration": {
+                "communeActuelle": "Amboise",
+                "codeInsee": "37003",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "touraine",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Amasse"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.3967,
+                    "longitude": 0.9989
+                }
+            },
+            "identite": {
+                "mark": "🌿",
+                "accent": "#e2dfd4",
+                "color": "vert",
+                "symboles": ["château royal", "Léonard de Vinci", "île d’Or"]
+            },
+            "reperes": [
+                "Château royal d’Amboise",
+                "Clos Lucé",
+                "Domaine royal de Château Gaillard",
+                "Île d’Or"
+            ],
+            "faitsMarquants": [
+                "La cour royale séjourne régulièrement à Amboise à la fin du XVe et au début du XVIe siècle.",
+                "Léonard de Vinci passe les dernières années de sa vie au Clos Lucé."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-royal-d-amboise",
+                    "relation": "château dominant la Loire"
+                },
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-du-clos-luce",
+                    "relation": "demeure de Léonard de Vinci"
+                },
+                {
+                    "index": "chateaux",
+                    "slug": "domaine-royal-de-chateau-gaillard",
+                    "relation": "domaine royal de la Renaissance"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "chez-oscar-et-suzette",
+                    "relation": "guinguette installée à Amboise"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Amboise",
+                    "url": "https://geo.api.gouv.fr/communes/37003?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Renaissance", "ville royale", "Léonard de Vinci", "Loire"]
+        },
+        {
+            "slug": "ancenis",
+            "nom": "Ancenis",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville-frontière au passage de la Loire",
+            "description": "Autour de son château et de son pont, Ancenis garde la mémoire d’un passage stratégique entre l’Anjou et la Bretagne.",
+            "presentationMd": "Ancenis s’est développée sur la rive nord de la **Loire**, face aux terres angevines. Son château rappelle la fonction défensive de cette ancienne marche bretonne, aujourd’hui prolongée par un pont qui demeure un seuil majeur du récit ligérien.",
+            "administration": {
+                "communeActuelle": "Ancenis-Saint-Géréon",
+                "communeDeleguee": "Ancenis",
+                "codeInsee": "44003",
+                "departement": {
+                    "nom": "Loire-Atlantique",
+                    "code": "44"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "bretagne-ligerienne",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.3668,
+                    "longitude": -1.1772
+                }
+            },
+            "identite": {
+                "mark": "🐚",
+                "accent": "#e5dfd0",
+                "color": "gris",
+                "symboles": [
+                    "château d’Ancenis",
+                    "pont",
+                    "frontière historique"
+                ]
+            },
+            "reperes": [
+                "Château d’Ancenis",
+                "Pont d’Ancenis",
+                "Quais de Loire"
+            ],
+            "faitsMarquants": [
+                "Le château contrôle pendant des siècles l’un des grands passages de la Loire.",
+                "Ancenis marque la frontière historique entre l’Anjou et la Bretagne."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-d-ancenis",
+                    "relation": "forteresse du passage de Loire"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "guinguette-de-l-eperon",
+                    "relation": "guinguette installée à Ancenis"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Ancenis-Saint-Géréon",
+                    "url": "https://geo.api.gouv.fr/communes/44003?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Bretagne", "frontière", "château", "pont"]
+        },
+        {
+            "slug": "angers",
+            "nom": "Angers",
+            "autresNoms": ["Juliomagus"],
+            "gentilé": "Angevin / Angevine",
+            "nature": "ville",
+            "sousTitre": "la ville noire à la rencontre des eaux",
+            "description": "Autour de la Maine, Angers unit la forteresse d’ardoise, la tapisserie de l’Apocalypse et les paysages de confluence qui annoncent la Loire occidentale.",
+            "presentationMd": "Angers s’est construite de part et d’autre de la **Maine**, sur un site de passage entre les confluences de l’Anjou. La forteresse de schiste domine la rivière et conserve la tenture de l’Apocalypse, tandis que la Cité et la Doutre racontent deux rives longtemps réunies par leurs ponts. Ici, la pierre noire, les jardins et les eaux composent le seuil de la Loire occidentale.",
+            "administration": {
+                "communeActuelle": "Angers",
+                "codeInsee": "49007",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "anjou",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Maine",
+                "coursEau": ["Maine", "Loire"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.4819,
+                    "longitude": -0.5629
+                }
+            },
+            "identite": {
+                "mark": "⚜️",
+                "accent": "#2835CA",
+                "color": "bleu-loire",
+                "symboles": [
+                    "château d’ardoise",
+                    "tapisserie de l’Apocalypse",
+                    "Maine",
+                    "douceur angevine"
+                ]
+            },
+            "reperes": [
+                "Château d’Angers",
+                "Cathédrale Saint-Maurice",
+                "Quartier de la Doutre",
+                "Musée Jean-Lurçat",
+                "Île Saint-Aubin"
+            ],
+            "faitsMarquants": [
+                "La ville antique de Juliomagus se développe depuis un promontoire dominant la Maine.",
+                "La forteresse royale est construite au XIIIe siècle avant de devenir une résidence des ducs d’Anjou.",
+                "La tenture de l’Apocalypse est commandée au XIVe siècle par Louis Ier d’Anjou."
+            ],
+            "labels": ["Ville d’art et d’histoire"],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-d-angers",
+                    "relation": "forteresse dominant la Maine"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "le-nid-du-heron",
+                    "relation": "guinguette installée à Angers"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "le-port-de-l-ile",
+                    "relation": "guinguette installée à Angers"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "le-heron-carre",
+                    "relation": "guinguette installée à Angers"
+                }
+            ],
+            "liens": {
+                "siteOfficiel": "https://www.angers.fr/"
+            },
+            "sources": [
+                {
+                    "label": "Ville d’Angers — Patrimoine",
+                    "url": "https://www.angers.fr/vivre-a-angers/culture/patrimoine/index.html",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune d’Angers",
+                    "url": "https://geo.api.gouv.fr/communes/49007?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Anjou", "Maine", "château", "tapisserie"]
+        },
+        {
+            "slug": "azay-le-rideau",
+            "nom": "Azay-le-Rideau",
+            "autresNoms": [],
+            "nature": "bourg",
+            "sousTitre": "le bourg de pierre posé sur l’Indre",
+            "description": "Autour de l’Indre, Azay-le-Rideau associe un bourg tourangeau à l’une des silhouettes les plus délicates de la Renaissance.",
+            "presentationMd": "Azay-le-Rideau s’organise autour des bras de l’**Indre**. Le château, posé sur son miroir d’eau, dialogue avec les rues de tuffeau, les moulins et les paysages boisés qui relient le bourg à la vallée de la Loire.",
+            "administration": {
+                "communeActuelle": "Azay-le-Rideau",
+                "codeInsee": "37014",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "touraine",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Indre",
+                "coursEau": ["Indre", "Loire"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.2737,
+                    "longitude": 0.4616
+                }
+            },
+            "identite": {
+                "mark": "🌿",
+                "accent": "#e2dfd4",
+                "color": "vert",
+                "symboles": ["château sur l’eau", "tuffeau", "Indre"]
+            },
+            "reperes": [
+                "Château d’Azay-le-Rideau",
+                "Centre ancien",
+                "Moulins de l’Indre"
+            ],
+            "faitsMarquants": [
+                "Le château actuel est élevé au début du XVIe siècle sur une île de l’Indre.",
+                "Le bourg s’est développé autour des franchissements et des activités liées à la rivière."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-d-azay-le-rideau",
+                    "relation": "château de la Renaissance sur l’Indre"
+                },
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-l-islette",
+                    "relation": "demeure voisine de la vallée de l’Indre"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Azay-le-Rideau",
+                    "url": "https://geo.api.gouv.fr/communes/37014?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Indre", "Renaissance", "tuffeau", "château"]
+        },
+        {
+            "slug": "beaugency",
+            "nom": "Beaugency",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville du vieux pont et de la tour César",
+            "description": "Entre son pont aux multiples arches, son abbaye et sa tour maîtresse, Beaugency conserve l’allure d’une ville de passage sur la Loire.",
+            "presentationMd": "Beaugency s’est construite au débouché d’un ancien **pont de Loire**. La tour César, l’abbatiale et le château rythment un centre ancien serré entre le coteau et le fleuve, longtemps traversé par les voyageurs, les armées et les marchandises.",
+            "administration": {
+                "communeActuelle": "Beaugency",
+                "codeInsee": "45028",
+                "departement": {
+                    "nom": "Loiret",
+                    "code": "45"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "orleanais",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.777,
+                    "longitude": 1.6376
+                }
+            },
+            "identite": {
+                "mark": "👑",
+                "accent": "#4C83CF",
+                "color": "bleu",
+                "symboles": ["vieux pont", "tour César", "abbaye"]
+            },
+            "reperes": [
+                "Pont de Beaugency",
+                "Tour César",
+                "Abbatiale Notre-Dame",
+                "Château de Beaugency"
+            ],
+            "faitsMarquants": [
+                "Le pont médiéval fait de Beaugency un passage majeur entre les deux rives.",
+                "La ville conserve un ensemble monumental dominé par la tour César."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-beaugency",
+                    "relation": "château du centre ancien"
+                },
+                {
+                    "index": "patrimoine",
+                    "slug": "pont-de-beaugency",
+                    "relation": "vieux pont sur la Loire"
+                },
+                {
+                    "index": "patrimoine",
+                    "slug": "port-de-beaugency",
+                    "relation": "ancien port de Loire"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "la-cabane-de-loire-beaugency",
+                    "relation": "guinguette installée à Beaugency"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Beaugency",
+                    "url": "https://geo.api.gouv.fr/communes/45028?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["pont", "ville médiévale", "Loire", "abbaye"]
+        },
+        {
+            "slug": "behuard",
+            "nom": "Béhuard",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village insulaire au milieu des eaux",
+            "description": "Seule commune entièrement installée sur une île de Loire, Béhuard rassemble maisons basses, prairies inondables et sanctuaire marial.",
+            "presentationMd": "Béhuard vit au rythme des deux bras de la **Loire** qui entourent son île. Les maisons, les jardins et la chapelle Notre-Dame se serrent autour d’un rocher, dans un paysage où les crues restent une présence familière.",
+            "administration": {
+                "communeActuelle": "Béhuard",
+                "codeInsee": "49028",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "anjou",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.3796,
+                    "longitude": -0.6481
+                }
+            },
+            "identite": {
+                "mark": "⚜️",
+                "accent": "#2835CA",
+                "color": "bleu-loire",
+                "symboles": ["île de Loire", "chapelle", "prairies inondables"]
+            },
+            "reperes": [
+                "Chapelle Notre-Dame de Béhuard",
+                "Rocher de Béhuard",
+                "Rives de l’île"
+            ],
+            "faitsMarquants": [
+                "Le village occupe une île de Loire exposée aux crues.",
+                "La chapelle Notre-Dame est bâtie autour d’un rocher dominant légèrement le fleuve."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "guinguettes",
+                    "slug": "caparica-guinguette",
+                    "relation": "guinguette installée sur l’île"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Béhuard",
+                    "url": "https://geo.api.gouv.fr/communes/49028?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["île", "crues", "village", "Loire"]
+        },
+        {
+            "slug": "blois",
+            "nom": "Blois",
+            "autresNoms": ["Blesum"],
+            "gentilé": "Blésois / Blésoise",
+            "nature": "ville",
+            "sousTitre": "la ville royale en amphithéâtre sur la Loire",
+            "description": "Entre château royal et pont Jacques-Gabriel, Blois étage ses rues sur le coteau et regarde le fleuve depuis ses escaliers.",
+            "presentationMd": "Blois compose l’un des grands théâtres urbains du fleuve. Sur la rive droite, le **château royal** domine un lacis de rues, de degrés et de perspectives descendant vers la Loire. Le pont Jacques-Gabriel relie cette ville haute au quartier de Vienne et inscrit dans le paysage la longue relation entre pouvoir, franchissement et vie quotidienne.",
+            "administration": {
+                "communeActuelle": "Blois",
+                "codeInsee": "41018",
+                "departement": {
+                    "nom": "Loir-et-Cher",
+                    "code": "41"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "blaisois",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.5813,
+                    "longitude": 1.3049
+                }
+            },
+            "identite": {
+                "mark": "🏰",
+                "accent": "#e9c12e",
+                "color": "miel",
+                "symboles": [
+                    "château royal",
+                    "pont Jacques-Gabriel",
+                    "escalier Denis-Papin",
+                    "ville en amphithéâtre"
+                ]
+            },
+            "reperes": [
+                "Château royal de Blois",
+                "Pont Jacques-Gabriel",
+                "Escalier Denis-Papin",
+                "Cathédrale Saint-Louis",
+                "Quartier de Vienne"
+            ],
+            "faitsMarquants": [
+                "Blois devient ville royale lorsque Louis XII monte sur le trône en 1498.",
+                "Les États généraux se réunissent à Blois en 1576 puis en 1588.",
+                "Le pont Jacques-Gabriel est construit entre 1717 et 1724 après l’effondrement du pont médiéval."
+            ],
+            "labels": ["Ville d’art et d’histoire"],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-royal-de-blois",
+                    "relation": "résidence royale dominant la ville"
+                },
+                {
+                    "index": "patrimoine",
+                    "slug": "pont-jacques-gabriel-blois",
+                    "relation": "franchissement historique de la Loire"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "pause-en-loire",
+                    "relation": "guinguette installée à Blois"
+                }
+            ],
+            "liens": {
+                "siteOfficiel": "https://www.blois.fr/"
+            },
+            "sources": [
+                {
+                    "label": "Archives municipales de Blois — Blois de 1429 à 2012",
+                    "url": "https://archives.blois.fr/article.php?larub=44&titre=blois-de-1429-a-2012",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Blois",
+                    "url": "https://geo.api.gouv.fr/communes/41018?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["ville royale", "château", "pont", "coteau"]
+        },
+        {
+            "slug": "breze",
+            "nom": "Brézé",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village des caves sous la pierre",
+            "description": "Dans le Saumurois, Brézé associe son château à un vaste monde souterrain creusé dans le tuffeau et aux paysages de vigne.",
+            "presentationMd": "Brézé appartient au paysage de **tuffeau et de vigne** du Saumurois. Sous le château et autour du village, caves, galeries et habitats troglodytiques prolongent la surface par un territoire souterrain.",
+            "administration": {
+                "communeActuelle": "Bellevigne-les-Châteaux",
+                "communeDeleguee": "Brézé",
+                "codeInsee": "49060",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "saumurois",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Dive",
+                "coursEau": ["Dive", "Thouet", "Loire"],
+                "rive": null,
+                "position": {
+                    "latitude": 47.1746,
+                    "longitude": -0.0586
+                }
+            },
+            "identite": {
+                "mark": "🍇",
+                "accent": "#d0ab67",
+                "color": "miel",
+                "symboles": ["douves sèches", "troglodytes", "vigne"]
+            },
+            "reperes": [
+                "Château de Brézé",
+                "Galeries souterraines",
+                "Vignoble saumurois"
+            ],
+            "faitsMarquants": [
+                "Brézé est aujourd’hui une commune déléguée de Bellevigne-les-Châteaux.",
+                "Le château est connu pour ses douves et son réseau souterrain creusé dans le tuffeau."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-breze",
+                    "relation": "château et réseau troglodytique"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Bellevigne-les-Châteaux",
+                    "url": "https://geo.api.gouv.fr/communes/49060?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["troglodytes", "tuffeau", "vigne", "château"]
+        },
+        {
+            "slug": "brissac-quince",
+            "nom": "Brissac-Quincé",
+            "autresNoms": ["Brissac"],
+            "nature": "bourg",
+            "sousTitre": "le bourg de l’Aubance au pied du géant",
+            "description": "Brissac-Quincé s’organise autour de l’Aubance et de la haute silhouette du château de Brissac, entre coteaux viticoles et douceur angevine.",
+            "presentationMd": "Au bord de l’**Aubance**, Brissac-Quincé forme le cœur historique de l’actuelle commune de Brissac Loire Aubance. Le château domine un bourg de pierre claire ouvert sur les coteaux et les vignobles du sud angevin.",
+            "administration": {
+                "communeActuelle": "Brissac Loire Aubance",
+                "communeDeleguee": "Brissac-Quincé",
+                "codeInsee": "49050",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "anjou",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Aubance",
+                "coursEau": ["Aubance", "Loire"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.3542,
+                    "longitude": -0.4436
+                }
+            },
+            "identite": {
+                "mark": "⚜️",
+                "accent": "#2835CA",
+                "color": "bleu-loire",
+                "symboles": ["château de Brissac", "Aubance", "vignoble"]
+            },
+            "reperes": [
+                "Château de Brissac",
+                "Centre ancien",
+                "Rives de l’Aubance"
+            ],
+            "faitsMarquants": [
+                "Brissac-Quincé est aujourd’hui une commune déléguée de Brissac Loire Aubance.",
+                "Le château constitue le grand repère vertical du bourg et de la vallée de l’Aubance."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-brissac",
+                    "relation": "château dominant le bourg"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "la-guinguette-a-jojo",
+                    "relation": "guinguette située dans la commune actuelle"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Brissac Loire Aubance",
+                    "url": "https://geo.api.gouv.fr/communes/49050?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Aubance", "château", "vignoble", "Anjou"]
+        },
+        {
+            "slug": "candes-saint-martin",
+            "nom": "Candes-Saint-Martin",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village blanc au confluent de la Vienne",
+            "description": "À la rencontre de la Loire et de la Vienne, Candes-Saint-Martin étire ses maisons de tuffeau sous la collégiale.",
+            "presentationMd": "Candes-Saint-Martin occupe un promontoire au-dessus du **confluent de la Loire et de la Vienne**. La collégiale, les ruelles en pente et les façades de tuffeau composent un village tourné vers les bateaux et les vastes horizons d’eau.",
+            "administration": {
+                "communeActuelle": "Candes-Saint-Martin",
+                "codeInsee": "37042",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "chinonais",
+                "relationFleuve": "confluence",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Vienne"],
+                "rive": "gauche",
+                "position": {
+                    "latitude": 47.2021,
+                    "longitude": 0.0746
+                }
+            },
+            "identite": {
+                "mark": "⚔️",
+                "accent": "#df3a20",
+                "color": "corail",
+                "symboles": ["confluence", "collégiale", "tuffeau"]
+            },
+            "reperes": [
+                "Collégiale Saint-Martin",
+                "Confluent de la Vienne",
+                "Quais et cales"
+            ],
+            "faitsMarquants": [
+                "Le village domine le confluent de la Loire et de la Vienne.",
+                "La tradition martinienne est inscrite dans la collégiale et dans le nom de la commune."
+            ],
+            "labels": [],
+            "referencesCodex": [],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Candes-Saint-Martin",
+                    "url": "https://geo.api.gouv.fr/communes/37042?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["confluence", "Vienne", "tuffeau", "village"]
+        },
+        {
+            "slug": "chambord",
+            "nom": "Chambord",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le domaine royal entre forêt et Cosson",
+            "description": "Chambord rassemble un village discret, une vaste forêt close et le château-manifeste de François Ier au bord du Cosson.",
+            "presentationMd": "Chambord est moins un bourg qu’un **domaine royal habité**. Le château, la forêt et le Cosson structurent un territoire conçu à l’échelle du pouvoir, où les perspectives monumentales côtoient les milieux naturels de Sologne.",
+            "administration": {
+                "communeActuelle": "Chambord",
+                "codeInsee": "41034",
+                "departement": {
+                    "nom": "Loir-et-Cher",
+                    "code": "41"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "blaisois",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Cosson",
+                "coursEau": ["Cosson", "Loire"],
+                "rive": null,
+                "position": {
+                    "latitude": 47.6208,
+                    "longitude": 1.5374
+                }
+            },
+            "identite": {
+                "mark": "🏰",
+                "accent": "#e9c12e",
+                "color": "miel",
+                "symboles": ["château royal", "forêt close", "Cosson"]
+            },
+            "reperes": [
+                "Château de Chambord",
+                "Domaine national",
+                "Canal du Cosson"
+            ],
+            "faitsMarquants": [
+                "François Ier lance la construction du château au XVIe siècle.",
+                "Le village et le domaine sont aujourd’hui indissociables de la vaste forêt close de Chambord."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-chambord",
+                    "relation": "château royal au cœur du domaine"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Chambord",
+                    "url": "https://geo.api.gouv.fr/communes/41034?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["François Ier", "forêt", "Cosson", "château"]
+        },
+        {
+            "slug": "champtoceaux",
+            "nom": "Champtoceaux",
+            "autresNoms": [],
+            "nature": "bourg",
+            "sousTitre": "la citadelle disparue au balcon de la Loire",
+            "description": "Depuis son promontoire, Champtoceaux domine la Loire et conserve les traces d’une puissante place forte de la frontière bretonne.",
+            "presentationMd": "Champtoceaux s’installe très haut au-dessus de la **rive sud de la Loire**. Le panorama du Champalud et les vestiges de la citadelle racontent un site stratégique qui contrôlait autrefois le passage entre Anjou et Bretagne.",
+            "administration": {
+                "communeActuelle": "Orée d'Anjou",
+                "communeDeleguee": "Champtoceaux",
+                "codeInsee": "49126",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "anjou",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "gauche",
+                "position": {
+                    "latitude": 47.33556,
+                    "longitude": -1.265942
+                }
+            },
+            "identite": {
+                "mark": "⚜️",
+                "accent": "#2835CA",
+                "color": "bleu-loire",
+                "symboles": ["promontoire", "citadelle", "panorama de Loire"]
+            },
+            "reperes": [
+                "Champalud",
+                "Vestiges de la citadelle",
+                "Coteau de Loire"
+            ],
+            "faitsMarquants": [
+                "Champtoceaux est aujourd’hui une commune déléguée d’Orée d’Anjou.",
+                "Son promontoire contrôlait un passage stratégique entre l’Anjou et la Bretagne."
+            ],
+            "labels": [],
+            "referencesCodex": [],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Orée d'Anjou",
+                    "url": "https://geo.api.gouv.fr/communes/49126?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["promontoire", "frontière", "citadelle", "Loire"]
+        },
+        {
+            "slug": "chateauneuf-sur-loire",
+            "nom": "Châteauneuf-sur-Loire",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville des mariniers et du grand parc",
+            "description": "Châteauneuf-sur-Loire fait dialoguer les quais, la mémoire de la marine de Loire et un parc paysager hérité de son ancien château.",
+            "presentationMd": "Châteauneuf-sur-Loire s’étend sur la rive droite du fleuve. Ses quais et son musée rappellent la **marine de Loire**, tandis que le parc du château ouvre au cœur de la ville un paysage d’arbres, de douves et de perspectives.",
+            "administration": {
+                "communeActuelle": "Châteauneuf-sur-Loire",
+                "codeInsee": "45082",
+                "departement": {
+                    "nom": "Loiret",
+                    "code": "45"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "orleanais",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.8829,
+                    "longitude": 2.2415
+                }
+            },
+            "identite": {
+                "mark": "👑",
+                "accent": "#4C83CF",
+                "color": "bleu",
+                "symboles": ["marine de Loire", "quais", "parc du château"]
+            },
+            "reperes": [
+                "Musée de la Marine de Loire",
+                "Parc du château",
+                "Quais de Loire"
+            ],
+            "faitsMarquants": [
+                "La ville conserve une forte mémoire de la batellerie et du commerce fluvial.",
+                "Le parc paysager occupe l’ancien domaine du château."
+            ],
+            "labels": [],
+            "referencesCodex": [],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Châteauneuf-sur-Loire",
+                    "url": "https://geo.api.gouv.fr/communes/45082?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["marine de Loire", "batellerie", "parc", "quais"]
+        },
+        {
+            "slug": "chaumont-sur-loire",
+            "nom": "Chaumont-sur-Loire",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village sous le château et les jardins",
+            "description": "Entre coteau, château et Loire, Chaumont-sur-Loire associe un village riverain à un domaine devenu laboratoire du paysage.",
+            "presentationMd": "Chaumont-sur-Loire s’étire au pied d’un coteau couronné par le **domaine de Chaumont**. Le château regarde le fleuve, tandis que les jardins contemporains prolongent l’histoire du lieu par une exploration vivante du paysage.",
+            "administration": {
+                "communeActuelle": "Chaumont-sur-Loire",
+                "codeInsee": "41045",
+                "departement": {
+                    "nom": "Loir-et-Cher",
+                    "code": "41"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "blaisois",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.4647,
+                    "longitude": 1.1966
+                }
+            },
+            "identite": {
+                "mark": "🏰",
+                "accent": "#e9c12e",
+                "color": "miel",
+                "symboles": ["château sur le coteau", "jardins", "Loire"]
+            },
+            "reperes": [
+                "Domaine de Chaumont-sur-Loire",
+                "Village ancien",
+                "Rives de Loire"
+            ],
+            "faitsMarquants": [
+                "Le château occupe un promontoire dominant la Loire.",
+                "Le domaine accueille un festival consacré aux jardins et au paysage."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "domaine-de-chaumont-sur-loire",
+                    "relation": "château et domaine dominant la Loire"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "guinguette-rosalie",
+                    "relation": "guinguette installée à Chaumont-sur-Loire"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Chaumont-sur-Loire",
+                    "url": "https://geo.api.gouv.fr/communes/41045?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["jardins", "paysage", "château", "Loire"]
+        },
+        {
+            "slug": "chenonceaux",
+            "nom": "Chenonceaux",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village du château posé sur le Cher",
+            "description": "Chenonceaux vit dans l’ombre lumineuse du château qui franchit le Cher, entre village tourangeau, bois et jardins.",
+            "presentationMd": "Le village de Chenonceaux conduit au **château de Chenonceau**, dont le nom s’écrit sans le x final. La galerie jetée sur le Cher, les jardins et les bois donnent à cette petite commune une présence majeure dans l’imaginaire du Val de Loire.",
+            "administration": {
+                "communeActuelle": "Chenonceaux",
+                "codeInsee": "37070",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "touraine",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Cher",
+                "coursEau": ["Cher", "Loire"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.3436,
+                    "longitude": 1.0701
+                }
+            },
+            "identite": {
+                "mark": "🌿",
+                "accent": "#e2dfd4",
+                "color": "vert",
+                "symboles": ["château sur l’eau", "Cher", "jardins"]
+            },
+            "reperes": [
+                "Château de Chenonceau",
+                "Village ancien",
+                "Rives du Cher"
+            ],
+            "faitsMarquants": [
+                "Le nom de la commune Chenonceaux se distingue de celui du château de Chenonceau.",
+                "La grande galerie du château franchit le Cher."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-chenonceau",
+                    "relation": "château franchissant le Cher"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Chenonceaux",
+                    "url": "https://geo.api.gouv.fr/communes/37070?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Cher", "château", "jardins", "Touraine"]
+        },
+        {
+            "slug": "cheverny",
+            "nom": "Cheverny",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village du château blanc et des forêts",
+            "description": "Au seuil de la Sologne, Cheverny rassemble un château classique, un village de pierre claire et un paysage de bois et de domaines.",
+            "presentationMd": "Cheverny appartient au paysage de transition entre le Val de Loire et la **Sologne**. Le château, son parc et le village composent un ensemble ordonné, entouré de forêts, de vignobles et de petits cours d’eau.",
+            "administration": {
+                "communeActuelle": "Cheverny",
+                "codeInsee": "41050",
+                "departement": {
+                    "nom": "Loir-et-Cher",
+                    "code": "41"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "blaisois",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Conon",
+                "coursEau": ["Conon", "Loire"],
+                "rive": null,
+                "position": {
+                    "latitude": 47.4802,
+                    "longitude": 1.4579
+                }
+            },
+            "identite": {
+                "mark": "🏰",
+                "accent": "#e9c12e",
+                "color": "miel",
+                "symboles": ["château classique", "forêt", "vignoble"]
+            },
+            "reperes": [
+                "Château de Cheverny",
+                "Église Saint-Étienne",
+                "Forêts de Sologne"
+            ],
+            "faitsMarquants": [
+                "Le village s’est développé autour du domaine de Cheverny.",
+                "Le paysage local annonce les forêts et les étangs de Sologne."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-cheverny",
+                    "relation": "château classique du village"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Cheverny",
+                    "url": "https://geo.api.gouv.fr/communes/41050?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Sologne", "château", "forêt", "vignoble"]
+        },
+        {
+            "slug": "chinon",
+            "nom": "Chinon",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la forteresse au-dessus de la Vienne",
+            "description": "Sous les tours de sa forteresse, Chinon déroule une ville de tuffeau le long de la Vienne, entre mémoire royale et vignoble.",
+            "presentationMd": "Chinon s’étire entre la **Vienne** et un long éperon rocheux occupé par la forteresse. Les quais, les rues médiévales et les coteaux viticoles composent une ville-frontière où se croisent les Plantagenêts, les rois de France et la mémoire de Jeanne d’Arc.",
+            "administration": {
+                "communeActuelle": "Chinon",
+                "codeInsee": "37072",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "chinonais",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Vienne",
+                "coursEau": ["Vienne", "Loire"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.1692,
+                    "longitude": 0.2433
+                }
+            },
+            "identite": {
+                "mark": "⚔️",
+                "accent": "#df3a20",
+                "color": "corail",
+                "symboles": ["forteresse", "Vienne", "vignoble"]
+            },
+            "reperes": [
+                "Forteresse royale de Chinon",
+                "Ville médiévale",
+                "Quais de Vienne",
+                "Coteaux viticoles"
+            ],
+            "faitsMarquants": [
+                "La forteresse occupe un site stratégique au-dessus de la Vienne.",
+                "Chinon conserve la mémoire de la rencontre entre Jeanne d’Arc et le futur Charles VII."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "forteresse-royale-de-chinon",
+                    "relation": "forteresse dominant la ville"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "guinguette-de-chinon",
+                    "relation": "guinguette installée sur la Vienne"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Chinon",
+                    "url": "https://geo.api.gouv.fr/communes/37072?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Vienne", "forteresse", "Jeanne d’Arc", "vignoble"]
+        },
+        {
+            "slug": "clisson",
+            "nom": "Clisson",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville de granit aux accents d’Italie",
+            "description": "À la rencontre de la Sèvre Nantaise et de la Moine, Clisson mêle forteresse médiévale, halles anciennes et paysage italianisant.",
+            "presentationMd": "Clisson se construit autour du **confluent de la Sèvre Nantaise et de la Moine**. Le château et les halles rappellent la place forte bretonne, tandis que les reconstructions du XIXe siècle donnent aux rives et aux jardins une tonalité inspirée de l’Italie.",
+            "administration": {
+                "communeActuelle": "Clisson",
+                "codeInsee": "44043",
+                "departement": {
+                    "nom": "Loire-Atlantique",
+                    "code": "44"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "bretagne-ligerienne",
+                "relationFleuve": "confluence",
+                "coursEauPrincipal": "Sèvre Nantaise",
+                "coursEau": ["Sèvre Nantaise", "Moine", "Loire"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.0936,
+                    "longitude": -1.2654
+                }
+            },
+            "identite": {
+                "mark": "🐚",
+                "accent": "#e5dfd0",
+                "color": "gris",
+                "symboles": [
+                    "château médiéval",
+                    "confluence",
+                    "architecture italianisante"
+                ]
+            },
+            "reperes": [
+                "Château de Clisson",
+                "Halles",
+                "Pont de la Vallée",
+                "Rives de la Sèvre"
+            ],
+            "faitsMarquants": [
+                "La ville médiévale se développe autour d’une forteresse de la marche bretonne.",
+                "Après les destructions révolutionnaires, une partie du paysage urbain est recomposée dans un goût italianisant."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-clisson",
+                    "relation": "forteresse médiévale de la ville"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Clisson",
+                    "url": "https://geo.api.gouv.fr/communes/44043?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Bretagne", "Sèvre Nantaise", "château", "Italie"]
+        },
+        {
+            "slug": "cosne-cours-sur-loire",
+            "nom": "Cosne-Cours-sur-Loire",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville du Nohain ouverte sur la Loire",
+            "description": "Au confluent du Nohain, Cosne-Cours-sur-Loire forme la dernière grande ville nivernaise avant les portes du Giennois.",
+            "presentationMd": "Cosne-Cours-sur-Loire s’étend sur la rive droite du fleuve, à la rencontre du **Nohain et de la Loire**. Les quais, les anciens sites industriels et le pont relient la ville à un paysage de coteaux qui annonce les vignobles du centre ligérien.",
+            "administration": {
+                "communeActuelle": "Cosne-Cours-sur-Loire",
+                "codeInsee": "58086",
+                "departement": {
+                    "nom": "Nièvre",
+                    "code": "58"
+                },
+                "region": "Bourgogne-Franche-Comté"
+            },
+            "geographie": {
+                "territoire": "nivernais",
+                "relationFleuve": "confluence",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Nohain"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.414,
+                    "longitude": 2.9419
+                }
+            },
+            "identite": {
+                "mark": "⚓️",
+                "accent": "#CB2D2A",
+                "color": "rose-sauvage",
+                "symboles": [
+                    "confluent du Nohain",
+                    "pont de Loire",
+                    "anciens quais"
+                ]
+            },
+            "reperes": [
+                "Quais de Loire",
+                "Pont de Cosne",
+                "Centre ancien",
+                "Confluent du Nohain"
+            ],
+            "faitsMarquants": [
+                "La ville occupe un site de confluence entre le Nohain et la Loire.",
+                "Sa position en fait un seuil entre le Nivernais et le Giennois."
+            ],
+            "labels": [],
+            "referencesCodex": [],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Cosne-Cours-sur-Loire",
+                    "url": "https://geo.api.gouv.fr/communes/58086?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Nohain", "confluence", "Nivernais", "Loire"]
+        },
+        {
+            "slug": "gien",
+            "nom": "Gien",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville de brique au-dessus du grand pont",
+            "description": "Gien domine la Loire depuis son château de brique, entre faïence, vieux pont et mémoire des routes royales.",
+            "presentationMd": "Gien s’installe sur un coteau de la rive droite de la **Loire**. Le château de brique, le pont et les ateliers de faïence dessinent l’identité d’une ville reconstruite qui ouvre le grand chapitre royal du fleuve.",
+            "administration": {
+                "communeActuelle": "Gien",
+                "codeInsee": "45155",
+                "departement": {
+                    "nom": "Loiret",
+                    "code": "45"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "orleanais",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.7175,
+                    "longitude": 2.6687
+                }
+            },
+            "identite": {
+                "mark": "👑",
+                "accent": "#4C83CF",
+                "color": "bleu",
+                "symboles": ["château de brique", "faïence", "pont"]
+            },
+            "reperes": [
+                "Château de Gien",
+                "Vieux pont",
+                "Faïencerie",
+                "Quais de Loire"
+            ],
+            "faitsMarquants": [
+                "Le château domine un ancien passage de la Loire.",
+                "La faïence constitue l’un des savoir-faire emblématiques de Gien."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-gien",
+                    "relation": "château dominant la Loire"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "guinguette-giennoise",
+                    "relation": "guinguette installée à Gien"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Gien",
+                    "url": "https://geo.api.gouv.fr/communes/45155?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["faïence", "château", "pont", "Loire"]
+        },
+        {
+            "slug": "haute-goulaine",
+            "nom": "Haute-Goulaine",
+            "autresNoms": ["Goulaine"],
+            "nature": "bourg",
+            "sousTitre": "le bourg des marais et du château de Goulaine",
+            "description": "Entre vignoble nantais et marais de Goulaine, Haute-Goulaine relie un paysage d’eau, un ancien domaine seigneurial et les terres du muscadet.",
+            "presentationMd": "Haute-Goulaine s’étend entre les vignes et le **marais de Goulaine**, relié à la Loire. Le château de Goulaine donne au bourg son grand repère historique, dans un paysage où l’eau douce, les roselières et le vignoble se rencontrent.",
+            "administration": {
+                "communeActuelle": "Haute-Goulaine",
+                "codeInsee": "44071",
+                "departement": {
+                    "nom": "Loire-Atlantique",
+                    "code": "44"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "bretagne-ligerienne",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Goulaine",
+                "coursEau": ["Goulaine", "Loire"],
+                "rive": null,
+                "position": {
+                    "latitude": 47.1951,
+                    "longitude": -1.4097
+                }
+            },
+            "identite": {
+                "mark": "🐚",
+                "accent": "#e5dfd0",
+                "color": "gris",
+                "symboles": ["marais de Goulaine", "château", "muscadet"]
+            },
+            "reperes": [
+                "Château de Goulaine",
+                "Marais de Goulaine",
+                "Vignoble nantais"
+            ],
+            "faitsMarquants": [
+                "Le marais de Goulaine appartient au bassin versant de la Loire.",
+                "Le château de Goulaine constitue le grand repère patrimonial de la commune."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-goulaine",
+                    "relation": "château associé au pays de Goulaine"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Haute-Goulaine",
+                    "url": "https://geo.api.gouv.fr/communes/44071?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["marais", "muscadet", "château", "vignoble"]
+        },
+        {
+            "slug": "la-charite-sur-loire",
+            "nom": "La Charité-sur-Loire",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville du prieuré et des livres",
+            "description": "Autour de son prieuré, La Charité-sur-Loire descend vers le vieux pont et prolonge la tradition d’accueil par une identité littéraire.",
+            "presentationMd": "La Charité-sur-Loire s’est développée autour d’un grand **prieuré clunisien** dominant le fleuve. Les rues en pente, les remparts et le pont relient ce patrimoine monastique à une ville contemporaine connue pour ses libraires et son attachement aux mots.",
+            "administration": {
+                "communeActuelle": "La Charité-sur-Loire",
+                "codeInsee": "58059",
+                "departement": {
+                    "nom": "Nièvre",
+                    "code": "58"
+                },
+                "region": "Bourgogne-Franche-Comté"
+            },
+            "geographie": {
+                "territoire": "nivernais",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.183,
+                    "longitude": 3.0291
+                }
+            },
+            "identite": {
+                "mark": "⚓️",
+                "accent": "#CB2D2A",
+                "color": "rose-sauvage",
+                "symboles": ["prieuré clunisien", "vieux pont", "livres"]
+            },
+            "reperes": [
+                "Prieuré Notre-Dame",
+                "Vieux pont",
+                "Remparts",
+                "Cité du Mot"
+            ],
+            "faitsMarquants": [
+                "La ville se développe autour d’un prieuré fondé dans le réseau clunisien.",
+                "Son centre ancien descend du coteau vers un passage historique de la Loire."
+            ],
+            "labels": [],
+            "referencesCodex": [],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de La Charité-sur-Loire",
+                    "url": "https://geo.api.gouv.fr/communes/58059?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["prieuré", "livres", "pont", "Nivernais"]
+        },
+        {
+            "slug": "langeais",
+            "nom": "Langeais",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville du château au seuil de l’Anjou",
+            "description": "Langeais associe une forteresse de la fin du Moyen Âge, un centre ancien de tuffeau et un grand pont vers la rive sud.",
+            "presentationMd": "Langeais occupe la rive droite de la **Loire**, à la limite occidentale de la Touraine. Le château domine les toits du centre ancien, tandis que le pont ouvre vers les terres de la rive gauche et annonce les paysages du Chinonais.",
+            "administration": {
+                "communeActuelle": "Langeais",
+                "codeInsee": "37123",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "touraine",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Roumer"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.3477,
+                    "longitude": 0.3632
+                }
+            },
+            "identite": {
+                "mark": "🌿",
+                "accent": "#e2dfd4",
+                "color": "vert",
+                "symboles": ["château", "pont suspendu", "tuffeau"]
+            },
+            "reperes": [
+                "Château de Langeais",
+                "Centre ancien",
+                "Pont de Langeais",
+                "Rives de Loire"
+            ],
+            "faitsMarquants": [
+                "Le château actuel est élevé dans la seconde moitié du XVe siècle.",
+                "Langeais forme un seuil historique entre la Touraine centrale et l’Anjou."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-langeais",
+                    "relation": "château dominant le centre ancien"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "guinguette-langeais-loire",
+                    "relation": "guinguette installée au bord de la Loire"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Langeais",
+                    "url": "https://geo.api.gouv.fr/communes/37123?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["château", "pont", "Touraine", "Loire"]
+        },
+        {
+            "slug": "lemere",
+            "nom": "Lémeré",
+            "autresNoms": ["Le Rivau"],
+            "nature": "village",
+            "sousTitre": "le village du Rivau dans la vallée de la Veude",
+            "description": "Dans la campagne du Chinonais, Lémeré relie le château du Rivau, les champs et les petits cours d’eau du bassin de la Vienne.",
+            "presentationMd": "Lémeré appartient à un paysage rural de la **vallée de la Veude**. Le château du Rivau, ses jardins et les terres agricoles donnent au village une identité où l’architecture seigneuriale reste étroitement liée au monde cultivé.",
+            "administration": {
+                "communeActuelle": "Lémeré",
+                "codeInsee": "37125",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "chinonais",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Veude",
+                "coursEau": ["Veude", "Vienne", "Loire"],
+                "rive": null,
+                "position": {
+                    "latitude": 47.0932,
+                    "longitude": 0.3388
+                }
+            },
+            "identite": {
+                "mark": "⚔️",
+                "accent": "#df3a20",
+                "color": "corail",
+                "symboles": [
+                    "château du Rivau",
+                    "jardins",
+                    "campagne chinonaise"
+                ]
+            },
+            "reperes": [
+                "Château du Rivau",
+                "Jardins du Rivau",
+                "Vallée de la Veude"
+            ],
+            "faitsMarquants": [
+                "Le Rivau est un domaine situé sur la commune de Lémeré.",
+                "Le village appartient au bassin de la Vienne, affluent majeur de la Loire."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-du-rivau",
+                    "relation": "domaine situé à Lémeré"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Lémeré",
+                    "url": "https://geo.api.gouv.fr/communes/37125?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Rivau", "Veude", "jardins", "Chinonais"]
+        },
+        {
+            "slug": "lire",
+            "nom": "Liré",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village de Du Bellay face à la Loire",
+            "description": "Sur le coteau angevin, Liré regarde la Loire et conserve la mémoire de Joachim du Bellay entre vignes, bocage et frontière bretonne.",
+            "presentationMd": "Liré s’installe sur les hauteurs de la rive sud de la **Loire**. Le village et les paysages de la Turmelière restent associés à Joachim du Bellay, dont l’œuvre a fait de cette terre angevine une patrie littéraire.",
+            "administration": {
+                "communeActuelle": "Orée d'Anjou",
+                "communeDeleguee": "Liré",
+                "codeInsee": "49126",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "anjou",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "gauche",
+                "position": {
+                    "latitude": 47.343522,
+                    "longitude": -1.164382
+                }
+            },
+            "identite": {
+                "mark": "⚜️",
+                "accent": "#2835CA",
+                "color": "bleu-loire",
+                "symboles": ["Joachim du Bellay", "coteau de Loire", "vigne"]
+            },
+            "reperes": [
+                "Musée Joachim-du-Bellay",
+                "La Turmelière",
+                "Coteaux de Loire"
+            ],
+            "faitsMarquants": [
+                "Liré est aujourd’hui une commune déléguée d’Orée d’Anjou.",
+                "Le village est étroitement associé à la naissance et à l’œuvre de Joachim du Bellay."
+            ],
+            "labels": [],
+            "referencesCodex": [],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Orée d'Anjou",
+                    "url": "https://geo.api.gouv.fr/communes/49126?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Joachim du Bellay", "poésie", "Anjou", "Loire"]
+        },
+        {
+            "slug": "meung-sur-loire",
+            "nom": "Meung-sur-Loire",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville du château entre Mauves et Loire",
+            "description": "Meung-sur-Loire relie son château épiscopal, ses moulins et les Mauves à un ancien paysage de passage sur le fleuve.",
+            "presentationMd": "Meung-sur-Loire s’est développée entre la **Loire et les Mauves**, petits cours d’eau aménagés qui traversent la ville. Le château, la collégiale et les moulins composent un centre ancien lié à la fois au pouvoir religieux et aux activités hydrauliques.",
+            "administration": {
+                "communeActuelle": "Meung-sur-Loire",
+                "codeInsee": "45203",
+                "departement": {
+                    "nom": "Loiret",
+                    "code": "45"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "orleanais",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Mauves"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.8396,
+                    "longitude": 1.6918
+                }
+            },
+            "identite": {
+                "mark": "👑",
+                "accent": "#4C83CF",
+                "color": "bleu",
+                "symboles": ["château", "Mauves", "moulins"]
+            },
+            "reperes": [
+                "Château de Meung-sur-Loire",
+                "Collégiale Saint-Liphard",
+                "Mauves et moulins",
+                "Quais de Loire"
+            ],
+            "faitsMarquants": [
+                "Le château est longtemps lié aux évêques d’Orléans.",
+                "Les Mauves ont alimenté un réseau de moulins au cœur de la ville."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-meung-sur-loire",
+                    "relation": "château épiscopal de la ville"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "la-capitainerie-meung-sur-loire",
+                    "relation": "guinguette installée à Meung-sur-Loire"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Meung-sur-Loire",
+                    "url": "https://geo.api.gouv.fr/communes/45203?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Mauves", "moulins", "château", "Loire"]
+        },
+        {
+            "slug": "montreuil-bellay",
+            "nom": "Montreuil-Bellay",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la cité close au-dessus du Thouet",
+            "description": "Montreuil-Bellay domine le Thouet par son château et ses remparts, dans un paysage de pierre blonde, de ponts et de vignobles.",
+            "presentationMd": "Montreuil-Bellay s’élève au-dessus du **Thouet**. Le château, l’enceinte et les portes conservent la silhouette d’une ville fortifiée, prolongée par les quais, les moulins et les vignobles du sud saumurois.",
+            "administration": {
+                "communeActuelle": "Montreuil-Bellay",
+                "codeInsee": "49215",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "saumurois",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Thouet",
+                "coursEau": ["Thouet", "Loire"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.1295,
+                    "longitude": -0.1246
+                }
+            },
+            "identite": {
+                "mark": "🍇",
+                "accent": "#d0ab67",
+                "color": "miel",
+                "symboles": ["cité close", "Thouet", "château"]
+            },
+            "reperes": [
+                "Château de Montreuil-Bellay",
+                "Remparts",
+                "Porte Saint-Jean",
+                "Rives du Thouet"
+            ],
+            "faitsMarquants": [
+                "La ville conserve une importante enceinte médiévale.",
+                "Le château domine un ancien passage du Thouet."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-montreuil-bellay",
+                    "relation": "château dominant le Thouet"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "restaurant-guinguette-les-nobis",
+                    "relation": "guinguette installée à Montreuil-Bellay"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Montreuil-Bellay",
+                    "url": "https://geo.api.gouv.fr/communes/49215?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Thouet", "remparts", "château", "Saumurois"]
+        },
+        {
+            "slug": "montsoreau",
+            "nom": "Montsoreau",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village de tuffeau au bord du fleuve",
+            "description": "Montsoreau serre ses maisons de tuffeau entre le coteau et la Loire, autour d’un château construit au contact de l’eau.",
+            "presentationMd": "Montsoreau occupe un passage étroit entre le coteau et la **Loire**, peu après le confluent de la Vienne. Le château, les ruelles et les habitats troglodytiques composent un village où la pierre blanche semble sortir directement du fleuve.",
+            "administration": {
+                "communeActuelle": "Montsoreau",
+                "codeInsee": "49219",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "saumurois",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Vienne"],
+                "rive": "gauche",
+                "position": {
+                    "latitude": 47.213,
+                    "longitude": 0.0559
+                }
+            },
+            "identite": {
+                "mark": "🍇",
+                "accent": "#d0ab67",
+                "color": "miel",
+                "symboles": ["château sur la Loire", "tuffeau", "troglodytes"]
+            },
+            "reperes": [
+                "Château de Montsoreau",
+                "Quais de Loire",
+                "Coteau troglodytique",
+                "Village ancien"
+            ],
+            "faitsMarquants": [
+                "Le château est construit au XVe siècle au contact direct de la Loire.",
+                "Le village se développe entre le fleuve et un coteau de tuffeau."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-montsoreau",
+                    "relation": "château construit au bord de la Loire"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "la-cale-montsoreau",
+                    "relation": "guinguette installée sur les quais"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Montsoreau",
+                    "url": "https://geo.api.gouv.fr/communes/49219?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["tuffeau", "troglodytes", "château", "Loire"]
+        },
+        {
+            "slug": "nantes",
+            "nom": "Nantes",
+            "autresNoms": ["Portus Namnetum"],
+            "gentilé": "Nantais / Nantaise",
+            "nature": "ville",
+            "sousTitre": "la cité ducale ouverte sur l’estuaire",
+            "description": "À Nantes, la Loire devient portuaire et atlantique : le château des ducs, les îles et les anciens chantiers racontent une ville tournée vers le large.",
+            "presentationMd": "À Nantes, la Loire se divise, entoure les îles puis gagne l’estuaire. Le **château des ducs de Bretagne** garde la mémoire de la cité ducale, tandis que les quais, les grues et les anciens chantiers navals racontent son destin portuaire et industriel. Entre Bouffay et île de Nantes, la ville transforme sans cesse son rapport au fleuve et au large.",
+            "administration": {
+                "communeActuelle": "Nantes",
+                "codeInsee": "44109",
+                "departement": {
+                    "nom": "Loire-Atlantique",
+                    "code": "44"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "bretagne-ligerienne",
+                "relationFleuve": "estuaire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Erdre", "Sèvre Nantaise"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.2382,
+                    "longitude": -1.5603
+                }
+            },
+            "identite": {
+                "mark": "🐚",
+                "accent": "#e5dfd0",
+                "color": "gris",
+                "symboles": [
+                    "hermine",
+                    "château des ducs",
+                    "grues des chantiers",
+                    "estuaire"
+                ]
+            },
+            "reperes": [
+                "Château des Ducs de Bretagne",
+                "Quartier du Bouffay",
+                "Passage Pommeraye",
+                "Île de Nantes",
+                "Grues des anciens chantiers",
+                "Mémorial de l’abolition de l’esclavage"
+            ],
+            "faitsMarquants": [
+                "Les premières mentions de Portus Namnetum témoignent du lien ancien de Nantes avec la Loire.",
+                "Le château devient aux XVe et XVIe siècles une grande résidence des ducs de Bretagne.",
+                "Le développement portuaire puis les chantiers navals façonnent durablement les îles et les quais nantais."
+            ],
+            "labels": ["Ville d’art et d’histoire"],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-des-ducs-de-bretagne",
+                    "relation": "résidence ducale au cœur de la ville"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "la-cantine-du-voyage",
+                    "relation": "guinguette installée à Nantes"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "guinguette-du-belvedere",
+                    "relation": "guinguette installée à Nantes"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "bateau-lavoir-nantes",
+                    "relation": "guinguette installée à Nantes"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "la-cambuse-nantes",
+                    "relation": "guinguette installée à Nantes"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "guinguette-saint-joseph-de-porterie",
+                    "relation": "guinguette installée à Nantes"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "le-bivouac-du-petit-port",
+                    "relation": "guinguette installée à Nantes"
+                }
+            ],
+            "liens": {
+                "siteOfficiel": "https://metropole.nantes.fr/"
+            },
+            "sources": [
+                {
+                    "label": "Nantes Métropole — Les incontournables du patrimoine nantais",
+                    "url": "https://metropole.nantes.fr/que-faire-a-nantes/les-incontournables-du-patrimoine-nantais",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Nantes",
+                    "url": "https://geo.api.gouv.fr/communes/44109?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Bretagne", "estuaire", "port", "chantiers navals"]
+        },
+        {
+            "slug": "nevers",
+            "nom": "Nevers",
+            "autresNoms": ["Nevirnum"],
+            "gentilé": "Neversois / Neversoise",
+            "nature": "ville",
+            "sousTitre": "la cité ducale entre Loire et Nièvre",
+            "description": "Perchée au-dessus de la Loire, Nevers ouvre le Codex urbain avec son palais ducal, sa cathédrale et la longue mémoire de ses faïenciers.",
+            "presentationMd": "À la rencontre de la **Loire et de la Nièvre**, Nevers rassemble sur sa butte les signes de son histoire ducale. Le palais, la cathédrale et les anciens remparts dominent un paysage fluvial prolongé par le port de Médine. Depuis la fin du XVIe siècle, la faïence ajoute à cette ville de pierre un vocabulaire de bleu, de feu et de savoir-faire.",
+            "administration": {
+                "communeActuelle": "Nevers",
+                "codeInsee": "58194",
+                "departement": {
+                    "nom": "Nièvre",
+                    "code": "58"
+                },
+                "region": "Bourgogne-Franche-Comté"
+            },
+            "geographie": {
+                "territoire": "nivernais",
+                "relationFleuve": "confluence",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Nièvre"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 46.9852,
+                    "longitude": 3.1598
+                }
+            },
+            "identite": {
+                "mark": "⚓️",
+                "accent": "#CB2D2A",
+                "color": "rose-sauvage",
+                "symboles": [
+                    "palais ducal",
+                    "faïence bleue",
+                    "confluence de la Nièvre",
+                    "butte historique"
+                ]
+            },
+            "reperes": [
+                "Palais ducal",
+                "Cathédrale Saint-Cyr-et-Sainte-Julitte",
+                "Porte du Croux",
+                "Musée de la Faïence et des Beaux-Arts",
+                "Port de Médine"
+            ],
+            "faitsMarquants": [
+                "La ville s’est développée sur une butte dominant la rencontre de la Loire et de la Nièvre.",
+                "Le comté de Nevers est érigé en duché-pairie en 1538.",
+                "La production de faïence s’implante à Nevers à la fin du XVIe siècle."
+            ],
+            "labels": ["Ville et Pays d’art et d’histoire"],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "palais-ducal-de-nevers",
+                    "relation": "palais emblématique de la cité ducale"
+                }
+            ],
+            "liens": {
+                "siteOfficiel": "https://www.nevers.fr/"
+            },
+            "sources": [
+                {
+                    "label": "Ville de Nevers — Histoire de Nevers",
+                    "url": "https://www.nevers.fr/decouvrir-nevers/histoire/nevers",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Nevers",
+                    "url": "https://geo.api.gouv.fr/communes/58194?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["ville ducale", "faïence", "confluence", "patrimoine"]
+        },
+        {
+            "slug": "orleans",
+            "nom": "Orléans",
+            "autresNoms": ["Cenabum", "Aurelianum"],
+            "gentilé": "Orléanais / Orléanaise",
+            "nature": "ville",
+            "sousTitre": "la ville de Jeanne et des ports de Loire",
+            "description": "À la grande courbe du fleuve, Orléans mêle la mémoire de Jeanne d’Arc, la silhouette de Sainte-Croix et l’héritage de la marine de Loire.",
+            "presentationMd": "Orléans s’étend sur les deux rives d’une **grande courbe de Loire**. La cathédrale Sainte-Croix et la mémoire de Jeanne d’Arc donnent son axe au centre ancien, tandis que les quais rappellent la puissance passée du port et des échanges fluviaux. Ville royale, commerçante et reconstruite, elle forme l’une des grandes portes du Val de Loire.",
+            "administration": {
+                "communeActuelle": "Orléans",
+                "codeInsee": "45234",
+                "departement": {
+                    "nom": "Loiret",
+                    "code": "45"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "orleanais",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Loiret"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.8734,
+                    "longitude": 1.9122
+                }
+            },
+            "identite": {
+                "mark": "👑",
+                "accent": "#4C83CF",
+                "color": "bleu",
+                "symboles": [
+                    "Jeanne d’Arc",
+                    "cathédrale Sainte-Croix",
+                    "pont sur la Loire",
+                    "marine de Loire"
+                ]
+            },
+            "reperes": [
+                "Cathédrale Sainte-Croix",
+                "Maison de Jeanne d’Arc",
+                "Place du Martroi",
+                "Quais de Loire",
+                "Pont George-V"
+            ],
+            "faitsMarquants": [
+                "Jeanne d’Arc contribue à la levée du siège d’Orléans en 1429.",
+                "Le port d’Orléans devient l’un des grands centres du commerce ligérien à l’époque moderne.",
+                "Le centre ancien et les bords de Loire ont fait l’objet d’importantes campagnes de reconquête patrimoniale."
+            ],
+            "labels": ["Ville d’art et d’histoire"],
+            "referencesCodex": [
+                {
+                    "index": "guinguettes",
+                    "slug": "annexe-by-inex",
+                    "relation": "guinguette installée à Orléans"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "le-ponton-orleans",
+                    "relation": "guinguette installée à Orléans"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "la-capitainerie-orleans",
+                    "relation": "guinguette installée à Orléans"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "la-paillote-orleans",
+                    "relation": "guinguette installée à Orléans"
+                }
+            ],
+            "liens": {
+                "siteOfficiel": "https://www.orleans-metropole.fr/"
+            },
+            "sources": [
+                {
+                    "label": "Ville d’Orléans — Orléans au fil des siècles",
+                    "url": "https://www.orleans-metropole.fr/fileadmin/orleans/MEDIA/kiosque/ville_art_histoire/vdh_aufildelaville.pdf",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune d’Orléans",
+                    "url": "https://geo.api.gouv.fr/communes/45234?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": [
+                "Jeanne d’Arc",
+                "ville royale",
+                "marine de Loire",
+                "patrimoine"
+            ]
+        },
+        {
+            "slug": "oudon",
+            "nom": "Oudon",
+            "autresNoms": [],
+            "nature": "bourg",
+            "sousTitre": "la tour de Bretagne au confluent du Hâvre",
+            "description": "Oudon rassemble au bord de la Loire une tour médiévale, un ancien port et la vallée boisée du Hâvre.",
+            "presentationMd": "Oudon occupe la rive nord de la **Loire**, à l’arrivée du Hâvre. La tour médiévale domine le bourg et rappelle la frontière bretonne, tandis que le port et les coteaux prolongent le paysage vers l’estuaire.",
+            "administration": {
+                "communeActuelle": "Oudon",
+                "codeInsee": "44115",
+                "departement": {
+                    "nom": "Loire-Atlantique",
+                    "code": "44"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "bretagne-ligerienne",
+                "relationFleuve": "confluence",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Hâvre"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.3532,
+                    "longitude": -1.2676
+                }
+            },
+            "identite": {
+                "mark": "🐚",
+                "accent": "#e5dfd0",
+                "color": "gris",
+                "symboles": ["tour médiévale", "Hâvre", "ancien port"]
+            },
+            "reperes": [
+                "Château d’Oudon",
+                "Port d’Oudon",
+                "Vallée du Hâvre",
+                "Pont d’Oudon"
+            ],
+            "faitsMarquants": [
+                "La tour contrôle un ancien passage de la frontière bretonne.",
+                "Le Hâvre rejoint la Loire au pied du bourg."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-d-oudon",
+                    "relation": "tour médiévale dominant la Loire"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "le-gramophone-oudon",
+                    "relation": "guinguette installée à Oudon"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Oudon",
+                    "url": "https://geo.api.gouv.fr/communes/44115?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Bretagne", "Hâvre", "tour", "confluence"]
+        },
+        {
+            "slug": "rigny-usse",
+            "nom": "Rigny-Ussé",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village du château entre Indre et forêt",
+            "description": "Rigny-Ussé associe la vallée de l’Indre, les lisières forestières et la silhouette féerique du château d’Ussé.",
+            "presentationMd": "Rigny-Ussé s’étend entre l’**Indre**, les coteaux et la forêt de Chinon. Le château d’Ussé domine ce paysage de vallée et donne au village une identité où l’architecture, les jardins et les récits merveilleux se répondent.",
+            "administration": {
+                "communeActuelle": "Rigny-Ussé",
+                "codeInsee": "37197",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "chinonais",
+                "relationFleuve": "sur-un-affluent",
+                "coursEauPrincipal": "Indre",
+                "coursEau": ["Indre", "Loire"],
+                "rive": null,
+                "position": {
+                    "latitude": 47.251,
+                    "longitude": 0.3033
+                }
+            },
+            "identite": {
+                "mark": "⚔️",
+                "accent": "#df3a20",
+                "color": "corail",
+                "symboles": ["château d’Ussé", "Indre", "forêt de Chinon"]
+            },
+            "reperes": [
+                "Château d’Ussé",
+                "Vallée de l’Indre",
+                "Forêt de Chinon"
+            ],
+            "faitsMarquants": [
+                "Le château d’Ussé domine la vallée de l’Indre.",
+                "Le territoire communal forme une transition entre les vallées de l’Indre et de la Loire."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-d-usse",
+                    "relation": "château dominant la vallée de l’Indre"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Rigny-Ussé",
+                    "url": "https://geo.api.gouv.fr/communes/37197?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Indre", "château", "forêt", "Chinonais"]
+        },
+        {
+            "slug": "saint-georges-sur-loire",
+            "nom": "Saint-Georges-sur-Loire",
+            "autresNoms": ["Serrant"],
+            "nature": "bourg",
+            "sousTitre": "le bourg angevin du château de Serrant",
+            "description": "Entre bocage et vallée de la Loire, Saint-Georges-sur-Loire s’organise autour de son abbaye et du domaine de Serrant.",
+            "presentationMd": "Saint-Georges-sur-Loire occupe les hauteurs de la rive nord du fleuve. Le **château de Serrant**, situé sur la commune, relie le bourg à la grande histoire des demeures angevines, au milieu d’un paysage de parcs, d’étangs et de bocage.",
+            "administration": {
+                "communeActuelle": "Saint-Georges-sur-Loire",
+                "codeInsee": "49283",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "anjou",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.4031,
+                    "longitude": -0.7537
+                }
+            },
+            "identite": {
+                "mark": "⚜️",
+                "accent": "#2835CA",
+                "color": "bleu-loire",
+                "symboles": ["château de Serrant", "abbaye", "bocage"]
+            },
+            "reperes": [
+                "Château de Serrant",
+                "Ancienne abbaye",
+                "Étang d’Arrouët"
+            ],
+            "faitsMarquants": [
+                "Serrant est un domaine situé sur la commune de Saint-Georges-sur-Loire.",
+                "Le bourg se trouve sur les hauteurs dominant la vallée de la Loire."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-serrant",
+                    "relation": "domaine situé à Saint-Georges-sur-Loire"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Saint-Georges-sur-Loire",
+                    "url": "https://geo.api.gouv.fr/communes/49283?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["Serrant", "château", "bocage", "Anjou"]
+        },
+        {
+            "slug": "saint-nazaire",
+            "nom": "Saint-Nazaire",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville-port à l’entrée de l’Atlantique",
+            "description": "À Saint-Nazaire, l’estuaire devient océan : le port, les chantiers navals et le grand pont composent un paysage industriel ouvert sur le large.",
+            "presentationMd": "Saint-Nazaire occupe la rive nord de l’**estuaire de la Loire**, face à Saint-Brevin. Les bassins portuaires, les chantiers navals, la base sous-marine et le pont racontent une ville reconstruite autour des circulations maritimes et de la construction des grands navires.",
+            "administration": {
+                "communeActuelle": "Saint-Nazaire",
+                "codeInsee": "44184",
+                "departement": {
+                    "nom": "Loire-Atlantique",
+                    "code": "44"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "bretagne-ligerienne",
+                "relationFleuve": "estuaire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Atlantique"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.2768,
+                    "longitude": -2.2392
+                }
+            },
+            "identite": {
+                "mark": "🐚",
+                "accent": "#e5dfd0",
+                "color": "gris",
+                "symboles": [
+                    "port",
+                    "chantiers navals",
+                    "pont de Saint-Nazaire"
+                ]
+            },
+            "reperes": [
+                "Port de Saint-Nazaire",
+                "Chantiers navals",
+                "Base sous-marine",
+                "Pont de Saint-Nazaire",
+                "Vieux Môle"
+            ],
+            "faitsMarquants": [
+                "La ville se développe comme grand port de l’estuaire à partir du XIXe siècle.",
+                "Les chantiers navals façonnent durablement son identité industrielle et maritime."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "patrimoine",
+                    "slug": "phare-de-saint-nazaire",
+                    "relation": "feu du Vieux Môle à l’entrée du port"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Saint-Nazaire",
+                    "url": "https://geo.api.gouv.fr/communes/44184?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["estuaire", "port", "chantiers navals", "Atlantique"]
+        },
+        {
+            "slug": "saumur",
+            "nom": "Saumur",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la ville blanche entre Loire et coteau",
+            "description": "Sous son château, Saumur réunit la Loire, le Thouet, les caves de tuffeau et une longue tradition équestre et viticole.",
+            "presentationMd": "Saumur se déploie sur les deux rives de la **Loire**, au pied d’un coteau couronné par le château. Le Thouet, les caves, les maisons de tuffeau et les vignobles composent une ville de passage où se rencontrent tradition équestre, commerce et arts de vivre.",
+            "administration": {
+                "communeActuelle": "Saumur",
+                "codeInsee": "49328",
+                "departement": {
+                    "nom": "Maine-et-Loire",
+                    "code": "49"
+                },
+                "region": "Pays de la Loire"
+            },
+            "geographie": {
+                "territoire": "saumurois",
+                "relationFleuve": "confluence",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Thouet"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.2645,
+                    "longitude": -0.0837
+                }
+            },
+            "identite": {
+                "mark": "🍇",
+                "accent": "#d0ab67",
+                "color": "miel",
+                "symboles": ["château", "tuffeau", "cheval", "vignoble"]
+            },
+            "reperes": [
+                "Château de Saumur",
+                "Quais de Loire",
+                "École de cavalerie",
+                "Coteaux et caves"
+            ],
+            "faitsMarquants": [
+                "Le château domine la Loire et la ville ancienne.",
+                "Saumur est durablement associée à la cavalerie, au tuffeau et aux vins effervescents."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-saumur",
+                    "relation": "château dominant la ville"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "bateau-l-offard",
+                    "relation": "guinguette installée à Saumur"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "bateau-sur-les-quais",
+                    "relation": "guinguette installée sur les quais"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "le-quai-des-brunes",
+                    "relation": "guinguette installée à Saumur"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Saumur",
+                    "url": "https://geo.api.gouv.fr/communes/49328?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["tuffeau", "cheval", "vignoble", "Loire"]
+        },
+        {
+            "slug": "sully-sur-loire",
+            "nom": "Sully-sur-Loire",
+            "autresNoms": [],
+            "nature": "ville",
+            "sousTitre": "la forteresse aux douves devant la Loire",
+            "description": "Sully-sur-Loire s’organise autour d’une puissante forteresse ceinte d’eau, à l’entrée orientale du grand Val royal.",
+            "presentationMd": "Sully-sur-Loire occupe la rive droite du fleuve. Son **château à douves**, ses levées et ses quais rappellent un territoire longtemps exposé aux crues et placé sur l’une des grandes routes du royaume.",
+            "administration": {
+                "communeActuelle": "Sully-sur-Loire",
+                "codeInsee": "45315",
+                "departement": {
+                    "nom": "Loiret",
+                    "code": "45"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "orleanais",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Sange"],
+                "rive": "droite",
+                "position": {
+                    "latitude": 47.751,
+                    "longitude": 2.3499
+                }
+            },
+            "identite": {
+                "mark": "👑",
+                "accent": "#4C83CF",
+                "color": "bleu",
+                "symboles": ["forteresse", "douves", "levée de Loire"]
+            },
+            "reperes": [
+                "Château de Sully-sur-Loire",
+                "Quais de Loire",
+                "Levée",
+                "Centre ancien"
+            ],
+            "faitsMarquants": [
+                "Le château contrôle un ancien passage de la Loire.",
+                "La ville forme l’une des portes orientales du Val de Loire royal."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-sully-sur-loire",
+                    "relation": "forteresse entourée de douves"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Sully-sur-Loire",
+                    "url": "https://geo.api.gouv.fr/communes/45315?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["forteresse", "douves", "crues", "Loire"]
+        },
+        {
+            "slug": "tours",
+            "nom": "Tours",
+            "autresNoms": ["Caesarodunum"],
+            "gentilé": "Tourangeau / Tourangelle",
+            "nature": "ville",
+            "sousTitre": "la capitale du jardin de la Loire",
+            "description": "Entre Loire et Cher, Tours rassemble la mémoire de saint Martin, les quartiers du Vieux Tours et les grandes perspectives du val.",
+            "presentationMd": "Entre Loire et Cher, Tours a grandi autour de plusieurs noyaux devenus une seule ville. La cité épiscopale, le quartier martinien et les maisons du **Vieux Tours** racontent cette histoire par strates. Le pont Wilson, les quais et les paysages de Marmoutier maintiennent le fleuve au cœur d’une capitale tourangelle longtemps façonnée par les pèlerinages, le commerce et les arts.",
+            "administration": {
+                "communeActuelle": "Tours",
+                "codeInsee": "37261",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "touraine",
+                "relationFleuve": "sur-la-loire",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Cher"],
+                "rive": "deux-rives",
+                "position": {
+                    "latitude": 47.3943,
+                    "longitude": 0.6949
+                }
+            },
+            "identite": {
+                "mark": "🌿",
+                "accent": "#e2dfd4",
+                "color": "vert",
+                "symboles": [
+                    "saint Martin",
+                    "maisons à pans de bois",
+                    "pont de pierre",
+                    "jardin de la Loire"
+                ]
+            },
+            "reperes": [
+                "Vieux Tours et place Plumereau",
+                "Cathédrale Saint-Gatien",
+                "Basilique Saint-Martin",
+                "Pont Wilson",
+                "Site de Marmoutier"
+            ],
+            "faitsMarquants": [
+                "La ville antique de Caesarodunum se développe au bord de la Loire.",
+                "Le tombeau de saint Martin fait de Tours une grande ville de pèlerinage dès le haut Moyen Âge.",
+                "Le pont de pierre, aujourd’hui pont Wilson, est construit au XVIIIe siècle dans l’axe de la ville."
+            ],
+            "labels": ["Ville d’art et d’histoire"],
+            "referencesCodex": [
+                {
+                    "index": "patrimoine",
+                    "slug": "pont-wilson-tours",
+                    "relation": "grand pont de pierre dans l’axe de la ville"
+                },
+                {
+                    "index": "guinguettes",
+                    "slug": "tours-sur-loire",
+                    "relation": "guinguette installée sur les bords de Loire"
+                }
+            ],
+            "liens": {
+                "siteOfficiel": "https://www.tours.fr/"
+            },
+            "sources": [
+                {
+                    "label": "Ville de Tours — Parcours du patrimoine",
+                    "url": "https://musees.tours.fr/publications/les-parcours-du-patrimoine/",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Tours",
+                    "url": "https://geo.api.gouv.fr/communes/37261?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": [
+                "saint Martin",
+                "Vieux Tours",
+                "Loire et Cher",
+                "patrimoine"
+            ]
+        },
+        {
+            "slug": "villandry",
+            "nom": "Villandry",
+            "autresNoms": [],
+            "nature": "village",
+            "sousTitre": "le village des jardins au confluent des vallées",
+            "description": "Villandry associe ses jardins ordonnés, son château et les paysages où le Cher rejoint bientôt la Loire.",
+            "presentationMd": "Villandry se situe au contact des vallées du **Cher et de la Loire**. Le château et ses jardins en terrasses dominent un village de pierre claire, dans un paysage ouvert par les prairies, les coteaux et les anciens chemins d’eau.",
+            "administration": {
+                "communeActuelle": "Villandry",
+                "codeInsee": "37272",
+                "departement": {
+                    "nom": "Indre-et-Loire",
+                    "code": "37"
+                },
+                "region": "Centre-Val de Loire"
+            },
+            "geographie": {
+                "territoire": "touraine",
+                "relationFleuve": "confluence",
+                "coursEauPrincipal": "Loire",
+                "coursEau": ["Loire", "Cher"],
+                "rive": "gauche",
+                "position": {
+                    "latitude": 47.3321,
+                    "longitude": 0.4898
+                }
+            },
+            "identite": {
+                "mark": "🌿",
+                "accent": "#e2dfd4",
+                "color": "vert",
+                "symboles": ["jardins", "château", "confluence"]
+            },
+            "reperes": [
+                "Château de Villandry",
+                "Jardins en terrasses",
+                "Vallées de la Loire et du Cher"
+            ],
+            "faitsMarquants": [
+                "Le village se trouve à proximité immédiate du confluent du Cher et de la Loire.",
+                "Les jardins du château structurent fortement l’identité paysagère du lieu."
+            ],
+            "labels": [],
+            "referencesCodex": [
+                {
+                    "index": "chateaux",
+                    "slug": "chateau-de-villandry",
+                    "relation": "château célèbre pour ses jardins"
+                }
+            ],
+            "liens": {},
+            "sources": [
+                {
+                    "label": "Loire Ride Zen — catalogue des territoires ligériens",
+                    "consulteLe": "2026-08-07"
+                },
+                {
+                    "label": "API Découpage administratif — commune de Villandry",
+                    "url": "https://geo.api.gouv.fr/communes/37272?fields=nom,code,centre,departement,region&format=json&geometry=centre",
+                    "consulteLe": "2026-08-07"
+                }
+            ],
+            "tags": ["jardins", "Cher", "confluence", "château"]
+        }
+    ]
+}
