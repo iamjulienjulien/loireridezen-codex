@@ -13,6 +13,7 @@ import {
 import Script from "next/script";
 import AmbianceCommandPalette from "@/components/AmbianceCommandPalette";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/lib/site-metadata";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
@@ -79,10 +80,10 @@ const kalam = Kalam({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://codex.loireridezen.bike"),
+    metadataBase: new URL(SITE_URL),
 
-    title: "Loire Ride Zen — Le Codex Ligérien",
-    description: "Le codex du fil ligérien, de la source à l'Atlantique.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
 
     manifest: "/site.webmanifest",
 
@@ -119,27 +120,27 @@ export const metadata: Metadata = {
         type: "website",
         locale: "fr_FR",
         siteName: "Loire Ride Zen",
-        title: "Loire Ride Zen — Le Codex Ligérien",
-        description: "Le codex du fil ligérien, de la source à l'Atlantique.",
+        title: SITE_TITLE,
+        description: SITE_DESCRIPTION,
         url: "/",
         images: [
             {
                 url: "/api/og",
                 width: 1200,
                 height: 630,
-                alt: "Loire Ride Zen — Le Codex Ligérien",
+                alt: SITE_TITLE,
             },
         ],
     },
 
     twitter: {
         card: "summary_large_image",
-        title: "Loire Ride Zen — Le Codex Ligérien",
-        description: "Le codex du fil ligérien, de la source à l'Atlantique.",
+        title: SITE_TITLE,
+        description: SITE_DESCRIPTION,
         images: [
             {
                 url: "/api/og",
-                alt: "Loire Ride Zen — Le Codex Ligérien",
+                alt: SITE_TITLE,
             },
         ],
     },
