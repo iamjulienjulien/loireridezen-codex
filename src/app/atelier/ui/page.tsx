@@ -10,6 +10,7 @@ const COMPONENTS = [
     ["LRZChip", "/atelier/components/lrz-chip"],
     ["LRZCompteur", "/atelier/components/lrz-compteur"],
     ["LRZTooltip", "/atelier/components/lrz-tooltip"],
+    ["LRZTextClamp", "/atelier/components/lrz-text-clamp"],
     ["LRZTabs", "/atelier/components/lrz-tabs"],
     ["LRZTimeline", "/atelier/components/lrz-timeline"],
     ["LRZFilterChip", "/atelier/components/lrz-filter-chip"],

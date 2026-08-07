@@ -1,0 +1,24 @@
+.previewGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1rem;
+}
+
+.sample {
+    min-width: 0;
+    padding: 1.15rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-ambiance-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.label {
+    display: block;
+    margin-bottom: 0.85rem;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}

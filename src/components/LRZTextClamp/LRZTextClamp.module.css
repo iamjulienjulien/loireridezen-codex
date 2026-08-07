@@ -1,0 +1,152 @@
+.root {
+    --lrz-text-clamp-color: inherit;
+
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0;
+    color: var(--lrz-text-clamp-color);
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    text-align: inherit;
+}
+
+.root .tooltipRoot {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+}
+
+.text {
+    display: -webkit-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--lrz-text-clamp-lines);
+    line-clamp: var(--lrz-text-clamp-lines);
+}
+
+.text[data-fixed-height] {
+    min-block-size: calc(var(--lrz-text-clamp-lines) * 1lh);
+}
+
+.root[data-truncated] .text {
+    cursor: help;
+}
+
+.text:focus-visible {
+    border-radius: 2px;
+    outline: 1px dashed currentColor;
+    outline-offset: 2px;
+}
+
+.root[data-align="start"] {
+    text-align: start;
+}
+
+.root[data-align="center"] {
+    text-align: center;
+}
+
+.root[data-align="end"] {
+    text-align: end;
+}
+
+.root[data-font="display"] {
+    font-family: var(--font-display);
+}
+
+.root[data-font="body"] {
+    font-family: var(--font-body);
+}
+
+.root[data-font="mono"] {
+    font-family: var(--font-mono);
+}
+
+.root[data-font="editorial"] {
+    font-family: var(--font-edit, var(--font-display));
+}
+
+.root[data-font="signature"] {
+    font-family: var(--font-signature, var(--font-edit, var(--font-display)));
+}
+
+.root[data-font="bodoni"] {
+    font-family: var(--font-bodoni, var(--font-display));
+}
+
+.root[data-font="grotesk"] {
+    font-family: var(--font-grotesk, var(--font-body));
+}
+
+.root[data-font="note"] {
+    font-family: var(--font-note, var(--font-signature));
+}
+
+.root[data-font="inherit"] {
+    font-family: inherit;
+}
+
+.root[data-size="xs"] {
+    font-size: 0.75rem;
+}
+
+.root[data-size="sm"] {
+    font-size: 0.875rem;
+}
+
+.root[data-size="md"] {
+    font-size: 1rem;
+}
+
+.root[data-size="lg"] {
+    font-size: 1.125rem;
+}
+
+.root[data-size="xl"] {
+    font-size: 1.25rem;
+}
+
+.root[data-size="2xl"] {
+    font-size: 1.5rem;
+}
+
+.root[data-size="3xl"] {
+    font-size: 2rem;
+}
+
+.root[data-size="4xl"] {
+    font-size: 2.75rem;
+}
+
+.root[data-size="5xl"] {
+    font-size: 3.5rem;
+}
+
+.root[data-size="6xl"] {
+    font-size: 4.25rem;
+}
+
+.root[data-weight="regular"] {
+    font-weight: 400;
+}
+
+.root[data-weight="medium"] {
+    font-weight: 500;
+}
+
+.root[data-weight="semibold"] {
+    font-weight: 600;
+}
+
+.root[data-weight="bold"] {
+    font-weight: 700;
+}

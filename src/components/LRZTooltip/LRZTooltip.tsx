@@ -140,10 +140,10 @@ export default function LRZTooltip({
             data-side={side}
             onBlur={(event) => {
                 if (
-                    trigger === "click" &&
                     !event.currentTarget.contains(
                         event.relatedTarget as Node | null,
-                    )
+                    ) &&
+                    (trigger === "click" || (trigger === "hover" && portal))
                 ) {
                     setOpen(false);
                 }
@@ -156,6 +156,9 @@ export default function LRZTooltip({
             }}
             onMouseLeave={() => {
                 if (trigger === "hover" && portal) setOpen(false);
+            }}
+            onFocus={() => {
+                if (trigger === "hover" && portal) setOpen(true);
             }}
             ref={rootRef}
             style={{ "--tooltip-delay": `${delay}ms` } as CSSProperties}
