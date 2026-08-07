@@ -4,6 +4,10 @@ import {
 } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
 import {
+    getChateauRenommeeMeta,
+    type ChateauRenommee,
+} from "@/registry/Meta/chateau-renommee";
+import {
     getCodexIndexMeta,
     type CodexIndex,
 } from "@/registry/Meta/codex-index";
@@ -55,6 +59,16 @@ export const LRZ_CODEX_INDEX_SYMBOLS = {
     territoires: "/symbols/codex/index/territoires.png",
     "villes-villages": "/symbols/codex/index/villes-villages.png",
 } as const satisfies Record<CodexIndex, string>;
+
+export const LRZ_CHATEAU_RENOMMEE_SYMBOLS = {
+    phare: "/symbols/chateau/renommee/phare.png",
+    majeur: "/symbols/chateau/renommee/majeur.png",
+    notable: "/symbols/chateau/renommee/notable.png",
+    confidentiel: "/symbols/chateau/renommee/confidentiel.png",
+} as const satisfies Record<ChateauRenommee, string>;
+
+export type LRZChateauRenommeeSymbolSlug =
+    keyof typeof LRZ_CHATEAU_RENOMMEE_SYMBOLS;
 
 export type LRZCodexIndexSymbolSlug = keyof typeof LRZ_CODEX_INDEX_SYMBOLS;
 
@@ -296,7 +310,7 @@ export type LRZPersonnageCategorieSymbolSlug =
  * Registre des symboles illustrés du Codex.
  *
  * Les symboles sont regroupés par collection et métadonnée, comme
- * `codex.index`, `faune.type`, `faune.rarete`,
+ * `codex.index`, `chateau.renommee`, `faune.type`, `faune.rarete`,
  * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
  * `common.milieu`, `common.experience`, `common.territoire`,
  * `guinguette.ambience` et `personnage.categorie`.
@@ -304,6 +318,9 @@ export type LRZPersonnageCategorieSymbolSlug =
 export const LRZ_SYMBOLS = {
     codex: {
         index: LRZ_CODEX_INDEX_SYMBOLS,
+    },
+    chateau: {
+        renommee: LRZ_CHATEAU_RENOMMEE_SYMBOLS,
     },
     common: {
         epoque: LRZ_COMMON_EPOQUE_SYMBOLS,
@@ -332,6 +349,7 @@ export type LRZSymbolCollection = keyof typeof LRZ_SYMBOLS;
 
 export type LRZSymbolMeta =
     | keyof typeof LRZ_SYMBOLS.codex
+    | keyof typeof LRZ_SYMBOLS.chateau
     | keyof typeof LRZ_SYMBOLS.common
     | keyof typeof LRZ_SYMBOLS.faune
     | keyof typeof LRZ_SYMBOLS.flore
@@ -340,6 +358,7 @@ export type LRZSymbolMeta =
 
 export type LRZSymbolSlug =
     | LRZCodexIndexSymbolSlug
+    | LRZChateauRenommeeSymbolSlug
     | LRZCommonEpoqueSymbolSlug
     | LRZCommonArchitectureSymbolSlug
     | LRZCommonMilieuSymbolSlug
@@ -371,6 +390,12 @@ export type LRZSymbolLocator =
           collection: "common";
           meta: "epoque";
           slug: LRZCommonEpoqueSymbolSlug;
+      }
+    | {
+          /** Niveaux de renommée de la collection Châteaux. */
+          collection: "chateau";
+          meta: "renommee";
+          slug: LRZChateauRenommeeSymbolSlug;
       }
     | {
           /** Courants architecturaux communs aux collections du Codex. */
@@ -450,6 +475,16 @@ export function getLRZSymbolSource(
         isLRZCodexIndexSymbolSlug(slug)
     ) {
         return LRZ_SYMBOLS.codex.index[slug];
+    }
+
+    if (
+        collection === "chateau" &&
+        meta === "renommee" &&
+        Object.hasOwn(LRZ_SYMBOLS.chateau.renommee, slug)
+    ) {
+        return LRZ_SYMBOLS.chateau.renommee[
+            slug as LRZChateauRenommeeSymbolSlug
+        ];
     }
 
     if (
@@ -716,6 +751,19 @@ export function getLRZSymbolDefinition(
                   label: category.nom,
                   accent: category.identite.accent,
                   color: category.identite.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "chateau" && meta === "renommee") {
+        const renown = getChateauRenommeeMeta(slug);
+
+        return renown
+            ? {
+                  source,
+                  label: renown.label,
+                  accent: getLRZColorValue(renown.color),
+                  color: renown.color,
               }
             : undefined;
     }

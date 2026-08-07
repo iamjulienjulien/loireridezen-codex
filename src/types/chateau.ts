@@ -2,13 +2,13 @@
 // Château ligérien — sibling de FauneEspece (même grammaire de codex).
 
 import type { Ambiance } from "@/registry/ambiances";
+import type { ChateauRenommee } from "@/registry/Meta/chateau-renommee";
+
+export type { ChateauRenommee } from "@/registry/Meta/chateau-renommee";
 
 /** Époque dominante. Un château en cumule souvent ; `construction` porte le détail. */
 export type ChateauEpoque =
     "Médiéval" | "Renaissance" | "Classique" | "Éclectique";
-
-/** Renommée sur le fil — miroir de la rareté de la faune. */
-export type ChateauRenommee = "phare" | "majeur" | "notable" | "confidentiel";
 
 /** Ouverture au visiteur. */
 export type ChateauVisite =

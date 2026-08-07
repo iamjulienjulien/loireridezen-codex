@@ -16,6 +16,15 @@ export {
 } from "@/registry/Meta/codex-index";
 
 export {
+    CHATEAU_RENOMMEE_META,
+    CHATEAU_RENOMMEE_REGISTRY,
+    getChateauRenommeeMeta,
+    isChateauRenommee,
+    type ChateauRenommee,
+    type ChateauRenommeeMeta,
+} from "@/registry/Meta/chateau-renommee";
+
+export {
     COMMON_EPOQUE_META,
     COMMON_EPOQUE_REGISTRY,
     getCommonEpoqueMeta,

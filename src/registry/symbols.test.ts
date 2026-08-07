@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
+import { CHATEAU_RENOMMEE_META } from "@/registry/Meta/chateau-renommee";
 import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
@@ -18,6 +19,7 @@ import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
     getLRZSymbolDefinition,
     getLRZSymbolSource,
+    LRZ_CHATEAU_RENOMMEE_SYMBOLS,
     LRZ_COMMON_ARCHITECTURE_SYMBOLS,
     LRZ_COMMON_EPOQUE_SYMBOLS,
     LRZ_COMMON_EXPERIENCE_SYMBOLS,
@@ -40,6 +42,22 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every Chateau renown level", () => {
+        expect(Object.keys(LRZ_SYMBOLS.chateau.renommee)).toEqual(
+            CHATEAU_RENOMMEE_META.map((renown) => renown.slug),
+        );
+    });
+
+    it.each(CHATEAU_RENOMMEE_META)(
+        "resolves chateau/renommee/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("chateau", "renommee", slug);
+
+            expect(source).toBe(LRZ_CHATEAU_RENOMMEE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
     it("contains one symbol for every common territory", () => {
         expect(Object.keys(LRZ_SYMBOLS.common.territoire)).toEqual(
             COMMON_TERRITOIRE_META.map((territory) => territory.slug),
@@ -220,12 +238,15 @@ describe("LRZ symbol registry", () => {
 
     it("does not resolve an unknown Codex index symbol", () => {
         expect(
-            getLRZSymbolSource("codex", "index", "vignobles"),
+            getLRZSymbolSource("codex", "index", "patrimoine"),
         ).toBeUndefined();
     });
 
     it("does not resolve a nested symbol without its meta", () => {
         expect(getLRZSymbolSource("codex", undefined, "flore")).toBeUndefined();
+        expect(
+            getLRZSymbolSource("chateau", undefined, "phare"),
+        ).toBeUndefined();
         expect(
             getLRZSymbolSource("personnage", undefined, "souverain"),
         ).toBeUndefined();
@@ -269,6 +290,17 @@ describe("LRZ symbol registry", () => {
             label: "Renaissance",
             accent: "#C7953E",
             color: "miel",
+        });
+    });
+
+    it("resolves the LRZ color of a Chateau renown symbol", () => {
+        expect(
+            getLRZSymbolDefinition("chateau", "renommee", "confidentiel"),
+        ).toEqual({
+            source: LRZ_CHATEAU_RENOMMEE_SYMBOLS.confidentiel,
+            label: "Confidentiel",
+            accent: "#D6D0C6",
+            color: "pierre",
         });
     });
 
