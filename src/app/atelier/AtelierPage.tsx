@@ -22,21 +22,21 @@ const CATEGORIES = [
         description:
             "Les briques visuelles du Codex : typographie, cartes, filtres, badges et navigation.",
         href: "/atelier/ui",
-        count: "12 fiches",
+        count: "23 fiches",
     },
     {
         title: "Composants Doc",
         description:
             "Les éléments qui structurent les pages de documentation et les contenus de référence.",
         href: "/atelier/doc",
-        count: "4 fiches",
+        count: "6 fiches",
     },
     {
         title: "Composants Métier",
         description:
-            "Les fiches spécialisées qui donnent corps aux index Faune, Flore, Châteaux et Personnages.",
+            "Les fiches spécialisées qui donnent corps aux index Faune, Flore, Châteaux, Guinguettes et Personnages.",
         href: "/atelier/metier",
-        count: "4 fiches",
+        count: "5 fiches",
     },
     {
         title: "Composants Collections",

@@ -5,8 +5,13 @@ import styles from "../atelier.module.css";
 
 const COMPONENTS = [
     ["LRZBadge", "/atelier/components/lrz-badge"],
+    ["LRZSymbol", "/atelier/components/lrz-symbol"],
+    ["LRZStamp", "/atelier/components/lrz-stamp"],
     ["LRZAnecdote", "/atelier/components/lrz-anecdote"],
     ["LRZAccordion", "/atelier/components/lrz-accordion"],
+    ["LRZDialog", "/atelier/components/lrz-dialog"],
+    ["LRZButton", "/atelier/components/lrz-button"],
+    ["LRZButtonGroup", "/atelier/components/lrz-button-group"],
     ["LRZChip", "/atelier/components/lrz-chip"],
     ["LRZCompteur", "/atelier/components/lrz-compteur"],
     ["LRZTooltip", "/atelier/components/lrz-tooltip"],
