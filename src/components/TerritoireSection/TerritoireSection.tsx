@@ -1,13 +1,14 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import Image from "next/image";
 import { MapPin, Waves } from "lucide-react";
 
 import type { Chateau } from "@/types/chateau";
 import type { Territoire } from "@/types/territoire";
 
 import ChateauxCard from "@/app/chateaux/ChateauxCard";
+import { LRZSymbol } from "@/components/LRZSymbol";
+import { isCommonTerritoire } from "@/registry/Meta/common-territoire";
 
 import styles from "./TerritoireSection.module.css";
 import { lighter } from "@/lib/colors";
@@ -34,7 +35,6 @@ export default function TerritoireSection({
 
     const color = getLRZColorValue(identite.color);
     const colorLighter = lighter(color, 0);
-    const accentLighter = lighter(identite.accent, 0.1);
 
     return (
         <section
@@ -86,16 +86,17 @@ export default function TerritoireSection({
                     />
                 </div>
                 <div className={styles.identity}>
-                    {identite.blason ? (
-                        <Image
+                    {isCommonTerritoire(territory.slug) ? (
+                        <LRZSymbol
+                            collection="common"
+                            meta="territoire"
+                            slug={territory.slug}
+                            size={120}
+                            frame="none"
+                            padding="none"
+                            shadow="strong"
+                            decorative
                             className={styles.crest}
-                            src={identite.blason}
-                            alt={
-                                identite.blasonAlt ??
-                                `Blason du territoire ${territory.nom}`
-                            }
-                            width={96}
-                            height={120}
                         />
                     ) : (
                         <span className={styles.mark} aria-hidden="true">
