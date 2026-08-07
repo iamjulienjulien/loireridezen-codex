@@ -54,6 +54,7 @@ type LRZStampPlaygroundProps = {
 
 type SizeChoice = LRZStampSize | "custom";
 type PaddingChoice = LRZStampPadding | "custom";
+type AxisPaddingChoice = PaddingChoice | "auto";
 type GapChoice = LRZStampGap | "custom";
 type LabelSizeChoice = LRZStampLabelSize | "auto" | "custom";
 
@@ -69,6 +70,10 @@ type PlaygroundState = {
     shadow: LRZStampShadow;
     padding: PaddingChoice;
     customPadding: number;
+    paddingX: AxisPaddingChoice;
+    customPaddingX: number;
+    paddingY: AxisPaddingChoice;
+    customPaddingY: number;
     gap: GapChoice;
     customGap: number;
     symbolFrame: LRZSymbolFrame;
@@ -103,6 +108,10 @@ const INITIAL_STATE: PlaygroundState = {
     shadow: "soft",
     padding: "md",
     customPadding: 8,
+    paddingX: "auto",
+    customPaddingX: 12,
+    paddingY: "auto",
+    customPaddingY: 6,
     gap: "sm",
     customGap: 8,
     symbolFrame: "none",
@@ -137,6 +146,7 @@ const SIZES: readonly SizeChoice[] = ["xs", "sm", "md", "lg", "xl", "custom"];
 const POSITIONS: readonly LRZStampPosition[] = ["start", "end", "top"];
 const SHADOWS: readonly LRZStampShadow[] = ["none", "soft", "strong"];
 const PADDINGS: readonly PaddingChoice[] = ["xs", "sm", "md", "lg", "custom"];
+const AXIS_PADDINGS: readonly AxisPaddingChoice[] = ["auto", ...PADDINGS];
 const GAPS: readonly GapChoice[] = ["xs", "sm", "md", "lg", "custom"];
 const SYMBOL_FRAMES: readonly LRZSymbolFrame[] = [
     "none",
@@ -195,6 +205,18 @@ function buildCode(values: PlaygroundState) {
         values.padding === "custom"
             ? `{${values.customPadding}}`
             : codeValue(values.padding);
+    const paddingX =
+        values.paddingX === "auto"
+            ? undefined
+            : values.paddingX === "custom"
+              ? `{${values.customPaddingX}}`
+              : codeValue(values.paddingX);
+    const paddingY =
+        values.paddingY === "auto"
+            ? undefined
+            : values.paddingY === "custom"
+              ? `{${values.customPaddingY}}`
+              : codeValue(values.paddingY);
     const gap =
         values.gap === "custom"
             ? `{${values.customGap}}`
@@ -220,6 +242,8 @@ function buildCode(values: PlaygroundState) {
         `symbolPosition=${codeValue(values.position)}`,
         `shadow=${codeValue(values.shadow)}`,
         `padding=${padding}`,
+        ...(paddingX ? [`paddingX=${paddingX}`] : []),
+        ...(paddingY ? [`paddingY=${paddingY}`] : []),
         `gap=${gap}`,
         `symbolFrame=${codeValue(values.symbolFrame)}`,
         `symbolShape=${codeValue(values.symbolShape)}`,
@@ -309,6 +333,18 @@ export default function LRZStampPlayground({
         values.size === "custom" ? values.customSize : values.size;
     const resolvedPadding =
         values.padding === "custom" ? values.customPadding : values.padding;
+    const resolvedPaddingX =
+        values.paddingX === "auto"
+            ? undefined
+            : values.paddingX === "custom"
+              ? values.customPaddingX
+              : values.paddingX;
+    const resolvedPaddingY =
+        values.paddingY === "auto"
+            ? undefined
+            : values.paddingY === "custom"
+              ? values.customPaddingY
+              : values.paddingY;
     const resolvedGap = values.gap === "custom" ? values.customGap : values.gap;
     const resolvedLabelSize =
         values.labelSize === "auto"
@@ -642,6 +678,44 @@ export default function LRZStampPlayground({
                                 </select>
                             </label>
                             <label className={styles.control}>
+                                <span>Padding X</span>
+                                <select
+                                    value={values.paddingX}
+                                    onChange={(event) =>
+                                        setValues((current) => ({
+                                            ...current,
+                                            paddingX: event.target
+                                                .value as AxisPaddingChoice,
+                                        }))
+                                    }
+                                >
+                                    {AXIS_PADDINGS.map((padding) => (
+                                        <option key={padding} value={padding}>
+                                            {padding}
+                                        </option>
+                                    ))}
+                                </select>
+                            </label>
+                            <label className={styles.control}>
+                                <span>Padding Y</span>
+                                <select
+                                    value={values.paddingY}
+                                    onChange={(event) =>
+                                        setValues((current) => ({
+                                            ...current,
+                                            paddingY: event.target
+                                                .value as AxisPaddingChoice,
+                                        }))
+                                    }
+                                >
+                                    {AXIS_PADDINGS.map((padding) => (
+                                        <option key={padding} value={padding}>
+                                            {padding}
+                                        </option>
+                                    ))}
+                                </select>
+                            </label>
+                            <label className={styles.control}>
                                 <span>Gap</span>
                                 <select
                                     value={values.gap}
@@ -688,6 +762,36 @@ export default function LRZStampPlayground({
                                     setValues((current) => ({
                                         ...current,
                                         customPadding,
+                                    }))
+                                }
+                            />
+                        ) : null}
+                        {values.paddingX === "custom" ? (
+                            <RangeControl
+                                label="Padding X"
+                                value={values.customPaddingX}
+                                min={0}
+                                max={30}
+                                suffix="px"
+                                onChange={(customPaddingX) =>
+                                    setValues((current) => ({
+                                        ...current,
+                                        customPaddingX,
+                                    }))
+                                }
+                            />
+                        ) : null}
+                        {values.paddingY === "custom" ? (
+                            <RangeControl
+                                label="Padding Y"
+                                value={values.customPaddingY}
+                                min={0}
+                                max={30}
+                                suffix="px"
+                                onChange={(customPaddingY) =>
+                                    setValues((current) => ({
+                                        ...current,
+                                        customPaddingY,
                                     }))
                                 }
                             />
@@ -920,6 +1024,8 @@ export default function LRZStampPlayground({
                                 symbolPosition={values.position}
                                 shadow={values.shadow}
                                 padding={resolvedPadding}
+                                paddingX={resolvedPaddingX}
+                                paddingY={resolvedPaddingY}
                                 gap={resolvedGap}
                                 symbolFrame={values.symbolFrame}
                                 symbolShape={values.symbolShape}

@@ -138,6 +138,23 @@ describe("LRZStamp", () => {
         expect(customMarkup).toContain("--lrz-stamp-label-size:18px");
     });
 
+    it("supports independent horizontal and vertical padding", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp
+                collection="index"
+                slug="faune"
+                padding="sm"
+                paddingX="lg"
+                paddingY={6}
+            />,
+        );
+
+        expect(markup).toContain('data-padding="sm"');
+        expect(markup).toContain('data-padding-x="lg"');
+        expect(markup).toContain('data-padding-y="custom"');
+        expect(markup).toContain("--lrz-stamp-padding-y:6px");
+    });
+
     it("uses the item LRZ color when labelColor is omitted", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp collection="index" slug="flore" />,

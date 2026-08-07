@@ -93,6 +93,10 @@ type LRZStampSharedProps = {
     shadow?: LRZStampShadow;
     /** Espacement intérieur prédéfini ou personnalisé en pixels. */
     padding?: LRZStampPadding | number;
+    /** Espacement horizontal, prioritaire sur padding et la variante. */
+    paddingX?: LRZStampPadding | number;
+    /** Espacement vertical, prioritaire sur padding et la variante. */
+    paddingY?: LRZStampPadding | number;
     /** Distance prédéfinie ou personnalisée entre symbole et texte. */
     gap?: LRZStampGap | number;
     /** Étire le composant sur toute la largeur disponible. */
@@ -125,6 +129,8 @@ type LRZStampStyle = CSSProperties & {
     "--lrz-stamp-accent"?: string;
     "--lrz-stamp-height"?: string;
     "--lrz-stamp-padding"?: string;
+    "--lrz-stamp-padding-x"?: string;
+    "--lrz-stamp-padding-y"?: string;
     "--lrz-stamp-gap"?: string;
     "--lrz-stamp-label-color"?: string;
     "--lrz-stamp-label-size"?: string;
@@ -173,6 +179,8 @@ export default function LRZStamp({
     symbolScale = 1,
     shadow = "none",
     padding = "md",
+    paddingX,
+    paddingY,
     gap = "sm",
     fullWidth = false,
     maxWidth,
@@ -208,6 +216,14 @@ export default function LRZStamp({
         typeof padding === "number"
             ? `${Math.round(toSafeNumber(padding, 0, 0))}px`
             : undefined;
+    const resolvedPaddingX =
+        typeof paddingX === "number"
+            ? `${Math.round(toSafeNumber(paddingX, 0, 0))}px`
+            : undefined;
+    const resolvedPaddingY =
+        typeof paddingY === "number"
+            ? `${Math.round(toSafeNumber(paddingY, 0, 0))}px`
+            : undefined;
     const resolvedGap =
         typeof gap === "number"
             ? `${Math.round(toSafeNumber(gap, 0, 0))}px`
@@ -226,6 +242,12 @@ export default function LRZStamp({
         ),
         "--lrz-stamp-height": `${resolvedHeight}px`,
         ...(resolvedPadding ? { "--lrz-stamp-padding": resolvedPadding } : {}),
+        ...(resolvedPaddingX
+            ? { "--lrz-stamp-padding-x": resolvedPaddingX }
+            : {}),
+        ...(resolvedPaddingY
+            ? { "--lrz-stamp-padding-y": resolvedPaddingY }
+            : {}),
         ...(resolvedGap ? { "--lrz-stamp-gap": resolvedGap } : {}),
         ...(resolvedLabelSize
             ? { "--lrz-stamp-label-size": resolvedLabelSize }
@@ -307,6 +329,20 @@ export default function LRZStamp({
             data-size={typeof size === "number" ? "custom" : size}
             data-position={resolvedPosition}
             data-padding={typeof padding === "number" ? "custom" : padding}
+            data-padding-x={
+                paddingX === undefined
+                    ? "auto"
+                    : typeof paddingX === "number"
+                      ? "custom"
+                      : paddingX
+            }
+            data-padding-y={
+                paddingY === undefined
+                    ? "auto"
+                    : typeof paddingY === "number"
+                      ? "custom"
+                      : paddingY
+            }
             data-gap={typeof gap === "number" ? "custom" : gap}
             data-shadow={shadow}
             data-gradient={String(resolvedGradient)}

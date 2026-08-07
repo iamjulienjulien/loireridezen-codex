@@ -186,6 +186,18 @@ const API_PROPS = [
         "Espace intérieur.",
     ],
     [
+        "paddingX",
+        '"xs" | "sm" | "md" | "lg" | number',
+        "undefined",
+        "Espace horizontal, prioritaire sur padding.",
+    ],
+    [
+        "paddingY",
+        '"xs" | "sm" | "md" | "lg" | number',
+        "undefined",
+        "Espace vertical, prioritaire sur padding.",
+    ],
+    [
         "gap",
         '"xs" | "sm" | "md" | "lg" | number',
         '"sm"',
