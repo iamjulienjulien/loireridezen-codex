@@ -37,7 +37,7 @@
     background: var(--color-ambiance-surface);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    padding: 20px 20px 18px;
+    padding: 20px 20px 18px 24px;
     box-shadow: var(--shadow-card);
     position: relative;
     display: flex;
@@ -66,7 +66,9 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    margin-bottom: 12px;
+    margin-top: 3px;
+    margin-bottom: 16px;
+    padding: 0 2px;
 }
 .fType {
     font-family: var(--font-mono);
@@ -110,6 +112,10 @@
     align-items: flex-start;
     gap: 13px;
 }
+.fIdentity {
+    flex: 1;
+    min-width: 0;
+}
 .fEmoji {
     font-size: 30px;
     line-height: 1;
@@ -128,7 +134,7 @@
     transform: scale(1.25);
     transform-origin: center;
 }
-.fName {
+.fName > span {
     font-family: var(--font-display);
     font-weight: 500;
     font-size: 19px;
@@ -136,7 +142,8 @@
     line-height: 1.15;
     color: var(--color-ambiance-texte-primaire);
 }
-.fSub {
+
+.fSci {
     font-family: var(--font-edit, var(--font-display));
     font-style: italic;
     font-size: 13.5px;
@@ -144,27 +151,50 @@
     margin-top: 2px;
 }
 
+.fSub {
+    font-family: var(--font-note, var(--font-display));
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--color-ambiance-texte-tertiaire);
+}
+
 .wave {
     height: 8px;
     margin: 14px 0;
-    background-repeat: repeat-x;
-    background-position: center;
+    background-color: var(--type-accent, var(--gold));
     opacity: 0.85;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='8' viewBox='0 0 28 8'%3E%3Cpath d='M0 4 Q 7 0 14 4 T 28 4' fill='none' stroke='%23c8893a' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='8' viewBox='0 0 28 8'%3E%3Cpath d='M0 4 Q 7 0 14 4 T 28 4' fill='none' stroke='%23fff' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='8' viewBox='0 0 28 8'%3E%3Cpath d='M0 4 Q 7 0 14 4 T 28 4' fill='none' stroke='%23fff' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    -webkit-mask-size: 28px 8px;
+    mask-size: 28px 8px;
 }
 
-.fSci {
-    font-family: var(--font-edit, var(--font-display));
-    font-style: italic;
-    font-size: 13.5px;
-    color: var(--color-ambiance-texte-secondaire);
+.taxonomyAccordion {
     margin-bottom: 12px;
 }
+
+.fiche .accordionIcon {
+    display: block;
+    width: 17px;
+    height: 17px;
+    margin: 0 6px 0 0;
+    flex: 0 0 17px;
+}
+
+.conservationNote {
+    margin-top: 12px;
+}
+
 .fMeta {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px 14px;
-    margin-bottom: 12px;
+    /* margin-bottom: 5px; */
+    margin-top: 15px;
 }
 .k {
     display: block;

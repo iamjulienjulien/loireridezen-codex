@@ -46,19 +46,8 @@ export default function FauneIndex({
     const [rarete, setRarete] = useState<string>("all");
     const [q, setQ] = useState("");
     const [expandAll, setExpandAll] = useState(false);
-    const [openOverrides, setOpenOverrides] = useState<Record<string, boolean>>(
-        {},
-    );
 
-    const toggleAll = () => {
-        setExpandAll((v) => !v);
-        setOpenOverrides({});
-    };
-    const toggleOne = (id: string) =>
-        setOpenOverrides((o) => ({
-            ...o,
-            [id]: !(o[id] ?? expandAll),
-        }));
+    const toggleAll = () => setExpandAll((value) => !value);
 
     const countFor = (field: "type" | "rarete", id: string) =>
         especes.filter((d) => d[field] === id).length;
@@ -139,13 +128,9 @@ export default function FauneIndex({
                     <div className={styles.grid}>
                         {list.map((d) => (
                             <FauneCard
-                                key={d.nomScientifique}
+                                key={`${d.nomScientifique}-${expandAll}`}
                                 d={d}
-                                open={
-                                    openOverrides[d.nomScientifique] ??
-                                    expandAll
-                                }
-                                onToggle={() => toggleOne(d.nomScientifique)}
+                                expandAll={expandAll}
                             />
                         ))}
                     </div>

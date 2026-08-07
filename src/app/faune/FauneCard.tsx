@@ -1,9 +1,15 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { Binoculars, ListTree, ShieldCheck } from "lucide-react";
 import type { FauneCouleur, FauneEspece, FauneStatut } from "@/types/faune";
 import styles from "./faune.module.css";
-import { LRZColor } from "@/types/lrz";
+import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
+import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
 import LRZBadge from "@/components/LRZBadge/LRZBadge";
+import LRZMetaList from "@/components/LRZMetaList";
+import { LRZStamp } from "@/components/LRZStamp";
+import { LRZTextClamp } from "@/components/LRZTextClamp";
+import { getFauneTypeMeta } from "@/registry/Meta/faune-type";
 
 /** Couleur d'accent par type (reprend les pastilles de type). */
 const TYPE_ACCENT: Record<string, string> = {
@@ -13,15 +19,6 @@ const TYPE_ACCENT: Record<string, string> = {
     reptile: "#7d9a3f",
     amphibien: "#4fa25c",
     insecte: "#8f6bc2",
-};
-
-const TYPE_LABEL: Record<string, string> = {
-    oiseau: "Oiseau",
-    mammifère: "Mammifère",
-    poisson: "Poisson",
-    reptile: "Reptile",
-    amphibien: "Amphibien",
-    insecte: "Insecte",
 };
 
 export const FAUNE_COULEURS: Record<FauneCouleur, string> = {
@@ -64,49 +61,13 @@ export const FAUNE_COULEURS: Record<FauneCouleur, string> = {
     "vert vif": "var(--color-vert-vif)",
 };
 
-const STATUS: Record<FauneStatut, { label: string; color: LRZColor }> = {
-    LC: {
-        label: "Préoccupation mineure",
-        color: "vert-metallise",
-    },
-    NT: {
-        label: "Quasi menacé",
-        color: "ocre",
-    },
-    VU: {
-        label: "Vulnérable",
-        color: "orange",
-    },
-    EN: {
-        label: "En danger",
-        color: "orange-cuivre",
-    },
-    CR: {
-        label: "En danger critique",
-        color: "rouge",
-    },
-    NA: {
-        label: "Non applicable",
-        color: "galet",
-    },
-};
-
-const RARETE_CLASS: Record<string, string> = {
-    commun: styles.rCommun,
-    régulier: styles.rRegulier,
-    rare: styles.rRare,
-    trésor: styles.rTresor,
-};
-
 function StatusChip({ code }: { code: FauneStatut }) {
-    const s = STATUS[code] ?? STATUS.NA;
-    return <LRZBadge color={s.color} label={code} detail={s.label} />;
+    return <LRZBadge preset="extinction-faune" value={code} />;
 }
 
 export type FauneCardProps = {
     d: FauneEspece;
-    open: boolean;
-    onToggle: () => void;
+    expandAll?: boolean;
 };
 
 /**
@@ -114,24 +75,16 @@ export type FauneCardProps = {
  *
  * Identité colorée par type, bande d’accent latérale et emoji mis en valeur.
  */
-export default function FauneCard({ d, open, onToggle }: FauneCardProps) {
+export default function FauneCard({ d, expandAll = false }: FauneCardProps) {
     const accent = TYPE_ACCENT[d.type] ?? "var(--gold)";
+    const typeColor = getFauneTypeMeta(d.type)?.color ?? "ocre";
+
     return (
         <article
             className={`${styles.fiche} ${styles.ficheV2} ${d.rarete === "trésor" ? styles.tresor : ""}`}
             style={{ "--type-accent": accent } as CSSProperties}
             data-type={d.type}
         >
-            <div className={styles.fEyebrow}>
-                <span className={styles.fType} data-type={d.type}>
-                    {TYPE_LABEL[d.type] ?? d.type}
-                </span>
-                <span
-                    className={`${styles.rarete} ${RARETE_CLASS[d.rarete] ?? ""}`}
-                >
-                    {d.rarete}
-                </span>
-            </div>
             <div className={styles.fHead}>
                 <span
                     className={`${styles.fEmoji} ${d.customEmoji ? styles.fEmojiCustomV2 : styles.fEmojiBadgeV2}`}
@@ -149,71 +102,170 @@ export default function FauneCard({ d, open, onToggle }: FauneCardProps) {
                         d.emoji || "•"
                     )}
                 </span>
-                <div>
-                    <h3 className={styles.fName}>{d.nomCommun}</h3>
+                <div className={styles.fIdentity}>
+                    <LRZTextClamp
+                        as="h3"
+                        className={styles.fName}
+                        lines={1}
+                        fixedHeight
+                    >
+                        {d.nomCommun}
+                    </LRZTextClamp>
+                    <div className={styles.fSci}>{d.nomScientifique}</div>
                     <p className={styles.fSub}>{d.sousTitre}</p>
                 </div>
             </div>
             <div className={styles.wave} aria-hidden />
-            <div className={styles.fSci}>{d.nomScientifique}</div>
-            <div className={styles.fMeta}>
-                <div>
-                    <span className={styles.k}>Milieu</span>
-                    <span className={styles.v}>{d.milieu}</span>
-                </div>
-                <div>
-                    <span className={styles.k}>Période</span>
-                    <span className={styles.v}>{d.periode}</span>
-                </div>
+            <div className={styles.fEyebrow}>
+                <LRZStamp
+                    collection="faune"
+                    meta="type"
+                    slug={d.type}
+                    variant="chip"
+                    tone="outline"
+                    size="xs"
+                    font="mono"
+                    labelSize={11}
+                    paddingX={10}
+                    paddingY={4}
+                    gap="lg"
+                    shadow="none"
+                    symbolScale={0.9}
+                    gradient={false}
+                />
+                <LRZStamp
+                    collection="faune"
+                    meta="rarete"
+                    slug={d.rarete}
+                    variant="chip"
+                    tone="outline"
+                    size="xs"
+                    font="mono"
+                    labelSize={11}
+                    paddingX={10}
+                    paddingY={4}
+                    gap="lg"
+                    shadow="none"
+                    symbolScale={0.9}
+                    gradient={false}
+                />
             </div>
-            <div className={styles.fCons}>
-                <div className={styles.consItem}>
-                    <span className={styles.k}>UICN Monde</span>
-                    <StatusChip code={d.conservation.monde} />
-                </div>
-                <div className={styles.consItem}>
-                    <span className={styles.k}>Liste rouge France</span>
-                    <StatusChip code={d.conservation.france} />
-                </div>
-            </div>
-            <button
-                className={styles.detailsBtn}
-                aria-expanded={open}
-                onClick={onToggle}
+            <LRZAccordion
+                id={`faune-${d.slug}-observation`}
+                title="Observation"
+                description="Milieu et période d’observation"
+                icon={<Binoculars className={styles.accordionIcon} />}
+                color={typeColor}
+                tone="surface"
+                size="sm"
+                fullWidth
+                headingLevel={4}
+                defaultOpen={expandAll}
+                unmountOnClose
+                className={styles.taxonomyAccordion}
             >
-                <span
-                    className={styles.caret}
-                    style={{ transform: open ? "rotate(90deg)" : "none" }}
-                >
-                    ▸
-                </span>{" "}
-                Taxonomie &amp; notes
-            </button>
-            {open && (
-                <div className={styles.details}>
-                    {d.autresNoms.length > 0 && (
-                        <div>
-                            <span className={styles.k}>Autres noms</span>
-                            <span className={styles.v}>
-                                {d.autresNoms.join(" · ")}
-                            </span>
-                        </div>
-                    )}
-                    <div>
-                        <span className={styles.k}>Classe · Famille</span>
-                        <span className={styles.v}>
-                            {d.classe} · {d.famille}
-                        </span>
+                <LRZMetaList
+                    color={typeColor}
+                    layout="responsive"
+                    items={[
+                        {
+                            id: "milieu",
+                            label: "Milieu",
+                            value: d.milieu,
+                        },
+                        {
+                            id: "periode",
+                            label: "Période",
+                            value: d.periode,
+                        },
+                    ]}
+                />
+            </LRZAccordion>
+            <LRZAccordion
+                id={`faune-${d.slug}-taxonomy`}
+                title="Taxonomie"
+                description="Classe, famille et rang taxinomique"
+                icon={<ListTree className={styles.accordionIcon} />}
+                color={typeColor}
+                tone="surface"
+                size="sm"
+                fullWidth
+                headingLevel={4}
+                defaultOpen={expandAll}
+                unmountOnClose
+                className={styles.taxonomyAccordion}
+            >
+                <LRZMetaList
+                    color={typeColor}
+                    layout="responsive"
+                    hideEmpty
+                    items={[
+                        {
+                            id: "autres-noms",
+                            label: "Autres noms",
+                            value: d.autresNoms.join(" · "),
+                        },
+                        {
+                            id: "classe",
+                            label: "Classe",
+                            value: d.classe,
+                        },
+                        {
+                            id: "famille",
+                            label: "Famille",
+                            value: d.famille,
+                        },
+                        {
+                            id: "rang-taxinomique",
+                            label: "Rang taxinomique",
+                            value: (
+                                <span className={styles.rang}>
+                                    {d.rangTaxinomique}
+                                </span>
+                            ),
+                        },
+                    ]}
+                />
+            </LRZAccordion>
+            <LRZAccordion
+                id={`faune-${d.slug}-protection`}
+                title="Protection"
+                description="Statuts UICN et note de conservation"
+                icon={<ShieldCheck className={styles.accordionIcon} />}
+                color={typeColor}
+                tone="surface"
+                size="sm"
+                fullWidth
+                headingLevel={4}
+                defaultOpen={expandAll}
+                unmountOnClose
+            >
+                <LRZMetaList
+                    color={typeColor}
+                    layout="responsive"
+                    tone="plain"
+                    size="sm"
+                    items={[
+                        {
+                            id: "uicn-monde",
+                            label: "UICN Monde",
+                            value: <StatusChip code={d.conservation.monde} />,
+                        },
+                        {
+                            id: "liste-rouge-france",
+                            label: "Liste rouge France",
+                            value: <StatusChip code={d.conservation.france} />,
+                        },
+                    ]}
+                />
+                {d.conservation.note ? (
+                    <div className={styles.conservationNote}>
+                        <LRZAnecdote color={typeColor}>
+                            {d.conservation.note}
+                        </LRZAnecdote>
                     </div>
-                    <div>
-                        <span className={styles.k}>Rang taxinomique</span>
-                        <span className={styles.rang}>{d.rangTaxinomique}</span>
-                    </div>
-                    {d.conservation.note && (
-                        <p className={styles.consNote}>{d.conservation.note}</p>
-                    )}
-                </div>
-            )}
+                ) : null}
+            </LRZAccordion>
         </article>
     );
 }
