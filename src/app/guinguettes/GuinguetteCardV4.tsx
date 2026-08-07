@@ -30,6 +30,7 @@ import type { Guinguette, GuinguetteStatut } from "@/types/guinguette";
 import type { LRZColor } from "@/types/lrz";
 
 import styles from "./GuinguetteCardV4.module.css";
+import LRZSymbol from "@/components/LRZSymbol";
 
 const TYPE_LABELS: Record<Guinguette["type"], string> = {
     guinguette: "Guinguette",
@@ -53,16 +54,16 @@ const VERIFICATION_LABELS: Record<string, string> = {
 };
 
 const SERVICE_ICONS: Record<string, LRZBadgeIcon> = {
-    restauration: <UtensilsCrossed size={13} />,
+    restauration: <span aria-hidden>🍽️</span>,
     bar: <span aria-hidden>🍷</span>,
-    terrasse: <Umbrella size={13} />,
-    concerts: <Music2 size={13} />,
-    musique: <Music2 size={13} />,
-    animations: <span aria-hidden>✦</span>,
-    danse: <span aria-hidden>♪</span>,
+    terrasse: <span aria-hidden>☀️</span>,
+    concerts: <span aria-hidden>🎤</span>,
+    musique: <span aria-hidden>🎶</span>,
+    animations: <span aria-hidden>🤹🏻‍♀️</span>,
+    danse: <span aria-hidden>🕺🏻</span>,
     jeux: <span aria-hidden>🎲</span>,
-    tapas: <UtensilsCrossed size={13} />,
-    "accès par bac": <Waves size={13} />,
+    tapas: <span aria-hidden>🥜</span>,
+    "accès par bac": <span aria-hidden>⚓️</span>,
     "animaux acceptés": <span aria-hidden>🐾</span>,
 };
 
@@ -139,23 +140,8 @@ export default function GuinguetteCardV4({
         {
             id: "locality",
             label: "Commune",
-            value: locality,
+            value: locality + " [" + guinguette.departement + "]",
             icon: <MapPin size={13} />,
-        },
-        {
-            id: "department",
-            label: "Département",
-            value: guinguette.departement,
-        },
-        {
-            id: "territory",
-            label: "Territoire",
-            value: territoire?.nom ?? humanize(guinguette.territoire),
-        },
-        {
-            id: "type",
-            label: "Type",
-            value: TYPE_LABELS[guinguette.type],
         },
         {
             id: "verification",
@@ -190,12 +176,24 @@ export default function GuinguetteCardV4({
         >
             <div className={styles.content}>
                 <header className={styles.identity}>
-                    <span className={styles.identityIcon} aria-hidden="true">
+                    {/* <span className={styles.identityIcon} aria-hidden="true">
                         {isItinerant ? <TentTree /> : <Umbrella />}
-                    </span>
+                    </span> */}
+                    <LRZSymbol
+                        collection="common"
+                        meta="territoire"
+                        slug={guinguette.territoire}
+                        frame="subtle"
+                        size={60}
+                        padding="sm"
+                        shadow="soft"
+                        tooltip
+                    />
 
                     <div className={styles.identityCopy}>
-                        <p className={styles.locality}>{locality}</p>
+                        <p className={styles.classification}>
+                            {TYPE_LABELS[guinguette.type]}
+                        </p>
                         <LRZTextClamp
                             as="h3"
                             id={titleId}
@@ -205,15 +203,16 @@ export default function GuinguetteCardV4({
                         >
                             {guinguette.nom}
                         </LRZTextClamp>
+                        {/* <p className={styles.locality}>{locality}</p>
                         <p className={styles.classification}>
                             {TYPE_LABELS[guinguette.type]}
                             {guinguette.coursDEau
                                 ? ` · ${guinguette.coursDEau}`
                                 : null}
-                        </p>
+                        </p> */}
                     </div>
 
-                    <LRZBadge
+                    {/* <LRZBadge
                         label={STATUS_LABELS[guinguette.statut]}
                         icon={getStatusIcon(guinguette.statut)}
                         color={color}
@@ -223,17 +222,25 @@ export default function GuinguetteCardV4({
                         dashed={isUnverified}
                         gradient={guinguette.statut === "actif"}
                         className={styles.status}
-                    />
+                    /> */}
                 </header>
-
-                {guinguette.sousTitre ? (
-                    <p className={styles.subtitle}>{guinguette.sousTitre}</p>
-                ) : null}
 
                 <div className={styles.wave} aria-hidden="true" />
 
+                {guinguette.sousTitre ? (
+                    <LRZTextClamp
+                        as="p"
+                        // id={titleId}
+                        className={styles.subtitle}
+                        lines={1}
+                        fixedHeight
+                    >
+                        {guinguette.sousTitre}
+                    </LRZTextClamp>
+                ) : null}
+
                 <div className={styles.stamps} aria-label="Repères illustrés">
-                    <LRZStamp
+                    {/* <LRZStamp
                         collection="common"
                         meta="territoire"
                         slug={guinguette.territoire}
@@ -247,28 +254,31 @@ export default function GuinguetteCardV4({
                         gap="lg"
                         symbolScale={0.9}
                         gradient={false}
-                    />
+                    /> */}
                     {guinguette.ambiance.map((ambience) => (
-                        <LRZStamp
+                        <LRZSymbol
                             key={ambience}
                             collection="guinguette"
                             meta="ambience"
                             slug={ambience}
-                            variant="chip"
-                            tone="outline"
-                            size="xs"
-                            font="mono"
-                            labelSize={11}
-                            paddingX={10}
-                            paddingY={4}
-                            gap="lg"
-                            symbolScale={0.9}
-                            gradient={false}
+                            frame="subtle"
+                            size="lg"
+                            tooltip
+                            // variant="chip"
+                            // tone="subtle"
+                            // size="xs"
+                            // font="mono"
+                            // labelSize={11}
+                            // paddingX={10}
+                            // paddingY={4}
+                            // gap="lg"
+                            // symbolScale={0.9}
+                            // gradient={false}
                         />
                     ))}
                 </div>
 
-                {isUnverified ? (
+                {false ? (
                     <div className={styles.warning} role="note">
                         <CircleHelp size={16} aria-hidden="true" />
                         <p>
@@ -381,14 +391,14 @@ export default function GuinguetteCardV4({
                             <LRZMetaList
                                 items={practicalItems}
                                 color={color}
-                                tone="divided"
+                                tone="soft"
                                 size="sm"
-                                layout="responsive"
-                                columns={2}
+                                layout="stacked"
+                                // columns={2}
                                 emptyValue="À confirmer"
                             />
 
-                            {links.length > 0 ? (
+                            {links.length > 10 ? (
                                 <nav
                                     className={styles.links}
                                     aria-label="Liens utiles"

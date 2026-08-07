@@ -1,8 +1,24 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
+    grid-template-columns: repeat(3, minmax(min(100%, 330px), 1fr));
     gap: 20px;
     align-items: start;
+}
+
+:global([data-map-sync-card]) {
+    position: relative;
+    scroll-margin-top: 12rem;
+    transition:
+        filter 0.18s ease,
+        transform 0.18s ease;
+}
+
+:global([data-map-sync-card][data-map-highlight]) {
+    z-index: 1;
+    filter: drop-shadow(
+        0 0 0.75rem color-mix(in srgb, var(--color-nature-eau) 35%, transparent)
+    );
+    transform: translateY(-0.2rem);
 }
 
 .empty {
