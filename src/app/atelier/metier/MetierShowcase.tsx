@@ -6,6 +6,7 @@ import ChateauxCard from "@/app/chateaux/ChateauxCard";
 import FauneCard from "@/app/faune/FauneCard";
 import FloreCard from "@/app/flore/FloreCard";
 import GuinguetteCardV3 from "@/app/guinguettes/GuinguetteCardV3";
+import GuinguetteCardV4 from "@/app/guinguettes/GuinguetteCardV4";
 import PersonnageCard from "@/components/personnages/PersonnageCard";
 import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";
 
@@ -95,9 +96,25 @@ export default function MetierShowcase({
                 </div>
             </section>
 
-            <section id="personnage-card" className={styles.showcaseSection}>
+            <section id="guinguette-card-v4" className={styles.showcaseSection}>
                 <header className={styles.showcaseHeader}>
                     <p>Fiche métier · 05</p>
+                    <h2>GuinguetteCardV4</h2>
+                    <span>
+                        Une lecture éditoriale alignée sur Faune et Flore, avec
+                        les ambiances illustrées par LRZStamp.
+                    </span>
+                </header>
+                <div className={styles.showcaseGrid}>
+                    {MOCK_GUINGUETTE.map((item) => (
+                        <GuinguetteCardV4 key={item.slug} guinguette={item} />
+                    ))}
+                </div>
+            </section>
+
+            <section id="personnage-card" className={styles.showcaseSection}>
+                <header className={styles.showcaseHeader}>
+                    <p>Fiche métier · 06</p>
                     <h2>PersonnageCard</h2>
                     <span>
                         Les figures historiques, leurs rôles et leurs liens avec

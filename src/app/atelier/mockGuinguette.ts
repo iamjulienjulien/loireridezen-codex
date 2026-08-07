@@ -4,7 +4,8 @@ import type { Guinguette } from "@/types/guinguette";
 
 /**
  * Trois escales complémentaires pour présenter les principaux états de la
- * GuinguetteCardV3 : ligérienne, itinérante à vérifier et adresse intimiste.
+ * GuinguetteCardV3 et V4 : ligérienne, itinérante à vérifier et adresse
+ * intimiste.
  */
 const EXAMPLE_SLUGS = [
     "guinguette-les-tourbillons",

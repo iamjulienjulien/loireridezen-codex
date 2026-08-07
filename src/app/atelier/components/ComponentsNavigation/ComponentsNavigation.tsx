@@ -120,6 +120,11 @@ const SECTIONS = [
                 "/atelier/metier#guinguette-card",
             ],
             [
+                "guinguette-card-v4",
+                "GuinguetteCardV4",
+                "/atelier/metier#guinguette-card-v4",
+            ],
+            [
                 "personnage-card",
                 "PersonnageCard",
                 "/atelier/metier#personnage-card",
