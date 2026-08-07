@@ -31,9 +31,9 @@ describe("feature flags registry", () => {
         );
     });
 
-    it("keeps personnages available in development only", () => {
+    it("keeps personnages available in development and production", () => {
         expect(featureIsEnabled("personnages", "development")).toBe(true);
-        expect(featureIsEnabled("personnages", "production")).toBe(false);
+        expect(featureIsEnabled("personnages", "production")).toBe(true);
     });
 
     it("uses CURRENT_ENV when no environment is provided", () => {
