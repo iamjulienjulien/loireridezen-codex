@@ -11,7 +11,7 @@ import {
     type LRZStampVariant,
 } from "@/components/LRZStamp";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
-import { getIndexBySlug } from "@/registry/indexes";
+import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { COMMON_EXPERIENCE_META } from "@/registry/Meta/common-experience";
@@ -23,7 +23,7 @@ import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
-    LRZ_INDEX_SYMBOLS,
+    type LRZCodexIndexSymbolSlug,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
     type LRZCommonExperienceSymbolSlug,
@@ -34,7 +34,6 @@ import {
     type LRZFloreCategorieSymbolSlug,
     type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
-    type LRZIndexSymbolSlug,
 } from "@/registry/symbols";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
@@ -46,12 +45,10 @@ import styles from "./LRZStampShowcase.module.css";
 
 export const metadata = getAtelierPageMetadata("/atelier/components/lrz-stamp");
 
-const INDEX_OPTIONS = (
-    Object.keys(LRZ_INDEX_SYMBOLS) as LRZIndexSymbolSlug[]
-).map((slug) => ({
+const CODEX_INDEX_OPTIONS = CODEX_INDEX_META.map(({ slug, label }) => ({
     slug,
-    label: getIndexBySlug(slug)?.label ?? slug,
-})) satisfies readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
+    label,
+})) satisfies readonly LRZStampPlaygroundOption<LRZCodexIndexSymbolSlug>[];
 
 const COMMON_EPOQUE_OPTIONS = COMMON_EPOQUE_META.map(({ slug, label }) => ({
     slug,
@@ -107,7 +104,7 @@ const PERSONNAGE_OPTIONS = CATEGORIES_PERSONNAGES.map(({ slug, nom }) => ({
 
 const VARIANTS: Array<{
     variant: LRZStampVariant;
-    slug: LRZIndexSymbolSlug;
+    slug: LRZCodexIndexSymbolSlug;
     detail: string;
 }> = [
     { variant: "pill", slug: "flore", detail: "Capsule organique" },
@@ -157,15 +154,15 @@ const FONTS: Array<{
 const API_PROPS = [
     [
         "collection",
-        '"index" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
+        '"codex" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
         "—",
         "Collection métier.",
     ],
     [
         "meta",
-        '"epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
-        "undefined",
-        "Sous-dossier optionnel.",
+        '"index" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
+        "—",
+        "Métadonnée de la collection.",
     ],
     ["slug", "slug typé", "—", "Identité sélectionnée."],
     ["label", "ReactNode", "nom du registre", "Remplace le nom métier."],
@@ -319,7 +316,7 @@ export default function LRZStampPage() {
                 </section>
 
                 <LRZStampPlayground
-                    indexOptions={INDEX_OPTIONS}
+                    codexIndexOptions={CODEX_INDEX_OPTIONS}
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}
@@ -343,14 +340,15 @@ export default function LRZStampPage() {
                         </p>
                         <h2 id="stamp-indexes">Les index du Codex</h2>
                         <p>
-                            Sans meta, le label court et la couleur de chaque
-                            index accompagnent automatiquement son symbole.
+                            Le locator <code>codex.index</code> associe le label
+                            court et la couleur de chaque index à son symbole.
                         </p>
                     </div>
                     <div className={styles.indexGrid}>
-                        {INDEX_OPTIONS.map(({ slug }) => (
+                        {CODEX_INDEX_OPTIONS.map(({ slug }) => (
                             <LRZStamp
-                                collection="index"
+                                collection="codex"
+                                meta="index"
                                 slug={slug}
                                 key={slug}
                                 size="lg"
@@ -741,7 +739,8 @@ export default function LRZStampPage() {
                                 key={variant}
                             >
                                 <LRZStamp
-                                    collection="index"
+                                    collection="codex"
+                                    meta="index"
                                     slug={slug}
                                     variant={variant}
                                     size={variant === "seal" ? "xl" : "lg"}
@@ -798,7 +797,8 @@ export default function LRZStampPage() {
                             <div className={styles.sizeExample} key={label}>
                                 <code>{label}</code>
                                 <LRZStamp
-                                    collection="index"
+                                    collection="codex"
+                                    meta="index"
                                     slug="guinguettes"
                                     size={size}
                                 />

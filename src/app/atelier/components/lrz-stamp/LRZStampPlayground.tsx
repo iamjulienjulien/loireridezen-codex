@@ -39,7 +39,7 @@ import type {
     LRZFloreCategorieSymbolSlug,
     LRZFloreRareteSymbolSlug,
     LRZGuinguetteAmbienceSymbolSlug,
-    LRZIndexSymbolSlug,
+    LRZCodexIndexSymbolSlug,
 } from "@/registry/symbols";
 
 import styles from "./LRZStampPlayground.module.css";
@@ -50,7 +50,7 @@ export type LRZStampPlaygroundOption<TSlug extends string = string> = {
 };
 
 type LRZStampPlaygroundProps = {
-    indexOptions: readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
+    codexIndexOptions: readonly LRZStampPlaygroundOption<LRZCodexIndexSymbolSlug>[];
     commonEpoqueOptions: readonly LRZStampPlaygroundOption<LRZCommonEpoqueSymbolSlug>[];
     commonArchitectureOptions: readonly LRZStampPlaygroundOption<LRZCommonArchitectureSymbolSlug>[];
     commonMilieuOptions: readonly LRZStampPlaygroundOption<LRZCommonMilieuSymbolSlug>[];
@@ -109,8 +109,8 @@ type PlaygroundState = {
 };
 
 const INITIAL_STATE: PlaygroundState = {
-    collection: "index",
-    meta: undefined,
+    collection: "codex",
+    meta: "index",
     slug: "chateaux",
     variant: "pill",
     tone: "subtle",
@@ -193,7 +193,7 @@ const LABEL_SIZES: readonly LabelSizeChoice[] = [
 ];
 
 const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
-    index: [],
+    codex: ["index"],
     common: ["epoque", "architecture", "milieu", "experience", "territoire"],
     faune: ["type", "rarete"],
     flore: ["categorie", "rarete"],
@@ -278,7 +278,7 @@ function buildCode(values: PlaygroundState) {
 }
 
 export default function LRZStampPlayground({
-    indexOptions,
+    codexIndexOptions,
     commonEpoqueOptions,
     commonArchitectureOptions,
     commonMilieuOptions,
@@ -297,8 +297,8 @@ export default function LRZStampPlayground({
         meta: LRZSymbolMeta | undefined,
     ): readonly LRZStampPlaygroundOption[] {
         switch (collection) {
-            case "index":
-                return indexOptions;
+            case "codex":
+                return codexIndexOptions;
             case "common":
                 return meta === "territoire"
                     ? commonTerritoireOptions
@@ -326,10 +326,11 @@ export default function LRZStampPlayground({
 
     const activeOptions = getOptions(values.collection, values.meta);
     const locator: LRZSymbolLocator =
-        values.collection === "index"
+        values.collection === "codex"
             ? {
-                  collection: "index",
-                  slug: values.slug as LRZIndexSymbolSlug,
+                  collection: "codex",
+                  meta: "index",
+                  slug: values.slug as LRZCodexIndexSymbolSlug,
               }
             : values.collection === "common" && values.meta === "territoire"
               ? {
@@ -487,7 +488,7 @@ export default function LRZStampPlayground({
                                     value={values.collection}
                                     onChange={handleCollectionChange}
                                 >
-                                    <option value="index">index</option>
+                                    <option value="codex">codex</option>
                                     <option value="common">common</option>
                                     <option value="faune">faune</option>
                                     <option value="flore">flore</option>
@@ -505,16 +506,12 @@ export default function LRZStampPlayground({
                                     value={values.meta ?? ""}
                                     onChange={handleMetaChange}
                                 >
-                                    {values.collection === "index" ? (
-                                        <option value="">Aucun</option>
-                                    ) : (
-                                        META_OPTIONS[values.collection].map(
-                                            (meta) => (
-                                                <option key={meta} value={meta}>
-                                                    {meta}
-                                                </option>
-                                            ),
-                                        )
+                                    {META_OPTIONS[values.collection].map(
+                                        (meta) => (
+                                            <option key={meta} value={meta}>
+                                                {meta}
+                                            </option>
+                                        ),
                                     )}
                                 </select>
                             </label>

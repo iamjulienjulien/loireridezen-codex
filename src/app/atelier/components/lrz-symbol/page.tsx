@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
     LRZSymbol,
     LRZ_SYMBOL_SIZE_VALUES,
+    type LRZCodexIndexSymbolSlug,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
     type LRZCommonExperienceSymbolSlug,
@@ -15,7 +16,6 @@ import {
     type LRZFloreCategorieSymbolSlug,
     type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
-    type LRZIndexSymbolSlug,
     type LRZSymbolFrame,
     type LRZSymbolPadding,
     type LRZSymbolShadow,
@@ -24,7 +24,7 @@ import {
 } from "@/components/LRZSymbol";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
-import { getIndexBySlug } from "@/registry/indexes";
+import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { COMMON_EXPERIENCE_META } from "@/registry/Meta/common-experience";
@@ -35,7 +35,6 @@ import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
-import { LRZ_INDEX_SYMBOLS } from "@/registry/symbols";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import shellStyles from "../filter-playground.module.css";
@@ -105,12 +104,10 @@ const SHADOW_EXAMPLES: Array<{
     { shadow: "strong", label: "Forte" },
 ];
 
-const INDEX_SYMBOL_OPTIONS = (
-    Object.keys(LRZ_INDEX_SYMBOLS) as LRZIndexSymbolSlug[]
-).map((slug) => ({
+const CODEX_INDEX_OPTIONS = CODEX_INDEX_META.map(({ slug, label }) => ({
     slug,
-    label: getIndexBySlug(slug)?.label ?? slug,
-})) satisfies readonly LRZSymbolPlaygroundOption<LRZIndexSymbolSlug>[];
+    label,
+})) satisfies readonly LRZSymbolPlaygroundOption<LRZCodexIndexSymbolSlug>[];
 
 const COMMON_EPOQUE_OPTIONS = COMMON_EPOQUE_META.map(({ slug, label }) => ({
     slug,
@@ -165,19 +162,19 @@ const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
 const API_PROPS = [
     [
         "collection",
-        '"index" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
+        '"codex" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
         "—",
         "Collection du symbole.",
     ],
     [
         "meta",
-        '"epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
-        "undefined",
-        "Sous-dossier optionnel au sein de la collection.",
+        '"index" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
+        "—",
+        "Métadonnée de la collection.",
     ],
     [
         "slug",
-        "LRZIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZCommonTerritoireSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
+        "LRZCodexIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZCommonTerritoireSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -315,7 +312,7 @@ export default function LRZSymbolPage() {
                 </section>
 
                 <LRZSymbolPlayground
-                    indexOptions={INDEX_SYMBOL_OPTIONS}
+                    codexIndexOptions={CODEX_INDEX_OPTIONS}
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}
@@ -334,22 +331,23 @@ export default function LRZSymbolPage() {
                     aria-labelledby="symbol-index-collection"
                 >
                     <div className={shellStyles.sectionHeader}>
-                        <p className={shellStyles.kicker}>Collection racine</p>
+                        <p className={shellStyles.kicker}>Collection Codex</p>
                         <h2 id="symbol-index-collection">
                             Les symboles des index
                         </h2>
                         <p>
-                            Sans prop meta, le composant cherche directement
-                            dans le dossier de la collection, ici
-                            <code> /symbols/index/</code>.
+                            Le locator <code>codex.index</code> regroupe les
+                            symboles des index illustrés du Codex dans
+                            <code> /symbols/codex/index/</code>.
                         </p>
                     </div>
 
                     <div className={styles.indexGrid}>
-                        {INDEX_SYMBOL_OPTIONS.map(({ slug, label }) => (
+                        {CODEX_INDEX_OPTIONS.map(({ slug, label }) => (
                             <article className={styles.indexCard} key={slug}>
                                 <LRZSymbol
-                                    collection="index"
+                                    collection="codex"
+                                    meta="index"
                                     slug={slug}
                                     size="2xl"
                                     frame="subtle"
