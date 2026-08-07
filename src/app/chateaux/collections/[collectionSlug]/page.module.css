@@ -153,16 +153,6 @@
     min-width: 0;
 }
 
-.shellFooterMark {
-    margin-inline-end: 0.35rem;
-    color: var(--page-accent);
-    font-size: 1rem;
-}
-
-.shellFooterLink {
-    color: var(--page-accent);
-}
-
 /* ============================================================
    Tablette
    ============================================================ */

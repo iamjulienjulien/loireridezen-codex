@@ -1,7 +1,6 @@
 // src/app/chateaux/collections/[collectionSlug]/page.tsx
 
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import CollectionShell from "@/components/layout/CollectionShell";
@@ -93,24 +92,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
 
     return (
-        <CollectionShell
-            page={pageDefinition}
-            indexes={indexes}
-            footer={
-                <>
-                    <span className={styles.shellFooterMark} aria-hidden="true">
-                        {collection.mark}
-                    </span>
-                    {collection.footerNote} ·{" "}
-                    <Link
-                        href={collection.indexHref}
-                        className={styles.shellFooterLink}
-                    >
-                        Retour à l’index des châteaux
-                    </Link>
-                </>
-            }
-        >
+        <CollectionShell page={pageDefinition} indexes={indexes}>
             <CollectionHero
                 collection={hero}
                 variant="compact"

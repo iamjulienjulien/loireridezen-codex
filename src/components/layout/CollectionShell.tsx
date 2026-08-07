@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import CollectionOutro from "@/components/CollectionOutro/CollectionOutro";
 import PageHeader, {
     PageHeaderBreadcrumbs,
     PageHeaderIndexNavigation,
@@ -16,6 +17,7 @@ export type CollectionShellProps = ShellSharedProps &
         indexes: readonly IndexEntry[];
         description?: ReactNode;
         mark?: ReactNode;
+        outro?: ReactNode | false;
     };
 
 export default function CollectionShell({
@@ -23,6 +25,7 @@ export default function CollectionShell({
     indexes,
     children,
     footer,
+    outro,
     description,
     mark = page.mark,
     identity,
@@ -58,6 +61,17 @@ export default function CollectionShell({
         ) : (
             breadcrumbs
         );
+    const resolvedOutro =
+        outro === undefined ? (
+            <CollectionOutro
+                note={page.footerNote}
+                href={page.indexHref}
+                mark={page.mark}
+                linkLabel={`Retour à l’index « ${parentIndex?.label ?? page.indexSlug} »`}
+            />
+        ) : (
+            outro
+        );
 
     return (
         <ShellScaffold
@@ -66,7 +80,7 @@ export default function CollectionShell({
             accent={page.accent}
             color={page.color}
             width="wide"
-            footer={footer === undefined ? page.footerNote : footer}
+            footer={footer}
             header={
                 <PageHeader
                     variant="collection"
@@ -86,6 +100,7 @@ export default function CollectionShell({
             }
         >
             {children}
+            {resolvedOutro}
         </ShellScaffold>
     );
 }

@@ -1,0 +1,53 @@
+.outro {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.75rem 1rem;
+    align-items: center;
+    width: min(100%, 61.25rem);
+    margin: clamp(3rem, 7vw, 5rem) auto 0;
+    padding: 1.1rem 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--color-ambiance-texte-secondaire);
+}
+
+.mark {
+    color: var(--page-accent);
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.copy {
+    margin: 0;
+    font-family: var(--font-edit, var(--font-body));
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.55;
+}
+
+.link {
+    color: var(--page-accent);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 650;
+    letter-spacing: 0.07em;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.25rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.link:hover {
+    text-decoration-color: currentColor;
+}
+
+@media (max-width: 640px) {
+    .outro {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .link {
+        grid-column: 2;
+        white-space: normal;
+    }
+}
