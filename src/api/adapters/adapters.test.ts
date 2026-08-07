@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import chateauData from "@data/chateau.json";
+import chateauData from "@data/catalogue-chateaux.json";
 import fauneData from "@data/faune.json";
 import floreData from "@data/flore.json";
 import guinguetteData from "@data/guinguettes.json";
@@ -84,8 +84,11 @@ describe("public entry adapters", () => {
             expect(entry.summary).toBe(summary);
             expect(entry.subtitle).toBeTruthy();
             if (entry.media.imageUrl) {
-                expect(entry.media.imageUrl).toMatch(
-                    /^https:\/\/example\.test\/emoji\//,
+                const mediaDirectory =
+                    index === "chateaux" ? "illustrations" : "emoji";
+
+                expect(entry.media.imageUrl).toContain(
+                    `https://example.test/${mediaDirectory}/`,
                 );
             } else {
                 expect(entry.media.imageUrl).toBeNull();

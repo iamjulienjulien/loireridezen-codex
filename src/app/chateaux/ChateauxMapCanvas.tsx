@@ -19,7 +19,7 @@ import type { Ambiance } from "@/registry/ambiances";
 import { getTerritoireSlugForChateau } from "@/registry/chateaux-territoires";
 import { LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import { TERRITOIRES } from "@/registry/territoires";
-import type { Chateau } from "@/types/chateau";
+import type { ChateauV2 } from "@/types/chateauV2";
 
 import {
     CHATEAUX_MAP_CONFIG,
@@ -36,7 +36,7 @@ import {
 } from "./chateaux-map-sync";
 
 type ChateauxMapCanvasProps = {
-    chateaux: readonly Chateau[];
+    chateaux: readonly ChateauV2[];
 };
 
 const TERRITORY_COLORS = new Map(

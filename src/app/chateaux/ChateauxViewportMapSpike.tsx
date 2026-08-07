@@ -2,25 +2,25 @@
 
 import { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 
-import type { Chateau } from "@/types/chateau";
+import type { ChateauV2 } from "@/types/chateauV2";
 
 import styles from "./ChateauxViewportMapSpike.module.css";
 
 export type ChateauxViewportMapVariant = "top" | "side" | "compact";
 
 type ChateauxViewportMapSpikeProps = {
-    chateaux: readonly Chateau[];
+    chateaux: readonly ChateauV2[];
     children: ReactNode;
     /** Variante conservée pour les futures comparaisons UX. */
     variant?: ChateauxViewportMapVariant;
 };
 
-type MapPoint = Chateau & {
+type MapPoint = ChateauV2 & {
     x: number;
     y: number;
 };
 
-function getMapPoints(chateaux: readonly Chateau[]): MapPoint[] {
+function getMapPoints(chateaux: readonly ChateauV2[]): MapPoint[] {
     const longitudes = chateaux.map((chateau) => chateau.coordonnees.lng);
     const latitudes = chateaux.map((chateau) => chateau.coordonnees.lat);
     const minLongitude = Math.min(...longitudes);

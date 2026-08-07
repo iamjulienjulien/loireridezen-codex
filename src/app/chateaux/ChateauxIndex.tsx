@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 
-import type { Chateau } from "@/types/chateau";
+import type { ChateauV2 } from "@/types/chateauV2";
 import type { IndexEntry } from "@/registry/indexes";
 import type { PersonnagesParLieu } from "@/types/personnage";
 
@@ -68,7 +68,7 @@ const norm = (value: string) =>
         .toLowerCase();
 
 type ChateauxIndexProps = {
-    chateaux: Chateau[];
+    chateaux: ChateauV2[];
     indexes: readonly IndexEntry[];
     personnagesByChateau: PersonnagesParLieu;
 };

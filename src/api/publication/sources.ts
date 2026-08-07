@@ -1,4 +1,4 @@
-import chateauData from "@data/chateau.json";
+import chateauData from "@data/catalogue-chateaux.json";
 import fauneData from "@data/faune.json";
 import floreData from "@data/flore.json";
 import guinguetteData from "@data/guinguettes.json";
@@ -58,7 +58,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
     },
     {
         slug: "chateaux",
-        dataFile: "chateau.json",
+        dataFile: "catalogue-chateaux.json",
         collectionKey: "chateaux",
         raw: chateauData,
         schema: chateauCatalogSchema,

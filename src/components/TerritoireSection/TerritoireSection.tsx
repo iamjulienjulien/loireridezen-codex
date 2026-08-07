@@ -3,7 +3,6 @@
 import type { CSSProperties } from "react";
 import { MapPin, Waves } from "lucide-react";
 
-import type { Chateau } from "@/types/chateau";
 import type { Territoire } from "@/types/territoire";
 import type { PersonnagesParLieu } from "@/types/personnage";
 
@@ -15,6 +14,7 @@ import styles from "./TerritoireSection.module.css";
 import { lighter } from "@/lib/colors";
 import LRZSeparateur from "../LRZSeparateur/LRZSeparateur";
 import { getLRZColorValue } from "@/registry/colors";
+import type { ChateauV2 } from "@/types/chateauV2";
 
 type TerritoireSectionStyle = CSSProperties & {
     "--territoire-accent": string;
@@ -22,7 +22,7 @@ type TerritoireSectionStyle = CSSProperties & {
 
 type TerritoireSectionProps = {
     territory: Territoire;
-    chateaux: readonly Chateau[];
+    chateaux: readonly ChateauV2[];
     personnagesByChateau: PersonnagesParLieu;
     /** Ajoute un repère DOM pour la synchronisation expérimentale de carte. */
     mapSync?: boolean;

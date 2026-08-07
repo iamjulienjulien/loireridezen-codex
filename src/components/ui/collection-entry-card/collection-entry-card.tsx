@@ -14,12 +14,12 @@ export type CollectionEntry = {
 };
 
 export type CollectionEntryCastle = {
-    customEmoji: string;
     slug: string;
     nom: string;
     epoque: string;
     lieu?: string;
     illustration?: string;
+    illustrations?: { jour: string };
     emoji?: string;
     renommee?: string;
 };
@@ -130,9 +130,13 @@ export function CollectionEntryCard({
                 </div>
 
                 <div className={styles.visual}>
-                    {castle.customEmoji ? (
+                    {castle.illustration || castle.illustrations?.jour ? (
                         <Image
-                            src={castle.customEmoji}
+                            src={
+                                castle.illustration ??
+                                castle.illustrations?.jour ??
+                                ""
+                            }
                             alt=""
                             fill
                             sizes={

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import chateauData from "@data/chateau.json";
+import chateauData from "@data/catalogue-chateaux.json";
 import fauneData from "@data/faune.json";
 import floreData from "@data/flore.json";
 import guinguetteData from "@data/guinguettes.json";
@@ -56,13 +56,14 @@ describe("catalog schemas", () => {
         expect(chateauCatalogSchema.safeParse(catalog).success).toBe(true);
     });
 
-    it("rejects invalid chateau illustration variants", () => {
+    it("rejects invalid chateau illustration ambiances", () => {
         const catalog = structuredClone(chateauData) as unknown as {
-            chateaux: Array<Record<string, unknown>>;
+            chateaux: Array<{
+                illustrations: Record<string, string>;
+            }>;
         };
-        catalog.chateaux[0].illustrationVariant = {
-            pluie: "/illustrations/chateaux/chambord/pluie.png",
-        };
+        catalog.chateaux[0].illustrations.pluie =
+            "/illustrations/chateaux/chambord/pluie.png";
 
         expect(chateauCatalogSchema.safeParse(catalog).success).toBe(false);
     });

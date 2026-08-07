@@ -1,6 +1,6 @@
-import chateau from "@data/chateau.json";
+import chateau from "@data/catalogue-chateaux.json";
 import IndexShell from "@/components/layout/IndexShell";
-import type { Chateau } from "@/types/chateau";
+import type { ChateauV2 } from "@/types/chateauV2";
 import { getPersonnagesByLieu } from "@/lib/personnages";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { featureIsEnabled } from "@/registry/feature-flags";
@@ -13,7 +13,7 @@ const CHATEAUX_PAGE = getIndexPageDefinition("/chateaux");
 export const metadata = buildPageMetadata(CHATEAUX_PAGE);
 
 export default function ChateauxPage() {
-    const chateaux = chateau.chateaux as Chateau[];
+    const chateaux = chateau.chateaux as ChateauV2[];
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
     const personnagesByChateau = featureIsEnabled("personnages")
         ? getPersonnagesByLieu()

@@ -12,7 +12,7 @@ import {
     type PointerEvent,
 } from "react";
 
-import type { Chateau } from "@/types/chateau";
+import type { ChateauV2 } from "@/types/chateauV2";
 
 import {
     CHATEAUX_MAP_CONFIG,
@@ -31,7 +31,7 @@ const ChateauxMapCanvas = dynamic(() => import("./ChateauxMapCanvas"), {
 });
 
 type ChateauxInteractiveMapProps = {
-    chateaux: readonly Chateau[];
+    chateaux: readonly ChateauV2[];
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     /** Comportement de la carte une fois accrochée en haut du viewport. */

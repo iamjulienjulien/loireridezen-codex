@@ -77,16 +77,7 @@ export const adaptFlore: EntryAdapter<ValidatedFloreEntry> = (entry) => {
 };
 
 export const adaptChateau: EntryAdapter<ValidatedChateauEntry> = (entry) => {
-    const {
-        emoji,
-        customEmoji,
-        slug,
-        nom,
-        sousTitre,
-        resume,
-        autresNoms,
-        ...attributes
-    } = entry;
+    const { slug, nom, sousTitre, resume, autresNoms, ...attributes } = entry;
     return {
         id: publicEntryId("chateaux", slug),
         index: "chateaux",
@@ -94,7 +85,7 @@ export const adaptChateau: EntryAdapter<ValidatedChateauEntry> = (entry) => {
         name: nom,
         subtitle: sousTitre,
         summary: resume ?? null,
-        media: media(emoji, customEmoji),
+        media: media("🏰", entry.illustrations.jour),
         attributes: { autresNoms, ...attributes },
     };
 };

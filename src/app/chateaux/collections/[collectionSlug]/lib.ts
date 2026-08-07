@@ -1,6 +1,6 @@
 // src/app/chateaux/collections/[collectionSlug]/lib.ts
 
-import chateauCatalog from "@data/chateau.json";
+import chateauCatalog from "@data/catalogue-chateaux.json";
 
 import type {
     CollectionPodiumEntry,
@@ -12,11 +12,11 @@ import type {
     CollectionRegistryEntry,
 } from "@/registry/collections";
 
-import type { Chateau } from "@/types/chateau";
+import type { ChateauV2 } from "@/types/chateauV2";
 
 export type ResolvedCollectionEntry = {
     collectionEntry: CollectionRankingEntry;
-    castle: Chateau;
+    castle: ChateauV2;
 };
 
 export type ResolvedCollectionPage = {
@@ -26,26 +26,26 @@ export type ResolvedCollectionPage = {
 };
 
 type ChateauCatalogShape = {
-    chateaux?: Chateau[];
-    items?: Chateau[];
-    entries?: Chateau[];
-    catalogue?: Chateau[];
+    chateaux?: ChateauV2[];
+    items?: ChateauV2[];
+    entries?: ChateauV2[];
+    catalogue?: ChateauV2[];
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function getChateauCatalog(): readonly Chateau[] {
+function getChateauCatalog(): readonly ChateauV2[] {
     const data: unknown = chateauCatalog;
 
     if (Array.isArray(data)) {
-        return data as Chateau[];
+        return data as ChateauV2[];
     }
 
     if (!isRecord(data)) {
         throw new Error(
-            "Le fichier chateau.json ne contient pas un catalogue valide.",
+            "Le fichier catalogue-chateaux.json ne contient pas un catalogue valide.",
         );
     }
 
@@ -69,13 +69,13 @@ function getChateauCatalog(): readonly Chateau[] {
 
     throw new Error(
         [
-            "Impossible de trouver la liste des châteaux dans chateau.json.",
+            "Impossible de trouver la liste des châteaux dans catalogue-chateaux.json.",
             "Formats attendus : tableau direct, chateaux[], items[], entries[] ou catalogue[].",
         ].join(" "),
     );
 }
 
-export function getChateauBySlug(slug: string): Chateau | undefined {
+export function getChateauBySlug(slug: string): ChateauV2 | undefined {
     return getChateauCatalog().find((castle) => castle.slug === slug);
 }
 
@@ -93,7 +93,7 @@ function isPodiumEntry(
     );
 }
 
-function buildCastleLocation(castle: Chateau): string {
+function buildCastleLocation(castle: ChateauV2): string {
     return `${castle.commune} · ${castle.departement}`;
 }
 
@@ -108,7 +108,7 @@ export function resolveCollectionPage(
                 [
                     `Le château "${collectionEntry.slug}"`,
                     `référencé dans la collection "${collection.slug}"`,
-                    "est absent du catalogue chateau.json.",
+                    "est absent du catalogue catalogue-chateaux.json.",
                 ].join(" "),
             );
         }
@@ -129,8 +129,7 @@ export function resolveCollectionPage(
                 nom: castle.nom,
                 epoque: castle.epoque,
                 lieu: buildCastleLocation(castle),
-                illustration: castle.customEmoji,
-                emoji: castle.emoji,
+                illustration: castle.illustrations.jour,
             },
         }));
 

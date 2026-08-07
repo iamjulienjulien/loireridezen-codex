@@ -4,10 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import CollectionShell from "@/components/layout/CollectionShell";
-import {
-    CollectionEntryCard,
-    CollectionEntryCastle,
-} from "@/components/ui/collection-entry-card";
+import { CollectionEntryCard } from "@/components/ui/collection-entry-card";
 import { CollectionHero } from "@/components/ui/collection-hero";
 import { CollectionList } from "@/components/ui/collection-list";
 import { CollectionPodium } from "@/components/ui/collection-podium";
@@ -207,7 +204,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                         >
                             <CollectionEntryCard
                                 collectionEntry={collectionEntry}
-                                castle={castle as CollectionEntryCastle}
+                                castle={castle}
                                 variant="default"
                             />
                         </li>

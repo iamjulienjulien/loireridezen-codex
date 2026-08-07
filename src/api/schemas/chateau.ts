@@ -1,8 +1,10 @@
 import { z } from "zod";
+import { isCommonArchitecture } from "@/registry/Meta/common-architecture";
+import { isCommonEpoque } from "@/registry/Meta/common-epoque";
+import { isCommonExperience } from "@/registry/Meta/common-experience";
 import {
     baseMetaShape,
     coordinatesSchema,
-    customEmojiSchema,
     slugSchema,
     stringArraySchema,
 } from "./common";
@@ -11,20 +13,27 @@ const chateauIllustrationSchema = z
     .string()
     .startsWith("/illustrations/chateaux/");
 
-const chateauIllustrationVariantSchema = z
+const chateauIllustrationsSchema = z
     .object({
-        aube: chateauIllustrationSchema.optional(),
-        jour: chateauIllustrationSchema.optional(),
-        soir: chateauIllustrationSchema.optional(),
-        nuit: chateauIllustrationSchema.optional(),
+        aube: chateauIllustrationSchema,
+        jour: chateauIllustrationSchema,
+        soir: chateauIllustrationSchema,
+        nuit: chateauIllustrationSchema,
     })
     .strict();
 
+const architectureSchema = z
+    .string()
+    .refine(isCommonArchitecture, "Unknown common architecture slug");
+const epoqueSchema = z
+    .string()
+    .refine(isCommonEpoque, "Unknown common period slug");
+const experienceSchema = z
+    .string()
+    .refine(isCommonExperience, "Unknown common experience slug");
+
 export const chateauEntrySchema = z
     .object({
-        emoji: z.string(),
-        customEmoji: customEmojiSchema("chateau").optional(),
-        illustrationVariant: chateauIllustrationVariantSchema.optional(),
         slug: slugSchema,
         nom: z.string(),
         autresNoms: stringArraySchema,
@@ -34,6 +43,14 @@ export const chateauEntrySchema = z
         departement: z.string(),
         coordonnees: coordinatesSchema,
         riviere: z.string(),
+        illustrations: chateauIllustrationsSchema,
+        meta: z
+            .object({
+                architecture: z.array(architectureSchema),
+                epoque: z.array(epoqueSchema),
+                experience: z.array(experienceSchema),
+            })
+            .strict(),
         epoque: z.enum(["Médiéval", "Renaissance", "Classique", "Éclectique"]),
         style: z.string(),
         construction: z.string(),

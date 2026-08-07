@@ -3,18 +3,20 @@
 import { useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
 
-import type { Chateau } from "@/types/chateau";
+import type { ChateauV2 } from "@/types/chateauV2";
 import type { Ambiance } from "@/registry/ambiances";
 
 import styles from "./ChateauCard.module.css";
 import LRZBadge from "@/components/LRZBadge/LRZBadge";
 import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
-import { Castle, MapPin, Ticket, UsersRound } from "lucide-react";
+import { BookOpen, Castle, MapPin, MapPinned, Ticket } from "lucide-react";
 import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
 import LRZMetaList from "@/components/LRZMetaList";
 import LRZCard, { LRZCardMedia } from "@/components/LRZCard";
+import { LRZStamp } from "@/components/LRZStamp";
 import { LRZSymbol } from "@/components/LRZSymbol";
 import { LRZTextClamp } from "@/components/LRZTextClamp";
+import { LRZTooltip } from "@/components/LRZTooltip";
 import LRZTypography from "@/components/LRZTypography";
 import { useAmbiance } from "@/hooks/useAmbiance";
 import {
@@ -120,51 +122,46 @@ function createStarField(slug: string, count = 18): string {
 }
 
 export function getChateauIllustration(
-    chateau: Chateau,
+    chateau: ChateauV2,
     ambiance: Ambiance,
-): string | undefined {
-    if (!featureIsEnabled("ambianceChateauxVisual")) return chateau.customEmoji;
-    return chateau.illustrationVariant?.[ambiance] ?? chateau.customEmoji;
+): string {
+    if (!featureIsEnabled("ambianceChateauxVisual")) {
+        return chateau.illustrations.jour;
+    }
+
+    return chateau.illustrations[ambiance];
 }
 
 export type ChateauCardProps = {
-    d: Chateau;
+    d: ChateauV2;
     t?: Territoire;
     open: boolean;
     personnages?: readonly PersonnageAvecRelationLieu[];
+    onShowOnMap?: (slug: string) => void;
 };
 
-type ChateauAccordionKey = "history" | "location" | "visit" | "characters";
-
-function createAccordionState(open: boolean) {
-    return {
-        history: open,
-        location: open,
-        visit: open,
-        characters: open,
-    };
-}
+type ChateauAccordionKey = "history" | "architecture" | "visit";
 
 /**
  * Fiche château illustrée.
  *
  * Le château détouré habite le hero, tandis que les informations sont
- * regroupées par histoire, architecture, localisation et protections.
+ * regroupées par histoire, architecture, patrimoine et visite.
  */
 export default function ChateauCard({
     d,
     t,
     open,
     personnages = [],
+    onShowOnMap,
 }: ChateauCardProps) {
     const [ambiance] = useAmbiance();
     const illustration = getChateauIllustration(d, ambiance);
     const starField = useMemo(() => createStarField(d.slug), [d.slug]);
     const title = parseChateauName(d.nom);
-    const [openSections, setOpenSections] = useState(() =>
-        createAccordionState(open),
+    const [openSection, setOpenSection] = useState<ChateauAccordionKey | null>(
+        open ? "history" : null,
     );
-    const [globalOpen, setGlobalOpen] = useState(open);
     const personnagesEnabled = featureIsEnabled("personnages");
 
     const color =
@@ -174,16 +171,11 @@ export default function ChateauCard({
               ? "orange-cuivre"
               : "brun";
 
-    if (globalOpen !== open) {
-        setGlobalOpen(open);
-        setOpenSections(createAccordionState(open));
-    }
-
     function setSectionOpen(section: ChateauAccordionKey, nextOpen: boolean) {
-        setOpenSections((current) => ({
-            ...current,
-            [section]: nextOpen,
-        }));
+        setOpenSection((current) => {
+            if (nextOpen) return section;
+            return current === section ? null : current;
+        });
     }
 
     return (
@@ -198,19 +190,13 @@ export default function ChateauCard({
                     style={{ "--star-field": starField } as ChateauHeroStyle}
                 >
                     <div className={styles.heroArtwork} aria-hidden="true">
-                        {illustration ? (
-                            <Image
-                                className={styles.heroImage}
-                                src={illustration}
-                                alt=""
-                                fill
-                                sizes="(max-width: 560px) 85vw, (max-width: 1080px) 45vw, 320px"
-                            />
-                        ) : (
-                            <span className={styles.heroFallback}>
-                                {d.emoji || "🏰"}
-                            </span>
-                        )}
+                        <Image
+                            className={styles.heroImage}
+                            src={illustration}
+                            alt=""
+                            fill
+                            sizes="(max-width: 560px) 85vw, (max-width: 1080px) 45vw, 320px"
+                        />
                     </div>
                 </div>
             </LRZCardMedia>
@@ -241,9 +227,65 @@ export default function ChateauCard({
                     preset="editorial"
                     italic={false}
                     font="display"
+                    leading="snug"
+                    color="primary"
+                    weight="medium"
                 >
-                    {ucfirst(d.sousTitre)}
+                    <LRZTextClamp as="span" lines={1} fixedHeight tooltipPortal>
+                        {ucfirst(d.sousTitre)}
+                    </LRZTextClamp>
                 </LRZTypography>
+            </div>
+            <div
+                className={styles.locationBand}
+                data-has-map-link={onShowOnMap ? true : undefined}
+            >
+                <p className={styles.locationPrimary}>
+                    <MapPin
+                        className={styles.locationIcon}
+                        aria-hidden="true"
+                    />
+                    <span className={styles.locationText}>
+                        <LRZTooltip
+                            content={`Département : ${d.departement}`}
+                            side="top"
+                            portal
+                        >
+                            <span
+                                className={styles.communeTooltipTrigger}
+                                tabIndex={0}
+                            >
+                                {d.commune}
+                            </span>
+                        </LRZTooltip>
+                    </span>
+                </p>
+                <p className={styles.locationRiver}>
+                    <span className={styles.locationIconSpacer} />
+                    <span className={styles.locationText}>
+                        <span className={styles.locationRiverLabel}>
+                            Cours d’eau
+                        </span>
+                        <span
+                            className={styles.locationSeparator}
+                            aria-hidden="true"
+                        >
+                            ·
+                        </span>
+                        {d.riviere}
+                    </span>
+                </p>
+                {onShowOnMap ? (
+                    <button
+                        type="button"
+                        className={styles.locationMapLink}
+                        aria-label={`Voir ${d.nom} sur la carte`}
+                        onClick={() => onShowOnMap(d.slug)}
+                    >
+                        <MapPinned aria-hidden="true" />
+                        Carte
+                    </button>
+                ) : null}
             </div>
 
             <div className={styles.body}>
@@ -258,11 +300,20 @@ export default function ChateauCard({
                     </div>
                 )}
                 <LRZAccordion
-                    title="Histoire &amp; architecture"
-                    description="Époque, architecture et construction"
+                    title="Histoire"
+                    description={
+                        <LRZTextClamp
+                            as="span"
+                            lines={1}
+                            fixedHeight
+                            tooltip={false}
+                        >
+                            Récit et personnages
+                        </LRZTextClamp>
+                    }
                     id="histoire"
-                    icon={<Castle className={styles.accordionIcon} />}
-                    open={openSections.history}
+                    icon={<BookOpen className={styles.accordionIcon} />}
+                    open={openSection === "history"}
                     onOpenChange={(nextOpen) =>
                         setSectionOpen("history", nextOpen)
                     }
@@ -271,87 +322,185 @@ export default function ChateauCard({
                     fullWidth
                     headingLevel={4}
                     size="sm"
+                    animated
                 >
-                    <div>
+                    <div className={styles.historyPanel}>
+                        {d.resume ? (
+                            <LRZAnecdote color={color}>{d.resume}</LRZAnecdote>
+                        ) : null}
+
                         <LRZMetaList
-                            className="pb-4"
-                            color="ocre"
+                            color={color}
+                            tone="soft"
+                            size="sm"
                             layout="responsive"
                             hideEmpty
                             items={[
-                                {
-                                    id: "epoque",
-                                    label: "Époque",
-                                    value: d.epoque,
-                                },
-                                {
-                                    id: "architecture",
-                                    label: "Architecture",
-                                    value: d.style,
-                                },
-
-                                {
-                                    id: "construction",
-                                    label: "Construction",
-                                    value: d.construction,
-                                },
                                 {
                                     id: "autres-noms",
                                     label: "Autres noms",
                                     value: d.autresNoms.join(" · "),
                                 },
+                                {
+                                    id: "commanditaire",
+                                    label: "Commanditaire",
+                                    value: d.commanditaire,
+                                    emphasized: true,
+                                },
                             ]}
                         />
-                        {d.resume ? (
-                            <LRZAnecdote color={color}>{d.resume}</LRZAnecdote>
+
+                        {personnagesEnabled && personnages.length > 0 ? (
+                            <ChateauPersonnageList personnages={personnages} />
                         ) : null}
                     </div>
                 </LRZAccordion>
 
                 <LRZAccordion
-                    title="Localisation"
-                    description="Commune, département et cours d’eau"
-                    id="localisation"
-                    icon={<MapPin className={styles.accordionIcon} />}
-                    open={openSections.location}
+                    title="Architecture &amp; patrimoine"
+                    description={
+                        <LRZTextClamp
+                            as="span"
+                            lines={1}
+                            fixedHeight
+                            tooltip={false}
+                        >
+                            Styles, construction et protections
+                        </LRZTextClamp>
+                    }
+                    id="architecture-patrimoine"
+                    icon={<Castle className={styles.accordionIcon} />}
+                    open={openSection === "architecture"}
                     onOpenChange={(nextOpen) =>
-                        setSectionOpen("location", nextOpen)
+                        setSectionOpen("architecture", nextOpen)
                     }
                     color={color}
                     tone="surface"
                     fullWidth
                     headingLevel={4}
                     size="sm"
+                    animated
                 >
-                    <LRZMetaList
-                        color="ocre"
-                        layout="responsive"
-                        items={[
-                            {
-                                id: "commune",
-                                label: "Commune",
-                                value: d.commune,
-                            },
-                            {
-                                id: "departement",
-                                label: "Département",
-                                value: d.departement,
-                            },
-                            {
-                                id: "riviere",
-                                label: "Cours d’eau",
-                                value: d.riviere,
-                            },
-                        ]}
-                    />
+                    <div className={styles.architecturePanel}>
+                        <div className={styles.metaSections}>
+                            <div className={styles.metaSection}>
+                                <p className={styles.metaSectionLabel}>
+                                    Époques
+                                </p>
+                                <div
+                                    className={styles.metaStamps}
+                                    aria-label="Époques"
+                                >
+                                    {d.meta.epoque.map((epoque) => (
+                                        <LRZStamp
+                                            key={epoque}
+                                            collection="common"
+                                            meta="epoque"
+                                            slug={epoque}
+                                            variant="chip"
+                                            tone="outline"
+                                            size="xs"
+                                            font="mono"
+                                            labelSize={11}
+                                            paddingX={10}
+                                            paddingY={4}
+                                            gap="lg"
+                                            shadow="none"
+                                            symbolScale={0.9}
+                                            gradient={false}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className={styles.metaSection}>
+                                <p className={styles.metaSectionLabel}>
+                                    Architectures
+                                </p>
+                                <div
+                                    className={styles.metaStamps}
+                                    aria-label="Architectures"
+                                >
+                                    {d.meta.architecture.map((architecture) => (
+                                        <LRZStamp
+                                            key={architecture}
+                                            collection="common"
+                                            meta="architecture"
+                                            slug={architecture}
+                                            variant="chip"
+                                            tone="outline"
+                                            size="xs"
+                                            font="mono"
+                                            labelSize={11}
+                                            paddingX={10}
+                                            paddingY={4}
+                                            gap="lg"
+                                            shadow="none"
+                                            symbolScale={0.9}
+                                            gradient={false}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <LRZMetaList
+                            color="ocre"
+                            layout="responsive"
+                            hideEmpty
+                            items={[
+                                {
+                                    id: "construction",
+                                    label: "Construction",
+                                    value: d.construction,
+                                },
+                                {
+                                    id: "monument-historique",
+                                    label: "Monument historique",
+                                    value: (
+                                        <LRZBadge
+                                            preset="monument-historique-chateau"
+                                            value={
+                                                d.protection.monumentHistorique
+                                            }
+                                        />
+                                    ),
+                                },
+                                {
+                                    id: "unesco",
+                                    label: "UNESCO",
+                                    value: (
+                                        <LRZBadge
+                                            preset="unesco-chateau"
+                                            value={d.protection.unesco}
+                                        />
+                                    ),
+                                },
+                                {
+                                    id: "note-patrimoniale",
+                                    label: "Note patrimoniale",
+                                    value: d.protection.note,
+                                },
+                            ]}
+                        />
+                    </div>
                 </LRZAccordion>
 
                 <LRZAccordion
-                    title="Visite & patrimoine"
-                    description="Visite, protections et patrimoine"
+                    title="Visite &amp; expériences"
+                    description={
+                        <LRZTextClamp
+                            as="span"
+                            lines={1}
+                            fixedHeight
+                            tooltip={false}
+                        >
+                            Accès et expériences
+                        </LRZTextClamp>
+                    }
                     id="visite"
                     icon={<Ticket className={styles.accordionIcon} />}
-                    open={openSections.visit}
+                    open={openSection === "visit"}
                     onOpenChange={(nextOpen) =>
                         setSectionOpen("visit", nextOpen)
                     }
@@ -360,96 +509,61 @@ export default function ChateauCard({
                     fullWidth
                     headingLevel={4}
                     size="sm"
+                    animated
                 >
-                    <LRZMetaList
-                        color="ocre"
-                        layout="responsive"
-                        tone="plain"
-                        size="sm"
-                        items={[
-                            {
-                                id: "monument-historique",
-                                label: "Monument historique",
-                                value: (
-                                    <LRZBadge
-                                        preset="monument-historique-chateau"
-                                        value={d.protection.monumentHistorique}
-                                    />
-                                ),
-                            },
-                            {
-                                id: "unesco",
-                                label: "UNESCO",
-                                value: (
-                                    <LRZBadge
-                                        preset="unesco-chateau"
-                                        value={d.protection.unesco}
-                                    />
-                                ),
-                            },
-                            {
-                                id: "visite",
-                                label: "Visite",
-                                value: (
-                                    <LRZBadge
-                                        preset="visite-chateau"
-                                        value={d.visite}
-                                    />
-                                ),
-                            },
-                        ]}
-                    />
+                    <div className={styles.visitPanel}>
+                        {d.meta.experience.length > 0 ? (
+                            <div className={styles.metaSection}>
+                                <p className={styles.metaSectionLabel}>
+                                    Expériences
+                                </p>
+                                <div
+                                    className={styles.metaStamps}
+                                    aria-label="Expériences"
+                                >
+                                    {d.meta.experience.map((experience) => (
+                                        <LRZStamp
+                                            key={experience}
+                                            collection="common"
+                                            meta="experience"
+                                            slug={experience}
+                                            variant="chip"
+                                            tone="outline"
+                                            size="xs"
+                                            font="mono"
+                                            labelSize={11}
+                                            paddingX={10}
+                                            paddingY={4}
+                                            gap="lg"
+                                            shadow="none"
+                                            symbolScale={0.9}
+                                            gradient={false}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        ) : null}
+
+                        <LRZMetaList
+                            color="ocre"
+                            layout="responsive"
+                            tone="plain"
+                            size="sm"
+                            items={[
+                                {
+                                    id: "visite",
+                                    label: "Visite",
+                                    value: (
+                                        <LRZBadge
+                                            preset="visite-chateau"
+                                            value={d.visite}
+                                        />
+                                    ),
+                                },
+                            ]}
+                        />
+                    </div>
                 </LRZAccordion>
-
-                {personnagesEnabled &&
-                (personnages.length > 0 || Boolean(d.commanditaire)) ? (
-                    <LRZAccordion
-                        title="Personnages"
-                        description={
-                            personnages.length > 0
-                                ? formatPersonnageCount(personnages.length)
-                                : "Commanditaire du lieu"
-                        }
-                        id={`personnages-${d.slug}`}
-                        icon={<UsersRound className={styles.accordionIcon} />}
-                        open={openSections.characters}
-                        onOpenChange={(nextOpen) =>
-                            setSectionOpen("characters", nextOpen)
-                        }
-                        color={color}
-                        tone="surface"
-                        fullWidth
-                        headingLevel={4}
-                        size="sm"
-                        unmountOnClose
-                    >
-                        <div className={styles.personnagesPanel}>
-                            {d.commanditaire ? (
-                                <LRZMetaList
-                                    className={styles.commanditaireMeta}
-                                    color={color}
-                                    tone="soft"
-                                    size="sm"
-                                    layout="responsive"
-                                    items={[
-                                        {
-                                            id: "commanditaire",
-                                            label: "Commanditaire",
-                                            value: d.commanditaire,
-                                            emphasized: true,
-                                        },
-                                    ]}
-                                />
-                            ) : null}
-
-                            {personnages.length > 0 ? (
-                                <ChateauPersonnageList
-                                    personnages={personnages}
-                                />
-                            ) : null}
-                        </div>
-                    </LRZAccordion>
-                ) : null}
             </div>
         </LRZCard>
     );
@@ -515,10 +629,7 @@ function ChateauPersonnageList({
                                             categorie?.nom ??
                                             personnage.categoriePrincipale
                                         }
-                                        title={
-                                            categorie?.nom ??
-                                            personnage.categoriePrincipale
-                                        }
+                                        tooltip
                                         className={
                                             styles.personnageCategorySymbol
                                         }
@@ -546,7 +657,7 @@ function ChateauPersonnageList({
                             <LRZTextClamp
                                 as="p"
                                 className={styles.personnageDescription}
-                                lines={4}
+                                lines={3}
                                 fixedHeight
                                 tooltipPortal
                             >
@@ -558,12 +669,6 @@ function ChateauPersonnageList({
             })}
         </ul>
     );
-}
-
-function formatPersonnageCount(count: number) {
-    return count === 1
-        ? "1 figure liée au lieu"
-        : `${count} figures liées au lieu`;
 }
 
 function getInitials(name: string) {

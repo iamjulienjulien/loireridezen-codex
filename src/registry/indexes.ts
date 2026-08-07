@@ -59,7 +59,7 @@ export const INDEXES = [
         presentationFooter:
             "**Cet index rassemble les forteresses, palais et demeures qui jalonnent le fil ligérien, du château confidentiel au monument-phare. Chaque lieu est raconté par son époque, son architecture, son paysage et les personnages qui l’ont façonné.**",
         footerNote: "châteaux composant le patrimoine castral ligérien",
-        dataFile: "chateau.json",
+        dataFile: "catalogue-chateaux.json",
         etat: "publie",
         env: ["development", "production"],
     },
