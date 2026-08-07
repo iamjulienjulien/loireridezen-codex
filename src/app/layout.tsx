@@ -13,7 +13,12 @@ import {
 import Script from "next/script";
 import AmbianceCommandPalette from "@/components/AmbianceCommandPalette";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
-import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/lib/site-metadata";
+import {
+    SITE_DESCRIPTION,
+    SITE_OG_IMAGE,
+    SITE_TITLE,
+    SITE_URL,
+} from "@/lib/site-metadata";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
@@ -122,10 +127,9 @@ export const metadata: Metadata = {
         siteName: "Loire Ride Zen",
         title: SITE_TITLE,
         description: SITE_DESCRIPTION,
-        url: "/",
         images: [
             {
-                url: "/api/og",
+                url: SITE_OG_IMAGE,
                 width: 1200,
                 height: 630,
                 alt: SITE_TITLE,
@@ -139,7 +143,7 @@ export const metadata: Metadata = {
         description: SITE_DESCRIPTION,
         images: [
             {
-                url: "/api/og",
+                url: SITE_OG_IMAGE,
                 alt: SITE_TITLE,
             },
         ],

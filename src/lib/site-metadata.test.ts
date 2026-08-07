@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+    buildPageMetadata,
     getCanonicalUrl,
     SITE_DESCRIPTION,
     SITE_TITLE,
@@ -22,5 +23,66 @@ describe("site metadata", () => {
         expect(SITE_URL).toBe("https://codex.loireridezen.bike");
         expect(getCanonicalUrl("/").toString()).toBe(`${SITE_URL}/`);
         expect(getCanonicalUrl("/faune").toString()).toBe(`${SITE_URL}/faune`);
+    });
+
+    it("builds complete and synchronized page metadata", () => {
+        const metadata = buildPageMetadata({
+            kind: "page",
+            href: "/exemple",
+            title: "Titre affiché",
+            description: "Description affichée",
+            seo: {
+                title: "Titre SEO complet",
+                description: "Description SEO complète",
+            },
+        });
+
+        expect(metadata).toMatchObject({
+            title: "Titre SEO complet",
+            description: "Description SEO complète",
+            alternates: {
+                canonical: new URL(`${SITE_URL}/exemple`),
+            },
+            robots: {
+                index: true,
+                follow: true,
+            },
+            openGraph: {
+                title: "Titre SEO complet",
+                description: "Description SEO complète",
+                url: new URL(`${SITE_URL}/exemple`),
+                type: "website",
+            },
+            twitter: {
+                card: "summary_large_image",
+                title: "Titre SEO complet",
+                description: "Description SEO complète",
+            },
+        });
+    });
+
+    it("applies noindex and article Open Graph options", () => {
+        const metadata = buildPageMetadata(
+            {
+                kind: "collection",
+                href: "/chateaux/collections/exemple",
+                title: "Collection exemple",
+                description: "Description de la collection exemple",
+                seo: {
+                    indexable: false,
+                },
+            },
+            { openGraphType: "article" },
+        );
+
+        expect(metadata).toMatchObject({
+            robots: {
+                index: false,
+                follow: false,
+            },
+            openGraph: {
+                type: "article",
+            },
+        });
     });
 });
