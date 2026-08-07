@@ -16,6 +16,15 @@ export {
 } from "@/registry/Meta/common-epoque";
 
 export {
+    COMMON_ARCHITECTURE_META,
+    COMMON_ARCHITECTURE_REGISTRY,
+    getCommonArchitectureMeta,
+    isCommonArchitecture,
+    type CommonArchitecture,
+    type CommonArchitectureMeta,
+} from "@/registry/Meta/common-architecture";
+
+export {
     FAUNE_TYPE_META,
     FAUNE_TYPE_REGISTRY,
     getFauneTypeMeta,
