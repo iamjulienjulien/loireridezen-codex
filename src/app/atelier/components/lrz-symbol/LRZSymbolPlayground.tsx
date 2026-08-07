@@ -4,6 +4,7 @@ import { useState, type ChangeEvent } from "react";
 
 import {
     LRZSymbol,
+    type LRZChateauRenommeeSymbolSlug,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
     type LRZCommonExperienceSymbolSlug,
@@ -35,6 +36,7 @@ export type LRZSymbolPlaygroundOption<TSlug extends string = string> = {
 
 type LRZSymbolPlaygroundProps = {
     codexIndexOptions: readonly LRZSymbolPlaygroundOption<LRZCodexIndexSymbolSlug>[];
+    chateauRenommeeOptions: readonly LRZSymbolPlaygroundOption<LRZChateauRenommeeSymbolSlug>[];
     commonEpoqueOptions: readonly LRZSymbolPlaygroundOption<LRZCommonEpoqueSymbolSlug>[];
     commonArchitectureOptions: readonly LRZSymbolPlaygroundOption<LRZCommonArchitectureSymbolSlug>[];
     commonMilieuOptions: readonly LRZSymbolPlaygroundOption<LRZCommonMilieuSymbolSlug>[];
@@ -120,6 +122,7 @@ const SHADOW_OPTIONS: readonly LRZSymbolShadow[] = ["none", "soft", "strong"];
 
 const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     codex: ["index"],
+    chateau: ["renommee"],
     common: ["epoque", "architecture", "milieu", "experience", "territoire"],
     faune: ["type", "rarete"],
     flore: ["categorie", "rarete"],
@@ -169,6 +172,7 @@ function buildCode(values: PlaygroundState) {
 
 export default function LRZSymbolPlayground({
     codexIndexOptions,
+    chateauRenommeeOptions,
     commonEpoqueOptions,
     commonArchitectureOptions,
     commonMilieuOptions,
@@ -189,6 +193,8 @@ export default function LRZSymbolPlayground({
         switch (collection) {
             case "codex":
                 return codexIndexOptions;
+            case "chateau":
+                return chateauRenommeeOptions;
             case "common":
                 return meta === "territoire"
                     ? commonTerritoireOptions
@@ -229,6 +235,12 @@ export default function LRZSymbolPlayground({
                   meta: "index",
                   slug: values.slug as LRZCodexIndexSymbolSlug,
               }
+            : values.collection === "chateau"
+              ? {
+                    collection: "chateau",
+                    meta: "renommee",
+                    slug: values.slug as LRZChateauRenommeeSymbolSlug,
+                }
             : values.collection === "common" && values.meta === "territoire"
               ? {
                     collection: "common",
@@ -367,6 +379,7 @@ export default function LRZSymbolPlayground({
                             onChange={handleCollectionChange}
                         >
                             <option value="codex">codex</option>
+                            <option value="chateau">chateau</option>
                             <option value="common">common</option>
                             <option value="faune">faune</option>
                             <option value="flore">flore</option>

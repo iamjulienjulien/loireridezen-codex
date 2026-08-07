@@ -1,4 +1,4 @@
-import guinguettes from "@data/guinguettes.json";
+import guinguettes from "@data/catalogue-guinguettes.json";
 
 import type { Guinguette } from "@/types/guinguette";
 

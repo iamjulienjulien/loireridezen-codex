@@ -11,6 +11,7 @@ import {
     type LRZStampVariant,
 } from "@/components/LRZStamp";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
+import { CHATEAU_RENOMMEE_META } from "@/registry/Meta/chateau-renommee";
 import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
@@ -23,6 +24,7 @@ import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
+    type LRZChateauRenommeeSymbolSlug,
     type LRZCodexIndexSymbolSlug,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
@@ -49,6 +51,10 @@ const CODEX_INDEX_OPTIONS = CODEX_INDEX_META.map(({ slug, label }) => ({
     slug,
     label,
 })) satisfies readonly LRZStampPlaygroundOption<LRZCodexIndexSymbolSlug>[];
+
+const CHATEAU_RENOMMEE_OPTIONS = CHATEAU_RENOMMEE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZStampPlaygroundOption<LRZChateauRenommeeSymbolSlug>[];
 
 const COMMON_EPOQUE_OPTIONS = COMMON_EPOQUE_META.map(({ slug, label }) => ({
     slug,
@@ -154,13 +160,13 @@ const FONTS: Array<{
 const API_PROPS = [
     [
         "collection",
-        '"codex" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
+        '"codex" | "chateau" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
         "—",
         "Collection métier.",
     ],
     [
         "meta",
-        '"index" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
+        '"index" | "renommee" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
         "—",
         "Métadonnée de la collection.",
     ],
@@ -317,6 +323,7 @@ export default function LRZStampPage() {
 
                 <LRZStampPlayground
                     codexIndexOptions={CODEX_INDEX_OPTIONS}
+                    chateauRenommeeOptions={CHATEAU_RENOMMEE_OPTIONS}
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}

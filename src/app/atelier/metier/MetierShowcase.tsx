@@ -7,7 +7,7 @@ import FauneCard from "@/app/faune/FauneCard";
 import FloreCard from "@/app/flore/FloreCard";
 import GuinguetteCardV3 from "@/app/guinguettes/GuinguetteCardV3";
 import GuinguetteCardV4 from "@/app/guinguettes/GuinguetteCardV4";
-import PersonnageCard from "@/components/personnages/PersonnageCard";
+import PersonnageCard from "@/app/personnages/PersonnageCard";
 import type {
     Personnage,
     PersonnagesParLieu,

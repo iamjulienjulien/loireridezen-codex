@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
     LRZSymbol,
     LRZ_SYMBOL_SIZE_VALUES,
+    type LRZChateauRenommeeSymbolSlug,
     type LRZCodexIndexSymbolSlug,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
@@ -24,6 +25,7 @@ import {
 } from "@/components/LRZSymbol";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
+import { CHATEAU_RENOMMEE_META } from "@/registry/Meta/chateau-renommee";
 import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
@@ -109,6 +111,10 @@ const CODEX_INDEX_OPTIONS = CODEX_INDEX_META.map(({ slug, label }) => ({
     label,
 })) satisfies readonly LRZSymbolPlaygroundOption<LRZCodexIndexSymbolSlug>[];
 
+const CHATEAU_RENOMMEE_OPTIONS = CHATEAU_RENOMMEE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZSymbolPlaygroundOption<LRZChateauRenommeeSymbolSlug>[];
+
 const COMMON_EPOQUE_OPTIONS = COMMON_EPOQUE_META.map(({ slug, label }) => ({
     slug,
     label,
@@ -162,19 +168,19 @@ const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
 const API_PROPS = [
     [
         "collection",
-        '"codex" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
+        '"codex" | "chateau" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
         "—",
         "Collection du symbole.",
     ],
     [
         "meta",
-        '"index" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
+        '"index" | "renommee" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
         "—",
         "Métadonnée de la collection.",
     ],
     [
         "slug",
-        "LRZCodexIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZCommonTerritoireSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | LRZPersonnageCategorieSymbolSlug",
+        "LRZCodexIndexSymbolSlug | LRZChateauRenommeeSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZCommonTerritoireSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | LRZPersonnageCategorieSymbolSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -321,6 +327,7 @@ export default function LRZSymbolPage() {
 
                 <LRZSymbolPlayground
                     codexIndexOptions={CODEX_INDEX_OPTIONS}
+                    chateauRenommeeOptions={CHATEAU_RENOMMEE_OPTIONS}
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}
