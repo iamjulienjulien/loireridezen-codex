@@ -1,43 +1,3 @@
-.page {
-    min-height: 100dvh;
-    color: var(--color-ambiance-texte-primaire);
-    background:
-        radial-gradient(
-            circle at 12% 2%,
-            color-mix(in srgb, var(--gold) 14%, transparent),
-            transparent 28rem
-        ),
-        var(--color-ambiance-fond);
-    padding-bottom: 96px;
-}
-
-.topbar,
-.hero,
-.catalog,
-.footer {
-    width: min(100% - 2rem, 72rem);
-    margin-inline: auto;
-}
-
-.topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 4rem;
-    border-bottom: 1px solid var(--border-soft);
-}
-
-.brand {
-    display: inline-flex;
-    gap: 0.65rem;
-    align-items: center;
-    color: var(--color-ambiance-texte-primaire);
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 650;
-    text-decoration: none;
-}
-
 .siteLink,
 .cardLabel,
 .cardFooter,
@@ -53,21 +13,14 @@
     text-decoration: none;
 }
 
-.brand:hover,
 .siteLink:hover {
     color: var(--gold);
 }
 
-.brand:focus-visible,
 .siteLink:focus-visible,
 .card:focus-visible {
     outline: 3px solid color-mix(in srgb, var(--gold) 65%, transparent);
     outline-offset: 3px;
-}
-
-.hero {
-    max-width: 72rem;
-    padding: clamp(4rem, 12vw, 8rem) 0 clamp(3rem, 8vw, 5rem);
 }
 
 .eyebrow,
@@ -81,27 +34,8 @@
     text-transform: uppercase;
 }
 
-.hero h1 {
-    max-width: 11ch;
-    margin: 0.8rem 0 0;
-    font-family: var(--font-display);
-    font-size: clamp(3.25rem, 9vw, 6.5rem);
-    font-weight: 560;
-    letter-spacing: -0.065em;
-    line-height: 0.9;
-    text-wrap: balance;
-}
-
-.hero > p:last-child {
-    max-width: 55ch;
-    margin: 1.5rem 0 0;
-    color: var(--color-ambiance-texte-secondaire);
-    font-family: var(--font-edit, var(--font-display));
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    line-height: 1.65;
-}
-
 .catalog {
+    margin-top: clamp(2rem, 5vw, 3rem);
     padding: clamp(1.25rem, 3vw, 2rem);
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-lg);
@@ -201,24 +135,7 @@
     font-size: 1.15rem;
 }
 
-.footer {
-    padding: 2rem 0 3rem;
-    color: var(--color-ambiance-texte-tertiaire);
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
 @media (max-width: 560px) {
-    .topbar {
-        min-height: 3.75rem;
-    }
-
-    .hero {
-        padding-top: 3.5rem;
-    }
-
     .card {
         min-height: 15rem;
     }

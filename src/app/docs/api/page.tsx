@@ -1,14 +1,15 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import Link from "next/link";
 import { MarkdownAsync } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkDirective from "remark-directive";
 
+import PageShell from "@/components/layout/PageShell";
 import remarkLrzDirectives from "@/lib/markdown/remark-lrz-directives";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { createDocumentationComponents } from "../markdown-components";
 import { getContentPageDefinition } from "@/registry/pages";
+import DocumentationTopbar from "../DocumentationTopbar";
 
 import {
     API_DOCUMENTATION_SECTIONS,
@@ -20,9 +21,9 @@ import styles from "./api-docs.module.css";
 
 export const dynamic = "force-static";
 
-export const metadata = buildPageMetadata(
-    getContentPageDefinition("/docs/api"),
-);
+const API_PAGE = getContentPageDefinition("/docs/api");
+
+export const metadata = buildPageMetadata(API_PAGE);
 
 const GUIDE_PATH = join(process.cwd(), "docs", "api", "README.md");
 
@@ -53,24 +54,23 @@ export default function ApiDocumentationPage() {
     const guide = readGuide();
 
     return (
-        <div className={styles.page}>
-            <header className={styles.topbar}>
-                <Link className={styles.brand} href="/">
-                    <span aria-hidden="true">🌊</span>
-                    <span>Le Codex ligérien</span>
-                </Link>
-
-                <nav className={styles.primaryNav} aria-label="Liens API">
-                    <Link href="/docs">Documentation</Link>
-                    <Link href="/docs/sdk">SDK TypeScript</Link>
-                    <a href="/api/v1">API</a>
-                    <a href="/api/v1/openapi.json">OpenAPI</a>
-                    <a href="https://github.com/iamjulienjulien/loireridezen-codex/tree/main/docs/api">
-                        Source
-                    </a>
-                </nav>
-            </header>
-
+        <PageShell
+            page={API_PAGE}
+            width="full"
+            spacing="none"
+            header={<DocumentationTopbar current="api" />}
+            containerClassName={styles.documentationContainer}
+            footer={
+                <>
+                    Loire Ride Zen · API publique V1 ·{" "}
+                    <a href="#demarrage-rapide">Revenir au démarrage rapide</a>
+                </>
+            }
+            footerProps={{
+                className: styles.documentationFooter,
+                signatureSpacing: "none",
+            }}
+        >
             <div className={styles.shell}>
                 <aside className={styles.sidebar} aria-label="Sommaire">
                     <p className={styles.sidebarLabel}>Sur cette page</p>
@@ -84,7 +84,7 @@ export default function ApiDocumentationPage() {
                     </ol>
                 </aside>
 
-                <main className={styles.content}>
+                <article className={styles.content}>
                     <MarkdownAsync
                         components={markdownComponents}
                         remarkPlugins={[
@@ -95,14 +95,8 @@ export default function ApiDocumentationPage() {
                     >
                         {guide}
                     </MarkdownAsync>
-                </main>
+                </article>
             </div>
-
-            <footer className={styles.footer}>
-                <span>Loire Ride Zen · API publique V1</span>
-
-                <a href="#demarrage-rapide">Revenir au démarrage rapide</a>
-            </footer>
-        </div>
+        </PageShell>
     );
 }

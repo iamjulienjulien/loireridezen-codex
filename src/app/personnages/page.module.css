@@ -1,39 +1,6 @@
-.page {
-    position: relative;
-    min-height: 100dvh;
-    overflow-x: hidden;
-    background: var(--color-ambiance-fond);
-    background-image: var(--ambient-glow);
-    color: var(--color-ambiance-texte-primaire);
-}
-
-.page::before {
-    position: fixed;
-    z-index: 0;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    content: "";
-    opacity: var(--noise-opacity);
-}
-
-.wrap {
-    position: relative;
-    z-index: 1;
-    width: min(1080px, calc(100% - 3rem));
-    margin: 0 auto;
-    padding: 3rem 0 6rem;
-}
-
-.hero {
-    max-width: 52rem;
-    margin: 4rem auto 3.25rem;
-    text-align: center;
-}
-
-.eyebrow,
 .context {
-    margin: 0;
+    display: block;
+    margin-top: 1.5rem;
     color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.64rem;
@@ -41,50 +8,6 @@
     letter-spacing: 0.14em;
     line-height: 1.4;
     text-transform: uppercase;
-}
-
-.eyebrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-}
-
-.eyebrow::before,
-.eyebrow::after {
-    width: 2.2rem;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-or));
-    content: "";
-}
-
-.eyebrow::after {
-    transform: scaleX(-1);
-}
-
-.title {
-    margin: 0.9rem 0 0;
-    color: var(--color-ambiance-texte-primaire);
-    font-family: var(--font-display);
-    font-size: clamp(2.75rem, 7vw, 5rem);
-    font-weight: 500;
-    letter-spacing: -0.055em;
-    line-height: 0.92;
-    text-wrap: balance;
-}
-
-.description {
-    margin: 1.35rem auto 0;
-    color: var(--color-ambiance-texte-secondaire);
-    font-family: var(--font-edit);
-    font-size: clamp(1.04rem, 2vw, 1.2rem);
-    font-style: italic;
-    line-height: 1.55;
-    text-wrap: balance;
-}
-
-.context {
-    margin-top: 1.5rem;
     color: var(--color-or);
 }
 
@@ -92,6 +15,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
+    margin-top: clamp(2rem, 5vw, 3.25rem);
 }
 
 .note {
@@ -115,17 +39,7 @@
 }
 
 @media (max-width: 620px) {
-    .wrap {
-        width: min(100% - 2rem, 1080px);
-        padding-top: 1.5rem;
-    }
-
-    .hero {
-        margin-top: 2.75rem;
-    }
-
     .grid {
         grid-template-columns: minmax(0, 1fr);
     }
 }
-

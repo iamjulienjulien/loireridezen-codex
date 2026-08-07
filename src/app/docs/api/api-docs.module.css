@@ -1,13 +1,5 @@
-.page {
-    min-height: 100vh;
-    color: var(--color-ambiance-texte-primaire);
-    background:
-        radial-gradient(
-            circle at 12% 2%,
-            color-mix(in srgb, var(--gold) 14%, transparent),
-            transparent 28rem
-        ),
-        var(--color-ambiance-fond);
+.documentationContainer[data-shell-container] {
+    padding-inline: 0;
 }
 
 .topbar {
@@ -47,8 +39,14 @@
     justify-content: flex-end;
 }
 
-.primaryNav a,
-.footer a {
+.primaryNav a[aria-current="page"] {
+    color: var(--color-ambiance-texte-primaire);
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 0.35rem;
+}
+
+.primaryNav a {
     color: var(--color-ambiance-texte-secondaire);
     font-size: 0.82rem;
     font-weight: 650;
@@ -58,16 +56,14 @@
 }
 
 .brand:hover,
-.primaryNav a:hover,
-.footer a:hover {
+.primaryNav a:hover {
     color: var(--gold);
 }
 
 .brand:focus-visible,
 .primaryNav a:focus-visible,
 .sidebar a:focus-visible,
-.content a:focus-visible,
-.footer a:focus-visible {
+.content a:focus-visible {
     border-radius: var(--radius-sm);
     outline: 3px solid color-mix(in srgb, var(--gold) 65%, transparent);
     outline-offset: 3px;
@@ -254,16 +250,11 @@
     border-bottom: 0;
 }
 
-.footer {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
+.documentationFooter[data-spacing] {
     width: min(100% - 2rem, 78rem);
-    margin: 0 auto;
+    margin-top: 0;
+    margin-inline: auto;
     padding: 1.5rem 0 2.5rem;
-    border-top: 1px solid var(--border-soft);
-    color: var(--color-ambiance-texte-tertiaire);
-    font-size: 0.85rem;
 }
 
 @media (max-width: 820px) {
@@ -316,14 +307,13 @@
         grid-template-columns: 1fr;
     }
 
-    .footer {
-        align-items: flex-start;
-        flex-direction: column;
+    .documentationFooter[data-spacing] {
+        width: min(100% - 1rem, 48rem);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .page {
+    .documentationContainer {
         scroll-behavior: auto;
     }
 }

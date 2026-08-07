@@ -1,13 +1,14 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import Link from "next/link";
 import { MarkdownAsync } from "react-markdown";
 import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 
+import PageShell from "@/components/layout/PageShell";
 import remarkLrzDirectives from "@/lib/markdown/remark-lrz-directives";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getContentPageDefinition } from "@/registry/pages";
+import DocumentationTopbar from "../DocumentationTopbar";
 
 import styles from "../api/api-docs.module.css";
 import { createDocumentationComponents } from "../markdown-components";
@@ -16,9 +17,9 @@ import { SDK_DOCUMENTATION_SECTIONS } from "./markdown";
 
 export const dynamic = "force-static";
 
-export const metadata = buildPageMetadata(
-    getContentPageDefinition("/docs/sdk"),
-);
+const SDK_PAGE = getContentPageDefinition("/docs/sdk");
+
+export const metadata = buildPageMetadata(SDK_PAGE);
 
 const GUIDE_PATH = join(process.cwd(), "packages", "codex-sdk", "README.md");
 
@@ -48,23 +49,23 @@ export default function SdkDocumentationPage() {
     const guide = readGuide();
 
     return (
-        <div className={styles.page}>
-            <header className={styles.topbar}>
-                <Link className={styles.brand} href="/">
-                    <span aria-hidden="true">🌊</span>
-                    <span>Le Codex ligérien</span>
-                </Link>
-
-                <nav className={styles.primaryNav} aria-label="Liens SDK">
-                    <Link href="/docs">Documentation</Link>
-                    <Link href="/docs/api">API</Link>
-                    <a href="/api/v1/openapi.json">OpenAPI</a>
-                    <a href="https://github.com/iamjulienjulien/loireridezen-codex/tree/main/packages/codex-sdk">
-                        Source
-                    </a>
-                </nav>
-            </header>
-
+        <PageShell
+            page={SDK_PAGE}
+            width="full"
+            spacing="none"
+            header={<DocumentationTopbar current="sdk" />}
+            containerClassName={styles.documentationContainer}
+            footer={
+                <>
+                    Loire Ride Zen · SDK TypeScript v0.1 ·{" "}
+                    <a href="#demarrage-rapide">Revenir au démarrage rapide</a>
+                </>
+            }
+            footerProps={{
+                className: styles.documentationFooter,
+                signatureSpacing: "none",
+            }}
+        >
             <div className={styles.shell}>
                 <aside className={styles.sidebar} aria-label="Sommaire">
                     <p className={styles.sidebarLabel}>Sur cette page</p>
@@ -78,7 +79,7 @@ export default function SdkDocumentationPage() {
                     </ol>
                 </aside>
 
-                <main className={styles.content}>
+                <article className={styles.content}>
                     <MarkdownAsync
                         components={markdownComponents}
                         remarkPlugins={[
@@ -89,14 +90,8 @@ export default function SdkDocumentationPage() {
                     >
                         {guide}
                     </MarkdownAsync>
-                </main>
+                </article>
             </div>
-
-            <footer className={styles.footer}>
-                <span>Loire Ride Zen · SDK TypeScript v0.1</span>
-
-                <a href="#demarrage-rapide">Revenir au démarrage rapide</a>
-            </footer>
-        </div>
+        </PageShell>
     );
 }

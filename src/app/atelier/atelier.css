@@ -1,3 +1,7 @@
+.atelier-layout {
+    min-height: 100dvh;
+}
+
 .atelier-foundation-page {
     min-height: 100dvh;
     color: var(--color-ambiance-texte-primaire);

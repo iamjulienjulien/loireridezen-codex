@@ -1,11 +1,13 @@
 import Link from "next/link";
 
 import styles from "./docs-home.module.css";
-import PageFooter from "@/components/PageFooter";
+import PageShell from "@/components/layout/PageShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getContentPageDefinition } from "@/registry/pages";
 
-export const metadata = buildPageMetadata(getContentPageDefinition("/docs"));
+const DOCUMENTATION_PAGE = getContentPageDefinition("/docs");
+
+export const metadata = buildPageMetadata(DOCUMENTATION_PAGE);
 
 const SECTIONS = [
     {
@@ -28,27 +30,16 @@ const SECTIONS = [
 
 export default function DocumentationHomePage() {
     return (
-        <main className={styles.page}>
-            <header className={styles.topbar}>
-                <Link className={styles.brand} href="/">
-                    <span aria-hidden="true">🌊</span>
-                    <span>Le Codex ligérien</span>
-                </Link>
-
+        <PageShell
+            page={DOCUMENTATION_PAGE}
+            width="content"
+            actions={
                 <Link className={styles.siteLink} href="/">
                     Retour au site
                 </Link>
-            </header>
-
-            <section className={styles.hero}>
-                <p className={styles.eyebrow}>Documentation</p>
-                <h1>Guides et références du Codex.</h1>
-                <p>
-                    Les ressources pour explorer, intégrer et comprendre les
-                    données du Codex ligérien.
-                </p>
-            </section>
-
+            }
+            footer={`${SECTIONS.length} ressources documentaires`}
+        >
             <section className={styles.catalog} aria-labelledby="rubriques">
                 <header className={styles.catalogHeader}>
                     <p className={styles.eyebrow}>Rubriques</p>
@@ -76,8 +67,6 @@ export default function DocumentationHomePage() {
                     ))}
                 </div>
             </section>
-
-            <PageFooter />
-        </main>
+        </PageShell>
     );
 }
