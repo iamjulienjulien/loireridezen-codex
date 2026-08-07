@@ -16,6 +16,15 @@ export {
 } from "@/registry/Meta/faune-type";
 
 export {
+    FAUNE_RARETE_META,
+    FAUNE_RARETE_REGISTRY,
+    getFauneRareteMeta,
+    isFauneRarete,
+    type FauneRarete,
+    type FauneRareteMeta,
+} from "@/registry/Meta/faune-rarete";
+
+export {
     FLORE_CATEGORIE_META,
     FLORE_CATEGORIE_REGISTRY,
     getFloreCategorieMeta,

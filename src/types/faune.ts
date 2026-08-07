@@ -1,7 +1,8 @@
+import type { FauneRarete } from "@/registry/Meta/faune-rarete";
 import type { FauneType } from "@/registry/Meta/faune-type";
 
+export type { FauneRarete } from "@/registry/Meta/faune-rarete";
 export type { FauneType } from "@/registry/Meta/faune-type";
-export type FauneRarete = "commun" | "régulier" | "rare" | "trésor";
 export type FauneStatut = "LC" | "NT" | "VU" | "EN" | "CR" | "NA";
 
 export interface FauneConservation {
