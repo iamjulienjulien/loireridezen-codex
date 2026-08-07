@@ -24,7 +24,10 @@ describe("SEO discovery routes", () => {
         }
         expect(urls).toContain("https://codex.loireridezen.bike/faune");
         expect(urls).toContain("https://codex.loireridezen.bike/flore");
-        expect(urls).not.toContain(
+        expect(
+            urls.some((url) => url.includes("/chateaux/collections/")),
+        ).toBe(false);
+        expect(urls).toContain(
             "https://codex.loireridezen.bike/personnages",
         );
         expect(urls.every((url) => !url.includes("/atelier"))).toBe(true);

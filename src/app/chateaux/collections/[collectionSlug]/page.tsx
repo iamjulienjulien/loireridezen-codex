@@ -9,6 +9,7 @@ import { CollectionHero } from "@/components/ui/collection-hero";
 import { CollectionList } from "@/components/ui/collection-list";
 import { CollectionPodium } from "@/components/ui/collection-podium";
 import { buildPageMetadata } from "@/lib/site-metadata";
+import { featureIsEnabled } from "@/registry/feature-flags";
 
 import { COLLECTIONS, getCollectionBySlug } from "@/registry/collections";
 import { findCollectionPageDefinition } from "@/registry/pages";
@@ -54,6 +55,10 @@ export async function generateMetadata({
 
 export default async function CollectionPage({ params }: CollectionPageProps) {
     const { collectionSlug } = await params;
+
+    if (!featureIsEnabled("collections")) {
+        notFound();
+    }
 
     const collection = getCollectionBySlug(collectionSlug);
 

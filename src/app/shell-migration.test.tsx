@@ -12,6 +12,7 @@ import IndexShell from "@/components/layout/IndexShell";
 import type { PageShellProps } from "@/components/layout/PageShell";
 import PageShell from "@/components/layout/PageShell";
 import { COLLECTIONS } from "@/registry/collections";
+import { featureIsEnabled } from "@/registry/feature-flags";
 
 import AboutPage from "./a-propos/page";
 import AtelierLayout from "./atelier/layout";
@@ -79,6 +80,17 @@ describe("pilot shell migration", () => {
     );
 
     it("composes a dynamic Châteaux collection through CollectionShell", async () => {
+        if (!featureIsEnabled("collections", "development")) {
+            await expect(
+                CollectionPage({
+                    params: Promise.resolve({
+                        collectionSlug: "incontournables-du-val",
+                    }),
+                }),
+            ).rejects.toThrow();
+            return;
+        }
+
         const route = (await CollectionPage({
             params: Promise.resolve({
                 collectionSlug: "incontournables-du-val",
@@ -94,6 +106,15 @@ describe("pilot shell migration", () => {
     it.each(COLLECTIONS)(
         "composes the $slug collection through CollectionShell",
         async ({ slug }) => {
+            if (!featureIsEnabled("collections", "development")) {
+                await expect(
+                    CollectionPage({
+                        params: Promise.resolve({ collectionSlug: slug }),
+                    }),
+                ).rejects.toThrow();
+                return;
+            }
+
             const route = (await CollectionPage({
                 params: Promise.resolve({ collectionSlug: slug }),
             })) as ReactElement<CollectionShellProps>;
