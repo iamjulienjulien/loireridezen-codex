@@ -2,6 +2,7 @@
 
 import { useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import type { ChateauV2 } from "@/types/chateauV2";
 import type { Ambiance } from "@/registry/ambiances";
@@ -204,21 +205,26 @@ export default function ChateauCard({
             <div className={styles.heroContent}>
                 {/* <p className={styles.heroEpoque}>{d.epoque}</p> */}
                 <h3 className={styles.heroName}>
-                    {title.prefix ? (
-                        <span className={styles.heroNamePrefix}>
-                            {title.prefix}
-                        </span>
-                    ) : null}
-                    <span className={styles.heroNameSecondLine}>
-                        {title.connector ? (
-                            <span className={styles.heroNameConnector}>
-                                {title.connector}
+                    <Link
+                        href={`/chateau/${d.slug}`}
+                        className={styles.heroNameLink}
+                    >
+                        {title.prefix ? (
+                            <span className={styles.heroNamePrefix}>
+                                {title.prefix}
                             </span>
                         ) : null}
-                        <span className={styles.heroNameMain}>
-                            {title.name}
+                        <span className={styles.heroNameSecondLine}>
+                            {title.connector ? (
+                                <span className={styles.heroNameConnector}>
+                                    {title.connector}
+                                </span>
+                            ) : null}
+                            <span className={styles.heroNameMain}>
+                                {title.name}
+                            </span>
                         </span>
-                    </span>
+                    </Link>
                 </h3>
             </div>
             <div className={styles.subtitleWrapper}>
