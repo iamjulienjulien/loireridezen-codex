@@ -1,3 +1,5 @@
+import type { LRZColor } from "@/types/lrz";
+
 /**
  * Contrat structurel commun aux pages du Codex.
  *
@@ -15,9 +17,24 @@ export const PAGE_KINDS = [
 
 export type PageKind = (typeof PAGE_KINDS)[number];
 
-export type PageHeaderStrategy = "page-header" | "none";
+export type PageHeaderStrategy = "page-header";
 
 export type PageVariant = "editorial" | "documentation";
+
+export type AtelierSectionHref =
+    | "/atelier"
+    | "/atelier/colors"
+    | "/atelier/typography"
+    | "/atelier/ui"
+    | "/atelier/doc"
+    | "/atelier/metier"
+    | "/atelier/collections";
+
+export interface PageVisualDefinition {
+    accent: string;
+    color: LRZColor;
+    mark: string;
+}
 
 export interface PageSeoDefinition {
     /** Titre spécifique aux résultats de recherche, si différent du titre UI. */
@@ -38,9 +55,11 @@ export interface PageDefinitionBase<TKind extends PageKind> {
     seo?: PageSeoDefinition;
 }
 
-export interface AtelierPageDefinition extends PageDefinitionBase<"atelier"> {
+export interface AtelierPageDefinition
+    extends PageDefinitionBase<"atelier">, PageVisualDefinition {
     label: string;
     eyebrow: string;
+    sectionHref: AtelierSectionHref;
     featureFlag: "atelier";
     seo: PageSeoDefinition & { indexable: false };
 }
@@ -52,11 +71,11 @@ export interface PageCategoryContract {
 
 /**
  * Règles validées pour la migration des layouts.
- * L'Atelier conserve son shell propre, mais utilisera lui aussi PageHeader.
+ * Chaque catégorie conserve son shell propre et partage le même PageHeader.
  */
 export const PAGE_CATEGORY_CONTRACT = {
     home: { header: "page-header", shell: "home" },
-    index: { header: "none", shell: "index" },
+    index: { header: "page-header", shell: "index" },
     collection: { header: "page-header", shell: "collection" },
     page: { header: "page-header", shell: "page" },
     atelier: { header: "page-header", shell: "atelier" },

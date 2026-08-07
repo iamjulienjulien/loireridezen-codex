@@ -1,4 +1,29 @@
-import type { AtelierPageDefinition } from "@/types/page";
+import type {
+    AtelierPageDefinition,
+    AtelierSectionHref,
+} from "@/types/page";
+
+const getAtelierSectionHref = (href: string): AtelierSectionHref => {
+    if (href.startsWith("/atelier/components/lrz-doc-")) {
+        return "/atelier/doc";
+    }
+
+    if (href.startsWith("/atelier/components/")) return "/atelier/ui";
+
+    const sectionHref = href as AtelierSectionHref;
+
+    return [
+        "/atelier",
+        "/atelier/colors",
+        "/atelier/typography",
+        "/atelier/ui",
+        "/atelier/doc",
+        "/atelier/metier",
+        "/atelier/collections",
+    ].includes(sectionHref)
+        ? sectionHref
+        : "/atelier";
+};
 
 const defineAtelierPage = (
     href: string,
@@ -10,8 +35,12 @@ const defineAtelierPage = (
     href,
     label: title,
     eyebrow: "Atelier · Loire Ride Zen",
+    sectionHref: getAtelierSectionHref(href),
     title,
     description,
+    accent: "#c8893a",
+    color: "ocre",
+    mark: "✦",
     featureFlag: "atelier",
     seo: {
         title: seoTitle,

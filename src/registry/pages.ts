@@ -30,16 +30,21 @@ import type {
     PageKind,
     PageSeoDefinition,
     PageVariant,
+    PageVisualDefinition,
 } from "@/types/page";
 
 export { ATELIER_PAGE } from "@/registry/atelier-pages";
 
-export interface HomePageDefinition extends PageDefinitionBase<"home"> {
+export interface HomePageDefinition
+    extends PageDefinitionBase<"home">,
+        PageVisualDefinition {
     label: string;
     eyebrow: string;
 }
 
-export interface ContentPageDefinition extends PageDefinitionBase<"page"> {
+export interface ContentPageDefinition
+    extends PageDefinitionBase<"page">,
+        PageVisualDefinition {
     label: string;
     eyebrow: string;
     variant: PageVariant;
@@ -70,6 +75,9 @@ export const HOME_PAGE = {
     eyebrow: "Loire Ride Zen",
     title: "Le Codex ligérien",
     description: "Explorer, observer, raconter la Loire.",
+    accent: "#c8893a",
+    color: "ocre",
+    mark: "🌊",
     seo: {
         title: SITE_TITLE,
         description: SITE_DESCRIPTION,
@@ -86,6 +94,9 @@ export const CONTENT_PAGES = [
         title: "Un atlas vivant pour suivre le fil de la Loire.",
         description:
             "Le Codex ligérien est la mémoire éditoriale de Loire Ride Zen : un lieu pour explorer lentement les paysages, les patrimoines et le vivant qui accompagnent le fleuve.",
+        accent: "#4f86c6",
+        color: "eau",
+        mark: "↘",
         seo: {
             title: "À propos du projet Loire Ride Zen — Le Codex ligérien",
             description:
@@ -101,6 +112,9 @@ export const CONTENT_PAGES = [
         title: "Personnages de la Loire",
         description:
             "Souverains, bâtisseurs, écrivains, mécènes et figures singulières : celles et ceux dont les vies ont laissé leur empreinte sur les châteaux ligériens.",
+        accent: "#b5883c",
+        color: "ocre",
+        mark: "♜",
         featureFlag: "personnages",
         seo: {
             title: "Personnages et figures de la Loire — Le Codex ligérien",
@@ -118,6 +132,9 @@ export const CONTENT_PAGES = [
         title: "Guides et références du Codex.",
         description:
             "Les ressources pour explorer, intégrer et comprendre les données du Codex ligérien.",
+        accent: "#b5883c",
+        color: "ocre",
+        mark: "⌘",
         seo: {
             title: "Documentation technique, API et SDK — Le Codex ligérien",
             description:
@@ -133,6 +150,9 @@ export const CONTENT_PAGES = [
         title: "API du Codex",
         description:
             "Guide de démarrage, ressources disponibles et référence narrative de l’API publique.",
+        accent: "#4a7c8c",
+        color: "bleu-turquoise",
+        mark: "{ }",
         seo: {
             title: "API publique des données de Loire — Le Codex ligérien",
             description:
@@ -148,6 +168,9 @@ export const CONTENT_PAGES = [
         title: "SDK TypeScript du Codex",
         description:
             "Installation, client typé, gestion des erreurs et intégration React Native ou Expo.",
+        accent: "#4f86c6",
+        color: "eau",
+        mark: "TS",
         seo: {
             title: "SDK TypeScript et guide d’intégration — Le Codex ligérien",
             description:

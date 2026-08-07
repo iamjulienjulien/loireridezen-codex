@@ -46,10 +46,10 @@ describe("page registry", () => {
         expect(unclassifiedRoutes).toEqual([]);
     });
 
-    it("uses PageHeader everywhere except indexes", () => {
+    it("uses the shared PageHeader for every page category", () => {
         expect(PAGE_CATEGORY_CONTRACT).toMatchObject({
             home: { header: "page-header" },
-            index: { header: "none" },
+            index: { header: "page-header" },
             collection: { header: "page-header" },
             page: { header: "page-header" },
             atelier: { header: "page-header" },
