@@ -8,7 +8,11 @@ import FloreCard from "@/app/flore/FloreCard";
 import GuinguetteCardV3 from "@/app/guinguettes/GuinguetteCardV3";
 import GuinguetteCardV4 from "@/app/guinguettes/GuinguetteCardV4";
 import PersonnageCard from "@/components/personnages/PersonnageCard";
-import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";
+import type {
+    Personnage,
+    PersonnagesParLieu,
+    RelationPersonnageLieu,
+} from "@/types/personnage";
 
 import { MOCK_CHATEAU } from "../mockChateau";
 import { MOCK_FAUNE } from "../mockFaune";
@@ -23,8 +27,10 @@ type PersonnageExample = {
 
 export default function MetierShowcase({
     personnageExamples,
+    personnagesByChateau,
 }: {
     personnageExamples: readonly PersonnageExample[];
+    personnagesByChateau: PersonnagesParLieu;
 }) {
     const [open, setOpen] = useState<Record<string, boolean>>({});
     const toggle = (slug: string) =>
@@ -70,7 +76,12 @@ export default function MetierShowcase({
                 </header>
                 <div className={styles.showcaseGrid}>
                     {MOCK_CHATEAU.slice(0, 3).map((item) => (
-                        <ChateauxCard key={item.slug} d={item} open={false} />
+                        <ChateauxCard
+                            key={item.slug}
+                            d={item}
+                            open={false}
+                            personnages={personnagesByChateau[item.slug] ?? []}
+                        />
                     ))}
                 </div>
             </section>

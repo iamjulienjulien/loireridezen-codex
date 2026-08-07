@@ -1,7 +1,9 @@
 import chateau from "@data/chateau.json";
 import IndexShell from "@/components/layout/IndexShell";
 import type { Chateau } from "@/types/chateau";
+import { getPersonnagesByLieu } from "@/lib/personnages";
 import { buildPageMetadata } from "@/lib/site-metadata";
+import { featureIsEnabled } from "@/registry/feature-flags";
 import { getIndexesForEnv } from "@/registry/indexes";
 import { getIndexPageDefinition } from "@/registry/pages";
 import ChateauxIndex from "./ChateauxIndex";
@@ -13,6 +15,9 @@ export const metadata = buildPageMetadata(CHATEAUX_PAGE);
 export default function ChateauxPage() {
     const chateaux = chateau.chateaux as Chateau[];
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
+    const personnagesByChateau = featureIsEnabled("personnages")
+        ? getPersonnagesByLieu()
+        : {};
 
     return (
         <IndexShell
@@ -20,7 +25,11 @@ export default function ChateauxPage() {
             indexes={indexes}
             totalEntries={chateaux.length}
         >
-            <ChateauxIndex chateaux={chateaux} indexes={indexes} />
+            <ChateauxIndex
+                chateaux={chateaux}
+                indexes={indexes}
+                personnagesByChateau={personnagesByChateau}
+            />
         </IndexShell>
     );
 }

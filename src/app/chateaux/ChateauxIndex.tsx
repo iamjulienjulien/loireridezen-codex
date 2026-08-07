@@ -5,6 +5,7 @@ import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 
 import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
+import type { PersonnagesParLieu } from "@/types/personnage";
 
 import { getCollectionsByIndexForEnv } from "@/registry/collections";
 
@@ -69,11 +70,13 @@ const norm = (value: string) =>
 type ChateauxIndexProps = {
     chateaux: Chateau[];
     indexes: readonly IndexEntry[];
+    personnagesByChateau: PersonnagesParLieu;
 };
 
 export default function ChateauxIndex({
     chateaux,
     indexes,
+    personnagesByChateau,
 }: ChateauxIndexProps) {
     const entry = getIndex("/chateaux")!;
 
@@ -444,6 +447,7 @@ export default function ChateauxIndex({
                         key={territory.slug}
                         territory={territory}
                         chateaux={chateaux}
+                        personnagesByChateau={personnagesByChateau}
                         mapSync={
                             viewportMapSpikeEnabled || interactiveMapEnabled
                         }
@@ -459,7 +463,13 @@ export default function ChateauxIndex({
                         data-map-sync-card=""
                         key={castle.slug}
                     >
-                        <ChateauxCard d={castle} open={false} />
+                        <ChateauxCard
+                            d={castle}
+                            open={false}
+                            personnages={
+                                personnagesByChateau[castle.slug] ?? []
+                            }
+                        />
                     </div>
                 ))}
             </div>

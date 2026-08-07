@@ -1,7 +1,10 @@
 import AtelierCategoryLayout from "../AtelierCategoryLayout";
 import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
-import { getPersonnageWithRelations } from "@/lib/personnages";
+import {
+    getPersonnagesByLieu,
+    getPersonnageWithRelations,
+} from "@/lib/personnages";
 import MetierShowcase from "./MetierShowcase";
 
 export const metadata = getAtelierPageMetadata("/atelier/metier");
@@ -17,6 +20,7 @@ export default function AtelierMetierPage() {
         const example = getPersonnageWithRelations(id);
         return example ? [example] : [];
     });
+    const personnagesByChateau = getPersonnagesByLieu();
 
     return (
         <AtelierCategoryLayout
@@ -24,7 +28,10 @@ export default function AtelierMetierPage() {
             title="Composants Métier"
             description="Les cartes qui traduisent les données du Codex en fiches éditoriales : espèces, flore, patrimoine castral, guinguettes et personnages de la Loire."
         >
-            <MetierShowcase personnageExamples={personnageExamples} />
+            <MetierShowcase
+                personnageExamples={personnageExamples}
+                personnagesByChateau={personnagesByChateau}
+            />
             <ComponentsNavigation />
         </AtelierCategoryLayout>
     );

@@ -7,17 +7,23 @@ import type { Chateau } from "@/types/chateau";
 import type { Ambiance } from "@/registry/ambiances";
 
 import styles from "./ChateauCard.module.css";
-import { LRZColor } from "@/types/lrz";
 import LRZBadge from "@/components/LRZBadge/LRZBadge";
 import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
-import { Castle, MapPin, Ticket } from "lucide-react";
+import { Castle, MapPin, Ticket, UsersRound } from "lucide-react";
 import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
 import LRZMetaList from "@/components/LRZMetaList";
 import LRZCard, { LRZCardMedia } from "@/components/LRZCard";
+import { LRZSymbol } from "@/components/LRZSymbol";
+import { LRZTextClamp } from "@/components/LRZTextClamp";
 import LRZTypography from "@/components/LRZTypography";
 import { useAmbiance } from "@/hooks/useAmbiance";
+import {
+    getCategoriePersonnage,
+    isCategoriePersonnageSlug,
+} from "@/registry/categories-personnages";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import { Territoire } from "@/types/territoire";
+import type { PersonnageAvecRelationLieu } from "@/types/personnage";
 
 // const EPOQUE_COLOR: Record<string, LRZColor> = {
 //     Médiéval: "brun",
@@ -25,51 +31,6 @@ import { Territoire } from "@/types/territoire";
 //     Classique: "eau",
 //     Éclectique: "brique",
 // };
-
-const MH: Record<string, { label: string; color: LRZColor }> = {
-    classé: {
-        label: "Classé",
-        color: "vert-metallise",
-    },
-    inscrit: {
-        label: "Inscrit",
-        color: "ocre",
-    },
-    aucune: {
-        label: "Non protégé",
-        color: "galet",
-    },
-};
-
-const UNESCO: Record<string, { label: string; color: LRZColor }> = {
-    oui: {
-        label: "Val de Loire",
-        color: "bleu-metallise",
-    },
-    non: {
-        label: "Hors périmètre",
-        color: "galet",
-    },
-};
-
-const Visite: Record<string, { label: string; color: LRZColor }> = {
-    "ouvert au public": {
-        label: "Ouvert au public",
-        color: "prairie",
-    },
-    "extérieurs & parc": {
-        label: "extérieurs & parc",
-        color: "eau",
-    },
-    "privé, non visitable": {
-        label: "Privé, non visitable",
-        color: "rouge",
-    },
-    inconnu: {
-        label: "Non renseigné",
-        color: "galet",
-    },
-};
 
 const CHATEAU_NAME_PREFIXES = [
     "Forteresse royale de",
@@ -170,15 +131,17 @@ export type ChateauCardProps = {
     d: Chateau;
     t?: Territoire;
     open: boolean;
+    personnages?: readonly PersonnageAvecRelationLieu[];
 };
 
-type ChateauAccordionKey = "history" | "location" | "visit";
+type ChateauAccordionKey = "history" | "location" | "visit" | "characters";
 
 function createAccordionState(open: boolean) {
     return {
         history: open,
         location: open,
         visit: open,
+        characters: open,
     };
 }
 
@@ -188,18 +151,21 @@ function createAccordionState(open: boolean) {
  * Le château détouré habite le hero, tandis que les informations sont
  * regroupées par histoire, architecture, localisation et protections.
  */
-export default function ChateauCard({ d, t, open }: ChateauCardProps) {
+export default function ChateauCard({
+    d,
+    t,
+    open,
+    personnages = [],
+}: ChateauCardProps) {
     const [ambiance] = useAmbiance();
     const illustration = getChateauIllustration(d, ambiance);
     const starField = useMemo(() => createStarField(d.slug), [d.slug]);
-    const mh = MH[d.protection.monumentHistorique] ?? MH.aucune;
-    const visite = Visite[d.visite] ?? Visite.inconnu;
-    const unesco = d.protection.unesco ? UNESCO.oui : UNESCO.non;
     const title = parseChateauName(d.nom);
     const [openSections, setOpenSections] = useState(() =>
         createAccordionState(open),
     );
     const [globalOpen, setGlobalOpen] = useState(open);
+    const personnagesEnabled = featureIsEnabled("personnages");
 
     const color =
         ambiance === "nuit"
@@ -330,11 +296,6 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
                                     value: d.construction,
                                 },
                                 {
-                                    id: "commanditaire",
-                                    label: "Commanditaire",
-                                    value: d.commanditaire,
-                                },
-                                {
                                     id: "autres-noms",
                                     label: "Autres noms",
                                     value: d.autresNoms.join(" · "),
@@ -439,7 +400,177 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
                         ]}
                     />
                 </LRZAccordion>
+
+                {personnagesEnabled &&
+                (personnages.length > 0 || Boolean(d.commanditaire)) ? (
+                    <LRZAccordion
+                        title="Personnages"
+                        description={
+                            personnages.length > 0
+                                ? formatPersonnageCount(personnages.length)
+                                : "Commanditaire du lieu"
+                        }
+                        id={`personnages-${d.slug}`}
+                        icon={<UsersRound className={styles.accordionIcon} />}
+                        open={openSections.characters}
+                        onOpenChange={(nextOpen) =>
+                            setSectionOpen("characters", nextOpen)
+                        }
+                        color={color}
+                        tone="surface"
+                        fullWidth
+                        headingLevel={4}
+                        size="sm"
+                        unmountOnClose
+                    >
+                        <div className={styles.personnagesPanel}>
+                            {d.commanditaire ? (
+                                <LRZMetaList
+                                    className={styles.commanditaireMeta}
+                                    color={color}
+                                    tone="soft"
+                                    size="sm"
+                                    layout="responsive"
+                                    items={[
+                                        {
+                                            id: "commanditaire",
+                                            label: "Commanditaire",
+                                            value: d.commanditaire,
+                                            emphasized: true,
+                                        },
+                                    ]}
+                                />
+                            ) : null}
+
+                            {personnages.length > 0 ? (
+                                <ChateauPersonnageList
+                                    personnages={personnages}
+                                />
+                            ) : null}
+                        </div>
+                    </LRZAccordion>
+                ) : null}
             </div>
         </LRZCard>
     );
+}
+
+function ChateauPersonnageList({
+    personnages,
+}: {
+    personnages: readonly PersonnageAvecRelationLieu[];
+}) {
+    return (
+        <ul className={styles.personnageList}>
+            {personnages.map(({ personnage, relation }) => {
+                const categorie = getCategoriePersonnage(
+                    personnage.categoriePrincipale,
+                );
+                const style = {
+                    "--personnage-accent":
+                        categorie?.identite.accent ?? "var(--color-ocre)",
+                } as CSSProperties;
+
+                return (
+                    <li
+                        key={`${personnage.id}-${relation.lieuId}`}
+                        className={styles.personnageItem}
+                        data-importance={relation.importance}
+                        style={style}
+                    >
+                        {personnage.illustration ? (
+                            <Image
+                                className={styles.personnageBackdrop}
+                                src={personnage.illustration}
+                                alt=""
+                                width={132}
+                                height={148}
+                                sizes="132px"
+                                aria-hidden="true"
+                            />
+                        ) : (
+                            <span
+                                className={styles.personnageBackdropInitials}
+                                aria-hidden="true"
+                            >
+                                {getInitials(personnage.nom)}
+                            </span>
+                        )}
+
+                        <div className={styles.personnageCopy}>
+                            <div className={styles.personnageHeading}>
+                                {isCategoriePersonnageSlug(
+                                    personnage.categoriePrincipale,
+                                ) ? (
+                                    <LRZSymbol
+                                        collection="personnage"
+                                        meta="categorie"
+                                        slug={personnage.categoriePrincipale}
+                                        size="xs"
+                                        frame="none"
+                                        padding="none"
+                                        shadow="soft"
+                                        decorative={false}
+                                        label={
+                                            categorie?.nom ??
+                                            personnage.categoriePrincipale
+                                        }
+                                        title={
+                                            categorie?.nom ??
+                                            personnage.categoriePrincipale
+                                        }
+                                        className={
+                                            styles.personnageCategorySymbol
+                                        }
+                                    />
+                                ) : null}
+                                <LRZTextClamp
+                                    as="strong"
+                                    lines={1}
+                                    fixedHeight
+                                    tooltipPortal
+                                >
+                                    {personnage.nom}
+                                </LRZTextClamp>
+                            </div>
+
+                            <div className={styles.personnageRelation}>
+                                <p className={styles.personnageRole}>
+                                    {relation.libelle}
+                                </p>
+                                <p className={styles.personnageDate}>
+                                    {relation.periodeAffichee}
+                                </p>
+                            </div>
+
+                            <LRZTextClamp
+                                as="p"
+                                className={styles.personnageDescription}
+                                lines={4}
+                                fixedHeight
+                                tooltipPortal
+                            >
+                                {relation.description}
+                            </LRZTextClamp>
+                        </div>
+                    </li>
+                );
+            })}
+        </ul>
+    );
+}
+
+function formatPersonnageCount(count: number) {
+    return count === 1
+        ? "1 figure liée au lieu"
+        : `${count} figures liées au lieu`;
+}
+
+function getInitials(name: string) {
+    const words = name.split(/[\s-]+/).filter(Boolean);
+
+    if (words.length === 0) return "?";
+    if (words.length === 1) return words[0].slice(0, 2).toLocaleUpperCase("fr");
+
+    return `${words[0][0]}${words.at(-1)?.[0] ?? ""}`.toLocaleUpperCase("fr");
 }

@@ -5,6 +5,7 @@ import { MapPin, Waves } from "lucide-react";
 
 import type { Chateau } from "@/types/chateau";
 import type { Territoire } from "@/types/territoire";
+import type { PersonnagesParLieu } from "@/types/personnage";
 
 import ChateauxCard from "@/app/chateaux/ChateauxCard";
 import { LRZSymbol } from "@/components/LRZSymbol";
@@ -22,6 +23,7 @@ type TerritoireSectionStyle = CSSProperties & {
 type TerritoireSectionProps = {
     territory: Territoire;
     chateaux: readonly Chateau[];
+    personnagesByChateau: PersonnagesParLieu;
     /** Ajoute un repère DOM pour la synchronisation expérimentale de carte. */
     mapSync?: boolean;
 };
@@ -29,6 +31,7 @@ type TerritoireSectionProps = {
 export default function TerritoireSection({
     territory,
     chateaux,
+    personnagesByChateau,
     mapSync = false,
 }: TerritoireSectionProps) {
     const { identite, limites } = territory;
@@ -146,7 +149,14 @@ export default function TerritoireSection({
                         data-map-sync-card={mapSync ? "" : undefined}
                         key={chateau.slug}
                     >
-                        <ChateauxCard d={chateau} t={territory} open={false} />
+                        <ChateauxCard
+                            d={chateau}
+                            t={territory}
+                            open={false}
+                            personnages={
+                                personnagesByChateau[chateau.slug] ?? []
+                            }
+                        />
                     </div>
                 ))}
             </div>
