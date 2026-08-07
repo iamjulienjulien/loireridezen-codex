@@ -9,6 +9,18 @@ import { LRZColor } from "@/types/lrz";
 
 export type Env = "development" | "production";
 export type IndexEtat = "publie" | "relecture" | "brouillon";
+export type IndexUniverse = "habite" | "vivant" | "raconte";
+export type IndexFormat =
+    "catalogue" | "naturaliste" | "repertoire" | "lexique";
+
+export const INDEX_UNIVERSES = [
+    { slug: "habite", title: "Le fleuve habité" },
+    { slug: "vivant", title: "Le fleuve vivant" },
+    { slug: "raconte", title: "Le fleuve raconté" },
+] as const satisfies readonly {
+    slug: IndexUniverse;
+    title: string;
+}[];
 
 export interface IndexEntry {
     /** Clé stable, sans slash. */
@@ -25,6 +37,10 @@ export interface IndexEntry {
     title: string;
     /** Description de la carte d'accueil. */
     description: string;
+    /** Univers éditorial utilisé pour regrouper les index sur l'accueil. */
+    universe: IndexUniverse;
+    /** Format de consultation et de présentation de l'index. */
+    format: IndexFormat;
     /** Couleur d'accent de la section. */
     accent: string;
     color: LRZColor;
@@ -52,6 +68,8 @@ export const INDEXES = [
         title: "Châteaux de la Loire",
         description:
             "Des donjons aux jardins, le pouvoir change de visage au fil de la Loire.",
+        universe: "habite",
+        format: "catalogue",
         accent: "#b5883c",
         color: "ocre",
         presentation_md:
@@ -72,6 +90,8 @@ export const INDEXES = [
         title: "Faune ligérienne",
         description:
             "Ce qui verdit le fil, du saule des grèves à l’angélique de l’estuaire.",
+        universe: "vivant",
+        format: "naturaliste",
         accent: "#4f86c6",
         color: "eau",
         presentation:
@@ -93,6 +113,8 @@ export const INDEXES = [
         title: "Flore ligérienne",
         description:
             "Ce qui verdit le fil, du saule des grèves à l’angélique de l’estuaire.",
+        universe: "vivant",
+        format: "naturaliste",
         accent: "#4fa25c",
         color: "prairie",
         presentation:
@@ -114,6 +136,8 @@ export const INDEXES = [
         title: "Guinguettes de Loire",
         description:
             "Là où la Loire ralentit, les tables s’installent, les verres tintent et les soirées s’étirent.",
+        universe: "habite",
+        format: "catalogue",
         accent: "#c46a4b",
         color: "brique",
         presentation_md:
@@ -134,6 +158,8 @@ export const INDEXES = [
         title: "Vignobles ligériens",
         description:
             "Les appellations du fil, du grand cru liquoreux au cru communal.",
+        universe: "vivant",
+        format: "catalogue",
         accent: "#9c3f52",
         color: "rouge",
         presentation:
@@ -156,6 +182,8 @@ export const INDEXES = [
         title: "Vocabulaire du fleuve",
         description:
             "La mémoire déposée dans les mots, du terme vivant au mot oublié.",
+        universe: "raconte",
+        format: "lexique",
         accent: "#4a7c8c",
         color: "bleu-turquoise",
         presentation:
@@ -177,6 +205,8 @@ export const INDEXES = [
         title: "Petit patrimoine du fil",
         description:
             "Le fleuve-travail : ponts, cales, fours à chaux et moulins de la Loire.",
+        universe: "habite",
+        format: "catalogue",
         accent: "#8a7256",
         color: "fauve",
         presentation:
