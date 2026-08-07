@@ -3,6 +3,8 @@ import Image from "next/image";
 
 import {
     getLRZSymbolDefinition,
+    LRZ_COMMON_TERRITOIRE_SYMBOL_DIMENSIONS,
+    type LRZCommonTerritoireSymbolSlug,
     type LRZSymbolLocator,
 } from "@/registry/symbols";
 
@@ -74,6 +76,7 @@ type LRZSymbolStyle = CSSProperties & {
     "--lrz-symbol-size"?: string;
     "--lrz-symbol-padding"?: string;
     "--lrz-symbol-accent"?: string;
+    "--lrz-symbol-image-width"?: string;
 };
 
 function joinClassNames(...values: Array<string | undefined | false>) {
@@ -125,10 +128,24 @@ export default function LRZSymbol({
                   Math.max(0, Math.floor((resolvedSize - 2) / 2)),
               )
             : undefined;
+    const territoryDimensions =
+        collection === "common" && meta === "territoire"
+            ? LRZ_COMMON_TERRITOIRE_SYMBOL_DIMENSIONS[
+                  slug as LRZCommonTerritoireSymbolSlug
+              ]
+            : undefined;
     const resolvedStyle: LRZSymbolStyle = {
         ...style,
         "--lrz-symbol-size": `${resolvedSize}px`,
         "--lrz-symbol-accent": accent ?? definition.accent,
+        ...(territoryDimensions
+            ? {
+                  "--lrz-symbol-image-width": `${(
+                      (territoryDimensions.width / territoryDimensions.height) *
+                      100
+                  ).toFixed(4)}%`,
+              }
+            : {}),
         ...(customPadding === undefined
             ? {}
             : { "--lrz-symbol-padding": `${customPadding}px` }),

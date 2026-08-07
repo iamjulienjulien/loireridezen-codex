@@ -29,6 +29,15 @@
     user-select: none;
 }
 
+/* Les blasons sont des illustrations verticales : leur hauteur, et non leur
+   largeur, pilote leur mise à l’échelle dans le cadre carré. */
+.symbol[data-collection="common"][data-meta="territoire"] .image {
+    width: var(--lrz-symbol-image-width);
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
 /* Espacement intérieur */
 
 .symbol[data-padding="none"] {

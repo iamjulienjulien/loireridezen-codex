@@ -174,6 +174,21 @@ export const LRZ_COMMON_TERRITOIRE_SYMBOLS = {
     "bretagne-ligerienne": "/symbols/common/territoire/bretagne-ligerienne.png",
 } as const satisfies Record<CommonTerritoire, string>;
 
+/** Dimensions réelles des blasons optimisés, utilisées pour préserver leur ratio. */
+export const LRZ_COMMON_TERRITOIRE_SYMBOL_DIMENSIONS = {
+    nivernais: { width: 258, height: 298 },
+    orleanais: { width: 259, height: 298 },
+    blaisois: { width: 246, height: 298 },
+    touraine: { width: 245, height: 298 },
+    chinonais: { width: 250, height: 298 },
+    saumurois: { width: 238, height: 298 },
+    anjou: { width: 242, height: 298 },
+    "bretagne-ligerienne": { width: 242, height: 298 },
+} as const satisfies Record<
+    CommonTerritoire,
+    { readonly width: number; readonly height: number }
+>;
+
 export type LRZCommonTerritoireSymbolSlug =
     keyof typeof LRZ_COMMON_TERRITOIRE_SYMBOLS;
 
