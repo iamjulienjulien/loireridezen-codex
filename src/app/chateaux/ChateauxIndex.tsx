@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 
 import type { ChateauV2 } from "@/types/chateauV2";
@@ -11,6 +12,11 @@ import { getCollectionsByIndexForEnv } from "@/registry/collections";
 
 import IndexPresentation from "@/components/IndexPresentation";
 import { PageControls } from "@/components/PageControls";
+import {
+    LRZDialog,
+    LRZDialogBody,
+    LRZDialogContent,
+} from "@/components/LRZDialog";
 
 import { CollectionCard } from "@/components/ui/collection-card";
 
@@ -71,12 +77,14 @@ type ChateauxIndexProps = {
     chateaux: ChateauV2[];
     indexes: readonly IndexEntry[];
     personnagesByChateau: PersonnagesParLieu;
+    initialOpenSlug?: string;
 };
 
 export default function ChateauxIndex({
     chateaux,
     indexes,
     personnagesByChateau,
+    initialOpenSlug,
 }: ChateauxIndexProps) {
     const entry = getIndex("/chateaux")!;
 
@@ -85,6 +93,8 @@ export default function ChateauxIndex({
     const [q, setQ] = useState("");
     const [groupByTerritory, setGroupByTerritory] = useState(true);
     const [isMapOpen, setIsMapOpen] = useState(false);
+    const [openSlug, setOpenSlug] = useState(initialOpenSlug);
+    const router = useRouter();
     const catalogueRef = useRef<HTMLDivElement>(null);
     const territoiresEnabled = featureIsEnabled("territoires");
     const renommeeEnabled = featureIsEnabled("chateauxRenommee");
@@ -188,6 +198,9 @@ export default function ChateauxIndex({
         "chateauxViewportMapSpike",
     );
     const interactiveMapEnabled = featureIsEnabled("chateauxInteractiveMap");
+    const openChateau = openSlug
+        ? chateaux.find((castle) => castle.slug === openSlug)
+        : undefined;
     const hasActiveFilters =
         epoque !== "all" || (renommeeEnabled && renommee !== "all") || q !== "";
 
@@ -494,6 +507,45 @@ export default function ChateauxIndex({
 
     return (
         <>
+            <LRZDialog
+                open={Boolean(openChateau)}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        setOpenSlug(undefined);
+                        router.replace("/chateaux");
+                    }
+                }}
+            >
+                {openChateau ? (
+                    <LRZDialogContent
+                        size="sm"
+                        variant="immersive"
+                        scrollMode="content"
+                        color="ocre"
+                    >
+                        {/* <LRZDialogHeader
+                            eyebrow="Châteaux de la Loire"
+                            title={openChateau.nom}
+                            description={openChateau.sousTitre}
+                        /> */}
+                        <LRZDialogBody padding="none">
+                            <ChateauxCard
+                                d={openChateau}
+                                open
+                                personnages={
+                                    personnagesByChateau[openChateau.slug] ?? []
+                                }
+                                onShowOnMap={
+                                    interactiveMapEnabled
+                                        ? showChateauOnMap
+                                        : undefined
+                                }
+                            />
+                        </LRZDialogBody>
+                    </LRZDialogContent>
+                ) : null}
+            </LRZDialog>
+
             <IndexPresentation
                 description={entry.description}
                 descriptionFooter={entry.presentationFooter}

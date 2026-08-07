@@ -1,0 +1,77 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { getCanonicalUrl, SITE_OG_IMAGE } from "@/lib/site-metadata";
+
+import {
+    CHATEAUX,
+    ChateauxRoute,
+    getChateauBySlug,
+} from "@/app/chateaux/ChateauxRoute";
+
+type ChateauPageProps = {
+    params: Promise<{ slug: string }>;
+};
+
+export function generateStaticParams() {
+    return CHATEAUX.map(({ slug }) => ({ slug }));
+}
+
+export async function generateMetadata({
+    params,
+}: ChateauPageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const chateau = getChateauBySlug(slug);
+
+    if (!chateau) {
+        return {};
+    }
+
+    const title = `${chateau.nom} — Châteaux de la Loire`;
+    const description =
+        chateau.resume ??
+        `${chateau.nom}, ${chateau.sousTitre.toLowerCase()}. Découvrez sa place dans le Codex ligérien.`;
+    const canonical = getCanonicalUrl(`/chateau/${chateau.slug}`);
+
+    return {
+        title,
+        description,
+        alternates: { canonical },
+        robots: {
+            index: true,
+            follow: true,
+        },
+        openGraph: {
+            type: "article",
+            locale: "fr_FR",
+            siteName: "Loire Ride Zen",
+            title,
+            description,
+            url: canonical,
+            images: [
+                {
+                    url: SITE_OG_IMAGE,
+                    width: 1200,
+                    height: 630,
+                    alt: title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [SITE_OG_IMAGE],
+        },
+    };
+}
+
+export default async function ChateauPage({ params }: ChateauPageProps) {
+    const { slug } = await params;
+
+    if (!getChateauBySlug(slug)) {
+        notFound();
+    }
+
+    return <ChateauxRoute initialOpenSlug={slug} />;
+}

@@ -16,7 +16,7 @@ import { COLLECTIONS } from "@/registry/collections";
 import AboutPage from "./a-propos/page";
 import AtelierLayout from "./atelier/layout";
 import ChateauxIndex from "./chateaux/ChateauxIndex";
-import ChateauxPage from "./chateaux/page";
+import { ChateauxRoute } from "./chateaux/ChateauxRoute";
 import CollectionPage from "./chateaux/collections/[collectionSlug]/page";
 import DocumentationTopbar from "./docs/DocumentationTopbar";
 import ApiDocumentationPage from "./docs/api/page";
@@ -58,7 +58,7 @@ describe("pilot shell migration", () => {
     });
 
     it("keeps the Châteaux catalogue client inside IndexShell", () => {
-        const route = ChateauxPage() as ReactElement<IndexShellProps>;
+        const route = ChateauxRoute() as ReactElement<IndexShellProps>;
         const catalogue = route.props.children as ReactElement;
 
         expect(route.type).toBe(IndexShell);
