@@ -14,7 +14,7 @@
  * Données pures, importables côté serveur comme côté client.
  */
 
-import type { Env } from "@/registry/indexes";
+import type { Env, IndexHref, IndexSlug } from "@/registry/indexes";
 import { LRZColor } from "@/types/lrz";
 
 export type CollectionEtat = "publie" | "relecture" | "brouillon";
@@ -52,10 +52,10 @@ export interface CollectionRegistryEntry {
     href: string;
 
     /** Slug de l’index auquel appartient la collection. */
-    indexSlug: string;
+    indexSlug: IndexSlug;
 
     /** Route de l’index parent. */
-    indexHref: string;
+    indexHref: IndexHref;
 
     /** Emoji identitaire. */
     mark: string;
