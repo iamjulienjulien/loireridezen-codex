@@ -8,6 +8,7 @@ import {
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
+    type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
     type LRZIndexSymbolSlug,
     type LRZSymbolFrame,
@@ -22,6 +23,7 @@ import { getIndexBySlug } from "@/registry/indexes";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
+import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import { LRZ_INDEX_SYMBOLS } from "@/registry/symbols";
 
@@ -117,6 +119,11 @@ const FLORE_CATEGORIE_OPTIONS = FLORE_CATEGORIE_META.map(({ slug, label }) => ({
     label,
 })) satisfies readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
 
+const FLORE_RARETE_OPTIONS = FLORE_RARETE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZSymbolPlaygroundOption<LRZFloreRareteSymbolSlug>[];
+
 const GUINGUETTE_AMBIENCE_OPTIONS = GUINGUETTE_AMBIENCE_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZSymbolPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
@@ -140,7 +147,7 @@ const API_PROPS = [
     ],
     [
         "slug",
-        "LRZIndexSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
+        "LRZIndexSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -281,7 +288,8 @@ export default function LRZSymbolPage() {
                     indexOptions={INDEX_SYMBOL_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
-                    floreOptions={FLORE_CATEGORIE_OPTIONS}
+                    floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
+                    floreRareteOptions={FLORE_RARETE_OPTIONS}
                     guinguetteOptions={GUINGUETTE_AMBIENCE_OPTIONS}
                     personnageOptions={PERSONNAGE_SYMBOL_OPTIONS}
                 />
@@ -315,6 +323,54 @@ export default function LRZSymbolPage() {
                                 />
                                 <h3>{label}</h3>
                                 <code>{`slug="${slug}"`}</code>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-flore-raretes"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection imbriquée
+                        </p>
+                        <h2 id="symbol-flore-raretes">
+                            Les quatre raretés de flore
+                        </h2>
+                        <p>
+                            Le locator <code>flore.rarete</code> associe chaque
+                            niveau à son symbole botanique et à sa couleur LRZ.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {FLORE_RARETE_META.map((rarity) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={rarity.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            rarity.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="flore"
+                                    meta="rarete"
+                                    slug={rarity.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{rarity.color}</span>
+                                    <h3>{rarity.label}</h3>
+                                    <code>{rarity.slug}</code>
+                                </div>
                             </article>
                         ))}
                     </div>

@@ -7,6 +7,7 @@ import {
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
+    type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
     type LRZIndexSymbolSlug,
     type LRZSymbolCollection,
@@ -31,7 +32,8 @@ type LRZSymbolPlaygroundProps = {
     indexOptions: readonly LRZSymbolPlaygroundOption<LRZIndexSymbolSlug>[];
     fauneTypeOptions: readonly LRZSymbolPlaygroundOption<LRZFauneTypeSymbolSlug>[];
     fauneRareteOptions: readonly LRZSymbolPlaygroundOption<LRZFauneRareteSymbolSlug>[];
-    floreOptions: readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
+    floreCategorieOptions: readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
+    floreRareteOptions: readonly LRZSymbolPlaygroundOption<LRZFloreRareteSymbolSlug>[];
     guinguetteOptions: readonly LRZSymbolPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZSymbolPlaygroundOption<CategoriePersonnageSlug>[];
 };
@@ -109,7 +111,7 @@ const SHADOW_OPTIONS: readonly LRZSymbolShadow[] = ["none", "soft", "strong"];
 const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     index: [],
     faune: ["type", "rarete"],
-    flore: ["categorie"],
+    flore: ["categorie", "rarete"],
     guinguette: ["ambience"],
     personnage: ["categorie"],
 };
@@ -158,7 +160,8 @@ export default function LRZSymbolPlayground({
     indexOptions,
     fauneTypeOptions,
     fauneRareteOptions,
-    floreOptions,
+    floreCategorieOptions,
+    floreRareteOptions,
     guinguetteOptions,
     personnageOptions,
 }: LRZSymbolPlaygroundProps) {
@@ -175,7 +178,9 @@ export default function LRZSymbolPlayground({
                     ? fauneRareteOptions
                     : fauneTypeOptions;
             case "flore":
-                return floreOptions;
+                return meta === "rarete"
+                    ? floreRareteOptions
+                    : floreCategorieOptions;
             case "guinguette":
                 return guinguetteOptions;
             case "personnage":
@@ -209,23 +214,29 @@ export default function LRZSymbolPlayground({
                       meta: "type",
                       slug: values.slug as LRZFauneTypeSymbolSlug,
                   }
-                : values.collection === "flore"
+                : values.collection === "flore" && values.meta === "rarete"
                   ? {
                         collection: "flore",
-                        meta: "categorie",
-                        slug: values.slug as LRZFloreCategorieSymbolSlug,
+                        meta: "rarete",
+                        slug: values.slug as LRZFloreRareteSymbolSlug,
                     }
-                  : values.collection === "guinguette"
+                  : values.collection === "flore"
                     ? {
-                          collection: "guinguette",
-                          meta: "ambience",
-                          slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
-                      }
-                    : {
-                          collection: "personnage",
+                          collection: "flore",
                           meta: "categorie",
-                          slug: values.slug as CategoriePersonnageSlug,
-                      };
+                          slug: values.slug as LRZFloreCategorieSymbolSlug,
+                      }
+                    : values.collection === "guinguette"
+                      ? {
+                            collection: "guinguette",
+                            meta: "ambience",
+                            slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                        }
+                      : {
+                            collection: "personnage",
+                            meta: "categorie",
+                            slug: values.slug as CategoriePersonnageSlug,
+                        };
     const accessibilityProps = values.informative
         ? {
               decorative: false as const,

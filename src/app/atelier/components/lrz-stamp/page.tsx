@@ -15,12 +15,14 @@ import { getIndexBySlug } from "@/registry/indexes";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
+import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
     LRZ_INDEX_SYMBOLS,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
+    type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
     type LRZIndexSymbolSlug,
 } from "@/registry/symbols";
@@ -55,10 +57,15 @@ const FAUNE_RARETE_OPTIONS = FAUNE_RARETE_META.map(({ slug, label }) => ({
     label,
 })) satisfies readonly LRZStampPlaygroundOption<LRZFauneRareteSymbolSlug>[];
 
-const FLORE_OPTIONS = FLORE_CATEGORIE_META.map(({ slug, label }) => ({
+const FLORE_CATEGORIE_OPTIONS = FLORE_CATEGORIE_META.map(({ slug, label }) => ({
     slug,
     label,
 })) satisfies readonly LRZStampPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
+
+const FLORE_RARETE_OPTIONS = FLORE_RARETE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZStampPlaygroundOption<LRZFloreRareteSymbolSlug>[];
 
 const GUINGUETTE_OPTIONS = GUINGUETTE_AMBIENCE_META.map(({ slug, label }) => ({
     slug,
@@ -287,7 +294,8 @@ export default function LRZStampPage() {
                     indexOptions={INDEX_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
-                    floreOptions={FLORE_OPTIONS}
+                    floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
+                    floreRareteOptions={FLORE_RARETE_OPTIONS}
                     guinguetteOptions={GUINGUETTE_OPTIONS}
                     personnageOptions={PERSONNAGE_OPTIONS}
                 />
@@ -313,6 +321,39 @@ export default function LRZStampPage() {
                                 slug={slug}
                                 key={slug}
                                 size="lg"
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-flore-raretes"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection imbriquée
+                        </p>
+                        <h2 id="stamp-flore-raretes">Les raretés de flore</h2>
+                        <p>
+                            Chaque stamp résout son symbole, son label et sa
+                            couleur depuis le registre
+                            <code> flore.rarete</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {FLORE_RARETE_META.map((rarity) => (
+                            <LRZStamp
+                                collection="flore"
+                                meta="rarete"
+                                slug={rarity.slug}
+                                key={rarity.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
                                 shadow="soft"
                             />
                         ))}

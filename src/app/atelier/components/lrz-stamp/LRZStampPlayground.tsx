@@ -32,6 +32,7 @@ import type {
     LRZFauneRareteSymbolSlug,
     LRZFauneTypeSymbolSlug,
     LRZFloreCategorieSymbolSlug,
+    LRZFloreRareteSymbolSlug,
     LRZGuinguetteAmbienceSymbolSlug,
     LRZIndexSymbolSlug,
 } from "@/registry/symbols";
@@ -47,7 +48,8 @@ type LRZStampPlaygroundProps = {
     indexOptions: readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
     fauneTypeOptions: readonly LRZStampPlaygroundOption<LRZFauneTypeSymbolSlug>[];
     fauneRareteOptions: readonly LRZStampPlaygroundOption<LRZFauneRareteSymbolSlug>[];
-    floreOptions: readonly LRZStampPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
+    floreCategorieOptions: readonly LRZStampPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
+    floreRareteOptions: readonly LRZStampPlaygroundOption<LRZFloreRareteSymbolSlug>[];
     guinguetteOptions: readonly LRZStampPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZStampPlaygroundOption<CategoriePersonnageSlug>[];
 };
@@ -183,7 +185,7 @@ const LABEL_SIZES: readonly LabelSizeChoice[] = [
 const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     index: [],
     faune: ["type", "rarete"],
-    flore: ["categorie"],
+    flore: ["categorie", "rarete"],
     guinguette: ["ambience"],
     personnage: ["categorie"],
 };
@@ -268,7 +270,8 @@ export default function LRZStampPlayground({
     indexOptions,
     fauneTypeOptions,
     fauneRareteOptions,
-    floreOptions,
+    floreCategorieOptions,
+    floreRareteOptions,
     guinguetteOptions,
     personnageOptions,
 }: LRZStampPlaygroundProps) {
@@ -285,7 +288,9 @@ export default function LRZStampPlayground({
                     ? fauneRareteOptions
                     : fauneTypeOptions;
             case "flore":
-                return floreOptions;
+                return meta === "rarete"
+                    ? floreRareteOptions
+                    : floreCategorieOptions;
             case "guinguette":
                 return guinguetteOptions;
             case "personnage":
@@ -312,23 +317,29 @@ export default function LRZStampPlayground({
                       meta: "type",
                       slug: values.slug as LRZFauneTypeSymbolSlug,
                   }
-                : values.collection === "flore"
+                : values.collection === "flore" && values.meta === "rarete"
                   ? {
                         collection: "flore",
-                        meta: "categorie",
-                        slug: values.slug as LRZFloreCategorieSymbolSlug,
+                        meta: "rarete",
+                        slug: values.slug as LRZFloreRareteSymbolSlug,
                     }
-                  : values.collection === "guinguette"
+                  : values.collection === "flore"
                     ? {
-                          collection: "guinguette",
-                          meta: "ambience",
-                          slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
-                      }
-                    : {
-                          collection: "personnage",
+                          collection: "flore",
                           meta: "categorie",
-                          slug: values.slug as CategoriePersonnageSlug,
-                      };
+                          slug: values.slug as LRZFloreCategorieSymbolSlug,
+                      }
+                    : values.collection === "guinguette"
+                      ? {
+                            collection: "guinguette",
+                            meta: "ambience",
+                            slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                        }
+                      : {
+                            collection: "personnage",
+                            meta: "categorie",
+                            slug: values.slug as CategoriePersonnageSlug,
+                        };
     const resolvedSize =
         values.size === "custom" ? values.customSize : values.size;
     const resolvedPadding =
