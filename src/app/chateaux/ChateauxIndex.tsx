@@ -6,15 +6,8 @@ import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
 
-import PageHeader, {
-    PageHeaderIndexMark,
-    PageHeaderIndexNavigation,
-} from "@/components/PageHeader";
-import {
-    getCollectionsByIndexForEnv,
-} from "@/registry/collections";
+import { getCollectionsByIndexForEnv } from "@/registry/collections";
 
-import PageFooter from "@/components/PageFooter";
 import IndexPresentation from "@/components/IndexPresentation";
 import { PageControls } from "@/components/PageControls";
 
@@ -473,198 +466,154 @@ export default function ChateauxIndex({
         );
 
     return (
-        <main className={styles.page}>
-            <div className={styles.wrap}>
-                <PageHeader
-                    variant="index"
-                    title={entry.title}
-                    accent={entry.accent}
-                    color={entry.color}
-                    mark={<PageHeaderIndexMark index={entry} />}
-                    navigation={
-                        <PageHeaderIndexNavigation
-                            current={entry.href}
-                            indexes={indexes}
-                        />
-                    }
-                />
+        <>
+            <IndexPresentation
+                description={entry.description}
+                descriptionFooter={entry.presentationFooter}
+                current="/chateaux"
+                indexes={indexes}
+            >
+                {entry.presentation_md}
+            </IndexPresentation>
 
-                <IndexPresentation
-                    description={entry.description}
-                    descriptionFooter={entry.presentationFooter}
-                    current="/chateaux"
-                    indexes={indexes}
-                >
-                    {entry.presentation_md}
-                </IndexPresentation>
-
-                {featureIsEnabled("collections") && (
-                    <LRZSection
-                        eyebrow="Collections du Codex"
-                        title="Explorer les châteaux autrement"
-                        // description="Des forteresses médiévales aux demeures de plaisance, ces collections relient les châteaux par époque, architecture, personnages et façons d’habiter le pouvoir."
-                        tone="surface"
-                        color="ocre"
-                        spacing="sm"
-                        className="mb-10"
-                    >
-                        <div
-                            className={styles.collectionsGrid}
-                            data-layout={COLLECTIONS_LAYOUT}
-                        >
-                            {COLLECTIONS_LAYOUT === "three-columns" ? (
-                                collections.map(({ data, href }) => (
-                                    <CollectionCard
-                                        key={data.slug}
-                                        collection={data}
-                                        href={href}
-                                        variant="compact"
-                                    />
-                                ))
-                            ) : (
-                                <>
-                                    {featuredCollection ? (
-                                        <CollectionCard
-                                            collection={featuredCollection.data}
-                                            href={featuredCollection.href}
-                                            variant="featured"
-                                            className={
-                                                styles.collectionFeatured
-                                            }
-                                        />
-                                    ) : null}
-
-                                    {secondaryCollections.length > 0 ? (
-                                        <div
-                                            className={
-                                                styles.collectionsSecondary
-                                            }
-                                        >
-                                            {secondaryCollections.map(
-                                                ({ data, href }) => (
-                                                    <CollectionCard
-                                                        key={data.slug}
-                                                        collection={data}
-                                                        href={href}
-                                                        variant="compact"
-                                                        defaultExpanded={false}
-                                                        stretchHero
-                                                    />
-                                                ),
-                                            )}
-                                        </div>
-                                    ) : null}
-
-                                    {additionalCollections.length > 0 ? (
-                                        <div
-                                            className={
-                                                styles.collectionsAdditional
-                                            }
-                                        >
-                                            {additionalCollections.map(
-                                                ({ data, href }) => (
-                                                    <CollectionCard
-                                                        key={data.slug}
-                                                        collection={data}
-                                                        href={href}
-                                                        variant="default"
-                                                    />
-                                                ),
-                                            )}
-                                        </div>
-                                    ) : null}
-                                </>
-                            )}
-                        </div>
-                    </LRZSection>
-                )}
-
-                {controlsInOwnSection && (
-                    <LRZSection
-                        eyebrow="Filtres & repères"
-                        title="Choisir son chemin parmi les châteaux"
-                        // description="Remonte les siècles, compare les architectures et compose ton propre itinéraire à travers les grandes demeures du val de Loire."
-                        tone="surface"
-                        color="ocre"
-                        spacing="sm"
-                    >
-                        {indexControls}
-                    </LRZSection>
-                )}
-
+            {featureIsEnabled("collections") && (
                 <LRZSection
-                    eyebrow="Le grand inventaire"
-                    title="Tous les châteaux du fil royal"
-                    // description="Parcours l’ensemble des forteresses, palais et demeures recensés dans le Codex, des monuments les plus célèbres aux silhouettes plus confidentielles."
-                    tone="soft"
+                    eyebrow="Collections du Codex"
+                    title="Explorer les châteaux autrement"
+                    // description="Des forteresses médiévales aux demeures de plaisance, ces collections relient les châteaux par époque, architecture, personnages et façons d’habiter le pouvoir."
+                    tone="surface"
                     color="ocre"
                     spacing="sm"
-                    headerClassName="mb-0!"
+                    className="mb-10"
                 >
-                    {!controlsInOwnSection && (
-                        <div className="mt-5">{indexControls}</div>
-                    )}
-
-                    {interactiveMapEnabled ? (
-                        <ChateauxInteractiveMap
-                            chateaux={list}
-                            open={isMapOpen}
-                            onOpenChange={setIsMapOpen}
-                            stickyMode={CHATEAUX_MAP_CONFIG.stickyMode}
-                        />
-                    ) : null}
-
                     <div
-                        ref={catalogueRef}
-                        onPointerOver={(event) =>
-                            syncCatalogueHover(event.target, true)
-                        }
-                        onPointerOut={(event) => {
-                            const card = (
-                                event.target as HTMLElement
-                            ).closest<HTMLElement>("[data-map-sync-card]");
-                            if (
-                                card &&
-                                !card.contains(
-                                    event.relatedTarget as Node | null,
-                                )
-                            ) {
-                                syncCatalogueHover(event.target, false);
-                            }
-                        }}
-                        onFocus={(event) =>
-                            syncCatalogueHover(event.target, true)
-                        }
-                        onBlur={(event) =>
-                            syncCatalogueHover(event.target, false)
-                        }
+                        className={styles.collectionsGrid}
+                        data-layout={COLLECTIONS_LAYOUT}
                     >
-                        {viewportMapSpikeEnabled && list.length > 0 ? (
-                            <ChateauxViewportMapSpike
-                                chateaux={list}
-                                variant="top"
-                            >
-                                {catalogue}
-                            </ChateauxViewportMapSpike>
+                        {COLLECTIONS_LAYOUT === "three-columns" ? (
+                            collections.map(({ data, href }) => (
+                                <CollectionCard
+                                    key={data.slug}
+                                    collection={data}
+                                    href={href}
+                                    variant="compact"
+                                />
+                            ))
                         ) : (
-                            catalogue
+                            <>
+                                {featuredCollection ? (
+                                    <CollectionCard
+                                        collection={featuredCollection.data}
+                                        href={featuredCollection.href}
+                                        variant="featured"
+                                        className={styles.collectionFeatured}
+                                    />
+                                ) : null}
+
+                                {secondaryCollections.length > 0 ? (
+                                    <div
+                                        className={styles.collectionsSecondary}
+                                    >
+                                        {secondaryCollections.map(
+                                            ({ data, href }) => (
+                                                <CollectionCard
+                                                    key={data.slug}
+                                                    collection={data}
+                                                    href={href}
+                                                    variant="compact"
+                                                    defaultExpanded={false}
+                                                    stretchHero
+                                                />
+                                            ),
+                                        )}
+                                    </div>
+                                ) : null}
+
+                                {additionalCollections.length > 0 ? (
+                                    <div
+                                        className={styles.collectionsAdditional}
+                                    >
+                                        {additionalCollections.map(
+                                            ({ data, href }) => (
+                                                <CollectionCard
+                                                    key={data.slug}
+                                                    collection={data}
+                                                    href={href}
+                                                    variant="default"
+                                                />
+                                            ),
+                                        )}
+                                    </div>
+                                ) : null}
+                            </>
                         )}
                     </div>
                 </LRZSection>
+            )}
 
-                <PageFooter color={entry.color}>
-                    <span
-                        style={{
-                            display: "block",
-                            marginBottom: "5px",
-                            color: "var(--color-ambiance-texte-secondaire)",
-                            fontSize: "12px",
-                        }}
-                    >
-                        {list.length} {entry.footerNote}
-                    </span>
-                </PageFooter>
-            </div>
-        </main>
+            {controlsInOwnSection && (
+                <LRZSection
+                    eyebrow="Filtres & repères"
+                    title="Choisir son chemin parmi les châteaux"
+                    // description="Remonte les siècles, compare les architectures et compose ton propre itinéraire à travers les grandes demeures du val de Loire."
+                    tone="surface"
+                    color="ocre"
+                    spacing="sm"
+                >
+                    {indexControls}
+                </LRZSection>
+            )}
+
+            <LRZSection
+                eyebrow="Le grand inventaire"
+                title="Tous les châteaux du fil royal"
+                // description="Parcours l’ensemble des forteresses, palais et demeures recensés dans le Codex, des monuments les plus célèbres aux silhouettes plus confidentielles."
+                tone="soft"
+                color="ocre"
+                spacing="sm"
+                headerClassName="mb-0!"
+            >
+                {!controlsInOwnSection && (
+                    <div className="mt-5">{indexControls}</div>
+                )}
+
+                {interactiveMapEnabled ? (
+                    <ChateauxInteractiveMap
+                        chateaux={list}
+                        open={isMapOpen}
+                        onOpenChange={setIsMapOpen}
+                        stickyMode={CHATEAUX_MAP_CONFIG.stickyMode}
+                    />
+                ) : null}
+
+                <div
+                    ref={catalogueRef}
+                    onPointerOver={(event) =>
+                        syncCatalogueHover(event.target, true)
+                    }
+                    onPointerOut={(event) => {
+                        const card = (
+                            event.target as HTMLElement
+                        ).closest<HTMLElement>("[data-map-sync-card]");
+                        if (
+                            card &&
+                            !card.contains(event.relatedTarget as Node | null)
+                        ) {
+                            syncCatalogueHover(event.target, false);
+                        }
+                    }}
+                    onFocus={(event) => syncCatalogueHover(event.target, true)}
+                    onBlur={(event) => syncCatalogueHover(event.target, false)}
+                >
+                    {viewportMapSpikeEnabled && list.length > 0 ? (
+                        <ChateauxViewportMapSpike chateaux={list} variant="top">
+                            {catalogue}
+                        </ChateauxViewportMapSpike>
+                    ) : (
+                        catalogue
+                    )}
+                </div>
+            </LRZSection>
+        </>
     );
 }

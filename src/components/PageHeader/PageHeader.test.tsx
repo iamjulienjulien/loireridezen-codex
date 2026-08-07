@@ -61,6 +61,23 @@ describe("PageHeader", () => {
         expect(markup).toContain('aria-current="page"');
     });
 
+    it("preserves the compact historical Home composition", () => {
+        const markup = renderToStaticMarkup(
+            <PageHeader
+                variant="home"
+                title="Le Codex Ligérien"
+                eyebrow="Loire Ride Zen"
+                description="Explorer, observer, raconter la Loire."
+            />,
+        );
+
+        expect(markup).toContain("Loire Ride Zen");
+        expect(markup).toContain("Le Codex Ligérien");
+        expect(markup).toContain("Explorer, observer, raconter la Loire.");
+        expect(markup.match(/<h1/g)).toHaveLength(1);
+        expect(markup).not.toContain('href="/"');
+    });
+
     it("renders navigation, actions and breadcrumbs as optional slots", () => {
         const markup = renderToStaticMarkup(
             <PageHeader

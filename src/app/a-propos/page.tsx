@@ -1,15 +1,15 @@
 import Link from "next/link";
 
+import PageShell from "@/components/layout/PageShell";
 import LRZSection from "@/components/LRZSection/LRZSection";
-import PageFooter from "@/components/PageFooter";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getContentPageDefinition } from "@/registry/pages";
 
 import styles from "./a-propos.module.css";
 
-export const metadata = buildPageMetadata(
-    getContentPageDefinition("/a-propos"),
-);
+const ABOUT_PAGE = getContentPageDefinition("/a-propos");
+
+export const metadata = buildPageMetadata(ABOUT_PAGE);
 
 const PILLARS = [
     {
@@ -31,35 +31,20 @@ const PILLARS = [
 
 export default function AboutPage() {
     return (
-        <main className={styles.page}>
-            <header className={styles.masthead}>
-                <Link className={styles.brand} href="/">
-                    <span className={styles.brandKicker}>Loire Ride Zen</span>
-                    <span aria-hidden="true">·</span>
-                    <span>Le Codex ligérien</span>
-                </Link>
-
+        <PageShell
+            page={ABOUT_PAGE}
+            width="wide"
+            spacing="compact"
+            navigation={
                 <nav className={styles.navigation} aria-label="À propos">
                     <Link href="/">Explorer le Codex</Link>
                     <Link href="/docs">Documentation</Link>
                 </nav>
-            </header>
-
-            <LRZSection
-                className={styles.hero}
-                width="wide"
-                spacing="xl"
-                color="eau"
-                eyebrow="À propos"
-                title="Un atlas vivant pour suivre le fil de la Loire."
-                titleAs="h1"
-                description={
-                    <p>
-                        Le Codex ligérien est la mémoire éditoriale de Loire
-                        Ride Zen : un lieu pour explorer lentement les paysages,
-                        les patrimoines et le vivant qui accompagnent le fleuve.
-                    </p>
-                }
+            }
+        >
+            <section
+                className={styles.heroIntro}
+                aria-label="L’esprit du Codex"
             >
                 <div className={styles.heroNote}>
                     <span aria-hidden="true">↘</span>
@@ -68,7 +53,7 @@ export default function AboutPage() {
                         navigation qui se construit au rythme des rives.
                     </p>
                 </div>
-            </LRZSection>
+            </section>
 
             <LRZSection
                 width="content"
@@ -171,10 +156,6 @@ export default function AboutPage() {
                     Découvrir Loire Ride Zen <span aria-hidden="true">↗</span>
                 </a>
             </LRZSection>
-
-            <div className={styles.footerWrap}>
-                <PageFooter color="eau"></PageFooter>
-            </div>
-        </main>
+        </PageShell>
     );
 }

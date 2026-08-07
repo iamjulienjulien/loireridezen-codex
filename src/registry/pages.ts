@@ -36,15 +36,13 @@ import type {
 export { ATELIER_PAGE } from "@/registry/atelier-pages";
 
 export interface HomePageDefinition
-    extends PageDefinitionBase<"home">,
-        PageVisualDefinition {
+    extends PageDefinitionBase<"home">, PageVisualDefinition {
     label: string;
     eyebrow: string;
 }
 
 export interface ContentPageDefinition
-    extends PageDefinitionBase<"page">,
-        PageVisualDefinition {
+    extends PageDefinitionBase<"page">, PageVisualDefinition {
     label: string;
     eyebrow: string;
     variant: PageVariant;
@@ -73,7 +71,7 @@ export const HOME_PAGE = {
     href: "/",
     label: "Accueil",
     eyebrow: "Loire Ride Zen",
-    title: "Le Codex ligérien",
+    title: "Le Codex Ligérien",
     description: "Explorer, observer, raconter la Loire.",
     accent: "#c8893a",
     color: "ocre",

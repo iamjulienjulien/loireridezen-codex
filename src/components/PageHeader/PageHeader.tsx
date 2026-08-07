@@ -57,6 +57,52 @@ export default function PageHeader({
         "--page-header-accent": accent,
     } as PageHeaderStyle;
 
+    if (variant === "home") {
+        return (
+            <div
+                className={[styles.root, className].filter(Boolean).join(" ")}
+                data-page-header-variant="home"
+                style={style}
+            >
+                <header className={styles.homeHeader}>
+                    {breadcrumbs ? (
+                        <div className={styles.homeBreadcrumbs}>
+                            {breadcrumbs}
+                        </div>
+                    ) : null}
+                    {identity ?? (
+                        <p className={styles.homeEyebrow}>{eyebrow}</p>
+                    )}
+                    <div className={styles.homeTitleWrap}>
+                        <PageTitle
+                            title={title}
+                            animated
+                            align="center"
+                            className={styles.homeTitle}
+                        />
+                    </div>
+                    {description ? (
+                        <div className={styles.homeDescription}>
+                            {description}
+                        </div>
+                    ) : null}
+                    {navigation || actions ? (
+                        <div className={styles.homeTools}>
+                            {navigation}
+                            {actions}
+                        </div>
+                    ) : null}
+                </header>
+
+                {separator === false ? null : separator !== undefined ? (
+                    separator
+                ) : (
+                    <div className={styles.homeRule} aria-hidden />
+                )}
+            </div>
+        );
+    }
+
     if (variant === "index") {
         return (
             <div
@@ -163,10 +209,7 @@ export default function PageHeader({
                         {eyebrow ? (
                             <p className={styles.eyebrow}>{eyebrow}</p>
                         ) : null}
-                        <PageTitle
-                            title={title}
-                            animated={variant === "home"}
-                        />
+                        <PageTitle title={title} animated={false} />
                         {description ? (
                             <div className={styles.description}>
                                 {description}
@@ -181,26 +224,36 @@ export default function PageHeader({
     );
 }
 
-function PageTitle({ title, animated }: { title: string; animated: boolean }) {
+function PageTitle({
+    title,
+    animated,
+    align = "start",
+    className = styles.title,
+}: {
+    title: string;
+    animated: boolean;
+    align?: "start" | "center" | "end";
+    className?: string;
+}) {
     if (animated) {
         return (
             <LRZScrambleText
                 preset="heading-1"
                 as="h1"
                 speed={130}
-                align="start"
+                align={align}
                 size="4xl"
                 preserveSpaces
                 color="blanc"
                 characterSet="ucfirst"
-                className={styles.title}
+                className={className}
             >
                 {title}
             </LRZScrambleText>
         );
     }
 
-    return <h1 className={styles.title}>{title}</h1>;
+    return <h1 className={className}>{title}</h1>;
 }
 
 function renderSeparator(

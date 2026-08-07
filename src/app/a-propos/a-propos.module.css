@@ -1,43 +1,9 @@
-.page {
-    min-height: 100dvh;
-    overflow: clip;
-    color: var(--color-ambiance-texte-primaire);
-    background:
-        radial-gradient(
-            circle at 82% 5%,
-            color-mix(in srgb, var(--color-nature-eau) 12%, transparent),
-            transparent 34rem
-        ),
-        var(--color-ambiance-fond);
-    padding-bottom: 96px;
-}
-
-.masthead {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: min(100% - 2rem, 88rem);
-    min-height: 4.25rem;
-    margin-inline: auto;
-    border-bottom: 1px solid var(--border-soft);
-}
-
-.brand,
 .navigation {
     display: flex;
     align-items: center;
+    gap: clamp(0.85rem, 2vw, 1.5rem);
 }
 
-.brand {
-    gap: 0.45rem;
-    color: var(--color-ambiance-texte-primaire);
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.brandKicker,
 .navigation a,
 .pillarNumber,
 .methodKicker {
@@ -45,14 +11,6 @@
     font-size: 0.62rem;
     letter-spacing: 0.11em;
     text-transform: uppercase;
-}
-
-.brandKicker {
-    color: var(--color-nature-eau);
-}
-
-.navigation {
-    gap: clamp(0.85rem, 2vw, 1.5rem);
 }
 
 .navigation a {
@@ -69,7 +27,6 @@
     text-decoration-color: currentColor;
 }
 
-.brand:focus-visible,
 .navigation a:focus-visible,
 .primaryLink:focus-visible,
 .methodCard a:focus-visible {
@@ -78,11 +35,8 @@
     outline-offset: 4px;
 }
 
-.hero :global([class*="description"]) {
-    max-width: 38rem;
-    font-family: var(--font-edit, var(--font-body));
-    font-size: clamp(1.25rem, 2.3vw, 1.65rem);
-    line-height: 1.5;
+.heroIntro {
+    padding: clamp(2rem, 5vw, 4rem) clamp(0rem, 2vw, 1.5rem) 0;
 }
 
 .heroNote {
@@ -91,7 +45,7 @@
     gap: 0.9rem;
     align-items: start;
     max-width: 39rem;
-    margin-top: clamp(1rem, 3vw, 2rem);
+    margin: 0;
     color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-edit, var(--font-body));
     font-size: 1.05rem;
@@ -250,20 +204,7 @@
     font-size: 1rem;
 }
 
-.footerWrap {
-    width: min(100% - 2rem, 68rem);
-    margin-inline: auto;
-}
-
 @media (max-width: 720px) {
-    .masthead {
-        min-height: auto;
-        flex-direction: column;
-        gap: 0.85rem;
-        align-items: flex-start;
-        padding-block: 1rem;
-    }
-
     .pillars {
         grid-template-columns: 1fr;
     }

@@ -1,10 +1,10 @@
 // src/app/chateaux/collections/[collectionSlug]/page.tsx
 
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import CollectionShell from "@/components/layout/CollectionShell";
 import {
     CollectionEntryCard,
     CollectionEntryCastle,
@@ -20,10 +20,6 @@ import { findCollectionPageDefinition } from "@/registry/pages";
 import { resolveCollectionPage } from "./lib";
 
 import styles from "./page.module.css";
-import PageHeader, {
-    PageHeaderBreadcrumbs,
-    PageHeaderIndexNavigation,
-} from "@/components/PageHeader";
 import { getIndexesForEnv } from "@/registry/indexes";
 
 type CollectionPageProps = {
@@ -97,49 +93,31 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
 
     return (
-        <main
-            className={styles.page}
-            style={
-                {
-                    "--collection-accent": collection.accent,
-                } as CSSProperties
+        <CollectionShell
+            page={pageDefinition}
+            indexes={indexes}
+            footer={
+                <>
+                    <span className={styles.shellFooterMark} aria-hidden="true">
+                        {collection.mark}
+                    </span>
+                    {collection.footerNote} ·{" "}
+                    <Link
+                        href={collection.indexHref}
+                        className={styles.shellFooterLink}
+                    >
+                        Retour à l’index des châteaux
+                    </Link>
+                </>
             }
         >
-            <div className={styles.wrap}>
-                <PageHeader
-                    variant="collection"
-                    title={pageDefinition.title}
-                    eyebrow={pageDefinition.eyebrow}
-                    accent={pageDefinition.accent}
-                    color={pageDefinition.color}
-                    mark={pageDefinition.mark}
-                    breadcrumbs={
-                        <PageHeaderBreadcrumbs
-                            items={[
-                                { href: "/", label: "Le Codex ligérien" },
-                                {
-                                    href: pageDefinition.indexHref,
-                                    label: "Châteaux",
-                                },
-                            ]}
-                        />
-                    }
-                    navigation={
-                        <PageHeaderIndexNavigation
-                            current={pageDefinition.href}
-                            indexes={indexes}
-                            activeSectionHref={pageDefinition.indexHref}
-                        />
-                    }
-                />
+            <CollectionHero
+                collection={hero}
+                variant="compact"
+                className="mt-10 mb-10"
+            />
 
-                <CollectionHero
-                    collection={hero}
-                    variant="compact"
-                    className="mt-10 mb-10"
-                />
-
-                {/* <div className={styles.badges}>
+            {/* <div className={styles.badges}>
                     <CollectionBadge
                         collection={{
                             slug: collection.slug,
@@ -171,7 +149,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                     />
                 </div> */}
 
-                {/* <section
+            {/* <section
                     className={styles.criteriaSection}
                     aria-label="Méthodologie de la collection"
                 >
@@ -185,11 +163,11 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                     />
                 </section> */}
 
-                <section
-                    className={styles.podiumSection}
-                    aria-labelledby="collection-podium-title"
-                >
-                    {/* <header className={styles.sectionHeader}>
+            <section
+                className={styles.podiumSection}
+                aria-labelledby="collection-podium-title"
+            >
+                {/* <header className={styles.sectionHeader}>
                         <div className={styles.sectionHeading}>
                             <p className={styles.sectionEyebrow}>Le sommet</p>
 
@@ -208,79 +186,52 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                         </p>
                     </header> */}
 
-                    <CollectionPodium
-                        eyebrow="Les incontournables du Val"
-                        title="Le podium"
-                        entries={podium}
-                    />
-                </section>
+                <CollectionPodium
+                    eyebrow="Les incontournables du Val"
+                    title="Le podium"
+                    entries={podium}
+                />
+            </section>
 
-                <section
-                    className={styles.rankingSection}
-                    aria-labelledby="collection-ranking-title"
-                >
-                    <header className={styles.sectionHeader}>
-                        <div className={styles.sectionHeading}>
-                            {/* <p className={styles.sectionEyebrow}>
+            <section
+                className={styles.rankingSection}
+                aria-labelledby="collection-ranking-title"
+            >
+                <header className={styles.sectionHeader}>
+                    <div className={styles.sectionHeading}>
+                        {/* <p className={styles.sectionEyebrow}>
                                 Classement complet
                             </p> */}
 
-                            <h2
-                                id="collection-ranking-title"
-                                className={styles.sectionTitle}
-                            >
-                                Le classement complet
-                            </h2>
-                        </div>
+                        <h2
+                            id="collection-ranking-title"
+                            className={styles.sectionTitle}
+                        >
+                            Le classement complet
+                        </h2>
+                    </div>
 
-                        {/* <p className={styles.sectionDescription}>
+                    {/* <p className={styles.sectionDescription}>
                             De Chambord à Nantes, dix monuments pour parcourir
                             les grandes étapes du récit castral ligérien.
                         </p> */}
-                    </header>
+                </header>
 
-                    <CollectionList
-                        as="ol"
-                        gap="md"
-                        aria-label={collection.title}
-                    >
-                        {entries.map(({ collectionEntry, castle }) => (
-                            <li
-                                key={collectionEntry.slug}
-                                className={styles.rankingItem}
-                            >
-                                <CollectionEntryCard
-                                    collectionEntry={collectionEntry}
-                                    castle={castle as CollectionEntryCastle}
-                                    variant="default"
-                                />
-                            </li>
-                        ))}
-                    </CollectionList>
-                </section>
-
-                <footer className={styles.footer}>
-                    <span className={styles.footerMark} aria-hidden="true">
-                        {collection.mark}
-                    </span>
-
-                    <div className={styles.footerContent}>
-                        <p className={styles.footerTitle}>{collection.title}</p>
-
-                        <p className={styles.footerNote}>
-                            {collection.footerNote}
-                        </p>
-                    </div>
-
-                    <Link
-                        href={collection.indexHref}
-                        className={styles.footerLink}
-                    >
-                        Retour à l’index des châteaux
-                        <span aria-hidden="true"> →</span>
-                    </Link>
-                </footer>
-            </div>
-        </main>
+                <CollectionList as="ol" gap="md" aria-label={collection.title}>
+                    {entries.map(({ collectionEntry, castle }) => (
+                        <li
+                            key={collectionEntry.slug}
+                            className={styles.rankingItem}
+                        >
+                            <CollectionEntryCard
+                                collectionEntry={collectionEntry}
+                                castle={castle as CollectionEntryCastle}
+                                variant="default"
+                            />
+                        </li>
+                    ))}
+                </CollectionList>
+            </section>
+        </CollectionShell>
     );
 }
