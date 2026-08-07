@@ -4,6 +4,10 @@ import {
 } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
+import {
+    getFauneRareteMeta,
+    type FauneRarete,
+} from "@/registry/Meta/faune-rarete";
 import { getFauneTypeMeta, type FauneType } from "@/registry/Meta/faune-type";
 import {
     getFloreCategorieMeta,
@@ -34,6 +38,15 @@ export const LRZ_FAUNE_TYPE_SYMBOLS = {
 } as const satisfies Record<FauneType, string>;
 
 export type LRZFauneTypeSymbolSlug = keyof typeof LRZ_FAUNE_TYPE_SYMBOLS;
+
+export const LRZ_FAUNE_RARETE_SYMBOLS = {
+    commun: "/symbols/faune/rarete/commun.png",
+    régulier: "/symbols/faune/rarete/regulier.png",
+    rare: "/symbols/faune/rarete/rare.png",
+    trésor: "/symbols/faune/rarete/tresor.png",
+} as const satisfies Record<FauneRarete, string>;
+
+export type LRZFauneRareteSymbolSlug = keyof typeof LRZ_FAUNE_RARETE_SYMBOLS;
 
 export const LRZ_FLORE_CATEGORIE_SYMBOLS = {
     arbre: "/symbols/flore/categorie/arbre.png",
@@ -100,13 +113,15 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  * Registre des symboles illustrés du Codex.
  *
  * Une collection peut contenir directement ses symboles, comme `index`, ou
- * les regrouper par métadonnée, comme `faune.type`, `flore.categorie`,
+ * les regrouper par métadonnée, comme `faune.type`, `faune.rarete`,
+ * `flore.categorie`,
  * `guinguette.ambience` et `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
     index: LRZ_INDEX_SYMBOLS,
     faune: {
         type: LRZ_FAUNE_TYPE_SYMBOLS,
+        rarete: LRZ_FAUNE_RARETE_SYMBOLS,
     },
     flore: {
         categorie: LRZ_FLORE_CATEGORIE_SYMBOLS,
@@ -130,6 +145,7 @@ export type LRZSymbolMeta =
 export type LRZSymbolSlug =
     | LRZIndexSymbolSlug
     | LRZFauneTypeSymbolSlug
+    | LRZFauneRareteSymbolSlug
     | LRZFloreCategorieSymbolSlug
     | LRZGuinguetteAmbienceSymbolSlug
     | CategoriePersonnageSlug;
@@ -153,6 +169,12 @@ export type LRZSymbolLocator =
           collection: "faune";
           meta: "type";
           slug: LRZFauneTypeSymbolSlug;
+      }
+    | {
+          /** Niveaux de rareté de la collection Faune. */
+          collection: "faune";
+          meta: "rarete";
+          slug: LRZFauneRareteSymbolSlug;
       }
     | {
           /** Catégories botaniques de la collection Flore. */
@@ -194,6 +216,14 @@ export function getLRZSymbolSource(
         Object.hasOwn(LRZ_SYMBOLS.faune.type, slug)
     ) {
         return LRZ_SYMBOLS.faune.type[slug as LRZFauneTypeSymbolSlug];
+    }
+
+    if (
+        collection === "faune" &&
+        meta === "rarete" &&
+        Object.hasOwn(LRZ_SYMBOLS.faune.rarete, slug)
+    ) {
+        return LRZ_SYMBOLS.faune.rarete[slug as LRZFauneRareteSymbolSlug];
     }
 
     if (
@@ -260,6 +290,19 @@ export function getLRZSymbolDefinition(
                   label: type.label,
                   accent: getLRZColorValue(type.color),
                   color: type.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "faune" && meta === "rarete") {
+        const rarity = getFauneRareteMeta(slug);
+
+        return rarity
+            ? {
+                  source,
+                  label: rarity.label,
+                  accent: getLRZColorValue(rarity.color),
+                  color: rarity.color,
               }
             : undefined;
     }

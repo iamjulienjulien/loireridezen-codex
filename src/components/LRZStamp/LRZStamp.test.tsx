@@ -52,6 +52,20 @@ describe("LRZStamp", () => {
         );
     });
 
+    it("renders a Faune rarity with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp collection="faune" meta="rarete" slug="trésor" />,
+        );
+
+        expect(markup).toContain("Trésor");
+        expect(markup).toContain('data-collection="faune"');
+        expect(markup).toContain('data-meta="rarete"');
+        expect(markup).toContain("/symbols/faune/rarete/tresor.png");
+        expect(markup).toContain(
+            "--lrz-stamp-label-color:var(--color-nature-soleil)",
+        );
+    });
+
     it("renders a Flore category with its registry color", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp collection="flore" meta="categorie" slug="fougère" />,

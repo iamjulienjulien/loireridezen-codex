@@ -4,12 +4,14 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
+import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
     getLRZSymbolDefinition,
     getLRZSymbolSource,
+    LRZ_FAUNE_RARETE_SYMBOLS,
     LRZ_FAUNE_TYPE_SYMBOLS,
     LRZ_FLORE_CATEGORIE_SYMBOLS,
     LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
@@ -35,6 +37,19 @@ describe("LRZ symbol registry", () => {
         const source = getLRZSymbolSource("faune", "type", slug);
 
         expect(source).toBe(LRZ_FAUNE_TYPE_SYMBOLS[slug]);
+        expectPublicAsset(source);
+    });
+
+    it("contains one symbol for every Faune rarity", () => {
+        expect(Object.keys(LRZ_SYMBOLS.faune.rarete)).toEqual(
+            FAUNE_RARETE_META.map((rarity) => rarity.slug),
+        );
+    });
+
+    it.each(FAUNE_RARETE_META)("resolves faune/rarete/$slug", ({ slug }) => {
+        const source = getLRZSymbolSource("faune", "rarete", slug);
+
+        expect(source).toBe(LRZ_FAUNE_RARETE_SYMBOLS[slug]);
         expectPublicAsset(source);
     });
 
@@ -145,6 +160,15 @@ describe("LRZ symbol registry", () => {
             label: "Amphibien",
             accent: "#6AA657",
             color: "vert-vif",
+        });
+    });
+
+    it("resolves the LRZ color of a Faune rarity symbol", () => {
+        expect(getLRZSymbolDefinition("faune", "rarete", "trésor")).toEqual({
+            source: LRZ_FAUNE_RARETE_SYMBOLS.trésor,
+            label: "Trésor",
+            accent: "#D8B548",
+            color: "soleil",
         });
     });
 
