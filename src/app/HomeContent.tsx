@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LRZSymbol } from "@/components/LRZSymbol";
 import type { IndexEntry } from "@/registry/indexes";
 import { featureIsEnabled } from "@/registry/feature-flags";
-import { isLRZIndexSymbolSlug } from "@/registry/symbols";
+import { isLRZCodexIndexSymbolSlug } from "@/registry/symbols";
 
 export default function HomeContent({
     indexes,
@@ -23,9 +23,10 @@ export default function HomeContent({
                     className="group flex items-center gap-4 rounded-[10px] border border-[var(--border-subtle)] bg-[var(--color-ambiance-surface)] p-5 text-left shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[#c8893a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8893a]"
                 >
                     {indexesCustomEmojiEnabled &&
-                    isLRZIndexSymbolSlug(entry.slug) ? (
+                    isLRZCodexIndexSymbolSlug(entry.slug) ? (
                         <LRZSymbol
-                            collection="index"
+                            collection="codex"
+                            meta="index"
                             slug={entry.slug}
                             size="lg"
                             frame="subtle"

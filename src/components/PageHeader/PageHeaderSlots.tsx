@@ -4,7 +4,7 @@ import Link from "next/link";
 import LRZSymbol from "@/components/LRZSymbol/LRZSymbol";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import type { IndexEntry } from "@/registry/indexes";
-import { isLRZIndexSymbolSlug } from "@/registry/symbols";
+import { isLRZCodexIndexSymbolSlug } from "@/registry/symbols";
 
 import styles from "./PageHeader.module.css";
 
@@ -37,11 +37,12 @@ export function PageHeaderIndexMark({
 }) {
     if (
         featureIsEnabled("indexesCustomEmoji") &&
-        isLRZIndexSymbolSlug(index.slug)
+        isLRZCodexIndexSymbolSlug(index.slug)
     ) {
         return (
             <LRZSymbol
-                collection="index"
+                collection="codex"
+                meta="index"
                 slug={index.slug}
                 size={58}
                 frame="subtle"
@@ -91,9 +92,10 @@ export function PageHeaderIndexNavigation({
                         }
                     >
                         {featureIsEnabled("indexesCustomEmoji") &&
-                        isLRZIndexSymbolSlug(index.slug) ? (
+                        isLRZCodexIndexSymbolSlug(index.slug) ? (
                             <LRZSymbol
-                                collection="index"
+                                collection="codex"
+                                meta="index"
                                 slug={index.slug}
                                 size={25}
                                 decorative
