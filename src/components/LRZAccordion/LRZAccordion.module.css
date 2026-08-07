@@ -1,7 +1,10 @@
 .accordion {
     --accordion-color: var(--color-ocre);
     --accordion-trigger-min-height: 40px;
-    --accordion-trigger-padding: 7px 4px;
+    --accordion-trigger-padding-block: 7px;
+    --accordion-trigger-padding-inline: 4px;
+    --accordion-trigger-padding: var(--accordion-trigger-padding-block)
+        var(--accordion-trigger-padding-inline);
     --accordion-panel-padding: 12px 14px;
     --accordion-title-size: 10px;
     --accordion-description-size: 11px;
@@ -149,8 +152,13 @@
     width: 100%;
 }
 
+.accordion[data-tone="surface"] .heading {
+    display: flex;
+}
+
 .accordion[data-tone="surface"] .trigger {
     width: 100%;
+    padding-top: calc(var(--accordion-trigger-padding-block) + 2px);
     padding-inline: 14px;
 }
 
@@ -166,7 +174,8 @@
 
 .accordion[data-size="sm"] {
     --accordion-trigger-min-height: 34px;
-    --accordion-trigger-padding: 5px 4px;
+    --accordion-trigger-padding-block: 5px;
+    --accordion-trigger-padding-inline: 4px;
     --accordion-panel-padding: 10px 12px;
     --accordion-title-size: 10px;
     --accordion-description-size: 10.5px;
@@ -174,7 +183,8 @@
 
 .accordion[data-size="lg"] {
     --accordion-trigger-min-height: 48px;
-    --accordion-trigger-padding: 9px 6px;
+    --accordion-trigger-padding-block: 9px;
+    --accordion-trigger-padding-inline: 6px;
     --accordion-panel-padding: 16px 18px;
     --accordion-title-size: 12px;
     --accordion-description-size: 12px;
