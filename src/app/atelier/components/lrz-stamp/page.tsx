@@ -12,6 +12,7 @@ import {
 } from "@/components/LRZStamp";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getIndexBySlug } from "@/registry/indexes";
+import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
@@ -20,6 +21,7 @@ import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
     LRZ_INDEX_SYMBOLS,
+    type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
@@ -49,6 +51,10 @@ const COMMON_EPOQUE_OPTIONS = COMMON_EPOQUE_META.map(({ slug, label }) => ({
     slug,
     label,
 })) satisfies readonly LRZStampPlaygroundOption<LRZCommonEpoqueSymbolSlug>[];
+
+const COMMON_ARCHITECTURE_OPTIONS = COMMON_ARCHITECTURE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZStampPlaygroundOption<LRZCommonArchitectureSymbolSlug>[];
 
 const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
     slug,
@@ -138,7 +144,7 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"epoque" | "type" | "rarete" | "categorie" | "ambience"',
+        '"epoque" | "architecture" | "type" | "rarete" | "categorie" | "ambience"',
         "undefined",
         "Sous-dossier optionnel.",
     ],
@@ -296,6 +302,7 @@ export default function LRZStampPage() {
                 <LRZStampPlayground
                     indexOptions={INDEX_OPTIONS}
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
+                    commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
                     floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
@@ -325,6 +332,39 @@ export default function LRZStampPage() {
                                 slug={slug}
                                 key={slug}
                                 size="lg"
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-common-architectures"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection commune</p>
+                        <h2 id="stamp-common-architectures">
+                            Les architectures du Codex
+                        </h2>
+                        <p>
+                            Chaque stamp récupère son symbole, son label et sa
+                            couleur depuis le registre
+                            <code> common.architecture</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {COMMON_ARCHITECTURE_META.map((architecture) => (
+                            <LRZStamp
+                                collection="common"
+                                meta="architecture"
+                                slug={architecture.slug}
+                                key={architecture.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
                                 shadow="soft"
                             />
                         ))}

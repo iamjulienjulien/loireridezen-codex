@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
     LRZSymbol,
     LRZ_SYMBOL_SIZE_VALUES,
+    type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
@@ -21,6 +22,7 @@ import {
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
+import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
@@ -109,6 +111,10 @@ const COMMON_EPOQUE_OPTIONS = COMMON_EPOQUE_META.map(({ slug, label }) => ({
     label,
 })) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonEpoqueSymbolSlug>[];
 
+const COMMON_ARCHITECTURE_OPTIONS = COMMON_ARCHITECTURE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonArchitectureSymbolSlug>[];
+
 const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
     slug,
     label,
@@ -146,13 +152,13 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"epoque" | "type" | "rarete" | "categorie" | "ambience"',
+        '"epoque" | "architecture" | "type" | "rarete" | "categorie" | "ambience"',
         "undefined",
         "Sous-dossier optionnel au sein de la collection.",
     ],
     [
         "slug",
-        "LRZIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
+        "LRZIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -292,6 +298,7 @@ export default function LRZSymbolPage() {
                 <LRZSymbolPlayground
                     indexOptions={INDEX_SYMBOL_OPTIONS}
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
+                    commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
                     floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
@@ -329,6 +336,53 @@ export default function LRZSymbolPage() {
                                 />
                                 <h3>{label}</h3>
                                 <code>{`slug="${slug}"`}</code>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-common-architectures"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection commune</p>
+                        <h2 id="symbol-common-architectures">
+                            Les vingt architectures du Codex
+                        </h2>
+                        <p>
+                            Le locator <code>common.architecture</code> associe
+                            chaque courant à son illustration, son label et sa
+                            couleur LRZ.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {COMMON_ARCHITECTURE_META.map((architecture) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={architecture.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            architecture.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="common"
+                                    meta="architecture"
+                                    slug={architecture.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{architecture.color}</span>
+                                    <h3>{architecture.label}</h3>
+                                    <code>{architecture.slug}</code>
+                                </div>
                             </article>
                         ))}
                     </div>

@@ -29,6 +29,7 @@ import {
     type LRZColor,
 } from "@/registry/colors";
 import type {
+    LRZCommonArchitectureSymbolSlug,
     LRZCommonEpoqueSymbolSlug,
     LRZFauneRareteSymbolSlug,
     LRZFauneTypeSymbolSlug,
@@ -48,6 +49,7 @@ export type LRZStampPlaygroundOption<TSlug extends string = string> = {
 type LRZStampPlaygroundProps = {
     indexOptions: readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
     commonEpoqueOptions: readonly LRZStampPlaygroundOption<LRZCommonEpoqueSymbolSlug>[];
+    commonArchitectureOptions: readonly LRZStampPlaygroundOption<LRZCommonArchitectureSymbolSlug>[];
     fauneTypeOptions: readonly LRZStampPlaygroundOption<LRZFauneTypeSymbolSlug>[];
     fauneRareteOptions: readonly LRZStampPlaygroundOption<LRZFauneRareteSymbolSlug>[];
     floreCategorieOptions: readonly LRZStampPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
@@ -186,7 +188,7 @@ const LABEL_SIZES: readonly LabelSizeChoice[] = [
 
 const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     index: [],
-    common: ["epoque"],
+    common: ["epoque", "architecture"],
     faune: ["type", "rarete"],
     flore: ["categorie", "rarete"],
     guinguette: ["ambience"],
@@ -272,6 +274,7 @@ function buildCode(values: PlaygroundState) {
 export default function LRZStampPlayground({
     indexOptions,
     commonEpoqueOptions,
+    commonArchitectureOptions,
     fauneTypeOptions,
     fauneRareteOptions,
     floreCategorieOptions,
@@ -288,7 +291,9 @@ export default function LRZStampPlayground({
             case "index":
                 return indexOptions;
             case "common":
-                return commonEpoqueOptions;
+                return meta === "architecture"
+                    ? commonArchitectureOptions
+                    : commonEpoqueOptions;
             case "faune":
                 return meta === "rarete"
                     ? fauneRareteOptions
@@ -311,47 +316,53 @@ export default function LRZStampPlayground({
                   collection: "index",
                   slug: values.slug as LRZIndexSymbolSlug,
               }
-            : values.collection === "common"
+            : values.collection === "common" && values.meta === "architecture"
               ? {
                     collection: "common",
-                    meta: "epoque",
-                    slug: values.slug as LRZCommonEpoqueSymbolSlug,
+                    meta: "architecture",
+                    slug: values.slug as LRZCommonArchitectureSymbolSlug,
                 }
-              : values.collection === "faune" && values.meta === "rarete"
+              : values.collection === "common"
                 ? {
-                      collection: "faune",
-                      meta: "rarete",
-                      slug: values.slug as LRZFauneRareteSymbolSlug,
+                      collection: "common",
+                      meta: "epoque",
+                      slug: values.slug as LRZCommonEpoqueSymbolSlug,
                   }
-                : values.collection === "faune"
+                : values.collection === "faune" && values.meta === "rarete"
                   ? {
                         collection: "faune",
-                        meta: "type",
-                        slug: values.slug as LRZFauneTypeSymbolSlug,
+                        meta: "rarete",
+                        slug: values.slug as LRZFauneRareteSymbolSlug,
                     }
-                  : values.collection === "flore" && values.meta === "rarete"
+                  : values.collection === "faune"
                     ? {
-                          collection: "flore",
-                          meta: "rarete",
-                          slug: values.slug as LRZFloreRareteSymbolSlug,
+                          collection: "faune",
+                          meta: "type",
+                          slug: values.slug as LRZFauneTypeSymbolSlug,
                       }
-                    : values.collection === "flore"
+                    : values.collection === "flore" && values.meta === "rarete"
                       ? {
                             collection: "flore",
-                            meta: "categorie",
-                            slug: values.slug as LRZFloreCategorieSymbolSlug,
+                            meta: "rarete",
+                            slug: values.slug as LRZFloreRareteSymbolSlug,
                         }
-                      : values.collection === "guinguette"
+                      : values.collection === "flore"
                         ? {
-                              collection: "guinguette",
-                              meta: "ambience",
-                              slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
-                          }
-                        : {
-                              collection: "personnage",
+                              collection: "flore",
                               meta: "categorie",
-                              slug: values.slug as CategoriePersonnageSlug,
-                          };
+                              slug: values.slug as LRZFloreCategorieSymbolSlug,
+                          }
+                        : values.collection === "guinguette"
+                          ? {
+                                collection: "guinguette",
+                                meta: "ambience",
+                                slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                            }
+                          : {
+                                collection: "personnage",
+                                meta: "categorie",
+                                slug: values.slug as CategoriePersonnageSlug,
+                            };
     const resolvedSize =
         values.size === "custom" ? values.customSize : values.size;
     const resolvedPadding =
