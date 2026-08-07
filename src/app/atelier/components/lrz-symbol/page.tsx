@@ -9,6 +9,7 @@ import {
     type LRZCommonEpoqueSymbolSlug,
     type LRZCommonExperienceSymbolSlug,
     type LRZCommonMilieuSymbolSlug,
+    type LRZCommonTerritoireSymbolSlug,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
@@ -28,6 +29,7 @@ import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { COMMON_EXPERIENCE_META } from "@/registry/Meta/common-experience";
 import { COMMON_MILIEU_META } from "@/registry/Meta/common-milieu";
+import { COMMON_TERRITOIRE_META } from "@/registry/Meta/common-territoire";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
@@ -128,6 +130,10 @@ const COMMON_EXPERIENCE_OPTIONS = COMMON_EXPERIENCE_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonExperienceSymbolSlug>[];
 
+const COMMON_TERRITOIRE_OPTIONS = COMMON_TERRITOIRE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonTerritoireSymbolSlug>[];
+
 const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
     slug,
     label,
@@ -165,13 +171,13 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"epoque" | "architecture" | "milieu" | "experience" | "type" | "rarete" | "categorie" | "ambience"',
+        '"epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
         "undefined",
         "Sous-dossier optionnel au sein de la collection.",
     ],
     [
         "slug",
-        "LRZIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
+        "LRZIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZCommonTerritoireSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -314,6 +320,7 @@ export default function LRZSymbolPage() {
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}
                     commonExperienceOptions={COMMON_EXPERIENCE_OPTIONS}
+                    commonTerritoireOptions={COMMON_TERRITOIRE_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
                     floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
@@ -351,6 +358,53 @@ export default function LRZSymbolPage() {
                                 />
                                 <h3>{label}</h3>
                                 <code>{`slug="${slug}"`}</code>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-common-territoires"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection commune</p>
+                        <h2 id="symbol-common-territoires">
+                            Les huit territoires du Codex
+                        </h2>
+                        <p>
+                            Le locator <code>common.territoire</code> suit la
+                            Loire de l’amont à l’Atlantique avec une série de
+                            blasons conservant leurs proportions originales.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {COMMON_TERRITOIRE_META.map((territory) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={territory.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            territory.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="common"
+                                    meta="territoire"
+                                    slug={territory.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{territory.color}</span>
+                                    <h3>{territory.label}</h3>
+                                    <code>{territory.slug}</code>
+                                </div>
                             </article>
                         ))}
                     </div>
