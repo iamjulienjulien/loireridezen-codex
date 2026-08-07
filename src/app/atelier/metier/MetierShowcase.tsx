@@ -39,12 +39,7 @@ export default function MetierShowcase({
                 </header>
                 <div className={styles.showcaseGrid}>
                     {MOCK_FAUNE.slice(0, 3).map((item) => (
-                        <FauneCard
-                            key={item.slug}
-                            d={item}
-                            open={Boolean(open[item.slug])}
-                            onToggle={() => toggle(item.slug)}
-                        />
+                        <FauneCard key={item.slug} d={item} />
                     ))}
                 </div>
             </section>
