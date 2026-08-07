@@ -5,6 +5,7 @@ import type {
     ValidatedGuinguetteEntry,
     ValidatedMotEntry,
     ValidatedPatrimoineEntry,
+    ValidatedPersonnageEntry,
     ValidatedVignobleEntry,
 } from "@/api/schemas";
 import { getSiteUrl } from "@/api/site-url";
@@ -18,6 +19,7 @@ export type InternalEntry =
     | ValidatedGuinguetteEntry
     | ValidatedMotEntry
     | ValidatedPatrimoineEntry
+    | ValidatedPersonnageEntry
     | ValidatedVignobleEntry;
 
 export type EntryAdapter<T extends InternalEntry = InternalEntry> = (
@@ -176,5 +178,30 @@ export const adaptPatrimoine: EntryAdapter<ValidatedPatrimoineEntry> = (
         summary: resume ?? null,
         media: media(emoji, customEmoji),
         attributes: { autresNoms, ...attributes },
+    };
+};
+
+export const adaptPersonnage: EntryAdapter<ValidatedPersonnageEntry> = (
+    entry,
+) => {
+    const {
+        slug,
+        nom,
+        autresNoms,
+        roles,
+        illustration,
+        categoriePrincipale,
+        tags,
+    } = entry;
+
+    return {
+        id: publicEntryId("personnages", slug),
+        index: "personnages",
+        slug,
+        name: nom,
+        subtitle: roles[0] ?? "Personnage du Codex ligérien",
+        summary: null,
+        media: media("♜", illustration),
+        attributes: { autresNoms, roles, categoriePrincipale, tags },
     };
 };
