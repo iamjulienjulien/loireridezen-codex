@@ -6,4 +6,5 @@ export * from "./guinguette";
 export * from "./mot";
 export * from "./patrimoine";
 export * from "./personnage";
+export * from "./territoire";
 export * from "./vignoble";

@@ -5,6 +5,7 @@ import guinguetteData from "@data/guinguettes.json";
 import motData from "@data/mot.json";
 import patrimoineData from "@data/patrimoine.json";
 import personnageData from "@data/catalogue-personnages.json";
+import territoireData from "@data/catalogue-territoires.json";
 import vignobleData from "@data/vignoble.json";
 import type { z } from "zod";
 import {
@@ -15,6 +16,7 @@ import {
     adaptMot,
     adaptPatrimoine,
     adaptPersonnage,
+    adaptTerritoire,
     adaptVignoble,
     type EntryAdapter,
 } from "@/api/adapters";
@@ -26,6 +28,7 @@ import {
     motCatalogSchema,
     patrimoineCatalogSchema,
     personnageCatalogSchema,
+    territoireCatalogSchema,
     vignobleCatalogSchema,
 } from "@/api/schemas";
 import type { IndexSlug } from "@/registry/indexes";
@@ -76,6 +79,15 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         schema: guinguetteCatalogSchema,
         adapter: adaptGuinguette as EntryAdapter,
         mediaDirectory: "guinguette",
+    },
+    {
+        slug: "territoires",
+        dataFile: "catalogue-territoires.json",
+        collectionKey: "territoires",
+        raw: territoireData,
+        schema: territoireCatalogSchema,
+        adapter: adaptTerritoire as EntryAdapter,
+        mediaDirectory: "blasons",
     },
     {
         slug: "personnages",

@@ -6,6 +6,7 @@ import type {
     ValidatedMotEntry,
     ValidatedPatrimoineEntry,
     ValidatedPersonnageEntry,
+    ValidatedTerritoireEntry,
     ValidatedVignobleEntry,
 } from "@/api/schemas";
 import { getSiteUrl } from "@/api/site-url";
@@ -20,6 +21,7 @@ export type InternalEntry =
     | ValidatedMotEntry
     | ValidatedPatrimoineEntry
     | ValidatedPersonnageEntry
+    | ValidatedTerritoireEntry
     | ValidatedVignobleEntry;
 
 export type EntryAdapter<T extends InternalEntry = InternalEntry> = (
@@ -178,6 +180,28 @@ export const adaptPatrimoine: EntryAdapter<ValidatedPatrimoineEntry> = (
         summary: resume ?? null,
         media: media(emoji, customEmoji),
         attributes: { autresNoms, ...attributes },
+    };
+};
+
+export const adaptTerritoire: EntryAdapter<ValidatedTerritoireEntry> = (
+    entry,
+) => {
+    const { slug, nom, sousTitre, description, identite, ...attributes } =
+        entry;
+    const { mark, blason, ...identityAttributes } = identite;
+
+    return {
+        id: publicEntryId("territoires", slug),
+        index: "territoires",
+        slug,
+        name: nom,
+        subtitle: sousTitre,
+        summary: description,
+        media: media(mark, blason),
+        attributes: {
+            ...attributes,
+            identite: identityAttributes,
+        },
     };
 };
 
