@@ -67,6 +67,13 @@ export type RelationPersonnageLieu = {
     niveauCertitude: NiveauCertitude;
 };
 
+export type PersonnageAvecRelationLieu = {
+    personnage: Personnage;
+    relation: RelationPersonnageLieu;
+};
+
+export type PersonnagesParLieu = Record<string, PersonnageAvecRelationLieu[]>;
+
 export type CataloguePersonnages = {
     meta: {
         titre: string;
