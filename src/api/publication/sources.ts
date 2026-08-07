@@ -1,7 +1,7 @@
 import chateauData from "@data/catalogue-chateaux.json";
 import fauneData from "@data/faune.json";
 import floreData from "@data/flore.json";
-import guinguetteData from "@data/guinguettes.json";
+import guinguetteData from "@data/catalogue-guinguettes.json";
 import motData from "@data/mot.json";
 import patrimoineData from "@data/patrimoine.json";
 import personnageData from "@data/catalogue-personnages.json";
@@ -73,7 +73,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
     },
     {
         slug: "guinguettes",
-        dataFile: "guinguettes.json",
+        dataFile: "catalogue-guinguettes.json",
         collectionKey: "guinguettes",
         raw: guinguetteData,
         schema: guinguetteCatalogSchema,

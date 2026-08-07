@@ -1,4 +1,4 @@
-import guinguettesData from "@data/guinguettes.json";
+import guinguettesData from "@data/catalogue-guinguettes.json";
 import IndexShell from "@/components/layout/IndexShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";
