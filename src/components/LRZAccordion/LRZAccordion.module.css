@@ -8,10 +8,21 @@
     --accordion-panel-padding: 12px 14px;
     --accordion-title-size: 10px;
     --accordion-description-size: 11px;
+    --accordion-animation-duration: 220ms;
+    --accordion-animation-easing: cubic-bezier(0.22, 1, 0.36, 1);
 
     display: grid;
     gap: 10px;
     color: var(--color-ambiance-texte-primaire);
+}
+
+.accordion[data-animated] {
+    transition: row-gap var(--accordion-animation-duration)
+        var(--accordion-animation-easing);
+}
+
+.accordion[data-animated][data-state="closed"] {
+    row-gap: 0;
 }
 
 .heading {
@@ -118,6 +129,42 @@
     line-height: 1.55;
 }
 
+.panelClip {
+    min-height: 0;
+}
+
+.panelSurface {
+    min-width: 0;
+}
+
+.accordion[data-animated] .panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        grid-template-rows var(--accordion-animation-duration)
+            var(--accordion-animation-easing),
+        opacity 160ms ease,
+        visibility 0s linear var(--accordion-animation-duration);
+}
+
+.accordion[data-animated] .panelClip {
+    overflow: hidden;
+}
+
+.accordion[data-animated][data-state="open"] .panel {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition:
+        grid-template-rows var(--accordion-animation-duration)
+            var(--accordion-animation-easing),
+        opacity 160ms ease,
+        visibility 0s linear;
+}
+
 .panel[hidden] {
     display: none;
 }
@@ -127,14 +174,14 @@
     gap: 9px;
 }
 
-.accordion[data-tone="soft"] .panel {
+.accordion[data-tone="soft"] .panelSurface {
     padding: var(--accordion-panel-padding);
     border-left: 2px solid
         color-mix(in srgb, var(--accordion-color) 65%, transparent);
     background: color-mix(in srgb, var(--accordion-color) 6%, transparent);
 }
 
-.accordion[data-tone="divided"] .panel {
+.accordion[data-tone="divided"] .panelSurface {
     padding-top: 12px;
     border-top: 1px dashed var(--border-soft);
 }
@@ -166,7 +213,7 @@
     margin-left: auto;
 }
 
-.accordion[data-tone="surface"] .panel {
+.accordion[data-tone="surface"] .panelSurface {
     padding: var(--accordion-panel-padding);
     border-top: 1px solid var(--border-subtle);
     background: color-mix(in srgb, var(--accordion-color) 4%, transparent);
@@ -195,6 +242,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .accordion[data-animated],
+    .accordion[data-animated] .panel,
     .indicator {
         transition: none;
     }

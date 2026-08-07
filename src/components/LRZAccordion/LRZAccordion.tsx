@@ -51,6 +51,8 @@ export type LRZAccordionProps = {
     open?: boolean;
     /** État initial en mode non contrôlé. */
     defaultOpen?: boolean;
+    /** Anime légèrement le déploiement et le repli en gardant le panneau monté. */
+    animated?: boolean;
     /** Appelé après une demande d’ouverture ou de fermeture. */
     onOpenChange?: (open: boolean) => void;
     /** Empêche toute interaction avec le déclencheur. */
@@ -59,7 +61,7 @@ export type LRZAccordionProps = {
     id?: string;
     /** Place le bouton dans un titre HTML du niveau indiqué. */
     headingLevel?: LRZAccordionHeadingLevel;
-    /** Retire le contenu du DOM lorsque le panneau est fermé. */
+    /** Retire le contenu fermé du DOM lorsque animated vaut false. */
     unmountOnClose?: boolean;
     /** Nom accessible explicite lorsque le titre n’est pas textuel. */
     ariaLabel?: string;
@@ -111,6 +113,7 @@ export default function LRZAccordion({
     size = "md",
     open,
     defaultOpen = false,
+    animated = false,
     onOpenChange,
     disabled = false,
     id,
@@ -199,6 +202,7 @@ export default function LRZAccordion({
         <div
             className={joinClassNames(styles.accordion, className)}
             data-color={color}
+            data-animated={animated || undefined}
             data-disabled={disabled || undefined}
             data-full-width={fullWidth || undefined}
             data-hover-state={hoverState ? "enabled" : "disabled"}
@@ -214,7 +218,7 @@ export default function LRZAccordion({
                 trigger
             )}
 
-            {isOpen || !unmountOnClose ? (
+            {isOpen || !unmountOnClose || animated ? (
                 <div
                     {...panelProps}
                     id={panelId}
@@ -224,9 +228,15 @@ export default function LRZAccordion({
                         panelProps?.className,
                     )}
                     aria-labelledby={triggerId}
-                    hidden={!isOpen}
+                    aria-hidden={animated && !isOpen ? true : undefined}
+                    hidden={!animated && !isOpen}
+                    inert={animated && !isOpen ? true : undefined}
                 >
-                    <div className={styles.content}>{children}</div>
+                    <div className={styles.panelClip}>
+                        <div className={styles.panelSurface}>
+                            <div className={styles.content}>{children}</div>
+                        </div>
+                    </div>
                 </div>
             ) : null}
         </div>

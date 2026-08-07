@@ -9,7 +9,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZAccordionPlayground from "./LRZAccordionPlayground";
 import styles from "./LRZAccordionPlayground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-accordion");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-accordion",
+);
 
 type AccordionExample = {
     title: string;
@@ -192,6 +194,14 @@ const PROPS = [
         description: "État initial en mode autonome.",
     },
     {
+        name: "animated",
+        type: "boolean",
+        required: "Non",
+        defaultValue: "false",
+        description:
+            "Anime légèrement le déploiement et le repli en gardant le panneau monté.",
+    },
+    {
         name: "onOpenChange",
         type: "(open: boolean) => void",
         required: "Non",
@@ -225,7 +235,7 @@ const PROPS = [
         required: "Non",
         defaultValue: "false",
         description:
-            "Retire le contenu du DOM au lieu de le conserver avec hidden.",
+            "Retire le contenu fermé du DOM lorsque animated vaut false.",
     },
     {
         name: "ariaLabel",
@@ -322,6 +332,7 @@ export default function LRZAccordionPage() {
                             description="Autres noms et protection"
                             color="ocre"
                             defaultOpen
+                            animated
                             headingLevel={3}
                         >
                             <dl className={styles.demoDetails}>
@@ -343,6 +354,7 @@ export default function LRZAccordionPage() {
     description="Autres noms et protection"
     color="ocre"
     defaultOpen
+    animated
     headingLevel={3}
 >
     <ComplementContent />

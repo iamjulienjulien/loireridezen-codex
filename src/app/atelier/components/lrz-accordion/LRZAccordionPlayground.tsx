@@ -26,6 +26,7 @@ type PlaygroundState = {
     indicatorPosition: LRZAccordionIndicatorPosition;
     headingLevel: HeadingValue;
     open: boolean;
+    animated: boolean;
     disabled: boolean;
     hoverState: boolean;
     fullWidth: boolean;
@@ -46,6 +47,7 @@ const INITIAL_STATE: PlaygroundState = {
     indicatorPosition: "end",
     headingLevel: "3",
     open: true,
+    animated: true,
     disabled: false,
     hoverState: true,
     fullWidth: false,
@@ -128,6 +130,7 @@ function playgroundCode({
     indicatorPosition,
     headingLevel,
     open,
+    animated,
     disabled,
     hoverState,
     fullWidth,
@@ -150,6 +153,7 @@ function playgroundCode({
         headingLevel ? `headingLevel={${headingLevel}}` : undefined,
         "open={open}",
         "onOpenChange={setOpen}",
+        animated ? "animated" : undefined,
         disabled ? "disabled" : undefined,
         !hoverState ? "hoverState={false}" : undefined,
         fullWidth ? "fullWidth" : undefined,
@@ -408,6 +412,20 @@ export default function LRZAccordionPlayground() {
                         <label className={styles.checkControl}>
                             <input
                                 type="checkbox"
+                                checked={values.animated}
+                                onChange={(event) =>
+                                    updateValue(
+                                        "animated",
+                                        event.target.checked,
+                                    )
+                                }
+                            />
+                            <span>animated</span>
+                        </label>
+
+                        <label className={styles.checkControl}>
+                            <input
+                                type="checkbox"
                                 checked={values.open}
                                 onChange={(event) =>
                                     updateValue("open", event.target.checked)
@@ -534,6 +552,7 @@ export default function LRZAccordionPlayground() {
                                 onOpenChange={(open) =>
                                     updateValue("open", open)
                                 }
+                                animated={values.animated}
                                 disabled={values.disabled}
                                 hoverState={values.hoverState}
                                 fullWidth={values.fullWidth}
