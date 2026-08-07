@@ -281,28 +281,30 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
             </div>
 
             <div className={styles.body}>
-                {featureIsEnabled('chateauxRenommee') &&<div>
-                    <LRZBadge
-                        preset="renommee-chateau"
-                        value={d.renommee}
-                        detail={false}
-                        variant="shield"
-                    />
-                </div>}
+                {featureIsEnabled("chateauxRenommee") && (
+                    <div>
+                        <LRZBadge
+                            preset="renommee-chateau"
+                            value={d.renommee}
+                            detail={false}
+                            variant="shield"
+                        />
+                    </div>
+                )}
                 <LRZAccordion
                     title="Histoire &amp; architecture"
+                    description="Époque, architecture et construction"
                     id="histoire"
-                    icon={<Castle className="text-sm mr-1" />}
+                    icon={<Castle className={styles.accordionIcon} />}
                     open={openSections.history}
                     onOpenChange={(nextOpen) =>
                         setSectionOpen("history", nextOpen)
                     }
                     color={color}
-                    tone="plain"
+                    tone="surface"
                     fullWidth
                     headingLevel={4}
                     size="sm"
-                    triggerClassName={styles.accordionTrigger}
                 >
                     <div>
                         <LRZMetaList
@@ -347,18 +349,18 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
 
                 <LRZAccordion
                     title="Localisation"
+                    description="Commune, département et cours d’eau"
                     id="localisation"
-                    icon={<MapPin className="text-sm mr-1" />}
+                    icon={<MapPin className={styles.accordionIcon} />}
                     open={openSections.location}
                     onOpenChange={(nextOpen) =>
                         setSectionOpen("location", nextOpen)
                     }
                     color={color}
-                    tone="plain"
+                    tone="surface"
                     fullWidth
                     headingLevel={4}
                     size="sm"
-                    triggerClassName={styles.accordionTrigger}
                 >
                     <LRZMetaList
                         color="ocre"
@@ -385,30 +387,28 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
 
                 <LRZAccordion
                     title="Visite & patrimoine"
+                    description="Visite, protections et patrimoine"
                     id="visite"
-                    icon={<Ticket className="text-sm mr-1" />}
+                    icon={<Ticket className={styles.accordionIcon} />}
                     open={openSections.visit}
                     onOpenChange={(nextOpen) =>
                         setSectionOpen("visit", nextOpen)
                     }
                     color={color}
-                    tone="plain"
+                    tone="surface"
                     fullWidth
                     headingLevel={4}
                     size="sm"
-                    triggerClassName={styles.accordionTrigger}
                 >
                     <LRZMetaList
-                        className="pb-5"
                         color="ocre"
                         layout="responsive"
                         tone="plain"
-                        valueAlign="center"
                         size="sm"
                         items={[
                             {
                                 id: "monument-historique",
-                                label: "",
+                                label: "Monument historique",
                                 value: (
                                     <LRZBadge
                                         preset="monument-historique-chateau"
@@ -418,7 +418,7 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
                             },
                             {
                                 id: "unesco",
-                                label: "",
+                                label: "UNESCO",
                                 value: (
                                     <LRZBadge
                                         preset="unesco-chateau"
@@ -428,7 +428,7 @@ export default function ChateauCard({ d, t, open }: ChateauCardProps) {
                             },
                             {
                                 id: "visite",
-                                label: "",
+                                label: "Visite",
                                 value: (
                                     <LRZBadge
                                         preset="visite-chateau"

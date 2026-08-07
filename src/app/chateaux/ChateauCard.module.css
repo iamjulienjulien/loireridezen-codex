@@ -202,23 +202,17 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 18px;
+    gap: 12px;
     min-width: 0;
-    padding: 10px 20px 10px;
+    padding: 20px 20px 18px;
 }
 
-.accordionTrigger {
-    width: 100%;
-    min-height: 44px;
-    padding: 9px 10px;
-    border-radius: var(--radius-md);
-    transition:
-        color 0.18s ease,
-        background-color 0.18s ease;
-}
-
-.accordionTrigger:focus-visible {
-    outline-offset: 1px;
+.fiche .accordionIcon {
+    display: block;
+    width: 17px;
+    height: 17px;
+    margin: 0 6px 0 0;
+    flex: 0 0 17px;
 }
 
 .subtitle {
