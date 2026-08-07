@@ -8,6 +8,7 @@ import type { PersonnagesParLieu } from "@/types/personnage";
 
 import ChateauxCard from "@/app/chateaux/ChateauxCard";
 import { LRZSymbol } from "@/components/LRZSymbol";
+import { LRZTypography } from "@/components/LRZTypography";
 import { isCommonTerritoire } from "@/registry/Meta/common-territoire";
 
 import styles from "./TerritoireSection.module.css";
@@ -96,7 +97,7 @@ export default function TerritoireSection({
                             collection="common"
                             meta="territoire"
                             slug={territory.slug}
-                            size={120}
+                            size={152}
                             frame="none"
                             padding="none"
                             shadow="strong"
@@ -111,12 +112,23 @@ export default function TerritoireSection({
 
                     <div className={styles.copy}>
                         <div className={styles.titleRow}>
-                            <h2
+                            <LRZTypography
                                 id={`territoire-${territory.slug}-title`}
                                 className={styles.title}
+                                preset="heading-1"
+                                as="h2"
+                                gradient={{
+                                    from: identite.color,
+                                    to: identite.color,
+                                    angle: 105,
+                                }}
+                                style={{
+                                    backgroundImage:
+                                        "linear-gradient(108deg, color-mix(in srgb, var(--typography-gradient-from) 56%, var(--color-ambiance-texte-primaire)) 0%, var(--typography-gradient-from) 40%, color-mix(in srgb, var(--typography-gradient-from) 82%, var(--color-ambiance-texte-primaire)) 68%, color-mix(in srgb, var(--typography-gradient-from) 48%, var(--color-ambiance-texte-primaire)) 100%)",
+                                }}
                             >
                                 {territory.nom}
-                            </h2>
+                            </LRZTypography>
                         </div>
 
                         <p className={styles.subtitle}>{territory.sousTitre}</p>
