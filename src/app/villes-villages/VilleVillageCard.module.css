@@ -1,0 +1,294 @@
+.card {
+    height: 100%;
+    overflow: hidden;
+    scroll-margin-top: 8rem;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.card:hover {
+    border-color: color-mix(
+        in srgb,
+        var(--ville-accent) 42%,
+        var(--border-subtle)
+    );
+    box-shadow:
+        var(--shadow-card),
+        0 14px 34px color-mix(in srgb, var(--ville-accent) 13%, transparent);
+    transform: translateY(-3px);
+}
+
+.content {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    padding: clamp(1.05rem, 2.5vw, 1.4rem);
+}
+
+.sequence {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.57rem;
+    font-weight: 650;
+    letter-spacing: 0.13em;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.sequence span:first-child {
+    color: color-mix(
+        in srgb,
+        var(--ville-accent) 78%,
+        var(--color-ambiance-texte-primaire)
+    );
+}
+
+.identity {
+    display: grid;
+    grid-template-columns: 4.35rem minmax(0, 1fr);
+    gap: 0.9rem;
+    align-items: center;
+}
+
+.mark {
+    display: grid;
+    width: 4.35rem;
+    height: 4.35rem;
+    place-items: center;
+    border: 1px solid
+        color-mix(in srgb, var(--ville-accent) 30%, var(--border-subtle));
+    border-radius: 1.1rem;
+    background:
+        linear-gradient(
+            145deg,
+            color-mix(in srgb, white 19%, transparent),
+            transparent 55%
+        ),
+        color-mix(
+            in srgb,
+            var(--ville-accent) 9%,
+            var(--color-ambiance-surface)
+        );
+    box-shadow: inset 0 0 0 0.28rem var(--bg-overlay);
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.heading {
+    min-width: 0;
+}
+
+.territory {
+    margin: 0 0 0.28rem;
+    color: color-mix(
+        in srgb,
+        var(--ville-accent) 75%,
+        var(--color-ambiance-texte-primaire)
+    );
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.name {
+    margin: 0;
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-display);
+    font-size: clamp(1.42rem, 2.5vw, 1.85rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    text-wrap: balance;
+}
+
+.subtitle {
+    margin: 0.4rem 0 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-edit, var(--font-display));
+    font-size: 0.8rem;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.summary {
+    margin: 1.15rem 0 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-body);
+    font-size: 0.81rem;
+    line-height: 1.62;
+}
+
+.river {
+    display: grid;
+    grid-template-columns: auto auto minmax(1rem, 1fr) auto;
+    gap: 0.45rem;
+    align-items: center;
+    margin-top: 1.1rem;
+    padding: 0.7rem 0;
+    border-block: 1px solid var(--border-subtle);
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    line-height: 1.4;
+}
+
+.river svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    color: color-mix(
+        in srgb,
+        var(--ville-accent) 72%,
+        var(--color-ambiance-texte-primaire)
+    );
+    stroke-width: 1.8;
+}
+
+.river span:nth-child(2) {
+    color: var(--color-ambiance-texte-primaire);
+    font-weight: 650;
+}
+
+.river strong {
+    font-weight: 550;
+    white-space: nowrap;
+}
+
+.riverLine {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        var(--ville-accent),
+        color-mix(in srgb, var(--ville-accent) 15%, transparent)
+    );
+}
+
+.details {
+    display: grid;
+    gap: 0.7rem;
+    margin: 1rem 0 0;
+}
+
+.details > div {
+    display: grid;
+    grid-template-columns: 4.2rem minmax(0, 1fr);
+    gap: 0.55rem;
+    align-items: start;
+}
+
+.details dt {
+    display: inline-flex;
+    gap: 0.3rem;
+    align-items: center;
+    padding-top: 0.06rem;
+    color: color-mix(
+        in srgb,
+        var(--ville-accent) 70%,
+        var(--color-ambiance-texte-primaire)
+    );
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    font-weight: 650;
+    letter-spacing: 0.09em;
+    line-height: 1.45;
+    text-transform: uppercase;
+}
+
+.details dt svg {
+    width: 0.75rem;
+    height: 0.75rem;
+    flex: 0 0 auto;
+    stroke-width: 1.8;
+}
+
+.details dd {
+    margin: 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-edit, var(--font-display));
+    font-size: 0.72rem;
+    line-height: 1.5;
+}
+
+.aliases {
+    margin: 0.9rem 0 0;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-edit, var(--font-display));
+    font-size: 0.7rem;
+    line-height: 1.45;
+}
+
+.aliases span {
+    margin-right: 0.45rem;
+    color: color-mix(
+        in srgb,
+        var(--ville-accent) 70%,
+        var(--color-ambiance-texte-primaire)
+    );
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    font-weight: 650;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.symbols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: auto 0 0;
+    padding: 1rem 0 0;
+    list-style: none;
+}
+
+.symbols li {
+    padding: 0.25rem 0.42rem;
+    border: 1px solid
+        color-mix(in srgb, var(--ville-accent) 22%, var(--border-subtle));
+    border-radius: 999px;
+    color: var(--color-ambiance-texte-tertiaire);
+    background: color-mix(in srgb, var(--ville-accent) 5%, var(--bg-overlay));
+    font-family: var(--font-mono);
+    font-size: 0.49rem;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+}
+
+@media (max-width: 430px) {
+    .identity {
+        grid-template-columns: 3.8rem minmax(0, 1fr);
+    }
+
+    .mark {
+        width: 3.8rem;
+        height: 3.8rem;
+        font-size: 1.75rem;
+    }
+
+    .river {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .riverLine {
+        display: none;
+    }
+
+    .river strong {
+        text-align: right;
+        white-space: normal;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+}

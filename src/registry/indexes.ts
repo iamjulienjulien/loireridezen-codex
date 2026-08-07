@@ -174,6 +174,30 @@ export const INDEXES = [
         env: ["development"],
     },
     {
+        slug: "villes-villages",
+        href: "/villes-villages",
+        mark: "🏘️",
+        label: "Villes et villages",
+        eyebrow: "Répertoire",
+        title: "Villes et villages de la Loire",
+        description:
+            "Des cités royales aux villages de tuffeau, les rives changent de visage au fil de la Loire.",
+        universe: "raconte",
+        format: "repertoire",
+        accent: "#b37a43",
+        color: "fauve",
+        presentation:
+            "Grandes villes, cités de passage, bourgs et villages : chaque lieu raconte une manière différente de vivre avec la Loire et ses affluents.",
+        presentation_md:
+            "Les territoires prennent corps dans leurs **villes et leurs villages**. De Nevers à Saint-Nazaire, les grandes cités organisent les passages, les échanges et les pouvoirs le long du fleuve.\n\nEntre elles se succèdent des bourgs de pont, des villages de tuffeau, des places fortes et des ports anciens. Certains regardent directement la Loire ; d’autres suivent la Vienne, le Cher, l’Indre, le Thouet ou la Sèvre Nantaise.\n\nCe répertoire rassemble ces lieux habités et rend visibles leurs liens avec les territoires, les châteaux, les personnages et les récits du Codex.",
+        presentationFooter:
+            "**Ce répertoire rassemble les villes, bourgs et villages qui structurent le voyage ligérien. Chaque fiche présente leur territoire, leur relation au fleuve, leurs repères et leurs liens avec les autres index du Codex.**",
+        footerNote: "villes, bourgs et villages du corridor ligérien",
+        dataFile: "catalogue-villes-villages.json",
+        etat: "brouillon",
+        env: [],
+    },
+    {
         slug: "personnages",
         href: "/personnages",
         mark: "♜",

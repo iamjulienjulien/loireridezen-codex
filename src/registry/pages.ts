@@ -183,6 +183,11 @@ const INDEX_PAGE_SEO = {
         description:
             "Parcourez les huit territoires ligériens, du Nivernais à l’estuaire, et découvrez leurs paysages, villes, cours d’eau, patrimoines et identités.",
     },
+    "villes-villages": {
+        title: "Villes et villages de la Loire — Le Codex ligérien",
+        description:
+            "Explorez les villes et villages de la Loire, des grandes cités aux bourgs de tuffeau, à travers leurs paysages, leurs patrimoines et leur relation au fleuve.",
+    },
     personnages: {
         title: "Personnages et figures de la Loire — Le Codex ligérien",
         description:

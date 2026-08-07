@@ -32,6 +32,7 @@ import PersonnagesIndex from "./personnages/PersonnagesIndex";
 import PersonnagesPage from "./personnages/page";
 import VignoblesPage from "./vignobles/page";
 import VocabulairePage from "./vocabulaire/page";
+import VillesVillagesPage from "./villes-villages/page";
 
 const REMAINING_INDEX_ROUTES = [
     { href: "/faune", render: FaunePage },
@@ -40,6 +41,7 @@ const REMAINING_INDEX_ROUTES = [
     { href: "/patrimoine", render: PatrimoinePage },
     { href: "/vignobles", render: VignoblesPage },
     { href: "/vocabulaire", render: VocabulairePage },
+    { href: "/villes-villages", render: VillesVillagesPage },
 ] as const;
 
 describe("pilot shell migration", () => {

@@ -2,6 +2,7 @@ import villesVillagesCatalogueData from "@data/catalogue-villes-villages.json";
 import territoiresCatalogueData from "@data/catalogue-territoires.json";
 import { describe, expect, it } from "vitest";
 
+import { getIndexBySlug } from "@/registry/indexes";
 import type { TerritoireSlug } from "@/registry/territoires";
 import type { VilleVillageCatalogue } from "@/types/villeVillageCatalogue";
 
@@ -21,6 +22,17 @@ const expectedTerritoires = [
 const collator = new Intl.Collator("fr", { sensitivity: "base" });
 
 describe("villes et villages catalogue", () => {
+    it("is declared as a staged geographical directory", () => {
+        expect(getIndexBySlug("villes-villages")).toMatchObject({
+            href: "/villes-villages",
+            universe: "raconte",
+            format: "repertoire",
+            dataFile: "catalogue-villes-villages.json",
+            etat: "brouillon",
+            env: [],
+        });
+    });
+
     it("keeps the catalogue metadata aligned with its entries", () => {
         expect(catalogue.meta.nombreEntrees).toBe(
             catalogue.villesVillages.length,
