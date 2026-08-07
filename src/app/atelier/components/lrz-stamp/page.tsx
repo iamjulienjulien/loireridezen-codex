@@ -14,6 +14,7 @@ import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getIndexBySlug } from "@/registry/indexes";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
+import { COMMON_EXPERIENCE_META } from "@/registry/Meta/common-experience";
 import { COMMON_MILIEU_META } from "@/registry/Meta/common-milieu";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
@@ -24,6 +25,7 @@ import {
     LRZ_INDEX_SYMBOLS,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
+    type LRZCommonExperienceSymbolSlug,
     type LRZCommonMilieuSymbolSlug,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
@@ -62,6 +64,10 @@ const COMMON_MILIEU_OPTIONS = COMMON_MILIEU_META.map(({ slug, label }) => ({
     slug,
     label,
 })) satisfies readonly LRZStampPlaygroundOption<LRZCommonMilieuSymbolSlug>[];
+
+const COMMON_EXPERIENCE_OPTIONS = COMMON_EXPERIENCE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZStampPlaygroundOption<LRZCommonExperienceSymbolSlug>[];
 
 const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
     slug,
@@ -151,7 +157,7 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"epoque" | "architecture" | "milieu" | "type" | "rarete" | "categorie" | "ambience"',
+        '"epoque" | "architecture" | "milieu" | "experience" | "type" | "rarete" | "categorie" | "ambience"',
         "undefined",
         "Sous-dossier optionnel.",
     ],
@@ -311,6 +317,7 @@ export default function LRZStampPage() {
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}
+                    commonExperienceOptions={COMMON_EXPERIENCE_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
                     floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
@@ -340,6 +347,39 @@ export default function LRZStampPage() {
                                 slug={slug}
                                 key={slug}
                                 size="lg"
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-common-experiences"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection commune</p>
+                        <h2 id="stamp-common-experiences">
+                            Les expériences du Codex
+                        </h2>
+                        <p>
+                            Chaque stamp récupère son symbole, son label et sa
+                            couleur depuis le registre
+                            <code> common.experience</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {COMMON_EXPERIENCE_META.map((experience) => (
+                            <LRZStamp
+                                collection="common"
+                                meta="experience"
+                                slug={experience.slug}
+                                key={experience.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
                                 shadow="soft"
                             />
                         ))}

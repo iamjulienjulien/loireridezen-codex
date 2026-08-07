@@ -7,6 +7,7 @@ import {
     LRZ_SYMBOL_SIZE_VALUES,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
+    type LRZCommonExperienceSymbolSlug,
     type LRZCommonMilieuSymbolSlug,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
@@ -25,6 +26,7 @@ import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
+import { COMMON_EXPERIENCE_META } from "@/registry/Meta/common-experience";
 import { COMMON_MILIEU_META } from "@/registry/Meta/common-milieu";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
@@ -122,6 +124,10 @@ const COMMON_MILIEU_OPTIONS = COMMON_MILIEU_META.map(({ slug, label }) => ({
     label,
 })) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonMilieuSymbolSlug>[];
 
+const COMMON_EXPERIENCE_OPTIONS = COMMON_EXPERIENCE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonExperienceSymbolSlug>[];
+
 const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
     slug,
     label,
@@ -159,13 +165,13 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"epoque" | "architecture" | "milieu" | "type" | "rarete" | "categorie" | "ambience"',
+        '"epoque" | "architecture" | "milieu" | "experience" | "type" | "rarete" | "categorie" | "ambience"',
         "undefined",
         "Sous-dossier optionnel au sein de la collection.",
     ],
     [
         "slug",
-        "LRZIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
+        "LRZIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -307,6 +313,7 @@ export default function LRZSymbolPage() {
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}
+                    commonExperienceOptions={COMMON_EXPERIENCE_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
                     floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
@@ -344,6 +351,53 @@ export default function LRZSymbolPage() {
                                 />
                                 <h3>{label}</h3>
                                 <code>{`slug="${slug}"`}</code>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-common-experiences"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection commune</p>
+                        <h2 id="symbol-common-experiences">
+                            Les vingt-huit expériences du Codex
+                        </h2>
+                        <p>
+                            Le locator <code>common.experience</code> rassemble
+                            les activités culturelles, sportives, gourmandes et
+                            contemplatives proposées dans le Codex.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {COMMON_EXPERIENCE_META.map((experience) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={experience.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            experience.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="common"
+                                    meta="experience"
+                                    slug={experience.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{experience.color}</span>
+                                    <h3>{experience.label}</h3>
+                                    <code>{experience.slug}</code>
+                                </div>
                             </article>
                         ))}
                     </div>
