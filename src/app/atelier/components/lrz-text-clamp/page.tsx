@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import { LRZTextClamp } from "@/components/LRZTextClamp";
@@ -7,11 +7,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import styles from "../filter-playground.module.css";
 import localStyles from "./lrz-text-clamp.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZTextClamp — Atelier du Codex ligérien",
-    description:
-        "Texte multiligne, hauteur stable et tooltip automatique du système UI Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-text-clamp");
 
 const EXAMPLE_CODE = `<LRZTextClamp
     as="h3"

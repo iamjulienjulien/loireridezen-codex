@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import LRZDocCallout, { type LRZDocCalloutVariant } from "@/components/LRZDocCallout/LRZDocCallout";
@@ -8,7 +8,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 import styles from "../lrz-doc-list/lrz-doc-list.module.css";
 
-export const metadata: Metadata = { title: "LRZDocCallout — Atelier du Codex ligérien" };
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-doc-callout");
 
 const variants: { variant: LRZDocCalloutVariant; title: string; text: string }[] = [
     { variant: "info", title: "Information", text: "Situe une convention ou un repère utile." },

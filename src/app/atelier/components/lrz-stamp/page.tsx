@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import {
@@ -34,11 +34,7 @@ import LRZStampPlayground, {
 } from "./LRZStampPlayground";
 import styles from "./LRZStampShowcase.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZStamp — Atelier du Codex ligérien",
-    description:
-        "Capsules d’identité associant les symboles illustrés à leurs noms métier.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-stamp");
 
 const INDEX_OPTIONS = (
     Object.keys(LRZ_INDEX_SYMBOLS) as LRZIndexSymbolSlug[]

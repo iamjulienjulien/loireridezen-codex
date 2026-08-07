@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { CalendarDays, Landmark, MapPin } from "lucide-react";
 
@@ -9,11 +9,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZMetaListPlayground from "./LRZMetaListPlayground";
 import styles from "./LRZMetaListPlayground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZMetaList — Atelier du Codex ligérien",
-    description:
-        "Métadonnées sémantiques, layouts et variantes du design system Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-meta-list");
 
 const TONES: Array<{
     tone: LRZMetaListTone;

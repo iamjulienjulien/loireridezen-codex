@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
 import { LRZ_COLOR_GROUPS, LRZ_COLOR_REGISTRY } from "@/registry/colors";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = { title: "Couleurs — Atelier du Codex ligérien" };
+export const metadata = getAtelierPageMetadata("/atelier/colors");
 
 const AMBIANCES = [
     ["jour", "Jour", [["Fond", "fond", "#F5ECD9"], ["Ciel haut", "ciel-haut", "#CFE4EA"], ["Ciel bas", "ciel-bas", "#EEF3E8"], ["Titre château", "fond-titre", "#805C3C"], ["Sous-titre château", "fond-sous-titre", "#F5EAD4"], ["Surface", "surface", "#FAF3E5"], ["Élévation", "elevation", "#FFFFFF"], ["Texte primaire", "texte-primaire", "#2B2620"], ["Texte secondaire", "texte-secondaire", "#6B605C"], ["Texte tertiaire", "texte-tertiaire", "#A0928C"], ["Accent", "accent", "#C8893A"]]],

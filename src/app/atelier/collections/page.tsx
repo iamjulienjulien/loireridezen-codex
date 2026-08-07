@@ -8,6 +8,7 @@ import {
     CollectionPodium,
     CollectionRank,
 } from "@/components/ui";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 
 import AtelierCategoryLayout from "../AtelierCategoryLayout";
 import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
@@ -21,6 +22,8 @@ import {
 } from "../mockCollectionEntry";
 import { MOCK_COLLECTION_HEROES } from "../mockCollectionHero";
 import { MOCK_COLLECTION_RANKS } from "../mockCollectionRank";
+
+export const metadata = getAtelierPageMetadata("/atelier/collections");
 
 export default function AtelierCollectionsPage() {
     return (

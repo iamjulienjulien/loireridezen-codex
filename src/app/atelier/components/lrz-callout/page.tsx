@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { Route, ScrollText, Sparkles } from "lucide-react";
 
@@ -14,11 +14,7 @@ import {
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import styles from "./lrz-callout.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZCallout — Atelier du Codex ligérien",
-    description:
-        "Encarts éditoriaux, conseils et repères contextuels du design system Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-callout");
 
 const TONES: Array<{
     tone: LRZCalloutTone;

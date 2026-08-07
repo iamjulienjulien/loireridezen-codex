@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import LRZDocCodeBlock from "@/components/LRZDocCodeBlock/LRZDocCodeBlock";
@@ -8,11 +8,7 @@ import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 
 import styles from "../lrz-doc-code.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZDocCodeBlock — Atelier du Codex ligérien",
-    description:
-        "Bloc de code colorisé, copiable et destiné à la documentation technique de Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-doc-code-block");
 
 const EXAMPLES = [
     {

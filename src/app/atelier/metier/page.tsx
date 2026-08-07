@@ -1,7 +1,10 @@
 import AtelierCategoryLayout from "../AtelierCategoryLayout";
 import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import { getPersonnageWithRelations } from "@/lib/personnages";
 import MetierShowcase from "./MetierShowcase";
+
+export const metadata = getAtelierPageMetadata("/atelier/metier");
 
 const PERSONNAGE_EXAMPLE_IDS = [
     "agnes-sorel",

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import LRZTypography, {
@@ -13,11 +13,7 @@ import LRZAnimationCard from "./LRZAnimationCard";
 import LRZTypographyPlayground from "./LRZTypographyPlayground";
 import styles from "./LRZTypographyPlayground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZTypography — Atelier du Codex ligérien",
-    description:
-        "Presets, familles et personnalisations typographiques Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-typography");
 
 const PRESETS: Array<{
     preset: LRZTypographyPreset;

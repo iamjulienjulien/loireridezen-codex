@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import LRZDocCodeBlock from "@/components/LRZDocCodeBlock/LRZDocCodeBlock";
@@ -11,11 +11,7 @@ import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 
 import styles from "./lrz-doc-quote.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZDocQuote — Atelier du Codex ligérien",
-    description:
-        "Citations éditoriales, notes de terrain et témoignages pour la documentation de Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-doc-quote");
 
 const VARIANTS: ReadonlyArray<{
     title: string;

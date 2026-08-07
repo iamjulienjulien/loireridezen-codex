@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
 import { LRZ_COLOR_GROUPS } from "@/registry/colors";
@@ -6,11 +6,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZAnecdotePlayground from "./LRZAnecdotePlayground";
 import styles from "./lrz-anecdote.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZAnecdote — Atelier du Codex ligérien",
-    description:
-        "Citation éditoriale partagée par les fiches du Codex ligérien.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-anecdote");
 
 const EXAMPLES = [
     {

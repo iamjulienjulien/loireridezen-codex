@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZTabsPlayground from "./LRZTabsPlayground";
 import styles from "../filter-playground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZTabs — Atelier du Codex ligérien",
-    description: "Onglets éditoriaux et navigation de sections du système UI Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-tabs");
 
 export default function LRZTabsPage() {
     return (

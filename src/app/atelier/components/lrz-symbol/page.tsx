@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import {
@@ -34,11 +34,7 @@ import LRZSymbolPlayground, {
 } from "./LRZSymbolPlayground";
 import styles from "./LRZSymbolShowcase.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZSymbol — Atelier du Codex ligérien",
-    description:
-        "Registre, tailles et variantes des symboles illustrés Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-symbol");
 
 type AccentStyle = CSSProperties & {
     "--showcase-accent": string;

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import { LRZCompteur } from "@/components/LRZCompteur";
@@ -150,11 +150,7 @@ const PROPS = [
     },
 ] as const;
 
-export const metadata: Metadata = {
-    title: "LRZCompteur — Atelier du Codex ligérien",
-    description:
-        "Compteur vintage à chiffres roulants du système UI Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-compteur");
 
 export default function LRZCompteurPage() {
     return (

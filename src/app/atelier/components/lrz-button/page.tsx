@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { ArrowRight, Castle, MapPin, Plus } from "lucide-react";
 
@@ -8,10 +8,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZButtonPlayground from "./LRZButtonPlayground";
 import styles from "../filter-playground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZButton — Atelier du Codex ligérien",
-    description: "Bouton accessible et coloré du design system Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-button");
 
 const VARIANTS = [
     ["primary", "Action principale", "Découvrir un lieu"],

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import LRZSeparateur, {
     type LRZSeparateurProps,
@@ -8,11 +8,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZSeparateurPlayground from "./LRZSeparateurPlayground";
 import styles from "./LRZSeparateurPlayground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZSeparateur — Atelier du Codex ligérien",
-    description:
-        "Variantes, usages et personnalisation du composant de séparation éditoriale Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-separateur");
 
 type SeparatorExample = LRZSeparateurProps & {
     name: string;

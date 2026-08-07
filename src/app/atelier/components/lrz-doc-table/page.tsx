@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import LRZDocCodeBlock from "@/components/LRZDocCodeBlock/LRZDocCodeBlock";
@@ -8,7 +8,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 import styles from "../lrz-doc-list/lrz-doc-list.module.css";
 
-export const metadata: Metadata = { title: "LRZDocTable — Atelier du Codex ligérien" };
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-doc-table");
 
 const variants: LRZDocTableVariant[] = ["default", "compact", "striped", "comparison"];
 

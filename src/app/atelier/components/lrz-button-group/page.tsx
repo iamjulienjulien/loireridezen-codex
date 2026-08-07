@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { Grid2X2, Images, List, Map, Table2 } from "lucide-react";
 
@@ -11,11 +11,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZButtonGroupPlayground from "./LRZButtonGroupPlayground";
 import styles from "../filter-playground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZButtonGroup — Atelier du Codex ligérien",
-    description:
-        "Groupe de boutons sélectionnables pour les vues et modes d’organisation du Codex.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-button-group");
 
 export default function LRZButtonGroupPage() {
     return (

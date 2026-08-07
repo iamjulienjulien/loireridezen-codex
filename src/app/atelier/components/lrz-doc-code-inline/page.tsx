@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import LRZDocCodeInline from "@/components/LRZDocCodeInline/LRZDocCodeInline";
@@ -8,11 +8,7 @@ import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 
 import styles from "../lrz-doc-code.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZDocCodeInline — Atelier du Codex ligérien",
-    description:
-        "Code technique intégré au fil du texte dans la documentation Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-doc-code-inline");
 
 const EXAMPLES = [
     {

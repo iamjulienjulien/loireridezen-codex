@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import { LRZFilterChip } from "@/components/LRZFilterChip";
@@ -7,11 +7,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZFilterChipPlayground from "./LRZFilterChipPlayground";
 import styles from "../filter-playground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZFilterChip — Atelier du Codex ligérien",
-    description:
-        "États, variantes et compteurs du composant de filtre Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-filter-chip");
 
 const VARIANTS = [
     { name: "Default", variant: "default" as const },

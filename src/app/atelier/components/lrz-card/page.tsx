@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { Castle, MapPin } from "lucide-react";
 
@@ -17,11 +17,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZCardPlayground from "./LRZCardPlayground";
 import styles from "./LRZCardPlayground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZCard — Atelier du Codex ligérien",
-    description:
-        "Surfaces, compositions et variantes de la carte générique Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-card");
 
 const TONES: Array<{
     tone: LRZCardTone;

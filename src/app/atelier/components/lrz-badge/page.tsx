@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { Waves } from "lucide-react";
 import LRZBadge, {
@@ -10,11 +10,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZBadgePlayground from "./LRZBadgePlayground";
 import styles from "./lrz-badge.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZBadge — Atelier du Codex ligérien",
-    description:
-        "Variantes du composant de statut partagé par les index du Codex ligérien.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-badge");
 
 type BadgeExample = {
     name: string;

@@ -1,7 +1,11 @@
 import Link from "next/link";
 
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
+
 import AtelierCategoryLayout from "../AtelierCategoryLayout";
 import styles from "../atelier.module.css";
+
+export const metadata = getAtelierPageMetadata("/atelier/ui");
 
 const COMPONENTS = [
     ["LRZBadge", "/atelier/components/lrz-badge"],

@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZFilterGroupShowcase from "./LRZFilterGroupShowcase";
 import styles from "../filter-playground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZFilterGroup — Atelier du Codex ligérien",
-    description: "Groupes de filtres et variantes du composant Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-filter-group");
 
 export default function LRZFilterGroupPage() {
     return (

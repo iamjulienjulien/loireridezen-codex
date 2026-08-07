@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import LRZLivingText from "@/components/LRZLivingText";
@@ -25,11 +25,7 @@ import {
 } from "../lrz-typography/LRZTypographyExperiments";
 import styles from "../lrz-typography/LRZTypographyPlayground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZLivingText — Atelier du Codex ligérien",
-    description:
-        "Compositions textuelles vivantes, expressives et cinétiques de Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-living-text");
 
 export default function LRZLivingTextPage() {
     return (

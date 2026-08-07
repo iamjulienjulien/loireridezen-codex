@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import { LRZTooltip } from "@/components/LRZTooltip";
@@ -7,11 +7,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import styles from "../filter-playground.module.css";
 import localStyles from "./lrz-tooltip.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZTooltip — Atelier du Codex ligérien",
-    description:
-        "Infobulle accessible et positionnable du système UI Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-tooltip");
 
 const EXAMPLE_CODE = `<LRZTooltip content="Ouvrir la fiche du château">
     <button type="button">Chambord</button>

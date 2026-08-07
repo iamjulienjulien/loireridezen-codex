@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import { LRZChip } from "@/components/LRZChip";
@@ -7,10 +7,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZChipPlayground from "./LRZChipPlayground";
 import styles from "../filter-playground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZChip — Atelier du Codex ligérien",
-    description: "Brique chip générique du système UI Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-chip");
 
 export default function LRZChipPage() {
     return (

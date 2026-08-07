@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZTimelinePlayground from "./LRZTimelinePlayground";
 import styles from "../filter-playground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZTimeline — Atelier du Codex ligérien",
-    description: "Frise chronologique éditoriale du système UI Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-timeline");
 
 export default function LRZTimelinePage() {
     return (

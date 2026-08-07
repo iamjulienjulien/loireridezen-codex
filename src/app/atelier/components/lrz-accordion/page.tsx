@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import LRZAccordion, {
@@ -9,11 +9,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZAccordionPlayground from "./LRZAccordionPlayground";
 import styles from "./LRZAccordionPlayground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZAccordion — Atelier du Codex ligérien",
-    description:
-        "États, tonalités et personnalisation du composant dépliant Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-accordion");
 
 type AccordionExample = {
     title: string;

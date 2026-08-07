@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import LRZSection, {
     type LRZSectionProps,
@@ -7,11 +7,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZSectionPlayground from "./LRZSectionPlayground";
 import styles from "./LRZSectionPlayground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZSection — Atelier du Codex ligérien",
-    description:
-        "Layouts, largeurs, rythmes et ambiances du composant de section Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-section");
 
 type LayoutExample = {
     title: string;

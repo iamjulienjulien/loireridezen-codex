@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { Castle, MapPin } from "lucide-react";
 
@@ -19,11 +19,7 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZDialogPlayground from "./LRZDialogPlayground";
 import styles from "./LRZDialogPlayground.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZDialog — Atelier du Codex ligérien",
-    description:
-        "Fenêtres modales, compositions éditoriales et comportements accessibles du design system Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-dialog");
 
 const SIZES: Array<{
     size: LRZDialogSize;

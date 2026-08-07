@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
 import LRZDocCodeBlock from "@/components/LRZDocCodeBlock/LRZDocCodeBlock";
@@ -11,11 +11,7 @@ import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 
 import styles from "./lrz-doc-list.module.css";
 
-export const metadata: Metadata = {
-    title: "LRZDocList — Atelier du Codex ligérien",
-    description:
-        "Listes ordonnées, listes à puces et variantes éditoriales destinées à la documentation de Loire Ride Zen.",
-};
+export const metadata = getAtelierPageMetadata("/atelier/components/lrz-doc-list");
 
 const VARIANTS: ReadonlyArray<{
     title: string;
