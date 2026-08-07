@@ -6,6 +6,7 @@ import {
     LRZSymbol,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
+    type LRZCommonMilieuSymbolSlug,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
@@ -34,6 +35,7 @@ type LRZSymbolPlaygroundProps = {
     indexOptions: readonly LRZSymbolPlaygroundOption<LRZIndexSymbolSlug>[];
     commonEpoqueOptions: readonly LRZSymbolPlaygroundOption<LRZCommonEpoqueSymbolSlug>[];
     commonArchitectureOptions: readonly LRZSymbolPlaygroundOption<LRZCommonArchitectureSymbolSlug>[];
+    commonMilieuOptions: readonly LRZSymbolPlaygroundOption<LRZCommonMilieuSymbolSlug>[];
     fauneTypeOptions: readonly LRZSymbolPlaygroundOption<LRZFauneTypeSymbolSlug>[];
     fauneRareteOptions: readonly LRZSymbolPlaygroundOption<LRZFauneRareteSymbolSlug>[];
     floreCategorieOptions: readonly LRZSymbolPlaygroundOption<LRZFloreCategorieSymbolSlug>[];
@@ -114,7 +116,7 @@ const SHADOW_OPTIONS: readonly LRZSymbolShadow[] = ["none", "soft", "strong"];
 
 const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     index: [],
-    common: ["epoque", "architecture"],
+    common: ["epoque", "architecture", "milieu"],
     faune: ["type", "rarete"],
     flore: ["categorie", "rarete"],
     guinguette: ["ambience"],
@@ -165,6 +167,7 @@ export default function LRZSymbolPlayground({
     indexOptions,
     commonEpoqueOptions,
     commonArchitectureOptions,
+    commonMilieuOptions,
     fauneTypeOptions,
     fauneRareteOptions,
     floreCategorieOptions,
@@ -181,9 +184,11 @@ export default function LRZSymbolPlayground({
             case "index":
                 return indexOptions;
             case "common":
-                return meta === "architecture"
-                    ? commonArchitectureOptions
-                    : commonEpoqueOptions;
+                return meta === "milieu"
+                    ? commonMilieuOptions
+                    : meta === "architecture"
+                      ? commonArchitectureOptions
+                      : commonEpoqueOptions;
             case "faune":
                 return meta === "rarete"
                     ? fauneRareteOptions
@@ -213,53 +218,60 @@ export default function LRZSymbolPlayground({
                   collection: "index",
                   slug: values.slug as LRZIndexSymbolSlug,
               }
-            : values.collection === "common" && values.meta === "architecture"
+            : values.collection === "common" && values.meta === "milieu"
               ? {
                     collection: "common",
-                    meta: "architecture",
-                    slug: values.slug as LRZCommonArchitectureSymbolSlug,
+                    meta: "milieu",
+                    slug: values.slug as LRZCommonMilieuSymbolSlug,
                 }
-              : values.collection === "common"
+              : values.collection === "common" && values.meta === "architecture"
                 ? {
                       collection: "common",
-                      meta: "epoque",
-                      slug: values.slug as LRZCommonEpoqueSymbolSlug,
+                      meta: "architecture",
+                      slug: values.slug as LRZCommonArchitectureSymbolSlug,
                   }
-                : values.collection === "faune" && values.meta === "rarete"
+                : values.collection === "common"
                   ? {
-                        collection: "faune",
-                        meta: "rarete",
-                        slug: values.slug as LRZFauneRareteSymbolSlug,
+                        collection: "common",
+                        meta: "epoque",
+                        slug: values.slug as LRZCommonEpoqueSymbolSlug,
                     }
-                  : values.collection === "faune"
+                  : values.collection === "faune" && values.meta === "rarete"
                     ? {
                           collection: "faune",
-                          meta: "type",
-                          slug: values.slug as LRZFauneTypeSymbolSlug,
+                          meta: "rarete",
+                          slug: values.slug as LRZFauneRareteSymbolSlug,
                       }
-                    : values.collection === "flore" && values.meta === "rarete"
+                    : values.collection === "faune"
                       ? {
-                            collection: "flore",
-                            meta: "rarete",
-                            slug: values.slug as LRZFloreRareteSymbolSlug,
+                            collection: "faune",
+                            meta: "type",
+                            slug: values.slug as LRZFauneTypeSymbolSlug,
                         }
-                      : values.collection === "flore"
+                      : values.collection === "flore" &&
+                          values.meta === "rarete"
                         ? {
                               collection: "flore",
-                              meta: "categorie",
-                              slug: values.slug as LRZFloreCategorieSymbolSlug,
+                              meta: "rarete",
+                              slug: values.slug as LRZFloreRareteSymbolSlug,
                           }
-                        : values.collection === "guinguette"
+                        : values.collection === "flore"
                           ? {
-                                collection: "guinguette",
-                                meta: "ambience",
-                                slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
-                            }
-                          : {
-                                collection: "personnage",
+                                collection: "flore",
                                 meta: "categorie",
-                                slug: values.slug as CategoriePersonnageSlug,
-                            };
+                                slug: values.slug as LRZFloreCategorieSymbolSlug,
+                            }
+                          : values.collection === "guinguette"
+                            ? {
+                                  collection: "guinguette",
+                                  meta: "ambience",
+                                  slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                              }
+                            : {
+                                  collection: "personnage",
+                                  meta: "categorie",
+                                  slug: values.slug as CategoriePersonnageSlug,
+                              };
     const accessibilityProps = values.informative
         ? {
               decorative: false as const,

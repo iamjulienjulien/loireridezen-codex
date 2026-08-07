@@ -7,6 +7,7 @@ import {
     LRZ_SYMBOL_SIZE_VALUES,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
+    type LRZCommonMilieuSymbolSlug,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
@@ -24,6 +25,7 @@ import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
+import { COMMON_MILIEU_META } from "@/registry/Meta/common-milieu";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
@@ -115,6 +117,11 @@ const COMMON_ARCHITECTURE_OPTIONS = COMMON_ARCHITECTURE_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonArchitectureSymbolSlug>[];
 
+const COMMON_MILIEU_OPTIONS = COMMON_MILIEU_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonMilieuSymbolSlug>[];
+
 const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
     slug,
     label,
@@ -152,13 +159,13 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"epoque" | "architecture" | "type" | "rarete" | "categorie" | "ambience"',
+        '"epoque" | "architecture" | "milieu" | "type" | "rarete" | "categorie" | "ambience"',
         "undefined",
         "Sous-dossier optionnel au sein de la collection.",
     ],
     [
         "slug",
-        "LRZIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
+        "LRZIndexSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | CategoriePersonnageSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -299,6 +306,7 @@ export default function LRZSymbolPage() {
                     indexOptions={INDEX_SYMBOL_OPTIONS}
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
+                    commonMilieuOptions={COMMON_MILIEU_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
                     floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
@@ -428,6 +436,53 @@ export default function LRZSymbolPage() {
                                     <span>{period.color}</span>
                                     <h3>{period.label}</h3>
                                     <code>{period.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-common-milieux"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection commune</p>
+                        <h2 id="symbol-common-milieux">
+                            Les trente milieux du Codex
+                        </h2>
+                        <p>
+                            Le locator <code>common.milieu</code> décrit les
+                            espaces naturels, cultivés et bâtis avec une
+                            identité partagée par toutes les collections.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {COMMON_MILIEU_META.map((environment) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={environment.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            environment.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="common"
+                                    meta="milieu"
+                                    slug={environment.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{environment.color}</span>
+                                    <h3>{environment.label}</h3>
+                                    <code>{environment.slug}</code>
                                 </div>
                             </article>
                         ))}
