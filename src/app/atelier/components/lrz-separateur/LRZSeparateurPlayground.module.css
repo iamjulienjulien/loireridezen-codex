@@ -4,14 +4,6 @@
 /* Page                                                                       */
 /* -------------------------------------------------------------------------- */
 
-.page {
-    min-height: 100dvh;
-    overflow-x: hidden;
-    color: var(--color-ambiance-texte-primaire);
-    background-color: var(--color-ambiance-fond);
-    background-image: var(--ambient-glow);
-}
-
 .wrap {
     width: min(100% - 2rem, 68rem);
     margin: 0 auto;

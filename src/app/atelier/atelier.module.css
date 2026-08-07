@@ -1,11 +1,3 @@
-.page {
-    position: relative;
-    min-height: 100dvh;
-    background: var(--color-ambiance-fond);
-    background-image: var(--ambient-glow);
-    color: var(--color-ambiance-texte-primaire);
-    overflow-x: hidden;
-}
 .wrap {
     position: relative;
     z-index: 1;

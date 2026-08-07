@@ -1,12 +1,6 @@
-.atelier-layout {
+.atelier-layout[data-shell-container] {
     min-height: 100dvh;
-}
-
-.atelier-foundation-page {
-    min-height: 100dvh;
-    color: var(--color-ambiance-texte-primaire);
-    background: var(--color-ambiance-fond);
-    background-image: var(--ambient-glow);
+    padding-inline: 0;
 }
 
 .atelier-foundation-wrap {
