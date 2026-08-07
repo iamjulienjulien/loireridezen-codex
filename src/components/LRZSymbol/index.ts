@@ -12,6 +12,7 @@ export type {
 } from "./LRZSymbol";
 
 export type {
+    LRZCommonEpoqueSymbolSlug,
     LRZFauneRareteSymbolSlug,
     LRZFauneTypeSymbolSlug,
     LRZFloreCategorieSymbolSlug,

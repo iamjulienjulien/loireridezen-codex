@@ -5,6 +5,10 @@ import {
 import { getLRZColorValue } from "@/registry/colors";
 import { getIndexBySlug } from "@/registry/indexes";
 import {
+    getCommonEpoqueMeta,
+    type CommonEpoque,
+} from "@/registry/Meta/common-epoque";
+import {
     getFauneRareteMeta,
     type FauneRarete,
 } from "@/registry/Meta/faune-rarete";
@@ -31,6 +35,21 @@ export const LRZ_INDEX_SYMBOLS = {
 } as const;
 
 export type LRZIndexSymbolSlug = keyof typeof LRZ_INDEX_SYMBOLS;
+
+export const LRZ_COMMON_EPOQUE_SYMBOLS = {
+    prehistoire: "/symbols/common/epoque/prehistoire.png",
+    protohistoire: "/symbols/common/epoque/protohistoire.png",
+    antiquite: "/symbols/common/epoque/antiquite.png",
+    "moyen-age": "/symbols/common/epoque/moyen-age.png",
+    renaissance: "/symbols/common/epoque/renaissance.png",
+    "ancien-regime": "/symbols/common/epoque/ancien-regime.png",
+    "revolution-empire": "/symbols/common/epoque/revolution-empire.png",
+    "xixe-siecle": "/symbols/common/epoque/xixe-siecle.png",
+    "xxe-siecle": "/symbols/common/epoque/xxe-siecle.png",
+    "xxie-siecle": "/symbols/common/epoque/xxie-siecle.png",
+} as const satisfies Record<CommonEpoque, string>;
+
+export type LRZCommonEpoqueSymbolSlug = keyof typeof LRZ_COMMON_EPOQUE_SYMBOLS;
 
 export const LRZ_FAUNE_TYPE_SYMBOLS = {
     oiseau: "/symbols/faune/type/oiseau.png",
@@ -127,11 +146,14 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
  *
  * Une collection peut contenir directement ses symboles, comme `index`, ou
  * les regrouper par métadonnée, comme `faune.type`, `faune.rarete`,
- * `flore.categorie`, `flore.rarete`,
+ * `flore.categorie`, `flore.rarete`, `common.epoque`,
  * `guinguette.ambience` et `personnage.categorie`.
  */
 export const LRZ_SYMBOLS = {
     index: LRZ_INDEX_SYMBOLS,
+    common: {
+        epoque: LRZ_COMMON_EPOQUE_SYMBOLS,
+    },
     faune: {
         type: LRZ_FAUNE_TYPE_SYMBOLS,
         rarete: LRZ_FAUNE_RARETE_SYMBOLS,
@@ -151,6 +173,7 @@ export const LRZ_SYMBOLS = {
 export type LRZSymbolCollection = keyof typeof LRZ_SYMBOLS;
 
 export type LRZSymbolMeta =
+    | keyof typeof LRZ_SYMBOLS.common
     | keyof typeof LRZ_SYMBOLS.faune
     | keyof typeof LRZ_SYMBOLS.flore
     | keyof typeof LRZ_SYMBOLS.guinguette
@@ -158,6 +181,7 @@ export type LRZSymbolMeta =
 
 export type LRZSymbolSlug =
     | LRZIndexSymbolSlug
+    | LRZCommonEpoqueSymbolSlug
     | LRZFauneTypeSymbolSlug
     | LRZFauneRareteSymbolSlug
     | LRZFloreCategorieSymbolSlug
@@ -178,6 +202,12 @@ export type LRZSymbolLocator =
           collection: "index";
           meta?: never;
           slug: LRZIndexSymbolSlug;
+      }
+    | {
+          /** Époques communes aux différentes collections du Codex. */
+          collection: "common";
+          meta: "epoque";
+          slug: LRZCommonEpoqueSymbolSlug;
       }
     | {
           /** Types taxinomiques de la collection Faune. */
@@ -229,6 +259,14 @@ export function getLRZSymbolSource(
 ): string | undefined {
     if (collection === "index" && meta === undefined) {
         return isLRZIndexSymbolSlug(slug) ? LRZ_SYMBOLS.index[slug] : undefined;
+    }
+
+    if (
+        collection === "common" &&
+        meta === "epoque" &&
+        Object.hasOwn(LRZ_SYMBOLS.common.epoque, slug)
+    ) {
+        return LRZ_SYMBOLS.common.epoque[slug as LRZCommonEpoqueSymbolSlug];
     }
 
     if (
@@ -306,6 +344,19 @@ export function getLRZSymbolDefinition(
                   label: index.label,
                   accent: index.accent,
                   color: index.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "common" && meta === "epoque") {
+        const period = getCommonEpoqueMeta(slug);
+
+        return period
+            ? {
+                  source,
+                  label: period.label,
+                  accent: getLRZColorValue(period.color),
+                  color: period.color,
               }
             : undefined;
     }

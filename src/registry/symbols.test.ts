@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
+import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
@@ -12,6 +13,7 @@ import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
     getLRZSymbolDefinition,
     getLRZSymbolSource,
+    LRZ_COMMON_EPOQUE_SYMBOLS,
     LRZ_FAUNE_RARETE_SYMBOLS,
     LRZ_FAUNE_TYPE_SYMBOLS,
     LRZ_FLORE_CATEGORIE_SYMBOLS,
@@ -29,6 +31,19 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every common period", () => {
+        expect(Object.keys(LRZ_SYMBOLS.common.epoque)).toEqual(
+            COMMON_EPOQUE_META.map((period) => period.slug),
+        );
+    });
+
+    it.each(COMMON_EPOQUE_META)("resolves common/epoque/$slug", ({ slug }) => {
+        const source = getLRZSymbolSource("common", "epoque", slug);
+
+        expect(source).toBe(LRZ_COMMON_EPOQUE_SYMBOLS[slug]);
+        expectPublicAsset(source);
+    });
+
     it("contains one symbol for every Faune type", () => {
         expect(Object.keys(LRZ_SYMBOLS.faune.type)).toEqual(
             FAUNE_TYPE_META.map((type) => type.slug),
@@ -141,6 +156,9 @@ describe("LRZ symbol registry", () => {
             getLRZSymbolSource("personnage", undefined, "souverain"),
         ).toBeUndefined();
         expect(
+            getLRZSymbolSource("common", undefined, "renaissance"),
+        ).toBeUndefined();
+        expect(
             getLRZSymbolSource("faune", undefined, "oiseau"),
         ).toBeUndefined();
         expect(getLRZSymbolSource("flore", undefined, "arbre")).toBeUndefined();
@@ -165,6 +183,17 @@ describe("LRZ symbol registry", () => {
             source: "/symbols/personnage/categorie/souverain.png",
             label: "Souverains et souveraines",
             accent: "#C99A2E",
+            color: "miel",
+        });
+    });
+
+    it("resolves the LRZ color of a common period symbol", () => {
+        expect(
+            getLRZSymbolDefinition("common", "epoque", "renaissance"),
+        ).toEqual({
+            source: LRZ_COMMON_EPOQUE_SYMBOLS.renaissance,
+            label: "Renaissance",
+            accent: "#C7953E",
             color: "miel",
         });
     });

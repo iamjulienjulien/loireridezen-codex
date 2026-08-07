@@ -52,6 +52,18 @@ describe("LRZStamp", () => {
         );
     });
 
+    it("renders a common period with its registry color", () => {
+        const markup = renderToStaticMarkup(
+            <LRZStamp collection="common" meta="epoque" slug="renaissance" />,
+        );
+
+        expect(markup).toContain("Renaissance");
+        expect(markup).toContain('data-collection="common"');
+        expect(markup).toContain('data-meta="epoque"');
+        expect(markup).toContain("/symbols/common/epoque/renaissance.png");
+        expect(markup).toContain("--lrz-stamp-label-color:var(--color-miel)");
+    });
+
     it("renders a Faune rarity with its registry color", () => {
         const markup = renderToStaticMarkup(
             <LRZStamp collection="faune" meta="rarete" slug="trésor" />,
