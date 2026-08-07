@@ -219,7 +219,7 @@ export const INDEXES = [
         footerNote: "personnages reliés aux lieux et aux récits du Codex",
         dataFile: "catalogue-personnages.json",
         etat: "relecture",
-        env: ["development"],
+        env: ["development", "production"],
     },
     {
         slug: "vignobles",
