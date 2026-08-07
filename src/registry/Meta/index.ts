@@ -34,6 +34,15 @@ export {
 } from "@/registry/Meta/common-milieu";
 
 export {
+    COMMON_EXPERIENCE_META,
+    COMMON_EXPERIENCE_REGISTRY,
+    getCommonExperienceMeta,
+    isCommonExperience,
+    type CommonExperience,
+    type CommonExperienceMeta,
+} from "@/registry/Meta/common-experience";
+
+export {
     FAUNE_TYPE_META,
     FAUNE_TYPE_REGISTRY,
     getFauneTypeMeta,
