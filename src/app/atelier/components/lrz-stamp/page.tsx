@@ -12,6 +12,7 @@ import {
 } from "@/components/LRZStamp";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getIndexBySlug } from "@/registry/indexes";
+import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
@@ -19,6 +20,7 @@ import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import {
     LRZ_INDEX_SYMBOLS,
+    type LRZCommonEpoqueSymbolSlug,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
@@ -42,6 +44,11 @@ const INDEX_OPTIONS = (
     slug,
     label: getIndexBySlug(slug)?.label ?? slug,
 })) satisfies readonly LRZStampPlaygroundOption<LRZIndexSymbolSlug>[];
+
+const COMMON_EPOQUE_OPTIONS = COMMON_EPOQUE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZStampPlaygroundOption<LRZCommonEpoqueSymbolSlug>[];
 
 const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
     slug,
@@ -125,13 +132,13 @@ const FONTS: Array<{
 const API_PROPS = [
     [
         "collection",
-        '"index" | "faune" | "flore" | "guinguette" | "personnage"',
+        '"index" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
         "—",
         "Collection métier.",
     ],
     [
         "meta",
-        '"type" | "rarete" | "categorie" | "ambience"',
+        '"epoque" | "type" | "rarete" | "categorie" | "ambience"',
         "undefined",
         "Sous-dossier optionnel.",
     ],
@@ -288,6 +295,7 @@ export default function LRZStampPage() {
 
                 <LRZStampPlayground
                     indexOptions={INDEX_OPTIONS}
+                    commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
                     floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
@@ -317,6 +325,37 @@ export default function LRZStampPage() {
                                 slug={slug}
                                 key={slug}
                                 size="lg"
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-common-epoques"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection commune</p>
+                        <h2 id="stamp-common-epoques">Les époques du Codex</h2>
+                        <p>
+                            Chaque stamp récupère son symbole, son label et sa
+                            couleur depuis le registre
+                            <code> common.epoque</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {COMMON_EPOQUE_META.map((period) => (
+                            <LRZStamp
+                                collection="common"
+                                meta="epoque"
+                                slug={period.slug}
+                                key={period.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
                                 shadow="soft"
                             />
                         ))}
