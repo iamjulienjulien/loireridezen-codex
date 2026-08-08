@@ -1,9 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { FauneEspece } from "@/types/faune";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
+import {
+    LRZDialog,
+    LRZDialogBody,
+    LRZDialogContent,
+} from "@/components/LRZDialog";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FauneCard from "./FauneCard";
 import styles from "./faune.module.css";
@@ -35,15 +41,22 @@ const norm = (s: string) =>
 export default function FauneIndex({
     especes,
     indexes,
+    initialOpenSlug,
 }: {
     especes: FauneEspece[];
     indexes: readonly IndexEntry[];
+    initialOpenSlug?: string;
 }) {
     const entry = getIndex("/faune")!;
     const [type, setType] = useState<string>("all");
     const [rarete, setRarete] = useState<string>("all");
     const [q, setQ] = useState("");
     const [expandAll, setExpandAll] = useState(false);
+    const [openSlug, setOpenSlug] = useState(initialOpenSlug);
+    const router = useRouter();
+    const openEspece = openSlug
+        ? especes.find((espece) => espece.slug === openSlug)
+        : undefined;
 
     const toggleAll = () => setExpandAll((value) => !value);
 
@@ -67,6 +80,24 @@ export default function FauneIndex({
 
     return (
         <>
+            <LRZDialog
+                open={Boolean(openEspece)}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        setOpenSlug(undefined);
+                        router.replace("/faune");
+                    }
+                }}
+            >
+                {openEspece ? (
+                    <LRZDialogContent size="sm" variant="immersive">
+                        <LRZDialogBody padding="none">
+                            <FauneCard d={openEspece} expandAll />
+                        </LRZDialogBody>
+                    </LRZDialogContent>
+                ) : null}
+            </LRZDialog>
+
             <IndexPresentation
                 description={entry.description}
                 current="/faune"

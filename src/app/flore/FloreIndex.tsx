@@ -1,9 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { Flore } from "@/types/flore";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
+import {
+    LRZDialog,
+    LRZDialogBody,
+    LRZDialogContent,
+} from "@/components/LRZDialog";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FloreCard from "./FloreCard";
 import styles from "./flore.module.css";
@@ -36,15 +42,22 @@ const norm = (s: string) =>
 export default function FloreIndex({
     flore,
     indexes,
+    initialOpenSlug,
 }: {
     flore: Flore[];
     indexes: readonly IndexEntry[];
+    initialOpenSlug?: string;
 }) {
     const entry = getIndex("/flore")!;
     const [categorie, setCategorie] = useState<string>("all");
     const [rarete, setRarete] = useState<string>("all");
     const [q, setQ] = useState("");
     const [expandAll, setExpandAll] = useState(false);
+    const [openSlug, setOpenSlug] = useState(initialOpenSlug);
+    const router = useRouter();
+    const openFlore = openSlug
+        ? flore.find((entry) => entry.slug === openSlug)
+        : undefined;
 
     const toggleAll = () => setExpandAll((value) => !value);
 
@@ -73,6 +86,24 @@ export default function FloreIndex({
 
     return (
         <>
+            <LRZDialog
+                open={Boolean(openFlore)}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        setOpenSlug(undefined);
+                        router.replace("/flore");
+                    }
+                }}
+            >
+                {openFlore ? (
+                    <LRZDialogContent size="sm" variant="immersive">
+                        <LRZDialogBody padding="none">
+                            <FloreCard d={openFlore} expandAll />
+                        </LRZDialogBody>
+                    </LRZDialogContent>
+                ) : null}
+            </LRZDialog>
+
             <IndexPresentation
                 description={entry.description}
                 current="/flore"

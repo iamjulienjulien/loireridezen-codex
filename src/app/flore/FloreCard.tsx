@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Flower2, Leaf, ShieldCheck } from "lucide-react";
 
 import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
@@ -60,7 +61,12 @@ export default function FloreCard({ d, expandAll = false }: FloreCardProps) {
                         lines={1}
                         fixedHeight
                     >
-                        {d.nomCommun}
+                        <Link
+                            href={`/flore/${d.slug}`}
+                            className={styles.fNameLink}
+                        >
+                            {d.nomCommun}
+                        </Link>
                     </LRZTextClamp>
                     <div className={styles.fSci}>{d.nomScientifique}</div>
                     <p className={styles.fSub}>{d.sousTitre}</p>
