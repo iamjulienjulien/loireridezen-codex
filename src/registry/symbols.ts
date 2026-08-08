@@ -8,6 +8,10 @@ import {
     type ChateauRenommee,
 } from "@/registry/Meta/chateau-renommee";
 import {
+    getChateauVisiteMeta,
+    type ChateauVisite,
+} from "@/registry/Meta/chateau-visite";
+import {
     getCodexIndexMeta,
     type CodexIndex,
 } from "@/registry/Meta/codex-index";
@@ -48,6 +52,10 @@ import {
     getGuinguetteAmbienceMeta,
     type GuinguetteAmbience,
 } from "@/registry/Meta/guinguette-ambience";
+import {
+    getVignobleCouleurMeta,
+    type VignobleCouleur,
+} from "@/registry/Meta/vignoble-couleur";
 import type { LRZColor } from "@/types/lrz";
 
 export const LRZ_CODEX_INDEX_SYMBOLS = {
@@ -69,6 +77,17 @@ export const LRZ_CHATEAU_RENOMMEE_SYMBOLS = {
 
 export type LRZChateauRenommeeSymbolSlug =
     keyof typeof LRZ_CHATEAU_RENOMMEE_SYMBOLS;
+
+export const LRZ_CHATEAU_VISITE_SYMBOLS = {
+    "ouvert au public": "/symbols/chateau/visite/ouvert-au-public.png",
+    "extérieurs & parc": "/symbols/chateau/visite/exterieurs-parc.png",
+    "privé, non visitable":
+        "/symbols/chateau/visite/prive-non-visitable.png",
+    inconnu: "/symbols/chateau/visite/inconnu.png",
+} as const satisfies Record<ChateauVisite, string>;
+
+export type LRZChateauVisiteSymbolSlug =
+    keyof typeof LRZ_CHATEAU_VISITE_SYMBOLS;
 
 export type LRZCodexIndexSymbolSlug = keyof typeof LRZ_CODEX_INDEX_SYMBOLS;
 
@@ -306,14 +325,26 @@ export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
 export type LRZPersonnageCategorieSymbolSlug =
     keyof typeof LRZ_PERSONNAGE_CATEGORIE_SYMBOLS;
 
+export const LRZ_VIGNOBLE_COULEUR_SYMBOLS = {
+    "blanc sec": "/symbols/vignoble/couleur/blanc-sec.png",
+    "blanc moelleux": "/symbols/vignoble/couleur/blanc-moelleux.png",
+    rouge: "/symbols/vignoble/couleur/rouge.png",
+    rosé: "/symbols/vignoble/couleur/rose.png",
+    effervescent: "/symbols/vignoble/couleur/effervescent.png",
+} as const satisfies Record<VignobleCouleur, string>;
+
+export type LRZVignobleCouleurSymbolSlug =
+    keyof typeof LRZ_VIGNOBLE_COULEUR_SYMBOLS;
+
 /**
  * Registre des symboles illustrés du Codex.
  *
  * Les symboles sont regroupés par collection et métadonnée, comme
- * `codex.index`, `chateau.renommee`, `faune.type`, `faune.rarete`,
+ * `codex.index`, `chateau.renommee`, `chateau.visite`, `faune.type`,
+ * `faune.rarete`,
  * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
  * `common.milieu`, `common.experience`, `common.territoire`,
- * `guinguette.ambience` et `personnage.categorie`.
+ * `guinguette.ambience`, `personnage.categorie` et `vignoble.couleur`.
  */
 export const LRZ_SYMBOLS = {
     codex: {
@@ -321,6 +352,7 @@ export const LRZ_SYMBOLS = {
     },
     chateau: {
         renommee: LRZ_CHATEAU_RENOMMEE_SYMBOLS,
+        visite: LRZ_CHATEAU_VISITE_SYMBOLS,
     },
     common: {
         epoque: LRZ_COMMON_EPOQUE_SYMBOLS,
@@ -343,6 +375,9 @@ export const LRZ_SYMBOLS = {
     personnage: {
         categorie: LRZ_PERSONNAGE_CATEGORIE_SYMBOLS,
     },
+    vignoble: {
+        couleur: LRZ_VIGNOBLE_COULEUR_SYMBOLS,
+    },
 } as const;
 
 export type LRZSymbolCollection = keyof typeof LRZ_SYMBOLS;
@@ -354,11 +389,26 @@ export type LRZSymbolMeta =
     | keyof typeof LRZ_SYMBOLS.faune
     | keyof typeof LRZ_SYMBOLS.flore
     | keyof typeof LRZ_SYMBOLS.guinguette
-    | keyof typeof LRZ_SYMBOLS.personnage;
+    | keyof typeof LRZ_SYMBOLS.personnage
+    | keyof typeof LRZ_SYMBOLS.vignoble;
+
+/** Retourne les valeurs illustrées disponibles pour une métadonnée. */
+export function getLRZSymbolSlugs(
+    collection: LRZSymbolCollection,
+    meta: LRZSymbolMeta,
+): string[] {
+    const metas = LRZ_SYMBOLS[collection] as Record<
+        string,
+        Record<string, string>
+    >;
+
+    return Object.keys(metas[meta] ?? {});
+}
 
 export type LRZSymbolSlug =
     | LRZCodexIndexSymbolSlug
     | LRZChateauRenommeeSymbolSlug
+    | LRZChateauVisiteSymbolSlug
     | LRZCommonEpoqueSymbolSlug
     | LRZCommonArchitectureSymbolSlug
     | LRZCommonMilieuSymbolSlug
@@ -369,7 +419,8 @@ export type LRZSymbolSlug =
     | LRZFloreCategorieSymbolSlug
     | LRZFloreRareteSymbolSlug
     | LRZGuinguetteAmbienceSymbolSlug
-    | LRZPersonnageCategorieSymbolSlug;
+    | LRZPersonnageCategorieSymbolSlug
+    | LRZVignobleCouleurSymbolSlug;
 
 export type LRZSymbolDefinition = {
     source: string;
@@ -396,6 +447,12 @@ export type LRZSymbolLocator =
           collection: "chateau";
           meta: "renommee";
           slug: LRZChateauRenommeeSymbolSlug;
+      }
+    | {
+          /** Conditions de visite de la collection Châteaux. */
+          collection: "chateau";
+          meta: "visite";
+          slug: LRZChateauVisiteSymbolSlug;
       }
     | {
           /** Courants architecturaux communs aux collections du Codex. */
@@ -456,6 +513,12 @@ export type LRZSymbolLocator =
           collection: "personnage";
           meta: "categorie";
           slug: LRZPersonnageCategorieSymbolSlug;
+      }
+    | {
+          /** Couleurs de vin de la collection Vignobles. */
+          collection: "vignoble";
+          meta: "couleur";
+          slug: LRZVignobleCouleurSymbolSlug;
       };
 
 export function isLRZCodexIndexSymbolSlug(
@@ -485,6 +548,14 @@ export function getLRZSymbolSource(
         return LRZ_SYMBOLS.chateau.renommee[
             slug as LRZChateauRenommeeSymbolSlug
         ];
+    }
+
+    if (
+        collection === "chateau" &&
+        meta === "visite" &&
+        Object.hasOwn(LRZ_SYMBOLS.chateau.visite, slug)
+    ) {
+        return LRZ_SYMBOLS.chateau.visite[slug as LRZChateauVisiteSymbolSlug];
     }
 
     if (
@@ -585,6 +656,16 @@ export function getLRZSymbolSource(
         ];
     }
 
+    if (
+        collection === "vignoble" &&
+        meta === "couleur" &&
+        Object.hasOwn(LRZ_SYMBOLS.vignoble.couleur, slug)
+    ) {
+        return LRZ_SYMBOLS.vignoble.couleur[
+            slug as LRZVignobleCouleurSymbolSlug
+        ];
+    }
+
     return undefined;
 }
 
@@ -621,6 +702,19 @@ export function getLRZSymbolDefinition(
                   label: period.label,
                   accent: getLRZColorValue(period.color),
                   color: period.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "chateau" && meta === "visite") {
+        const visitingCondition = getChateauVisiteMeta(slug);
+
+        return visitingCondition
+            ? {
+                  source,
+                  label: visitingCondition.label,
+                  accent: getLRZColorValue(visitingCondition.color),
+                  color: visitingCondition.color,
               }
             : undefined;
     }
@@ -751,6 +845,19 @@ export function getLRZSymbolDefinition(
                   label: category.nom,
                   accent: category.identite.accent,
                   color: category.identite.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "vignoble" && meta === "couleur") {
+        const wineColor = getVignobleCouleurMeta(slug);
+
+        return wineColor
+            ? {
+                  source,
+                  label: wineColor.label,
+                  accent: getLRZColorValue(wineColor.color),
+                  color: wineColor.color,
               }
             : undefined;
     }

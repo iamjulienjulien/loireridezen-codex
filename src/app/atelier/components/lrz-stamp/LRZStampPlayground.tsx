@@ -16,6 +16,7 @@ import {
 } from "@/components/LRZStamp";
 import type {
     LRZChateauRenommeeSymbolSlug,
+    LRZChateauVisiteSymbolSlug,
     LRZSymbolCollection,
     LRZSymbolFrame,
     LRZSymbolLocator,
@@ -41,6 +42,7 @@ import type {
     LRZGuinguetteAmbienceSymbolSlug,
     LRZCodexIndexSymbolSlug,
     LRZPersonnageCategorieSymbolSlug,
+    LRZVignobleCouleurSymbolSlug,
 } from "@/registry/symbols";
 
 import styles from "./LRZStampPlayground.module.css";
@@ -53,6 +55,7 @@ export type LRZStampPlaygroundOption<TSlug extends string = string> = {
 type LRZStampPlaygroundProps = {
     codexIndexOptions: readonly LRZStampPlaygroundOption<LRZCodexIndexSymbolSlug>[];
     chateauRenommeeOptions: readonly LRZStampPlaygroundOption<LRZChateauRenommeeSymbolSlug>[];
+    chateauVisiteOptions: readonly LRZStampPlaygroundOption<LRZChateauVisiteSymbolSlug>[];
     commonEpoqueOptions: readonly LRZStampPlaygroundOption<LRZCommonEpoqueSymbolSlug>[];
     commonArchitectureOptions: readonly LRZStampPlaygroundOption<LRZCommonArchitectureSymbolSlug>[];
     commonMilieuOptions: readonly LRZStampPlaygroundOption<LRZCommonMilieuSymbolSlug>[];
@@ -64,6 +67,7 @@ type LRZStampPlaygroundProps = {
     floreRareteOptions: readonly LRZStampPlaygroundOption<LRZFloreRareteSymbolSlug>[];
     guinguetteOptions: readonly LRZStampPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZStampPlaygroundOption<LRZPersonnageCategorieSymbolSlug>[];
+    vignobleCouleurOptions: readonly LRZStampPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
 };
 
 type SizeChoice = LRZStampSize | "custom";
@@ -196,12 +200,13 @@ const LABEL_SIZES: readonly LabelSizeChoice[] = [
 
 const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     codex: ["index"],
-    chateau: ["renommee"],
+    chateau: ["renommee", "visite"],
     common: ["epoque", "architecture", "milieu", "experience", "territoire"],
     faune: ["type", "rarete"],
     flore: ["categorie", "rarete"],
     guinguette: ["ambience"],
     personnage: ["categorie"],
+    vignoble: ["couleur"],
 };
 
 function codeValue(value: string) {
@@ -283,6 +288,7 @@ function buildCode(values: PlaygroundState) {
 export default function LRZStampPlayground({
     codexIndexOptions,
     chateauRenommeeOptions,
+    chateauVisiteOptions,
     commonEpoqueOptions,
     commonArchitectureOptions,
     commonMilieuOptions,
@@ -294,6 +300,7 @@ export default function LRZStampPlayground({
     floreRareteOptions,
     guinguetteOptions,
     personnageOptions,
+    vignobleCouleurOptions,
 }: LRZStampPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
     function getOptions(
@@ -304,7 +311,9 @@ export default function LRZStampPlayground({
             case "codex":
                 return codexIndexOptions;
             case "chateau":
-                return chateauRenommeeOptions;
+                return meta === "visite"
+                    ? chateauVisiteOptions
+                    : chateauRenommeeOptions;
             case "common":
                 return meta === "territoire"
                     ? commonTerritoireOptions
@@ -327,6 +336,8 @@ export default function LRZStampPlayground({
                 return guinguetteOptions;
             case "personnage":
                 return personnageOptions;
+            case "vignoble":
+                return vignobleCouleurOptions;
         }
     }
 
@@ -338,6 +349,12 @@ export default function LRZStampPlayground({
                   meta: "index",
                   slug: values.slug as LRZCodexIndexSymbolSlug,
               }
+            : values.collection === "chateau" && values.meta === "visite"
+              ? {
+                    collection: "chateau",
+                    meta: "visite",
+                    slug: values.slug as LRZChateauVisiteSymbolSlug,
+                }
             : values.collection === "chateau"
               ? {
                     collection: "chateau",
@@ -407,11 +424,17 @@ export default function LRZStampPlayground({
                                       meta: "ambience",
                                       slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
                                   }
-                                : {
-                                      collection: "personnage",
-                                      meta: "categorie",
-                                      slug: values.slug as LRZPersonnageCategorieSymbolSlug,
-                                  };
+                                : values.collection === "vignoble"
+                                  ? {
+                                        collection: "vignoble",
+                                        meta: "couleur",
+                                        slug: values.slug as LRZVignobleCouleurSymbolSlug,
+                                    }
+                                  : {
+                                        collection: "personnage",
+                                        meta: "categorie",
+                                        slug: values.slug as LRZPersonnageCategorieSymbolSlug,
+                                    };
     const resolvedSize =
         values.size === "custom" ? values.customSize : values.size;
     const resolvedPadding =

@@ -5,6 +5,7 @@ import { useState, type ChangeEvent } from "react";
 import {
     LRZSymbol,
     type LRZChateauRenommeeSymbolSlug,
+    type LRZChateauVisiteSymbolSlug,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
     type LRZCommonExperienceSymbolSlug,
@@ -17,6 +18,7 @@ import {
     type LRZGuinguetteAmbienceSymbolSlug,
     type LRZCodexIndexSymbolSlug,
     type LRZPersonnageCategorieSymbolSlug,
+    type LRZVignobleCouleurSymbolSlug,
     type LRZSymbolCollection,
     type LRZSymbolFrame,
     type LRZSymbolLocator,
@@ -37,6 +39,7 @@ export type LRZSymbolPlaygroundOption<TSlug extends string = string> = {
 type LRZSymbolPlaygroundProps = {
     codexIndexOptions: readonly LRZSymbolPlaygroundOption<LRZCodexIndexSymbolSlug>[];
     chateauRenommeeOptions: readonly LRZSymbolPlaygroundOption<LRZChateauRenommeeSymbolSlug>[];
+    chateauVisiteOptions: readonly LRZSymbolPlaygroundOption<LRZChateauVisiteSymbolSlug>[];
     commonEpoqueOptions: readonly LRZSymbolPlaygroundOption<LRZCommonEpoqueSymbolSlug>[];
     commonArchitectureOptions: readonly LRZSymbolPlaygroundOption<LRZCommonArchitectureSymbolSlug>[];
     commonMilieuOptions: readonly LRZSymbolPlaygroundOption<LRZCommonMilieuSymbolSlug>[];
@@ -48,6 +51,7 @@ type LRZSymbolPlaygroundProps = {
     floreRareteOptions: readonly LRZSymbolPlaygroundOption<LRZFloreRareteSymbolSlug>[];
     guinguetteOptions: readonly LRZSymbolPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZSymbolPlaygroundOption<LRZPersonnageCategorieSymbolSlug>[];
+    vignobleCouleurOptions: readonly LRZSymbolPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
 };
 
 type SizeChoice = LRZSymbolSize | "custom";
@@ -122,12 +126,13 @@ const SHADOW_OPTIONS: readonly LRZSymbolShadow[] = ["none", "soft", "strong"];
 
 const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     codex: ["index"],
-    chateau: ["renommee"],
+    chateau: ["renommee", "visite"],
     common: ["epoque", "architecture", "milieu", "experience", "territoire"],
     faune: ["type", "rarete"],
     flore: ["categorie", "rarete"],
     guinguette: ["ambience"],
     personnage: ["categorie"],
+    vignoble: ["couleur"],
 };
 
 function codeValue(value: string) {
@@ -173,6 +178,7 @@ function buildCode(values: PlaygroundState) {
 export default function LRZSymbolPlayground({
     codexIndexOptions,
     chateauRenommeeOptions,
+    chateauVisiteOptions,
     commonEpoqueOptions,
     commonArchitectureOptions,
     commonMilieuOptions,
@@ -184,6 +190,7 @@ export default function LRZSymbolPlayground({
     floreRareteOptions,
     guinguetteOptions,
     personnageOptions,
+    vignobleCouleurOptions,
 }: LRZSymbolPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
     function getOptions(
@@ -194,7 +201,9 @@ export default function LRZSymbolPlayground({
             case "codex":
                 return codexIndexOptions;
             case "chateau":
-                return chateauRenommeeOptions;
+                return meta === "visite"
+                    ? chateauVisiteOptions
+                    : chateauRenommeeOptions;
             case "common":
                 return meta === "territoire"
                     ? commonTerritoireOptions
@@ -217,6 +226,8 @@ export default function LRZSymbolPlayground({
                 return guinguetteOptions;
             case "personnage":
                 return personnageOptions;
+            case "vignoble":
+                return vignobleCouleurOptions;
         }
     }
 
@@ -235,6 +246,12 @@ export default function LRZSymbolPlayground({
                   meta: "index",
                   slug: values.slug as LRZCodexIndexSymbolSlug,
               }
+            : values.collection === "chateau" && values.meta === "visite"
+              ? {
+                    collection: "chateau",
+                    meta: "visite",
+                    slug: values.slug as LRZChateauVisiteSymbolSlug,
+                }
             : values.collection === "chateau"
               ? {
                     collection: "chateau",
@@ -304,11 +321,17 @@ export default function LRZSymbolPlayground({
                                       meta: "ambience",
                                       slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
                                   }
-                                : {
-                                      collection: "personnage",
-                                      meta: "categorie",
-                                      slug: values.slug as LRZPersonnageCategorieSymbolSlug,
-                                  };
+                                : values.collection === "vignoble"
+                                  ? {
+                                        collection: "vignoble",
+                                        meta: "couleur",
+                                        slug: values.slug as LRZVignobleCouleurSymbolSlug,
+                                    }
+                                  : {
+                                        collection: "personnage",
+                                        meta: "categorie",
+                                        slug: values.slug as LRZPersonnageCategorieSymbolSlug,
+                                    };
     const accessibilityProps = values.informative
         ? {
               decorative: false as const,

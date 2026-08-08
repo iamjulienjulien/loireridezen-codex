@@ -25,6 +25,15 @@ export {
 } from "@/registry/Meta/chateau-renommee";
 
 export {
+    CHATEAU_VISITE_META,
+    CHATEAU_VISITE_REGISTRY,
+    getChateauVisiteMeta,
+    isChateauVisite,
+    type ChateauVisite,
+    type ChateauVisiteMeta,
+} from "@/registry/Meta/chateau-visite";
+
+export {
     COMMON_EPOQUE_META,
     COMMON_EPOQUE_REGISTRY,
     getCommonEpoqueMeta,
@@ -104,6 +113,15 @@ export {
     type FloreRarete,
     type FloreRareteMeta,
 } from "@/registry/Meta/flore-rarete";
+
+export {
+    getVignobleCouleurMeta,
+    isVignobleCouleur,
+    VIGNOBLE_COULEUR_META,
+    VIGNOBLE_COULEUR_REGISTRY,
+    type VignobleCouleur,
+    type VignobleCouleurMeta,
+} from "@/registry/Meta/vignoble-couleur";
 
 export {
     getGuinguetteAmbienceMeta,

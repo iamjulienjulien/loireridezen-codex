@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { CHATEAU_RENOMMEE_META } from "@/registry/Meta/chateau-renommee";
+import { CHATEAU_VISITE_META } from "@/registry/Meta/chateau-visite";
 import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
@@ -16,10 +17,12 @@ import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
+import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
 import {
     getLRZSymbolDefinition,
     getLRZSymbolSource,
     LRZ_CHATEAU_RENOMMEE_SYMBOLS,
+    LRZ_CHATEAU_VISITE_SYMBOLS,
     LRZ_COMMON_ARCHITECTURE_SYMBOLS,
     LRZ_COMMON_EPOQUE_SYMBOLS,
     LRZ_COMMON_EXPERIENCE_SYMBOLS,
@@ -32,6 +35,7 @@ import {
     LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
     LRZ_CODEX_INDEX_SYMBOLS,
     LRZ_SYMBOLS,
+    LRZ_VIGNOBLE_COULEUR_SYMBOLS,
 } from "@/registry/symbols";
 
 function expectPublicAsset(source: string | undefined) {
@@ -42,6 +46,22 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every vineyard wine color", () => {
+        expect(Object.keys(LRZ_SYMBOLS.vignoble.couleur)).toEqual(
+            VIGNOBLE_COULEUR_META.map((wineColor) => wineColor.slug),
+        );
+    });
+
+    it.each(VIGNOBLE_COULEUR_META)(
+        "resolves vignoble/couleur/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("vignoble", "couleur", slug);
+
+            expect(source).toBe(LRZ_VIGNOBLE_COULEUR_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
     it("contains one symbol for every Chateau renown level", () => {
         expect(Object.keys(LRZ_SYMBOLS.chateau.renommee)).toEqual(
             CHATEAU_RENOMMEE_META.map((renown) => renown.slug),
@@ -54,6 +74,22 @@ describe("LRZ symbol registry", () => {
             const source = getLRZSymbolSource("chateau", "renommee", slug);
 
             expect(source).toBe(LRZ_CHATEAU_RENOMMEE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
+    it("contains one symbol for every Chateau visiting condition", () => {
+        expect(Object.keys(LRZ_SYMBOLS.chateau.visite)).toEqual(
+            CHATEAU_VISITE_META.map((condition) => condition.slug),
+        );
+    });
+
+    it.each(CHATEAU_VISITE_META)(
+        "resolves chateau/visite/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("chateau", "visite", slug);
+
+            expect(source).toBe(LRZ_CHATEAU_VISITE_SYMBOLS[slug]);
             expectPublicAsset(source);
         },
     );
@@ -301,6 +337,17 @@ describe("LRZ symbol registry", () => {
             label: "Confidentiel",
             accent: "#D6D0C6",
             color: "pierre",
+        });
+    });
+
+    it("resolves the LRZ color of a Chateau visiting condition", () => {
+        expect(
+            getLRZSymbolDefinition("chateau", "visite", "ouvert au public"),
+        ).toEqual({
+            source: LRZ_CHATEAU_VISITE_SYMBOLS["ouvert au public"],
+            label: "Ouvert au public",
+            accent: "#5C8754",
+            color: "prairie",
         });
     });
 

@@ -1,13 +1,9 @@
 // src/types/vignoble.ts
 // Vignoble & AOC ligérien — sibling de Chateau/Flore (même grammaire de codex).
 
-/** Type de vin dominant de l'appellation — l'axe principal. */
-export type VignobleCouleur =
-    | "blanc sec"
-    | "blanc moelleux" // demi-sec à liquoreux
-    | "rouge"
-    | "rosé"
-    | "effervescent"; // fines bulles / méthode traditionnelle
+import type { VignobleCouleur } from "@/registry/Meta/vignoble-couleur";
+
+export type { VignobleCouleur } from "@/registry/Meta/vignoble-couleur";
 
 /** Notoriété sur le fil — miroir de la rareté / renommée. */
 export type VignobleNotoriete = "phare" | "majeur" | "notable" | "confidentiel";

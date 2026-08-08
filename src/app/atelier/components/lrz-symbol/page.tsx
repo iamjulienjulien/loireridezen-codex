@@ -6,6 +6,7 @@ import {
     LRZSymbol,
     LRZ_SYMBOL_SIZE_VALUES,
     type LRZChateauRenommeeSymbolSlug,
+    type LRZChateauVisiteSymbolSlug,
     type LRZCodexIndexSymbolSlug,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
@@ -17,6 +18,7 @@ import {
     type LRZFloreCategorieSymbolSlug,
     type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
+    type LRZVignobleCouleurSymbolSlug,
     type LRZSymbolFrame,
     type LRZSymbolPadding,
     type LRZSymbolShadow,
@@ -26,6 +28,7 @@ import {
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
 import { CHATEAU_RENOMMEE_META } from "@/registry/Meta/chateau-renommee";
+import { CHATEAU_VISITE_META } from "@/registry/Meta/chateau-visite";
 import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
@@ -37,6 +40,7 @@ import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
+import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import shellStyles from "../filter-playground.module.css";
@@ -115,6 +119,11 @@ const CHATEAU_RENOMMEE_OPTIONS = CHATEAU_RENOMMEE_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZSymbolPlaygroundOption<LRZChateauRenommeeSymbolSlug>[];
 
+const CHATEAU_VISITE_OPTIONS = CHATEAU_VISITE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZSymbolPlaygroundOption<LRZChateauVisiteSymbolSlug>[];
+
 const COMMON_EPOQUE_OPTIONS = COMMON_EPOQUE_META.map(({ slug, label }) => ({
     slug,
     label,
@@ -165,22 +174,26 @@ const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
     ({ slug, nom }) => ({ slug, label: nom }),
 );
 
+const VIGNOBLE_COULEUR_OPTIONS = VIGNOBLE_COULEUR_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZSymbolPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
+
 const API_PROPS = [
     [
         "collection",
-        '"codex" | "chateau" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
+        '"codex" | "chateau" | "common" | "faune" | "flore" | "guinguette" | "personnage" | "vignoble"',
         "—",
         "Collection du symbole.",
     ],
     [
         "meta",
-        '"index" | "renommee" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
+        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience" | "couleur"',
         "—",
         "Métadonnée de la collection.",
     ],
     [
         "slug",
-        "LRZCodexIndexSymbolSlug | LRZChateauRenommeeSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZCommonTerritoireSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | LRZPersonnageCategorieSymbolSlug",
+        "LRZCodexIndexSymbolSlug | LRZChateauRenommeeSymbolSlug | LRZChateauVisiteSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZCommonTerritoireSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | LRZPersonnageCategorieSymbolSlug | LRZVignobleCouleurSymbolSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -328,6 +341,7 @@ export default function LRZSymbolPage() {
                 <LRZSymbolPlayground
                     codexIndexOptions={CODEX_INDEX_OPTIONS}
                     chateauRenommeeOptions={CHATEAU_RENOMMEE_OPTIONS}
+                    chateauVisiteOptions={CHATEAU_VISITE_OPTIONS}
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}
@@ -339,6 +353,7 @@ export default function LRZSymbolPage() {
                     floreRareteOptions={FLORE_RARETE_OPTIONS}
                     guinguetteOptions={GUINGUETTE_AMBIENCE_OPTIONS}
                     personnageOptions={PERSONNAGE_SYMBOL_OPTIONS}
+                    vignobleCouleurOptions={VIGNOBLE_COULEUR_OPTIONS}
                 />
 
                 <section
@@ -371,6 +386,53 @@ export default function LRZSymbolPage() {
                                 />
                                 <h3>{label}</h3>
                                 <code>{`slug="${slug}"`}</code>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-vignoble-couleurs"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection Vignobles</p>
+                        <h2 id="symbol-vignoble-couleurs">
+                            Les couleurs de vin
+                        </h2>
+                        <p>
+                            Le locator <code>vignoble.couleur</code> associe
+                            chaque couleur de vin à son verre illustré et à sa
+                            couleur LRZ.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {VIGNOBLE_COULEUR_META.map((wineColor) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={wineColor.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            wineColor.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="vignoble"
+                                    meta="couleur"
+                                    slug={wineColor.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{wineColor.color}</span>
+                                    <h3>{wineColor.label}</h3>
+                                    <code>{wineColor.slug}</code>
+                                </div>
                             </article>
                         ))}
                     </div>

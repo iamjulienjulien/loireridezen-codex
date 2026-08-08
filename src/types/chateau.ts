@@ -3,19 +3,14 @@
 
 import type { Ambiance } from "@/registry/ambiances";
 import type { ChateauRenommee } from "@/registry/Meta/chateau-renommee";
+import type { ChateauVisite } from "@/registry/Meta/chateau-visite";
 
 export type { ChateauRenommee } from "@/registry/Meta/chateau-renommee";
+export type { ChateauVisite } from "@/registry/Meta/chateau-visite";
 
 /** Époque dominante. Un château en cumule souvent ; `construction` porte le détail. */
 export type ChateauEpoque =
     "Médiéval" | "Renaissance" | "Classique" | "Éclectique";
-
-/** Ouverture au visiteur. */
-export type ChateauVisite =
-    | "ouvert au public"
-    | "extérieurs & parc"
-    | "privé, non visitable"
-    | "inconnu";
 
 /** Protection patrimoniale — miroir de la conservation (UNESCO ≈ monde, MH ≈ national). */
 export interface ChateauProtection {

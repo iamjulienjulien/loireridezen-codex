@@ -13,6 +13,7 @@ export type {
 
 export type {
     LRZChateauRenommeeSymbolSlug,
+    LRZChateauVisiteSymbolSlug,
     LRZCommonArchitectureSymbolSlug,
     LRZCommonEpoqueSymbolSlug,
     LRZCommonExperienceSymbolSlug,
@@ -25,6 +26,7 @@ export type {
     LRZGuinguetteAmbienceSymbolSlug,
     LRZCodexIndexSymbolSlug,
     LRZPersonnageCategorieSymbolSlug,
+    LRZVignobleCouleurSymbolSlug,
     LRZSymbolCollection,
     LRZSymbolDefinition,
     LRZSymbolLocator,

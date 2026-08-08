@@ -12,6 +12,7 @@ import {
 } from "@/components/LRZStamp";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { CHATEAU_RENOMMEE_META } from "@/registry/Meta/chateau-renommee";
+import { CHATEAU_VISITE_META } from "@/registry/Meta/chateau-visite";
 import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
@@ -23,8 +24,10 @@ import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
+import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
 import {
     type LRZChateauRenommeeSymbolSlug,
+    type LRZChateauVisiteSymbolSlug,
     type LRZCodexIndexSymbolSlug,
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
@@ -36,6 +39,7 @@ import {
     type LRZFloreCategorieSymbolSlug,
     type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
+    type LRZVignobleCouleurSymbolSlug,
 } from "@/registry/symbols";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
@@ -55,6 +59,11 @@ const CODEX_INDEX_OPTIONS = CODEX_INDEX_META.map(({ slug, label }) => ({
 const CHATEAU_RENOMMEE_OPTIONS = CHATEAU_RENOMMEE_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZStampPlaygroundOption<LRZChateauRenommeeSymbolSlug>[];
+
+const CHATEAU_VISITE_OPTIONS = CHATEAU_VISITE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZStampPlaygroundOption<LRZChateauVisiteSymbolSlug>[];
 
 const COMMON_EPOQUE_OPTIONS = COMMON_EPOQUE_META.map(({ slug, label }) => ({
     slug,
@@ -108,6 +117,10 @@ const PERSONNAGE_OPTIONS = CATEGORIES_PERSONNAGES.map(({ slug, nom }) => ({
     label: nom,
 }));
 
+const VIGNOBLE_COULEUR_OPTIONS = VIGNOBLE_COULEUR_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZStampPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
+
 const VARIANTS: Array<{
     variant: LRZStampVariant;
     slug: LRZCodexIndexSymbolSlug;
@@ -160,13 +173,13 @@ const FONTS: Array<{
 const API_PROPS = [
     [
         "collection",
-        '"codex" | "chateau" | "common" | "faune" | "flore" | "guinguette" | "personnage"',
+        '"codex" | "chateau" | "common" | "faune" | "flore" | "guinguette" | "personnage" | "vignoble"',
         "—",
         "Collection métier.",
     ],
     [
         "meta",
-        '"index" | "renommee" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience"',
+        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience" | "couleur"',
         "—",
         "Métadonnée de la collection.",
     ],
@@ -324,6 +337,7 @@ export default function LRZStampPage() {
                 <LRZStampPlayground
                     codexIndexOptions={CODEX_INDEX_OPTIONS}
                     chateauRenommeeOptions={CHATEAU_RENOMMEE_OPTIONS}
+                    chateauVisiteOptions={CHATEAU_VISITE_OPTIONS}
                     commonEpoqueOptions={COMMON_EPOQUE_OPTIONS}
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}
@@ -335,6 +349,7 @@ export default function LRZStampPage() {
                     floreRareteOptions={FLORE_RARETE_OPTIONS}
                     guinguetteOptions={GUINGUETTE_OPTIONS}
                     personnageOptions={PERSONNAGE_OPTIONS}
+                    vignobleCouleurOptions={VIGNOBLE_COULEUR_OPTIONS}
                 />
 
                 <section
@@ -359,6 +374,39 @@ export default function LRZStampPage() {
                                 slug={slug}
                                 key={slug}
                                 size="lg"
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-vignoble-couleurs"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection Vignobles</p>
+                        <h2 id="stamp-vignoble-couleurs">
+                            Les couleurs de vin
+                        </h2>
+                        <p>
+                            Chaque stamp récupère son verre, son label et sa
+                            couleur depuis le registre
+                            <code> vignoble.couleur</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {VIGNOBLE_COULEUR_META.map((wineColor) => (
+                            <LRZStamp
+                                collection="vignoble"
+                                meta="couleur"
+                                slug={wineColor.slug}
+                                key={wineColor.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
                                 shadow="soft"
                             />
                         ))}
