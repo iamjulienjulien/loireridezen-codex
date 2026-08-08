@@ -33,7 +33,7 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     guinguettesInteractiveMap: ["development", "production"],
     detailDialogChateaux: [],
     personnages: ["development", "production"],
-    chateauxRenommee: [],
+    chateauxRenommee: ["development", "production"],
 });
 
 export type FeatureFlagName = keyof typeof FEATURE_FLAGS;

@@ -4,6 +4,26 @@
     gap: 18px;
 }
 
+.inventoryDescription {
+    font-family: var(--font-edit, var(--font-display));
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--color-ambiance-texte-secondaire);
+    width: 100%;
+}
+
+.inventoryDescription p {
+    margin: 0;
+}
+
+.inventoryDescription p + p {
+    margin-top: 0.75em;
+}
+
+.inventoryDescription strong {
+    color: var(--inventory-accent);
+}
+
 .territories {
     display: flex;
     flex-direction: column;
@@ -61,6 +81,7 @@
     gap: 10px;
     margin-bottom: 12px;
 }
+
 .fEpoque {
     font-family: var(--font-mono);
     font-size: 10px;

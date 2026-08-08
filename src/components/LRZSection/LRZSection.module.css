@@ -55,12 +55,13 @@
 }
 
 .description {
-    max-width: 64ch;
+    /* max-width: 64ch; */
     margin-top: 0.85rem;
     color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-body);
     font-size: clamp(0.95rem, 1.8vw, 1.08rem);
     line-height: 1.7;
+    padding: 0 0.6rem 0;
 }
 
 .description > :first-child {
@@ -180,8 +181,16 @@
     color: var(--color-ambiance-fond);
     background:
         linear-gradient(
-            color-mix(in srgb, var(--section-color) 78%, var(--color-ambiance-texte-primaire)),
-            color-mix(in srgb, var(--section-color) 78%, var(--color-ambiance-texte-primaire))
+            color-mix(
+                in srgb,
+                var(--section-color) 78%,
+                var(--color-ambiance-texte-primaire)
+            ),
+            color-mix(
+                in srgb,
+                var(--section-color) 78%,
+                var(--color-ambiance-texte-primaire)
+            )
         ),
         var(--color-ambiance-texte-primaire);
 }

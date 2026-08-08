@@ -1,6 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+    type CSSProperties,
+} from "react";
+import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/navigation";
 import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 
@@ -37,6 +45,7 @@ import {
     dispatchChateauxMapSync,
     type ChateauxMapSyncDetail,
 } from "./chateaux-map-sync";
+import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 
 const EPOQUES = [
     { id: "all", label: "Tout" },
@@ -44,14 +53,6 @@ const EPOQUES = [
     { id: "Renaissance", label: "Renaissance" },
     { id: "Classique", label: "Classique" },
     { id: "Éclectique", label: "Éclectique" },
-] as const;
-
-const RENOMMEES = [
-    { id: "all", label: "Tout" },
-    { id: "phare", label: "Phare" },
-    { id: "majeur", label: "Majeur" },
-    { id: "notable", label: "Notable" },
-    { id: "confidentiel", label: "Confidentiel" },
 ] as const;
 
 const FEATURED_COLLECTION_SLUG = "incontournables-du-val";
@@ -408,14 +409,10 @@ export default function ChateauxIndex({
                               label: "Renommée",
                               active: renommee,
                               onSelect: setRenommee,
-                              options: RENOMMEES.map((item) => ({
-                                  id: item.id,
-                                  label: item.label,
-                                  count:
-                                      item.id === "all"
-                                          ? undefined
-                                          : countFor("renommee", item.id),
-                              })),
+                              preset: {
+                                  collection: "chateau" as const,
+                                  meta: "renommee" as const,
+                              },
                           },
                       ]
                     : []),
@@ -523,11 +520,6 @@ export default function ChateauxIndex({
                         scrollMode="content"
                         color="ocre"
                     >
-                        {/* <LRZDialogHeader
-                            eyebrow="Châteaux de la Loire"
-                            title={openChateau.nom}
-                            description={openChateau.sousTitre}
-                        /> */}
                         <LRZDialogBody padding="none">
                             <ChateauxCard
                                 d={openChateau}
@@ -551,9 +543,7 @@ export default function ChateauxIndex({
                 descriptionFooter={entry.presentationFooter}
                 current="/chateaux"
                 indexes={indexes}
-            >
-                {entry.presentation_md}
-            </IndexPresentation>
+            />
 
             {featureIsEnabled("collections") && (
                 <LRZSection
@@ -646,14 +636,43 @@ export default function ChateauxIndex({
             <LRZSection
                 eyebrow="Le grand inventaire"
                 title="Tous les châteaux du fil royal"
+                description={
+                    <div
+                        className={styles.inventoryDescription}
+                        style={
+                            {
+                                "--inventory-accent": entry.accent,
+                            } as CSSProperties
+                        }
+                    >
+                        <ReactMarkdown>{entry.presentation_md}</ReactMarkdown>
+                    </div>
+                }
                 // description="Parcours l’ensemble des forteresses, palais et demeures recensés dans le Codex, des monuments les plus célèbres aux silhouettes plus confidentielles."
                 tone="soft"
                 color="ocre"
                 spacing="sm"
+                headerLayout="stack"
                 headerClassName="mb-0!"
             >
                 {!controlsInOwnSection && (
-                    <div className="mt-5">{indexControls}</div>
+                    <>
+                        <LRZSeparateur
+                            scope="content"
+                            preset="diamond"
+                            size="xl"
+                            marginBlock="2rem"
+                            color="ocre"
+                        />
+                        <div className="mt-5">{indexControls}</div>
+                        <LRZSeparateur
+                            scope="content"
+                            preset="diamond"
+                            size="xl"
+                            marginBlock="2rem"
+                            color="ocre"
+                        />
+                    </>
                 )}
 
                 {interactiveMapEnabled ? (

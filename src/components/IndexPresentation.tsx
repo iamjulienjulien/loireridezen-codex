@@ -14,7 +14,7 @@ export default function IndexPresentation({
     description: string;
     descriptionFooter?: string;
     /** Texte développé au format Markdown, sous l'accroche. */
-    children: string;
+    children?: string;
     current: IndexHref;
     indexes: readonly IndexEntry[];
 }) {
@@ -41,7 +41,7 @@ export default function IndexPresentation({
                         <ReactMarkdown>{descriptionFooter}</ReactMarkdown>
                     </div>
                 ) : null}
-                <ReactMarkdown>{children}</ReactMarkdown>
+                {children ? <ReactMarkdown>{children}</ReactMarkdown> : null}
             </div>
         </section>
     );

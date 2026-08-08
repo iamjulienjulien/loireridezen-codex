@@ -28,13 +28,6 @@ import { featureIsEnabled } from "@/registry/feature-flags";
 import { Territoire } from "@/types/territoire";
 import type { PersonnageAvecRelationLieu } from "@/types/personnage";
 
-// const EPOQUE_COLOR: Record<string, LRZColor> = {
-//     Médiéval: "brun",
-//     Renaissance: "ocre",
-//     Classique: "eau",
-//     Éclectique: "brique",
-// };
-
 const CHATEAU_NAME_PREFIXES = [
     "Forteresse royale de",
     "Domaine royal de",
@@ -296,12 +289,38 @@ export default function ChateauCard({
 
             <div className={styles.body}>
                 {featureIsEnabled("chateauxRenommee") && (
-                    <div>
-                        <LRZBadge
-                            preset="renommee-chateau"
-                            value={d.renommee}
-                            detail={false}
-                            variant="shield"
+                    <div className={styles.stampsLine}>
+                        <LRZStamp
+                            collection="chateau"
+                            meta="renommee"
+                            slug={d.renommee}
+                            variant="chip"
+                            tone="outline"
+                            size="xs"
+                            font="mono"
+                            labelSize={11}
+                            paddingX={10}
+                            paddingY={4}
+                            gap="lg"
+                            shadow="none"
+                            symbolScale={0.9}
+                            gradient={false}
+                        />
+                        <LRZStamp
+                            collection="chateau"
+                            meta="visite"
+                            slug={d.visite}
+                            variant="chip"
+                            tone="outline"
+                            size="xs"
+                            font="mono"
+                            labelSize={11}
+                            paddingX={10}
+                            paddingY={4}
+                            gap="lg"
+                            shadow="none"
+                            symbolScale={0.9}
+                            gradient={false}
                         />
                     </div>
                 )}
@@ -519,55 +538,20 @@ export default function ChateauCard({
                 >
                     <div className={styles.visitPanel}>
                         {d.meta.experience.length > 0 ? (
-                            <div className={styles.metaSection}>
-                                <p className={styles.metaSectionLabel}>
-                                    Expériences
-                                </p>
-                                <div
-                                    className={styles.metaStamps}
-                                    aria-label="Expériences"
-                                >
-                                    {d.meta.experience.map((experience) => (
-                                        <LRZStamp
-                                            key={experience}
-                                            collection="common"
-                                            meta="experience"
-                                            slug={experience}
-                                            variant="chip"
-                                            tone="outline"
-                                            size="xs"
-                                            font="mono"
-                                            labelSize={11}
-                                            paddingX={10}
-                                            paddingY={4}
-                                            gap="lg"
-                                            shadow="none"
-                                            symbolScale={0.9}
-                                            gradient={false}
-                                        />
-                                    ))}
-                                </div>
+                            <div className={styles.experienceGrid}>
+                                {d.meta.experience.map((experience) => (
+                                    <LRZSymbol
+                                        key={experience}
+                                        collection="common"
+                                        meta="experience"
+                                        slug={experience}
+                                        frame="solid"
+                                        size={65}
+                                        tooltip
+                                    />
+                                ))}
                             </div>
                         ) : null}
-
-                        <LRZMetaList
-                            color="ocre"
-                            layout="responsive"
-                            tone="plain"
-                            size="sm"
-                            items={[
-                                {
-                                    id: "visite",
-                                    label: "Visite",
-                                    value: (
-                                        <LRZBadge
-                                            preset="visite-chateau"
-                                            value={d.visite}
-                                        />
-                                    ),
-                                },
-                            ]}
-                        />
                     </div>
                 </LRZAccordion>
             </div>
