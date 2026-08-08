@@ -1,0 +1,50 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { getCanonicalUrl, SITE_OG_IMAGE } from "@/lib/site-metadata";
+
+import {
+    PERSONNAGES,
+    PersonnagesRoute,
+    getPersonnageBySlug,
+} from "@/app/personnages/PersonnagesRoute";
+
+type PersonnagePageProps = { params: Promise<{ slug: string }> };
+
+export function generateStaticParams() {
+    return PERSONNAGES.map(({ id }) => ({ slug: id }));
+}
+
+export async function generateMetadata({ params }: PersonnagePageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const personnage = getPersonnageBySlug(slug);
+
+    if (!personnage) return {};
+
+    const title = `${personnage.nom} — Personnages de la Loire`;
+    const description = `${personnage.nom}, ${personnage.roles.join(" et ") || "figure liée aux récits ligériens"}. Découvrez ses liens avec les châteaux dans le Codex ligérien.`;
+    const canonical = getCanonicalUrl(`/personnage/${personnage.id}`);
+
+    return {
+        title,
+        description,
+        alternates: { canonical },
+        robots: { index: true, follow: true },
+        openGraph: {
+            type: "article",
+            locale: "fr_FR",
+            siteName: "Loire Ride Zen",
+            title,
+            description,
+            url: canonical,
+            images: [{ url: SITE_OG_IMAGE, width: 1200, height: 630, alt: title }],
+        },
+        twitter: { card: "summary_large_image", title, description, images: [SITE_OG_IMAGE] },
+    };
+}
+
+export default async function PersonnagePage({ params }: PersonnagePageProps) {
+    const { slug } = await params;
+    if (!getPersonnageBySlug(slug)) notFound();
+    return <PersonnagesRoute initialOpenSlug={slug} />;
+}

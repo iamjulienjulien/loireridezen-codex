@@ -1,5 +1,6 @@
 import { Castle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 
 import LRZAccordion from "@/components/LRZAccordion/LRZAccordion";
@@ -94,7 +95,14 @@ export default function PersonnageCard({
             <div className={styles.content}>
                 <div className={styles.biography}>
                     <div className={styles.identity}>
-                        <h3 className={styles.name}>{personnage.nom}</h3>
+                        <h3 className={styles.name}>
+                            <Link
+                                href={`/personnage/${personnage.id}`}
+                                className={styles.nameLink}
+                            >
+                                {personnage.nom}
+                            </Link>
+                        </h3>
 
                         {alias ? (
                             <p className={styles.alias}>

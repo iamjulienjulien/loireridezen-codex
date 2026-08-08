@@ -1,4 +1,13 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import IndexPresentation from "@/components/IndexPresentation";
+import {
+    LRZDialog,
+    LRZDialogBody,
+    LRZDialogContent,
+} from "@/components/LRZDialog";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";
 
@@ -14,17 +23,45 @@ type PersonnagesIndexProps = {
     entries: readonly PersonnageIndexEntry[];
     indexes: readonly IndexEntry[];
     relationCount: number;
+    initialOpenSlug?: string;
 };
 
 export default function PersonnagesIndex({
     entries,
     indexes,
     relationCount,
+    initialOpenSlug,
 }: PersonnagesIndexProps) {
     const entry = getIndex("/personnages")!;
+    const [openSlug, setOpenSlug] = useState(initialOpenSlug);
+    const router = useRouter();
+    const openEntry = openSlug
+        ? entries.find(({ personnage }) => personnage.id === openSlug)
+        : undefined;
 
     return (
         <>
+            <LRZDialog
+                open={Boolean(openEntry)}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        setOpenSlug(undefined);
+                        router.replace("/personnages");
+                    }
+                }}
+            >
+                {openEntry ? (
+                    <LRZDialogContent size="sm" variant="immersive">
+                        <LRZDialogBody padding="none">
+                            <PersonnageCard
+                                personnage={openEntry.personnage}
+                                relations={openEntry.relations}
+                            />
+                        </LRZDialogBody>
+                    </LRZDialogContent>
+                ) : null}
+            </LRZDialog>
+
             <IndexPresentation
                 description={entry.description}
                 descriptionFooter={entry.presentationFooter}
