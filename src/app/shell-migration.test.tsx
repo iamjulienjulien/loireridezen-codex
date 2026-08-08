@@ -23,21 +23,21 @@ import DocumentationTopbar from "./docs/DocumentationTopbar";
 import ApiDocumentationPage from "./docs/api/page";
 import DocumentationHomePage from "./docs/page";
 import SdkDocumentationPage from "./docs/sdk/page";
-import FaunePage from "./faune/page";
-import FlorePage from "./flore/page";
+import { FauneRoute } from "./faune/FauneRoute";
+import { FloreRoute } from "./flore/FloreRoute";
 import GuinguettesPage from "./guinguettes/page";
 import HomeContent from "./HomeContent";
 import HomePage from "./page";
 import PatrimoinePage from "./patrimoine/page";
 import PersonnagesIndex from "./personnages/PersonnagesIndex";
-import PersonnagesPage from "./personnages/page";
+import { PersonnagesRoute } from "./personnages/PersonnagesRoute";
 import VignoblesPage from "./vignobles/page";
 import VocabulairePage from "./vocabulaire/page";
 import VillesVillagesPage from "./villes-villages/page";
 
 const REMAINING_INDEX_ROUTES = [
-    { href: "/faune", render: FaunePage },
-    { href: "/flore", render: FlorePage },
+    { href: "/faune", render: FauneRoute },
+    { href: "/flore", render: FloreRoute },
     { href: "/guinguettes", render: GuinguettesPage },
     { href: "/patrimoine", render: PatrimoinePage },
     { href: "/vignobles", render: VignoblesPage },
@@ -134,7 +134,7 @@ describe("pilot shell migration", () => {
     });
 
     it("composes Personnages through IndexShell behind its feature flag", () => {
-        const route = PersonnagesPage() as ReactElement<IndexShellProps>;
+        const route = PersonnagesRoute() as ReactElement<IndexShellProps>;
         const catalogue = route.props.children as ReactElement;
 
         expect(route.type).toBe(IndexShell);

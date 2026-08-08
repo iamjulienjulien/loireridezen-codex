@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 
 import chateauData from "@data/catalogue-chateaux.json";
+import fauneData from "@data/faune.json";
+import floreData from "@data/flore.json";
+import personnagesData from "@data/catalogue-personnages.json";
 
 import robots from "./robots";
 import sitemap from "./sitemap";
@@ -20,6 +23,21 @@ describe("SEO discovery routes", () => {
         for (const chateau of chateauData.chateaux) {
             expect(urls).toContain(
                 `https://codex.loireridezen.bike/chateau/${chateau.slug}`,
+            );
+        }
+        for (const espece of fauneData.especes) {
+            expect(urls).toContain(
+                `https://codex.loireridezen.bike/faune/${espece.slug}`,
+            );
+        }
+        for (const flore of floreData.flore) {
+            expect(urls).toContain(
+                `https://codex.loireridezen.bike/flore/${flore.slug}`,
+            );
+        }
+        for (const personnage of personnagesData.personnages) {
+            expect(urls).toContain(
+                `https://codex.loireridezen.bike/personnage/${personnage.id}`,
             );
         }
         expect(urls).toContain("https://codex.loireridezen.bike/faune");

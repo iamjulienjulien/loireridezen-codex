@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 
 import chateauData from "@data/catalogue-chateaux.json";
+import fauneData from "@data/faune.json";
+import floreData from "@data/flore.json";
+import personnagesData from "@data/catalogue-personnages.json";
 import { getCanonicalUrl } from "@/lib/site-metadata";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import { getCollectionsForEnv } from "@/registry/collections";
@@ -24,6 +27,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
               )
             : []),
         ...chateauData.chateaux.map((chateau) => `/chateau/${chateau.slug}`),
+        ...fauneData.especes.map((espece) => `/faune/${espece.slug}`),
+        ...floreData.flore.map((flore) => `/flore/${flore.slug}`),
+        ...(featureIsEnabled("personnages", "production")
+            ? personnagesData.personnages.map(
+                  (personnage) => `/personnage/${personnage.id}`,
+              )
+            : []),
     ];
 
     return paths.map((path) => ({
