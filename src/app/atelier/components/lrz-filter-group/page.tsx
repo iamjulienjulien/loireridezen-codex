@@ -48,6 +48,19 @@ export default function LRZFilterGroupPage() {
                             <tbody>
                                 <tr>
                                     <th scope="row">
+                                        <code>preset</code>
+                                    </th>
+                                    <td>
+                                        <code>LRZFilterGroupPreset</code>
+                                    </td>
+                                    <td>
+                                        Métadonnée utilisée pour résoudre les
+                                        labels, couleurs et LRZSymbol des
+                                        options.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
                                         <code>label</code>
                                     </th>
                                     <td>

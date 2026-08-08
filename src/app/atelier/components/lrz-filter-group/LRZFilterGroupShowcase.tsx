@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 
-import { LRZFilterGroup } from "@/components/LRZFilterGroup";
+import {
+    LRZFilterGroup,
+    type LRZFilterGroupPreset,
+} from "@/components/LRZFilterGroup";
 
 import styles from "../filter-playground.module.css";
 
@@ -15,6 +18,45 @@ const OPTIONS = [
 
 export default function LRZFilterGroupShowcase() {
     const [active, setActive] = useState("all");
+    const [presetGroup, setPresetGroup] = useState(0);
+
+    const presetGroups: readonly {
+        label: string;
+        preset: LRZFilterGroupPreset;
+        options: readonly { id: string; count: number }[];
+    }[] = [
+        {
+            label: "Type de faune",
+            preset: { collection: "faune", meta: "type" },
+            options: [
+                { id: "oiseau", count: 18 },
+                { id: "mammifère", count: 12 },
+                { id: "poisson", count: 7 },
+            ],
+        },
+        {
+            label: "Catégorie de flore",
+            preset: { collection: "flore", meta: "categorie" },
+            options: [
+                { id: "arbre", count: 16 },
+                { id: "aquatique", count: 8 },
+                { id: "fougère", count: 4 },
+            ],
+        },
+        {
+            label: "Renommée des châteaux",
+            preset: { collection: "chateau", meta: "renommee" },
+            options: [
+                { id: "phare", count: 8 },
+                { id: "majeur", count: 15 },
+                { id: "notable", count: 24 },
+            ],
+        },
+    ];
+    const selectedPresetGroup = presetGroups[presetGroup];
+    const [presetActive, setPresetActive] = useState(
+        selectedPresetGroup.options[0].id,
+    );
 
     return (
         <>
@@ -121,6 +163,61 @@ export default function LRZFilterGroupShowcase() {
     activeId={activeId}
     onSelect={setActiveId}
     variant="card"
+/>`}</code>
+                </div>
+            </section>
+
+            <section
+                className={styles.section}
+                aria-labelledby="group-presets"
+            >
+                <div className={styles.sectionHeader}>
+                    <p className={styles.kicker}>Presets de métadonnées</p>
+                    <h2 id="group-presets">
+                        Valeurs, couleurs et LRZSymbol depuis les registres
+                    </h2>
+                    <p>
+                        Un preset décrit la métadonnée ; chaque identifiant
+                        d’option résout automatiquement son libellé, sa couleur
+                        et son LRZSymbol.
+                    </p>
+                </div>
+                <div className={styles.preview}>
+                    <div className={styles.controls}>
+                        <label>
+                            Registre
+                            <select
+                                value={presetGroup}
+                                onChange={(event) => {
+                                    const next = Number(event.target.value);
+                                    setPresetGroup(next);
+                                    setPresetActive(
+                                        presetGroups[next].options[0].id,
+                                    );
+                                }}
+                            >
+                                {presetGroups.map((group, index) => (
+                                    <option key={group.label} value={index}>
+                                        {group.label}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
+                    <LRZFilterGroup
+                        label={selectedPresetGroup.label}
+                        preset={selectedPresetGroup.preset}
+                        options={selectedPresetGroup.options}
+                        activeId={presetActive}
+                        onSelect={setPresetActive}
+                        variant="card"
+                    />
+                    <code className={styles.code}>{`<LRZFilterGroup
+    label="${selectedPresetGroup.label}"
+    preset={{ collection: "${selectedPresetGroup.preset.collection}", meta: "${selectedPresetGroup.preset.meta}" }}
+    options={[{ id: "${selectedPresetGroup.options[0].id}" }]}
+    activeId={activeId}
+    onSelect={setActiveId}
 />`}</code>
                 </div>
             </section>

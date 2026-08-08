@@ -7,17 +7,55 @@ import {
     type LRZChipProps,
     type LRZChipSize,
 } from "@/components/LRZChip";
+import { LRZSymbol } from "@/components/LRZSymbol";
+import {
+    getLRZSymbolDefinition,
+    type LRZSymbolLocator,
+} from "@/registry/symbols";
 
 export type LRZFilterChipSize = LRZChipSize;
 
+export type LRZFilterPreset = LRZSymbolLocator;
+
 export type LRZFilterChipProps = Omit<LRZChipProps, "children"> & {
-    children: ReactNode;
+    children?: ReactNode;
+    /** Métadonnée du registre utilisée pour résoudre label, couleur et symbole. */
+    preset?: LRZFilterPreset;
 };
 
 /** Chip de filtre : une option sélectionnable au sein d’un filtre ou d’un groupe. */
 export default function LRZFilterChip({
     children,
+    preset,
+    accent,
     ...props
 }: LRZFilterChipProps) {
-    return <LRZChip {...props}>{children}</LRZChip>;
+    const definition = preset
+        ? getLRZSymbolDefinition(
+              preset.collection,
+              preset.meta,
+              preset.slug,
+          )
+        : undefined;
+    const label = children ?? definition?.label ?? preset?.slug;
+
+    return (
+        <LRZChip
+            {...props}
+            accent={preset ? definition?.accent : accent}
+            leading={
+                preset ? (
+                    <LRZSymbol
+                        {...preset}
+                        size="xs"
+                        decorative
+                        frame="none"
+                        padding="none"
+                    />
+                ) : undefined
+            }
+        >
+            {label}
+        </LRZChip>
+    );
 }

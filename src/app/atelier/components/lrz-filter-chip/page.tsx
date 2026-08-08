@@ -142,6 +142,18 @@ export default function LRZFilterChipPage() {
                                 </tr>
                                 <tr>
                                     <th scope="row">
+                                        <code>preset</code>
+                                    </th>
+                                    <td>
+                                        <code>LRZFilterPreset</code>
+                                    </td>
+                                    <td>
+                                        Résout automatiquement le libellé, la
+                                        couleur et le LRZSymbol de la valeur.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
                                         <code>variant</code>
                                     </th>
                                     <td>

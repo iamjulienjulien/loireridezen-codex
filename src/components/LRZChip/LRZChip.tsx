@@ -12,6 +12,7 @@ export type LRZChipProps = Omit<
     "children" | "aria-pressed"
 > & {
     children: ReactNode;
+    leading?: ReactNode;
     active?: boolean;
     count?: number;
     accent?: string;
@@ -31,6 +32,7 @@ function joinClassNames(
 
 export default function LRZChip({
     children,
+    leading,
     active = false,
     count,
     accent,
@@ -63,6 +65,7 @@ export default function LRZChip({
             aria-label={buttonProps["aria-label"] ?? accessibleLabel}
             disabled={disabled}
         >
+            {leading}
             <span className={styles.label}>{children}</span>
             {count !== undefined && (
                 <span className={styles.count} aria-hidden="true">

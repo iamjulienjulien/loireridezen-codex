@@ -11,6 +11,7 @@ import {
 import {
     LRZFilterGroup,
     type LRZFilterGroupOption,
+    type LRZFilterGroupPreset,
 } from "@/components/LRZFilterGroup";
 import type { LRZColor } from "@/types/lrz";
 
@@ -21,7 +22,9 @@ export type PageControlsFilterOption = LRZFilterGroupOption;
 export interface PageControlsFilterGroup {
     label: string;
     active: string;
-    options: PageControlsFilterOption[];
+    options?: PageControlsFilterOption[];
+    /** Preset de métadonnée transmis au groupe de filtres. */
+    preset?: LRZFilterGroupPreset;
     onSelect: (id: string) => void;
 }
 
@@ -218,6 +221,7 @@ export default function PageControls({
                                 label={group.label}
                                 activeId={group.active}
                                 options={group.options}
+                                preset={group.preset}
                                 onSelect={group.onSelect}
                                 accent={accent}
                             />
