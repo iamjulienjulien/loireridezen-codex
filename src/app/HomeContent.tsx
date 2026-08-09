@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { LRZSymbol } from "@/components/LRZSymbol";
 import { INDEX_UNIVERSES, type IndexEntry } from "@/registry/indexes";
 import { featureIsEnabled } from "@/registry/feature-flags";
@@ -42,7 +43,12 @@ export default function HomeContent({
                                     key={entry.href}
                                     href={entry.href}
                                     data-index-format={entry.format}
-                                    className="group flex items-center gap-4 rounded-[10px] border border-[var(--border-subtle)] bg-[var(--color-ambiance-surface)] p-5 text-left shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[#c8893a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c8893a]"
+                                    style={
+                                        {
+                                            "--index-accent": entry.accent,
+                                        } as CSSProperties
+                                    }
+                                    className="group flex items-center gap-4 rounded-[10px] border border-[var(--border-subtle)] bg-[var(--color-ambiance-surface)] p-5 text-left shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[var(--index-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--index-accent)]"
                                 >
                                     {indexesCustomEmojiEnabled &&
                                     isLRZCodexIndexSymbolSlug(entry.slug) ? (
