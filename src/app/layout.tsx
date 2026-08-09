@@ -64,24 +64,28 @@ const allura = Allura({
     weight: "400",
     variable: "--font-signature",
     display: "swap",
+    preload: false,
 });
 const bodoni = Bodoni_Moda({
     subsets: ["latin"],
     weight: "variable",
     variable: "--font-bodoni",
     display: "swap",
+    preload: false,
 });
 const spaceGrotesk = Space_Grotesk({
     subsets: ["latin"],
     weight: "variable",
     variable: "--font-grotesk",
     display: "swap",
+    preload: false,
 });
 const kalam = Kalam({
     subsets: ["latin"],
     weight: ["300", "400", "700"],
     variable: "--font-note",
     display: "swap",
+    preload: false,
 });
 
 export const metadata: Metadata = {
