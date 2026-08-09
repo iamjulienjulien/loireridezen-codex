@@ -224,6 +224,7 @@ export default function PageControls({
                                 preset={group.preset}
                                 onSelect={group.onSelect}
                                 accent={accent}
+                                size="sm"
                             />
                         ))}
                     </div>
