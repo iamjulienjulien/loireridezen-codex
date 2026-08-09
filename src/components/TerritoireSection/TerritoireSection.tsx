@@ -5,8 +5,10 @@ import { MapPin, Waves } from "lucide-react";
 
 import type { Territoire } from "@/types/territoire";
 import type { PersonnagesParLieu } from "@/types/personnage";
+import type { Guinguette } from "@/types/guinguette";
 
 import ChateauxCard from "@/app/chateaux/ChateauxCard";
+import GuinguetteCard from "@/app/guinguettes/GuinguetteCardV4";
 import { LRZSymbol } from "@/components/LRZSymbol";
 import { LRZTypography } from "@/components/LRZTypography";
 import { isCommonTerritoire } from "@/registry/Meta/common-territoire";
@@ -23,8 +25,9 @@ type TerritoireSectionStyle = CSSProperties & {
 
 type TerritoireSectionProps = {
     territory: Territoire;
-    chateaux: readonly ChateauV2[];
-    personnagesByChateau: PersonnagesParLieu;
+    chateaux?: readonly ChateauV2[];
+    guinguettes?: readonly Guinguette[];
+    personnagesByChateau?: PersonnagesParLieu;
     /** Ajoute un repère DOM pour la synchronisation expérimentale de carte. */
     mapSync?: boolean;
     onShowOnMap?: (slug: string) => void;
@@ -33,11 +36,14 @@ type TerritoireSectionProps = {
 export default function TerritoireSection({
     territory,
     chateaux,
+    guinguettes,
     personnagesByChateau,
     mapSync = false,
     onShowOnMap,
 }: TerritoireSectionProps) {
     const { identite, limites } = territory;
+    const entries = chateaux ?? guinguettes ?? [];
+    const isGuinguettes = guinguettes !== undefined;
 
     const color = getLRZColorValue(identite.color);
     const colorLighter = lighter(color, 0);
@@ -75,8 +81,14 @@ export default function TerritoireSection({
                         <strong>{limites.aval}</strong>
                     </p>
                     <p className={styles.count}>
-                        <strong>{chateaux.length}</strong>{" "}
-                        {chateaux.length > 1 ? "châteaux" : "château"}
+                        <strong>{entries.length}</strong>{" "}
+                        {isGuinguettes
+                            ? entries.length > 1
+                                ? "guinguettes"
+                                : "guinguette"
+                            : entries.length > 1
+                              ? "châteaux"
+                              : "château"}
                     </p>
                 </div>
                 <div style={{ marginTop: "1rem", marginBottom: ".7rem" }}>
@@ -154,26 +166,39 @@ export default function TerritoireSection({
             </header>
 
             <div className={styles.grid}>
-                {chateaux.map((chateau) => (
-                    <div
-                        id={`chateau-${chateau.slug}`}
-                        data-chateau-map-slug={
-                            mapSync ? chateau.slug : undefined
-                        }
-                        data-map-sync-card={mapSync ? "" : undefined}
-                        key={chateau.slug}
-                    >
-                        <ChateauxCard
-                            d={chateau}
-                            t={territory}
-                            open={false}
-                            personnages={
-                                personnagesByChateau[chateau.slug] ?? []
-                            }
-                            onShowOnMap={onShowOnMap}
-                        />
-                    </div>
-                ))}
+                {isGuinguettes
+                    ? guinguettes?.map((guinguette) => (
+                          <div
+                              id={`guinguette-${guinguette.slug}`}
+                              data-guinguette-map-slug={
+                                  mapSync ? guinguette.slug : undefined
+                              }
+                              data-map-sync-card={mapSync ? "" : undefined}
+                              key={guinguette.slug}
+                          >
+                              <GuinguetteCard guinguette={guinguette} />
+                          </div>
+                      ))
+                    : chateaux?.map((chateau) => (
+                          <div
+                              id={`chateau-${chateau.slug}`}
+                              data-chateau-map-slug={
+                                  mapSync ? chateau.slug : undefined
+                              }
+                              data-map-sync-card={mapSync ? "" : undefined}
+                              key={chateau.slug}
+                          >
+                              <ChateauxCard
+                                  d={chateau}
+                                  t={territory}
+                                  open={false}
+                                  personnages={
+                                      personnagesByChateau?.[chateau.slug] ?? []
+                                  }
+                                  onShowOnMap={onShowOnMap}
+                              />
+                          </div>
+                      ))}
             </div>
         </section>
     );

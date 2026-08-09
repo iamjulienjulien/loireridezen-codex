@@ -8,12 +8,20 @@ import {
     type CSSProperties,
 } from "react";
 import ReactMarkdown from "react-markdown";
-import { Map as MapIcon } from "lucide-react";
+import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
+import { useRouter } from "next/navigation";
 import IndexPresentation from "@/components/IndexPresentation";
+import {
+    LRZDialog,
+    LRZDialogBody,
+    LRZDialogContent,
+} from "@/components/LRZDialog";
 import { PageControls } from "@/components/PageControls";
 import { LRZSection } from "@/components/LRZSection";
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
+import { TerritoireSection } from "@/components/TerritoireSection";
 import { featureIsEnabled } from "@/registry/feature-flags";
+import { getTerritoiresWithGuinguettes } from "@/registry/guinguettes-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Guinguette } from "@/types/guinguette";
 import GuinguetteCard from "./GuinguetteCardV4";
@@ -35,14 +43,19 @@ const normalize = (value: string) =>
 export default function GuinguettesIndex({
     guinguettes,
     indexes,
+    initialOpenSlug,
 }: {
     guinguettes: Guinguette[];
     indexes: readonly IndexEntry[];
+    initialOpenSlug?: string;
 }) {
     const entry = getIndex("/guinguettes")!;
     const [territoire, setTerritoire] = useState("all");
     const [query, setQuery] = useState("");
+    const [groupByTerritory, setGroupByTerritory] = useState(false);
     const [isMapOpen, setIsMapOpen] = useState(false);
+    const [openSlug, setOpenSlug] = useState(initialOpenSlug);
+    const router = useRouter();
     const catalogueRef = useRef<HTMLDivElement>(null);
     const interactiveMapEnabled = featureIsEnabled("guinguettesInteractiveMap");
 
@@ -78,6 +91,14 @@ export default function GuinguettesIndex({
             return true;
         });
     }, [guinguettes, territoire, query]);
+
+    const territorySections = useMemo(
+        () => getTerritoiresWithGuinguettes(list),
+        [list],
+    );
+    const openGuinguette = openSlug
+        ? guinguettes.find((guinguette) => guinguette.slug === openSlug)
+        : undefined;
 
     useEffect(() => {
         if (!interactiveMapEnabled) return;
@@ -220,6 +241,24 @@ export default function GuinguettesIndex({
                       }
                     : undefined
             }
+            viewGroup={{
+                value: groupByTerritory ? "territoires" : "catalogue",
+                onValueChange: (value) =>
+                    setGroupByTerritory(value === "territoires"),
+                ariaLabel: "Organisation du catalogue de guinguettes",
+                options: [
+                    {
+                        value: "catalogue",
+                        label: "Catalogue",
+                        icon: <LayoutGrid aria-hidden="true" />,
+                    },
+                    {
+                        value: "territoires",
+                        label: "Territoires",
+                        icon: <MapPinned aria-hidden="true" />,
+                    },
+                ],
+            }}
             groups={[
                 {
                     label: "Territoire",
@@ -236,6 +275,32 @@ export default function GuinguettesIndex({
 
     return (
         <>
+            <LRZDialog
+                open={Boolean(openGuinguette)}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        setOpenSlug(undefined);
+                        router.replace("/guinguettes");
+                    }
+                }}
+            >
+                {openGuinguette ? (
+                    <LRZDialogContent
+                        size="sm"
+                        variant="immersive"
+                        scrollMode="content"
+                        color="brique"
+                    >
+                        <LRZDialogBody padding="none">
+                            <GuinguetteCard
+                                guinguette={openGuinguette}
+                                expandAll
+                            />
+                        </LRZDialogBody>
+                    </LRZDialogContent>
+                ) : null}
+            </LRZDialog>
+
             <IndexPresentation
                 description={entry.description}
                 descriptionFooter={entry.presentationFooter}
@@ -306,6 +371,19 @@ export default function GuinguettesIndex({
                             Pas de lampions sur cette portion du fil. Élargis la
                             recherche ou change de filtre.
                         </p>
+                    ) : groupByTerritory ? (
+                        <div className={styles.territories}>
+                            {territorySections.map(
+                                ({ territory, guinguettes }) => (
+                                    <TerritoireSection
+                                        key={territory.slug}
+                                        territory={territory}
+                                        guinguettes={guinguettes}
+                                        mapSync={interactiveMapEnabled}
+                                    />
+                                ),
+                            )}
+                        </div>
                     ) : (
                         <div className={styles.grid}>
                             {list.map((guinguette) => (

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import {
     BadgeCheck,
     Bike,
@@ -201,7 +202,9 @@ export default function GuinguetteCardV4({
                             lines={2}
                             fixedHeight
                         >
-                            {guinguette.nom}
+                            <Link href={`/guinguette/${guinguette.slug}`}>
+                                {guinguette.nom}
+                            </Link>
                         </LRZTextClamp>
                         {/* <p className={styles.locality}>{locality}</p>
                         <p className={styles.classification}>

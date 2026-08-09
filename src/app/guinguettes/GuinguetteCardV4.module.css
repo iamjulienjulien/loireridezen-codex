@@ -119,6 +119,11 @@
     line-height: 1.15;
 }
 
+.name a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .locality {
     margin: 3px 0 0;
     color: var(--color-ambiance-texte-secondaire);
