@@ -1,8 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+    type CSSProperties,
+} from "react";
+import ReactMarkdown from "react-markdown";
 import IndexControls from "@/components/IndexControls";
 import IndexPresentation from "@/components/IndexPresentation";
+import { LRZSection } from "@/components/LRZSection";
+import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import { TERRITOIRES } from "@/registry/territoires";
@@ -220,116 +229,148 @@ export default function GuinguettesIndex({
         });
     };
 
+    const indexControls = (
+        <IndexControls
+            query={query}
+            onQuery={setQuery}
+            placeholder="Chercher une guinguette, une commune, un cours d’eau…"
+            resultCount={list.length}
+            totalCount={guinguettes.length}
+            unit="guinguettes"
+            accent={entry.accent}
+            expand={{ all: expandAll, onToggle: toggleAll }}
+            switcher={
+                interactiveMapEnabled
+                    ? {
+                          label: "Carte",
+                          checked: isMapOpen,
+                          offLabel: "Masquée",
+                          onLabel: "Affichée",
+                          onToggle: () => setIsMapOpen((open) => !open),
+                      }
+                    : undefined
+            }
+            groups={[
+                {
+                    label: "Territoire",
+                    active: territoire,
+                    onSelect: setTerritoire,
+                    options: territoireOptions.map((option) => ({
+                        ...option,
+                        count:
+                            option.id === "all"
+                                ? undefined
+                                : countFor("territoire", option.id),
+                    })),
+                },
+                {
+                    label: "Statut",
+                    active: statut,
+                    onSelect: setStatut,
+                    options: STATUTS.map((option) => ({
+                        ...option,
+                        count:
+                            option.id === "all"
+                                ? undefined
+                                : countFor("statut", option.id),
+                    })),
+                },
+            ]}
+        />
+    );
+
     return (
         <>
             <IndexPresentation
                 description={entry.description}
+                descriptionFooter={entry.presentationFooter}
                 current="/guinguettes"
                 indexes={indexes}
-            >
-                {entry.presentation_md}
-            </IndexPresentation>
-
-            <IndexControls
-                query={query}
-                onQuery={setQuery}
-                placeholder="Chercher une guinguette, une commune, un cours d’eau…"
-                resultCount={list.length}
-                totalCount={guinguettes.length}
-                unit="guinguettes"
-                accent={entry.accent}
-                expand={{ all: expandAll, onToggle: toggleAll }}
-                switcher={
-                    interactiveMapEnabled
-                        ? {
-                              label: "Carte",
-                              checked: isMapOpen,
-                              offLabel: "Masquée",
-                              onLabel: "Affichée",
-                              onToggle: () => setIsMapOpen((open) => !open),
-                          }
-                        : undefined
-                }
-                groups={[
-                    {
-                        label: "Territoire",
-                        active: territoire,
-                        onSelect: setTerritoire,
-                        options: territoireOptions.map((option) => ({
-                            ...option,
-                            count:
-                                option.id === "all"
-                                    ? undefined
-                                    : countFor("territoire", option.id),
-                        })),
-                    },
-                    {
-                        label: "Statut",
-                        active: statut,
-                        onSelect: setStatut,
-                        options: STATUTS.map((option) => ({
-                            ...option,
-                            count:
-                                option.id === "all"
-                                    ? undefined
-                                    : countFor("statut", option.id),
-                        })),
-                    },
-                ]}
             />
 
-            {interactiveMapEnabled ? (
-                <GuinguettesInteractiveMap
-                    guinguettes={list}
-                    open={isMapOpen}
-                    onOpenChange={setIsMapOpen}
-                    stickyMode={GUINGUETTES_MAP_CONFIG.stickyMode}
-                />
-            ) : null}
-
-            <div
-                ref={catalogueRef}
-                onPointerOver={(event) =>
-                    syncCatalogueHover(event.target, true)
-                }
-                onPointerOut={(event) => {
-                    const card = (
-                        event.target as HTMLElement
-                    ).closest<HTMLElement>("[data-map-sync-card]");
-                    if (
-                        card &&
-                        !card.contains(event.relatedTarget as Node | null)
-                    ) {
-                        syncCatalogueHover(event.target, false);
-                    }
-                }}
-                onFocus={(event) => syncCatalogueHover(event.target, true)}
-                onBlur={(event) => syncCatalogueHover(event.target, false)}
-            >
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Pas de lampions sur cette portion du fil. Élargis la
-                        recherche ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((guinguette) => (
-                            <div
-                                id={`guinguette-${guinguette.slug}`}
-                                data-guinguette-map-slug={guinguette.slug}
-                                data-map-sync-card=""
-                                key={guinguette.slug}
-                            >
-                                <GuinguetteCard
-                                    guinguette={guinguette}
-                                    // open={openOverrides[guinguette.slug] ?? expandAll}
-                                    // onToggle={() => toggleOne(guinguette.slug)}
-                                />
-                            </div>
-                        ))}
+            <LRZSection
+                eyebrow="Le grand inventaire"
+                title="Toutes les guinguettes du fil ligérien"
+                description={
+                    <div
+                        className={styles.inventoryDescription}
+                        style={
+                            {
+                                "--inventory-accent": entry.accent,
+                            } as CSSProperties
+                        }
+                    >
+                        <ReactMarkdown>{entry.presentation_md}</ReactMarkdown>
                     </div>
-                )}
-            </div>
+                }
+                tone="soft"
+                color="brique"
+                spacing="sm"
+                headerLayout="stack"
+                headerClassName={`${styles.inventoryHeader} mb-0!`}
+            >
+                <LRZSeparateur
+                    scope="content"
+                    preset="diamond"
+                    size="xl"
+                    marginBlock="2rem"
+                    color="brique"
+                />
+                <div className="mt-5">{indexControls}</div>
+
+                {interactiveMapEnabled ? (
+                    <GuinguettesInteractiveMap
+                        guinguettes={list}
+                        open={isMapOpen}
+                        onOpenChange={setIsMapOpen}
+                        stickyMode={GUINGUETTES_MAP_CONFIG.stickyMode}
+                    />
+                ) : null}
+
+                <div
+                    ref={catalogueRef}
+                    onPointerOver={(event) =>
+                        syncCatalogueHover(event.target, true)
+                    }
+                    onPointerOut={(event) => {
+                        const card = (
+                            event.target as HTMLElement
+                        ).closest<HTMLElement>("[data-map-sync-card]");
+                        if (
+                            card &&
+                            !card.contains(event.relatedTarget as Node | null)
+                        ) {
+                            syncCatalogueHover(event.target, false);
+                        }
+                    }}
+                    onFocus={(event) => syncCatalogueHover(event.target, true)}
+                    onBlur={(event) => syncCatalogueHover(event.target, false)}
+                >
+                    {list.length === 0 ? (
+                        <p className={styles.empty}>
+                            Pas de lampions sur cette portion du fil. Élargis la
+                            recherche ou change de filtre.
+                        </p>
+                    ) : (
+                        <div className={styles.grid}>
+                            {list.map((guinguette) => (
+                                <div
+                                    id={`guinguette-${guinguette.slug}`}
+                                    data-guinguette-map-slug={guinguette.slug}
+                                    data-map-sync-card=""
+                                    key={guinguette.slug}
+                                >
+                                    <GuinguetteCard
+                                        guinguette={guinguette}
+                                        // open={openOverrides[guinguette.slug] ?? expandAll}
+                                        // onToggle={() => toggleOne(guinguette.slug)}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </LRZSection>
         </>
     );
 }
