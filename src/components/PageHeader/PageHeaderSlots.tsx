@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import LRZSymbol from "@/components/LRZSymbol/LRZSymbol";
 import { featureIsEnabled } from "@/registry/feature-flags";
-import type { IndexEntry } from "@/registry/indexes";
+import { INDEX_UNIVERSES, type IndexEntry } from "@/registry/indexes";
 import { isLRZCodexIndexSymbolSlug } from "@/registry/symbols";
 
 import styles from "./PageHeader.module.css";
@@ -74,9 +74,13 @@ export function PageHeaderIndexNavigation({
 }) {
     if (indexes.length <= 1) return null;
 
+    const orderedIndexes = INDEX_UNIVERSES.flatMap(({ slug }) =>
+        indexes.filter((index) => index.universe === slug),
+    );
+
     return (
         <nav className={styles.indexNav} aria-label="Index du Codex">
-            {indexes.map((index) => {
+            {orderedIndexes.map((index) => {
                 const isCurrentPage = index.href === current;
                 const isCurrentSection = index.href === activeSectionHref;
 
