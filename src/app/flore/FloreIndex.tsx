@@ -1,10 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
+import ReactMarkdown from "react-markdown";
 import type { Flore } from "@/types/flore";
 import IndexPresentation from "@/components/IndexPresentation";
-import IndexControls from "@/components/IndexControls";
+import { LRZSection } from "@/components/LRZSection";
+import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
+import { PageControls } from "@/components/PageControls";
 import {
     LRZDialog,
     LRZDialogBody,
@@ -13,25 +16,6 @@ import {
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FloreCard from "./FloreCard";
 import styles from "./flore.module.css";
-
-const CATEGORIES = [
-    { id: "all", label: "Tout" },
-    { id: "arbre", label: "Arbres" },
-    { id: "arbuste", label: "Arbustes" },
-    { id: "herbacée", label: "Herbacées" },
-    { id: "graminée", label: "Graminées" },
-    { id: "aquatique", label: "Aquatiques" },
-    { id: "fougère", label: "Fougères" },
-    { id: "grimpante", label: "Grimpantes" },
-] as const;
-
-const RARETES = [
-    { id: "all", label: "Tout" },
-    { id: "commun", label: "Commun" },
-    { id: "régulier", label: "Régulier" },
-    { id: "rare", label: "Rare" },
-    { id: "trésor", label: "Trésor" },
-] as const;
 
 const norm = (s: string) =>
     s
@@ -60,9 +44,6 @@ export default function FloreIndex({
         : undefined;
 
     const toggleAll = () => setExpandAll((value) => !value);
-
-    const countFor = (field: "categorie" | "rarete", id: string) =>
-        flore.filter((d) => d[field] === id).length;
 
     const list = useMemo(() => {
         const nq = norm(q.trim());
@@ -106,67 +87,114 @@ export default function FloreIndex({
 
             <IndexPresentation
                 description={entry.description}
+                descriptionFooter={entry.presentationFooter}
                 current="/flore"
                 indexes={indexes}
-            >
-                {entry.presentation_md}
-            </IndexPresentation>
-
-            <IndexControls
-                query={q}
-                onQuery={setQ}
-                placeholder="Chercher une plante, un nom scientifique, une famille…"
-                resultCount={list.length}
-                totalCount={flore.length}
-                unit="espèces"
-                accent={entry.accent}
-                groups={[
-                    {
-                        label: "Catégorie",
-                        active: categorie,
-                        onSelect: setCategorie,
-                        options: CATEGORIES.map((it) => ({
-                            id: it.id,
-                            label: it.label,
-                            count:
-                                it.id === "all"
-                                    ? undefined
-                                    : countFor("categorie", it.id),
-                        })),
-                    },
-                    {
-                        label: "Rareté",
-                        active: rarete,
-                        onSelect: setRarete,
-                        options: RARETES.map((it) => ({
-                            id: it.id,
-                            label: it.label,
-                            count:
-                                it.id === "all"
-                                    ? undefined
-                                    : countFor("rarete", it.id),
-                        })),
-                    },
-                ]}
-                expand={{ all: expandAll, onToggle: toggleAll }}
             />
 
-            {list.length === 0 ? (
-                <p className={styles.empty}>
-                    Rien ne pousse à cet endroit du fil. Élargis la recherche ou
-                    change de filtre.
-                </p>
-            ) : (
-                <div className={styles.grid}>
-                    {list.map((d) => (
-                        <FloreCard
-                            key={`${d.slug}-${expandAll}`}
-                            d={d}
-                            expandAll={expandAll}
-                        />
-                    ))}
+            <LRZSection
+                eyebrow="Le grand inventaire"
+                title="Toutes les plantes du fil ligérien"
+                description={
+                    <div
+                        className={styles.inventoryDescription}
+                        style={
+                            {
+                                "--inventory-accent": entry.accent,
+                            } as CSSProperties
+                        }
+                    >
+                        <ReactMarkdown>{entry.presentation_md}</ReactMarkdown>
+                    </div>
+                }
+                tone="soft"
+                color="prairie"
+                spacing="sm"
+                headerClassName={`${styles.inventoryHeader} mb-0!`}
+            >
+                <LRZSeparateur
+                    scope="content"
+                    preset="diamond"
+                    size="xl"
+                    marginBlock="2rem"
+                    color="prairie"
+                />
+
+                <div className="mt-5">
+                    <PageControls
+                        query={q}
+                        onQuery={setQ}
+                        placeholder="Chercher une plante, un nom scientifique, une famille…"
+                        resultCount={list.length}
+                        totalCount={flore.length}
+                        unit="espèces"
+                        accent={entry.accent}
+                        buttonColor={entry.color}
+                        mode="filters-toggle"
+                        reset={{
+                            active:
+                                categorie !== "all" ||
+                                rarete !== "all" ||
+                                q !== "",
+                            onReset: () => {
+                                setCategorie("all");
+                                setRarete("all");
+                                setQ("");
+                            },
+                        }}
+                        action={{
+                            label: "Tout déplier",
+                            activeLabel: "Tout replier",
+                            active: expandAll,
+                            onClick: toggleAll,
+                        }}
+                        groups={[
+                            {
+                                label: "Catégorie",
+                                active: categorie,
+                                onSelect: setCategorie,
+                                preset: {
+                                    collection: "flore",
+                                    meta: "categorie",
+                                },
+                                getCount: (id) =>
+                                    flore.filter(
+                                        (entry) => entry.categorie === id,
+                                    ).length,
+                            },
+                            {
+                                label: "Rareté",
+                                active: rarete,
+                                onSelect: setRarete,
+                                preset: {
+                                    collection: "flore",
+                                    meta: "rarete",
+                                },
+                                getCount: (id) =>
+                                    flore.filter((entry) => entry.rarete === id)
+                                        .length,
+                            },
+                        ]}
+                    />
                 </div>
-            )}
+
+                {list.length === 0 ? (
+                    <p className={styles.empty}>
+                        Rien ne pousse à cet endroit du fil. Élargis la
+                        recherche ou change de filtre.
+                    </p>
+                ) : (
+                    <div className={styles.grid}>
+                        {list.map((d) => (
+                            <FloreCard
+                                key={`${d.slug}-${expandAll}`}
+                                d={d}
+                                expandAll={expandAll}
+                            />
+                        ))}
+                    </div>
+                )}
+            </LRZSection>
         </>
     );
 }
