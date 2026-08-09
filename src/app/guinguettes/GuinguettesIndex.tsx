@@ -39,7 +39,6 @@ export default function GuinguettesIndex({
 }) {
     const entry = getIndex("/guinguettes")!;
     const [territoire, setTerritoire] = useState("all");
-    const [coursDEau, setCoursDEau] = useState("all");
     const [statut, setStatut] = useState("all");
     const [query, setQuery] = useState("");
     const [expandAll, setExpandAll] = useState(false);
@@ -62,10 +61,8 @@ export default function GuinguettesIndex({
         }));
     };
 
-    const countFor = (
-        field: "territoire" | "coursDEau" | "statut",
-        value: string,
-    ) => guinguettes.filter((item) => item[field] === value).length;
+    const countFor = (field: "territoire" | "statut", value: string) =>
+        guinguettes.filter((item) => item[field] === value).length;
 
     const territoireOptions = useMemo(
         () => [
@@ -77,30 +74,11 @@ export default function GuinguettesIndex({
         [guinguettes],
     );
 
-    const coursEauOptions = useMemo(
-        () => [
-            { id: "all", label: "Tous" },
-            ...Array.from(
-                new Set(
-                    guinguettes
-                        .map(({ coursDEau: value }) => value)
-                        .filter((value): value is string => Boolean(value)),
-                ),
-            )
-                .sort((a, b) => a.localeCompare(b, "fr"))
-                .map((value) => ({ id: value, label: value })),
-        ],
-        [guinguettes],
-    );
-
     const list = useMemo(() => {
         const normalizedQuery = normalize(query.trim());
 
         return guinguettes.filter((item) => {
             if (territoire !== "all" && item.territoire !== territoire) {
-                return false;
-            }
-            if (coursDEau !== "all" && item.coursDEau !== coursDEau) {
                 return false;
             }
             if (statut !== "all" && item.statut !== statut) return false;
@@ -129,7 +107,7 @@ export default function GuinguettesIndex({
 
             return true;
         });
-    }, [guinguettes, territoire, coursDEau, statut, query]);
+    }, [guinguettes, territoire, statut, query]);
 
     useEffect(() => {
         if (!interactiveMapEnabled) return;
@@ -283,18 +261,6 @@ export default function GuinguettesIndex({
                                 option.id === "all"
                                     ? undefined
                                     : countFor("territoire", option.id),
-                        })),
-                    },
-                    {
-                        label: "Cours d’eau",
-                        active: coursDEau,
-                        onSelect: setCoursDEau,
-                        options: coursEauOptions.map((option) => ({
-                            ...option,
-                            count:
-                                option.id === "all"
-                                    ? undefined
-                                    : countFor("coursDEau", option.id),
                         })),
                     },
                     {
