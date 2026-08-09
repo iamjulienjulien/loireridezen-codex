@@ -147,7 +147,7 @@ export const INDEXES = [
         footerNote: "guinguettes et haltes conviviales du Val de Loire",
         dataFile: "guinguettes.json",
         etat: "relecture",
-        env: ["development"],
+        env: ["development", "production"],
     },
     {
         slug: "territoires",
