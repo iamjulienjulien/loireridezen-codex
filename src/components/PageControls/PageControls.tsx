@@ -25,6 +25,8 @@ export interface PageControlsFilterGroup {
     options?: PageControlsFilterOption[];
     /** Preset de métadonnée transmis au groupe de filtres. */
     preset?: LRZFilterGroupPreset;
+    /** Compte dynamique par valeur du filtre. */
+    getCount?: (id: string) => number | undefined;
     onSelect: (id: string) => void;
 }
 
@@ -222,6 +224,7 @@ export default function PageControls({
                                 activeId={group.active}
                                 options={group.options}
                                 preset={group.preset}
+                                getCount={group.getCount}
                                 onSelect={group.onSelect}
                                 accent={accent}
                                 size="sm"

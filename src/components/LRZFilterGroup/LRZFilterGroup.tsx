@@ -6,10 +6,7 @@ import {
     LRZFilterChip,
     type LRZFilterPreset,
 } from "@/components/LRZFilterChip";
-import {
-    getLRZSymbolDefinition,
-    getLRZSymbolSlugs,
-} from "@/registry/symbols";
+import { getLRZSymbolDefinition, getLRZSymbolSlugs } from "@/registry/symbols";
 
 import styles from "./LRZFilterGroup.module.css";
 
@@ -31,6 +28,8 @@ export type LRZFilterGroupProps = {
     options?: readonly LRZFilterGroupOption[];
     /** Preset de métadonnée appliqué aux options qui n’en fournissent pas. */
     preset?: LRZFilterGroupPreset;
+    /** Compte dynamique utilisé pour afficher et filtrer les options. */
+    getCount?: (id: string) => number | undefined;
     activeId?: string;
     onSelect: (id: string) => void;
     accent?: string;
@@ -54,6 +53,7 @@ export default function LRZFilterGroup({
     label,
     options,
     preset,
+    getCount,
     activeId,
     onSelect,
     accent,
@@ -65,7 +65,8 @@ export default function LRZFilterGroup({
     const style = accent
         ? ({ "--filter-group-accent": accent } as LRZFilterGroupStyle)
         : undefined;
-    const resolvedOptions: readonly LRZFilterGroupOption[] = options ??
+    const resolvedOptions: readonly LRZFilterGroupOption[] =
+        options ??
         (preset
             ? [
                   { id: "all", label: "Tout" },
@@ -74,10 +75,21 @@ export default function LRZFilterGroup({
                   ),
               ]
             : []);
-    const activeOption = resolvedOptions.find(
+    const countedOptions = resolvedOptions.map((option) =>
+        option.id !== "all" && option.count === undefined && getCount
+            ? { ...option, count: getCount(option.id) }
+            : option,
+    );
+    const visibleOptions = countedOptions.filter(
+        (option) => option.id === "all" || option.count !== 0,
+    );
+    if (visibleOptions.length <= 1) return null;
+
+    const activeOption = visibleOptions.find(
         (option) => option.id === activeId,
     );
-    const activePreset = activeOption?.preset ??
+    const activePreset =
+        activeOption?.preset ??
         (preset && activeOption
             ? ({ ...preset, slug: activeOption.id } as LRZFilterPreset)
             : undefined);
@@ -112,7 +124,7 @@ export default function LRZFilterGroup({
                 role="group"
                 aria-label={String(label)}
             >
-                {resolvedOptions.map((option) => (
+                {visibleOptions.map((option) =>
                     (() => {
                         const optionPreset =
                             option.preset ??
@@ -133,21 +145,21 @@ export default function LRZFilterGroup({
                                 : option.id);
 
                         return (
-                    <LRZFilterChip
-                        key={option.id}
-                        active={option.id === activeId}
-                        count={option.count}
-                        disabled={option.disabled}
-                        accent={optionPreset ? undefined : accent}
-                        size={size}
-                        preset={optionPreset}
-                        onClick={() => onSelect(option.id)}
-                    >
-                        {optionLabel}
-                    </LRZFilterChip>
+                            <LRZFilterChip
+                                key={option.id}
+                                active={option.id === activeId}
+                                count={option.count}
+                                disabled={option.disabled}
+                                accent={optionPreset ? undefined : accent}
+                                size={size}
+                                preset={optionPreset}
+                                onClick={() => onSelect(option.id)}
+                            >
+                                {optionLabel}
+                            </LRZFilterChip>
                         );
-                    })()
-                ))}
+                    })(),
+                )}
             </div>
         </fieldset>
     );
