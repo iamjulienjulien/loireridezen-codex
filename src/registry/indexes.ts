@@ -210,12 +210,12 @@ export const INDEXES = [
             "Des souverains aux artistes, les destins se croisent au fil de la Loire.",
         universe: "raconte",
         format: "repertoire",
-        accent: "#b5883c",
-        color: "ocre",
+        accent: "#663D49",
+        color: "lie-de-vin",
         presentation:
             "Souverains, bâtisseurs, écrivains, mécènes et figures singulières : leurs vies relient les lieux, les œuvres et les récits du Codex ligérien.",
         presentation_md:
-            "Les monuments ne racontent jamais seuls l’histoire de la Loire. Derrière leurs pierres apparaissent des **souverains**, des **bâtisseurs**, des **artistes**, des **écrivains** et des figures plus discrètes dont les destins ont marqué le fleuve.\n\nLeurs parcours se croisent d’un château à l’autre : commandes, résidences, séjours, restaurations ou inspirations composent un réseau vivant entre les lieux et les époques.\n\nCe répertoire rassemble ces présences et rend visibles les liens humains qui parcourent le Codex ligérien.",
+            "À l’amont, les forteresses gardent la mémoire des conquêtes, des lignées et des serments. **Foulques Nerra** impose son empreinte sur l’Anjou, **Jeanne d’Arc** traverse l’histoire d’Orléans et **Charles VII** fait de la Loire un théâtre de pouvoir.\n\nPuis la Renaissance transforme les châteaux en scènes de cour et d’invention. **François Ier** commande des rêves de pierre, **Diane de Poitiers** façonne Chenonceau et **Catherine de Médicis** en prolonge le destin. Dans leur sillage, **Léonard de Vinci** et les bâtisseurs dessinent un nouvel art d’habiter le fleuve.\n\nEnfin, les rives deviennent matière à récits. **Louise Dupin** reçoit à Chenonceau, **Pierre de Ronsard** chante les paysages de Touraine et **Alexandre Dumas** réinvente les intrigues de la Loire. Souverains, créateurs et témoins composent ainsi le réseau humain du Codex.",
         presentationFooter:
             "**Ce répertoire rassemble les personnages reliés aux lieux du Codex. Chaque fiche présente leurs rôles, leurs autres noms et les relations documentées avec les châteaux de la Loire.**",
         footerNote: "personnages reliés aux lieux et aux récits du Codex",
