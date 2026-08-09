@@ -106,7 +106,7 @@ export default function PersonnagesIndex({
                     </div>
                 }
                 tone="soft"
-                color="lie-de-vin"
+                color={entry.color}
                 spacing="sm"
                 headerClassName={`${styles.inventoryHeader} mb-0!`}
             >
@@ -115,7 +115,7 @@ export default function PersonnagesIndex({
                     preset="diamond"
                     size="xl"
                     marginBlock="2rem"
-                    color="lie-de-vin"
+                    color={entry.color}
                 />
 
                 <div className="mt-5">

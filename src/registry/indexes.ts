@@ -70,7 +70,7 @@ export const INDEXES = [
             "Des donjons aux jardins, le pouvoir change de visage au fil de la Loire.",
         universe: "habite",
         format: "catalogue",
-        accent: "#b5883c",
+        accent: "#B88945",
         color: "ocre",
         presentation_md:
             "À l\’amont, la pierre garde le souvenir des sièges, des frontières et des couronnes disputées. **Loches** dresse son donjon roman, **Chinon** veille sur la Vienne et **Angers** aligne ses dix-sept tours de schiste.\n\nPuis les murailles s\’ouvrent. Sous les rois de la Renaissance, le château devient demeure, théâtre et manifeste. **Chambord** invente un rêve de pierre, **Chenonceau** traverse le Cher et **Blois** rassemble plusieurs siècles dans une même cour.\n\nEnfin, le pouvoir apprivoise le paysage. À **Villandry**, les jardins deviennent architecture. Partout ailleurs, terrasses, perspectives et domaines prolongent les châteaux jusque dans le val.",
@@ -92,7 +92,7 @@ export const INDEXES = [
             "Ce qui verdit le fil, du saule des grèves à l’angélique de l’estuaire.",
         universe: "vivant",
         format: "naturaliste",
-        accent: "#4f86c6",
+        accent: "#4D80A7",
         color: "eau",
         presentation:
             "Le fil ne traverse pas un décor : il longe un fleuve vivant. Voici ce qu'on peut croiser en chemin, de la source à l'Atlantique — du plus commun au plus rare, du grand jour à la pleine nuit.",
@@ -116,7 +116,7 @@ export const INDEXES = [
             "Ce qui verdit le fil, du saule des grèves à l’angélique de l’estuaire.",
         universe: "vivant",
         format: "naturaliste",
-        accent: "#4fa25c",
+        accent: "#5C8754",
         color: "prairie",
         presentation:
             "La Loire fait pousser autant qu'elle emporte. Du peuplier de la grève à l'endémique de l'estuaire, voici ce qui verdit le fil — l'indigène, le rare, et l'intrus qui gagne du terrain.",
@@ -140,7 +140,7 @@ export const INDEXES = [
             "Des tablées aux concerts, la fête change de rythme au fil de la Loire.",
         universe: "habite",
         format: "catalogue",
-        accent: "#c46a4b",
+        accent: "#A44842",
         color: "brique",
         presentation_md:
             "À l’amont, les guinguettes s’installent dans les ports, les parcs et les prairies où le fleuve ralentit. **La Chapelloise** ouvre le bal près d’Orléans, tandis que **Le Ponton** et **La Guinguette du Domino** prolongent les beaux jours entre tables au bord de l’eau et airs de fête.\n\nPuis les rives s’ouvrent. **La Guinguette Ligaya** accompagne les coteaux de Montlouis, **Guinguette du Bord de Vienne** regarde arriver la Vienne et **Guinguette La Gabare** fait de la confluence un décor de retrouvailles. Chaque adresse compose sa propre manière d’habiter le paysage ligérien.\n\nEnfin, la Loire devient scène. De **La Dérive** à **Le Gramophone**, jusqu’à **L’Atypik Guinguette**, les tablées s’animent au fil des concerts, des couchers de soleil et des rencontres. La fête change de rythme, mais garde le même goût du fleuve.",
@@ -162,7 +162,7 @@ export const INDEXES = [
             "Du Nivernais à l’estuaire, la Loire change de paysage et d’accent.",
         universe: "raconte",
         format: "catalogue",
-        accent: "#8a7256",
+        accent: "#B37A43",
         color: "fauve",
         presentation:
             "La Loire n’a pas un seul visage. Du Nivernais à l’estuaire, elle traverse huit territoires géohistoriques façonnés par leurs paysages, leurs villes, leurs héritages et leurs cours d’eau.",
@@ -186,7 +186,7 @@ export const INDEXES = [
             "Des cités royales aux villages de tuffeau, les rives changent de visage au fil de la Loire.",
         universe: "raconte",
         format: "repertoire",
-        accent: "#b37a43",
+        accent: "#B37A43",
         color: "fauve",
         presentation:
             "Grandes villes, cités de passage, bourgs et villages : chaque lieu raconte une manière différente de vivre avec la Loire et ses affluents.",
@@ -234,7 +234,7 @@ export const INDEXES = [
             "Les appellations du fil, du grand cru liquoreux au cru communal.",
         universe: "vivant",
         format: "catalogue",
-        accent: "#9c3f52",
+        accent: "#A44842",
         color: "rouge",
         presentation:
             "Le fil se boit autant qu'il se longe. Des coteaux du Forez au melon de l'embouchure, voici les appellations qui jalonnent la Loire — du grand cru liquoreux au cru communal le plus discret.",
@@ -258,7 +258,7 @@ export const INDEXES = [
             "La mémoire déposée dans les mots, du terme vivant au mot oublié.",
         universe: "raconte",
         format: "lexique",
-        accent: "#4a7c8c",
+        accent: "#3E93A7",
         color: "bleu-turquoise",
         presentation:
             "Un fleuve laisse sa mémoire dans les mots avant de la laisser dans les pierres. Voici le lexique de la Loire — du mot encore vivant à celui qui ne survit plus que dans les livres.",
@@ -281,7 +281,7 @@ export const INDEXES = [
             "Le fleuve-travail : ponts, cales, fours à chaux et moulins de la Loire.",
         universe: "habite",
         format: "catalogue",
-        accent: "#8a7256",
+        accent: "#B37A43",
         color: "fauve",
         presentation:
             "Face au fil royal des châteaux, voici le fleuve-travail : ce que l'homme a bâti pour vivre AVEC la Loire. Ponts, cales, fours à chaux, moulins — debout, restaurés, en vestige, ou disparus.",

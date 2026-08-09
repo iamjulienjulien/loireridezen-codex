@@ -293,7 +293,7 @@ export default function GuinguettesIndex({
                         size="sm"
                         variant="immersive"
                         scrollMode="content"
-                        color="brique"
+                        color={entry.color}
                     >
                         <LRZDialogBody padding="none">
                             <GuinguetteCard
@@ -328,7 +328,7 @@ export default function GuinguettesIndex({
                     </div>
                 }
                 tone="soft"
-                color="brique"
+                color={entry.color}
                 spacing="sm"
                 headerLayout="stack"
                 headerClassName={`${styles.inventoryHeader} mb-0!`}
@@ -338,7 +338,7 @@ export default function GuinguettesIndex({
                     preset="diamond"
                     size="xl"
                     marginBlock="2rem"
-                    color="brique"
+                    color={entry.color}
                 />
                 <div className="mt-5">{indexControls}</div>
 

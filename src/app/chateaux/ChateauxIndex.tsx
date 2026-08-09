@@ -519,7 +519,7 @@ export default function ChateauxIndex({
                         size="sm"
                         variant="immersive"
                         scrollMode="content"
-                        color="ocre"
+                        color={entry.color}
                     >
                         <LRZDialogBody padding="none">
                             <ChateauxCard
@@ -552,7 +552,7 @@ export default function ChateauxIndex({
                     title="Explorer les châteaux autrement"
                     // description="Des forteresses médiévales aux demeures de plaisance, ces collections relient les châteaux par époque, architecture, personnages et façons d’habiter le pouvoir."
                     tone="surface"
-                    color="ocre"
+                    color={entry.color}
                     spacing="sm"
                     className="mb-10"
                 >
@@ -638,7 +638,7 @@ export default function ChateauxIndex({
                 }
                 // description="Parcours l’ensemble des forteresses, palais et demeures recensés dans le Codex, des monuments les plus célèbres aux silhouettes plus confidentielles."
                 tone="soft"
-                color="ocre"
+                color={entry.color}
                 spacing="sm"
                 headerLayout="stack"
                 headerClassName={`${styles.inventoryHeader} mb-0!`}
@@ -648,7 +648,7 @@ export default function ChateauxIndex({
                     preset="diamond"
                     size="xl"
                     marginBlock="2rem"
-                    color="ocre"
+                    color={entry.color}
                 />
                 <div className="mt-5">{indexControls}</div>
 

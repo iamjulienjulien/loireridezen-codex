@@ -109,7 +109,7 @@ export default function FauneIndex({
                     </div>
                 }
                 tone="soft"
-                color="eau"
+                color={entry.color}
                 spacing="sm"
                 headerLayout="stack"
                 headerClassName={`${styles.inventoryHeader} mb-0!`}
@@ -119,7 +119,7 @@ export default function FauneIndex({
                     preset="diamond"
                     size="xl"
                     marginBlock="2rem"
-                    color="eau"
+                    color={entry.color}
                 />
                 <div className="mt-5">
                     <PageControls
