@@ -653,7 +653,7 @@ export default function ChateauxIndex({
                 color="ocre"
                 spacing="sm"
                 headerLayout="stack"
-                headerClassName="mb-0!"
+                headerClassName={`${styles.inventoryHeader} mb-0!`}
             >
                 {!controlsInOwnSection && (
                     <>
@@ -665,13 +665,6 @@ export default function ChateauxIndex({
                             color="ocre"
                         />
                         <div className="mt-5">{indexControls}</div>
-                        <LRZSeparateur
-                            scope="content"
-                            preset="diamond"
-                            size="xl"
-                            marginBlock="2rem"
-                            color="ocre"
-                        />
                     </>
                 )}
 
