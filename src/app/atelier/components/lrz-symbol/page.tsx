@@ -393,10 +393,108 @@ export default function LRZSymbolPage() {
 
                 <section
                     className={shellStyles.section}
+                    aria-labelledby="symbol-chateau-renommees"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Châteaux
+                        </p>
+                        <h2 id="symbol-chateau-renommees">
+                            Les niveaux de renommée
+                        </h2>
+                        <p>
+                            Le locator <code>chateau.renommee</code> associe
+                            chaque niveau de renommée à son symbole et à sa
+                            couleur LRZ.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {CHATEAU_RENOMMEE_META.map((renown) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={renown.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            renown.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="chateau"
+                                    meta="renommee"
+                                    slug={renown.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{renown.color}</span>
+                                    <h3>{renown.label}</h3>
+                                    <code>{renown.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-chateau-visites"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Châteaux
+                        </p>
+                        <h2 id="symbol-chateau-visites">
+                            Les conditions de visite
+                        </h2>
+                        <p>
+                            Le locator <code>chateau.visite</code> décrit les
+                            conditions d’accès avec un symbole et une couleur
+                            LRZ dédiés.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {CHATEAU_VISITE_META.map((visit) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={visit.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            visit.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="chateau"
+                                    meta="visite"
+                                    slug={visit.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{visit.color}</span>
+                                    <h3>{visit.label}</h3>
+                                    <code>{visit.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
                     aria-labelledby="symbol-vignoble-couleurs"
                 >
                     <div className={shellStyles.sectionHeader}>
-                        <p className={shellStyles.kicker}>Collection Vignobles</p>
+                        <p className={shellStyles.kicker}>
+                            Collection Vignobles
+                        </p>
                         <h2 id="symbol-vignoble-couleurs">
                             Les couleurs de vin
                         </h2>

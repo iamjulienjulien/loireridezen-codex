@@ -34,6 +34,14 @@ export const CODEX_INDEX_REGISTRY = defineCollectionMetaRegistry({
         label: "Villes et villages",
         color: "bleu-ardoise",
     },
+    vignobles: {
+        label: "Vignobles",
+        color: "rouge",
+    },
+    vocabulaire: {
+        label: "Vocabulaire",
+        color: "bleu-turquoise",
+    },
 });
 
 export type CodexIndex = keyof typeof CODEX_INDEX_REGISTRY;

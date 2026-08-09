@@ -9,7 +9,7 @@ import {
 
 describe("Codex index meta registry", () => {
     it("exposes every illustrated Codex index", () => {
-        expect(CODEX_INDEX_META).toHaveLength(7);
+        expect(CODEX_INDEX_META).toHaveLength(9);
         expect(CODEX_INDEX_META.map((index) => index.slug)).toEqual([
             "chateaux",
             "faune",
@@ -18,6 +18,8 @@ describe("Codex index meta registry", () => {
             "personnages",
             "territoires",
             "villes-villages",
+            "vignobles",
+            "vocabulaire",
         ]);
     });
 
@@ -25,8 +27,8 @@ describe("Codex index meta registry", () => {
         expect(getCodexIndexMeta("flore")).toBe(CODEX_INDEX_REGISTRY.flore);
     });
 
-    it("rejects an index without an illustrated symbol", () => {
-        expect(isCodexIndex("vignobles")).toBe(false);
-        expect(getCodexIndexMeta("vignobles")).toBeUndefined();
+    it("rejects an unknown index", () => {
+        expect(isCodexIndex("patrimoine")).toBe(false);
+        expect(getCodexIndexMeta("patrimoine")).toBeUndefined();
     });
 });

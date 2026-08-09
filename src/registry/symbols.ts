@@ -66,6 +66,8 @@ export const LRZ_CODEX_INDEX_SYMBOLS = {
     personnages: "/symbols/codex/index/personnages.png",
     territoires: "/symbols/codex/index/territoires.png",
     "villes-villages": "/symbols/codex/index/villes-villages.png",
+    vignobles: "/symbols/codex/index/vignobles.png",
+    vocabulaire: "/symbols/codex/index/vocabulaire.png",
 } as const satisfies Record<CodexIndex, string>;
 
 export const LRZ_CHATEAU_RENOMMEE_SYMBOLS = {

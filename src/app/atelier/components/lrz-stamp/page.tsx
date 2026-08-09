@@ -382,10 +382,80 @@ export default function LRZStampPage() {
 
                 <section
                     className={shellStyles.section}
+                    aria-labelledby="stamp-chateau-renommees"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Châteaux
+                        </p>
+                        <h2 id="stamp-chateau-renommees">
+                            Les niveaux de renommée
+                        </h2>
+                        <p>
+                            Chaque stamp récupère son symbole, son label et sa
+                            couleur depuis <code>chateau.renommee</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {CHATEAU_RENOMMEE_META.map((renown) => (
+                            <LRZStamp
+                                collection="chateau"
+                                meta="renommee"
+                                slug={renown.slug}
+                                key={renown.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-chateau-visites"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Châteaux
+                        </p>
+                        <h2 id="stamp-chateau-visites">
+                            Les conditions de visite
+                        </h2>
+                        <p>
+                            Chaque stamp récupère son symbole, son label et sa
+                            couleur depuis <code>chateau.visite</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {CHATEAU_VISITE_META.map((visit) => (
+                            <LRZStamp
+                                collection="chateau"
+                                meta="visite"
+                                slug={visit.slug}
+                                key={visit.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
                     aria-labelledby="stamp-vignoble-couleurs"
                 >
                     <div className={shellStyles.sectionHeader}>
-                        <p className={shellStyles.kicker}>Collection Vignobles</p>
+                        <p className={shellStyles.kicker}>
+                            Collection Vignobles
+                        </p>
                         <h2 id="stamp-vignoble-couleurs">
                             Les couleurs de vin
                         </h2>
