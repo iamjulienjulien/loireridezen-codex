@@ -1,14 +1,21 @@
-.context {
-    display: block;
-    margin-top: 1.5rem;
-    color: var(--color-ambiance-texte-tertiaire);
-    font-family: var(--font-mono);
-    font-size: 0.64rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    line-height: 1.4;
-    text-transform: uppercase;
-    color: var(--color-or);
+.inventoryDescription {
+    width: 100%;
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-edit, var(--font-display));
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.inventoryDescription p {
+    margin: 0;
+}
+
+.inventoryDescription p + p {
+    margin-top: 0.75em;
+}
+
+.inventoryDescription strong {
+    color: var(--inventory-accent);
 }
 
 .grid {
@@ -16,6 +23,10 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
     margin-top: clamp(2rem, 5vw, 3.25rem);
+}
+
+.inventoryHeader h2 {
+    font-size: 3.5rem;
 }
 
 .note {

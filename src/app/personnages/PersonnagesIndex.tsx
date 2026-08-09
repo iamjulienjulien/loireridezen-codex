@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
+import ReactMarkdown from "react-markdown";
 import IndexPresentation from "@/components/IndexPresentation";
+import { LRZSection } from "@/components/LRZSection";
+import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
+import { PageControls } from "@/components/PageControls";
 import {
     LRZDialog,
     LRZDialogBody,
@@ -22,22 +26,39 @@ export type PersonnageIndexEntry = {
 type PersonnagesIndexProps = {
     entries: readonly PersonnageIndexEntry[];
     indexes: readonly IndexEntry[];
-    relationCount: number;
     initialOpenSlug?: string;
 };
 
 export default function PersonnagesIndex({
     entries,
     indexes,
-    relationCount,
     initialOpenSlug,
 }: PersonnagesIndexProps) {
     const entry = getIndex("/personnages")!;
+    const [categorie, setCategorie] = useState("all");
+    const [query, setQuery] = useState("");
     const [openSlug, setOpenSlug] = useState(initialOpenSlug);
     const router = useRouter();
     const openEntry = openSlug
         ? entries.find(({ personnage }) => personnage.id === openSlug)
         : undefined;
+    const filteredEntries = useMemo(() => {
+        const normalizedQuery = query.trim().toLocaleLowerCase();
+        return entries.filter(({ personnage }) => {
+            if (
+                categorie !== "all" &&
+                personnage.categoriePrincipale !== categorie
+            ) {
+                return false;
+            }
+            if (!normalizedQuery) return true;
+
+            return [personnage.nom, ...(personnage.autresNoms ?? [])]
+                .join(" ")
+                .toLocaleLowerCase()
+                .includes(normalizedQuery);
+        });
+    }, [categorie, entries, query]);
 
     return (
         <>
@@ -67,24 +88,87 @@ export default function PersonnagesIndex({
                 descriptionFooter={entry.presentationFooter}
                 current="/personnages"
                 indexes={indexes}
+            />
+
+            <LRZSection
+                eyebrow="Le grand répertoire"
+                title="Les personnages du fil ligérien"
+                description={
+                    <div
+                        className={styles.inventoryDescription}
+                        style={
+                            {
+                                "--inventory-accent": entry.accent,
+                            } as CSSProperties
+                        }
+                    >
+                        <ReactMarkdown>{entry.presentation_md}</ReactMarkdown>
+                    </div>
+                }
+                tone="soft"
+                color="lie-de-vin"
+                spacing="sm"
+                headerClassName={`${styles.inventoryHeader} mb-0!`}
             >
-                {entry.presentation_md}
-            </IndexPresentation>
+                <LRZSeparateur
+                    scope="content"
+                    preset="diamond"
+                    size="xl"
+                    marginBlock="2rem"
+                    color="lie-de-vin"
+                />
 
-            <p className={styles.context}>
-                {entries.length} personnages · {relationCount} liens avec les
-                châteaux
-            </p>
-
-            <section className={styles.grid} aria-label="Personnages du Codex">
-                {entries.map(({ personnage, relations }) => (
-                    <PersonnageCard
-                        key={personnage.id}
-                        personnage={personnage}
-                        relations={relations}
+                <div className="mt-5">
+                    <PageControls
+                        query={query}
+                        onQuery={setQuery}
+                        placeholder="Chercher un personnage…"
+                        resultCount={filteredEntries.length}
+                        totalCount={entries.length}
+                        unit="personnages"
+                        accent={entry.accent}
+                        buttonColor={entry.color}
+                        mode="filters-toggle"
+                        reset={{
+                            active: categorie !== "all" || query !== "",
+                            onReset: () => {
+                                setCategorie("all");
+                                setQuery("");
+                            },
+                        }}
+                        groups={[
+                            {
+                                label: "Catégorie",
+                                active: categorie,
+                                onSelect: setCategorie,
+                                preset: {
+                                    collection: "personnage",
+                                    meta: "categorie",
+                                },
+                                getCount: (id) =>
+                                    entries.filter(
+                                        ({ personnage }) =>
+                                            personnage.categoriePrincipale ===
+                                            id,
+                                    ).length,
+                            },
+                        ]}
                     />
-                ))}
-            </section>
+                </div>
+
+                <section
+                    className={styles.grid}
+                    aria-label="Personnages du Codex"
+                >
+                    {filteredEntries.map(({ personnage, relations }) => (
+                        <PersonnageCard
+                            key={personnage.id}
+                            personnage={personnage}
+                            relations={relations}
+                        />
+                    ))}
+                </section>
+            </LRZSection>
 
             <p className={styles.note}>
                 Ce répertoire relie les personnages aux châteaux du Codex ; il
