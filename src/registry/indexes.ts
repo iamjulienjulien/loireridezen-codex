@@ -135,15 +135,15 @@ export const INDEXES = [
         eyebrow: "Index",
         title: "Guinguettes de Loire",
         description:
-            "Là où la Loire ralentit, les tables s’installent, les verres tintent et les soirées s’étirent.",
+            "Des tablées aux concerts, la fête change de rythme au fil de la Loire.",
         universe: "habite",
         format: "catalogue",
         accent: "#c46a4b",
-        color: "brique",
-        presentation_md:
-            "Nées au bord des rivières, les guinguettes ont longtemps été des refuges de liberté. On y venait danser, partager un repas simple ou regarder passer les bateaux, loin du rythme des villes.\n\nLe long de la Loire, chacune raconte une manière différente d’habiter le fleuve. Certaines vivent au pied d’un château, d’autres s’abritent sous les peupliers ou s’ouvrent directement sur les bancs de sable. Toutes cultivent une même idée : prendre le temps.\n\nAujourd’hui encore, elles prolongent cette tradition. Cuisine locale, concerts, couchers de soleil, rencontres et départs à vélo s’y croisent naturellement. Elles sont devenues des haltes autant que des destinations.",
+    color: "brique",
+    presentation_md:
+        "À l’amont, les guinguettes s’installent dans les ports, les parcs et les prairies où le fleuve ralentit. **La Chapelloise** ouvre le bal près d’Orléans, tandis que **Le Ponton** et **La Guinguette du Domino** prolongent les beaux jours entre tables au bord de l’eau et airs de fête.\n\nPuis les rives s’ouvrent. **La Guinguette Ligaya** accompagne les coteaux de Montlouis, **Guinguette du Bord de Vienne** regarde arriver la Vienne et **Guinguette La Gabare** fait de la confluence un décor de retrouvailles. Chaque adresse compose sa propre manière d’habiter le paysage ligérien.\n\nEnfin, la Loire devient scène. De **La Dérive** à **Le Gramophone**, jusqu’à **L’Atypik Guinguette**, les tablées s’animent au fil des concerts, des couchers de soleil et des rencontres. La fête change de rythme, mais garde le même goût du fleuve.",
         presentationFooter:
-            "**Cet index rassemble les guinguettes qui rythment les rives ligériennes. Chaque adresse est présentée à travers son cadre, son ambiance, sa cuisine, ses animations et son lien avec le fleuve.**",
+            "**Cet index rassemble les guinguettes qui animent les rives ligériennes, des haltes discrètes aux rendez-vous les plus festifs. Chaque adresse est racontée par son cadre, sa cuisine, sa musique, ses usages et le paysage qui l’entoure.**",
         footerNote: "guinguettes et haltes conviviales du Val de Loire",
         dataFile: "guinguettes.json",
         etat: "relecture",
