@@ -138,8 +138,8 @@
 }
 
 .subtitle {
-    margin: 0 0 10px 0;
-    color: var(--color-ambiance-texte-tertiaire);
+    margin: 0 0 10px 0 !important;
+    color: var(--color-ambiance-texte-tertiaire) !important;
     font-family: var(--font-note, var(--font-display));
     font-size: 13.5px;
     font-style: italic;
