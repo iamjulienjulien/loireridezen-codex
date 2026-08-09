@@ -268,6 +268,10 @@ export default function GuinguettesIndex({
                         collection: "common",
                         meta: "territoire",
                     },
+                    getCount: (id) =>
+                        guinguettes.filter(
+                            (guinguette) => guinguette.territoire === id,
+                        ).length,
                 },
             ]}
         />

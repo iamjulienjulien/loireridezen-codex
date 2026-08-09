@@ -47,20 +47,19 @@ import {
 } from "./chateaux-map-sync";
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 
-const EPOQUES = [
-    { id: "all", label: "Tout" },
-    { id: "Médiéval", label: "Médiéval" },
-    { id: "Renaissance", label: "Renaissance" },
-    { id: "Classique", label: "Classique" },
-    { id: "Éclectique", label: "Éclectique" },
-] as const;
-
 const FEATURED_COLLECTION_SLUG = "incontournables-du-val";
 const SECONDARY_COLLECTION_SLUGS = [
     "sur-les-traces-des-rois",
     "chefs-doeuvre-renaissance",
     "plus-ligeriens",
 ] as const;
+
+const EPOQUE_PRESET_VALUES: Record<string, ChateauV2["epoque"]> = {
+    "moyen-age": "Médiéval",
+    renaissance: "Renaissance",
+    "ancien-regime": "Classique",
+    "xixe-siecle": "Éclectique",
+};
 
 type CollectionsLayout = "editorial" | "three-columns";
 
@@ -147,14 +146,12 @@ export default function ChateauxIndex({
         ({ data }) => !displayedCollectionSlugs.has(data.slug),
     );
 
-    const countFor = (field: "epoque" | "renommee", id: string) =>
-        chateaux.filter((castle) => castle[field] === id).length;
-
     const list = useMemo(() => {
         const normalizedQuery = norm(q.trim());
+        const catalogueEpoque = EPOQUE_PRESET_VALUES[epoque] ?? epoque;
 
         return chateaux.filter((castle) => {
-            if (epoque !== "all" && castle.epoque !== epoque) {
+            if (epoque !== "all" && castle.epoque !== catalogueEpoque) {
                 return false;
             }
 
@@ -393,14 +390,15 @@ export default function ChateauxIndex({
                     label: "Époque",
                     active: epoque,
                     onSelect: setEpoque,
-                    options: EPOQUES.map((item) => ({
-                        id: item.id,
-                        label: item.label,
-                        count:
-                            item.id === "all"
-                                ? undefined
-                                : countFor("epoque", item.id),
-                    })),
+                    preset: {
+                        collection: "common",
+                        meta: "epoque",
+                    },
+                    getCount: (id) =>
+                        chateaux.filter(
+                            (chateau) =>
+                                chateau.epoque === EPOQUE_PRESET_VALUES[id],
+                        ).length,
                 },
                 ...(renommeeEnabled
                     ? [
@@ -412,6 +410,10 @@ export default function ChateauxIndex({
                                   collection: "chateau" as const,
                                   meta: "renommee" as const,
                               },
+                              getCount: (id: string) =>
+                                  chateaux.filter(
+                                      (chateau) => chateau.renommee === id,
+                                  ).length,
                           },
                       ]
                     : []),

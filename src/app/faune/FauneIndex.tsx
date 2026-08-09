@@ -1,10 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
+import ReactMarkdown from "react-markdown";
 import type { FauneEspece } from "@/types/faune";
 import IndexPresentation from "@/components/IndexPresentation";
-import IndexControls from "@/components/IndexControls";
+import { LRZSection } from "@/components/LRZSection";
+import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
+import { PageControls } from "@/components/PageControls";
 import {
     LRZDialog,
     LRZDialogBody,
@@ -13,24 +16,6 @@ import {
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FauneCard from "./FauneCard";
 import styles from "./faune.module.css";
-
-const TYPES = [
-    { id: "all", label: "Tout" },
-    { id: "oiseau", label: "Oiseaux" },
-    { id: "mammifère", label: "Mammifères" },
-    { id: "poisson", label: "Poissons" },
-    { id: "reptile", label: "Reptiles" },
-    { id: "amphibien", label: "Amphibiens" },
-    { id: "insecte", label: "Insectes" },
-] as const;
-
-const RARETES = [
-    { id: "all", label: "Tout" },
-    { id: "commun", label: "Commun" },
-    { id: "régulier", label: "Régulier" },
-    { id: "rare", label: "Rare" },
-    { id: "trésor", label: "Trésor" },
-] as const;
 
 const norm = (s: string) =>
     s
@@ -60,9 +45,6 @@ export default function FauneIndex({
 
     const toggleAll = () => setExpandAll((value) => !value);
 
-    const countFor = (field: "type" | "rarete", id: string) =>
-        especes.filter((d) => d[field] === id).length;
-
     const list = useMemo(() => {
         const nq = norm(q.trim());
         return especes.filter((d) => {
@@ -77,6 +59,12 @@ export default function FauneIndex({
             return true;
         });
     }, [especes, type, rarete, q]);
+
+    const resetFilters = () => {
+        setType("all");
+        setRarete("all");
+        setQ("");
+    };
 
     return (
         <>
@@ -100,67 +88,109 @@ export default function FauneIndex({
 
             <IndexPresentation
                 description={entry.description}
+                descriptionFooter={entry.presentationFooter}
                 current="/faune"
                 indexes={indexes}
-            >
-                {entry.presentation_md}
-            </IndexPresentation>
-
-            <IndexControls
-                query={q}
-                onQuery={setQ}
-                placeholder="Chercher une espèce, un nom scientifique…"
-                resultCount={list.length}
-                totalCount={especes.length}
-                unit="espèces"
-                accent={entry.accent}
-                groups={[
-                    {
-                        label: "Type",
-                        active: type,
-                        onSelect: setType,
-                        options: TYPES.map((it) => ({
-                            id: it.id,
-                            label: it.label,
-                            count:
-                                it.id === "all"
-                                    ? undefined
-                                    : countFor("type", it.id),
-                        })),
-                    },
-                    {
-                        label: "Rareté",
-                        active: rarete,
-                        onSelect: setRarete,
-                        options: RARETES.map((it) => ({
-                            id: it.id,
-                            label: it.label,
-                            count:
-                                it.id === "all"
-                                    ? undefined
-                                    : countFor("rarete", it.id),
-                        })),
-                    },
-                ]}
-                expand={{ all: expandAll, onToggle: toggleAll }}
             />
 
-            {list.length === 0 ? (
-                <p className={styles.empty}>
-                    Rien à cet endroit du fil. Élargis la recherche ou change de
-                    filtre.
-                </p>
-            ) : (
-                <div className={styles.grid}>
-                    {list.map((d) => (
-                        <FauneCard
-                            key={`${d.nomScientifique}-${expandAll}`}
-                            d={d}
-                            expandAll={expandAll}
-                        />
-                    ))}
+            <LRZSection
+                eyebrow="Le grand inventaire"
+                title="Toutes les espèces du fil ligérien"
+                description={
+                    <div
+                        className={styles.inventoryDescription}
+                        style={
+                            {
+                                "--inventory-accent": entry.accent,
+                            } as CSSProperties
+                        }
+                    >
+                        <ReactMarkdown>{entry.presentation_md}</ReactMarkdown>
+                    </div>
+                }
+                tone="soft"
+                color="eau"
+                spacing="sm"
+                headerLayout="stack"
+                headerClassName={`${styles.inventoryHeader} mb-0!`}
+            >
+                <LRZSeparateur
+                    scope="content"
+                    preset="diamond"
+                    size="xl"
+                    marginBlock="2rem"
+                    color="eau"
+                />
+                <div className="mt-5">
+                    <PageControls
+                        query={q}
+                        onQuery={setQ}
+                        placeholder="Chercher une espèce, un nom scientifique…"
+                        resultCount={list.length}
+                        totalCount={especes.length}
+                        unit="espèces"
+                        accent={entry.accent}
+                        buttonColor={entry.color}
+                        mode="filters-toggle"
+                        reset={{
+                            active:
+                                type !== "all" || rarete !== "all" || q !== "",
+                            onReset: resetFilters,
+                        }}
+                        action={{
+                            label: "Tout déplier",
+                            activeLabel: "Tout replier",
+                            active: expandAll,
+                            onClick: toggleAll,
+                        }}
+                        groups={[
+                            {
+                                label: "Type",
+                                active: type,
+                                onSelect: setType,
+                                preset: {
+                                    collection: "faune",
+                                    meta: "type",
+                                },
+                                getCount: (id) =>
+                                    especes.filter(
+                                        (espece) => espece.type === id,
+                                    ).length,
+                            },
+                            {
+                                label: "Rareté",
+                                active: rarete,
+                                onSelect: setRarete,
+                                preset: {
+                                    collection: "faune",
+                                    meta: "rarete",
+                                },
+                                getCount: (id) =>
+                                    especes.filter(
+                                        (espece) => espece.rarete === id,
+                                    ).length,
+                            },
+                        ]}
+                    />
                 </div>
-            )}
+
+                {list.length === 0 ? (
+                    <p className={styles.empty}>
+                        Rien à cet endroit du fil. Élargis la recherche ou
+                        change de filtre.
+                    </p>
+                ) : (
+                    <div className={styles.grid}>
+                        {list.map((d) => (
+                            <FauneCard
+                                key={`${d.nomScientifique}-${expandAll}`}
+                                d={d}
+                                expandAll={expandAll}
+                            />
+                        ))}
+                    </div>
+                )}
+            </LRZSection>
         </>
     );
 }
