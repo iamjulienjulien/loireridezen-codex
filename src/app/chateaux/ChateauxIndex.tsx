@@ -92,7 +92,7 @@ export default function ChateauxIndex({
     const [epoque, setEpoque] = useState<string>("all");
     const [renommee, setRenommee] = useState<string>("all");
     const [q, setQ] = useState("");
-    const [groupByTerritory, setGroupByTerritory] = useState(true);
+    const [groupByTerritory, setGroupByTerritory] = useState(false);
     const [isMapOpen, setIsMapOpen] = useState(false);
     const [openSlug, setOpenSlug] = useState(initialOpenSlug);
     const router = useRouter();
