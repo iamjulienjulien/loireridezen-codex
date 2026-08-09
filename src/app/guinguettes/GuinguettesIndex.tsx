@@ -8,13 +8,13 @@ import {
     type CSSProperties,
 } from "react";
 import ReactMarkdown from "react-markdown";
-import IndexControls from "@/components/IndexControls";
+import { Map as MapIcon } from "lucide-react";
 import IndexPresentation from "@/components/IndexPresentation";
+import { PageControls } from "@/components/PageControls";
 import { LRZSection } from "@/components/LRZSection";
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import { TERRITOIRES } from "@/registry/territoires";
 import type { Guinguette } from "@/types/guinguette";
 import GuinguetteCard from "./GuinguetteCardV4";
 import GuinguettesInteractiveMap from "./GuinguettesInteractiveMap";
@@ -25,13 +25,6 @@ import {
     type GuinguettesMapSyncDetail,
 } from "./guinguettes-map-sync";
 import styles from "./guinguettes.module.css";
-
-const STATUTS = [
-    { id: "all", label: "Tous" },
-    { id: "actif", label: "Actifs" },
-    { id: "a_verifier", label: "À vérifier" },
-    { id: "historique", label: "Historiques" },
-] as const;
 
 const normalize = (value: string) =>
     value
@@ -48,40 +41,10 @@ export default function GuinguettesIndex({
 }) {
     const entry = getIndex("/guinguettes")!;
     const [territoire, setTerritoire] = useState("all");
-    const [statut, setStatut] = useState("all");
     const [query, setQuery] = useState("");
-    const [expandAll, setExpandAll] = useState(false);
     const [isMapOpen, setIsMapOpen] = useState(false);
-    const [openOverrides, setOpenOverrides] = useState<Record<string, boolean>>(
-        {},
-    );
     const catalogueRef = useRef<HTMLDivElement>(null);
     const interactiveMapEnabled = featureIsEnabled("guinguettesInteractiveMap");
-
-    const toggleAll = () => {
-        setExpandAll((current) => !current);
-        setOpenOverrides({});
-    };
-
-    const toggleOne = (id: string) => {
-        setOpenOverrides((current) => ({
-            ...current,
-            [id]: !(current[id] ?? expandAll),
-        }));
-    };
-
-    const countFor = (field: "territoire" | "statut", value: string) =>
-        guinguettes.filter((item) => item[field] === value).length;
-
-    const territoireOptions = useMemo(
-        () => [
-            { id: "all", label: "Tout" },
-            ...TERRITOIRES.filter(({ slug }) =>
-                guinguettes.some((item) => item.territoire === slug),
-            ).map(({ slug, nom }) => ({ id: slug, label: nom })),
-        ],
-        [guinguettes],
-    );
 
     const list = useMemo(() => {
         const normalizedQuery = normalize(query.trim());
@@ -90,8 +53,6 @@ export default function GuinguettesIndex({
             if (territoire !== "all" && item.territoire !== territoire) {
                 return false;
             }
-            if (statut !== "all" && item.statut !== statut) return false;
-
             if (normalizedQuery) {
                 const haystack = normalize(
                     [
@@ -116,7 +77,7 @@ export default function GuinguettesIndex({
 
             return true;
         });
-    }, [guinguettes, territoire, statut, query]);
+    }, [guinguettes, territoire, query]);
 
     useEffect(() => {
         if (!interactiveMapEnabled) return;
@@ -230,23 +191,32 @@ export default function GuinguettesIndex({
     };
 
     const indexControls = (
-        <IndexControls
+        <PageControls
+            variant="default"
             query={query}
             onQuery={setQuery}
             placeholder="Chercher une guinguette, une commune, un cours d’eau…"
             resultCount={list.length}
             totalCount={guinguettes.length}
-            unit="guinguettes"
+            unit={list.length > 1 ? "guinguettes" : "guinguette"}
             accent={entry.accent}
-            expand={{ all: expandAll, onToggle: toggleAll }}
-            switcher={
+            buttonColor={entry.color}
+            mode="filters-toggle"
+            reset={{
+                active: territoire !== "all" || query !== "",
+                onReset: () => {
+                    setTerritoire("all");
+                    setQuery("");
+                },
+            }}
+            action={
                 interactiveMapEnabled
                     ? {
                           label: "Carte",
-                          checked: isMapOpen,
-                          offLabel: "Masquée",
-                          onLabel: "Affichée",
-                          onToggle: () => setIsMapOpen((open) => !open),
+                          activeLabel: "Carte",
+                          active: isMapOpen,
+                          icon: <MapIcon aria-hidden="true" />,
+                          onClick: () => setIsMapOpen((open) => !open),
                       }
                     : undefined
             }
@@ -255,25 +225,10 @@ export default function GuinguettesIndex({
                     label: "Territoire",
                     active: territoire,
                     onSelect: setTerritoire,
-                    options: territoireOptions.map((option) => ({
-                        ...option,
-                        count:
-                            option.id === "all"
-                                ? undefined
-                                : countFor("territoire", option.id),
-                    })),
-                },
-                {
-                    label: "Statut",
-                    active: statut,
-                    onSelect: setStatut,
-                    options: STATUTS.map((option) => ({
-                        ...option,
-                        count:
-                            option.id === "all"
-                                ? undefined
-                                : countFor("statut", option.id),
-                    })),
+                    preset: {
+                        collection: "common",
+                        meta: "territoire",
+                    },
                 },
             ]}
         />
@@ -360,11 +315,7 @@ export default function GuinguettesIndex({
                                     data-map-sync-card=""
                                     key={guinguette.slug}
                                 >
-                                    <GuinguetteCard
-                                        guinguette={guinguette}
-                                        // open={openOverrides[guinguette.slug] ?? expandAll}
-                                        // onToggle={() => toggleOne(guinguette.slug)}
-                                    />
+                                    <GuinguetteCard guinguette={guinguette} />
                                 </div>
                             ))}
                         </div>
