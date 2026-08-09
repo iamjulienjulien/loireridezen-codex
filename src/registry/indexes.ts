@@ -75,7 +75,7 @@ export const INDEXES = [
         presentation_md:
             "À l\’amont, la pierre garde le souvenir des sièges, des frontières et des couronnes disputées. **Loches** dresse son donjon roman, **Chinon** veille sur la Vienne et **Angers** aligne ses dix-sept tours de schiste.\n\nPuis les murailles s\’ouvrent. Sous les rois de la Renaissance, le château devient demeure, théâtre et manifeste. **Chambord** invente un rêve de pierre, **Chenonceau** traverse le Cher et **Blois** rassemble plusieurs siècles dans une même cour.\n\nEnfin, le pouvoir apprivoise le paysage. À **Villandry**, les jardins deviennent architecture. Partout ailleurs, terrasses, perspectives et domaines prolongent les châteaux jusque dans le val.",
         presentationFooter:
-            "**Cet index rassemble les forteresses, palais et demeures qui jalonnent le fil ligérien, du château confidentiel au monument-phare. Chaque lieu est raconté par son époque, son architecture, son paysage et les personnages qui l’ont façonné.**",
+            "**Cet index rassemble les forteresses, palais et demeures du fil ligérien, du château confidentiel au monument-phare. Chaque fiche raconte son époque, son architecture, son paysage et les personnages qui l’ont façonnée.**",
         footerNote: "châteaux composant le patrimoine castral ligérien",
         dataFile: "catalogue-chateaux.json",
         etat: "publie",
@@ -97,8 +97,9 @@ export const INDEXES = [
         presentation:
             "Le fil ne traverse pas un décor : il longe un fleuve vivant. Voici ce qu'on peut croiser en chemin, de la source à l'Atlantique — du plus commun au plus rare, du grand jour à la pleine nuit.",
         presentation_md:
-            "Le fil ne traverse pas un décor : il longe le **dernier grand fleuve sauvage d'Europe** 🌊. L'eau y décide de tout — elle creuse les berges, découvre les grèves, et redessine chaque année les bancs de sable où la vie s'installe.\n\nOn y croise l'**ordinaire** comme le **trésor** : le héron figé sur la levée 🪶, la sterne qui plonge sur le sable nu, et — pour qui sait attendre — la loutre à l'aube 🦦 ou la cigogne noire en lisière 🐦‍⬛.\n\nDu plus commun au plus rare, du grand jour à la pleine nuit. 🌒",
-        presentationFooter: "",
+            "À l’amont, les grèves et les bras morts accueillent une vie discrète, modelée par les crues et les bancs de sable. Le **Héron cendré** attend dans les eaux calmes, le **Martin-pêcheur d’Europe** file au ras des berges et le **Chevalier guignette** suit le mouvement du fleuve sur les vasières.\n\nPuis les rives s’épaississent. Dans les boisements, les prairies et les îles, le **Castor d’Europe** façonne les berges, la **Loutre d’Europe** suit les chenaux et le **Chevreuil** traverse les lisières. À leurs côtés, oiseaux, insectes et petits mammifères composent une faune qui change avec chaque paysage.\n\nEnfin, la Loire devient passage. Le **Saumon atlantique**, la **Grande alose** et la **Lamproie marine** remontent le fil, tandis que le **Cuivré des marais** rappelle la fragilité des prairies humides. Du plus commun au plus rare, chaque espèce raconte une manière d’habiter le fleuve.",
+        presentationFooter:
+            "**Cet index rassemble les espèces animales qui vivent, passent ou se cachent le long du fil ligérien. Chaque fiche est racontée par son milieu, ses habitudes, sa présence saisonnière et les liens qui l’unissent au fleuve.**",
         footerNote: "espèces composant le bestiaire ligérien",
         dataFile: "faune.json",
         etat: "publie",
@@ -143,7 +144,7 @@ export const INDEXES = [
         presentation_md:
             "À l’amont, les guinguettes s’installent dans les ports, les parcs et les prairies où le fleuve ralentit. **La Chapelloise** ouvre le bal près d’Orléans, tandis que **Le Ponton** et **La Guinguette du Domino** prolongent les beaux jours entre tables au bord de l’eau et airs de fête.\n\nPuis les rives s’ouvrent. **La Guinguette Ligaya** accompagne les coteaux de Montlouis, **Guinguette du Bord de Vienne** regarde arriver la Vienne et **Guinguette La Gabare** fait de la confluence un décor de retrouvailles. Chaque adresse compose sa propre manière d’habiter le paysage ligérien.\n\nEnfin, la Loire devient scène. De **La Dérive** à **Le Gramophone**, jusqu’à **L’Atypik Guinguette**, les tablées s’animent au fil des concerts, des couchers de soleil et des rencontres. La fête change de rythme, mais garde le même goût du fleuve.",
         presentationFooter:
-            "**Cet index rassemble les guinguettes qui animent les rives ligériennes, des haltes discrètes aux rendez-vous les plus festifs. Chaque adresse est racontée par son cadre, sa cuisine, sa musique, ses usages et le paysage qui l’entoure.**",
+            "**Cet index rassemble les guinguettes qui animent les rives ligériennes, des haltes discrètes aux rendez-vous les plus festifs. Chaque adresse raconte son cadre, sa cuisine, sa musique et le paysage qui l’entoure.**",
         footerNote: "guinguettes et haltes conviviales du Val de Loire",
         dataFile: "guinguettes.json",
         etat: "relecture",
