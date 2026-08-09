@@ -139,9 +139,9 @@ export const INDEXES = [
         universe: "habite",
         format: "catalogue",
         accent: "#c46a4b",
-    color: "brique",
-    presentation_md:
-        "À l’amont, les guinguettes s’installent dans les ports, les parcs et les prairies où le fleuve ralentit. **La Chapelloise** ouvre le bal près d’Orléans, tandis que **Le Ponton** et **La Guinguette du Domino** prolongent les beaux jours entre tables au bord de l’eau et airs de fête.\n\nPuis les rives s’ouvrent. **La Guinguette Ligaya** accompagne les coteaux de Montlouis, **Guinguette du Bord de Vienne** regarde arriver la Vienne et **Guinguette La Gabare** fait de la confluence un décor de retrouvailles. Chaque adresse compose sa propre manière d’habiter le paysage ligérien.\n\nEnfin, la Loire devient scène. De **La Dérive** à **Le Gramophone**, jusqu’à **L’Atypik Guinguette**, les tablées s’animent au fil des concerts, des couchers de soleil et des rencontres. La fête change de rythme, mais garde le même goût du fleuve.",
+        color: "brique",
+        presentation_md:
+            "À l’amont, les guinguettes s’installent dans les ports, les parcs et les prairies où le fleuve ralentit. **La Chapelloise** ouvre le bal près d’Orléans, tandis que **Le Ponton** et **La Guinguette du Domino** prolongent les beaux jours entre tables au bord de l’eau et airs de fête.\n\nPuis les rives s’ouvrent. **La Guinguette Ligaya** accompagne les coteaux de Montlouis, **Guinguette du Bord de Vienne** regarde arriver la Vienne et **Guinguette La Gabare** fait de la confluence un décor de retrouvailles. Chaque adresse compose sa propre manière d’habiter le paysage ligérien.\n\nEnfin, la Loire devient scène. De **La Dérive** à **Le Gramophone**, jusqu’à **L’Atypik Guinguette**, les tablées s’animent au fil des concerts, des couchers de soleil et des rencontres. La fête change de rythme, mais garde le même goût du fleuve.",
         presentationFooter:
             "**Cet index rassemble les guinguettes qui animent les rives ligériennes, des haltes discrètes aux rendez-vous les plus festifs. Chaque adresse est racontée par son cadre, sa cuisine, sa musique, ses usages et le paysage qui l’entoure.**",
         footerNote: "guinguettes et haltes conviviales du Val de Loire",
@@ -243,7 +243,7 @@ export const INDEXES = [
             "appellations du fil · les émojis attendent leur version LRZ",
         dataFile: "vignoble.json",
         etat: "relecture",
-        env: [],
+        env: ["development"],
     },
     {
         slug: "vocabulaire",
