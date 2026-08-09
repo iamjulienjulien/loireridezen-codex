@@ -166,7 +166,8 @@
 .signatureName:hover {
     filter: brightness(1.22)
         drop-shadow(
-            0 0 0.34em color-mix(in srgb, var(--color-jaune-paille) 72%, transparent)
+            0 0 0.34em
+                color-mix(in srgb, var(--color-jaune-paille) 72%, transparent)
         );
 }
 
@@ -179,6 +180,35 @@
 
     58% {
         background-position: 0 50%;
+    }
+}
+
+@media (max-width: 640px) {
+    .signature {
+        flex-direction: column;
+        gap: 0.7rem;
+        margin-top: 2rem;
+    }
+
+    .footer[data-signature-spacing="none"] .signature {
+        margin-top: 0.5rem;
+    }
+
+    .signature::before,
+    .signature::after {
+        width: 3.5rem;
+    }
+
+    .signatureLabel {
+        max-width: 16rem;
+        font-size: 0.52rem;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    .signatureName {
+        font-size: 2.45rem;
+        line-height: 0.86;
     }
 }
 

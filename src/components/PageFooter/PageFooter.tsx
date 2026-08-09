@@ -41,15 +41,16 @@ export default function PageFooter({
             <div className={styles.copy}>
                 <p className={styles.content}>{children}</p>
                 <p className={styles.navigationMain}>
-                    <Link href="/">Le Codex Ligérien</Link> ·{" "}
-                    <a href="https://loireridezen.bike">Loire Ride Zen</a>
+                    <a href="https://loireridezen.bike">Loire Ride Zen</a> ·{" "}
+                    <Link href="/">Le Codex Ligérien</Link>
                 </p>
                 <nav
                     className={styles.navigation}
                     aria-label="Liens de pied de page"
                 >
-                    <Link href="/docs">Documentation</Link>
                     <Link href="/a-propos">À propos</Link>
+                    <Link href="/docs">Documentation</Link>
+
                     {featureIsEnabled("atelier") ? (
                         <Link href="/atelier">Atelier</Link>
                     ) : null}
