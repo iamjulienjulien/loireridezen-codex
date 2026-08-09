@@ -121,8 +121,9 @@ export const INDEXES = [
         presentation:
             "La Loire fait pousser autant qu'elle emporte. Du peuplier de la grève à l'endémique de l'estuaire, voici ce qui verdit le fil — l'indigène, le rare, et l'intrus qui gagne du terrain.",
         presentation_md:
-            "La Loire fait pousser autant qu'elle emporte 🌊. Sur ses grèves mouvantes s'accroche une **forêt d'eau** — saules et peupliers noirs qui plient sans rompre et refont racine à chaque crue.\n\nDu pied de la levée au sel de l'estuaire, le fil mêle l'**indigène**, le **rare** et l'**intrus** : la fritillaire pintade 🌸 dans la prairie inondée, l'**angélique des estuaires** 🌿 qu'on ne trouve nulle part ailleurs au monde, et la renouée qui, elle, gagne du terrain saison après saison.\n\nCe qui verdit le fil ne tient jamais en place : il dérive, colonise, s'efface.",
-        presentationFooter: "",
+            "À l’amont, les grèves et les bras morts portent une végétation façonnée par les crues. Le **Peuplier noir** enfonce ses racines dans les îles, le **Saule blanc** plie avec le courant et l’**Aulne glutineux** garde les berges dans une ombre fraîche.\n\nPuis les prairies s’ouvrent. La **Fritillaire pintade** ponctue les prés inondables, la **Reine-des-prés** accompagne les fossés et l’**Iris des marais** retient dans ses fleurs la lumière des eaux lentes. Entre roselières, haies et levées, chaque milieu compose sa propre palette.\n\nEnfin, la Loire devient estuaire. L’**Angélique des estuaires** s’accroche aux prairies salées, le **Nénuphar blanc** flotte dans les eaux calmes, tandis que la **Jussie à grandes fleurs** rappelle les fragiles équilibres du fleuve. Du plus commun au plus rare, chaque plante raconte une manière de verdir le fil.",
+        presentationFooter:
+            "**Cet index rassemble les plantes qui enracinent, fleurissent et colonisent les rives ligériennes. Chaque fiche est racontée par son milieu, sa saison, ses usages et sa place dans les équilibres du fleuve.**",
         footerNote: "espèces composant l'herbier ligérien",
         dataFile: "flore.json",
         etat: "publie",
