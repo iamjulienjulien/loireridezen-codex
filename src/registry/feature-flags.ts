@@ -27,7 +27,6 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     ambianceChateauxVisual: ["development", "production"],
     commandPalette: ["development"],
     territoires: ["development", "production"],
-    indexControlsSection: [],
     chateauxViewportMapSpike: [],
     chateauxInteractiveMap: ["development", "production"],
     guinguettesInteractiveMap: ["development", "production"],

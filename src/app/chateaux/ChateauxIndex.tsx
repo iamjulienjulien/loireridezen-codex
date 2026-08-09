@@ -194,7 +194,6 @@ export default function ChateauxIndex({
         [groupByTerritory, list, territoiresEnabled],
     );
 
-    const controlsInOwnSection = featureIsEnabled("indexControlsSection");
     const viewportMapSpikeEnabled = featureIsEnabled(
         "chateauxViewportMapSpike",
     );
@@ -620,19 +619,6 @@ export default function ChateauxIndex({
                 </LRZSection>
             )}
 
-            {controlsInOwnSection && (
-                <LRZSection
-                    eyebrow="Filtres & repères"
-                    title="Choisir son chemin parmi les châteaux"
-                    // description="Remonte les siècles, compare les architectures et compose ton propre itinéraire à travers les grandes demeures du val de Loire."
-                    tone="surface"
-                    color="ocre"
-                    spacing="sm"
-                >
-                    {indexControls}
-                </LRZSection>
-            )}
-
             <LRZSection
                 eyebrow="Le grand inventaire"
                 title="Tous les châteaux du fil royal"
@@ -655,18 +641,14 @@ export default function ChateauxIndex({
                 headerLayout="stack"
                 headerClassName={`${styles.inventoryHeader} mb-0!`}
             >
-                {!controlsInOwnSection && (
-                    <>
-                        <LRZSeparateur
-                            scope="content"
-                            preset="diamond"
-                            size="xl"
-                            marginBlock="2rem"
-                            color="ocre"
-                        />
-                        <div className="mt-5">{indexControls}</div>
-                    </>
-                )}
+                <LRZSeparateur
+                    scope="content"
+                    preset="diamond"
+                    size="xl"
+                    marginBlock="2rem"
+                    color="ocre"
+                />
+                <div className="mt-5">{indexControls}</div>
 
                 {interactiveMapEnabled ? (
                     <ChateauxInteractiveMap
