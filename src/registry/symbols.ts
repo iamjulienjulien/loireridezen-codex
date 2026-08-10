@@ -28,6 +28,10 @@ import {
     type CommonExperience,
 } from "@/registry/Meta/common-experience";
 import {
+    getCommonGeneralMeta,
+    type CommonGeneral,
+} from "@/registry/Meta/common-general";
+import {
     getCommonMilieuMeta,
     type CommonMilieu,
 } from "@/registry/Meta/common-milieu";
@@ -35,6 +39,10 @@ import {
     getCommonTerritoireMeta,
     type CommonTerritoire,
 } from "@/registry/Meta/common-territoire";
+import {
+    getCommonWebsiteMeta,
+    type CommonWebsite,
+} from "@/registry/Meta/common-website";
 import {
     getFauneRareteMeta,
     type FauneRarete,
@@ -216,6 +224,23 @@ export const LRZ_COMMON_EXPERIENCE_SYMBOLS = {
 export type LRZCommonExperienceSymbolSlug =
     keyof typeof LRZ_COMMON_EXPERIENCE_SYMBOLS;
 
+export const LRZ_COMMON_GENERAL_SYMBOLS = {
+    atlas: "/symbols/common/general/atlas.png",
+    explorer: "/symbols/common/general/explorer.png",
+    observer: "/symbols/common/general/observer.png",
+    raconter: "/symbols/common/general/raconter.png",
+    relier: "/symbols/common/general/relier.png",
+    chemin: "/symbols/common/general/chemin.png",
+    repere: "/symbols/common/general/repere.png",
+    sources: "/symbols/common/general/sources.png",
+    mouvement: "/symbols/common/general/mouvement.png",
+    horizon: "/symbols/common/general/horizon.png",
+    partager: "/symbols/common/general/partager.png",
+} as const satisfies Record<CommonGeneral, string>;
+
+export type LRZCommonGeneralSymbolSlug =
+    keyof typeof LRZ_COMMON_GENERAL_SYMBOLS;
+
 export const LRZ_COMMON_TERRITOIRE_SYMBOLS = {
     nivernais: "/symbols/common/territoire/nivernais.png",
     orleanais: "/symbols/common/territoire/orleanais.png",
@@ -244,6 +269,18 @@ export const LRZ_COMMON_TERRITOIRE_SYMBOL_DIMENSIONS = {
 
 export type LRZCommonTerritoireSymbolSlug =
     keyof typeof LRZ_COMMON_TERRITOIRE_SYMBOLS;
+
+export const LRZ_COMMON_WEBSITE_SYMBOLS = {
+    hub: "/symbols/common/website/hub.png",
+    instagram: "/symbols/common/website/instagram.png",
+    passeport: "/symbols/common/website/passeport.png",
+    codex: "/symbols/common/website/codex.png",
+    carte: "/symbols/common/website/carte.png",
+    camp: "/symbols/common/website/camp.png",
+} as const satisfies Record<CommonWebsite, string>;
+
+export type LRZCommonWebsiteSymbolSlug =
+    keyof typeof LRZ_COMMON_WEBSITE_SYMBOLS;
 
 export const LRZ_FAUNE_TYPE_SYMBOLS = {
     oiseau: "/symbols/faune/type/oiseau.png",
@@ -395,7 +432,8 @@ export type LRZVignobleTerroirSymbolSlug =
  * `codex.index`, `chateau.renommee`, `chateau.visite`, `faune.type`,
  * `faune.rarete`,
  * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
- * `common.milieu`, `common.experience`, `common.territoire`,
+ * `common.milieu`, `common.experience`, `common.general`, `common.territoire`,
+ * `common.website`,
  * `guinguette.ambience`, `personnage.categorie`, `vignoble.appellation`,
  * `vignoble.couleur`, `vignoble.notoriete` et `vignoble.terroir`.
  */
@@ -412,7 +450,9 @@ export const LRZ_SYMBOLS = {
         architecture: LRZ_COMMON_ARCHITECTURE_SYMBOLS,
         milieu: LRZ_COMMON_MILIEU_SYMBOLS,
         experience: LRZ_COMMON_EXPERIENCE_SYMBOLS,
+        general: LRZ_COMMON_GENERAL_SYMBOLS,
         territoire: LRZ_COMMON_TERRITOIRE_SYMBOLS,
+        website: LRZ_COMMON_WEBSITE_SYMBOLS,
     },
     faune: {
         type: LRZ_FAUNE_TYPE_SYMBOLS,
@@ -469,7 +509,9 @@ export type LRZSymbolSlug =
     | LRZCommonArchitectureSymbolSlug
     | LRZCommonMilieuSymbolSlug
     | LRZCommonExperienceSymbolSlug
+    | LRZCommonGeneralSymbolSlug
     | LRZCommonTerritoireSymbolSlug
+    | LRZCommonWebsiteSymbolSlug
     | LRZFauneTypeSymbolSlug
     | LRZFauneRareteSymbolSlug
     | LRZFloreCategorieSymbolSlug
@@ -532,10 +574,22 @@ export type LRZSymbolLocator =
           slug: LRZCommonExperienceSymbolSlug;
       }
     | {
+          /** Notions éditoriales transversales du Codex. */
+          collection: "common";
+          meta: "general";
+          slug: LRZCommonGeneralSymbolSlug;
+      }
+    | {
           /** Territoires ligériens communs aux collections du Codex. */
           collection: "common";
           meta: "territoire";
           slug: LRZCommonTerritoireSymbolSlug;
+      }
+    | {
+          /** Sites et projets de l’écosystème Loire Ride Zen. */
+          collection: "common";
+          meta: "website";
+          slug: LRZCommonWebsiteSymbolSlug;
       }
     | {
           /** Types taxinomiques de la collection Faune. */
@@ -673,12 +727,28 @@ export function getLRZSymbolSource(
 
     if (
         collection === "common" &&
+        meta === "general" &&
+        Object.hasOwn(LRZ_SYMBOLS.common.general, slug)
+    ) {
+        return LRZ_SYMBOLS.common.general[slug as LRZCommonGeneralSymbolSlug];
+    }
+
+    if (
+        collection === "common" &&
         meta === "territoire" &&
         Object.hasOwn(LRZ_SYMBOLS.common.territoire, slug)
     ) {
         return LRZ_SYMBOLS.common.territoire[
             slug as LRZCommonTerritoireSymbolSlug
         ];
+    }
+
+    if (
+        collection === "common" &&
+        meta === "website" &&
+        Object.hasOwn(LRZ_SYMBOLS.common.website, slug)
+    ) {
+        return LRZ_SYMBOLS.common.website[slug as LRZCommonWebsiteSymbolSlug];
     }
 
     if (
@@ -874,6 +944,32 @@ export function getLRZSymbolDefinition(
                   label: territory.label,
                   accent: getLRZColorValue(territory.color),
                   color: territory.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "common" && meta === "general") {
+        const general = getCommonGeneralMeta(slug);
+
+        return general
+            ? {
+                  source,
+                  label: general.label,
+                  accent: getLRZColorValue(general.color),
+                  color: general.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "common" && meta === "website") {
+        const website = getCommonWebsiteMeta(slug);
+
+        return website
+            ? {
+                  source,
+                  label: website.label,
+                  accent: getLRZColorValue(website.color),
+                  color: website.color,
               }
             : undefined;
     }

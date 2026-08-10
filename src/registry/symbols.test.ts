@@ -10,8 +10,10 @@ import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { COMMON_EXPERIENCE_META } from "@/registry/Meta/common-experience";
+import { COMMON_GENERAL_META } from "@/registry/Meta/common-general";
 import { COMMON_MILIEU_META } from "@/registry/Meta/common-milieu";
 import { COMMON_TERRITOIRE_META } from "@/registry/Meta/common-territoire";
+import { COMMON_WEBSITE_META } from "@/registry/Meta/common-website";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
@@ -29,8 +31,10 @@ import {
     LRZ_COMMON_ARCHITECTURE_SYMBOLS,
     LRZ_COMMON_EPOQUE_SYMBOLS,
     LRZ_COMMON_EXPERIENCE_SYMBOLS,
+    LRZ_COMMON_GENERAL_SYMBOLS,
     LRZ_COMMON_MILIEU_SYMBOLS,
     LRZ_COMMON_TERRITOIRE_SYMBOLS,
+    LRZ_COMMON_WEBSITE_SYMBOLS,
     LRZ_FAUNE_RARETE_SYMBOLS,
     LRZ_FAUNE_TYPE_SYMBOLS,
     LRZ_FLORE_CATEGORIE_SYMBOLS,
@@ -52,6 +56,56 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every common general notion", () => {
+        expect(Object.keys(LRZ_SYMBOLS.common.general)).toEqual(
+            COMMON_GENERAL_META.map((notion) => notion.slug),
+        );
+    });
+
+    it.each(COMMON_GENERAL_META)(
+        "resolves common/general/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("common", "general", slug);
+
+            expect(source).toBe(LRZ_COMMON_GENERAL_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
+    it("resolves the LRZ identity of a common general symbol", () => {
+        expect(getLRZSymbolDefinition("common", "general", "atlas")).toEqual({
+            source: LRZ_COMMON_GENERAL_SYMBOLS.atlas,
+            label: "Atlas",
+            accent: "#397A91",
+            color: "bleu-loire",
+        });
+    });
+
+    it("contains one symbol for every common website", () => {
+        expect(Object.keys(LRZ_SYMBOLS.common.website)).toEqual(
+            COMMON_WEBSITE_META.map((website) => website.slug),
+        );
+    });
+
+    it.each(COMMON_WEBSITE_META)(
+        "resolves common/website/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("common", "website", slug);
+
+            expect(source).toBe(LRZ_COMMON_WEBSITE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
+    it("resolves the LRZ identity of a common website symbol", () => {
+        expect(getLRZSymbolDefinition("common", "website", "hub")).toEqual({
+            source: LRZ_COMMON_WEBSITE_SYMBOLS.hub,
+            label: "Le Hub",
+            accent: "#B96841",
+            color: "orange-cuivre",
+        });
+    });
+
     it("contains one symbol for every vineyard appellation", () => {
         expect(Object.keys(LRZ_SYMBOLS.vignoble.appellation)).toEqual(
             VIGNOBLE_APPELLATION_META.map((appellation) => appellation.slug),
@@ -432,7 +486,7 @@ describe("LRZ symbol registry", () => {
             getLRZSymbolDefinition("chateau", "visite", "ouvert au public"),
         ).toEqual({
             source: LRZ_CHATEAU_VISITE_SYMBOLS["ouvert au public"],
-            label: "Ouvert au public",
+            label: "Ouvert",
             accent: "#5C8754",
             color: "prairie",
         });

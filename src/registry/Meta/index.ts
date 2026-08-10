@@ -34,6 +34,15 @@ export {
 } from "@/registry/Meta/chateau-visite";
 
 export {
+    COMMON_GENERAL_META,
+    COMMON_GENERAL_REGISTRY,
+    getCommonGeneralMeta,
+    isCommonGeneral,
+    type CommonGeneral,
+    type CommonGeneralMeta,
+} from "@/registry/Meta/common-general";
+
+export {
     COMMON_EPOQUE_META,
     COMMON_EPOQUE_REGISTRY,
     getCommonEpoqueMeta,
@@ -77,6 +86,15 @@ export {
     type CommonTerritoire,
     type CommonTerritoireMeta,
 } from "@/registry/Meta/common-territoire";
+
+export {
+    COMMON_WEBSITE_META,
+    COMMON_WEBSITE_REGISTRY,
+    getCommonWebsiteMeta,
+    isCommonWebsite,
+    type CommonWebsite,
+    type CommonWebsiteMeta,
+} from "@/registry/Meta/common-website";
 
 export {
     FAUNE_TYPE_META,
