@@ -45,6 +45,7 @@ import type {
     LRZCodexIndexSymbolSlug,
     LRZPersonnageCategorieSymbolSlug,
     LRZVignobleAppellationSymbolSlug,
+    LRZVignobleCepageSymbolSlug,
     LRZVignobleCouleurSymbolSlug,
     LRZVignobleNotorieteSymbolSlug,
     LRZVignobleTerroirSymbolSlug,
@@ -75,6 +76,7 @@ type LRZStampPlaygroundProps = {
     guinguetteOptions: readonly LRZStampPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZStampPlaygroundOption<LRZPersonnageCategorieSymbolSlug>[];
     vignobleAppellationOptions: readonly LRZStampPlaygroundOption<LRZVignobleAppellationSymbolSlug>[];
+    vignobleCepageOptions: readonly LRZStampPlaygroundOption<LRZVignobleCepageSymbolSlug>[];
     vignobleCouleurOptions: readonly LRZStampPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
     vignobleNotorieteOptions: readonly LRZStampPlaygroundOption<LRZVignobleNotorieteSymbolSlug>[];
     vignobleTerroirOptions: readonly LRZStampPlaygroundOption<LRZVignobleTerroirSymbolSlug>[];
@@ -224,7 +226,7 @@ const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     flore: ["categorie", "rarete"],
     guinguette: ["ambience"],
     personnage: ["categorie"],
-    vignoble: ["appellation", "couleur", "notoriete", "terroir"],
+    vignoble: ["appellation", "cepage", "couleur", "notoriete", "terroir"],
 };
 
 function codeValue(value: string) {
@@ -321,6 +323,7 @@ export default function LRZStampPlayground({
     guinguetteOptions,
     personnageOptions,
     vignobleAppellationOptions,
+    vignobleCepageOptions,
     vignobleCouleurOptions,
     vignobleNotorieteOptions,
     vignobleTerroirOptions,
@@ -366,11 +369,13 @@ export default function LRZStampPlayground({
             case "vignoble":
                 return meta === "appellation"
                     ? vignobleAppellationOptions
-                    : meta === "notoriete"
-                      ? vignobleNotorieteOptions
-                      : meta === "terroir"
-                        ? vignobleTerroirOptions
-                        : vignobleCouleurOptions;
+                    : meta === "cepage"
+                      ? vignobleCepageOptions
+                      : meta === "notoriete"
+                        ? vignobleNotorieteOptions
+                        : meta === "terroir"
+                          ? vignobleTerroirOptions
+                          : vignobleCouleurOptions;
         }
     }
 
@@ -481,31 +486,41 @@ export default function LRZStampPlayground({
                                                 slug: values.slug as LRZVignobleAppellationSymbolSlug,
                                             }
                                           : values.collection === "vignoble" &&
-                                              values.meta === "notoriete"
+                                              values.meta === "cepage"
                                             ? {
                                                   collection: "vignoble",
-                                                  meta: "notoriete",
-                                                  slug: values.slug as LRZVignobleNotorieteSymbolSlug,
+                                                  meta: "cepage",
+                                                  slug: values.slug as LRZVignobleCepageSymbolSlug,
                                               }
                                             : values.collection ===
                                                     "vignoble" &&
-                                                values.meta === "terroir"
+                                                values.meta === "notoriete"
                                               ? {
                                                     collection: "vignoble",
-                                                    meta: "terroir",
-                                                    slug: values.slug as LRZVignobleTerroirSymbolSlug,
+                                                    meta: "notoriete",
+                                                    slug: values.slug as LRZVignobleNotorieteSymbolSlug,
                                                 }
-                                              : values.collection === "vignoble"
+                                              : values.collection ===
+                                                      "vignoble" &&
+                                                  values.meta === "terroir"
                                                 ? {
                                                       collection: "vignoble",
-                                                      meta: "couleur",
-                                                      slug: values.slug as LRZVignobleCouleurSymbolSlug,
+                                                      meta: "terroir",
+                                                      slug: values.slug as LRZVignobleTerroirSymbolSlug,
                                                   }
-                                                : {
-                                                      collection: "personnage",
-                                                      meta: "categorie",
-                                                      slug: values.slug as LRZPersonnageCategorieSymbolSlug,
-                                                  };
+                                                : values.collection ===
+                                                    "vignoble"
+                                                  ? {
+                                                        collection: "vignoble",
+                                                        meta: "couleur",
+                                                        slug: values.slug as LRZVignobleCouleurSymbolSlug,
+                                                    }
+                                                  : {
+                                                        collection:
+                                                            "personnage",
+                                                        meta: "categorie",
+                                                        slug: values.slug as LRZPersonnageCategorieSymbolSlug,
+                                                    };
     const resolvedSize =
         values.size === "custom" ? values.customSize : values.size;
     const resolvedPadding =

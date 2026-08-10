@@ -21,6 +21,7 @@ import {
     type LRZCodexIndexSymbolSlug,
     type LRZPersonnageCategorieSymbolSlug,
     type LRZVignobleAppellationSymbolSlug,
+    type LRZVignobleCepageSymbolSlug,
     type LRZVignobleCouleurSymbolSlug,
     type LRZVignobleNotorieteSymbolSlug,
     type LRZVignobleTerroirSymbolSlug,
@@ -59,6 +60,7 @@ type LRZSymbolPlaygroundProps = {
     guinguetteOptions: readonly LRZSymbolPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZSymbolPlaygroundOption<LRZPersonnageCategorieSymbolSlug>[];
     vignobleAppellationOptions: readonly LRZSymbolPlaygroundOption<LRZVignobleAppellationSymbolSlug>[];
+    vignobleCepageOptions: readonly LRZSymbolPlaygroundOption<LRZVignobleCepageSymbolSlug>[];
     vignobleCouleurOptions: readonly LRZSymbolPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
     vignobleNotorieteOptions: readonly LRZSymbolPlaygroundOption<LRZVignobleNotorieteSymbolSlug>[];
     vignobleTerroirOptions: readonly LRZSymbolPlaygroundOption<LRZVignobleTerroirSymbolSlug>[];
@@ -150,7 +152,7 @@ const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     flore: ["categorie", "rarete"],
     guinguette: ["ambience"],
     personnage: ["categorie"],
-    vignoble: ["appellation", "couleur", "notoriete", "terroir"],
+    vignoble: ["appellation", "cepage", "couleur", "notoriete", "terroir"],
 };
 
 function codeValue(value: string) {
@@ -211,6 +213,7 @@ export default function LRZSymbolPlayground({
     guinguetteOptions,
     personnageOptions,
     vignobleAppellationOptions,
+    vignobleCepageOptions,
     vignobleCouleurOptions,
     vignobleNotorieteOptions,
     vignobleTerroirOptions,
@@ -256,11 +259,13 @@ export default function LRZSymbolPlayground({
             case "vignoble":
                 return meta === "appellation"
                     ? vignobleAppellationOptions
-                    : meta === "notoriete"
-                      ? vignobleNotorieteOptions
-                      : meta === "terroir"
-                        ? vignobleTerroirOptions
-                        : vignobleCouleurOptions;
+                    : meta === "cepage"
+                      ? vignobleCepageOptions
+                      : meta === "notoriete"
+                        ? vignobleNotorieteOptions
+                        : meta === "terroir"
+                          ? vignobleTerroirOptions
+                          : vignobleCouleurOptions;
         }
     }
 
@@ -378,31 +383,41 @@ export default function LRZSymbolPlayground({
                                                 slug: values.slug as LRZVignobleAppellationSymbolSlug,
                                             }
                                           : values.collection === "vignoble" &&
-                                              values.meta === "notoriete"
+                                              values.meta === "cepage"
                                             ? {
                                                   collection: "vignoble",
-                                                  meta: "notoriete",
-                                                  slug: values.slug as LRZVignobleNotorieteSymbolSlug,
+                                                  meta: "cepage",
+                                                  slug: values.slug as LRZVignobleCepageSymbolSlug,
                                               }
                                             : values.collection ===
                                                     "vignoble" &&
-                                                values.meta === "terroir"
+                                                values.meta === "notoriete"
                                               ? {
                                                     collection: "vignoble",
-                                                    meta: "terroir",
-                                                    slug: values.slug as LRZVignobleTerroirSymbolSlug,
+                                                    meta: "notoriete",
+                                                    slug: values.slug as LRZVignobleNotorieteSymbolSlug,
                                                 }
-                                              : values.collection === "vignoble"
+                                              : values.collection ===
+                                                      "vignoble" &&
+                                                  values.meta === "terroir"
                                                 ? {
                                                       collection: "vignoble",
-                                                      meta: "couleur",
-                                                      slug: values.slug as LRZVignobleCouleurSymbolSlug,
+                                                      meta: "terroir",
+                                                      slug: values.slug as LRZVignobleTerroirSymbolSlug,
                                                   }
-                                                : {
-                                                      collection: "personnage",
-                                                      meta: "categorie",
-                                                      slug: values.slug as LRZPersonnageCategorieSymbolSlug,
-                                                  };
+                                                : values.collection ===
+                                                    "vignoble"
+                                                  ? {
+                                                        collection: "vignoble",
+                                                        meta: "couleur",
+                                                        slug: values.slug as LRZVignobleCouleurSymbolSlug,
+                                                    }
+                                                  : {
+                                                        collection:
+                                                            "personnage",
+                                                        meta: "categorie",
+                                                        slug: values.slug as LRZPersonnageCategorieSymbolSlug,
+                                                    };
     const accessibilityProps = values.informative
         ? {
               decorative: false as const,

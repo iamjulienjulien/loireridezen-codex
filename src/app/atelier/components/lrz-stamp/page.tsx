@@ -27,6 +27,7 @@ import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import { VIGNOBLE_APPELLATION_META } from "@/registry/Meta/vignoble-appellation";
+import { VIGNOBLE_CEPAGE_META } from "@/registry/Meta/vignoble-cepage";
 import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
 import { VIGNOBLE_NOTORIETE_META } from "@/registry/Meta/vignoble-notoriete";
 import { VIGNOBLE_TERROIR_META } from "@/registry/Meta/vignoble-terroir";
@@ -47,6 +48,7 @@ import {
     type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
     type LRZVignobleAppellationSymbolSlug,
+    type LRZVignobleCepageSymbolSlug,
     type LRZVignobleCouleurSymbolSlug,
     type LRZVignobleNotorieteSymbolSlug,
     type LRZVignobleTerroirSymbolSlug,
@@ -141,6 +143,11 @@ const VIGNOBLE_APPELLATION_OPTIONS = VIGNOBLE_APPELLATION_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZStampPlaygroundOption<LRZVignobleAppellationSymbolSlug>[];
 
+const VIGNOBLE_CEPAGE_OPTIONS = VIGNOBLE_CEPAGE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZStampPlaygroundOption<LRZVignobleCepageSymbolSlug>[];
+
 const VIGNOBLE_COULEUR_OPTIONS = VIGNOBLE_COULEUR_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZStampPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
@@ -211,7 +218,7 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "general" | "territoire" | "website" | "type" | "rarete" | "categorie" | "ambience" | "appellation" | "couleur" | "notoriete" | "terroir"',
+        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "general" | "territoire" | "website" | "type" | "rarete" | "categorie" | "ambience" | "appellation" | "cepage" | "couleur" | "notoriete" | "terroir"',
         "—",
         "Métadonnée de la collection.",
     ],
@@ -384,6 +391,7 @@ export default function LRZStampPage() {
                     guinguetteOptions={GUINGUETTE_OPTIONS}
                     personnageOptions={PERSONNAGE_OPTIONS}
                     vignobleAppellationOptions={VIGNOBLE_APPELLATION_OPTIONS}
+                    vignobleCepageOptions={VIGNOBLE_CEPAGE_OPTIONS}
                     vignobleCouleurOptions={VIGNOBLE_COULEUR_OPTIONS}
                     vignobleNotorieteOptions={VIGNOBLE_NOTORIETE_OPTIONS}
                     vignobleTerroirOptions={VIGNOBLE_TERROIR_OPTIONS}
@@ -441,6 +449,41 @@ export default function LRZStampPage() {
                                 meta="appellation"
                                 slug={appellation.slug}
                                 key={appellation.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-vignoble-cepages"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Vignobles
+                        </p>
+                        <h2 id="stamp-vignoble-cepages">
+                            Les cépages ligériens
+                        </h2>
+                        <p>
+                            Chaque stamp récupère sa grappe, son label et sa
+                            couleur depuis le registre
+                            <code> vignoble.cepage</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {VIGNOBLE_CEPAGE_META.map((grapeVariety) => (
+                            <LRZStamp
+                                collection="vignoble"
+                                meta="cepage"
+                                slug={grapeVariety.slug}
+                                key={grapeVariety.slug}
                                 size="md"
                                 variant="pill"
                                 tone="subtle"
