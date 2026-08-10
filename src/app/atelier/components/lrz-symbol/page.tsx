@@ -11,8 +11,10 @@ import {
     type LRZCommonArchitectureSymbolSlug,
     type LRZCommonEpoqueSymbolSlug,
     type LRZCommonExperienceSymbolSlug,
+    type LRZCommonGeneralSymbolSlug,
     type LRZCommonMilieuSymbolSlug,
     type LRZCommonTerritoireSymbolSlug,
+    type LRZCommonWebsiteSymbolSlug,
     type LRZFauneRareteSymbolSlug,
     type LRZFauneTypeSymbolSlug,
     type LRZFloreCategorieSymbolSlug,
@@ -36,8 +38,10 @@ import { CODEX_INDEX_META } from "@/registry/Meta/codex-index";
 import { COMMON_ARCHITECTURE_META } from "@/registry/Meta/common-architecture";
 import { COMMON_EPOQUE_META } from "@/registry/Meta/common-epoque";
 import { COMMON_EXPERIENCE_META } from "@/registry/Meta/common-experience";
+import { COMMON_GENERAL_META } from "@/registry/Meta/common-general";
 import { COMMON_MILIEU_META } from "@/registry/Meta/common-milieu";
 import { COMMON_TERRITOIRE_META } from "@/registry/Meta/common-territoire";
+import { COMMON_WEBSITE_META } from "@/registry/Meta/common-website";
 import { FAUNE_RARETE_META } from "@/registry/Meta/faune-rarete";
 import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
@@ -148,9 +152,19 @@ const COMMON_EXPERIENCE_OPTIONS = COMMON_EXPERIENCE_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonExperienceSymbolSlug>[];
 
+const COMMON_GENERAL_OPTIONS = COMMON_GENERAL_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonGeneralSymbolSlug>[];
+
 const COMMON_TERRITOIRE_OPTIONS = COMMON_TERRITOIRE_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonTerritoireSymbolSlug>[];
+
+const COMMON_WEBSITE_OPTIONS = COMMON_WEBSITE_META.map(({ slug, label }) => ({
+    slug,
+    label,
+})) satisfies readonly LRZSymbolPlaygroundOption<LRZCommonWebsiteSymbolSlug>[];
 
 const FAUNE_TYPE_OPTIONS = FAUNE_TYPE_META.map(({ slug, label }) => ({
     slug,
@@ -205,13 +219,13 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience" | "appellation" | "couleur" | "notoriete" | "terroir"',
+        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "general" | "territoire" | "website" | "type" | "rarete" | "categorie" | "ambience" | "appellation" | "couleur" | "notoriete" | "terroir"',
         "—",
         "Métadonnée de la collection.",
     ],
     [
         "slug",
-        "LRZCodexIndexSymbolSlug | LRZChateauRenommeeSymbolSlug | LRZChateauVisiteSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZCommonTerritoireSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | LRZPersonnageCategorieSymbolSlug | LRZVignobleCouleurSymbolSlug",
+        "LRZCodexIndexSymbolSlug | LRZChateauRenommeeSymbolSlug | LRZChateauVisiteSymbolSlug | LRZCommonEpoqueSymbolSlug | LRZCommonArchitectureSymbolSlug | LRZCommonMilieuSymbolSlug | LRZCommonExperienceSymbolSlug | LRZCommonGeneralSymbolSlug | LRZCommonTerritoireSymbolSlug | LRZCommonWebsiteSymbolSlug | LRZFauneTypeSymbolSlug | LRZFauneRareteSymbolSlug | LRZFloreCategorieSymbolSlug | LRZFloreRareteSymbolSlug | LRZGuinguetteAmbienceSymbolSlug | LRZPersonnageCategorieSymbolSlug | LRZVignobleCouleurSymbolSlug",
         "—",
         "Identifiant qui sélectionne le symbole.",
     ],
@@ -364,7 +378,9 @@ export default function LRZSymbolPage() {
                     commonArchitectureOptions={COMMON_ARCHITECTURE_OPTIONS}
                     commonMilieuOptions={COMMON_MILIEU_OPTIONS}
                     commonExperienceOptions={COMMON_EXPERIENCE_OPTIONS}
+                    commonGeneralOptions={COMMON_GENERAL_OPTIONS}
                     commonTerritoireOptions={COMMON_TERRITOIRE_OPTIONS}
+                    commonWebsiteOptions={COMMON_WEBSITE_OPTIONS}
                     fauneTypeOptions={FAUNE_TYPE_OPTIONS}
                     fauneRareteOptions={FAUNE_RARETE_OPTIONS}
                     floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
@@ -745,6 +761,99 @@ export default function LRZSymbolPage() {
                                     <span>{territory.color}</span>
                                     <h3>{territory.label}</h3>
                                     <code>{territory.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-common-general"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection commune</p>
+                        <h2 id="symbol-common-general">
+                            Le vocabulaire éditorial transversal
+                        </h2>
+                        <p>
+                            Le locator <code>common.general</code> rassemble les
+                            notions utilisables dans tous les contextes du
+                            Codex, de l’exploration au partage.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {COMMON_GENERAL_META.map((notion) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={notion.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            notion.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="common"
+                                    meta="general"
+                                    slug={notion.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{notion.color}</span>
+                                    <h3>{notion.label}</h3>
+                                    <code>{notion.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-common-websites"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>Collection commune</p>
+                        <h2 id="symbol-common-websites">
+                            Les sites et projets Loire Ride Zen
+                        </h2>
+                        <p>
+                            Le locator <code>common.website</code> rassemble les
+                            six portes d’entrée de l’écosystème Loire Ride Zen.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {COMMON_WEBSITE_META.map((website) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={website.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            website.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="common"
+                                    meta="website"
+                                    slug={website.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{website.color}</span>
+                                    <h3>{website.label}</h3>
+                                    <code>{website.slug}</code>
                                 </div>
                             </article>
                         ))}
