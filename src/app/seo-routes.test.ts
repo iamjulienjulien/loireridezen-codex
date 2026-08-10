@@ -4,6 +4,7 @@ import chateauData from "@data/catalogue-chateaux.json";
 import fauneData from "@data/faune.json";
 import floreData from "@data/flore.json";
 import personnagesData from "@data/catalogue-personnages.json";
+import territoiresData from "@data/catalogue-territoires.json";
 
 import robots from "./robots";
 import sitemap from "./sitemap";
@@ -40,14 +41,17 @@ describe("SEO discovery routes", () => {
                 `https://codex.loireridezen.bike/personnage/${personnage.id}`,
             );
         }
+        for (const territoire of territoiresData.territoires) {
+            expect(urls).toContain(
+                `https://codex.loireridezen.bike/territoire/${territoire.slug}`,
+            );
+        }
         expect(urls).toContain("https://codex.loireridezen.bike/faune");
         expect(urls).toContain("https://codex.loireridezen.bike/flore");
-        expect(
-            urls.some((url) => url.includes("/chateaux/collections/")),
-        ).toBe(false);
-        expect(urls).toContain(
-            "https://codex.loireridezen.bike/personnages",
+        expect(urls.some((url) => url.includes("/chateaux/collections/"))).toBe(
+            false,
         );
+        expect(urls).toContain("https://codex.loireridezen.bike/personnages");
         expect(urls.every((url) => !url.includes("/atelier"))).toBe(true);
         expect(urls.every((url) => !url.includes("/api/v1"))).toBe(true);
         expect(new Set(urls).size).toBe(urls.length);
