@@ -1,12 +1,12 @@
-import { Grape, Landmark, UtensilsCrossed } from "lucide-react";
+import { Grape, Info, MapPin, UtensilsCrossed } from "lucide-react";
+import Link from "next/link";
 
-import LRZAccordion from "@/components/LRZAccordion";
-import LRZAnecdote from "@/components/LRZAnecdote";
 import LRZCard from "@/components/LRZCard";
-import LRZMetaList from "@/components/LRZMetaList";
 import { LRZStamp } from "@/components/LRZStamp";
 import type { Vignoble } from "@/types/vignoble";
 import { LRZSymbol } from "@/components/LRZSymbol";
+import { LRZTextClamp } from "@/components/LRZTextClamp";
+import { LRZTooltip } from "@/components/LRZTooltip";
 import { getVignobleCouleurMeta } from "@/registry/Meta/vignoble-couleur";
 
 import styles from "./vignobles.module.css";
@@ -34,6 +34,21 @@ type VignoblesCardProps = {
     version?: 1 | 2 | 3 | 4;
 };
 
+const VIGNOBLE_TITLE_QUALIFIERS = ["Premier Cru Chaume", "Grand Cru"] as const;
+
+function splitVignobleTitle(title: string) {
+    const qualifier = VIGNOBLE_TITLE_QUALIFIERS.find((value) =>
+        title.endsWith(` ${value}`),
+    );
+
+    return qualifier
+        ? {
+              name: title.slice(0, -(qualifier.length + 1)),
+              qualifier,
+          }
+        : { name: title, qualifier: null };
+}
+
 export default function VignoblesCard({
     version = 1,
     ...props
@@ -54,12 +69,14 @@ export default function VignoblesCard({
 /**
  * Version 4 — fiche d’appellation alignée sur Faune, Flore et Guinguettes.
  *
- * La robe devient un symbole de collection ; le contenu se répartit en trois
- * accordéons métier pour conserver une carte compacte et riche à la fois.
+ * La robe devient un symbole de collection et le portrait du vin reste
+ * entièrement visible. Les accordéons sont réservés aux repères secondaires.
  */
-function VignoblesCardV4({ d, open }: Omit<VignoblesCardProps, "version">) {
-    const color = getVignobleCouleurMeta(d.couleur)?.color ?? "miel";
+function VignoblesCardV4({ d }: Omit<VignoblesCardProps, "version">) {
+    const colorMeta = getVignobleCouleurMeta(d.couleur);
+    const color = colorMeta?.color ?? "miel";
     const titleId = `vignoble-${d.slug}-title`;
+    const title = splitVignobleTitle(d.nom);
 
     return (
         <LRZCard
@@ -74,209 +91,205 @@ function VignoblesCardV4({ d, open }: Omit<VignoblesCardProps, "version">) {
         >
             <div className={styles.contentV4}>
                 <header className={styles.identityV4}>
-                    <LRZSymbol
-                        collection="vignoble"
-                        meta="couleur"
-                        slug={d.couleur}
-                        size={64}
-                        frame="none"
-                        padding="none"
-                        shadow="strong"
-                        decorative
-                    />
-
                     <div className={styles.identityCopyV4}>
                         <div className={styles.eyebrowV4}>
-                            <span>{d.rive}</span>
+                            <span className={styles.robeLabelV4}>
+                                {colorMeta?.label ?? d.couleur}
+                            </span>
                         </div>
-                        <h3 className={styles.nameV4} id={titleId}>
-                            {d.nom}
-                        </h3>
+                        <Link
+                            className={styles.nameLinkV4}
+                            href={`/vignoble/${d.slug}`}
+                        >
+                            <h3 className={styles.nameV4} id={titleId}>
+                                <span>{title.name}</span>
+                                {title.qualifier ? (
+                                    <span className={styles.titleQualifierV4}>
+                                        {title.qualifier}
+                                    </span>
+                                ) : null}
+                            </h3>
+                        </Link>
                         <p className={styles.subtitleV4}>{d.sousTitre}</p>
+                    </div>
+
+                    <div className={styles.robeBackdropV4} aria-hidden>
+                        <LRZSymbol
+                            className={styles.robeBackdropSymbolV4}
+                            collection="vignoble"
+                            meta="couleur"
+                            slug={d.couleur}
+                            size={96}
+                            frame="none"
+                            padding="none"
+                            shadow="none"
+                            decorative
+                        />
                     </div>
                 </header>
 
-                <div
-                    className={styles.primaryStampsV4}
-                    aria-label="Appellation et notoriété"
+                <section
+                    className={styles.appellationCardV4}
+                    aria-label="Appellation"
                 >
                     <LRZStamp
+                        className={styles.appellationStampV4}
                         collection="vignoble"
                         meta="appellation"
                         slug={d.appellation.niveau}
-                        variant="chip"
-                        tone="outline"
-                        size="xs"
-                        font="mono"
-                        labelSize={11}
-                        paddingX={10}
-                        paddingY={4}
-                        gap="lg"
-                        shadow="none"
-                        symbolScale={0.9}
+                        detail={
+                            d.appellation.depuis
+                                ? `Reconnue depuis ${d.appellation.depuis}`
+                                : false
+                        }
+                        variant="plaque"
+                        tone="subtle"
+                        size="md"
+                        font="display"
+                        labelSize={14}
+                        paddingX={12}
+                        paddingY={7}
+                        gap="md"
+                        shadow="soft"
+                        symbolScale={1.05}
+                        fullWidth
                         gradient={false}
                     />
-                    <LRZStamp
-                        collection="vignoble"
-                        meta="notoriete"
-                        slug={d.notoriete}
-                        variant="chip"
-                        tone="outline"
-                        size="xs"
-                        font="mono"
-                        labelSize={11}
-                        paddingX={10}
-                        paddingY={4}
-                        gap="lg"
-                        shadow="none"
-                        symbolScale={0.9}
-                        gradient={false}
-                    />
-                </div>
+                </section>
 
                 <div className={styles.waveV4} aria-hidden />
 
-                <div className={styles.terroirsV4} aria-label="Terroirs">
-                    {d.meta.terroirs.map((terroir) => (
-                        <LRZSymbol
-                            key={terroir}
-                            collection="vignoble"
-                            meta="terroir"
-                            slug={terroir}
-                            frame="subtle"
-                            size="lg"
-                            tooltip
-                        />
-                    ))}
-                </div>
-
-                <p className={styles.styleV4}>« {d.style} »</p>
-
-                <div className={styles.accordionsV4}>
-                    <LRZAccordion
-                        id={`vignoble-${d.slug}-vin`}
-                        title="Le vin"
-                        description="Cépages et profil de dégustation"
-                        icon={<Grape className={styles.accordionIconV4} />}
-                        color={color}
-                        tone="surface"
-                        size="sm"
-                        fullWidth
-                        headingLevel={4}
-                        defaultOpen={open}
-                        unmountOnClose
-                    >
-                        <LRZMetaList
-                            color={color}
-                            layout="responsive"
-                            hideEmpty
-                            items={[
-                                {
-                                    id: "cepages",
-                                    label: "Cépages",
-                                    value: d.cepages.join(" · "),
-                                },
-                                {
-                                    id: "profil",
-                                    label: "Profil",
-                                    value: d.style,
-                                },
-                            ]}
-                        />
-                    </LRZAccordion>
-
-                    <LRZAccordion
-                        id={`vignoble-${d.slug}-appellation`}
-                        title="L’appellation"
-                        description="Repères, origine et reconnaissance"
-                        icon={<Landmark className={styles.accordionIconV4} />}
-                        color={color}
-                        tone="surface"
-                        size="sm"
-                        fullWidth
-                        headingLevel={4}
-                        defaultOpen={open}
-                        unmountOnClose
-                    >
-                        <LRZMetaList
-                            color={color}
-                            layout="responsive"
-                            hideEmpty
-                            items={[
-                                {
-                                    id: "niveau",
-                                    label: "Niveau",
-                                    value: d.appellation.niveau,
-                                },
-                                {
-                                    id: "depuis",
-                                    label: "Reconnue depuis",
-                                    value: d.appellation.depuis,
-                                },
-                                {
-                                    id: "rive",
-                                    label: "Rive",
-                                    value: d.rive,
-                                },
-                                {
-                                    id: "departement",
-                                    label: "Département",
-                                    value: d.departement,
-                                },
-                            ]}
-                        />
-                    </LRZAccordion>
-
-                    <LRZAccordion
-                        id={`vignoble-${d.slug}-table`}
-                        title="À table"
-                        description="Accord, récit et autres noms"
-                        icon={
-                            <UtensilsCrossed
-                                className={styles.accordionIconV4}
-                            />
-                        }
-                        color={color}
-                        tone="surface"
-                        size="sm"
-                        fullWidth
-                        headingLevel={4}
-                        defaultOpen={open}
-                        unmountOnClose
-                    >
-                        <LRZMetaList
-                            color={color}
-                            layout="responsive"
-                            hideEmpty
-                            items={[
-                                {
-                                    id: "accord",
-                                    label: "Accord",
-                                    value: d.accord,
-                                },
-                                {
-                                    id: "autres-noms",
-                                    label: "Autres noms",
-                                    value: d.autresNoms.join(" · "),
-                                },
-                                {
-                                    id: "note",
-                                    label: "Note d’appellation",
-                                    value: d.appellation.note,
-                                    span: "full",
-                                },
-                            ]}
-                        />
-                        {d.resume ? (
-                            <LRZAnecdote
-                                className={styles.anecdoteV4}
-                                color={color}
+                <section
+                    className={styles.winePortraitV4}
+                    aria-labelledby={`${titleId}-portrait`}
+                >
+                    <div className={styles.portraitHeadingV4}>
+                        <span className={styles.portraitIconV4} aria-hidden>
+                            <Grape />
+                        </span>
+                        <div>
+                            <p className={styles.portraitEyebrowV4}>
+                                Portrait du vin
+                            </p>
+                            <LRZTextClamp
+                                as="h4"
+                                className={styles.portraitTitleV4}
+                                id={`${titleId}-portrait`}
+                                lines={3}
+                                tooltip
+                                tooltipPortal
+                                fixedHeight
                             >
-                                {d.resume}
-                            </LRZAnecdote>
+                                {d.style}
+                            </LRZTextClamp>
+                        </div>
+                    </div>
+
+                    <div className={styles.symbolBoardV4}>
+                        <div className={styles.symbolRowV4}>
+                            <p className={styles.symbolLabelV4}>Cépages</p>
+                            <div
+                                className={styles.metaSymbolsV4}
+                                aria-label="Cépages"
+                            >
+                                {d.meta.cepages.map((cepage) => (
+                                    <LRZSymbol
+                                        key={cepage}
+                                        collection="vignoble"
+                                        meta="cepage"
+                                        slug={cepage}
+                                        frame="subtle"
+                                        size={41}
+                                        tooltip
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className={styles.symbolRowV4}>
+                            <p className={styles.symbolLabelV4}>Terroirs</p>
+                            <div
+                                className={styles.metaSymbolsV4}
+                                aria-label="Terroirs"
+                            >
+                                {d.meta.terroirs.map((terroir) => (
+                                    <LRZSymbol
+                                        key={terroir}
+                                        collection="vignoble"
+                                        meta="terroir"
+                                        slug={terroir}
+                                        frame="subtle"
+                                        size={41}
+                                        tooltip
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {d.accord ? (
+                        <div className={styles.pairingV4}>
+                            <UtensilsCrossed aria-hidden />
+                            <div>
+                                <span>À la table</span>
+                                <LRZTextClamp
+                                    as="strong"
+                                    lines={2}
+                                    fixedHeight
+                                    tooltip
+                                    tooltipPortal
+                                >
+                                    {d.accord}
+                                </LRZTextClamp>
+                            </div>
+                        </div>
+                    ) : null}
+                </section>
+
+                <section
+                    className={styles.geographyCardV4}
+                    aria-labelledby={`${titleId}-geography`}
+                >
+                    <div className={styles.geographyHeadingV4}>
+                        <span className={styles.portraitIconV4} aria-hidden>
+                            <MapPin />
+                        </span>
+                        <div>
+                            <p>Géographie du vin</p>
+                            <h4 id={`${titleId}-geography`}>{d.rive}</h4>
+                        </div>
+                        {d.resume ? (
+                            <LRZTooltip
+                                content={d.resume}
+                                side="top"
+                                align="end"
+                                portal
+                            >
+                                <button
+                                    className={styles.geographyInfoV4}
+                                    type="button"
+                                    aria-label={`En savoir plus sur la géographie de ${d.nom}`}
+                                >
+                                    <Info aria-hidden />
+                                </button>
+                            </LRZTooltip>
                         ) : null}
-                    </LRZAccordion>
-                </div>
+                    </div>
+
+                    <dl className={styles.geographyFactsV4}>
+                        <div>
+                            <dt>Département</dt>
+                            <dd>{d.departement}</dd>
+                        </div>
+                        <div>
+                            <dt>Point du coteau</dt>
+                            <dd>
+                                {d.coordonnees.lat.toFixed(3)} ·{" "}
+                                {d.coordonnees.lng.toFixed(3)}
+                            </dd>
+                        </div>
+                    </dl>
+                </section>
             </div>
         </LRZCard>
     );
