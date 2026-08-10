@@ -122,7 +122,7 @@ export function PageHeaderIndexNavigation({
                                 collection="codex"
                                 meta="index"
                                 slug={index.slug}
-                                size={20}
+                                size={30}
                                 decorative
                             />
                         ) : (

@@ -509,8 +509,8 @@
     display: flex;
     max-width: 100%;
     align-items: center;
-    gap: 1px;
-    padding: 3px;
+    gap: 2px;
+    padding: 4px;
     overflow-x: auto;
     border: 1px solid var(--border-subtle);
     border-radius: 999px;
@@ -527,18 +527,20 @@
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
-    gap: 4px;
-    padding: 5px 9px 7px;
+    gap: 5px;
+    padding: 5px 10px 7px;
     border-radius: 999px;
     color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.03em;
+    font-size: 11px;
+    letter-spacing: 0.02em;
     text-decoration: none;
     transition:
         color 0.2s ease,
         background 0.2s ease,
-        box-shadow 0.2s ease;
+        box-shadow 0.2s ease,
+        gap 0.24s ease,
+        padding 0.24s ease;
 }
 
 .indexNavButton:hover {
@@ -590,15 +592,63 @@
 
 .indexNavEmoji {
     display: grid;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     place-items: center;
-    font-size: 12px;
+    font-size: 17px;
     line-height: 1;
 }
 
 .indexNavText {
     white-space: nowrap;
+}
+
+/*
+ * Entre le grand écran et la navigation mobile, les symboles portent les
+ * index secondaires. L’index actif conserve son libellé et son rôle de repère.
+ */
+@container (min-width: 901px) and (max-width: 1120px) {
+    .indexHeader {
+        column-gap: 18px;
+    }
+
+    .indexNavButton:not([aria-current="page"]):not([data-current-section]) {
+        min-width: 44px;
+        justify-content: center;
+        gap: 0;
+        padding-inline: 7px;
+    }
+
+    .indexNavButton:not([aria-current="page"]):not([data-current-section])
+        .indexNavText {
+        max-width: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateX(-4px);
+        transition:
+            max-width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+            opacity 0.18s ease,
+            transform 0.24s ease;
+        white-space: nowrap;
+    }
+
+    .indexNavButton:not([aria-current="page"]):not([data-current-section]):is(
+            :hover,
+            :focus-visible
+        ) {
+        gap: 5px;
+        padding-right: 10px;
+    }
+
+    .indexNavButton:not([aria-current="page"]):not([data-current-section]):is(
+            :hover,
+            :focus-visible
+        )
+        .indexNavText {
+        max-width: 9rem;
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 @container (max-width: 900px) {
@@ -734,7 +784,8 @@
     }
 
     .indexNavButton,
-    .indexSiteName {
+    .indexSiteName,
+    .indexNavText {
         transition: none;
     }
 }
