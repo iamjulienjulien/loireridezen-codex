@@ -85,8 +85,6 @@ export function CollectionEntryCard({
 }: CollectionEntryCardProps) {
     const visual = getEpoqueVisual(castle.epoque);
 
-    console.log("c", collectionEntry, castle);
-
     const castleHref = href ?? `/chateaux/${castle.slug}`;
 
     const isPodium = variant === "podium" || collectionEntry.rang <= 3;
