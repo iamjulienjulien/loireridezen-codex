@@ -36,8 +36,7 @@ export const FAUNE_TYPE_REGISTRY = defineCollectionMetaRegistry({
 
 export type FauneType = keyof typeof FAUNE_TYPE_REGISTRY;
 
-export type FauneTypeMeta =
-    (typeof FAUNE_TYPE_REGISTRY)[FauneType];
+export type FauneTypeMeta = (typeof FAUNE_TYPE_REGISTRY)[FauneType];
 
 /** Liste ordonnée des types, utile pour les filtres et les démonstrations. */
 export const FAUNE_TYPE_META = Object.freeze(
@@ -48,8 +47,6 @@ export function isFauneType(value: string): value is FauneType {
     return isCollectionMetaSlug(FAUNE_TYPE_REGISTRY, value);
 }
 
-export function getFauneTypeMeta(
-    slug: string,
-): FauneTypeMeta | undefined {
+export function getFauneTypeMeta(slug: string): FauneTypeMeta | undefined {
     return getCollectionMeta(FAUNE_TYPE_REGISTRY, slug);
 }

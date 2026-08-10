@@ -32,8 +32,6 @@ describe("Personnage categorie meta registry", () => {
 
     it("rejects an unknown category", () => {
         expect(isPersonnageCategorieSlug("explorateur")).toBe(false);
-        expect(
-            getPersonnageCategorieMeta("explorateur"),
-        ).toBeUndefined();
+        expect(getPersonnageCategorieMeta("explorateur")).toBeUndefined();
     });
 });

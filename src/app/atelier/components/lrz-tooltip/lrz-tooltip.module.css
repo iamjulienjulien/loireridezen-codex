@@ -20,7 +20,10 @@
 .trigger:focus-visible {
     border-color: var(--gold);
     color: var(--gold);
-    background: color-mix(in srgb, var(--gold) 10%, var(--color-ambiance-surface));
+    background: color-mix(
+        in srgb,
+        var(--gold) 10%,
+        var(--color-ambiance-surface)
+    );
     outline: none;
 }
-

@@ -213,7 +213,11 @@
     padding: clamp(1.25rem, 3vw, 2rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 94%,
+        transparent
+    );
 }
 
 .paletteHeader {
@@ -286,7 +290,11 @@
     padding: clamp(1.25rem, 3vw, 2rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 94%,
+        transparent
+    );
 }
 
 .groupHeader h3 {

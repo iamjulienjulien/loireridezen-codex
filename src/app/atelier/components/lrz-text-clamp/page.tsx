@@ -7,7 +7,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import styles from "../filter-playground.module.css";
 import localStyles from "./lrz-text-clamp.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-text-clamp");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-text-clamp",
+);
 
 const EXAMPLE_CODE = `<LRZTextClamp
     as="h3"

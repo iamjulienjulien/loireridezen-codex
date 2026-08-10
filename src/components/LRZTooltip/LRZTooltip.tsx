@@ -164,35 +164,41 @@ export default function LRZTooltip({
             style={{ "--tooltip-delay": `${delay}ms` } as CSSProperties}
         >
             {triggerElement}
-            {portal
-                ? isVisible &&
-                  mounted
-                    ? createPortal(
-                          <span
-                              ref={portalRef}
-                              id={tooltipId}
-                              className={[styles.tooltip, styles.portalTooltip].join(" ")}
-                              data-align={align}
-                              data-portal-tooltip="true"
-                              data-portal-ready={portalPosition ? "true" : undefined}
-                              data-side={side}
-                              role="tooltip"
-                              style={portalPosition}
-                              onMouseEnter={() => {
-                                  if (trigger === "hover") setOpen(true);
-                              }}
-                              onMouseLeave={() => {
-                                  if (trigger === "hover") setOpen(false);
-                              }}
-                          >
-                              {content}
-                          </span>,
-                          document.body,
-                      )
-                    : null
-                : <span id={tooltipId} className={styles.tooltip} role="tooltip">
-                      {content}
-                  </span>}
+            {portal ? (
+                isVisible && mounted ? (
+                    createPortal(
+                        <span
+                            ref={portalRef}
+                            id={tooltipId}
+                            className={[
+                                styles.tooltip,
+                                styles.portalTooltip,
+                            ].join(" ")}
+                            data-align={align}
+                            data-portal-tooltip="true"
+                            data-portal-ready={
+                                portalPosition ? "true" : undefined
+                            }
+                            data-side={side}
+                            role="tooltip"
+                            style={portalPosition}
+                            onMouseEnter={() => {
+                                if (trigger === "hover") setOpen(true);
+                            }}
+                            onMouseLeave={() => {
+                                if (trigger === "hover") setOpen(false);
+                            }}
+                        >
+                            {content}
+                        </span>,
+                        document.body,
+                    )
+                ) : null
+            ) : (
+                <span id={tooltipId} className={styles.tooltip} role="tooltip">
+                    {content}
+                </span>
+            )}
         </span>
     );
 }
@@ -208,16 +214,28 @@ function getPortalPosition(
     let left = 0;
 
     if (side === "top" || side === "bottom") {
-        top = side === "top" ? trigger.top - tooltip.height - gap : trigger.bottom + gap;
+        top =
+            side === "top"
+                ? trigger.top - tooltip.height - gap
+                : trigger.bottom + gap;
         left = getCrossAxisPosition(trigger, tooltip, align, "horizontal");
     } else {
-        left = side === "left" ? trigger.left - tooltip.width - gap : trigger.right + gap;
+        left =
+            side === "left"
+                ? trigger.left - tooltip.width - gap
+                : trigger.right + gap;
         top = getCrossAxisPosition(trigger, tooltip, align, "vertical");
     }
 
     return {
-        top: Math.max(8, Math.min(top, window.innerHeight - tooltip.height - 8)),
-        left: Math.max(8, Math.min(left, window.innerWidth - tooltip.width - 8)),
+        top: Math.max(
+            8,
+            Math.min(top, window.innerHeight - tooltip.height - 8),
+        ),
+        left: Math.max(
+            8,
+            Math.min(left, window.innerWidth - tooltip.width - 8),
+        ),
     };
 }
 

@@ -472,7 +472,13 @@
             "autresNoms": [],
             "categoriePrincipale": "prince",
             "roles": ["duc d’Anjou"],
-            "tags": ["anjou", "batisseur", "mecenat", "moyen-age", "tapisserie"],
+            "tags": [
+                "anjou",
+                "batisseur",
+                "mecenat",
+                "moyen-age",
+                "tapisserie"
+            ],
             "illustration": "/emoji/personnage/louis-premier-d-anjou.png"
         },
         {

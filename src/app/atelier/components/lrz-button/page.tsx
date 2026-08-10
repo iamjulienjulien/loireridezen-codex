@@ -8,7 +8,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZButtonPlayground from "./LRZButtonPlayground";
 import styles from "../filter-playground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-button");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-button",
+);
 
 const VARIANTS = [
     ["primary", "Action principale", "Découvrir un lieu"],

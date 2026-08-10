@@ -15,7 +15,9 @@ export function getFloreBySlug(slug: string) {
     return FLORE_ENTRIES.find((flore) => flore.slug === slug);
 }
 
-export function FloreRoute({ initialOpenSlug }: { initialOpenSlug?: string } = {}) {
+export function FloreRoute({
+    initialOpenSlug,
+}: { initialOpenSlug?: string } = {}) {
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
 
     return (

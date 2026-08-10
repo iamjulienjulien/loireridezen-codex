@@ -8,7 +8,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZSeparateurPlayground from "./LRZSeparateurPlayground";
 import styles from "./LRZSeparateurPlayground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-separateur");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-separateur",
+);
 
 type SeparatorExample = LRZSeparateurProps & {
     name: string;

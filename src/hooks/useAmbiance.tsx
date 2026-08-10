@@ -24,11 +24,7 @@ export function detectAmbiance(hour: number): Ambiance {
     return "nuit";
 }
 
-export function AmbianceProvider({
-    children,
-}: {
-    children: ReactNode;
-}) {
+export function AmbianceProvider({ children }: { children: ReactNode }) {
     const [forcedAmbiance, setForcedAmbiance] = useState<Ambiance | null>(null);
     const [autoAmbiance, setAutoAmbiance] = useState<Ambiance | null>(null);
 

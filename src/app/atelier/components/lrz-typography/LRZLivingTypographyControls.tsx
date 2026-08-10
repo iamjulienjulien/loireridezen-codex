@@ -10,9 +10,7 @@ import type { Ambiance } from "@/registry/ambiances";
 import { LRZ_COLOR_LABELS, LRZ_COLOR_NAMES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 
-import LRZAnimationCard, {
-    useLRZAnimationPlayback,
-} from "./LRZAnimationCard";
+import LRZAnimationCard, { useLRZAnimationPlayback } from "./LRZAnimationCard";
 import styles from "./LRZTypographyPlayground.module.css";
 
 type LivingIntensity = "subtle" | "medium" | "expressive";
@@ -47,12 +45,9 @@ const SCRAMBLE_CHARACTER_SETS = [
 
 export function LRZCutoutTextControls({ className }: { className: string }) {
     const [surface, setSurface] = useState<LRZColor>("bleu-gris");
-    const [padding, setPadding] = useState<(typeof CUTOUT_PADDINGS)[number]>(
-        "md",
-    );
-    const [radius, setRadius] = useState<(typeof CUTOUT_RADII)[number]>(
-        "none",
-    );
+    const [padding, setPadding] =
+        useState<(typeof CUTOUT_PADDINGS)[number]>("md");
+    const [radius, setRadius] = useState<(typeof CUTOUT_RADII)[number]>("none");
 
     return (
         <>
@@ -150,12 +145,10 @@ function TypewriterPreview({
 export function LRZTypewriterControls({ className }: { className: string }) {
     const [speed, setSpeed] = useState(62);
     const [startDelay, setStartDelay] = useState(0);
-    const [cursor, setCursor] = useState<(typeof TYPEWRITER_CURSORS)[number]>(
-        "underscore",
-    );
-    const [cursorAfter, setCursorAfter] = useState<
-        (typeof TYPEWRITER_CURSOR_AFTER)[number]
-    >("keep");
+    const [cursor, setCursor] =
+        useState<(typeof TYPEWRITER_CURSORS)[number]>("underscore");
+    const [cursorAfter, setCursorAfter] =
+        useState<(typeof TYPEWRITER_CURSOR_AFTER)[number]>("keep");
 
     return (
         <>
@@ -316,7 +309,9 @@ export function LRZScrambleTextControls({ className }: { className: string }) {
                             <input
                                 type="checkbox"
                                 checked={mono}
-                                onChange={(event) => setMono(event.target.checked)}
+                                onChange={(event) =>
+                                    setMono(event.target.checked)
+                                }
                             />
                             <span>mono</span>
                         </label>
@@ -329,7 +324,9 @@ export function LRZScrambleTextControls({ className }: { className: string }) {
                                 step={1}
                                 value={scrambleFrames}
                                 onChange={(event) =>
-                                    setScrambleFrames(Number(event.target.value))
+                                    setScrambleFrames(
+                                        Number(event.target.value),
+                                    )
                                 }
                             />
                         </label>
@@ -337,7 +334,9 @@ export function LRZScrambleTextControls({ className }: { className: string }) {
                             <input
                                 type="checkbox"
                                 checked={trim}
-                                onChange={(event) => setTrim(event.target.checked)}
+                                onChange={(event) =>
+                                    setTrim(event.target.checked)
+                                }
                             />
                             <span>trim</span>
                         </label>
@@ -543,7 +542,11 @@ export function LRZBreathingTextControls({ className }: { className: string }) {
     );
 }
 
-export function LRZAtmosphericTextControls({ className }: { className: string }) {
+export function LRZAtmosphericTextControls({
+    className,
+}: {
+    className: string;
+}) {
     const [ambiance, setAmbiance] = useState<Ambiance>("nuit");
     const [intensity, setIntensity] = useState<LivingIntensity>("expressive");
 

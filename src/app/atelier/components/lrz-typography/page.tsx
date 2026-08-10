@@ -13,7 +13,9 @@ import LRZAnimationCard from "./LRZAnimationCard";
 import LRZTypographyPlayground from "./LRZTypographyPlayground";
 import styles from "./LRZTypographyPlayground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-typography");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-typography",
+);
 
 const PRESETS: Array<{
     preset: LRZTypographyPreset;

@@ -1,6 +1,10 @@
 .timeline {
     --timeline-accent: var(--gold);
-    --timeline-line: color-mix(in srgb, var(--timeline-accent) 28%, var(--border-subtle));
+    --timeline-line: color-mix(
+        in srgb,
+        var(--timeline-accent) 28%,
+        var(--border-subtle)
+    );
     display: grid;
     min-width: 0;
     margin: 0;
@@ -125,8 +129,16 @@
 }
 
 .cards .featured .content {
-    border-color: color-mix(in srgb, var(--timeline-accent) 48%, var(--border-subtle));
-    background: color-mix(in srgb, var(--timeline-accent) 7%, var(--color-ambiance-surface));
+    border-color: color-mix(
+        in srgb,
+        var(--timeline-accent) 48%,
+        var(--border-subtle)
+    );
+    background: color-mix(
+        in srgb,
+        var(--timeline-accent) 7%,
+        var(--color-ambiance-surface)
+    );
 }
 
 .compact .item {

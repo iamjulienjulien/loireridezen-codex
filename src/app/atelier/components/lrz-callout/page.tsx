@@ -14,7 +14,9 @@ import {
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import styles from "./lrz-callout.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-callout");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-callout",
+);
 
 const TONES: Array<{
     tone: LRZCalloutTone;

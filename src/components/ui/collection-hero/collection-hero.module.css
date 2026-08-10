@@ -20,7 +20,11 @@
             color-mix(in srgb, var(--collection-color) 13%, transparent),
             transparent 34%
         ),
-        linear-gradient(135deg, var(--color-ambiance-elevation), var(--color-ambiance-surface));
+        linear-gradient(
+            135deg,
+            var(--color-ambiance-elevation),
+            var(--color-ambiance-surface)
+        );
     box-shadow: var(--shadow-card);
 }
 
@@ -315,7 +319,11 @@
     border-radius: 50%;
     background: radial-gradient(
         circle at 50% 35%,
-        color-mix(in srgb, var(--collection-color) 14%, var(--color-ambiance-surface)),
+        color-mix(
+            in srgb,
+            var(--collection-color) 14%,
+            var(--color-ambiance-surface)
+        ),
         var(--color-ambiance-surface) 70%
     );
     box-shadow:

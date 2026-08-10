@@ -31,11 +31,7 @@ export default function LRZFilterChip({
     ...props
 }: LRZFilterChipProps) {
     const definition = preset
-        ? getLRZSymbolDefinition(
-              preset.collection,
-              preset.meta,
-              preset.slug,
-          )
+        ? getLRZSymbolDefinition(preset.collection, preset.meta, preset.slug)
         : undefined;
     const label = children ?? definition?.label ?? preset?.slug;
 

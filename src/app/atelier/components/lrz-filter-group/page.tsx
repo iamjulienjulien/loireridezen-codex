@@ -5,7 +5,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZFilterGroupShowcase from "./LRZFilterGroupShowcase";
 import styles from "../filter-playground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-filter-group");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-filter-group",
+);
 
 export default function LRZFilterGroupPage() {
     return (

@@ -32,12 +32,7 @@ export type LRZScrambleTextProps = Omit<
 };
 
 export type LRZScrambleCharacterSet =
-    | "mixte"
-    | "upper"
-    | "lower"
-    | "ucfirst"
-    | "emoji"
-    | "symbol";
+    "mixte" | "upper" | "lower" | "ucfirst" | "emoji" | "symbol";
 
 const CHARACTER_SETS = {
     mixte: "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789",
@@ -69,9 +64,7 @@ function getScrambleCharacters(
     index: number,
 ) {
     if (characterSet === "ucfirst") {
-        return index === 0
-            ? CHARACTER_SETS.upper
-            : CHARACTER_SETS.lower;
+        return index === 0 ? CHARACTER_SETS.upper : CHARACTER_SETS.lower;
     }
 
     return CHARACTER_SETS[characterSet];
@@ -145,10 +138,7 @@ export default function LRZScrambleText({
 
     const visibleText = target
         .map((grapheme, index) => {
-            if (
-                /\s/.test(grapheme) ||
-                index < visibleFrame - resolvedFrames
-            ) {
+            if (/\s/.test(grapheme) || index < visibleFrame - resolvedFrames) {
                 return grapheme;
             }
 

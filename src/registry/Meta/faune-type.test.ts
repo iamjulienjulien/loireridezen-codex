@@ -36,9 +36,7 @@ describe("Faune type meta registry", () => {
     });
 
     it("resolves a known type", () => {
-        expect(getFauneTypeMeta("poisson")).toBe(
-            FAUNE_TYPE_REGISTRY.poisson,
-        );
+        expect(getFauneTypeMeta("poisson")).toBe(FAUNE_TYPE_REGISTRY.poisson);
     });
 
     it("rejects an unknown type", () => {

@@ -15,7 +15,9 @@ export function getFauneBySlug(slug: string) {
     return FAUNE_ESPECES.find((espece) => espece.slug === slug);
 }
 
-export function FauneRoute({ initialOpenSlug }: { initialOpenSlug?: string } = {}) {
+export function FauneRoute({
+    initialOpenSlug,
+}: { initialOpenSlug?: string } = {}) {
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
 
     return (

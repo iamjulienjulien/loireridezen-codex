@@ -7,7 +7,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZSectionPlayground from "./LRZSectionPlayground";
 import styles from "./LRZSectionPlayground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-section");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-section",
+);
 
 type LayoutExample = {
     title: string;

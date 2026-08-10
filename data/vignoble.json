@@ -64,7 +64,16 @@
             "accord": "Pâté bourbonnais, poissons de rivière, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "2009" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "granite"], "cepages": ["tressallier", "chardonnay", "sauvignon-blanc", "gamay", "pinot-noir"] }
+            "meta": {
+                "terroirs": ["argilo-calcaire", "granite"],
+                "cepages": [
+                    "tressallier",
+                    "chardonnay",
+                    "sauvignon-blanc",
+                    "gamay",
+                    "pinot-noir"
+                ]
+            }
         },
         {
             "emoji": "🍇",
@@ -81,7 +90,10 @@
             "accord": "Charcuterie auvergnate, potée, saint-nectaire",
             "appellation": { "niveau": "AOC communale", "depuis": "2010" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["marne-calcaire", "granite", "gneiss"], "cepages": ["gamay", "pinot-noir", "chardonnay"] }
+            "meta": {
+                "terroirs": ["marne-calcaire", "granite", "gneiss"],
+                "cepages": ["gamay", "pinot-noir", "chardonnay"]
+            }
         },
 
         {
@@ -99,7 +111,10 @@
             "accord": "Poisson de Loire, crottin de Chavignol, charcuterie",
             "appellation": { "niveau": "AOC communale", "depuis": "1998" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"], "cepages": ["gamay", "pinot-noir", "sauvignon-blanc"] }
+            "meta": {
+                "terroirs": ["argilo-calcaire", "argile-a-silex"],
+                "cepages": ["gamay", "pinot-noir", "sauvignon-blanc"]
+            }
         },
         {
             "emoji": "🥂",
@@ -116,7 +131,10 @@
             "accord": "Friture de Loire, poissons grillés, chèvre frais",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["marne-calcaire", "argile-a-silex"], "cepages": ["chasselas"] }
+            "meta": {
+                "terroirs": ["marne-calcaire", "argile-a-silex"],
+                "cepages": ["chasselas"]
+            }
         },
         {
             "emoji": "🥂",
@@ -134,7 +152,10 @@
             "accord": "Poisson de Loire, fromage de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["marne-calcaire", "argile-a-silex"], "cepages": ["sauvignon-blanc"] }
+            "meta": {
+                "terroirs": ["marne-calcaire", "argile-a-silex"],
+                "cepages": ["sauvignon-blanc"]
+            }
         },
         {
             "emoji": "🥂",
@@ -176,7 +197,10 @@
             "accord": "Crottin de Chavignol, poissons de Loire, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "1959" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["marne-calcaire", "calcaire"], "cepages": ["sauvignon-blanc", "pinot-noir"] }
+            "meta": {
+                "terroirs": ["marne-calcaire", "calcaire"],
+                "cepages": ["sauvignon-blanc", "pinot-noir"]
+            }
         },
         {
             "emoji": "🥂",
@@ -193,7 +217,10 @@
             "accord": "Asperges, poissons grillés, fromage de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1936" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["sable", "graviers", "alluvions"], "cepages": ["sauvignon-blanc"] }
+            "meta": {
+                "terroirs": ["sable", "graviers", "alluvions"],
+                "cepages": ["sauvignon-blanc"]
+            }
         },
         {
             "emoji": "🥂",
@@ -210,7 +237,10 @@
             "accord": "Fromage de chèvre, poissons de rivière, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["marne-calcaire", "sable", "graviers"], "cepages": ["sauvignon-blanc", "pinot-noir", "pinot-gris"] }
+            "meta": {
+                "terroirs": ["marne-calcaire", "sable", "graviers"],
+                "cepages": ["sauvignon-blanc", "pinot-noir", "pinot-gris"]
+            }
         },
         {
             "emoji": "🍇",
@@ -227,7 +257,10 @@
             "accord": "Charcuterie, grillades, tarte aux légumes",
             "appellation": { "niveau": "AOC communale", "depuis": "2010" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["granite", "sable", "argilo-calcaire"], "cepages": ["gamay", "pinot-noir"] }
+            "meta": {
+                "terroirs": ["granite", "sable", "argilo-calcaire"],
+                "cepages": ["gamay", "pinot-noir"]
+            }
         },
 
         {
@@ -246,7 +279,10 @@
             "accord": "Rillettes, poissons de Loire, fromages de chèvre",
             "appellation": { "niveau": "AOC régionale", "depuis": "1939" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["argilo-calcaire", "sable", "graviers"], "cepages": ["sauvignon-blanc", "gamay", "cot"] }
+            "meta": {
+                "terroirs": ["argilo-calcaire", "sable", "graviers"],
+                "cepages": ["sauvignon-blanc", "gamay", "cot"]
+            }
         },
         {
             "emoji": "🍷",
@@ -263,7 +299,10 @@
             "accord": "Charcuterie, viandes rôties, fromages de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1955" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"], "cepages": ["cot", "cabernet-franc", "chenin"] }
+            "meta": {
+                "terroirs": ["tuffeau", "argilo-calcaire"],
+                "cepages": ["cot", "cabernet-franc", "chenin"]
+            }
         },
         {
             "emoji": "🍷",
@@ -280,7 +319,10 @@
             "accord": "Poissons de Loire, rillettes, tarte aux fruits",
             "appellation": { "niveau": "AOC communale", "depuis": "1953" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"], "cepages": ["chenin", "grolleau-noir"] }
+            "meta": {
+                "terroirs": ["tuffeau", "argilo-calcaire"],
+                "cepages": ["chenin", "grolleau-noir"]
+            }
         },
         {
             "emoji": "🍷",
@@ -297,7 +339,10 @@
             "accord": "Charcuterie, volaille, poissons grillés",
             "appellation": { "niveau": "AOC communale", "depuis": "1955" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "sable"], "cepages": ["gamay", "cot", "cabernet-franc", "chenin"] }
+            "meta": {
+                "terroirs": ["argilo-calcaire", "sable"],
+                "cepages": ["gamay", "cot", "cabernet-franc", "chenin"]
+            }
         },
         {
             "emoji": "🍷",
@@ -314,7 +359,10 @@
             "accord": "Fromage de chèvre, poissons, viande rouge grillée",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"], "cepages": ["sauvignon-blanc", "cot"] }
+            "meta": {
+                "terroirs": ["argilo-calcaire", "argile-a-silex"],
+                "cepages": ["sauvignon-blanc", "cot"]
+            }
         },
         {
             "emoji": "🍷",
@@ -331,7 +379,10 @@
             "accord": "Asperges, poissons de Loire, chèvre frais",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["sable", "argile-a-silex"], "cepages": ["sauvignon-blanc"] }
+            "meta": {
+                "terroirs": ["sable", "argile-a-silex"],
+                "cepages": ["sauvignon-blanc"]
+            }
         },
         {
             "emoji": "🌸",
@@ -348,7 +399,10 @@
             "accord": "Rillettes de Tours, grillades, cuisine estivale",
             "appellation": { "niveau": "AOC communale", "depuis": "2001" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["sable", "argilo-calcaire"], "cepages": ["pinot-meunier", "pinot-gris", "pinot-noir"] }
+            "meta": {
+                "terroirs": ["sable", "argilo-calcaire"],
+                "cepages": ["pinot-meunier", "pinot-gris", "pinot-noir"]
+            }
         },
         {
             "emoji": "🥂",
@@ -386,7 +440,10 @@
             "accord": "Poissons de Loire, chèvre, desserts aux pommes",
             "appellation": { "niveau": "AOC communale", "depuis": "1938" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["tuffeau", "argile-a-silex"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["tuffeau", "argile-a-silex"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🍷",
@@ -404,7 +461,10 @@
             "accord": "Charcuterie, viandes rouges",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["tuffeau", "graviers", "sable"], "cepages": ["cabernet-franc", "chenin"] }
+            "meta": {
+                "terroirs": ["tuffeau", "graviers", "sable"],
+                "cepages": ["cabernet-franc", "chenin"]
+            }
         },
         {
             "emoji": "🍷",
@@ -421,7 +481,10 @@
             "accord": "Rillettes, agneau, viandes rouges",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["tuffeau", "graviers", "sable"], "cepages": ["cabernet-franc"] }
+            "meta": {
+                "terroirs": ["tuffeau", "graviers", "sable"],
+                "cepages": ["cabernet-franc"]
+            }
         },
         {
             "emoji": "🍷",
@@ -438,7 +501,10 @@
             "accord": "Charcuterie, volaille rôtie, champignons",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["graviers", "sable", "tuffeau"], "cepages": ["cabernet-franc"] }
+            "meta": {
+                "terroirs": ["graviers", "sable", "tuffeau"],
+                "cepages": ["cabernet-franc"]
+            }
         },
         {
             "emoji": "🍷",
@@ -455,7 +521,15 @@
             "accord": "Asperges, poissons de Loire, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "1993" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["sable", "argilo-calcaire"], "cepages": ["sauvignon-blanc", "chardonnay", "gamay", "pinot-noir"] }
+            "meta": {
+                "terroirs": ["sable", "argilo-calcaire"],
+                "cepages": [
+                    "sauvignon-blanc",
+                    "chardonnay",
+                    "gamay",
+                    "pinot-noir"
+                ]
+            }
         },
         {
             "emoji": "🥂",
@@ -477,7 +551,10 @@
                 "note": "Seule AOC au monde en cépage romorantin."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["sable", "argilo-calcaire"], "cepages": ["romorantin"] }
+            "meta": {
+                "terroirs": ["sable", "argilo-calcaire"],
+                "cepages": ["romorantin"]
+            }
         },
         {
             "emoji": "🥂",
@@ -494,7 +571,10 @@
             "accord": "Poissons de rivière, volaille, fromages de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["tuffeau", "argilo-calcaire"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🍷",
@@ -511,7 +591,10 @@
             "accord": "Charcuterie, lapin, cuisine épicée",
             "appellation": { "niveau": "AOC communale", "depuis": "1948" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"], "cepages": ["pineau-daunis", "chenin", "gamay"] }
+            "meta": {
+                "terroirs": ["tuffeau", "argilo-calcaire"],
+                "cepages": ["pineau-daunis", "chenin", "gamay"]
+            }
         },
         {
             "emoji": "🍇",
@@ -528,7 +611,10 @@
             "accord": "Rillettes, grillades, cuisine épicée",
             "appellation": { "niveau": "AOC communale", "depuis": "2001" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"], "cepages": ["pineau-daunis", "chenin", "gamay"] }
+            "meta": {
+                "terroirs": ["argilo-calcaire", "argile-a-silex"],
+                "cepages": ["pineau-daunis", "chenin", "gamay"]
+            }
         },
         {
             "emoji": "🍷",
@@ -545,7 +631,10 @@
             "accord": "Fromage de Valençay, poissons, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "2004" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["argilo-calcaire", "sable"], "cepages": ["sauvignon-blanc", "gamay", "cot", "pinot-noir"] }
+            "meta": {
+                "terroirs": ["argilo-calcaire", "sable"],
+                "cepages": ["sauvignon-blanc", "gamay", "cot", "pinot-noir"]
+            }
         },
         {
             "emoji": "🍷",
@@ -566,7 +655,10 @@
             "accord": "Pithiviers salé, volaille, poissons de Loire",
             "appellation": { "niveau": "AOC communale", "depuis": "2006" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["sable", "argilo-calcaire"], "cepages": ["chardonnay", "pinot-meunier", "pinot-noir"] }
+            "meta": {
+                "terroirs": ["sable", "argilo-calcaire"],
+                "cepages": ["chardonnay", "pinot-meunier", "pinot-noir"]
+            }
         },
         {
             "emoji": "🍷",
@@ -583,7 +675,10 @@
             "accord": "Gibier à plume, viandes rôties, fromages affinés",
             "appellation": { "niveau": "AOC communale", "depuis": "2006" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "calcaire"], "cepages": ["cabernet-franc"] }
+            "meta": {
+                "terroirs": ["argilo-calcaire", "calcaire"],
+                "cepages": ["cabernet-franc"]
+            }
         },
 
         {
@@ -606,7 +701,15 @@
             "accord": "Rillauds, poissons de Loire, viandes rôties",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["schiste", "tuffeau", "argilo-calcaire"], "cepages": ["chenin", "cabernet-franc", "cabernet-sauvignon", "gamay"] }
+            "meta": {
+                "terroirs": ["schiste", "tuffeau", "argilo-calcaire"],
+                "cepages": [
+                    "chenin",
+                    "cabernet-franc",
+                    "cabernet-sauvignon",
+                    "gamay"
+                ]
+            }
         },
         {
             "emoji": "🍷",
@@ -623,7 +726,10 @@
             "accord": "Bœuf rôti, gibier, fromages affinés",
             "appellation": { "niveau": "AOC communale", "depuis": "1991" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["cabernet-franc", "cabernet-sauvignon"] }
+            "meta": {
+                "terroirs": ["schiste", "argilo-calcaire"],
+                "cepages": ["cabernet-franc", "cabernet-sauvignon"]
+            }
         },
         {
             "emoji": "🍷",
@@ -640,7 +746,10 @@
             "accord": "Gibier, viandes mijotées, fromages de caractère",
             "appellation": { "niveau": "AOC communale", "depuis": "1998" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["cabernet-franc", "cabernet-sauvignon"] }
+            "meta": {
+                "terroirs": ["schiste", "argilo-calcaire"],
+                "cepages": ["cabernet-franc", "cabernet-sauvignon"]
+            }
         },
         {
             "emoji": "🍷",
@@ -657,7 +766,10 @@
             "accord": "Foie gras, cuisine épicée, desserts aux fruits",
             "appellation": { "niveau": "AOC communale", "depuis": "1946" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["schiste", "tuffeau"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["schiste", "tuffeau"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🌸",
@@ -674,7 +786,10 @@
             "accord": "Apéritif, cuisine épicée, desserts aux fruits rouges",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["grolleau-noir", "gamay", "cabernet-franc"] }
+            "meta": {
+                "terroirs": ["schiste", "argilo-calcaire"],
+                "cepages": ["grolleau-noir", "gamay", "cabernet-franc"]
+            }
         },
         {
             "emoji": "🌸",
@@ -691,7 +806,10 @@
             "accord": "Cuisine épicée, grillades, desserts aux fruits rouges",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["cabernet-franc", "cabernet-sauvignon"] }
+            "meta": {
+                "terroirs": ["schiste", "argilo-calcaire"],
+                "cepages": ["cabernet-franc", "cabernet-sauvignon"]
+            }
         },
         {
             "emoji": "🍯",
@@ -708,7 +826,10 @@
             "accord": "Foie gras, fromage persillé, tarte aux fruits",
             "appellation": { "niveau": "AOC communale", "depuis": "1950" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "tuffeau"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["schiste", "tuffeau"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🥂",
@@ -726,7 +847,10 @@
             "accord": "Poissons en sauce, volaille rôtie, fromages affinés",
             "appellation": { "niveau": "AOC communale", "depuis": "1952" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "micaschiste"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["schiste", "micaschiste"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🥂",
@@ -747,7 +871,10 @@
                 "note": "Anciennement climat de Savennières, érigé en AOC distincte."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["schiste", "micaschiste"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["schiste", "micaschiste"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🥂",
@@ -769,7 +896,10 @@
                 "note": "Monopole d'un seul domaine ; érigé en AOC distincte de Savennières."
             },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "micaschiste"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["schiste", "micaschiste"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🍯",
@@ -791,7 +921,10 @@
                 "note": "Villages : Beaulieu, Faye, Rablay, Rochefort, Saint-Aubin, Saint-Lambert, Chaume."
             },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["schiste", "argilo-calcaire"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🍯",
@@ -812,7 +945,10 @@
                 "note": "Unique « Premier Cru » du vignoble ligérien."
             },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "graviers"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["schiste", "graviers"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🍯",
@@ -834,7 +970,10 @@
                 "note": "Élevé au rang de Grand Cru en 2011 — le seul de la Loire."
             },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "graviers"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["schiste", "graviers"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🍯",
@@ -851,7 +990,10 @@
             "accord": "Foie gras, bleu, desserts à l'abricot",
             "appellation": { "niveau": "AOC communale", "depuis": "1951" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["schiste", "argilo-calcaire"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🍷",
@@ -868,7 +1010,10 @@
             "accord": "Fouées, poissons de Loire, champignons",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["tuffeau", "faluns", "argilo-calcaire"], "cepages": ["chenin", "cabernet-franc"] }
+            "meta": {
+                "terroirs": ["tuffeau", "faluns", "argilo-calcaire"],
+                "cepages": ["chenin", "cabernet-franc"]
+            }
         },
         {
             "emoji": "🍷",
@@ -886,7 +1031,10 @@
             "accord": "Fouées, charcuterie, viandes blanches",
             "appellation": { "niveau": "AOC communale", "depuis": "1957" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["tuffeau", "calcaire"], "cepages": ["cabernet-franc"] }
+            "meta": {
+                "terroirs": ["tuffeau", "calcaire"],
+                "cepages": ["cabernet-franc"]
+            }
         },
         {
             "emoji": "🍷",
@@ -903,7 +1051,10 @@
             "accord": "Viandes grillées, gibier, champignons",
             "appellation": { "niveau": "AOC communale", "depuis": "2009" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "calcaire"], "cepages": ["cabernet-franc"] }
+            "meta": {
+                "terroirs": ["tuffeau", "calcaire"],
+                "cepages": ["cabernet-franc"]
+            }
         },
         {
             "emoji": "🌸",
@@ -920,7 +1071,10 @@
             "accord": "Apéritif, grillades, cuisine légèrement épicée",
             "appellation": { "niveau": "AOC régionale", "depuis": "1964" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "faluns"], "cepages": ["cabernet-franc", "cabernet-sauvignon"] }
+            "meta": {
+                "terroirs": ["tuffeau", "faluns"],
+                "cepages": ["cabernet-franc", "cabernet-sauvignon"]
+            }
         },
         {
             "emoji": "🍯",
@@ -937,7 +1091,10 @@
             "accord": "Foie gras, chèvre affiné, desserts aux fruits",
             "appellation": { "niveau": "AOC communale", "depuis": "1962" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "calcaire"], "cepages": ["chenin"] }
+            "meta": {
+                "terroirs": ["tuffeau", "calcaire"],
+                "cepages": ["chenin"]
+            }
         },
         {
             "emoji": "🍇",
@@ -954,7 +1111,10 @@
             "accord": "Fromage de chèvre, poissons, charcuterie",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "tuffeau"], "cepages": ["sauvignon-blanc", "cabernet-franc", "gamay"] }
+            "meta": {
+                "terroirs": ["argilo-calcaire", "tuffeau"],
+                "cepages": ["sauvignon-blanc", "cabernet-franc", "gamay"]
+            }
         },
 
         {
@@ -972,7 +1132,15 @@
             "accord": "Apéritif, grillades, salades estivales",
             "appellation": { "niveau": "AOC régionale", "depuis": "1974" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "tuffeau", "argilo-calcaire"], "cepages": ["cabernet-franc", "grolleau-noir", "gamay", "pinot-noir"] }
+            "meta": {
+                "terroirs": ["schiste", "tuffeau", "argilo-calcaire"],
+                "cepages": [
+                    "cabernet-franc",
+                    "grolleau-noir",
+                    "gamay",
+                    "pinot-noir"
+                ]
+            }
         },
         {
             "emoji": "🥂",
@@ -989,7 +1157,10 @@
             "accord": "Apéritif, fouées",
             "appellation": { "niveau": "AOC régionale", "depuis": "1975" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["tuffeau", "schiste", "argilo-calcaire"], "cepages": ["chenin", "cabernet-franc", "chardonnay"] }
+            "meta": {
+                "terroirs": ["tuffeau", "schiste", "argilo-calcaire"],
+                "cepages": ["chenin", "cabernet-franc", "chardonnay"]
+            }
         },
 
         {
@@ -1032,7 +1203,10 @@
                 "note": "Porte dix crus communaux reconnus depuis 2011."
             },
             "notoriete": "phare",
-            "meta": { "terroirs": ["gneiss", "granite", "gabbro"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["gneiss", "granite", "gabbro"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1049,7 +1223,10 @@
             "accord": "Poissons du lac, fruits de mer, beurre blanc",
             "appellation": { "niveau": "AOC communale", "depuis": "1994" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["gneiss", "granite", "micaschiste"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["gneiss", "granite", "micaschiste"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1066,7 +1243,10 @@
             "accord": "Poissons de Loire, coquillages, fromage frais",
             "appellation": { "niveau": "AOC communale", "depuis": "1936" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["granite", "gneiss", "schiste"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["granite", "gneiss", "schiste"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🍇",
@@ -1083,7 +1263,10 @@
             "accord": "Charcuterie, volaille, desserts aux poires",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["schiste", "granite", "gneiss"], "cepages": ["gamay", "pinot-gris"] }
+            "meta": {
+                "terroirs": ["schiste", "granite", "gneiss"],
+                "cepages": ["gamay", "pinot-gris"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1104,7 +1287,10 @@
                 "note": "Ancien AOVDQS, promu AOP en 2011."
             },
             "notoriete": "notable",
-            "meta": { "terroirs": ["gneiss", "granite", "gabbro"], "cepages": ["folle-blanche"] }
+            "meta": {
+                "terroirs": ["gneiss", "granite", "gabbro"],
+                "cepages": ["folle-blanche"]
+            }
         },
         {
             "emoji": "🍇",
@@ -1127,7 +1313,16 @@
             "accord": "Poissons de l'Atlantique, mogettes, grillades",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["schiste", "granite", "gneiss"], "cepages": ["cabernet-franc", "gamay", "pinot-noir", "chenin", "chardonnay"] }
+            "meta": {
+                "terroirs": ["schiste", "granite", "gneiss"],
+                "cepages": [
+                    "cabernet-franc",
+                    "gamay",
+                    "pinot-noir",
+                    "chenin",
+                    "chardonnay"
+                ]
+            }
         },
 
         {
@@ -1149,7 +1344,10 @@
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["granite"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["granite"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1170,7 +1368,10 @@
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gabbro"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["gabbro"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1191,7 +1392,10 @@
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gneiss"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["gneiss"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1212,7 +1416,10 @@
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gabbro", "granite"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["gabbro", "granite"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1233,7 +1440,10 @@
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["granite"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["granite"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1254,7 +1464,10 @@
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gneiss"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["gneiss"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1275,7 +1488,10 @@
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gabbro"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["gabbro"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1296,7 +1512,10 @@
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gneiss"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["gneiss"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         },
         {
             "emoji": "🥂",
@@ -1317,7 +1536,10 @@
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gneiss", "granite"], "cepages": ["melon-de-bourgogne"] }
+            "meta": {
+                "terroirs": ["gneiss", "granite"],
+                "cepages": ["melon-de-bourgogne"]
+            }
         }
     ]
 }

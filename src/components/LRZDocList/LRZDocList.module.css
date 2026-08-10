@@ -29,12 +29,10 @@
     width: var(--list-marker-size);
     height: var(--list-marker-size);
     place-items: center;
-    border: 1px solid
-        color-mix(in srgb, var(--list-accent) 38%, transparent);
+    border: 1px solid color-mix(in srgb, var(--list-accent) 38%, transparent);
     border-radius: 999px;
     color: var(--list-accent);
-    background:
-        color-mix(in srgb, var(--list-accent) 8%, transparent);
+    background: color-mix(in srgb, var(--list-accent) 8%, transparent);
     font-family: var(--font-mono);
     font-size: 0.58rem;
     font-weight: 650;
@@ -77,8 +75,7 @@
 
 .root a {
     color: var(--gold);
-    text-decoration-color:
-        color-mix(in srgb, var(--gold) 42%, transparent);
+    text-decoration-color: color-mix(in srgb, var(--gold) 42%, transparent);
     text-underline-offset: 0.18em;
 }
 
@@ -120,8 +117,7 @@
     left: 0;
     width: 0.3rem;
     height: 0.3rem;
-    border: 1px solid
-        color-mix(in srgb, var(--list-accent) 55%, transparent);
+    border: 1px solid color-mix(in srgb, var(--list-accent) 55%, transparent);
     border-radius: 999px;
     content: "";
 }
@@ -157,11 +153,9 @@
 /* Variante validation */
 
 .root[data-variant="check"] > li::before {
-    border-color:
-        color-mix(in srgb, var(--color-prairie) 42%, transparent);
+    border-color: color-mix(in srgb, var(--color-prairie) 42%, transparent);
     color: var(--color-prairie);
-    background:
-        color-mix(in srgb, var(--color-prairie) 10%, transparent);
+    background: color-mix(in srgb, var(--color-prairie) 10%, transparent);
     content: "✓";
 }
 
@@ -191,8 +185,7 @@
     width: 1px;
     height: auto;
     border-radius: 0;
-    background:
-        color-mix(in srgb, var(--list-accent) 28%, transparent);
+    background: color-mix(in srgb, var(--list-accent) 28%, transparent);
     content: "";
 }
 
@@ -200,19 +193,13 @@
     padding-bottom: 0;
 }
 
-.root[data-variant="timeline"]:not([data-ordered="true"])
-    > li::before {
+.root[data-variant="timeline"]:not([data-ordered="true"]) > li::before {
     background:
-        radial-gradient(
-            circle,
-            var(--list-accent) 0 3px,
-            transparent 3.5px
-        ),
+        radial-gradient(circle, var(--list-accent) 0 3px, transparent 3.5px),
         color-mix(in srgb, var(--list-accent) 8%, transparent);
 }
 
-.root[data-variant="timeline"]:not([data-ordered="true"])
-    > li::after {
+.root[data-variant="timeline"]:not([data-ordered="true"]) > li::after {
     display: none;
 }
 

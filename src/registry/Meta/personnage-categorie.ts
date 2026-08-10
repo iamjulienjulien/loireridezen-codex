@@ -36,7 +36,9 @@ export const PERSONNAGE_CATEGORIE_REGISTRY = Object.fromEntries(
         definition,
     ]),
 ) as {
-    readonly [TSlug in PersonnageCategorieSlug]: CollectionMetaDefinition<TSlug>;
+    readonly [
+        TSlug in PersonnageCategorieSlug
+    ]: CollectionMetaDefinition<TSlug>;
 };
 
 export function isPersonnageCategorieSlug(

@@ -2,7 +2,11 @@
 
 import { useState } from "react";
 
-import { LRZTabs, type LRZTabsSize, type LRZTabsVariant } from "@/components/LRZTabs";
+import {
+    LRZTabs,
+    type LRZTabsSize,
+    type LRZTabsVariant,
+} from "@/components/LRZTabs";
 
 import styles from "../filter-playground.module.css";
 
@@ -23,8 +27,8 @@ export default function LRZTabsPlayground() {
         ...tab,
         panel: withPanels ? (
             <p>
-                La section <strong>{tab.label}</strong> rassemble les repères
-                du Codex associés à cette entrée.
+                La section <strong>{tab.label}</strong> rassemble les repères du
+                Codex associés à cette entrée.
             </p>
         ) : undefined,
     }));
@@ -71,7 +75,9 @@ export default function LRZTabsPlayground() {
                         <input
                             type="checkbox"
                             checked={withPanels}
-                            onChange={(event) => setWithPanels(event.target.checked)}
+                            onChange={(event) =>
+                                setWithPanels(event.target.checked)
+                            }
                         />{" "}
                         Panneau
                     </label>

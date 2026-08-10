@@ -23,7 +23,10 @@ export default function AtelierDocPage() {
             title="Composants Doc"
             description="Les éléments de lecture et de référence qui donnent aux pages de documentation une structure nette et durable."
         >
-            <nav className={styles.catalogList} aria-label="Fiches de composants documentaires">
+            <nav
+                className={styles.catalogList}
+                aria-label="Fiches de composants documentaires"
+            >
                 {COMPONENTS.map(([label, href], index) => (
                     <Link className={styles.catalogLink} href={href} key={href}>
                         <span>{String(index + 1).padStart(2, "0")}</span>

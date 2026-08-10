@@ -18,7 +18,9 @@ export function getChateauBySlug(slug: string) {
     return CHATEAUX.find((chateau) => chateau.slug === slug);
 }
 
-export function ChateauxRoute({ initialOpenSlug }: { initialOpenSlug?: string } = {}) {
+export function ChateauxRoute({
+    initialOpenSlug,
+}: { initialOpenSlug?: string } = {}) {
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
     const personnagesByChateau = featureIsEnabled("personnages")
         ? getPersonnagesByLieu()

@@ -334,7 +334,11 @@
     overflow-x: auto;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-sm);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 72%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 72%,
+        transparent
+    );
     color: var(--color-ambiance-texte-tertiaire);
     font-family: var(--font-mono);
     font-size: 0.68rem;

@@ -1,16 +1,9 @@
-import {
-    type ComponentPropsWithoutRef,
-    type ReactNode,
-} from "react";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
 import styles from "./LRZDocCallout.module.css";
 
 export type LRZDocCalloutVariant =
-    | "info"
-    | "tip"
-    | "warning"
-    | "danger"
-    | "success";
+    "info" | "tip" | "warning" | "danger" | "success";
 
 export type LRZDocCalloutProps = Omit<
     ComponentPropsWithoutRef<"aside">,
@@ -57,35 +50,25 @@ export default function LRZDocCallout({
     className,
     ...props
 }: LRZDocCalloutProps) {
-    const resolvedIcon =
-        icon === undefined ? DEFAULT_ICONS[variant] : icon;
+    const resolvedIcon = icon === undefined ? DEFAULT_ICONS[variant] : icon;
 
-    const resolvedTitle =
-        title === undefined ? DEFAULT_TITLES[variant] : title;
+    const resolvedTitle = title === undefined ? DEFAULT_TITLES[variant] : title;
 
     return (
         <aside
             {...props}
-            className={[styles.root, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={[styles.root, className].filter(Boolean).join(" ")}
             data-variant={variant}
             data-compact={compact ? "true" : undefined}
             role={variant === "danger" ? "alert" : "note"}
         >
-            <span
-                className={styles.rail}
-                aria-hidden="true"
-            />
+            <span className={styles.rail} aria-hidden="true" />
 
             <div className={styles.inner}>
-                {(resolvedIcon !== null || resolvedTitle) ? (
+                {resolvedIcon !== null || resolvedTitle ? (
                     <div className={styles.header}>
                         {resolvedIcon !== null ? (
-                            <span
-                                className={styles.icon}
-                                aria-hidden="true"
-                            >
+                            <span className={styles.icon} aria-hidden="true">
                                 {resolvedIcon}
                             </span>
                         ) : null}

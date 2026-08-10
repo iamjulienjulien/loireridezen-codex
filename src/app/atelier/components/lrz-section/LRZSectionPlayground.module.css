@@ -192,7 +192,11 @@
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 94%,
+        transparent
+    );
 }
 
 .layoutCardHeader {
@@ -458,7 +462,11 @@
     padding: 1rem;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 94%,
+        transparent
+    );
 }
 
 .headerExampleMeta h3 {
@@ -696,7 +704,11 @@
     overflow: hidden;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 82%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 82%,
+        transparent
+    );
 }
 
 .canvas > * {

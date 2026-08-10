@@ -103,7 +103,11 @@
     padding: 0.25rem;
     border: 1px solid var(--border-subtle);
     border-radius: 999px;
-    background: color-mix(in srgb, var(--color-ambiance-surface) 75%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 75%,
+        transparent
+    );
 }
 
 .pill .tab {

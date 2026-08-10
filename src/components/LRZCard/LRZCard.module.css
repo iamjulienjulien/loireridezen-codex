@@ -60,7 +60,11 @@
         var(--card-color) 22%,
         var(--border-subtle)
     );
-    background: color-mix(in srgb, var(--card-color) 7%, var(--color-ambiance-surface));
+    background: color-mix(
+        in srgb,
+        var(--card-color) 7%,
+        var(--color-ambiance-surface)
+    );
 }
 
 .card[data-tone="outline"] {
@@ -120,7 +124,11 @@
         var(--border-subtle)
     );
 
-    background: color-mix(in srgb, var(--card-color) 5%, var(--color-ambiance-surface));
+    background: color-mix(
+        in srgb,
+        var(--card-color) 5%,
+        var(--color-ambiance-surface)
+    );
 }
 
 .card[data-active] {
@@ -238,7 +246,11 @@
     border: 1px solid color-mix(in srgb, var(--card-color) 28%, transparent);
     border-radius: var(--radius-lg);
     color: var(--card-color);
-    background: color-mix(in srgb, var(--card-color) 12%, var(--color-ambiance-elevation));
+    background: color-mix(
+        in srgb,
+        var(--card-color) 12%,
+        var(--color-ambiance-elevation)
+    );
 }
 
 .icon :where(svg) {

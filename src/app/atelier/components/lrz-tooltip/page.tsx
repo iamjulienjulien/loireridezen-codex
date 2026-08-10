@@ -7,7 +7,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import styles from "../filter-playground.module.css";
 import localStyles from "./lrz-tooltip.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-tooltip");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-tooltip",
+);
 
 const EXAMPLE_CODE = `<LRZTooltip content="Ouvrir la fiche du château">
     <button type="button">Chambord</button>
@@ -33,13 +35,18 @@ export default function LRZTooltipPage() {
                     </p>
                 </header>
 
-                <section className={styles.section} aria-labelledby="tooltip-preview">
+                <section
+                    className={styles.section}
+                    aria-labelledby="tooltip-preview"
+                >
                     <div className={styles.sectionHeader}>
                         <p className={styles.kicker}>Aperçu</p>
-                        <h2 id="tooltip-preview">Quatre directions pour un même geste</h2>
+                        <h2 id="tooltip-preview">
+                            Quatre directions pour un même geste
+                        </h2>
                         <p>
-                            Le tooltip apparaît au survol et au focus clavier. Les
-                            boutons restent de vrais éléments interactifs.
+                            Le tooltip apparaît au survol et au focus clavier.
+                            Les boutons restent de vrais éléments interactifs.
                         </p>
                     </div>
                     <div className={styles.preview}>
@@ -48,7 +55,10 @@ export default function LRZTooltipPage() {
                                 content="Le château posé sur le Cher"
                                 side="top"
                             >
-                                <button className={localStyles.trigger} type="button">
+                                <button
+                                    className={localStyles.trigger}
+                                    type="button"
+                                >
                                     Haut
                                 </button>
                             </LRZTooltip>
@@ -56,7 +66,10 @@ export default function LRZTooltipPage() {
                                 content="La forteresse des rois"
                                 side="right"
                             >
-                                <button className={localStyles.trigger} type="button">
+                                <button
+                                    className={localStyles.trigger}
+                                    type="button"
+                                >
                                     Droite
                                 </button>
                             </LRZTooltip>
@@ -64,7 +77,10 @@ export default function LRZTooltipPage() {
                                 content="Un jardin devenu architecture"
                                 side="bottom"
                             >
-                                <button className={localStyles.trigger} type="button">
+                                <button
+                                    className={localStyles.trigger}
+                                    type="button"
+                                >
                                     Bas
                                 </button>
                             </LRZTooltip>
@@ -72,7 +88,10 @@ export default function LRZTooltipPage() {
                                 content="Le fil royal et ses demeures"
                                 side="left"
                             >
-                                <button className={localStyles.trigger} type="button">
+                                <button
+                                    className={localStyles.trigger}
+                                    type="button"
+                                >
                                     Gauche
                                 </button>
                             </LRZTooltip>
@@ -80,7 +99,10 @@ export default function LRZTooltipPage() {
                                 content="Le tooltip reste ouvert jusqu’au clic extérieur"
                                 trigger="click"
                             >
-                                <button className={localStyles.trigger} type="button">
+                                <button
+                                    className={localStyles.trigger}
+                                    type="button"
+                                >
                                     Clic
                                 </button>
                             </LRZTooltip>
@@ -88,10 +110,15 @@ export default function LRZTooltipPage() {
                     </div>
                 </section>
 
-                <section className={styles.section} aria-labelledby="tooltip-api">
+                <section
+                    className={styles.section}
+                    aria-labelledby="tooltip-api"
+                >
                     <div className={styles.sectionHeader}>
                         <p className={styles.kicker}>API</p>
-                        <h2 id="tooltip-api">Une API courte, pensée pour les repères</h2>
+                        <h2 id="tooltip-api">
+                            Une API courte, pensée pour les repères
+                        </h2>
                     </div>
                     <div className={styles.tableScroll}>
                         <table>
@@ -105,47 +132,89 @@ export default function LRZTooltipPage() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row"><code>content</code></th>
-                                    <td><code>ReactNode</code></td>
+                                    <th scope="row">
+                                        <code>content</code>
+                                    </th>
+                                    <td>
+                                        <code>ReactNode</code>
+                                    </td>
                                     <td>—</td>
                                     <td>Contenu de l’infobulle.</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>side</code></th>
-                                    <td><code>top | right | bottom | left</code></td>
-                                    <td><code>top</code></td>
+                                    <th scope="row">
+                                        <code>side</code>
+                                    </th>
+                                    <td>
+                                        <code>top | right | bottom | left</code>
+                                    </td>
+                                    <td>
+                                        <code>top</code>
+                                    </td>
                                     <td>Position autour du déclencheur.</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>align</code></th>
-                                    <td><code>start | center | end</code></td>
-                                    <td><code>center</code></td>
+                                    <th scope="row">
+                                        <code>align</code>
+                                    </th>
+                                    <td>
+                                        <code>start | center | end</code>
+                                    </td>
+                                    <td>
+                                        <code>center</code>
+                                    </td>
                                     <td>Alignement sur l’axe secondaire.</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>trigger</code></th>
-                                    <td><code>hover | click | open</code></td>
-                                    <td><code>hover</code></td>
+                                    <th scope="row">
+                                        <code>trigger</code>
+                                    </th>
+                                    <td>
+                                        <code>hover | click | open</code>
+                                    </td>
+                                    <td>
+                                        <code>hover</code>
+                                    </td>
                                     <td>Interaction qui ouvre l’infobulle.</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>delay</code></th>
-                                    <td><code>number</code></td>
-                                    <td><code>120</code></td>
-                                    <td>Délai d’apparition en millisecondes.</td>
+                                    <th scope="row">
+                                        <code>delay</code>
+                                    </th>
+                                    <td>
+                                        <code>number</code>
+                                    </td>
+                                    <td>
+                                        <code>120</code>
+                                    </td>
+                                    <td>
+                                        Délai d’apparition en millisecondes.
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>disabled</code></th>
-                                    <td><code>boolean</code></td>
-                                    <td><code>false</code></td>
-                                    <td>Conserve le déclencheur sans afficher l’infobulle.</td>
+                                    <th scope="row">
+                                        <code>disabled</code>
+                                    </th>
+                                    <td>
+                                        <code>boolean</code>
+                                    </td>
+                                    <td>
+                                        <code>false</code>
+                                    </td>
+                                    <td>
+                                        Conserve le déclencheur sans afficher
+                                        l’infobulle.
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
 
-                <section className={styles.section} aria-labelledby="tooltip-code">
+                <section
+                    className={styles.section}
+                    aria-labelledby="tooltip-code"
+                >
                     <div className={styles.sectionHeader}>
                         <p className={styles.kicker}>Syntaxe</p>
                         <h2 id="tooltip-code">Un déclencheur accessible</h2>

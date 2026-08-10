@@ -167,10 +167,7 @@ export default function LRZFilterGroupShowcase() {
                 </div>
             </section>
 
-            <section
-                className={styles.section}
-                aria-labelledby="group-presets"
-            >
+            <section className={styles.section} aria-labelledby="group-presets">
                 <div className={styles.sectionHeader}>
                     <p className={styles.kicker}>Presets de métadonnées</p>
                     <h2 id="group-presets">

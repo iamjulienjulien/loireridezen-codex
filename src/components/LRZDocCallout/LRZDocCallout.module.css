@@ -1,9 +1,15 @@
 .root {
     --callout-accent: var(--color-eau);
-    --callout-accent-soft:
-        color-mix(in srgb, var(--callout-accent) 10%, transparent);
-    --callout-border:
-        color-mix(in srgb, var(--callout-accent) 28%, transparent);
+    --callout-accent-soft: color-mix(
+        in srgb,
+        var(--callout-accent) 10%,
+        transparent
+    );
+    --callout-border: color-mix(
+        in srgb,
+        var(--callout-accent) 28%,
+        transparent
+    );
 
     position: relative;
     display: grid;
@@ -14,11 +20,7 @@
     border: 1px solid var(--callout-border);
     border-radius: var(--radius-lg);
     background:
-        linear-gradient(
-            135deg,
-            var(--callout-accent-soft),
-            transparent 58%
-        ),
+        linear-gradient(135deg, var(--callout-accent-soft), transparent 58%),
         color-mix(in srgb, var(--color-ambiance-surface) 96%, transparent);
     box-shadow:
         0 1px 2px rgb(35 29 22 / 4%),
@@ -47,11 +49,13 @@
     height: 1.55rem;
     flex: 0 0 auto;
     place-items: center;
-    border: 1px solid
-        color-mix(in srgb, var(--callout-accent) 36%, transparent);
+    border: 1px solid color-mix(in srgb, var(--callout-accent) 36%, transparent);
     border-radius: 999px;
-    background:
-        color-mix(in srgb, var(--callout-accent) 10%, var(--color-ambiance-surface));
+    background: color-mix(
+        in srgb,
+        var(--callout-accent) 10%,
+        var(--color-ambiance-surface)
+    );
     color: var(--callout-accent);
     font-family: var(--font-mono);
     font-size: 0.72rem;
@@ -104,8 +108,11 @@
 
 .content a {
     color: inherit;
-    text-decoration-color:
-        color-mix(in srgb, var(--callout-accent) 55%, transparent);
+    text-decoration-color: color-mix(
+        in srgb,
+        var(--callout-accent) 55%,
+        transparent
+    );
     text-underline-offset: 0.18em;
 }
 

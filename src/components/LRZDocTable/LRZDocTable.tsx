@@ -1,15 +1,9 @@
-import {
-    type ComponentPropsWithoutRef,
-    type ReactNode,
-} from "react";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
 import styles from "./LRZDocTable.module.css";
 
 export type LRZDocTableVariant =
-    | "default"
-    | "compact"
-    | "striped"
-    | "comparison";
+    "default" | "compact" | "striped" | "comparison";
 
 export type LRZDocTableProps = Omit<
     ComponentPropsWithoutRef<"div">,
@@ -44,9 +38,7 @@ export default function LRZDocTable({
 
     return (
         <figure
-            className={[styles.root, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={[styles.root, className].filter(Boolean).join(" ")}
             data-variant={variant}
             data-emphasize-first-column={
                 emphasizeFirstColumn ? "true" : undefined
@@ -55,9 +47,7 @@ export default function LRZDocTable({
             {hasHeader ? (
                 <figcaption className={styles.caption}>
                     {title ? (
-                        <strong className={styles.title}>
-                            {title}
-                        </strong>
+                        <strong className={styles.title}>{title}</strong>
                     ) : null}
 
                     {description ? (
@@ -79,9 +69,7 @@ export default function LRZDocTable({
                         : "Tableau de documentation"
                 }
             >
-                <div className={styles.tableFrame}>
-                    {children}
-                </div>
+                <div className={styles.tableFrame}>{children}</div>
             </div>
         </figure>
     );

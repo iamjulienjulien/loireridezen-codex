@@ -65,8 +65,12 @@ export default function LRZFilterChipPlayground() {
                         >
                             <option value={0}>Faune · Type · Oiseau</option>
                             <option value={1}>Faune · Rareté · Trésor</option>
-                            <option value={2}>Flore · Catégorie · Aquatique</option>
-                            <option value={3}>Château · Renommée · Phare</option>
+                            <option value={2}>
+                                Flore · Catégorie · Aquatique
+                            </option>
+                            <option value={3}>
+                                Château · Renommée · Phare
+                            </option>
                         </select>
                     </label>
                     <label>
@@ -74,9 +78,7 @@ export default function LRZFilterChipPlayground() {
                         <select
                             value={variant}
                             onChange={(event) =>
-                                setVariant(
-                                    event.target.value as typeof variant,
-                                )
+                                setVariant(event.target.value as typeof variant)
                             }
                         >
                             <option value="default">Default</option>
@@ -100,7 +102,9 @@ export default function LRZFilterChipPlayground() {
                         <input
                             type="checkbox"
                             checked={isActive}
-                            onChange={(event) => setIsActive(event.target.checked)}
+                            onChange={(event) =>
+                                setIsActive(event.target.checked)
+                            }
                         />
                         Actif
                     </label>

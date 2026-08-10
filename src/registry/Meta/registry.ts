@@ -18,10 +18,9 @@ export type CollectionMetaRegistry = Readonly<
 type DefinedCollectionMetaRegistry<
     TDefinitions extends Readonly<Record<string, CollectionMetaInput>>,
 > = {
-    readonly [TSlug in Extract<
-        keyof TDefinitions,
-        string
-    >]: CollectionMetaDefinition<TSlug>;
+    readonly [
+        TSlug in Extract<keyof TDefinitions, string>
+    ]: CollectionMetaDefinition<TSlug>;
 };
 
 /**
@@ -31,12 +30,8 @@ type DefinedCollectionMetaRegistry<
  * structure publique reste toujours `{ slug, label, color }`.
  */
 export function defineCollectionMetaRegistry<
-    const TDefinitions extends Readonly<
-        Record<string, CollectionMetaInput>
-    >,
->(
-    definitions: TDefinitions,
-): DefinedCollectionMetaRegistry<TDefinitions> {
+    const TDefinitions extends Readonly<Record<string, CollectionMetaInput>>,
+>(definitions: TDefinitions): DefinedCollectionMetaRegistry<TDefinitions> {
     return Object.fromEntries(
         Object.entries(definitions).map(([slug, definition]) => [
             slug,
@@ -60,7 +55,5 @@ export function getCollectionMeta<
     registry: TRegistry,
     slug: string,
 ): TRegistry[Extract<keyof TRegistry, string>] | undefined {
-    return isCollectionMetaSlug(registry, slug)
-        ? registry[slug]
-        : undefined;
+    return isCollectionMetaSlug(registry, slug) ? registry[slug] : undefined;
 }

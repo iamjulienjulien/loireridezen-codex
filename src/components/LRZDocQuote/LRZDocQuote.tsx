@@ -1,15 +1,9 @@
-import {
-    type ComponentPropsWithoutRef,
-    type ReactNode,
-} from "react";
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
 
 import styles from "./LRZDocQuote.module.css";
 
 export type LRZDocQuoteVariant =
-    | "default"
-    | "highlight"
-    | "fieldNote"
-    | "testimonial";
+    "default" | "highlight" | "fieldNote" | "testimonial";
 
 export type LRZDocQuoteProps = Omit<
     ComponentPropsWithoutRef<"blockquote">,
@@ -48,24 +42,13 @@ export default function LRZDocQuote({
 
     return (
         <figure
-            className={[styles.root, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={[styles.root, className].filter(Boolean).join(" ")}
             data-variant={variant}
         >
-            <blockquote
-                {...props}
-                cite={cite}
-                className={styles.quote}
-            >
-                {label ? (
-                    <span className={styles.label}>{label}</span>
-                ) : null}
+            <blockquote {...props} cite={cite} className={styles.quote}>
+                {label ? <span className={styles.label}>{label}</span> : null}
 
-                <span
-                    className={styles.mark}
-                    aria-hidden="true"
-                >
+                <span className={styles.mark} aria-hidden="true">
                     “
                 </span>
 
@@ -74,16 +57,11 @@ export default function LRZDocQuote({
 
             {hasAttribution ? (
                 <figcaption className={styles.caption}>
-                    <span
-                        className={styles.rule}
-                        aria-hidden="true"
-                    />
+                    <span className={styles.rule} aria-hidden="true" />
 
                     <span className={styles.attribution}>
                         {author ? (
-                            <span className={styles.author}>
-                                {author}
-                            </span>
+                            <span className={styles.author}>{author}</span>
                         ) : null}
 
                         {author && source ? (
@@ -96,9 +74,7 @@ export default function LRZDocQuote({
                         ) : null}
 
                         {source ? (
-                            <cite className={styles.source}>
-                                {source}
-                            </cite>
+                            <cite className={styles.source}>{source}</cite>
                         ) : null}
                     </span>
                 </figcaption>

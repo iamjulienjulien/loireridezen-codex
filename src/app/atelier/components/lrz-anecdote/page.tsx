@@ -6,7 +6,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZAnecdotePlayground from "./LRZAnecdotePlayground";
 import styles from "./lrz-anecdote.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-anecdote");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-anecdote",
+);
 
 const EXAMPLES = [
     {

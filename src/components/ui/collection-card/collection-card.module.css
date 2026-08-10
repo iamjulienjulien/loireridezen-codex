@@ -99,8 +99,16 @@
         color-mix(in srgb, var(--collection-accent) 22%, var(--border-subtle));
     background: linear-gradient(
         135deg,
-        color-mix(in srgb, var(--collection-accent) 17%, var(--color-ambiance-surface)),
-        color-mix(in srgb, var(--collection-accent) 4%, var(--color-ambiance-surface))
+        color-mix(
+            in srgb,
+            var(--collection-accent) 17%,
+            var(--color-ambiance-surface)
+        ),
+        color-mix(
+            in srgb,
+            var(--collection-accent) 4%,
+            var(--color-ambiance-surface)
+        )
     );
 }
 
@@ -137,7 +145,8 @@
         var(--color-ambiance-elevation)
     );
     box-shadow:
-        inset 0 0 0 1px color-mix(in srgb, var(--color-ambiance-elevation) 70%, transparent),
+        inset 0 0 0 1px
+            color-mix(in srgb, var(--color-ambiance-elevation) 70%, transparent),
         0 6px 14px color-mix(in srgb, var(--collection-accent) 10%, transparent);
 }
 

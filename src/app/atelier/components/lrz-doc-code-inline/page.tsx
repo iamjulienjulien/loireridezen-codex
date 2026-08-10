@@ -8,7 +8,9 @@ import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 
 import styles from "../lrz-doc-code.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-doc-code-inline");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-doc-code-inline",
+);
 
 const EXAMPLES = [
     {
@@ -206,7 +208,9 @@ export default function LRZDocCodeInlinePage() {
                 <DocMarkdownSyntax
                     title="Écrire du code dans une phrase"
                     description="Entoure un fragment technique d’un accent grave : propriété, commande, valeur ou endpoint."
-                    code={"Utilisez `renommee=phare` pour limiter les résultats.\n\nL’endpoint est `/api/v1/chateaux`."}
+                    code={
+                        "Utilisez `renommee=phare` pour limiter les résultats.\n\nL’endpoint est `/api/v1/chateaux`."
+                    }
                     note="Les blocs délimités par trois accents graves restent des blocs de code et sont confiés à LRZDocCodeBlock."
                 />
 

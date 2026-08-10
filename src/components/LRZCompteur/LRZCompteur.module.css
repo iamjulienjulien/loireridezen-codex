@@ -191,7 +191,11 @@
 .affix {
     position: relative;
     z-index: 2;
-    color: color-mix(in srgb, var(--counter-accent) 70%, var(--color-ambiance-texte-secondaire));
+    color: color-mix(
+        in srgb,
+        var(--counter-accent) 70%,
+        var(--color-ambiance-texte-secondaire)
+    );
     letter-spacing: 0;
 }
 

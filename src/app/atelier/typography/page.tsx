@@ -160,24 +160,76 @@ const PRESETS: Array<{
     usage: string;
     sample: string;
 }> = [
-    { preset: "display", usage: "Identité et titre majeur", sample: "Châteaux de la Loire" },
-    { preset: "heading-1", usage: "Titre de page", sample: "Le grand inventaire" },
-    { preset: "heading-2", usage: "Section éditoriale", sample: "Histoires de pierre" },
-    { preset: "heading-3", usage: "Sous-section et carte", sample: "Visite & patrimoine" },
-    { preset: "lede", usage: "Introduction mise en avant", sample: "La Loire compose un paysage à parcourir lentement." },
-    { preset: "body", usage: "Texte courant", sample: "Chaque lieu s’inscrit dans une histoire, une géographie et une manière d’habiter le fleuve." },
-    { preset: "editorial", usage: "Note ou récit sensible", sample: "Au détour d’une rive, le paysage change de voix." },
-    { preset: "eyebrow", usage: "Surtitre et catégorie", sample: "PATRIMOINE LIGÉRIEN" },
-    { preset: "caption", usage: "Légende et précision", sample: "Vue depuis la rive gauche." },
+    {
+        preset: "display",
+        usage: "Identité et titre majeur",
+        sample: "Châteaux de la Loire",
+    },
+    {
+        preset: "heading-1",
+        usage: "Titre de page",
+        sample: "Le grand inventaire",
+    },
+    {
+        preset: "heading-2",
+        usage: "Section éditoriale",
+        sample: "Histoires de pierre",
+    },
+    {
+        preset: "heading-3",
+        usage: "Sous-section et carte",
+        sample: "Visite & patrimoine",
+    },
+    {
+        preset: "lede",
+        usage: "Introduction mise en avant",
+        sample: "La Loire compose un paysage à parcourir lentement.",
+    },
+    {
+        preset: "body",
+        usage: "Texte courant",
+        sample: "Chaque lieu s’inscrit dans une histoire, une géographie et une manière d’habiter le fleuve.",
+    },
+    {
+        preset: "editorial",
+        usage: "Note ou récit sensible",
+        sample: "Au détour d’une rive, le paysage change de voix.",
+    },
+    {
+        preset: "eyebrow",
+        usage: "Surtitre et catégorie",
+        sample: "PATRIMOINE LIGÉRIEN",
+    },
+    {
+        preset: "caption",
+        usage: "Légende et précision",
+        sample: "Vue depuis la rive gauche.",
+    },
     { preset: "code", usage: "Valeur technique", sample: 'preset="heading-2"' },
-    { preset: "signature", usage: "Signature de création", sample: "Julien Julien" },
+    {
+        preset: "signature",
+        usage: "Signature de création",
+        sample: "Julien Julien",
+    },
 ];
 
 const RULES = [
-    ["Hiérarchie", "Un display par vue, puis une progression nette entre les trois niveaux de titre."],
-    ["Lecture", "Inter pour le flux principal ; Lora intervient comme une respiration, jamais comme un second texte courant."],
-    ["Système", "Préférer les presets LRZTypography aux tailles et polices écrites localement."],
-    ["Signature", "Allura est réservée aux crédits et signatures brèves : elle reste un geste, pas une police de contenu."],
+    [
+        "Hiérarchie",
+        "Un display par vue, puis une progression nette entre les trois niveaux de titre.",
+    ],
+    [
+        "Lecture",
+        "Inter pour le flux principal ; Lora intervient comme une respiration, jamais comme un second texte courant.",
+    ],
+    [
+        "Système",
+        "Préférer les presets LRZTypography aux tailles et polices écrites localement.",
+    ],
+    [
+        "Signature",
+        "Allura est réservée aux crédits et signatures brèves : elle reste un geste, pas une police de contenu.",
+    ],
 ] as const;
 
 export default function AtelierTypographyPage() {
@@ -190,7 +242,9 @@ export default function AtelierTypographyPage() {
                         <Link href="/atelier">← Retour à l’Atelier</Link>
                         <Link href="/">Retour à Loire Ride Zen</Link>
                     </div>
-                    <p className="atelier-kicker">Atelier · Fondations visuelles</p>
+                    <p className="atelier-kicker">
+                        Atelier · Fondations visuelles
+                    </p>
                     <h1>Typographie</h1>
                     <p className="atelier-doc-lede">
                         La typographie donne son rythme au Codex : une voix
@@ -209,7 +263,13 @@ export default function AtelierTypographyPage() {
                         famille, la taille ou la couleur peuvent ensuite être
                         ajustées ponctuellement avec les props du composant.
                     </p>
-                    <pre><code>{'<LRZTypography preset="heading-2">\n    Les châteaux du fil royal\n</LRZTypography>'}</code></pre>
+                    <pre>
+                        <code>
+                            {
+                                '<LRZTypography preset="heading-2">\n    Les châteaux du fil royal\n</LRZTypography>'
+                            }
+                        </code>
+                    </pre>
                 </section>
 
                 <section className="atelier-section-card">
@@ -225,7 +285,10 @@ export default function AtelierTypographyPage() {
                     </p>
                     <div className={styles.fontList}>
                         {FONTS.map((font) => (
-                            <article className={`${styles.card} ${styles.fontCard}`} key={font.font}>
+                            <article
+                                className={`${styles.card} ${styles.fontCard}`}
+                                key={font.font}
+                            >
                                 <div className={styles.specimen}>
                                     <LRZTypography font={font.font} as="span">
                                         {font.sample}
@@ -257,48 +320,91 @@ export default function AtelierTypographyPage() {
                                             Jeu de caractères
                                         </p>
                                         <div className={styles.tableWrap}>
-                                            <table className={styles.characterTable}>
+                                            <table
+                                                className={
+                                                    styles.characterTable
+                                                }
+                                            >
                                                 <tbody>
-                                                    {CHARACTER_ROWS.map(([label, characters]) => (
-                                                        <tr key={label}>
-                                                            <th scope="row">{label}</th>
-                                                            <td>
-                                                                <LRZTypography font={font.font} as="span">
-                                                                    {characters}
-                                                                </LRZTypography>
-                                                            </td>
-                                                        </tr>
-                                                    ))}
+                                                    {CHARACTER_ROWS.map(
+                                                        ([
+                                                            label,
+                                                            characters,
+                                                        ]) => (
+                                                            <tr key={label}>
+                                                                <th scope="row">
+                                                                    {label}
+                                                                </th>
+                                                                <td>
+                                                                    <LRZTypography
+                                                                        font={
+                                                                            font.font
+                                                                        }
+                                                                        as="span"
+                                                                    >
+                                                                        {
+                                                                            characters
+                                                                        }
+                                                                    </LRZTypography>
+                                                                </td>
+                                                            </tr>
+                                                        ),
+                                                    )}
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div className={styles.fontLab}>
                                         <div>
-                                            <p className={styles.referenceLabel}>
+                                            <p
+                                                className={
+                                                    styles.referenceLabel
+                                                }
+                                            >
                                                 Tailles · xs à 6xl
                                             </p>
                                             <div className={styles.sizeSamples}>
                                                 {SIZE_SAMPLES.map((size) => (
                                                     <div key={size}>
                                                         <span>{size}</span>
-                                                        <LRZTypography font={font.font} size={size} as="span">
-                                                            La Loire dessine le paysage
+                                                        <LRZTypography
+                                                            font={font.font}
+                                                            size={size}
+                                                            as="span"
+                                                        >
+                                                            La Loire dessine le
+                                                            paysage
                                                         </LRZTypography>
                                                     </div>
                                                 ))}
                                             </div>
                                         </div>
                                         <div>
-                                            <p className={styles.referenceLabel}>
+                                            <p
+                                                className={
+                                                    styles.referenceLabel
+                                                }
+                                            >
                                                 Graisses disponibles
                                             </p>
-                                                <div className={styles.weightSamples}>
+                                            <div
+                                                className={styles.weightSamples}
+                                            >
                                                 {font.weights.map((weight) => (
                                                     <div key={weight.value}>
-                                                        <span>{weight.value}</span>
-                                                        <LRZTypography font={font.font} weight={weight.value} as="span">
-                                                            {weight.label} · La Loire dessine le paysage
+                                                        <span>
+                                                            {weight.value}
+                                                        </span>
+                                                        <LRZTypography
+                                                            font={font.font}
+                                                            weight={
+                                                                weight.value
+                                                            }
+                                                            as="span"
+                                                        >
+                                                            {weight.label} · La
+                                                            Loire dessine le
+                                                            paysage
                                                         </LRZTypography>
                                                     </div>
                                                 ))}
@@ -319,7 +425,10 @@ export default function AtelierTypographyPage() {
                     </header>
                     <div className={styles.presetList}>
                         {PRESETS.map((item) => (
-                            <article className={styles.preset} key={item.preset}>
+                            <article
+                                className={styles.preset}
+                                key={item.preset}
+                            >
                                 <div>
                                     <LRZTypography preset="eyebrow">
                                         {item.preset}

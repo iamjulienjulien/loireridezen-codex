@@ -141,8 +141,16 @@
         ),
         linear-gradient(
             145deg,
-            color-mix(in srgb, var(--color-eau) 23%, var(--color-ambiance-surface)),
-            color-mix(in srgb, var(--color-prairie) 18%, var(--color-ambiance-surface))
+            color-mix(
+                in srgb,
+                var(--color-eau) 23%,
+                var(--color-ambiance-surface)
+            ),
+            color-mix(
+                in srgb,
+                var(--color-prairie) 18%,
+                var(--color-ambiance-surface)
+            )
         );
 }
 
@@ -489,7 +497,11 @@
     overflow: hidden;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 86%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 86%,
+        transparent
+    );
 }
 
 .canvas > * {

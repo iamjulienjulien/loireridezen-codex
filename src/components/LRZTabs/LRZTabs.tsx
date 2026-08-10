@@ -123,7 +123,11 @@ export default function LRZTabs({
             )}
             style={style}
         >
-            <div className={styles.tabList} role="tablist" aria-label={ariaLabel}>
+            <div
+                className={styles.tabList}
+                role="tablist"
+                aria-label={ariaLabel}
+            >
                 {tabs.map((tab) => {
                     const isActive = tab.id === selectedId;
                     const panelId = `${baseId}-panel-${tab.id}`;
@@ -147,7 +151,10 @@ export default function LRZTabs({
                         >
                             <span className={styles.label}>{tab.label}</span>
                             {tab.count !== undefined && (
-                                <span className={styles.count} aria-hidden="true">
+                                <span
+                                    className={styles.count}
+                                    aria-hidden="true"
+                                >
                                     {tab.count}
                                 </span>
                             )}

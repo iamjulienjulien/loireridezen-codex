@@ -16,7 +16,9 @@ export default function LRZTabsPage() {
                     <Link className={styles.back} href="/atelier">
                         ← Retour à l’Atelier
                     </Link>
-                    <p className={styles.eyebrow}>Loire Ride Zen · Composants UI</p>
+                    <p className={styles.eyebrow}>
+                        Loire Ride Zen · Composants UI
+                    </p>
                     <h1 className={styles.title}>LRZTabs</h1>
                     <p className={styles.lede}>
                         Une navigation d’onglets accessible pour changer de
@@ -26,7 +28,10 @@ export default function LRZTabsPage() {
 
                 <LRZTabsPlayground />
 
-                <section className={styles.section} aria-labelledby="tabs-props">
+                <section
+                    className={styles.section}
+                    aria-labelledby="tabs-props"
+                >
                     <div className={styles.sectionHeader}>
                         <p className={styles.kicker}>Référence</p>
                         <h2 id="tabs-props">Props</h2>
@@ -42,33 +47,65 @@ export default function LRZTabsPage() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row"><code>tabs</code></th>
-                                    <td><code>LRZTab[]</code></td>
-                                    <td>Onglets, compteurs, états et panneaux optionnels.</td>
+                                    <th scope="row">
+                                        <code>tabs</code>
+                                    </th>
+                                    <td>
+                                        <code>LRZTab[]</code>
+                                    </td>
+                                    <td>
+                                        Onglets, compteurs, états et panneaux
+                                        optionnels.
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>activeId</code></th>
-                                    <td><code>string</code></td>
+                                    <th scope="row">
+                                        <code>activeId</code>
+                                    </th>
+                                    <td>
+                                        <code>string</code>
+                                    </td>
                                     <td>Identifiant actif en mode contrôlé.</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>defaultActiveId</code></th>
-                                    <td><code>string</code></td>
-                                    <td>Identifiant initial en mode autonome.</td>
+                                    <th scope="row">
+                                        <code>defaultActiveId</code>
+                                    </th>
+                                    <td>
+                                        <code>string</code>
+                                    </td>
+                                    <td>
+                                        Identifiant initial en mode autonome.
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>variant</code></th>
-                                    <td><code>line | pill | vintage</code></td>
-                                    <td>Trait, pastille ou composition éditoriale.</td>
+                                    <th scope="row">
+                                        <code>variant</code>
+                                    </th>
+                                    <td>
+                                        <code>line | pill | vintage</code>
+                                    </td>
+                                    <td>
+                                        Trait, pastille ou composition
+                                        éditoriale.
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>size</code></th>
-                                    <td><code>sm | md | lg</code></td>
+                                    <th scope="row">
+                                        <code>size</code>
+                                    </th>
+                                    <td>
+                                        <code>sm | md | lg</code>
+                                    </td>
                                     <td>Densité de l’interface.</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row"><code>onActiveChange</code></th>
-                                    <td><code>(id: string) =&gt; void</code></td>
+                                    <th scope="row">
+                                        <code>onActiveChange</code>
+                                    </th>
+                                    <td>
+                                        <code>(id: string) =&gt; void</code>
+                                    </td>
                                     <td>Réagit au changement d’onglet.</td>
                                 </tr>
                             </tbody>

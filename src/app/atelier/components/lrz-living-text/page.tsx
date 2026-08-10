@@ -25,7 +25,9 @@ import {
 } from "../lrz-typography/LRZTypographyExperiments";
 import styles from "../lrz-typography/LRZTypographyPlayground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-living-text");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-living-text",
+);
 
 export default function LRZLivingTextPage() {
     return (

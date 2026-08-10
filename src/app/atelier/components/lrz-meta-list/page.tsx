@@ -9,7 +9,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZMetaListPlayground from "./LRZMetaListPlayground";
 import styles from "./LRZMetaListPlayground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-meta-list");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-meta-list",
+);
 
 const TONES: Array<{
     tone: LRZMetaListTone;

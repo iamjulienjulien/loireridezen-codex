@@ -6,21 +6,11 @@ import {
 
 import styles from "./LRZDocList.module.css";
 
-export type LRZDocListVariant =
-    | "default"
-    | "compact"
-    | "check"
-    | "timeline";
+export type LRZDocListVariant = "default" | "compact" | "check" | "timeline";
 
-type UnorderedListProps = Omit<
-    ComponentPropsWithoutRef<"ul">,
-    "children"
->;
+type UnorderedListProps = Omit<ComponentPropsWithoutRef<"ul">, "children">;
 
-type OrderedListProps = Omit<
-    ComponentPropsWithoutRef<"ol">,
-    "children"
->;
+type OrderedListProps = Omit<ComponentPropsWithoutRef<"ol">, "children">;
 
 export type LRZDocListProps = {
     /** Éléments `li` produits notamment par React Markdown. */
@@ -48,9 +38,7 @@ export default function LRZDocList({
     return (
         <Component
             {...props}
-            className={[styles.root, className]
-                .filter(Boolean)
-                .join(" ")}
+            className={[styles.root, className].filter(Boolean).join(" ")}
             data-ordered={ordered || undefined}
             data-variant={variant}
         >

@@ -7,7 +7,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZFilterChipPlayground from "./LRZFilterChipPlayground";
 import styles from "../filter-playground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-filter-chip");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-filter-chip",
+);
 
 const VARIANTS = [
     { name: "Default", variant: "default" as const },

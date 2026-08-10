@@ -120,7 +120,11 @@
 }
 
 .badge[data-icon-hidden="true"][data-variant="ticket"][data-gradient="true"] {
-    background: color-mix(in srgb, var(--badge-color) 8%, var(--color-ambiance-surface));
+    background: color-mix(
+        in srgb,
+        var(--badge-color) 8%,
+        var(--color-ambiance-surface)
+    );
 }
 
 /* Pill — capsule compacte, utilisée par défaut pour l’échelle UICN. */
@@ -168,7 +172,11 @@
             color-mix(in srgb, var(--badge-color) 26%, transparent),
             transparent 34%
         ),
-        color-mix(in srgb, var(--badge-color) 11%, var(--color-ambiance-surface));
+        color-mix(
+            in srgb,
+            var(--badge-color) 11%,
+            var(--color-ambiance-surface)
+        );
 }
 
 .badge[data-variant="leaf"]::after {
@@ -231,7 +239,11 @@
             color-mix(in srgb, var(--badge-color) 18%, transparent),
             transparent 42%
         ),
-        color-mix(in srgb, var(--color-patrimoine-tuffeau) 12%, var(--color-ambiance-surface));
+        color-mix(
+            in srgb,
+            var(--color-patrimoine-tuffeau) 12%,
+            var(--color-ambiance-surface)
+        );
 }
 
 .badge[data-variant="plaque"]::before {
@@ -270,8 +282,16 @@
         ),
         linear-gradient(
             110deg,
-            color-mix(in srgb, var(--badge-color) 28%, var(--color-ambiance-surface)),
-            color-mix(in srgb, var(--badge-color) 9%, var(--color-ambiance-surface))
+            color-mix(
+                in srgb,
+                var(--badge-color) 28%,
+                var(--color-ambiance-surface)
+            ),
+            color-mix(
+                in srgb,
+                var(--badge-color) 9%,
+                var(--color-ambiance-surface)
+            )
         );
 }
 
@@ -308,7 +328,11 @@
         linear-gradient(
             100deg,
             color-mix(in srgb, var(--badge-color) 20%, transparent),
-            color-mix(in srgb, var(--badge-color) 7%, var(--color-ambiance-surface))
+            color-mix(
+                in srgb,
+                var(--badge-color) 7%,
+                var(--color-ambiance-surface)
+            )
         );
     background-size:
         5px 5px,
@@ -419,7 +443,11 @@
         var(--border-soft)
     );
     border-style: dashed;
-    color: color-mix(in srgb, var(--badge-color) 82%, var(--color-ambiance-texte-primaire));
+    color: color-mix(
+        in srgb,
+        var(--badge-color) 82%,
+        var(--color-ambiance-texte-primaire)
+    );
     filter: saturate(0.88);
 }
 

@@ -18,7 +18,11 @@
             color-mix(in srgb, #b88945 7%, transparent),
             transparent 58%
         ),
-        linear-gradient(180deg, var(--color-ambiance-elevation), var(--color-ambiance-surface));
+        linear-gradient(
+            180deg,
+            var(--color-ambiance-elevation),
+            var(--color-ambiance-surface)
+        );
     box-shadow:
         var(--shadow-card),
         inset 0 1px 0 color-mix(in srgb, white 52%, transparent);
@@ -224,7 +228,11 @@
         ),
         linear-gradient(
             180deg,
-            color-mix(in srgb, var(--castle-accent) 5%, var(--color-ambiance-elevation)),
+            color-mix(
+                in srgb,
+                var(--castle-accent) 5%,
+                var(--color-ambiance-elevation)
+            ),
             var(--color-ambiance-surface)
         );
 }
@@ -279,7 +287,11 @@
     border-radius: 50%;
     background: radial-gradient(
         circle at 50% 35%,
-        color-mix(in srgb, var(--castle-accent) 14%, var(--color-ambiance-surface)),
+        color-mix(
+            in srgb,
+            var(--castle-accent) 14%,
+            var(--color-ambiance-surface)
+        ),
         var(--color-ambiance-surface) 68%
     );
     box-shadow:
@@ -469,7 +481,11 @@
         ),
         linear-gradient(
             155deg,
-            color-mix(in srgb, var(--metal-light) 82%, var(--color-ambiance-surface)),
+            color-mix(
+                in srgb,
+                var(--metal-light) 82%,
+                var(--color-ambiance-surface)
+            ),
             var(--metal-mid)
         );
     box-shadow:

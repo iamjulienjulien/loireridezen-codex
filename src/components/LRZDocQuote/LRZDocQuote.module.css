@@ -1,9 +1,11 @@
 .root {
     --quote-accent: var(--gold);
-    --quote-accent-soft:
-        color-mix(in srgb, var(--quote-accent) 12%, transparent);
-    --quote-border:
-        color-mix(in srgb, var(--quote-accent) 28%, transparent);
+    --quote-accent-soft: color-mix(
+        in srgb,
+        var(--quote-accent) 12%,
+        transparent
+    );
+    --quote-border: color-mix(in srgb, var(--quote-accent) 28%, transparent);
 
     position: relative;
     width: 100%;
@@ -45,8 +47,7 @@
     position: absolute;
     top: 0.65rem;
     right: 1rem;
-    color:
-        color-mix(in srgb, var(--quote-accent) 18%, transparent);
+    color: color-mix(in srgb, var(--quote-accent) 18%, transparent);
     font-family: var(--font-display);
     font-size: clamp(5rem, 13vw, 9rem);
     font-weight: 500;
@@ -92,8 +93,11 @@
 
 .content a {
     color: inherit;
-    text-decoration-color:
-        color-mix(in srgb, var(--quote-accent) 50%, transparent);
+    text-decoration-color: color-mix(
+        in srgb,
+        var(--quote-accent) 50%,
+        transparent
+    );
     text-underline-offset: 0.18em;
 }
 
@@ -121,8 +125,7 @@
     width: 1.5rem;
     height: 1px;
     flex: 0 0 auto;
-    background:
-        color-mix(in srgb, var(--quote-accent) 48%, transparent);
+    background: color-mix(in srgb, var(--quote-accent) 48%, transparent);
 }
 
 .attribution {
@@ -149,12 +152,15 @@
 /* Citation mise en avant */
 
 .root[data-variant="highlight"] {
-    background:
-        linear-gradient(
-            135deg,
-            color-mix(in srgb, var(--quote-accent) 14%, var(--color-ambiance-surface)),
-            var(--color-ambiance-surface) 72%
-        );
+    background: linear-gradient(
+        135deg,
+        color-mix(
+            in srgb,
+            var(--quote-accent) 14%,
+            var(--color-ambiance-surface)
+        ),
+        var(--color-ambiance-surface) 72%
+    );
 }
 
 .root[data-variant="highlight"] .quote {

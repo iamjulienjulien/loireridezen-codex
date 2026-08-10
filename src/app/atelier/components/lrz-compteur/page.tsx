@@ -150,7 +150,9 @@ const PROPS = [
     },
 ] as const;
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-compteur");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-compteur",
+);
 
 export default function LRZCompteurPage() {
     return (

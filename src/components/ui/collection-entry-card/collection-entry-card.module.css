@@ -105,7 +105,11 @@
     border-right: 1px solid var(--border-subtle);
     background: linear-gradient(
         145deg,
-        color-mix(in srgb, var(--entry-accent) 15%, var(--color-ambiance-surface)),
+        color-mix(
+            in srgb,
+            var(--entry-accent) 15%,
+            var(--color-ambiance-surface)
+        ),
         var(--color-ambiance-surface)
     );
 }
@@ -215,7 +219,11 @@
 }
 
 .card:hover .title {
-    color: color-mix(in srgb, var(--entry-accent) 30%, var(--color-ambiance-texte-primaire));
+    color: color-mix(
+        in srgb,
+        var(--entry-accent) 30%,
+        var(--color-ambiance-texte-primaire)
+    );
 }
 
 .location {

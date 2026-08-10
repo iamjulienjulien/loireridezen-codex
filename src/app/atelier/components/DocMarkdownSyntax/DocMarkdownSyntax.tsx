@@ -15,7 +15,10 @@ export default function DocMarkdownSyntax({
     title,
 }: DocMarkdownSyntaxProps) {
     return (
-        <section className={styles.root} aria-label={`Syntaxe Markdown · ${title}`}>
+        <section
+            className={styles.root}
+            aria-label={`Syntaxe Markdown · ${title}`}
+        >
             <header className={styles.header}>
                 <p className={styles.kicker}>Syntaxe Markdown</p>
                 <h2>{title}</h2>

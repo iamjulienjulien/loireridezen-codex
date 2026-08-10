@@ -19,7 +19,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZDialogPlayground from "./LRZDialogPlayground";
 import styles from "./LRZDialogPlayground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-dialog");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-dialog",
+);
 
 const SIZES: Array<{
     size: LRZDialogSize;

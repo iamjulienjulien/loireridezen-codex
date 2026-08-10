@@ -11,7 +11,9 @@ import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import LRZButtonGroupPlayground from "./LRZButtonGroupPlayground";
 import styles from "../filter-playground.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-button-group");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-button-group",
+);
 
 export default function LRZButtonGroupPage() {
     return (

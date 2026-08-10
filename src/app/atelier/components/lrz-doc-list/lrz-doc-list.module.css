@@ -241,7 +241,11 @@
     padding: 1rem;
     border: 1px dashed var(--border-soft);
     border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 82%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 82%,
+        transparent
+    );
 }
 
 .inlineCanvasLarge {
@@ -277,7 +281,11 @@
     padding: clamp(1rem, 2vw, 1.4rem);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    background: color-mix(in srgb, var(--color-ambiance-surface) 94%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 94%,
+        transparent
+    );
 }
 
 .mappingExample {
@@ -325,7 +333,6 @@
         font-size: clamp(2.2rem, 13vw, 3.4rem);
     }
 }
-
 
 .listCanvas {
     min-width: 0;

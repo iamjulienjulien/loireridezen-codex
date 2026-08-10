@@ -11,7 +11,9 @@ import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
 
 import styles from "./lrz-doc-list.module.css";
 
-export const metadata = getAtelierPageMetadata("/atelier/components/lrz-doc-list");
+export const metadata = getAtelierPageMetadata(
+    "/atelier/components/lrz-doc-list",
+);
 
 const VARIANTS: ReadonlyArray<{
     title: string;
@@ -302,7 +304,9 @@ export default function LRZDocListPage() {
                 <DocMarkdownSyntax
                     title="Écrire une liste"
                     description="Une ligne par élément, avec un tiret pour une liste à puces ou un chiffre suivi d’un point pour une séquence ordonnée."
-                    code={"- Observer le territoire\n- Collecter les récits\n- Partager le Codex\n\n1. Importer le composant\n2. Déclarer le mapping\n3. Rédiger la page"}
+                    code={
+                        "- Observer le territoire\n- Collecter les récits\n- Partager le Codex\n\n1. Importer le composant\n2. Déclarer le mapping\n3. Rédiger la page"
+                    }
                     note="Le mapping remplace automatiquement les nœuds ul et ol générés par React Markdown par LRZDocList."
                 />
 
