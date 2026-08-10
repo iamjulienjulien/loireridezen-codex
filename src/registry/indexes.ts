@@ -239,8 +239,9 @@ export const INDEXES = [
         presentation:
             "Le fil se boit autant qu'il se longe. Des coteaux du Forez au melon de l'embouchure, voici les appellations qui jalonnent la Loire — du grand cru liquoreux au cru communal le plus discret.",
         presentation_md:
-            "Le fil se boit autant qu'il se longe 🍷. D'amont en aval, **un même fleuve, cinq accents** : le silex de Sancerre, le chenin caméléon de Vouvray, le cabernet franc sur tuffeau de Chinon 🍇.\n\nPuis l'Anjou joue **l'or** : la Coulée de Serrant et ses sept hectares de monopole, le liquoreux du Layon, les Quarts de Chaume — **seul Grand Cru de la Loire**.\n\nEt tout finit dans le sel : le melon de Bourgogne du Muscadet 🌊, dernière gorgée avant l'Atlantique.",
-        presentationFooter: "",
+            "À l’amont, la vigne s’accroche aux pentes du Massif central et aux premières terrasses du fleuve. Les **Côtes d’Auvergne** gardent la mémoire des sols volcaniques, les **Côtes du Forez** font parler le gamay et **Saint-Pourçain** prolonge le vignoble jusque dans le Bourbonnais.\n\nPuis le Centre-Loire et la Touraine composent un long chapelet de coteaux. Le **Sancerre** trouve sa tension dans le silex, le **Pouilly-Fumé** sa pierre à fusil, tandis que le **Vouvray** et le **Chinon** révèlent les visages changeants du chenin et du cabernet franc.\n\nEnfin, l’Anjou et le pays nantais ouvrent le vin sur l’aval. Le **Savennières** garde ses pentes de schiste, les **Coteaux du Layon** font mûrir l’or des liquoreux et le **Muscadet** accompagne le fleuve jusqu’aux marais et à l’Atlantique.",
+        presentationFooter:
+            "**Cet index rassemble les appellations et vignobles qui jalonnent la Loire, des coteaux du Forez aux rives de l’Atlantique. Chaque fiche raconte sa robe, ses cépages, son terroir et l’accord qui prolonge le vin à table.**",
         footerNote:
             "appellations du fil · les émojis attendent leur version LRZ",
         dataFile: "vignoble.json",
