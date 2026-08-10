@@ -7,9 +7,8 @@ import guinguettesData from "@data/catalogue-guinguettes.json";
 import personnagesData from "@data/catalogue-personnages.json";
 import territoiresData from "@data/catalogue-territoires.json";
 import vignoblesData from "@data/vignoble.json";
+import { getCollectionsForPublicationEnv } from "@/lib/publication-guards";
 import { getCanonicalUrl } from "@/lib/site-metadata";
-import { featureIsEnabled } from "@/registry/feature-flags";
-import { getCollectionsForEnv } from "@/registry/collections";
 import { getIndexesForEnv } from "@/registry/indexes";
 
 const STATIC_PUBLIC_PATHS = [
@@ -25,11 +24,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const paths = [
         ...STATIC_PUBLIC_PATHS,
         ...getIndexesForEnv("production").map((index) => index.href),
-        ...(featureIsEnabled("collections", "production")
-            ? getCollectionsForEnv("production").map(
-                  (collection) => collection.href,
-              )
-            : []),
+        ...getCollectionsForPublicationEnv("production").map(
+            (collection) => collection.href,
+        ),
         ...chateauData.chateaux.map((chateau) => `/chateau/${chateau.slug}`),
         ...guinguettesData.guinguettes.map(
             (guinguette) => `/guinguette/${guinguette.slug}`,
@@ -42,11 +39,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ),
         ...fauneData.especes.map((espece) => `/faune/${espece.slug}`),
         ...floreData.flore.map((flore) => `/flore/${flore.slug}`),
-        ...(featureIsEnabled("personnages", "production")
-            ? personnagesData.personnages.map(
-                  (personnage) => `/personnage/${personnage.id}`,
-              )
-            : []),
+        ...personnagesData.personnages.map(
+            (personnage) => `/personnage/${personnage.id}`,
+        ),
     ];
 
     return paths.map((path) => ({

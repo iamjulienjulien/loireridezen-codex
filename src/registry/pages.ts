@@ -323,6 +323,37 @@ const isCollectionPathname = (pathname: string): boolean => {
     return match ? getIndexBySlug(match[1]) !== undefined : false;
 };
 
+const ITEM_ROUTE_INDEX_SLUGS = {
+    chateau: "chateaux",
+    faune: "faune",
+    flore: "flore",
+    guinguette: "guinguettes",
+    personnage: "personnages",
+    territoire: "territoires",
+    vignoble: "vignobles",
+} as const satisfies Partial<Record<string, IndexSlug>>;
+
+const getItemRouteIndex = (
+    pathname: string,
+): IndexPageDefinition | undefined => {
+    const [routeSegment, itemSegment, ...remaining] = pathname
+        .split("/")
+        .filter(Boolean);
+
+    if (!routeSegment || remaining.length > 0) return undefined;
+    if (itemSegment?.includes("/") || itemSegment === "collections") {
+        return undefined;
+    }
+
+    const indexSlug =
+        ITEM_ROUTE_INDEX_SLUGS[
+            routeSegment as keyof typeof ITEM_ROUTE_INDEX_SLUGS
+        ];
+    return indexSlug
+        ? INDEX_PAGE_DEFINITIONS.find(({ slug }) => slug === indexSlug)
+        : undefined;
+};
+
 export const getPageKind = (pathname: string): PageKind | undefined => {
     const normalizedPathname = normalizePathname(pathname);
 
@@ -331,6 +362,7 @@ export const getPageKind = (pathname: string): PageKind | undefined => {
     if (INDEXES.some((index) => index.href === normalizedPathname)) {
         return "index";
     }
+    if (getItemRouteIndex(normalizedPathname)) return "index";
     if (isCollectionPathname(normalizedPathname)) return "collection";
     if (CONTENT_PAGES.some((page) => page.href === normalizedPathname)) {
         return "page";
@@ -350,6 +382,9 @@ export const getPageDefinition = (
 
     if (definition) return definition;
     if (isAtelierPathname(normalizedPathname)) return ATELIER_PAGE;
+
+    const itemIndex = getItemRouteIndex(normalizedPathname);
+    if (itemIndex) return itemIndex;
 
     return undefined;
 };

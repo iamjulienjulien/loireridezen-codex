@@ -8,16 +8,17 @@ import { CollectionEntryCard } from "@/components/ui/collection-entry-card";
 import { CollectionHero } from "@/components/ui/collection-hero";
 import { CollectionList } from "@/components/ui/collection-list";
 import { CollectionPodium } from "@/components/ui/collection-podium";
-import { buildGeneralPageTitle, buildPageMetadata } from "@/lib/site-metadata";
-import { featureIsEnabled } from "@/registry/feature-flags";
-
-import { COLLECTIONS, getCollectionBySlug } from "@/registry/collections";
+import {
+    getCollectionsForPublicationEnv,
+    requireCollectionForEnv,
+} from "@/lib/publication-guards";
+import { buildPageMetadata } from "@/lib/site-metadata";
+import { getIndexesForEnv } from "@/registry/indexes";
 import { findCollectionPageDefinition } from "@/registry/pages";
 
 import { resolveCollectionPage } from "./lib";
 
 import styles from "./page.module.css";
-import { getIndexesForEnv } from "@/registry/indexes";
 
 type CollectionPageProps = {
     params: Promise<{
@@ -28,7 +29,7 @@ type CollectionPageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-    return COLLECTIONS.map((collection) => ({
+    return getCollectionsForPublicationEnv().map((collection) => ({
         collectionSlug: collection.slug,
     }));
 }
@@ -38,17 +39,9 @@ export async function generateMetadata({
 }: CollectionPageProps): Promise<Metadata> {
     const { collectionSlug } = await params;
 
+    requireCollectionForEnv(collectionSlug);
     const collection = findCollectionPageDefinition(collectionSlug);
-
-    if (!collection) {
-        return {
-            title: buildGeneralPageTitle("Collection introuvable"),
-            robots: {
-                index: false,
-                follow: false,
-            },
-        };
-    }
+    if (!collection) notFound();
 
     return buildPageMetadata(collection, { openGraphType: "article" });
 }
@@ -56,15 +49,7 @@ export async function generateMetadata({
 export default async function CollectionPage({ params }: CollectionPageProps) {
     const { collectionSlug } = await params;
 
-    if (!featureIsEnabled("collections")) {
-        notFound();
-    }
-
-    const collection = getCollectionBySlug(collectionSlug);
-
-    if (!collection) {
-        notFound();
-    }
+    const collection = requireCollectionForEnv(collectionSlug);
 
     const { entries, podium } = resolveCollectionPage(collection);
     const pageDefinition = findCollectionPageDefinition(collection.slug);

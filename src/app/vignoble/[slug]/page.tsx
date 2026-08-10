@@ -7,6 +7,7 @@ import {
     getVignobleBySlug,
 } from "@/app/vignobles/VignoblesRoute";
 import { getCodexOgImageUrl } from "@/lib/og-data";
+import { requireIndexForEnv } from "@/lib/publication-guards";
 import {
     buildItemPageTitle,
     buildItemSocialTitle,
@@ -24,6 +25,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
     params,
 }: VignoblePageProps): Promise<Metadata> {
+    requireIndexForEnv("vignobles");
     const { slug } = await params;
     const vignoble = getVignobleBySlug(slug);
 
@@ -65,6 +67,7 @@ export async function generateMetadata({
 }
 
 export default async function VignoblePage({ params }: VignoblePageProps) {
+    requireIndexForEnv("vignobles");
     const { slug } = await params;
 
     if (!getVignobleBySlug(slug)) notFound();

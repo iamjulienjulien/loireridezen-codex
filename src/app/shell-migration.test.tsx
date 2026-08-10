@@ -25,24 +25,18 @@ import DocumentationHomePage from "./docs/page";
 import SdkDocumentationPage from "./docs/sdk/page";
 import { FauneRoute } from "./faune/FauneRoute";
 import { FloreRoute } from "./flore/FloreRoute";
-import GuinguettesPage from "./guinguettes/page";
+import { GuinguettesRoute } from "./guinguettes/GuinguettesRoute";
 import HomeContent from "./HomeContent";
 import HomePage from "./page";
-import PatrimoinePage from "./patrimoine/page";
 import PersonnagesIndex from "./personnages/PersonnagesIndex";
 import { PersonnagesRoute } from "./personnages/PersonnagesRoute";
-import VignoblesPage from "./vignobles/page";
-import VocabulairePage from "./vocabulaire/page";
-import VillesVillagesPage from "./villes-villages/page";
+import { VignoblesRoute } from "./vignobles/VignoblesRoute";
 
 const REMAINING_INDEX_ROUTES = [
     { href: "/faune", render: FauneRoute },
     { href: "/flore", render: FloreRoute },
-    { href: "/guinguettes", render: GuinguettesPage },
-    { href: "/patrimoine", render: PatrimoinePage },
-    { href: "/vignobles", render: VignoblesPage },
-    { href: "/vocabulaire", render: VocabulairePage },
-    { href: "/villes-villages", render: VillesVillagesPage },
+    { href: "/guinguettes", render: GuinguettesRoute },
+    { href: "/vignobles", render: VignoblesRoute },
 ] as const;
 
 describe("pilot shell migration", () => {

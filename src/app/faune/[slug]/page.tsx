@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
+import { requireIndexForEnv } from "@/lib/publication-guards";
 import {
     buildItemPageTitle,
     buildItemSocialTitle,
@@ -23,6 +24,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
     params,
 }: FaunePageProps): Promise<Metadata> {
+    requireIndexForEnv("faune");
     const { slug } = await params;
     const espece = getFauneBySlug(slug);
 
@@ -62,6 +64,7 @@ export async function generateMetadata({
 }
 
 export default async function FaunePage({ params }: FaunePageProps) {
+    requireIndexForEnv("faune");
     const { slug } = await params;
     if (!getFauneBySlug(slug)) notFound();
     return <FauneRoute initialOpenSlug={slug} />;

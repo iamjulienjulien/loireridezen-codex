@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
+import { requireIndexForEnv } from "@/lib/publication-guards";
 import {
     buildItemPageTitle,
     buildItemSocialTitle,
@@ -23,6 +24,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
     params,
 }: FlorePageProps): Promise<Metadata> {
+    requireIndexForEnv("flore");
     const { slug } = await params;
     const flore = getFloreBySlug(slug);
 
@@ -62,6 +64,7 @@ export async function generateMetadata({
 }
 
 export default async function FlorePage({ params }: FlorePageProps) {
+    requireIndexForEnv("flore");
     const { slug } = await params;
     if (!getFloreBySlug(slug)) notFound();
     return <FloreRoute initialOpenSlug={slug} />;

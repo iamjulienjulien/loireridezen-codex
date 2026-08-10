@@ -7,6 +7,7 @@ import {
     TerritoiresRoute,
 } from "@/app/territoires/TerritoiresRoute";
 import { getCodexOgImageUrl } from "@/lib/og-data";
+import { requireIndexForEnv } from "@/lib/publication-guards";
 import {
     buildItemPageTitle,
     buildItemSocialTitle,
@@ -24,6 +25,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
     params,
 }: TerritoirePageProps): Promise<Metadata> {
+    requireIndexForEnv("territoires");
     const { slug } = await params;
     const territoire = getTerritoireBySlug(slug);
 
@@ -70,6 +72,7 @@ export async function generateMetadata({
 }
 
 export default async function TerritoirePage({ params }: TerritoirePageProps) {
+    requireIndexForEnv("territoires");
     const { slug } = await params;
 
     if (!getTerritoireBySlug(slug)) notFound();

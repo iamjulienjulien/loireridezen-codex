@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
+import { requireIndexForEnv } from "@/lib/publication-guards";
 import {
     buildItemPageTitle,
     buildItemSocialTitle,
@@ -25,6 +26,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
     params,
 }: ChateauPageProps): Promise<Metadata> {
+    requireIndexForEnv("chateaux");
     const { slug } = await params;
     const chateau = getChateauBySlug(slug);
 
@@ -78,6 +80,7 @@ export async function generateMetadata({
 }
 
 export default async function ChateauPage({ params }: ChateauPageProps) {
+    requireIndexForEnv("chateaux");
     const { slug } = await params;
 
     if (!getChateauBySlug(slug)) {

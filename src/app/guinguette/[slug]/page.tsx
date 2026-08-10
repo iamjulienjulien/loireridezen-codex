@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
+import { requireIndexForEnv } from "@/lib/publication-guards";
 import {
     buildItemPageTitle,
     buildItemSocialTitle,
@@ -25,6 +26,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
     params,
 }: GuinguettePageProps): Promise<Metadata> {
+    requireIndexForEnv("guinguettes");
     const { slug } = await params;
     const guinguette = getGuinguetteBySlug(slug);
 
@@ -73,6 +75,7 @@ export async function generateMetadata({
 }
 
 export default async function GuinguettePage({ params }: GuinguettePageProps) {
+    requireIndexForEnv("guinguettes");
     const { slug } = await params;
 
     if (!getGuinguetteBySlug(slug)) notFound();

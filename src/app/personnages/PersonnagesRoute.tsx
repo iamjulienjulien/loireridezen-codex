@@ -1,9 +1,6 @@
-import { notFound } from "next/navigation";
-
 import IndexShell from "@/components/layout/IndexShell";
 import { getPersonnages, getRelationsForPersonnage } from "@/lib/personnages";
 import { buildPageMetadata } from "@/lib/site-metadata";
-import { featureIsEnabled } from "@/registry/feature-flags";
 import { getIndexesForEnv } from "@/registry/indexes";
 import { getIndexPageDefinition } from "@/registry/pages";
 
@@ -21,8 +18,6 @@ export function getPersonnageBySlug(slug: string) {
 export function PersonnagesRoute({
     initialOpenSlug,
 }: { initialOpenSlug?: string } = {}) {
-    if (!featureIsEnabled("personnages")) notFound();
-
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
     const entries: PersonnageIndexEntry[] = PERSONNAGES.map((personnage) => ({
         personnage,

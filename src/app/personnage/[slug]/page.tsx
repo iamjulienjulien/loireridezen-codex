@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
+import { requireIndexForEnv } from "@/lib/publication-guards";
 import {
     buildItemPageTitle,
     buildItemSocialTitle,
@@ -23,6 +24,7 @@ export function generateStaticParams() {
 export async function generateMetadata({
     params,
 }: PersonnagePageProps): Promise<Metadata> {
+    requireIndexForEnv("personnages");
     const { slug } = await params;
     const personnage = getPersonnageBySlug(slug);
 
@@ -62,6 +64,7 @@ export async function generateMetadata({
 }
 
 export default async function PersonnagePage({ params }: PersonnagePageProps) {
+    requireIndexForEnv("personnages");
     const { slug } = await params;
     if (!getPersonnageBySlug(slug)) notFound();
     return <PersonnagesRoute initialOpenSlug={slug} />;
