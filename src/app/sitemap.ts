@@ -6,6 +6,7 @@ import floreData from "@data/flore.json";
 import guinguettesData from "@data/catalogue-guinguettes.json";
 import personnagesData from "@data/catalogue-personnages.json";
 import territoiresData from "@data/catalogue-territoires.json";
+import vignoblesData from "@data/vignoble.json";
 import { getCanonicalUrl } from "@/lib/site-metadata";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import { getCollectionsForEnv } from "@/registry/collections";
@@ -35,6 +36,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ),
         ...territoiresData.territoires.map(
             (territoire) => `/territoire/${territoire.slug}`,
+        ),
+        ...vignoblesData.vignobles.map(
+            (vignoble) => `/vignoble/${vignoble.slug}`,
         ),
         ...fauneData.especes.map((espece) => `/faune/${espece.slug}`),
         ...floreData.flore.map((flore) => `/flore/${flore.slug}`),

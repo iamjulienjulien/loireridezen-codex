@@ -2,11 +2,16 @@
 
 import { useMemo, useState, type CSSProperties } from "react";
 import ReactMarkdown from "react-markdown";
+import { useRouter } from "next/navigation";
+
 import type { Vignoble } from "@/types/vignoble";
 import IndexPresentation from "@/components/IndexPresentation";
+import { LRZCardDialog } from "@/components/LRZCardDialog";
 import { LRZSection } from "@/components/LRZSection";
 import LRZSeparateur from "@/components/LRZSeparateur";
+import { LRZSymbol } from "@/components/LRZSymbol";
 import { PageControls } from "@/components/PageControls";
+import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import VignoblesCard from "./VignoblesCard";
 import styles from "./vignobles.module.css";
@@ -20,9 +25,11 @@ const norm = (s: string) =>
 export default function VignoblesIndex({
     vignobles,
     indexes,
+    initialOpenSlug,
 }: {
     vignobles: Vignoble[];
     indexes: readonly IndexEntry[];
+    initialOpenSlug?: string;
 }) {
     const entry = getIndex("/vignobles")!;
     const [couleur, setCouleur] = useState<string>("all");
@@ -32,6 +39,14 @@ export default function VignoblesIndex({
     const [openOverrides, setOpenOverrides] = useState<Record<string, boolean>>(
         {},
     );
+    const [openSlug, setOpenSlug] = useState(initialOpenSlug);
+    const router = useRouter();
+    const openVignoble = openSlug
+        ? vignobles.find((vignoble) => vignoble.slug === openSlug)
+        : undefined;
+    const openVignobleIndex = openVignoble
+        ? vignobles.indexOf(openVignoble)
+        : -1;
 
     const toggleAll = () => {
         setExpandAll((v) => !v);
@@ -70,6 +85,66 @@ export default function VignoblesIndex({
 
     return (
         <>
+            {openVignoble ? (
+                <LRZCardDialog
+                    open={Boolean(openVignoble)}
+                    onOpenChange={(open) => {
+                        if (!open) {
+                            setOpenSlug(undefined);
+                            router.replace("/vignobles");
+                        }
+                    }}
+                    indexLabel={entry.title}
+                    indexIcon={
+                        <LRZSymbol
+                            collection="codex"
+                            meta="index"
+                            slug="vignobles"
+                            size="md"
+                            decorative
+                        />
+                    }
+                    item={{ id: openVignoble.slug, label: openVignoble.nom }}
+                    navigation={{
+                        position: openVignobleIndex + 1,
+                        total: vignobles.length,
+                        previous:
+                            openVignobleIndex > 0
+                                ? {
+                                      id: vignobles[openVignobleIndex - 1].slug,
+                                      label: vignobles[openVignobleIndex - 1]
+                                          .nom,
+                                  }
+                                : undefined,
+                        next:
+                            openVignobleIndex < vignobles.length - 1
+                                ? {
+                                      id: vignobles[openVignobleIndex + 1].slug,
+                                      label: vignobles[openVignobleIndex + 1]
+                                          .nom,
+                                  }
+                                : undefined,
+                        onNavigate: ({ id }) => {
+                            setOpenSlug(id);
+                            router.replace(`/vignoble/${id}`);
+                        },
+                    }}
+                    share={{
+                        title: `${openVignoble.nom} — ${entry.title}`,
+                        text: openVignoble.sousTitre,
+                        url: `${SITE_URL}/vignoble/${openVignoble.slug}`,
+                    }}
+                    color={entry.color}
+                >
+                    <VignoblesCard
+                        version={4}
+                        d={openVignoble}
+                        open={false}
+                        onToggle={() => undefined}
+                    />
+                </LRZCardDialog>
+            ) : null}
+
             <IndexPresentation
                 description={entry.description}
                 descriptionFooter={entry.presentationFooter}

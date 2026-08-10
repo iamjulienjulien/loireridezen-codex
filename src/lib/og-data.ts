@@ -4,15 +4,18 @@ import personnagesData from "@data/catalogue-personnages.json";
 import territoiresData from "@data/catalogue-territoires.json";
 import fauneData from "@data/faune.json";
 import floreData from "@data/flore.json";
+import vignoblesData from "@data/vignoble.json";
 
 import { SITE_URL } from "@/lib/site-metadata";
 import { getIndexBySlug } from "@/registry/indexes";
+import { LRZ_VIGNOBLE_COULEUR_SYMBOLS } from "@/registry/symbols";
 import type { ChateauV2 } from "@/types/chateauV2";
 import type { FauneEspece } from "@/types/faune";
 import type { Flore } from "@/types/flore";
 import type { Guinguette } from "@/types/guinguette";
 import type { Personnage } from "@/types/personnage";
 import type { Territoire } from "@/types/territoire";
+import type { Vignoble } from "@/types/vignoble";
 
 export const CODEX_OG_ITEM_KINDS = [
     "chateau",
@@ -21,6 +24,7 @@ export const CODEX_OG_ITEM_KINDS = [
     "guinguette",
     "personnage",
     "territoire",
+    "vignoble",
 ] as const;
 
 export type CodexOgItemKind = (typeof CODEX_OG_ITEM_KINDS)[number];
@@ -33,7 +37,8 @@ export type CodexOgItem = {
         | "flore"
         | "guinguettes"
         | "personnages"
-        | "territoires";
+        | "territoires"
+        | "vignobles";
     indexTitle: string;
     indexMark: string;
     accent: string;
@@ -51,6 +56,7 @@ const FLORE = floreData.flore as Flore[];
 const GUINGUETTES = guinguettesData.guinguettes as Guinguette[];
 const PERSONNAGES = personnagesData.personnages as Personnage[];
 const TERRITOIRES = territoiresData.territoires as Territoire[];
+const VIGNOBLES = vignoblesData.vignobles as Vignoble[];
 
 const toLabel = (value: string) =>
     value
@@ -161,6 +167,21 @@ export const getCodexOgItem = (
                   detail: toLabel(personnage.categoriePrincipale),
                   visual: personnage.illustration,
                   visualAlt: personnage.nom,
+                  visualFit: "contain",
+              })
+            : undefined;
+    }
+
+    if (kind === "vignoble") {
+        const vignoble = VIGNOBLES.find((entry) => entry.slug === slug);
+
+        return vignoble
+            ? withIndexIdentity(kind, "vignobles", {
+                  title: vignoble.nom,
+                  subtitle: vignoble.sousTitre,
+                  detail: `${vignoble.appellation.niveau} · ${vignoble.rive}`,
+                  visual: LRZ_VIGNOBLE_COULEUR_SYMBOLS[vignoble.couleur],
+                  visualAlt: `Robe ${vignoble.couleur} de ${vignoble.nom}`,
                   visualFit: "contain",
               })
             : undefined;
