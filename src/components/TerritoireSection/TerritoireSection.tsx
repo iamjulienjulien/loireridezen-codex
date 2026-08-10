@@ -8,7 +8,7 @@ import type { PersonnagesParLieu } from "@/types/personnage";
 import type { Guinguette } from "@/types/guinguette";
 
 import ChateauxCard from "@/app/chateaux/ChateauxCard";
-import GuinguetteCard from "@/app/guinguettes/GuinguetteCardV4";
+import GuinguetteCard from "@/app/guinguettes/GuinguetteCard";
 import { LRZSymbol } from "@/components/LRZSymbol";
 import { LRZTypography } from "@/components/LRZTypography";
 import { isCommonTerritoire } from "@/registry/Meta/common-territoire";

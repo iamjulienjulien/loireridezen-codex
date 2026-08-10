@@ -22,7 +22,7 @@ import { featureIsEnabled } from "@/registry/feature-flags";
 import { getTerritoiresWithGuinguettes } from "@/registry/guinguettes-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Guinguette } from "@/types/guinguette";
-import GuinguetteCard from "./GuinguetteCardV4";
+import GuinguetteCard from "./GuinguetteCard";
 import GuinguettesInteractiveMap from "./GuinguettesInteractiveMap";
 import { GUINGUETTES_MAP_CONFIG } from "./guinguettes-map.config";
 import {
