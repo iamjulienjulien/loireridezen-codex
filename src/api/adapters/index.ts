@@ -223,7 +223,7 @@ export const adaptPersonnage: EntryAdapter<ValidatedPersonnageEntry> = (
         index: "personnages",
         slug,
         name: nom,
-        subtitle: roles[0] ?? "Personnage du Codex ligérien",
+        subtitle: roles[0] ?? "Personnage du Codex Ligérien",
         summary: null,
         media: media("♜", illustration),
         attributes: { autresNoms, roles, categoriePrincipale, tags },

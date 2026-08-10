@@ -56,7 +56,7 @@ describe("PageHeader", () => {
         );
 
         expect(markup).toContain("Loire Ride Zen");
-        expect(markup).toContain("Le Codex ligérien");
+        expect(markup).toContain("Le Codex Ligérien");
         expect(markup).toContain('aria-label="Index du Codex"');
         expect(markup).toContain(`href="${current.href}"`);
         expect(markup).toContain('aria-current="page"');

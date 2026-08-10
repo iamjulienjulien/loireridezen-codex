@@ -13,7 +13,7 @@ export async function GET() {
         apiResponse({
             apiVersion: "1",
             data: {
-                name: "API publique du Codex ligérien",
+                name: "API publique du Codex Ligérien",
                 description:
                     "Index éditoriaux publics de Loire Ride Zen, en lecture seule.",
                 version: "1",

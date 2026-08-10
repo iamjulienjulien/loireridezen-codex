@@ -5,7 +5,20 @@ import type { PageDefinitionBase, PageKind } from "@/types/page";
 export const SITE_URL = "https://codex.loireridezen.bike";
 
 export const SITE_TITLE =
-    "Loire Ride Zen — Le Codex vivant des trésors du Val de Loire";
+    "Le Codex Ligérien · Inventaire vivant des trésors du Val-de-Loire · Loire Ride Zen";
+export const SITE_SIGNATURE = "Le Codex Ligérien · Loire Ride Zen";
+
+export const buildGeneralPageTitle = (title: string): string =>
+    `${title} — ${SITE_SIGNATURE}`;
+
+export const buildItemPageTitle = (item: string, index: string): string =>
+    `${item} — ${index} · Codex Ligérien`;
+
+export const buildItemSocialTitle = (
+    symbol: string,
+    item: string,
+    index: string,
+): string => `${symbol} ${buildItemPageTitle(item, index)}`;
 
 export const SITE_DESCRIPTION =
     "Parcourez le Val de Loire dans un codex vivant consacré à ses châteaux, sa faune, sa flore, ses vignobles et aux récits du fleuve.";

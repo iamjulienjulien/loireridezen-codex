@@ -7,7 +7,11 @@ import {
     TerritoiresRoute,
 } from "@/app/territoires/TerritoiresRoute";
 import { getCodexOgImageUrl } from "@/lib/og-data";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import {
+    buildItemPageTitle,
+    buildItemSocialTitle,
+    getCanonicalUrl,
+} from "@/lib/site-metadata";
 
 type TerritoirePageProps = {
     params: Promise<{ slug: string }>;
@@ -25,7 +29,12 @@ export async function generateMetadata({
 
     if (!territoire) return {};
 
-    const title = `${territoire.nom} — Territoires de la Loire`;
+    const title = buildItemPageTitle(territoire.nom, "Territoires de la Loire");
+    const socialTitle = buildItemSocialTitle(
+        "🗺️",
+        territoire.nom,
+        "Territoires de la Loire",
+    );
     const description = territoire.description;
     const canonical = getCanonicalUrl(`/territoire/${territoire.slug}`);
     const image = getCodexOgImageUrl("territoire", territoire.slug);
@@ -39,7 +48,7 @@ export async function generateMetadata({
             type: "article",
             locale: "fr_FR",
             siteName: "Loire Ride Zen",
-            title,
+            title: socialTitle,
             description,
             url: canonical,
             images: [
@@ -53,7 +62,7 @@ export async function generateMetadata({
         },
         twitter: {
             card: "summary_large_image",
-            title,
+            title: socialTitle,
             description,
             images: [image],
         },

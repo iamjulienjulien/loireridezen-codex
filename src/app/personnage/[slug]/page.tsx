@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import {
+    buildItemPageTitle,
+    buildItemSocialTitle,
+    getCanonicalUrl,
+} from "@/lib/site-metadata";
 
 import {
     PERSONNAGES,
@@ -24,8 +28,13 @@ export async function generateMetadata({
 
     if (!personnage) return {};
 
-    const title = `${personnage.nom} — Personnages de la Loire`;
-    const description = `${personnage.nom}, ${personnage.roles.join(" et ") || "figure liée aux récits ligériens"}. Découvrez ses liens avec les châteaux dans le Codex ligérien.`;
+    const title = buildItemPageTitle(personnage.nom, "Personnages de la Loire");
+    const socialTitle = buildItemSocialTitle(
+        "♜",
+        personnage.nom,
+        "Personnages de la Loire",
+    );
+    const description = `${personnage.nom}, ${personnage.roles.join(" et ") || "figure liée aux récits ligériens"}. Découvrez ses liens avec les châteaux dans le Codex Ligérien.`;
     const canonical = getCanonicalUrl(`/personnage/${personnage.id}`);
     const image = getCodexOgImageUrl("personnage", personnage.id);
 
@@ -38,14 +47,14 @@ export async function generateMetadata({
             type: "article",
             locale: "fr_FR",
             siteName: "Loire Ride Zen",
-            title,
+            title: socialTitle,
             description,
             url: canonical,
             images: [{ url: image, width: 1200, height: 630, alt: title }],
         },
         twitter: {
             card: "summary_large_image",
-            title,
+            title: socialTitle,
             description,
             images: [image],
         },

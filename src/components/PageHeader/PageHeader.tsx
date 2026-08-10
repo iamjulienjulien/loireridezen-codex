@@ -150,7 +150,7 @@ export default function PageHeader({
                                         href="/"
                                         className={styles.indexSiteName}
                                     >
-                                        Le Codex ligérien
+                                        Le Codex Ligérien
                                     </Link>
                                 </span>
                             )}
@@ -195,7 +195,7 @@ export default function PageHeader({
                                 ·
                             </span>
                             <span className={styles.identityName}>
-                                Le Codex ligérien
+                                Le Codex Ligérien
                             </span>
                         </Link>
                     )}

@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import {
+    buildItemPageTitle,
+    buildItemSocialTitle,
+    getCanonicalUrl,
+} from "@/lib/site-metadata";
 
 import {
     CHATEAUX,
@@ -28,10 +32,15 @@ export async function generateMetadata({
         return {};
     }
 
-    const title = `${chateau.nom} — Châteaux de la Loire`;
+    const title = buildItemPageTitle(chateau.nom, "Châteaux de la Loire");
+    const socialTitle = buildItemSocialTitle(
+        "🏰",
+        chateau.nom,
+        "Châteaux de la Loire",
+    );
     const description =
         chateau.resume ??
-        `${chateau.nom}, ${chateau.sousTitre.toLowerCase()}. Découvrez sa place dans le Codex ligérien.`;
+        `${chateau.nom}, ${chateau.sousTitre.toLowerCase()}. Découvrez sa place dans le Codex Ligérien.`;
     const canonical = getCanonicalUrl(`/chateau/${chateau.slug}`);
     const image = getCodexOgImageUrl("chateau", chateau.slug);
 
@@ -47,7 +56,7 @@ export async function generateMetadata({
             type: "article",
             locale: "fr_FR",
             siteName: "Loire Ride Zen",
-            title,
+            title: socialTitle,
             description,
             url: canonical,
             images: [
@@ -61,7 +70,7 @@ export async function generateMetadata({
         },
         twitter: {
             card: "summary_large_image",
-            title,
+            title: socialTitle,
             description,
             images: [image],
         },

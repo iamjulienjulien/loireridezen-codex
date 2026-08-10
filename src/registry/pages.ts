@@ -6,7 +6,11 @@
  * ces définitions au fil de la migration.
  */
 
-import { SITE_DESCRIPTION, SITE_TITLE } from "@/lib/site-metadata";
+import {
+    buildGeneralPageTitle,
+    SITE_DESCRIPTION,
+    SITE_TITLE,
+} from "@/lib/site-metadata";
 import {
     ATELIER_PAGE,
     ATELIER_PAGE_DEFINITIONS,
@@ -96,9 +100,11 @@ export const CONTENT_PAGES = [
         color: "bleu",
         mark: "⌖",
         seo: {
-            title: "Carte châteaux et guinguettes de Loire — Le Codex ligérien",
+            title: buildGeneralPageTitle(
+                "Carte châteaux et guinguettes de Loire",
+            ),
             description:
-                "Explorez sur une même carte les châteaux et guinguettes du Codex ligérien, de Nevers à l’estuaire, et ouvrez chaque fiche au fil de la Loire.",
+                "Explorez sur une même carte les châteaux et guinguettes du Codex Ligérien, de Nevers à l’estuaire, et ouvrez chaque fiche au fil de la Loire.",
         },
     },
     {
@@ -107,16 +113,16 @@ export const CONTENT_PAGES = [
         label: "À propos",
         eyebrow: "À propos",
         variant: "editorial",
-        title: "Le Codex ligérien, un atlas vivant pour suivre la Loire.",
+        title: "Le Codex Ligérien, un atlas vivant pour suivre la Loire.",
         description:
-            "Le Codex ligérien est l’atlas éditorial de Loire Ride Zen : un lieu pour explorer les paysages, les patrimoines et le vivant qui accompagnent le fleuve.",
+            "Le Codex Ligérien est l’atlas éditorial de Loire Ride Zen : un lieu pour explorer les paysages, les patrimoines et le vivant qui accompagnent le fleuve.",
         accent: "#4f86c6",
         color: "eau",
         mark: "↘",
         seo: {
-            title: "À propos du projet Loire Ride Zen — Le Codex ligérien",
+            title: buildGeneralPageTitle("À propos du projet Loire Ride Zen"),
             description:
-                "Découvrez le Codex ligérien de Loire Ride Zen : un atlas éditorial des lieux, du vivant et des récits qui façonnent le fleuve.",
+                "Découvrez le Codex Ligérien de Loire Ride Zen : un atlas éditorial des lieux, du vivant et des récits qui façonnent le fleuve.",
         },
     },
     {
@@ -127,14 +133,14 @@ export const CONTENT_PAGES = [
         variant: "documentation",
         title: "Guides et références du Codex.",
         description:
-            "Les ressources pour explorer, intégrer et comprendre les données du Codex ligérien.",
+            "Les ressources pour explorer, intégrer et comprendre les données du Codex Ligérien.",
         accent: "#b5883c",
         color: "ocre",
         mark: "⌘",
         seo: {
-            title: "Documentation technique, API et SDK — Le Codex ligérien",
+            title: buildGeneralPageTitle("Documentation technique, API et SDK"),
             description:
-                "Consultez les guides et références techniques du Codex ligérien pour explorer ses données, utiliser son API publique et intégrer son SDK TypeScript.",
+                "Consultez les guides et références techniques du Codex Ligérien pour explorer ses données, utiliser son API publique et intégrer son SDK TypeScript.",
         },
     },
     {
@@ -150,9 +156,9 @@ export const CONTENT_PAGES = [
         color: "bleu-turquoise",
         mark: "{ }",
         seo: {
-            title: "API publique des données de Loire — Le Codex ligérien",
+            title: buildGeneralPageTitle("API publique des données de Loire"),
             description:
-                "Découvrez l’API publique du Codex ligérien : démarrage rapide, ressources, filtres, réponses, erreurs et exemples pour interroger les données de la Loire.",
+                "Découvrez l’API publique du Codex Ligérien : démarrage rapide, ressources, filtres, réponses, erreurs et exemples pour interroger les données de la Loire.",
         },
     },
     {
@@ -168,61 +174,67 @@ export const CONTENT_PAGES = [
         color: "eau",
         mark: "TS",
         seo: {
-            title: "SDK TypeScript et guide d’intégration — Le Codex ligérien",
+            title: buildGeneralPageTitle(
+                "SDK TypeScript et guide d’intégration",
+            ),
             description:
-                "Intégrez les données du Codex ligérien avec son SDK TypeScript : installation, client typé, gestion des erreurs et exemples pour Expo et React Native.",
+                "Intégrez les données du Codex Ligérien avec son SDK TypeScript : installation, client typé, gestion des erreurs et exemples pour Expo et React Native.",
         },
     },
 ] as const satisfies readonly ContentPageDefinition[];
 
 const INDEX_PAGE_SEO = {
     chateaux: {
-        title: "Châteaux de la Loire, donjons et palais — Le Codex ligérien",
+        title: buildGeneralPageTitle("Châteaux de la Loire, donjons et palais"),
         description:
             "Explorez les châteaux de la Loire, des forteresses médiévales aux palais de la Renaissance, à travers leur histoire, leur architecture et leurs jardins.",
     },
     faune: {
-        title: "Faune de la Loire, espèces du fleuve — Le Codex ligérien",
+        title: buildGeneralPageTitle("Faune de la Loire, espèces du fleuve"),
         description:
             "Découvrez les oiseaux, mammifères, poissons et autres espèces qui peuplent la Loire, ses grèves, ses îles et ses berges, du quotidien au plus rare.",
     },
     flore: {
-        title: "Flore de la Loire, plantes du fleuve — Le Codex ligérien",
+        title: buildGeneralPageTitle("Flore de la Loire, plantes du fleuve"),
         description:
             "Explorez les arbres, fleurs et plantes qui bordent la Loire, des grèves mouvantes à l’estuaire, entre espèces indigènes, trésors rares et plantes invasives.",
     },
     guinguettes: {
-        title: "Guinguettes et haltes au fil de la Loire — Le Codex ligérien",
+        title: buildGeneralPageTitle(
+            "Guinguettes et haltes au fil de la Loire",
+        ),
         description:
             "Découvrez les guinguettes de Loire et de ses affluents : tables au bord de l’eau, concerts, cuisine locale, couchers de soleil et haltes à vélo.",
     },
     territoires: {
-        title: "Territoires et paysages du Val de Loire — Le Codex ligérien",
+        title: buildGeneralPageTitle("Territoires et paysages du Val de Loire"),
         description:
             "Parcourez les huit territoires ligériens, du Nivernais à l’estuaire, et découvrez leurs paysages, villes, cours d’eau, patrimoines et identités.",
     },
     "villes-villages": {
-        title: "Villes et villages de la Loire — Le Codex ligérien",
+        title: buildGeneralPageTitle("Villes et villages de la Loire"),
         description:
             "Explorez les villes et villages de la Loire, des grandes cités aux bourgs de tuffeau, à travers leurs paysages, leurs patrimoines et leur relation au fleuve.",
     },
     personnages: {
-        title: "Personnages et figures de la Loire — Le Codex ligérien",
+        title: buildGeneralPageTitle("Personnages et figures de la Loire"),
         description:
             "Rencontrez les souverains, bâtisseurs, écrivains, mécènes et figures dont les vies ont façonné les châteaux, les paysages et les récits de la Loire.",
     },
     patrimoine: {
-        title: "Patrimoine de la Loire, ponts et moulins — Le Codex ligérien",
+        title: buildGeneralPageTitle(
+            "Patrimoine de la Loire, ponts et moulins",
+        ),
         description:
             "Explorez le patrimoine du fleuve : ponts, cales, ports, fours à chaux et moulins qui racontent le travail, les usages et la mémoire de la Loire.",
     },
     vignobles: {
-        title: "Vignobles de la Loire, terroirs et AOC — Le Codex ligérien",
+        title: buildGeneralPageTitle("Vignobles de la Loire, terroirs et AOC"),
         description:
             "Parcourez les vignobles de Loire, du Forez à l’Atlantique, et découvrez leurs appellations, cépages, terroirs et grandes expressions ligériennes.",
     },
     vocabulaire: {
-        title: "Vocabulaire de la Loire, mots du fleuve — Le Codex ligérien",
+        title: buildGeneralPageTitle("Vocabulaire de la Loire, mots du fleuve"),
         description:
             "Découvrez le vocabulaire de la Loire : mots de la marine, paysages, métiers et phénomènes du fleuve, du terme encore vivant au mot presque oublié.",
     },
@@ -230,32 +242,32 @@ const INDEX_PAGE_SEO = {
 
 const COLLECTION_PAGE_SEO = {
     "incontournables-du-val": {
-        title: "10 châteaux phares du Val de Loire — Le Codex ligérien",
+        title: buildGeneralPageTitle("10 châteaux phares du Val de Loire"),
         description:
             "Découvrez dix châteaux incontournables du Val de Loire, choisis pour leur importance historique, leur architecture et leur place dans l’imaginaire ligérien.",
     },
     "jardins-et-domaines": {
-        title: "Châteaux-jardins et domaines de Loire — Le Codex ligérien",
+        title: buildGeneralPageTitle("Châteaux-jardins et domaines de Loire"),
         description:
             "Explorez une sélection de châteaux de la Loire où jardins, terrasses et domaines prolongent l’architecture et composent des paysages remarquables.",
     },
     "chefs-doeuvre-renaissance": {
-        title: "Châteaux Renaissance du Val de Loire — Le Codex ligérien",
+        title: buildGeneralPageTitle("Châteaux Renaissance du Val de Loire"),
         description:
             "Découvrez les châteaux qui racontent le passage de la forteresse médiévale à la demeure Renaissance, de Chambord à Chenonceau et Azay-le-Rideau.",
     },
     "plus-ligeriens": {
-        title: "Les châteaux les plus ligériens — Le Codex ligérien",
+        title: buildGeneralPageTitle("Les châteaux les plus ligériens"),
         description:
             "Parcourez les châteaux dont l’histoire, le paysage et l’architecture entretiennent le lien le plus fort avec la Loire et son grand corridor fluvial.",
     },
     "pepites-confidentielles": {
-        title: "Châteaux secrets du Val de Loire — Le Codex ligérien",
+        title: buildGeneralPageTitle("Châteaux secrets du Val de Loire"),
         description:
             "Découvrez quatre châteaux confidentiels du Val de Loire, choisis pour leur caractère, leur singularité architecturale et le plaisir du détour.",
     },
     "sur-les-traces-des-rois": {
-        title: "Châteaux royaux du Val de Loire — Le Codex ligérien",
+        title: buildGeneralPageTitle("Châteaux royaux du Val de Loire"),
         description:
             "Suivez les rois de France à travers huit châteaux de la Loire liés aux Valois, à la vie de cour et aux grandes décisions de l’histoire du royaume.",
     },

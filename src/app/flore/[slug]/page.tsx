@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import {
+    buildItemPageTitle,
+    buildItemSocialTitle,
+    getCanonicalUrl,
+} from "@/lib/site-metadata";
 
 import {
     FLORE_ENTRIES,
@@ -24,8 +28,13 @@ export async function generateMetadata({
 
     if (!flore) return {};
 
-    const title = `${flore.nomCommun} — Flore ligérienne`;
-    const description = `${flore.nomCommun} (${flore.nomScientifique}), ${flore.sousTitre.toLowerCase()}. Découvrez cette plante de la Loire dans le Codex ligérien.`;
+    const title = buildItemPageTitle(flore.nomCommun, "Flore ligérienne");
+    const socialTitle = buildItemSocialTitle(
+        "🌿",
+        flore.nomCommun,
+        "Flore ligérienne",
+    );
+    const description = `${flore.nomCommun} (${flore.nomScientifique}), ${flore.sousTitre.toLowerCase()}. Découvrez cette plante de la Loire dans le Codex Ligérien.`;
     const canonical = getCanonicalUrl(`/flore/${flore.slug}`);
     const image = getCodexOgImageUrl("flore", flore.slug);
 
@@ -38,14 +47,14 @@ export async function generateMetadata({
             type: "article",
             locale: "fr_FR",
             siteName: "Loire Ride Zen",
-            title,
+            title: socialTitle,
             description,
             url: canonical,
             images: [{ url: image, width: 1200, height: 630, alt: title }],
         },
         twitter: {
             card: "summary_large_image",
-            title,
+            title: socialTitle,
             description,
             images: [image],
         },

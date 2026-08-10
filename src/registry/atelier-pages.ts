@@ -26,7 +26,7 @@ const defineAtelierPage = (
     href: string,
     title: string,
     description: string,
-    seoTitle = `${title} — Atelier du Codex ligérien`,
+    seoTitle = `${title} — Atelier du Codex Ligérien`,
 ): AtelierPageDefinition => ({
     kind: "atelier",
     href,
@@ -50,7 +50,7 @@ export const ATELIER_PAGE = defineAtelierPage(
     "/atelier",
     "Atelier",
     "La collection des esquisses de composants — variantes, états et données de démonstration, au même endroit.",
-    "Atelier du Codex ligérien — Loire Ride Zen",
+    "Atelier du Codex Ligérien — Loire Ride Zen",
 );
 
 export const ATELIER_PAGE_DEFINITIONS = [
@@ -58,7 +58,7 @@ export const ATELIER_PAGE_DEFINITIONS = [
     defineAtelierPage(
         "/atelier/colors",
         "Couleurs",
-        "Explorez la palette LRZ, ses familles de couleurs, ses tokens CSS et les conventions visuelles utilisées dans le Codex ligérien.",
+        "Explorez la palette LRZ, ses familles de couleurs, ses tokens CSS et les conventions visuelles utilisées dans le Codex Ligérien.",
     ),
     defineAtelierPage(
         "/atelier/typography",
@@ -73,7 +73,7 @@ export const ATELIER_PAGE_DEFINITIONS = [
     defineAtelierPage(
         "/atelier/doc",
         "Composants Doc",
-        "Explorez les composants de lecture et de référence qui structurent durablement les pages de documentation du Codex ligérien.",
+        "Explorez les composants de lecture et de référence qui structurent durablement les pages de documentation du Codex Ligérien.",
     ),
     defineAtelierPage(
         "/atelier/metier",
@@ -93,12 +93,12 @@ export const ATELIER_PAGE_DEFINITIONS = [
     defineAtelierPage(
         "/atelier/components/lrz-anecdote",
         "LRZAnecdote",
-        "Citation éditoriale partagée par les fiches du Codex ligérien.",
+        "Citation éditoriale partagée par les fiches du Codex Ligérien.",
     ),
     defineAtelierPage(
         "/atelier/components/lrz-badge",
         "LRZBadge",
-        "Variantes du composant de statut partagé par les index du Codex ligérien.",
+        "Variantes du composant de statut partagé par les index du Codex Ligérien.",
     ),
     defineAtelierPage(
         "/atelier/components/lrz-button",
@@ -183,7 +183,7 @@ export const ATELIER_PAGE_DEFINITIONS = [
     defineAtelierPage(
         "/atelier/components/lrz-map-marker",
         "LRZMapMarker",
-        "Marqueurs cartographiques personnalisables pour les lieux, regroupements et repères du Codex ligérien.",
+        "Marqueurs cartographiques personnalisables pour les lieux, regroupements et repères du Codex Ligérien.",
     ),
     defineAtelierPage(
         "/atelier/components/lrz-meta-list",

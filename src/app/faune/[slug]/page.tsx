@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import {
+    buildItemPageTitle,
+    buildItemSocialTitle,
+    getCanonicalUrl,
+} from "@/lib/site-metadata";
 
 import {
     FAUNE_ESPECES,
@@ -24,8 +28,13 @@ export async function generateMetadata({
 
     if (!espece) return {};
 
-    const title = `${espece.nomCommun} — Faune ligérienne`;
-    const description = `${espece.nomCommun} (${espece.nomScientifique}), ${espece.sousTitre.toLowerCase()}. Découvrez cette espèce de la Loire dans le Codex ligérien.`;
+    const title = buildItemPageTitle(espece.nomCommun, "Faune ligérienne");
+    const socialTitle = buildItemSocialTitle(
+        "🪶",
+        espece.nomCommun,
+        "Faune ligérienne",
+    );
+    const description = `${espece.nomCommun} (${espece.nomScientifique}), ${espece.sousTitre.toLowerCase()}. Découvrez cette espèce de la Loire dans le Codex Ligérien.`;
     const canonical = getCanonicalUrl(`/faune/${espece.slug}`);
     const image = getCodexOgImageUrl("faune", espece.slug);
 
@@ -38,14 +47,14 @@ export async function generateMetadata({
             type: "article",
             locale: "fr_FR",
             siteName: "Loire Ride Zen",
-            title,
+            title: socialTitle,
             description,
             url: canonical,
             images: [{ url: image, width: 1200, height: 630, alt: title }],
         },
         twitter: {
             card: "summary_large_image",
-            title,
+            title: socialTitle,
             description,
             images: [image],
         },

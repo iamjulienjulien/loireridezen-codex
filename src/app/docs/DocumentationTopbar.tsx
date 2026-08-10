@@ -20,7 +20,7 @@ export default function DocumentationTopbar({
         <header className={styles.topbar}>
             <Link className={styles.brand} href="/">
                 <span aria-hidden="true">🌊</span>
-                <span>Le Codex ligérien</span>
+                <span>Le Codex Ligérien</span>
             </Link>
 
             <nav className={styles.primaryNav} aria-label="Documentation">

@@ -251,7 +251,7 @@ export const renderCodexOgImage = async (
                             textTransform: "uppercase",
                         }}
                     >
-                        Le Codex ligérien
+                        Le Codex Ligérien
                     </div>
                 </div>
             </div>

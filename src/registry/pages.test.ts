@@ -3,6 +3,7 @@ import { join, relative, sep } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { SITE_SIGNATURE, SITE_TITLE } from "@/lib/site-metadata";
 import { ATELIER_PAGE_DEFINITIONS } from "@/registry/atelier-pages";
 import { getIndexBySlug } from "@/registry/indexes";
 import { PAGE_CATEGORY_CONTRACT } from "@/types/page";
@@ -11,6 +12,7 @@ import {
     ATELIER_PAGE,
     COLLECTION_PAGE_DEFINITIONS,
     CONTENT_PAGES,
+    HOME_PAGE,
     PAGE_DEFINITIONS,
     getPageDefinition,
     getPageKind,
@@ -125,6 +127,23 @@ describe("page registry", () => {
         expect(new Set(hrefs).size).toBe(hrefs.length);
     });
 
+    it("uses the homepage title and shared signature on public pages", () => {
+        expect(HOME_PAGE.seo.title).toBe(SITE_TITLE);
+
+        const signedPages = PAGE_DEFINITIONS.filter(
+            (definition) =>
+                definition.kind !== "home" && definition.kind !== "atelier",
+        );
+
+        for (const page of signedPages) {
+            const title = page.seo?.title ?? page.title;
+
+            expect(title, `${page.href} title`).toMatch(
+                new RegExp(` — ${SITE_SIGNATURE}$`, "u"),
+            );
+        }
+    });
+
     it("keeps public SEO copy within the validated target lengths", () => {
         const publicPages = PAGE_DEFINITIONS.filter(
             (definition) => definition.kind !== "atelier",
@@ -135,9 +154,9 @@ describe("page registry", () => {
             const description = page.seo?.description ?? page.description;
 
             expect(title.length, `${page.href} title`).toBeGreaterThanOrEqual(
-                50,
+                30,
             );
-            expect(title.length, `${page.href} title`).toBeLessThanOrEqual(60);
+            expect(title.length, `${page.href} title`).toBeLessThanOrEqual(100);
             expect(
                 description.length,
                 `${page.href} description`,

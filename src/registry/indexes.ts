@@ -1,5 +1,5 @@
 /**
- * Registre des index du Codex ligérien.
+ * Registre des index du Codex Ligérien.
  * Source de vérité unique : navigation (PageHeader), cartes d'accueil
  * (app/page.tsx), présentation et footer de chaque page.
  * Données pures — importable côté serveur comme client.
@@ -169,7 +169,7 @@ export const INDEXES = [
         presentation_md:
             "À l’amont, le **Nivernais** garde les seuils de la Loire sauvage, tandis que l’**Orléanais** accompagne le fleuve lorsqu’il rejoint les premières grandes cités. Entre forêts, ponts et levées, la Loire y prend la mesure de son val.\n\nPuis le cours s’élargit et compose le paysage royal. Le **Blaisois** rassemble les coteaux et les demeures du Loir-et-Cher, la **Touraine** fait dialoguer jardins, caves et confluences, tandis que le **Chinonais** veille sur le fleuve et la Vienne.\n\nEnfin, l’aval ouvre d’autres horizons. Le **Saumurois** creuse ses coteaux de tuffeau, l’**Anjou** mêle schiste et douceur ligérienne, puis la **Bretagne ligérienne** accompagne la Loire jusqu’aux marais, aux ports et à l’estuaire.",
         presentationFooter:
-            "**Cet index rassemble les huit territoires géohistoriques qui structurent le Codex ligérien. Chacun est raconté par ses limites, ses paysages, ses cours d’eau, ses repères et son identité.**",
+            "**Cet index rassemble les huit territoires géohistoriques qui structurent le Codex Ligérien. Chacun est raconté par ses limites, ses paysages, ses cours d’eau, ses repères et son identité.**",
         footerNote: "territoires composant le fil géohistorique ligérien",
         dataFile: "catalogue-territoires.json",
         etat: "relecture",
@@ -213,7 +213,7 @@ export const INDEXES = [
         accent: "#663D49",
         color: "lie-de-vin",
         presentation:
-            "Souverains, bâtisseurs, écrivains, mécènes et figures singulières : leurs vies relient les lieux, les œuvres et les récits du Codex ligérien.",
+            "Souverains, bâtisseurs, écrivains, mécènes et figures singulières : leurs vies relient les lieux, les œuvres et les récits du Codex Ligérien.",
         presentation_md:
             "À l’amont, les forteresses gardent la mémoire des conquêtes, des lignées et des serments. **Foulques Nerra** impose son empreinte sur l’Anjou, **Jeanne d’Arc** traverse l’histoire d’Orléans et **Charles VII** fait de la Loire un théâtre de pouvoir.\n\nPuis la Renaissance transforme les châteaux en scènes de cour et d’invention. **François Ier** commande des rêves de pierre, **Diane de Poitiers** façonne Chenonceau et **Catherine de Médicis** en prolonge le destin. Dans leur sillage, **Léonard de Vinci** et les bâtisseurs dessinent un nouvel art d’habiter le fleuve.\n\nEnfin, les rives deviennent matière à récits. **Louise Dupin** reçoit à Chenonceau, **Pierre de Ronsard** chante les paysages de Touraine et **Alexandre Dumas** réinvente les intrigues de la Loire. Souverains, créateurs et témoins composent ainsi le réseau humain du Codex.",
         presentationFooter:

@@ -1,17 +1,32 @@
 import { describe, expect, it } from "vitest";
 
 import {
+    buildGeneralPageTitle,
+    buildItemPageTitle,
+    buildItemSocialTitle,
     buildPageMetadata,
     getCanonicalUrl,
     SITE_DESCRIPTION,
+    SITE_SIGNATURE,
     SITE_TITLE,
     SITE_URL,
 } from "./site-metadata";
 
 describe("site metadata", () => {
-    it("keeps the title within the recommended SEO length", () => {
-        expect(SITE_TITLE.length).toBeGreaterThanOrEqual(50);
-        expect(SITE_TITLE.length).toBeLessThanOrEqual(60);
+    it("uses the shared Codex and Loire Ride Zen signature", () => {
+        expect(SITE_TITLE).toBe(
+            "Le Codex Ligérien · Inventaire vivant des trésors du Val-de-Loire · Loire Ride Zen",
+        );
+        expect(SITE_SIGNATURE).toBe("Le Codex Ligérien · Loire Ride Zen");
+        expect(buildGeneralPageTitle("Faune de la Loire")).toBe(
+            "Faune de la Loire — Le Codex Ligérien · Loire Ride Zen",
+        );
+        expect(buildItemPageTitle("Castor d’Europe", "Faune ligérienne")).toBe(
+            "Castor d’Europe — Faune ligérienne · Codex Ligérien",
+        );
+        expect(
+            buildItemSocialTitle("🪶", "Castor d’Europe", "Faune ligérienne"),
+        ).toBe("🪶 Castor d’Europe — Faune ligérienne · Codex Ligérien");
     });
 
     it("keeps the description within the recommended SEO length", () => {

@@ -120,7 +120,7 @@ const PROJECT_JOURNEY: readonly ProjectEntry[] = [
     {
         slug: "codex",
         phase: "La mémoire éditoriale",
-        title: "Le Codex ligérien",
+        title: "Le Codex Ligérien",
         description:
             "L’atlas qui relie les lieux, le vivant, les territoires et les récits derrière chaque étape.",
         href: "/",

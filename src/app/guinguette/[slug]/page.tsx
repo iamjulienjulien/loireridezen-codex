@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getCodexOgImageUrl } from "@/lib/og-data";
-import { getCanonicalUrl } from "@/lib/site-metadata";
+import {
+    buildItemPageTitle,
+    buildItemSocialTitle,
+    getCanonicalUrl,
+} from "@/lib/site-metadata";
 
 import {
     GUINGUETTES,
@@ -26,7 +30,12 @@ export async function generateMetadata({
 
     if (!guinguette) return {};
 
-    const title = `${guinguette.nom} — Guinguettes de Loire`;
+    const title = buildItemPageTitle(guinguette.nom, "Guinguettes de Loire");
+    const socialTitle = buildItemSocialTitle(
+        "🍷",
+        guinguette.nom,
+        "Guinguettes de Loire",
+    );
     const description =
         guinguette.description ||
         `${guinguette.nom}, une adresse du fil ligérien à ${guinguette.commune}.`;
@@ -42,7 +51,7 @@ export async function generateMetadata({
             type: "article",
             locale: "fr_FR",
             siteName: "Loire Ride Zen",
-            title,
+            title: socialTitle,
             description,
             url: canonical,
             images: [
@@ -56,7 +65,7 @@ export async function generateMetadata({
         },
         twitter: {
             card: "summary_large_image",
-            title,
+            title: socialTitle,
             description,
             images: [image],
         },

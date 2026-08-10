@@ -51,7 +51,7 @@ export default function CollectionShell({
         breadcrumbs === undefined ? (
             <PageHeaderBreadcrumbs
                 items={[
-                    { href: "/", label: "Le Codex ligérien" },
+                    { href: "/", label: "Le Codex Ligérien" },
                     {
                         href: page.indexHref,
                         label: parentIndex?.label ?? page.indexSlug,

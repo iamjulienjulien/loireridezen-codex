@@ -1,7 +1,7 @@
 // src/registry/collections.ts
 
 /**
- * Registre des collections éditoriales du Codex ligérien.
+ * Registre des collections éditoriales du Codex Ligérien.
  *
  * Source de vérité unique pour :
  * - les routes de collection ;

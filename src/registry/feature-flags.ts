@@ -1,5 +1,5 @@
 /**
- * Registre des feature flags du Codex ligérien.
+ * Registre des feature flags du Codex Ligérien.
  *
  * Chaque flag contient la liste des environnements dans lesquels il est actif.
  * Un tableau vide désactive le flag partout.

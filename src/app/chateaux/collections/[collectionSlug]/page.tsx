@@ -8,7 +8,7 @@ import { CollectionEntryCard } from "@/components/ui/collection-entry-card";
 import { CollectionHero } from "@/components/ui/collection-hero";
 import { CollectionList } from "@/components/ui/collection-list";
 import { CollectionPodium } from "@/components/ui/collection-podium";
-import { buildPageMetadata } from "@/lib/site-metadata";
+import { buildGeneralPageTitle, buildPageMetadata } from "@/lib/site-metadata";
 import { featureIsEnabled } from "@/registry/feature-flags";
 
 import { COLLECTIONS, getCollectionBySlug } from "@/registry/collections";
@@ -42,7 +42,7 @@ export async function generateMetadata({
 
     if (!collection) {
         return {
-            title: "Collection introuvable | Le Codex",
+            title: buildGeneralPageTitle("Collection introuvable"),
             robots: {
                 index: false,
                 follow: false,
@@ -87,7 +87,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         meta: [
             `${entries.length} châteaux`,
             "Classement éditorial",
-            "Codex ligérien",
+            "Codex Ligérien",
         ],
     };
 

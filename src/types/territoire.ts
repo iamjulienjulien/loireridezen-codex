@@ -68,7 +68,7 @@ export interface TerritoireIdentite {
 }
 
 /**
- * Territoire géohistorique du Codex ligérien.
+ * Territoire géohistorique du Codex Ligérien.
  *
  * Un territoire n’est pas nécessairement une ancienne division politique
  * homogène. Il constitue avant tout un chapitre narratif cohérent le long
