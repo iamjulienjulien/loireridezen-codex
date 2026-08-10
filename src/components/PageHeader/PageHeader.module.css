@@ -2,6 +2,7 @@
     --page-header-link-accent: var(--page-header-accent);
 
     min-width: 0;
+    container-type: inline-size;
     color: var(--color-ambiance-texte-primaire);
 }
 
@@ -376,12 +377,17 @@
    ============================================================ */
 
 .indexHeader {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, max-content);
     align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+    column-gap: 24px;
+    row-gap: 18px;
     padding-bottom: 20px;
+}
+
+.indexTools {
+    max-width: 100%;
+    justify-self: end;
 }
 
 .indexBrand {
@@ -503,8 +509,8 @@
     display: flex;
     max-width: 100%;
     align-items: center;
-    gap: 2px;
-    padding: 4px;
+    gap: 1px;
+    padding: 3px;
     overflow-x: auto;
     border: 1px solid var(--border-subtle);
     border-radius: 999px;
@@ -521,12 +527,12 @@
     display: inline-flex;
     flex: 0 0 auto;
     align-items: center;
-    gap: 6px;
-    padding: 7px 13px 9px;
+    gap: 4px;
+    padding: 5px 9px 7px;
     border-radius: 999px;
     color: var(--color-ambiance-texte-secondaire);
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.03em;
     text-decoration: none;
     transition:
@@ -584,15 +590,32 @@
 
 .indexNavEmoji {
     display: grid;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     place-items: center;
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1;
 }
 
 .indexNavText {
     white-space: nowrap;
+}
+
+@container (max-width: 900px) {
+    .indexHeader {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .indexTools {
+        width: 100%;
+        justify-content: center;
+        justify-self: stretch;
+    }
+
+    .indexNav {
+        width: max-content;
+        max-width: 100%;
+    }
 }
 
 .identity:focus-visible,
