@@ -89,16 +89,16 @@ export const CONTENT_PAGES = [
         label: "À propos",
         eyebrow: "À propos",
         variant: "editorial",
-        title: "Un atlas vivant pour suivre le fil de la Loire.",
+        title: "Le Codex ligérien, un atlas vivant pour suivre la Loire.",
         description:
-            "Le Codex ligérien est la mémoire éditoriale de Loire Ride Zen : un lieu pour explorer lentement les paysages, les patrimoines et le vivant qui accompagnent le fleuve.",
+            "Le Codex ligérien est l’atlas éditorial de Loire Ride Zen : un lieu pour explorer les paysages, les patrimoines et le vivant qui accompagnent le fleuve.",
         accent: "#4f86c6",
         color: "eau",
         mark: "↘",
         seo: {
             title: "À propos du projet Loire Ride Zen — Le Codex ligérien",
             description:
-                "Découvrez le projet éditorial du Codex ligérien, un atlas vivant conçu pour explorer les paysages, les patrimoines, les espèces et les récits de la Loire.",
+                "Découvrez le Codex ligérien de Loire Ride Zen : un atlas éditorial des lieux, du vivant et des récits qui façonnent le fleuve.",
         },
     },
     {
