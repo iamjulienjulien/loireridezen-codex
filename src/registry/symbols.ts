@@ -53,9 +53,21 @@ import {
     type GuinguetteAmbience,
 } from "@/registry/Meta/guinguette-ambience";
 import {
+    getVignobleAOCMeta,
+    type VignobleAOC,
+} from "@/registry/Meta/vignoble-appellation";
+import {
     getVignobleCouleurMeta,
     type VignobleCouleur,
 } from "@/registry/Meta/vignoble-couleur";
+import {
+    getVignobleNotorieteMeta,
+    type VignobleNotoriete,
+} from "@/registry/Meta/vignoble-notoriete";
+import {
+    getVignobleTerroirMeta,
+    type VignobleTerroir,
+} from "@/registry/Meta/vignoble-terroir";
 import type { LRZColor } from "@/types/lrz";
 
 export const LRZ_CODEX_INDEX_SYMBOLS = {
@@ -83,8 +95,7 @@ export type LRZChateauRenommeeSymbolSlug =
 export const LRZ_CHATEAU_VISITE_SYMBOLS = {
     "ouvert au public": "/symbols/chateau/visite/ouvert-au-public.png",
     "extérieurs & parc": "/symbols/chateau/visite/exterieurs-parc.png",
-    "privé, non visitable":
-        "/symbols/chateau/visite/prive-non-visitable.png",
+    "privé, non visitable": "/symbols/chateau/visite/prive-non-visitable.png",
     inconnu: "/symbols/chateau/visite/inconnu.png",
 } as const satisfies Record<ChateauVisite, string>;
 
@@ -338,6 +349,45 @@ export const LRZ_VIGNOBLE_COULEUR_SYMBOLS = {
 export type LRZVignobleCouleurSymbolSlug =
     keyof typeof LRZ_VIGNOBLE_COULEUR_SYMBOLS;
 
+export const LRZ_VIGNOBLE_APPELLATION_SYMBOLS = {
+    "AOC communale": "/symbols/vignoble/appellation/aoc-communale.png",
+    "AOC régionale": "/symbols/vignoble/appellation/aoc-regionale.png",
+    IGP: "/symbols/vignoble/appellation/igp.png",
+} as const satisfies Record<VignobleAOC, string>;
+
+export type LRZVignobleAppellationSymbolSlug =
+    keyof typeof LRZ_VIGNOBLE_APPELLATION_SYMBOLS;
+
+export const LRZ_VIGNOBLE_NOTORIETE_SYMBOLS = {
+    phare: "/symbols/vignoble/notoriete/phare.png",
+    majeur: "/symbols/vignoble/notoriete/majeur.png",
+    notable: "/symbols/vignoble/notoriete/notable.png",
+    confidentiel: "/symbols/vignoble/notoriete/confidentiel.png",
+} as const satisfies Record<VignobleNotoriete, string>;
+
+export type LRZVignobleNotorieteSymbolSlug =
+    keyof typeof LRZ_VIGNOBLE_NOTORIETE_SYMBOLS;
+
+export const LRZ_VIGNOBLE_TERROIR_SYMBOLS = {
+    tuffeau: "/symbols/vignoble/terroir/tuffeau.png",
+    calcaire: "/symbols/vignoble/terroir/calcaire.png",
+    "marne-calcaire": "/symbols/vignoble/terroir/marne-calcaire.png",
+    "argilo-calcaire": "/symbols/vignoble/terroir/argilo-calcaire.png",
+    "argile-a-silex": "/symbols/vignoble/terroir/argile-a-silex.png",
+    schiste: "/symbols/vignoble/terroir/schiste.png",
+    micaschiste: "/symbols/vignoble/terroir/micaschiste.png",
+    gneiss: "/symbols/vignoble/terroir/gneiss.png",
+    granite: "/symbols/vignoble/terroir/granite.png",
+    gabbro: "/symbols/vignoble/terroir/gabbro.png",
+    sable: "/symbols/vignoble/terroir/sable.png",
+    graviers: "/symbols/vignoble/terroir/graviers.png",
+    alluvions: "/symbols/vignoble/terroir/alluvions.png",
+    faluns: "/symbols/vignoble/terroir/faluns.png",
+} as const satisfies Record<VignobleTerroir, string>;
+
+export type LRZVignobleTerroirSymbolSlug =
+    keyof typeof LRZ_VIGNOBLE_TERROIR_SYMBOLS;
+
 /**
  * Registre des symboles illustrés du Codex.
  *
@@ -346,7 +396,8 @@ export type LRZVignobleCouleurSymbolSlug =
  * `faune.rarete`,
  * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
  * `common.milieu`, `common.experience`, `common.territoire`,
- * `guinguette.ambience`, `personnage.categorie` et `vignoble.couleur`.
+ * `guinguette.ambience`, `personnage.categorie`, `vignoble.appellation`,
+ * `vignoble.couleur`, `vignoble.notoriete` et `vignoble.terroir`.
  */
 export const LRZ_SYMBOLS = {
     codex: {
@@ -378,7 +429,10 @@ export const LRZ_SYMBOLS = {
         categorie: LRZ_PERSONNAGE_CATEGORIE_SYMBOLS,
     },
     vignoble: {
+        appellation: LRZ_VIGNOBLE_APPELLATION_SYMBOLS,
         couleur: LRZ_VIGNOBLE_COULEUR_SYMBOLS,
+        notoriete: LRZ_VIGNOBLE_NOTORIETE_SYMBOLS,
+        terroir: LRZ_VIGNOBLE_TERROIR_SYMBOLS,
     },
 } as const;
 
@@ -422,7 +476,10 @@ export type LRZSymbolSlug =
     | LRZFloreRareteSymbolSlug
     | LRZGuinguetteAmbienceSymbolSlug
     | LRZPersonnageCategorieSymbolSlug
-    | LRZVignobleCouleurSymbolSlug;
+    | LRZVignobleAppellationSymbolSlug
+    | LRZVignobleCouleurSymbolSlug
+    | LRZVignobleNotorieteSymbolSlug
+    | LRZVignobleTerroirSymbolSlug;
 
 export type LRZSymbolDefinition = {
     source: string;
@@ -517,10 +574,28 @@ export type LRZSymbolLocator =
           slug: LRZPersonnageCategorieSymbolSlug;
       }
     | {
+          /** Appellations officielles de la collection Vignobles. */
+          collection: "vignoble";
+          meta: "appellation";
+          slug: LRZVignobleAppellationSymbolSlug;
+      }
+    | {
           /** Couleurs de vin de la collection Vignobles. */
           collection: "vignoble";
           meta: "couleur";
           slug: LRZVignobleCouleurSymbolSlug;
+      }
+    | {
+          /** Nature des sols de la collection Vignobles. */
+          collection: "vignoble";
+          meta: "terroir";
+          slug: LRZVignobleTerroirSymbolSlug;
+      }
+    | {
+          /** Niveaux de notoriété de la collection Vignobles. */
+          collection: "vignoble";
+          meta: "notoriete";
+          slug: LRZVignobleNotorieteSymbolSlug;
       };
 
 export function isLRZCodexIndexSymbolSlug(
@@ -660,11 +735,41 @@ export function getLRZSymbolSource(
 
     if (
         collection === "vignoble" &&
+        meta === "appellation" &&
+        Object.hasOwn(LRZ_SYMBOLS.vignoble.appellation, slug)
+    ) {
+        return LRZ_SYMBOLS.vignoble.appellation[
+            slug as LRZVignobleAppellationSymbolSlug
+        ];
+    }
+
+    if (
+        collection === "vignoble" &&
         meta === "couleur" &&
         Object.hasOwn(LRZ_SYMBOLS.vignoble.couleur, slug)
     ) {
         return LRZ_SYMBOLS.vignoble.couleur[
             slug as LRZVignobleCouleurSymbolSlug
+        ];
+    }
+
+    if (
+        collection === "vignoble" &&
+        meta === "terroir" &&
+        Object.hasOwn(LRZ_SYMBOLS.vignoble.terroir, slug)
+    ) {
+        return LRZ_SYMBOLS.vignoble.terroir[
+            slug as LRZVignobleTerroirSymbolSlug
+        ];
+    }
+
+    if (
+        collection === "vignoble" &&
+        meta === "notoriete" &&
+        Object.hasOwn(LRZ_SYMBOLS.vignoble.notoriete, slug)
+    ) {
+        return LRZ_SYMBOLS.vignoble.notoriete[
+            slug as LRZVignobleNotorieteSymbolSlug
         ];
     }
 
@@ -860,6 +965,45 @@ export function getLRZSymbolDefinition(
                   label: wineColor.label,
                   accent: getLRZColorValue(wineColor.color),
                   color: wineColor.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "vignoble" && meta === "appellation") {
+        const appellation = getVignobleAOCMeta(slug);
+
+        return appellation
+            ? {
+                  source,
+                  label: appellation.label,
+                  accent: getLRZColorValue(appellation.color),
+                  color: appellation.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "vignoble" && meta === "terroir") {
+        const terroir = getVignobleTerroirMeta(slug);
+
+        return terroir
+            ? {
+                  source,
+                  label: terroir.label,
+                  accent: getLRZColorValue(terroir.color),
+                  color: terroir.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "vignoble" && meta === "notoriete") {
+        const notoriety = getVignobleNotorieteMeta(slug);
+
+        return notoriety
+            ? {
+                  source,
+                  label: notoriety.label,
+                  accent: getLRZColorValue(notoriety.color),
+                  color: notoriety.color,
               }
             : undefined;
     }

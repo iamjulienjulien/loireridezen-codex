@@ -124,6 +124,33 @@ export {
 } from "@/registry/Meta/vignoble-couleur";
 
 export {
+    getVignobleAOCMeta,
+    isVignobleAOC,
+    VIGNOBLE_APPELLATION_META,
+    VIGNOBLE_APPELLATION_REGISTRY,
+    type VignobleAOC,
+    type VignobleAOCMeta,
+} from "@/registry/Meta/vignoble-appellation";
+
+export {
+    getVignobleTerroirMeta,
+    isVignobleTerroir,
+    VIGNOBLE_TERROIR_META,
+    VIGNOBLE_TERROIR_REGISTRY,
+    type VignobleTerroir,
+    type VignobleTerroirMeta,
+} from "@/registry/Meta/vignoble-terroir";
+
+export {
+    getVignobleNotorieteMeta,
+    isVignobleNotoriete,
+    VIGNOBLE_NOTORIETE_META,
+    VIGNOBLE_NOTORIETE_REGISTRY,
+    type VignobleNotoriete,
+    type VignobleNotorieteMeta,
+} from "@/registry/Meta/vignoble-notoriete";
+
+export {
     getGuinguetteAmbienceMeta,
     GUINGUETTE_AMBIENCE_META,
     GUINGUETTE_AMBIENCE_META_REGISTRY,

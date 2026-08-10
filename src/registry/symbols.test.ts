@@ -17,7 +17,10 @@ import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
+import { VIGNOBLE_APPELLATION_META } from "@/registry/Meta/vignoble-appellation";
 import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
+import { VIGNOBLE_NOTORIETE_META } from "@/registry/Meta/vignoble-notoriete";
+import { VIGNOBLE_TERROIR_META } from "@/registry/Meta/vignoble-terroir";
 import {
     getLRZSymbolDefinition,
     getLRZSymbolSource,
@@ -35,7 +38,10 @@ import {
     LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
     LRZ_CODEX_INDEX_SYMBOLS,
     LRZ_SYMBOLS,
+    LRZ_VIGNOBLE_APPELLATION_SYMBOLS,
     LRZ_VIGNOBLE_COULEUR_SYMBOLS,
+    LRZ_VIGNOBLE_NOTORIETE_SYMBOLS,
+    LRZ_VIGNOBLE_TERROIR_SYMBOLS,
 } from "@/registry/symbols";
 
 function expectPublicAsset(source: string | undefined) {
@@ -46,6 +52,87 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every vineyard appellation", () => {
+        expect(Object.keys(LRZ_SYMBOLS.vignoble.appellation)).toEqual(
+            VIGNOBLE_APPELLATION_META.map((appellation) => appellation.slug),
+        );
+    });
+
+    it.each(VIGNOBLE_APPELLATION_META)(
+        "resolves vignoble/appellation/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("vignoble", "appellation", slug);
+
+            expect(source).toBe(LRZ_VIGNOBLE_APPELLATION_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
+    it("resolves the LRZ identity of a vineyard appellation symbol", () => {
+        expect(
+            getLRZSymbolDefinition("vignoble", "appellation", "AOC communale"),
+        ).toEqual({
+            source: LRZ_VIGNOBLE_APPELLATION_SYMBOLS["AOC communale"],
+            label: "AOC communale",
+            accent: "#663D49",
+            color: "lie-de-vin",
+        });
+    });
+
+    it("contains one symbol for every vineyard notoriety level", () => {
+        expect(Object.keys(LRZ_SYMBOLS.vignoble.notoriete)).toEqual(
+            VIGNOBLE_NOTORIETE_META.map((notoriety) => notoriety.slug),
+        );
+    });
+
+    it.each(VIGNOBLE_NOTORIETE_META)(
+        "resolves vignoble/notoriete/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("vignoble", "notoriete", slug);
+
+            expect(source).toBe(LRZ_VIGNOBLE_NOTORIETE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
+    it("resolves the LRZ identity of a vineyard notoriety symbol", () => {
+        expect(
+            getLRZSymbolDefinition("vignoble", "notoriete", "phare"),
+        ).toEqual({
+            source: LRZ_VIGNOBLE_NOTORIETE_SYMBOLS.phare,
+            label: "Phare",
+            accent: "#D8B548",
+            color: "soleil",
+        });
+    });
+
+    it("contains one symbol for every vineyard terroir", () => {
+        expect(Object.keys(LRZ_SYMBOLS.vignoble.terroir)).toEqual(
+            VIGNOBLE_TERROIR_META.map((terroir) => terroir.slug),
+        );
+    });
+
+    it.each(VIGNOBLE_TERROIR_META)(
+        "resolves vignoble/terroir/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("vignoble", "terroir", slug);
+
+            expect(source).toBe(LRZ_VIGNOBLE_TERROIR_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
+    it("resolves the LRZ identity of a vineyard terroir symbol", () => {
+        expect(
+            getLRZSymbolDefinition("vignoble", "terroir", "tuffeau"),
+        ).toEqual({
+            source: LRZ_VIGNOBLE_TERROIR_SYMBOLS.tuffeau,
+            label: "Tuffeau",
+            accent: "#F2E7CF",
+            color: "tuffeau",
+        });
+    });
+
     it("contains one symbol for every vineyard wine color", () => {
         expect(Object.keys(LRZ_SYMBOLS.vignoble.couleur)).toEqual(
             VIGNOBLE_COULEUR_META.map((wineColor) => wineColor.slug),
