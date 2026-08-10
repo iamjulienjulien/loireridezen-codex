@@ -52,7 +52,7 @@ describe("public entry adapters", () => {
             adaptGuinguette(
                 guinguetteEntrySchema.parse(guinguetteData.guinguettes[0]),
             ),
-            "Le M.A.X",
+            guinguetteData.guinguettes[0].nom,
             guinguetteData.guinguettes[0].description,
         ],
         [

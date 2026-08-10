@@ -12,7 +12,7 @@ describe("Chateau visite meta registry", () => {
         expect(CHATEAU_VISITE_META).toEqual([
             {
                 slug: "ouvert au public",
-                label: "Ouvert au public",
+                label: "Ouvert",
                 color: "prairie",
             },
             {
@@ -22,7 +22,7 @@ describe("Chateau visite meta registry", () => {
             },
             {
                 slug: "privé, non visitable",
-                label: "Privé, non visitable",
+                label: "Privé",
                 color: "brique",
             },
             { slug: "inconnu", label: "Inconnu", color: "galet" },

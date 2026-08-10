@@ -110,33 +110,36 @@ export default function LRZScrambleText({
     const totalFrames = target.length + resolvedFrames + 2;
 
     useEffect(() => {
-        if (!playing) {
-            setFrame(totalFrames);
-            return;
-        }
+        if (!playing) return;
 
-        if (
+        const reducedMotion =
             window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-            target.length === 0
-        ) {
-            setFrame(totalFrames);
-            return;
-        }
+            target.length === 0;
+        let interval: number | undefined;
 
-        setFrame(0);
-        const interval = window.setInterval(() => {
-            setFrame((current) => {
-                if (current >= totalFrames) {
-                    window.clearInterval(interval);
-                    return current;
-                }
+        const animationFrame = window.requestAnimationFrame(() => {
+            setFrame(reducedMotion ? totalFrames : 0);
+            if (reducedMotion) return;
 
-                return current + 1;
-            });
-        }, resolvedSpeed);
+            interval = window.setInterval(() => {
+                setFrame((current) => {
+                    if (current >= totalFrames) {
+                        if (interval !== undefined) {
+                            window.clearInterval(interval);
+                        }
+                        return current;
+                    }
 
-        return () => window.clearInterval(interval);
-    }, [playing, resolvedSpeed, text, totalFrames]);
+                    return current + 1;
+                });
+            }, resolvedSpeed);
+        });
+
+        return () => {
+            window.cancelAnimationFrame(animationFrame);
+            if (interval !== undefined) window.clearInterval(interval);
+        };
+    }, [playing, resolvedSpeed, target.length, text, totalFrames]);
 
     const visibleFrame = playing ? frame : totalFrames;
 
