@@ -20,6 +20,9 @@ describe("SEO discovery routes", () => {
         const urls = sitemap().map((entry) => entry.url);
 
         expect(urls).toContain("https://codex.loireridezen.bike/");
+        expect(urls).toContain(
+            "https://codex.loireridezen.bike/mentions-legales",
+        );
         expect(urls).toContain("https://codex.loireridezen.bike/chateaux");
         for (const chateau of chateauData.chateaux) {
             expect(urls).toContain(

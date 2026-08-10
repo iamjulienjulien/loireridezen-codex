@@ -1,0 +1,206 @@
+.headerNavigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.25rem;
+    align-items: center;
+}
+
+.headerNavigation a {
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.3em;
+    text-transform: uppercase;
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.headerNavigation a:hover {
+    color: var(--color-ambiance-texte-primaire);
+    text-decoration-color: currentColor;
+}
+
+.headerNavigation a:focus-visible,
+.legalNotice a:focus-visible {
+    border-radius: 0.15rem;
+    outline: 3px solid color-mix(in srgb, var(--page-accent) 62%, transparent);
+    outline-offset: 4px;
+}
+
+.legalNotice {
+    display: grid;
+    gap: 0;
+    max-width: 48rem;
+    margin-inline: auto;
+    padding-block: clamp(2rem, 5vw, 4rem) 1rem;
+}
+
+.updatedAt {
+    margin: 0 0 clamp(2rem, 5vw, 3.5rem);
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.section {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2rem);
+    padding-block: clamp(2rem, 5vw, 3.5rem);
+    border-top: 1px solid var(--border-subtle);
+    scroll-margin-top: 2rem;
+}
+
+.sectionNumber {
+    margin: 0.35rem 0 0;
+    color: color-mix(in srgb, var(--page-accent) 76%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.63rem;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+}
+
+.sectionContent {
+    min-width: 0;
+}
+
+.sectionContent h2 {
+    margin: 0 0 1.25rem;
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-display);
+    font-size: clamp(1.65rem, 4vw, 2.4rem);
+    font-weight: 540;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    text-wrap: balance;
+}
+
+.sectionContent p,
+.sectionContent li,
+.address,
+.facts {
+    color: var(--color-ambiance-texte-secondaire);
+    font-size: 0.96rem;
+    line-height: 1.78;
+}
+
+.sectionContent p {
+    margin: 0 0 1rem;
+}
+
+.sectionContent p:last-child {
+    margin-bottom: 0;
+}
+
+.sectionContent strong,
+.address strong {
+    color: var(--color-ambiance-texte-primaire);
+    font-weight: 650;
+}
+
+.sectionContent a,
+.address a,
+.facts a {
+    color: color-mix(
+        in srgb,
+        var(--page-accent) 80%,
+        var(--color-ambiance-texte-primaire)
+    );
+    text-decoration-color: color-mix(in srgb, currentColor 38%, transparent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition:
+        color 0.2s ease,
+        text-decoration-color 0.2s ease;
+}
+
+.sectionContent a:hover,
+.address a:hover,
+.facts a:hover {
+    color: var(--color-ambiance-texte-primaire);
+    text-decoration-color: currentColor;
+}
+
+.sectionContent ul {
+    display: grid;
+    gap: 0.45rem;
+    padding-left: 1.2rem;
+    margin: 0 0 1.2rem;
+}
+
+.sectionContent li::marker {
+    color: var(--page-accent);
+}
+
+.facts {
+    display: grid;
+    gap: 0.7rem;
+    padding: 1rem 1.1rem;
+    margin: 1.4rem 0;
+    border: 1px solid
+        color-mix(in srgb, var(--page-accent) 24%, var(--border-subtle));
+    border-radius: var(--radius-lg);
+    background: color-mix(
+        in srgb,
+        var(--page-accent) 4%,
+        var(--color-ambiance-surface)
+    );
+}
+
+.facts div {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.75fr) minmax(0, 1fr);
+    gap: 0.75rem;
+}
+
+.facts dt,
+.facts dd {
+    margin: 0;
+}
+
+.facts dt {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.address {
+    padding: 1rem 1.1rem;
+    border-left: 2px solid var(--page-accent);
+    font-style: normal;
+    background: color-mix(in srgb, var(--page-accent) 4%, transparent);
+}
+
+@media (max-width: 640px) {
+    .section {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+    }
+
+    .sectionNumber {
+        margin-top: 0;
+    }
+
+    .facts div {
+        grid-template-columns: 1fr;
+        gap: 0.1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .headerNavigation a,
+    .sectionContent a,
+    .address a,
+    .facts a {
+        transition: none;
+    }
+}

@@ -15,6 +15,7 @@ const STATIC_PUBLIC_PATHS = [
     "/",
     "/carte",
     "/a-propos",
+    "/mentions-legales",
     "/docs",
     "/docs/api",
     "/docs/sdk",

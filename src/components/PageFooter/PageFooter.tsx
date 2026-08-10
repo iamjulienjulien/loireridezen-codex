@@ -50,6 +50,7 @@ export default function PageFooter({
                 >
                     <Link href="/a-propos">À propos</Link>
                     <Link href="/docs">Documentation</Link>
+                    <Link href="/mentions-legales">Mentions légales</Link>
 
                     {featureIsEnabled("atelier") ? (
                         <Link href="/atelier">Atelier</Link>

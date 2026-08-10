@@ -127,6 +127,26 @@ export const CONTENT_PAGES = [
     },
     {
         kind: "page",
+        href: "/mentions-legales",
+        label: "Mentions légales",
+        eyebrow: "Informations légales",
+        variant: "editorial",
+        title: "Mentions légales",
+        description:
+            "Édition, hébergement, licences et conditions d’utilisation du Codex Ligérien.",
+        accent: "#8a7968",
+        color: "galet",
+        mark: "§",
+        seo: {
+            title: buildGeneralPageTitle(
+                "Mentions légales et informations éditoriales",
+            ),
+            description:
+                "Consultez les mentions légales du Codex Ligérien : identité de l’éditeur, hébergement, licences, propriété intellectuelle et données de navigation.",
+        },
+    },
+    {
+        kind: "page",
         href: "/docs",
         label: "Documentation",
         eyebrow: "Documentation",
