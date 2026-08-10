@@ -20,6 +20,14 @@ describe("publication registry", () => {
         }
     });
 
+    it("does not require development-only drafts to expose an API source", () => {
+        expect(
+            getRegisteredIndexes().some(
+                ({ definition }) => definition.slug === "villes-villages",
+            ),
+        ).toBe(false);
+    });
+
     it("publishes exactly the three approved indexes in editorial order", () => {
         expect(getPublishedIndexes().map(({ slug }) => slug)).toEqual([
             "faune",

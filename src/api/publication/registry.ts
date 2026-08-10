@@ -27,10 +27,7 @@ const buildRegistry = (): ReadonlyMap<IndexSlug, RegisteredIndex> => {
     const actual = new Set(TECHNICAL_INDEX_SOURCES.map(({ slug }) => slug));
     const expected = new Set(
         INDEXES.filter(
-            (index) =>
-                actual.has(index.slug) ||
-                index.etat !== "brouillon" ||
-                index.env.length > 0,
+            (index) => actual.has(index.slug) || index.etat !== "brouillon",
         ).map(({ slug }) => slug),
     );
 
