@@ -73,6 +73,11 @@ const SECTIONS = [
                 "LRZLivingText",
                 "/atelier/components/lrz-living-text",
             ],
+            [
+                "lrz-map-marker",
+                "LRZMapMarker",
+                "/atelier/components/lrz-map-marker",
+            ],
         ],
     },
     {

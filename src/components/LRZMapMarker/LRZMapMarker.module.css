@@ -1,0 +1,902 @@
+.marker {
+    --lrz-map-marker-accent: var(--color-nature-eau);
+    --lrz-map-marker-size: 32px;
+    --lrz-map-marker-symbol-scale: 1;
+
+    position: relative;
+    display: inline-grid;
+    box-sizing: border-box;
+    width: var(--lrz-map-marker-size);
+    height: var(--lrz-map-marker-size);
+    place-items: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-blanc);
+    cursor: pointer;
+    isolation: isolate;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.core {
+    position: relative;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    border: max(1px, calc(var(--lrz-map-marker-size) * 0.07)) solid
+        color-mix(in srgb, var(--color-blanc) 92%, transparent);
+    border-radius: 50%;
+    background: color-mix(in srgb, #19110c 42%, transparent);
+    box-shadow:
+        0 0 0 1px color-mix(in srgb, #140e0b 42%, transparent),
+        0 calc(var(--lrz-map-marker-size) * 0.12)
+            calc(var(--lrz-map-marker-size) * 0.2)
+            color-mix(in srgb, #140e0b 38%, transparent);
+    overflow: hidden;
+    transform: translateZ(0);
+    transition:
+        filter 160ms ease,
+        transform 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.surface {
+    display: inline-flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: max(1px, calc(var(--lrz-map-marker-size) * 0.025)) solid
+        color-mix(in srgb, var(--color-blanc) 24%, transparent);
+    border-radius: inherit;
+    background: var(--lrz-map-marker-accent);
+    color: var(--color-blanc);
+}
+
+.marker[data-variant="pin"] {
+    height: calc(var(--lrz-map-marker-size) * 1.38);
+    align-items: start;
+}
+
+.marker[data-variant="pin"] .core {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.pinShape {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(
+        0 calc(var(--lrz-map-marker-size) * 0.06)
+            calc(var(--lrz-map-marker-size) * 0.07)
+            color-mix(in srgb, #140e0b 28%, transparent)
+    );
+}
+
+.pinShape path {
+    fill: var(--lrz-map-marker-accent);
+    stroke: color-mix(in srgb, var(--lrz-map-marker-accent) 82%, #140e0b);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.marker[data-variant="pin"] .surface {
+    position: absolute;
+    top: calc(var(--lrz-map-marker-size) * 0.04);
+    left: 50%;
+    z-index: 1;
+    width: calc(var(--lrz-map-marker-size) * 0.82);
+    height: calc(var(--lrz-map-marker-size) * 0.82);
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    transform: translateX(-50%);
+}
+
+.marker[data-variant="pin"][data-tone="soft"] .pinShape path {
+    fill: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent) 23%,
+        var(--color-ambiance-surface)
+    );
+    stroke: none;
+}
+
+.marker[data-variant="pin"][data-tone="outline"] .pinShape path {
+    fill: var(--color-ambiance-surface);
+    stroke: var(--lrz-map-marker-accent);
+    stroke-width: 2;
+}
+
+.marker[data-variant="pin"] .surface:empty::after,
+.marker[data-variant="dot"] .surface:empty::after,
+.marker[data-variant="badge"] .surface:empty::after,
+.marker[data-variant="square"] .surface:empty::after,
+.marker[data-variant="diamond"] .surface:empty::after,
+.marker[data-variant="hexagon"] .surface:empty::after,
+.marker[data-variant="shield"] .surface:empty::after,
+.marker[data-variant="star"] .surface:empty::after {
+    width: calc(var(--lrz-map-marker-size) * 0.22);
+    height: calc(var(--lrz-map-marker-size) * 0.22);
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--lrz-map-marker-accent) 72%, #15284a);
+    content: "";
+}
+
+.marker[data-variant="dot"] {
+    height: calc(var(--lrz-map-marker-size) * 1.38);
+    align-items: start;
+}
+
+.marker[data-variant="dot"] .core {
+    width: calc(var(--lrz-map-marker-size) * 0.82);
+    height: calc(var(--lrz-map-marker-size) * 0.82);
+    margin-top: calc(var(--lrz-map-marker-size) * 0.04);
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow: 0 calc(var(--lrz-map-marker-size) * 0.08)
+        calc(var(--lrz-map-marker-size) * 0.16)
+        color-mix(in srgb, #140e0b 32%, transparent);
+    overflow: visible;
+}
+
+.marker[data-variant="dot"] .core::after {
+    position: absolute;
+    top: calc(var(--lrz-map-marker-size) * 0.46);
+    left: 50%;
+    z-index: 0;
+    width: calc(var(--lrz-map-marker-size) * 0.48);
+    height: calc(var(--lrz-map-marker-size) * 0.9);
+    background: var(--lrz-map-marker-accent);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    content: "";
+    filter: drop-shadow(
+        0 calc(var(--lrz-map-marker-size) * 0.06)
+            calc(var(--lrz-map-marker-size) * 0.07)
+            color-mix(in srgb, #140e0b 28%, transparent)
+    );
+    transform: translateX(-50%);
+}
+
+.marker[data-variant="dot"] .surface {
+    position: relative;
+    z-index: 1;
+    border: 0;
+    border-radius: inherit;
+}
+
+.marker[data-variant="dot"][data-tone="soft"] .core::after {
+    background: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent) 23%,
+        var(--color-ambiance-surface)
+    );
+}
+
+.marker[data-variant="dot"][data-tone="outline"] .core::after {
+    background: var(--color-ambiance-surface);
+    filter: drop-shadow(1px 0 0 var(--lrz-map-marker-accent))
+        drop-shadow(-1px 0 0 var(--lrz-map-marker-accent))
+        drop-shadow(0 1px 0 var(--lrz-map-marker-accent))
+        drop-shadow(
+            0 calc(var(--lrz-map-marker-size) * 0.06)
+                calc(var(--lrz-map-marker-size) * 0.07)
+                color-mix(in srgb, #140e0b 28%, transparent)
+        );
+}
+
+.marker[data-variant="dot"][data-tone="outline"] .surface {
+    box-shadow: inset 0 0 0 max(1px, calc(var(--lrz-map-marker-size) * 0.04))
+        var(--lrz-map-marker-accent);
+}
+
+.marker[data-variant="square"] {
+    height: calc(var(--lrz-map-marker-size) * 1.3);
+    align-items: start;
+}
+
+.marker[data-variant="square"] .core {
+    width: var(--lrz-map-marker-size);
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.squareShape {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(
+        0 calc(var(--lrz-map-marker-size) * 0.06)
+            calc(var(--lrz-map-marker-size) * 0.07)
+            color-mix(in srgb, #140e0b 28%, transparent)
+    );
+}
+
+.squareShape path {
+    fill: var(--lrz-map-marker-accent);
+    stroke: color-mix(in srgb, var(--lrz-map-marker-accent) 82%, #140e0b);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.marker[data-variant="square"] .surface {
+    position: absolute;
+    top: calc(var(--lrz-map-marker-size) * 0.08);
+    left: 50%;
+    z-index: 1;
+    width: calc(var(--lrz-map-marker-size) * 0.76);
+    height: calc(var(--lrz-map-marker-size) * 0.72);
+    border: 0;
+    border-radius: calc(var(--lrz-map-marker-size) * 0.14);
+    background: transparent;
+    transform: translateX(-50%);
+}
+
+.marker[data-variant="square"][data-tone="soft"] .squareShape path {
+    fill: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent) 23%,
+        var(--color-ambiance-surface)
+    );
+    stroke: none;
+}
+
+.marker[data-variant="square"][data-tone="outline"] .squareShape path {
+    fill: var(--color-ambiance-surface);
+    stroke: var(--lrz-map-marker-accent);
+    stroke-width: 2;
+}
+
+.marker[data-variant="square"][data-tone="soft"] .surface,
+.marker[data-variant="square"][data-tone="outline"] .surface {
+    border: 0;
+    background: transparent;
+}
+
+.marker[data-variant="badge"] {
+    height: calc(var(--lrz-map-marker-size) * 1.12);
+    align-items: start;
+}
+
+.marker[data-variant="badge"] .core {
+    width: calc(var(--lrz-map-marker-size) * 0.9);
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.badgeShape {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(
+        0 calc(var(--lrz-map-marker-size) * 0.06)
+            calc(var(--lrz-map-marker-size) * 0.07)
+            color-mix(in srgb, #140e0b 28%, transparent)
+    );
+}
+
+.badgeShape path {
+    fill: var(--lrz-map-marker-accent);
+    stroke: color-mix(in srgb, var(--lrz-map-marker-accent) 82%, #140e0b);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.marker[data-variant="badge"] .surface {
+    position: absolute;
+    top: calc(var(--lrz-map-marker-size) * 0.08);
+    left: 50%;
+    z-index: 1;
+    width: calc(var(--lrz-map-marker-size) * 0.74);
+    height: calc(var(--lrz-map-marker-size) * 0.72);
+    border: 0;
+    border-radius: calc(var(--lrz-map-marker-size) * 0.14);
+    background: transparent;
+    transform: translateX(-50%);
+}
+
+.marker[data-variant="badge"][data-tone="soft"] .badgeShape path {
+    fill: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent) 23%,
+        var(--color-ambiance-surface)
+    );
+    stroke: none;
+}
+
+.marker[data-variant="badge"][data-tone="outline"] .badgeShape path {
+    fill: var(--color-ambiance-surface);
+    stroke: var(--lrz-map-marker-accent);
+    stroke-width: 2;
+}
+
+.marker[data-variant="badge"][data-tone="soft"] .surface,
+.marker[data-variant="badge"][data-tone="outline"] .surface {
+    border: 0;
+    background: transparent;
+}
+
+.marker[data-variant="diamond"] .core {
+    width: var(--lrz-map-marker-size);
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.marker[data-variant="diamond"] {
+    height: calc(var(--lrz-map-marker-size) * 1.3667);
+    align-items: start;
+}
+
+.diamondShape {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(
+        0 calc(var(--lrz-map-marker-size) * 0.06)
+            calc(var(--lrz-map-marker-size) * 0.07)
+            color-mix(in srgb, #140e0b 28%, transparent)
+    );
+}
+
+.diamondShape path {
+    fill: var(--lrz-map-marker-accent);
+    stroke: color-mix(in srgb, var(--lrz-map-marker-accent) 82%, #140e0b);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.marker[data-variant="diamond"] .surface {
+    position: absolute;
+    top: calc(var(--lrz-map-marker-size) * 0.2);
+    left: 50%;
+    z-index: 1;
+    width: calc(var(--lrz-map-marker-size) * 0.7);
+    height: calc(var(--lrz-map-marker-size) * 0.68);
+    border: 0;
+    border-radius: 40%;
+    background: transparent;
+    transform: translateX(-50%);
+}
+
+.marker[data-variant="diamond"][data-tone="soft"] .diamondShape path {
+    fill: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent) 23%,
+        var(--color-ambiance-surface)
+    );
+    stroke: none;
+}
+
+.marker[data-variant="diamond"][data-tone="outline"] .diamondShape path {
+    fill: var(--color-ambiance-surface);
+    stroke: var(--lrz-map-marker-accent);
+    stroke-width: 2;
+}
+
+.marker[data-variant="diamond"][data-tone="soft"] .surface,
+.marker[data-variant="diamond"][data-tone="outline"] .surface {
+    border: 0;
+    background: transparent;
+}
+
+.marker[data-variant="hexagon"] .core {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.marker[data-variant="hexagon"] {
+    height: calc(var(--lrz-map-marker-size) * 1.1);
+    align-items: start;
+}
+
+.hexagonShape {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(
+        0 calc(var(--lrz-map-marker-size) * 0.06)
+            calc(var(--lrz-map-marker-size) * 0.07)
+            color-mix(in srgb, #140e0b 28%, transparent)
+    );
+}
+
+.hexagonShape path {
+    fill: var(--lrz-map-marker-accent);
+    stroke: color-mix(in srgb, var(--lrz-map-marker-accent) 82%, #140e0b);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.marker[data-variant="hexagon"] .surface {
+    position: absolute;
+    top: calc(var(--lrz-map-marker-size) * 0.17);
+    left: 50%;
+    z-index: 1;
+    width: calc(var(--lrz-map-marker-size) * 0.72);
+    height: calc(var(--lrz-map-marker-size) * 0.66);
+    border: 0;
+    border-radius: 38%;
+    background: transparent;
+    transform: translateX(-50%);
+}
+
+.marker[data-variant="hexagon"][data-tone="soft"] .hexagonShape path {
+    fill: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent) 23%,
+        var(--color-ambiance-surface)
+    );
+    stroke: none;
+}
+
+.marker[data-variant="hexagon"][data-tone="outline"] .hexagonShape path {
+    fill: var(--color-ambiance-surface);
+    stroke: var(--lrz-map-marker-accent);
+    stroke-width: 2;
+}
+
+.marker[data-variant="hexagon"][data-tone="soft"] .surface,
+.marker[data-variant="hexagon"][data-tone="outline"] .surface {
+    border: 0;
+    background: transparent;
+}
+
+.marker[data-variant="shield"] .core {
+    width: calc(var(--lrz-map-marker-size) * 0.98);
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.marker[data-variant="shield"] {
+    height: calc(var(--lrz-map-marker-size) * 1.18);
+    align-items: start;
+}
+
+.shieldShape {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(
+        0 calc(var(--lrz-map-marker-size) * 0.06)
+            calc(var(--lrz-map-marker-size) * 0.07)
+            color-mix(in srgb, #140e0b 28%, transparent)
+    );
+}
+
+.shieldShape path {
+    fill: var(--lrz-map-marker-accent);
+    stroke: color-mix(in srgb, var(--lrz-map-marker-accent) 82%, #140e0b);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.marker[data-variant="shield"] .surface {
+    position: absolute;
+    top: calc(var(--lrz-map-marker-size) * 0.12);
+    left: 50%;
+    z-index: 1;
+    width: calc(var(--lrz-map-marker-size) * 0.72);
+    height: calc(var(--lrz-map-marker-size) * 0.68);
+    border: 0;
+    border-radius: 38%;
+    background: transparent;
+    transform: translateX(-50%);
+}
+
+.marker[data-variant="shield"][data-tone="soft"] .shieldShape path {
+    fill: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent) 23%,
+        var(--color-ambiance-surface)
+    );
+    stroke: none;
+}
+
+.marker[data-variant="shield"][data-tone="outline"] .shieldShape path {
+    fill: var(--color-ambiance-surface);
+    stroke: var(--lrz-map-marker-accent);
+    stroke-width: 2;
+}
+
+.marker[data-variant="shield"][data-tone="soft"] .surface,
+.marker[data-variant="shield"][data-tone="outline"] .surface {
+    border: 0;
+    background: transparent;
+}
+
+.marker[data-variant="star"] {
+    height: calc(var(--lrz-map-marker-size) * 1.1667);
+    align-items: start;
+}
+
+.marker[data-variant="star"] .core {
+    width: var(--lrz-map-marker-size);
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.starShape {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(
+        0 calc(var(--lrz-map-marker-size) * 0.06)
+            calc(var(--lrz-map-marker-size) * 0.07)
+            color-mix(in srgb, #140e0b 28%, transparent)
+    );
+}
+
+.starShape path {
+    fill: var(--lrz-map-marker-accent);
+    stroke: color-mix(in srgb, var(--lrz-map-marker-accent) 82%, #140e0b);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.marker[data-variant="star"] .surface {
+    position: absolute;
+    top: calc(var(--lrz-map-marker-size) * 0.09);
+    left: 50%;
+    z-index: 1;
+    width: calc(var(--lrz-map-marker-size) * 0.72);
+    height: calc(var(--lrz-map-marker-size) * 0.72);
+    border: 0;
+    border-radius: 38%;
+    background: transparent;
+    transform: translateX(-50%);
+}
+
+.marker[data-variant="star"][data-tone="soft"] .starShape path {
+    fill: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent) 23%,
+        var(--color-ambiance-surface)
+    );
+    stroke: none;
+}
+
+.marker[data-variant="star"][data-tone="outline"] .starShape path {
+    fill: var(--color-ambiance-surface);
+    stroke: var(--lrz-map-marker-accent);
+    stroke-width: 2;
+}
+
+.marker[data-variant="star"][data-tone="soft"] .surface,
+.marker[data-variant="star"][data-tone="outline"] .surface {
+    border: 0;
+    background: transparent;
+}
+
+.marker[data-variant="image"] .core {
+    border-width: max(2px, calc(var(--lrz-map-marker-size) * 0.08));
+    background: var(--color-blanc);
+}
+
+.marker[data-variant="image"] .surface {
+    background: var(--color-ambiance-surface);
+}
+
+.marker[data-tone="soft"] .surface {
+    border: 0;
+    background: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent) 23%,
+        var(--color-ambiance-surface)
+    );
+    color: var(--lrz-map-marker-accent);
+}
+
+.marker[data-tone="outline"] .surface {
+    border-color: var(--lrz-map-marker-accent);
+    background: var(--color-ambiance-surface);
+    color: var(--lrz-map-marker-accent);
+}
+
+.symbol,
+.media {
+    display: inline-grid;
+    width: calc(var(--lrz-map-marker-size) * 0.46);
+    height: calc(var(--lrz-map-marker-size) * 0.46);
+    place-items: center;
+    overflow: hidden;
+    color: inherit;
+    font-size: calc(var(--lrz-map-marker-size) * 0.42);
+    line-height: 1;
+}
+
+.symbol {
+    transform: scale(var(--lrz-map-marker-symbol-scale));
+    transform-origin: center;
+}
+
+.symbol :global(svg) {
+    width: 100%;
+    height: 100%;
+    stroke-width: 2.35;
+}
+
+.symbol :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.media {
+    width: 100%;
+    height: 100%;
+}
+
+.media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.label {
+    position: absolute;
+    bottom: calc(100% + var(--lrz-map-marker-size) * 0.12);
+    left: 50%;
+    z-index: 2;
+    max-width: min(16rem, 38vw);
+    overflow: hidden;
+    padding: 0.24em 0.48em;
+    border: 1px solid
+        color-mix(in srgb, var(--lrz-map-marker-accent) 24%, transparent);
+    border-radius: var(--radius-sm);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 88%,
+        transparent
+    );
+    box-shadow: 0 2px 7px color-mix(in srgb, #140e0b 18%, transparent);
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-mono);
+    font-size: clamp(0.6rem, calc(var(--lrz-map-marker-size) * 0.31), 0.82rem);
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    pointer-events: none;
+    text-overflow: ellipsis;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.badge {
+    position: absolute;
+    top: calc(var(--lrz-map-marker-size) * -0.18);
+    right: calc(var(--lrz-map-marker-size) * -0.24);
+    z-index: 1;
+    display: inline-grid;
+    min-width: calc(var(--lrz-map-marker-size) * 0.42);
+    min-height: calc(var(--lrz-map-marker-size) * 0.42);
+    place-items: center;
+    padding: 0.08em 0.24em;
+    border: 1px solid var(--color-blanc);
+    border-radius: 999px;
+    background: var(--color-ambiance-texte-primaire);
+    color: var(--color-ambiance-surface);
+    font-family: var(--font-mono);
+    font-size: calc(var(--lrz-map-marker-size) * 0.26);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.marker:is([data-variant="pin"], [data-variant="dot"]) .badge {
+    top: calc(var(--lrz-map-marker-size) * 0.16);
+    right: auto;
+    left: calc(var(--lrz-map-marker-size) * 0.79);
+    z-index: 3;
+    transform: translate(-50%, -50%);
+}
+
+.marker:hover:not(:disabled) .core,
+.marker:focus-visible .core,
+.marker[data-active] .core,
+.marker[data-selected] .core {
+    box-shadow:
+        0 0 0 1px color-mix(in srgb, #140e0b 42%, transparent),
+        0 calc(var(--lrz-map-marker-size) * 0.18)
+            calc(var(--lrz-map-marker-size) * 0.3)
+            color-mix(in srgb, #140e0b 42%, transparent);
+    filter: drop-shadow(
+        0 0 calc(var(--lrz-map-marker-size) * 0.2)
+            color-mix(in srgb, var(--lrz-map-marker-accent) 68%, transparent)
+    );
+    transform: translateY(calc(var(--lrz-map-marker-size) * -0.08)) scale(1.1);
+}
+
+.marker:is(
+        [data-variant="pin"],
+        [data-variant="badge"],
+        [data-variant="square"],
+        [data-variant="diamond"],
+        [data-variant="hexagon"]
+    ):hover:not(:disabled)
+    .core,
+.marker:is(
+        [data-variant="pin"],
+        [data-variant="badge"],
+        [data-variant="square"],
+        [data-variant="diamond"],
+        [data-variant="hexagon"]
+    ):focus-visible
+    .core,
+.marker:is(
+        [data-variant="pin"],
+        [data-variant="badge"],
+        [data-variant="square"],
+        [data-variant="diamond"],
+        [data-variant="hexagon"]
+    )[data-active]
+    .core,
+.marker:is(
+        [data-variant="pin"],
+        [data-variant="badge"],
+        [data-variant="square"],
+        [data-variant="diamond"],
+        [data-variant="hexagon"]
+    )[data-selected]
+    .core {
+    box-shadow: none;
+    transform: translateY(calc(var(--lrz-map-marker-size) * -0.06)) scale(1.08);
+}
+
+.marker[data-variant="dot"]:hover:not(:disabled) .core,
+.marker[data-variant="dot"]:focus-visible .core,
+.marker[data-variant="dot"][data-active] .core,
+.marker[data-variant="dot"][data-selected] .core {
+    transform: translateY(calc(var(--lrz-map-marker-size) * -0.06)) scale(1.08);
+}
+
+.marker[data-variant="shield"]:hover:not(:disabled) .core,
+.marker[data-variant="shield"]:focus-visible .core,
+.marker[data-variant="shield"][data-active] .core,
+.marker[data-variant="shield"][data-selected] .core {
+    box-shadow: none;
+    transform: translateY(calc(var(--lrz-map-marker-size) * -0.06)) scale(1.08);
+}
+
+.marker[data-variant="star"]:hover:not(:disabled) .core,
+.marker[data-variant="star"]:focus-visible .core,
+.marker[data-variant="star"][data-active] .core,
+.marker[data-variant="star"][data-selected] .core {
+    box-shadow: none;
+    transform: translateY(calc(var(--lrz-map-marker-size) * -0.06)) scale(1.08);
+}
+
+.marker:focus-visible {
+    outline: 0;
+}
+
+.marker:focus-visible .core {
+    outline: 2px solid var(--color-ambiance-texte-primaire);
+    outline-offset: 3px;
+}
+
+.marker:is(
+        [data-variant="pin"],
+        [data-variant="badge"],
+        [data-variant="square"],
+        [data-variant="diamond"],
+        [data-variant="hexagon"]
+    ):focus-visible
+    .core {
+    outline: 0;
+}
+
+.marker[data-variant="shield"]:focus-visible .core {
+    outline: 0;
+}
+
+.marker[data-variant="star"]:focus-visible .core {
+    outline: 0;
+}
+
+.marker:disabled {
+    cursor: not-allowed;
+    opacity: 0.42;
+}
+
+.marker[data-pulse] .core {
+    animation: marker-halo-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes marker-halo-pulse {
+    0%,
+    100% {
+        filter: drop-shadow(
+            0 0 0
+                color-mix(
+                    in srgb,
+                    var(--lrz-map-marker-accent) 64%,
+                    transparent
+                )
+        );
+    }
+
+    55% {
+        filter: drop-shadow(
+            0 0 calc(var(--lrz-map-marker-size) * 0.28)
+                color-mix(
+                    in srgb,
+                    var(--lrz-map-marker-accent) 34%,
+                    transparent
+                )
+        );
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .core {
+        transition: none;
+    }
+
+    .marker[data-pulse] .core {
+        animation: none;
+        filter: drop-shadow(
+            0 0 calc(var(--lrz-map-marker-size) * 0.2)
+                color-mix(
+                    in srgb,
+                    var(--lrz-map-marker-accent) 58%,
+                    transparent
+                )
+        );
+    }
+}

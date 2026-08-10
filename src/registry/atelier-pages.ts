@@ -1,7 +1,4 @@
-import type {
-    AtelierPageDefinition,
-    AtelierSectionHref,
-} from "@/types/page";
+import type { AtelierPageDefinition, AtelierSectionHref } from "@/types/page";
 
 const getAtelierSectionHref = (href: string): AtelierSectionHref => {
     if (href.startsWith("/atelier/components/lrz-doc-")) {
@@ -182,6 +179,11 @@ export const ATELIER_PAGE_DEFINITIONS = [
         "/atelier/components/lrz-living-text",
         "LRZLivingText",
         "Compositions textuelles vivantes, expressives et cinétiques de Loire Ride Zen.",
+    ),
+    defineAtelierPage(
+        "/atelier/components/lrz-map-marker",
+        "LRZMapMarker",
+        "Marqueurs cartographiques personnalisables pour les lieux, regroupements et repères du Codex ligérien.",
     ),
     defineAtelierPage(
         "/atelier/components/lrz-meta-list",

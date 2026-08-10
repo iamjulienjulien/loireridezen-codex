@@ -1,0 +1,192 @@
+.playground {
+    margin-top: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--color-ambiance-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.header {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.kicker {
+    margin: 0 0 0.5rem;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.header h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 540;
+}
+
+.header p:last-child {
+    max-width: 58ch;
+    margin: 0.5rem 0 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-size: 0.84rem;
+    line-height: 1.55;
+}
+
+.reset {
+    flex: 0 0 auto;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    background: var(--bg-overlay);
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    cursor: pointer;
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.85fr) minmax(0, 1.15fr);
+}
+
+.controls {
+    display: grid;
+    gap: 0.8rem;
+    align-content: start;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-right: 1px solid var(--border-subtle);
+}
+
+.control {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.control > span,
+.toggle {
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+}
+
+.control input,
+.control select {
+    width: 100%;
+    min-height: 2.35rem;
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    background: var(--color-ambiance-elevation);
+    color: var(--color-ambiance-texte-primaire);
+    font: inherit;
+}
+
+.symbolSelector {
+    display: grid;
+    grid-template-columns: 2.35rem minmax(0, 1fr);
+}
+
+.symbolSelector select {
+    min-width: 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.symbolPreview {
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--border-soft);
+    border-right: 0;
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+    background: color-mix(
+        in srgb,
+        var(--lrz-map-marker-accent, var(--gold)) 12%,
+        var(--color-ambiance-elevation)
+    );
+    color: var(--gold);
+    font-size: 0.9rem;
+}
+
+.symbolPreview svg {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2;
+}
+
+.toggle {
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+    padding: 0.6rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-overlay);
+    cursor: pointer;
+}
+
+.toggle input {
+    accent-color: var(--gold);
+}
+
+.output {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 28rem;
+    background:
+        linear-gradient(var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
+        var(--color-ambiance-fond);
+    background-size: 24px 24px;
+}
+
+.canvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 12rem;
+    padding: 2rem;
+}
+
+.code {
+    max-width: 100%;
+    margin: 0;
+    overflow-x: auto;
+    padding: 1rem;
+    border-top: 1px solid var(--border-subtle);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 90%,
+        transparent
+    );
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+    .header,
+    .workspace {
+        display: grid;
+    }
+
+    .workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .output {
+        min-height: 20rem;
+    }
+}
