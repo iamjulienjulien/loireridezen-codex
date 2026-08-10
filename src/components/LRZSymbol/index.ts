@@ -29,6 +29,7 @@ export type {
     LRZCodexIndexSymbolSlug,
     LRZPersonnageCategorieSymbolSlug,
     LRZVignobleAppellationSymbolSlug,
+    LRZVignobleCepageSymbolSlug,
     LRZVignobleCouleurSymbolSlug,
     LRZVignobleNotorieteSymbolSlug,
     LRZVignobleTerroirSymbolSlug,

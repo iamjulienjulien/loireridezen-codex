@@ -142,6 +142,15 @@ export {
 } from "@/registry/Meta/vignoble-couleur";
 
 export {
+    getVignobleCepageMeta,
+    isVignobleCepage,
+    VIGNOBLE_CEPAGE_META,
+    VIGNOBLE_CEPAGE_REGISTRY,
+    type VignobleCepage,
+    type VignobleCepageMeta,
+} from "@/registry/Meta/vignoble-cepage";
+
+export {
     getVignobleAOCMeta,
     isVignobleAOC,
     VIGNOBLE_APPELLATION_META,

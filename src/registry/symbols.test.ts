@@ -20,6 +20,7 @@ import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
 import { VIGNOBLE_APPELLATION_META } from "@/registry/Meta/vignoble-appellation";
+import { VIGNOBLE_CEPAGE_META } from "@/registry/Meta/vignoble-cepage";
 import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
 import { VIGNOBLE_NOTORIETE_META } from "@/registry/Meta/vignoble-notoriete";
 import { VIGNOBLE_TERROIR_META } from "@/registry/Meta/vignoble-terroir";
@@ -43,6 +44,7 @@ import {
     LRZ_CODEX_INDEX_SYMBOLS,
     LRZ_SYMBOLS,
     LRZ_VIGNOBLE_APPELLATION_SYMBOLS,
+    LRZ_VIGNOBLE_CEPAGE_SYMBOLS,
     LRZ_VIGNOBLE_COULEUR_SYMBOLS,
     LRZ_VIGNOBLE_NOTORIETE_SYMBOLS,
     LRZ_VIGNOBLE_TERROIR_SYMBOLS,
@@ -56,6 +58,31 @@ function expectPublicAsset(source: string | undefined) {
 }
 
 describe("LRZ symbol registry", () => {
+    it("contains one symbol for every vineyard grape variety", () => {
+        expect(Object.keys(LRZ_SYMBOLS.vignoble.cepage)).toEqual(
+            VIGNOBLE_CEPAGE_META.map((grapeVariety) => grapeVariety.slug),
+        );
+    });
+
+    it.each(VIGNOBLE_CEPAGE_META)(
+        "resolves vignoble/cepage/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("vignoble", "cepage", slug);
+
+            expect(source).toBe(LRZ_VIGNOBLE_CEPAGE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
+    it("resolves the LRZ identity of a vineyard grape variety", () => {
+        expect(getLRZSymbolDefinition("vignoble", "cepage", "chenin")).toEqual({
+            source: LRZ_VIGNOBLE_CEPAGE_SYMBOLS.chenin,
+            label: "Chenin",
+            accent: "#DFCA7D",
+            color: "jaune-paille",
+        });
+    });
+
     it("contains one symbol for every common general notion", () => {
         expect(Object.keys(LRZ_SYMBOLS.common.general)).toEqual(
             COMMON_GENERAL_META.map((notion) => notion.slug),

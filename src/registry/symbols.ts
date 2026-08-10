@@ -65,6 +65,10 @@ import {
     type VignobleAOC,
 } from "@/registry/Meta/vignoble-appellation";
 import {
+    getVignobleCepageMeta,
+    type VignobleCepage,
+} from "@/registry/Meta/vignoble-cepage";
+import {
     getVignobleCouleurMeta,
     type VignobleCouleur,
 } from "@/registry/Meta/vignoble-couleur";
@@ -395,6 +399,28 @@ export const LRZ_VIGNOBLE_APPELLATION_SYMBOLS = {
 export type LRZVignobleAppellationSymbolSlug =
     keyof typeof LRZ_VIGNOBLE_APPELLATION_SYMBOLS;
 
+export const LRZ_VIGNOBLE_CEPAGE_SYMBOLS = {
+    chenin: "/symbols/vignoble/cepage/chenin.png",
+    "sauvignon-blanc": "/symbols/vignoble/cepage/sauvignon-blanc.png",
+    "melon-de-bourgogne": "/symbols/vignoble/cepage/melon-de-bourgogne.png",
+    chardonnay: "/symbols/vignoble/cepage/chardonnay.png",
+    "folle-blanche": "/symbols/vignoble/cepage/folle-blanche.png",
+    romorantin: "/symbols/vignoble/cepage/romorantin.png",
+    "menu-pineau": "/symbols/vignoble/cepage/menu-pineau.png",
+    tressallier: "/symbols/vignoble/cepage/tressallier.png",
+    "cabernet-franc": "/symbols/vignoble/cepage/cabernet-franc.png",
+    "cabernet-sauvignon": "/symbols/vignoble/cepage/cabernet-sauvignon.png",
+    "pinot-noir": "/symbols/vignoble/cepage/pinot-noir.png",
+    gamay: "/symbols/vignoble/cepage/gamay.png",
+    "grolleau-noir": "/symbols/vignoble/cepage/grolleau-noir.png",
+    "grolleau-gris": "/symbols/vignoble/cepage/grolleau-gris.png",
+    "pineau-daunis": "/symbols/vignoble/cepage/pineau-daunis.png",
+    cot: "/symbols/vignoble/cepage/cot.png",
+} as const satisfies Record<VignobleCepage, string>;
+
+export type LRZVignobleCepageSymbolSlug =
+    keyof typeof LRZ_VIGNOBLE_CEPAGE_SYMBOLS;
+
 export const LRZ_VIGNOBLE_NOTORIETE_SYMBOLS = {
     phare: "/symbols/vignoble/notoriete/phare.png",
     majeur: "/symbols/vignoble/notoriete/majeur.png",
@@ -435,7 +461,8 @@ export type LRZVignobleTerroirSymbolSlug =
  * `common.milieu`, `common.experience`, `common.general`, `common.territoire`,
  * `common.website`,
  * `guinguette.ambience`, `personnage.categorie`, `vignoble.appellation`,
- * `vignoble.couleur`, `vignoble.notoriete` et `vignoble.terroir`.
+ * `vignoble.cepage`, `vignoble.couleur`, `vignoble.notoriete` et
+ * `vignoble.terroir`.
  */
 export const LRZ_SYMBOLS = {
     codex: {
@@ -470,6 +497,7 @@ export const LRZ_SYMBOLS = {
     },
     vignoble: {
         appellation: LRZ_VIGNOBLE_APPELLATION_SYMBOLS,
+        cepage: LRZ_VIGNOBLE_CEPAGE_SYMBOLS,
         couleur: LRZ_VIGNOBLE_COULEUR_SYMBOLS,
         notoriete: LRZ_VIGNOBLE_NOTORIETE_SYMBOLS,
         terroir: LRZ_VIGNOBLE_TERROIR_SYMBOLS,
@@ -519,6 +547,7 @@ export type LRZSymbolSlug =
     | LRZGuinguetteAmbienceSymbolSlug
     | LRZPersonnageCategorieSymbolSlug
     | LRZVignobleAppellationSymbolSlug
+    | LRZVignobleCepageSymbolSlug
     | LRZVignobleCouleurSymbolSlug
     | LRZVignobleNotorieteSymbolSlug
     | LRZVignobleTerroirSymbolSlug;
@@ -632,6 +661,12 @@ export type LRZSymbolLocator =
           collection: "vignoble";
           meta: "appellation";
           slug: LRZVignobleAppellationSymbolSlug;
+      }
+    | {
+          /** Cépages illustrés de la collection Vignobles. */
+          collection: "vignoble";
+          meta: "cepage";
+          slug: LRZVignobleCepageSymbolSlug;
       }
     | {
           /** Couleurs de vin de la collection Vignobles. */
@@ -811,6 +846,14 @@ export function getLRZSymbolSource(
         return LRZ_SYMBOLS.vignoble.appellation[
             slug as LRZVignobleAppellationSymbolSlug
         ];
+    }
+
+    if (
+        collection === "vignoble" &&
+        meta === "cepage" &&
+        Object.hasOwn(LRZ_SYMBOLS.vignoble.cepage, slug)
+    ) {
+        return LRZ_SYMBOLS.vignoble.cepage[slug as LRZVignobleCepageSymbolSlug];
     }
 
     if (
@@ -1061,6 +1104,19 @@ export function getLRZSymbolDefinition(
                   label: wineColor.label,
                   accent: getLRZColorValue(wineColor.color),
                   color: wineColor.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "vignoble" && meta === "cepage") {
+        const grapeVariety = getVignobleCepageMeta(slug);
+
+        return grapeVariety
+            ? {
+                  source,
+                  label: grapeVariety.label,
+                  accent: getLRZColorValue(grapeVariety.color),
+                  color: grapeVariety.color,
               }
             : undefined;
     }
