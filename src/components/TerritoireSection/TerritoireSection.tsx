@@ -191,7 +191,6 @@ export default function TerritoireSection({
                               <ChateauxCard
                                   d={chateau}
                                   t={territory}
-                                  open={false}
                                   personnages={
                                       personnagesByChateau?.[chateau.slug] ?? []
                                   }

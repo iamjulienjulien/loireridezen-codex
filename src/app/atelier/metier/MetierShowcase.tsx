@@ -79,7 +79,6 @@ export default function MetierShowcase({
                         <ChateauxCard
                             key={item.slug}
                             d={item}
-                            open={false}
                             personnages={personnagesByChateau[item.slug] ?? []}
                         />
                     ))}

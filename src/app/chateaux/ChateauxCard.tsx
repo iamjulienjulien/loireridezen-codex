@@ -129,7 +129,6 @@ export function getChateauIllustration(
 export type ChateauCardProps = {
     d: ChateauV2;
     t?: Territoire;
-    open: boolean;
     personnages?: readonly PersonnageAvecRelationLieu[];
     onShowOnMap?: (slug: string) => void;
 };
@@ -145,7 +144,6 @@ type ChateauAccordionKey = "history" | "architecture" | "visit";
 export default function ChateauCard({
     d,
     t,
-    open,
     personnages = [],
     onShowOnMap,
 }: ChateauCardProps) {
@@ -154,7 +152,7 @@ export default function ChateauCard({
     const starField = useMemo(() => createStarField(d.slug), [d.slug]);
     const title = parseChateauName(d.nom);
     const [openSection, setOpenSection] = useState<ChateauAccordionKey | null>(
-        open ? "history" : null,
+        null,
     );
     const personnagesEnabled = featureIsEnabled("personnages");
 
