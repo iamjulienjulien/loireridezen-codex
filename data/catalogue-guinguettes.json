@@ -2,10 +2,14 @@
   "meta": {
     "titre": "Catalogue global des guinguettes ligériennes",
     "source": "Loire Ride Zen — compilation synchronisée des registres départementaux",
-    "corridor": "Val de Loire — Loiret, Loir-et-Cher, Indre-et-Loire, Maine-et-Loire et Loire-Atlantique",
-    "maj": "2026-08-07",
-    "nombreEntrees": 147,
+    "corridor": "Val de Loire — Nièvre, Loiret, Loir-et-Cher, Indre-et-Loire, Maine-et-Loire et Loire-Atlantique",
+    "maj": "2026-08-10",
+    "nombreEntrees": 160,
     "departements": [
+      {
+        "nom": "Nièvre",
+        "code": "58"
+      },
       {
         "nom": "Loiret",
         "code": "45"
@@ -27,9 +31,688 @@
         "code": "44"
       }
     ],
-    "note": "Catalogue global synchronisé avec les cinq registres départementaux au 7 août 2026. Il réunit l’intégralité des 147 adresses recensées, toutes géolocalisées ; les fiches marquées a_verifier ou historique doivent être présentées avec leur statut."
+    "note": "Catalogue global synchronisé avec les six registres départementaux au 10 août 2026. Il réunit l’intégralité des 160 adresses recensées, toutes géolocalisées ; les fiches marquées a_verifier ou historique doivent être présentées avec leur statut."
   },
   "guinguettes": [
+    {
+      "slug": "guinguette-on-loire",
+      "nom": "Guinguette on Loire",
+      "autresNoms": [],
+      "sousTitre": "Cuisine locale et soirées au coucher du soleil",
+      "commune": "Nevers",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Loire",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "festive",
+        "familiale",
+        "bord de Loire"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": true,
+      "loireAVelo": true,
+      "vue": "Loire et coucher de soleil",
+      "periode": "du 1er avril au 31 octobre 2026 — du mardi au dimanche",
+      "position": {
+        "latitude": 46.9823237,
+        "longitude": 3.1486393
+      },
+      "liens": {
+        "siteWeb": "https://guinguetteonloire.fr/",
+        "instagram": null,
+        "facebook": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+on+Loire%2C+2+route+des+Saulaies%2C+58000+Nevers"
+      },
+      "description": "Restaurant de plein air installé route des Saulaies, au bord de la Loire. Cuisine simple et saisonnière, produits locaux, grillades, planches et desserts maison accompagnent concerts, animations et soirées à thème.",
+      "services": [
+        "bar",
+        "restauration",
+        "concerts",
+        "animations",
+        "terrasse"
+      ],
+      "tags": [
+        "Nevers",
+        "Loire",
+        "produits locaux",
+        "concerts",
+        "coucher de soleil"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_bourgogne_tourisme_et_site_officiel_2026"
+    },
+    {
+      "slug": "guinguette-de-la-tambourinette",
+      "nom": "Guinguette de la Tambourinette",
+      "autresNoms": [
+        "La Tambourinette"
+      ],
+      "sousTitre": "Concerts et détente dans un jardin au bord de l’Yonne",
+      "commune": "Clamecy",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Yonne",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "paisible",
+        "musicale",
+        "familiale"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": true,
+      "loireAVelo": false,
+      "vue": "Yonne et plage de la Tambourinette",
+      "periode": "jusqu’au 30 juin et du 1er septembre au 31 octobre 2026, 12 h–21 h, fermée lundi et mardi ; juillet-août, 12 h–23 h, fermée mardi",
+      "position": {
+        "latitude": 47.4548979,
+        "longitude": 3.5264422
+      },
+      "liens": {
+        "siteWeb": "https://www.clamecyhautnivernais-tourisme.fr/restaurant/guinguette-de-la-tambourinette/",
+        "instagram": null,
+        "facebook": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+de+la+Tambourinette%2C+Chemin+du+Port%2C+58500+Clamecy"
+      },
+      "description": "Guinguette-restaurant de la base de loisirs de la Tambourinette, dans un jardin au bord de l’Yonne. On y vient déjeuner, prendre un verre ou dîner, avec une ambiance musicale, des concerts et les activités nautiques à proximité.",
+      "services": [
+        "bar",
+        "restauration",
+        "concerts",
+        "plats à emporter",
+        "terrasse"
+      ],
+      "tags": [
+        "Clamecy",
+        "Yonne",
+        "Tambourinette",
+        "concerts",
+        "base de loisirs"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_office_de_tourisme_clamecy_2026"
+    },
+    {
+      "slug": "guinguette-du-camping-cercy-la-tour",
+      "nom": "Guinguette du Camping",
+      "autresNoms": [
+        "Guinguette du Camping du Port"
+      ],
+      "sousTitre": "Une terrasse ombragée sur le canal du Nivernais",
+      "commune": "Cercy-la-Tour",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Canal du Nivernais",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "verdoyante",
+        "familiale",
+        "halte nautique"
+      ],
+      "terrasse": true,
+      "musiqueLive": null,
+      "accessibleVelo": true,
+      "loireAVelo": false,
+      "vue": "canal du Nivernais et port",
+      "periode": "du 1er avril au 30 août 2026 — ouverte tous les jours du 18 mai au 30 août",
+      "position": {
+        "latitude": 46.866757,
+        "longitude": 3.642992
+      },
+      "liens": {
+        "siteWeb": "https://www.rivesdumorvan.fr/offres/restaurants/guinguette-du-camping/",
+        "instagram": null,
+        "facebook": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+du+Camping%2C+Rue+du+Port%2C+58340+Cercy-la-Tour"
+      },
+      "description": "Guinguette du camping du Port, posée au bord du canal du Nivernais dans un cadre verdoyant. Sa terrasse ombragée accueille cyclistes, plaisanciers, campeurs et habitants autour d’une cuisine conviviale.",
+      "services": [
+        "bar",
+        "restauration",
+        "terrasse",
+        "camping",
+        "accueil des cyclistes"
+      ],
+      "tags": [
+        "Cercy-la-Tour",
+        "canal du Nivernais",
+        "port",
+        "camping",
+        "vélo"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_rives_du_morvan_2026"
+    },
+    {
+      "slug": "la-parenthese-pannecot",
+      "nom": "La Parenthèse",
+      "autresNoms": [
+        "La Parenthèse 58"
+      ],
+      "sousTitre": "Cuisine maison et planches au port de Panneçot",
+      "commune": "Limanton",
+      "communeDeleguee": "Panneçot",
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Canal du Nivernais",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "bucolique",
+        "conviviale",
+        "halte nautique"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": true,
+      "loireAVelo": false,
+      "vue": "port et canal du Nivernais",
+      "periode": "saison 2026 — du jeudi au lundi, 8 h 30–22 h 30",
+      "position": {
+        "latitude": 46.9577133,
+        "longitude": 3.7448523
+      },
+      "liens": {
+        "siteWeb": "https://www.rivesdumorvan.fr/offres/restaurants/la-parenthese/",
+        "instagram": null,
+        "facebook": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Parenthese%2C+Port+de+Pannecot%2C+58290+Limanton"
+      },
+      "description": "Guinguette du port du canal du Nivernais, au sein du camping de Panneçot. Cuisine maison, formule du jour, planches de charcuterie ou de fromages et concerts composent une halte paisible au bord de l’eau.",
+      "services": [
+        "bar",
+        "restauration",
+        "planches",
+        "concerts",
+        "terrasse"
+      ],
+      "tags": [
+        "Limanton",
+        "Panneçot",
+        "canal du Nivernais",
+        "port",
+        "cuisine maison"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_rives_du_morvan_2026"
+    },
+    {
+      "slug": "guinguette-du-port-chatillon-en-bazois",
+      "nom": "La Guinguette du Port",
+      "autresNoms": [
+        "La Guinguette du Bazois"
+      ],
+      "sousTitre": "Cuisine locale dans la maison éclusière du port",
+      "commune": "Châtillon-en-Bazois",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Canal du Nivernais",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "conviviale",
+        "nautique",
+        "bord de canal"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": true,
+      "loireAVelo": false,
+      "vue": "port, canal et château de Châtillon",
+      "periode": "saison 2026 — du mardi au samedi, 10 h–14 h et 19 h–22 h ; dimanche, 10 h–14 h",
+      "position": {
+        "latitude": 47.0480014,
+        "longitude": 3.6501094
+      },
+      "liens": {
+        "siteWeb": "https://www.ville-chatillon-en-bazois.fr/la-guinguette-du-port/",
+        "instagram": null,
+        "facebook": "https://www.facebook.com/profile.php?id=61557707338921",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Guinguette+du+Port%2C+133+rue+du+Port%2C+58110+Chatillon-en-Bazois"
+      },
+      "description": "Restaurant-guinguette aménagé dans une ancienne maison éclusière du port de Châtillon-en-Bazois. Cuisine locale, terrasse, concerts et vue sur le canal en font une halte directe pour promeneurs, cyclistes et plaisanciers.",
+      "services": [
+        "bar",
+        "restauration",
+        "concerts",
+        "terrasse",
+        "vente à emporter"
+      ],
+      "tags": [
+        "Châtillon-en-Bazois",
+        "canal du Nivernais",
+        "maison éclusière",
+        "château",
+        "vélo"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_commune_de_chatillon_et_nievre_tourisme_2026"
+    },
+    {
+      "slug": "guinguette-sevigne",
+      "nom": "La Guinguette Sévigné",
+      "autresNoms": [
+        "Les Guinguettes Sévigné"
+      ],
+      "sousTitre": "Accordéon et bals populaires sous les marronniers",
+      "commune": "Cosne-Cours-sur-Loire",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Loire",
+      "type": "guinguette",
+      "ambiance": [
+        "traditionnelle",
+        "dansante",
+        "associative"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": true,
+      "loireAVelo": true,
+      "vue": "Loire et jardin Sévigné",
+      "periode": "du 5 juillet au 30 août 2026 — chaque dimanche, 15 h–20 h",
+      "position": {
+        "latitude": 47.4091964,
+        "longitude": 2.9221894
+      },
+      "liens": {
+        "siteWeb": "https://www.mairiecosnesurloire.fr/la-guinguette-sevigne/",
+        "instagram": null,
+        "facebook": "https://www.facebook.com/ville.cosne",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Square+Sevigne%2C+Rue+des+Forges%2C+58200+Cosne-Cours-sur-Loire"
+      },
+      "description": "Rendez-vous dansant organisé chaque dimanche d’été au jardin Sévigné, sur les bords de Loire. Accordéon, musette et buvette tenue à tour de rôle par les associations locales perpétuent la tradition populaire.",
+      "services": [
+        "buvette",
+        "piste de danse",
+        "orchestres",
+        "animations musicales"
+      ],
+      "tags": [
+        "Cosne-Cours-sur-Loire",
+        "Loire",
+        "musette",
+        "accordéon",
+        "danse"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_ot_bourgogne_coeur_de_loire_2026"
+    },
+    {
+      "slug": "la-lucarne-saint-leger-des-vignes",
+      "nom": "La Lucarne",
+      "autresNoms": [
+        "La Lucarne — La Péniche d’Abord"
+      ],
+      "sousTitre": "Un bistrot culturel flottant au port Saint-Thibault",
+      "commune": "Saint-Léger-des-Vignes",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Canal du Nivernais",
+      "type": "bar-guinguette",
+      "ambiance": [
+        "culturelle",
+        "musicale",
+        "alternative"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": true,
+      "loireAVelo": false,
+      "vue": "port Saint-Thibault et canal du Nivernais",
+      "periode": "saison estivale 2026 — programmation régulière de juin à août",
+      "position": {
+        "latitude": 46.8365205,
+        "longitude": 3.4652705
+      },
+      "liens": {
+        "siteWeb": "https://www.lalucarnepeniche.com/",
+        "instagram": null,
+        "facebook": "https://www.facebook.com/groups/1315666015140691",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Lucarne%2C+Port+Saint-Thibault%2C+58300+Saint-Leger-des-Vignes"
+      },
+      "description": "Péniche et tiers-lieu culturel amarrés au port Saint-Thibault. La guinguette de plein air propose buvette, snacking, concerts, DJ sets, bœufs musicaux, spectacles et brunchs au bord de l’eau.",
+      "services": [
+        "buvette",
+        "snacking",
+        "concerts",
+        "DJ sets",
+        "spectacles",
+        "brunchs"
+      ],
+      "tags": [
+        "Saint-Léger-des-Vignes",
+        "canal du Nivernais",
+        "péniche",
+        "tiers-lieu",
+        "concerts"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_site_officiel_et_ot_sud_nivernais_2026"
+    },
+    {
+      "slug": "guinguette-a-l-oree-du-bois",
+      "nom": "Guinguette à l’Orée du Bois",
+      "autresNoms": [
+        "Guinguette de l’Étang Grénetier",
+        "Guinguette de l’Étang"
+      ],
+      "sousTitre": "Une table toute saison entre l’étang et la forêt",
+      "commune": "La Machine",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Étang Grénetier",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "familiale",
+        "gourmande",
+        "bord d’étang"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": true,
+      "loireAVelo": false,
+      "vue": "étang Grénetier et forêt",
+      "periode": "ouverte toute l’année — snack estival et soirées à thème selon programmation",
+      "position": {
+        "latitude": 46.8767929,
+        "longitude": 3.4798397
+      },
+      "liens": {
+        "siteWeb": "https://www.ginguettealoreedubois.fr/fr/",
+        "instagram": null,
+        "facebook": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+a+l%27Oree+du+Bois%2C+Etang+Grenetier%2C+58260+La+Machine"
+      },
+      "description": "Bar-restaurant installé au bord de l’étang Grénetier, à l’orée de la forêt. Cuisine maison, terrasse, snack en été, soirées à thème et activités de la base de loisirs prolongent l’esprit guinguette toute l’année.",
+      "services": [
+        "bar",
+        "restauration",
+        "snack estival",
+        "soirées à thème",
+        "terrasse",
+        "location de salle"
+      ],
+      "tags": [
+        "La Machine",
+        "étang Grénetier",
+        "forêt",
+        "base de loisirs",
+        "soirées à thème"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_site_officiel_et_commune_de_la_machine_2026"
+    },
+    {
+      "slug": "guinguette-du-moulin-du-marnant",
+      "nom": "Guinguette du Moulin du Marnant",
+      "autresNoms": [
+        "Moulin du Marnant",
+        "Guinguette du Moulin Marnant"
+      ],
+      "sousTitre": "Bals et concerts au bord du plan d’eau",
+      "commune": "La Nocle-Maulaix",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Étang du Marnant",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "populaire",
+        "musicale",
+        "bord d’étang"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": null,
+      "loireAVelo": false,
+      "vue": "étang du Marnant",
+      "periode": "ouverte en 2026 — bals et programmation estivale selon calendrier",
+      "position": {
+        "latitude": 46.7685737,
+        "longitude": 3.7724497
+      },
+      "liens": {
+        "siteWeb": "https://www.rivesdumorvan.fr/au-fil-de-leau/rivieres-et-plans-deau/",
+        "instagram": null,
+        "facebook": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Moulin+du+Marnant%2C+44+route+du+Marnant%2C+58250+La+Nocle-Maulaix"
+      },
+      "description": "Guinguette-restaurant du plan d’eau du Marnant. Buvette, petite restauration, bals et concerts en plein air animent cette halte populaire au bord de l’étang.",
+      "services": [
+        "buvette",
+        "restauration",
+        "concerts",
+        "bals",
+        "terrasse"
+      ],
+      "tags": [
+        "La Nocle-Maulaix",
+        "étang du Marnant",
+        "bal",
+        "concerts",
+        "baignade"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_rives_du_morvan_et_programmation_2026"
+    },
+    {
+      "slug": "la-goguette-de-l-ile",
+      "nom": "La Goguette de l’Île",
+      "autresNoms": [
+        "La Goguette"
+      ],
+      "sousTitre": "Cuisine maison et concerts sur une île de Loire",
+      "commune": "La Charité-sur-Loire",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Loire",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "associative",
+        "musicale",
+        "insulaire"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": true,
+      "loireAVelo": true,
+      "vue": "île arborée et Loire",
+      "periode": "saison estivale 2026 — restauration et concerts selon programmation",
+      "position": {
+        "latitude": 47.176943,
+        "longitude": 3.01107
+      },
+      "liens": {
+        "siteWeb": "https://lagoguettedelile.com/",
+        "instagram": null,
+        "facebook": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=La+Goguette+de+l%27Ile%2C+3+chemin+de+la+Saulaie%2C+58400+La+Charite-sur-Loire"
+      },
+      "description": "Guinguette associative installée sur une île ligérienne, dans un cadre arboré. Cuisine simple et faite maison à partir de produits majoritairement locaux, jardin, terrasse et concerts accessibles composent son identité.",
+      "services": [
+        "bar",
+        "restauration",
+        "concerts",
+        "jardin",
+        "jeux pour enfants",
+        "terrasse"
+      ],
+      "tags": [
+        "La Charité-sur-Loire",
+        "Loire",
+        "île",
+        "association",
+        "concerts",
+        "produits locaux"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_site_officiel_et_nievre_tourisme_2026"
+    },
+    {
+      "slug": "chez-biquette-pouilly-sur-loire",
+      "nom": "Chez Biquette",
+      "autresNoms": [
+        "Chez Biquette — À Biq’Cyclette"
+      ],
+      "sousTitre": "Crêpes, spectacles et vélos sur les quais de Loire",
+      "commune": "Pouilly-sur-Loire",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Loire",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "gourmande",
+        "culturelle",
+        "cyclable"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": true,
+      "loireAVelo": true,
+      "vue": "quais et Loire",
+      "periode": "ouverte toute l’année en 2026 — spectacles estivaux du 21 juin au 30 août",
+      "position": {
+        "latitude": 47.285287,
+        "longitude": 2.950161
+      },
+      "liens": {
+        "siteWeb": "https://chezbiquette.com/index.php/restaurant-pouilly-sur-loire-chez-biquette/",
+        "instagram": null,
+        "facebook": "https://www.facebook.com/profile.php?id=61570754645616",
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Chez+Biquette%2C+15+quai+Jules+Pabiot%2C+58150+Pouilly-sur-Loire"
+      },
+      "description": "Crêperie conviviale des quais de Loire associée à une activité de location et réparation de vélos. Sa terrasse accueille tout l’été le Biquette Show, une programmation de concerts, magie, humour et théâtre.",
+      "services": [
+        "restauration",
+        "concerts",
+        "spectacles",
+        "location de vélos",
+        "réparation de vélos",
+        "terrasse"
+      ],
+      "tags": [
+        "Pouilly-sur-Loire",
+        "Loire",
+        "crêpes",
+        "spectacles",
+        "vélo",
+        "produits locaux"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_site_officiel_et_ot_bourgogne_coeur_de_loire_2026"
+    },
+    {
+      "slug": "soirees-guinguette-dun-les-places",
+      "nom": "Soirées guinguette de Dun-les-Places",
+      "autresNoms": [
+        "Guinguette de Dun-les-Places"
+      ],
+      "sousTitre": "Les vendredis du village entre musique et pétanque",
+      "commune": "Dun-les-Places",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": null,
+      "type": "guinguette",
+      "ambiance": [
+        "villageoise",
+        "familiale",
+        "musicale"
+      ],
+      "terrasse": true,
+      "musiqueLive": true,
+      "accessibleVelo": null,
+      "loireAVelo": false,
+      "vue": "cour de l’école et cœur du village",
+      "periode": "du 22 mai au 11 septembre 2026 — chaque vendredi à partir de 19 h, selon météo",
+      "position": {
+        "latitude": 47.2859571,
+        "longitude": 4.0159911
+      },
+      "liens": {
+        "siteWeb": "https://www.bourgogne-tourisme.com/sit/soiree-guinguette-4",
+        "instagram": null,
+        "facebook": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Ecole+Danielle-Mitterrand%2C+58230+Dun-les-Places"
+      },
+      "description": "Rendez-vous hebdomadaire organisé dans la cour de l’école du village. Musique, pétanque, buvette et petite restauration réunissent habitants et visiteurs chaque vendredi de la belle saison.",
+      "services": [
+        "buvette",
+        "petite restauration",
+        "musique",
+        "pétanque"
+      ],
+      "tags": [
+        "Dun-les-Places",
+        "Morvan",
+        "vendredi",
+        "pétanque",
+        "village"
+      ],
+      "statut": "actif",
+      "verification": "confirme_par_bourgogne_tourisme_et_ot_morvan_2026"
+    },
+    {
+      "slug": "guinguette-du-port-de-chaumot",
+      "nom": "La Guinguette du Port de Chaumot",
+      "autresNoms": [
+        "La Guinguette du Port"
+      ],
+      "sousTitre": "Une terrasse estivale sur le canal du Nivernais",
+      "commune": "Chaumot",
+      "communeDeleguee": null,
+      "departement": "Nièvre",
+      "territoire": "nivernais",
+      "coursDEau": "Canal du Nivernais",
+      "type": "restaurant-guinguette",
+      "ambiance": [
+        "nautique",
+        "familiale",
+        "bord de canal"
+      ],
+      "terrasse": true,
+      "musiqueLive": null,
+      "accessibleVelo": true,
+      "loireAVelo": false,
+      "vue": "port de Chaumot et canal du Nivernais",
+      "periode": "saison estivale — réouverture 2026 à confirmer avant déplacement",
+      "position": {
+        "latitude": 47.258076,
+        "longitude": 3.647762
+      },
+      "liens": {
+        "siteWeb": "https://www.chaumot58.fr/adresses/",
+        "instagram": null,
+        "facebook": null,
+        "googleMaps": "https://www.google.com/maps/search/?api=1&query=Guinguette+du+Port+de+Chaumot%2C+198+Pre+de+la+Vieille+Echeintr%2C+58800+Chaumot"
+      },
+      "description": "Guinguette saisonnière du port de Chaumot, sur le canal du Nivernais. Les sources institutionnelles continuent de la référencer, mais des annuaires récents indiquent une fermeture : il est prudent d’appeler avant de s’y rendre.",
+      "services": [
+        "bar",
+        "restauration",
+        "terrasse",
+        "halte nautique"
+      ],
+      "tags": [
+        "Chaumot",
+        "canal du Nivernais",
+        "port",
+        "terrasse",
+        "à vérifier"
+      ],
+      "statut": "a_verifier",
+      "verification": "sources_institutionnelles_recentes_mais_reouverture_2026_a_confirmer"
+    },
     {
       "slug": "la-chapelloise",
       "nom": "La Chapelloise",
