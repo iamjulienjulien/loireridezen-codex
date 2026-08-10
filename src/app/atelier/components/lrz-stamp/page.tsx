@@ -26,6 +26,7 @@ import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
+import { GUINGUETTE_ACTIVITE_META } from "@/registry/Meta/guinguette-activite";
 import { VIGNOBLE_APPELLATION_META } from "@/registry/Meta/vignoble-appellation";
 import { VIGNOBLE_CEPAGE_META } from "@/registry/Meta/vignoble-cepage";
 import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
@@ -47,6 +48,7 @@ import {
     type LRZFloreCategorieSymbolSlug,
     type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
+    type LRZGuinguetteActiviteSymbolSlug,
     type LRZVignobleAppellationSymbolSlug,
     type LRZVignobleCepageSymbolSlug,
     type LRZVignobleCouleurSymbolSlug,
@@ -134,6 +136,10 @@ const GUINGUETTE_OPTIONS = GUINGUETTE_AMBIENCE_META.map(({ slug, label }) => ({
     label,
 })) satisfies readonly LRZStampPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
 
+const GUINGUETTE_ACTIVITE_OPTIONS = GUINGUETTE_ACTIVITE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZStampPlaygroundOption<LRZGuinguetteActiviteSymbolSlug>[];
+
 const PERSONNAGE_OPTIONS = CATEGORIES_PERSONNAGES.map(({ slug, nom }) => ({
     slug,
     label: nom,
@@ -218,7 +224,7 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "general" | "territoire" | "website" | "type" | "rarete" | "categorie" | "ambience" | "appellation" | "cepage" | "couleur" | "notoriete" | "terroir"',
+        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "general" | "territoire" | "website" | "type" | "rarete" | "categorie" | "ambience" | "activite" | "appellation" | "cepage" | "couleur" | "notoriete" | "terroir"',
         "—",
         "Métadonnée de la collection.",
     ],
@@ -389,6 +395,7 @@ export default function LRZStampPage() {
                     floreCategorieOptions={FLORE_CATEGORIE_OPTIONS}
                     floreRareteOptions={FLORE_RARETE_OPTIONS}
                     guinguetteOptions={GUINGUETTE_OPTIONS}
+                    guinguetteActiviteOptions={GUINGUETTE_ACTIVITE_OPTIONS}
                     personnageOptions={PERSONNAGE_OPTIONS}
                     vignobleAppellationOptions={VIGNOBLE_APPELLATION_OPTIONS}
                     vignobleCepageOptions={VIGNOBLE_CEPAGE_OPTIONS}
@@ -1052,6 +1059,40 @@ export default function LRZStampPage() {
                                 meta="ambience"
                                 slug={ambience.slug}
                                 key={ambience.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-guinguette-activites"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection imbriquée
+                        </p>
+                        <h2 id="stamp-guinguette-activites">
+                            Les activités et services des guinguettes
+                        </h2>
+                        <p>
+                            Chaque stamp résout son symbole, son label et sa
+                            couleur depuis <code>guinguette.activite</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {GUINGUETTE_ACTIVITE_META.map((activity) => (
+                            <LRZStamp
+                                collection="guinguette"
+                                meta="activite"
+                                slug={activity.slug}
+                                key={activity.slug}
                                 size="md"
                                 variant="pill"
                                 tone="subtle"

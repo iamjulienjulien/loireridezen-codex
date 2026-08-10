@@ -26,6 +26,7 @@ export type {
     LRZFloreCategorieSymbolSlug,
     LRZFloreRareteSymbolSlug,
     LRZGuinguetteAmbienceSymbolSlug,
+    LRZGuinguetteActiviteSymbolSlug,
     LRZCodexIndexSymbolSlug,
     LRZPersonnageCategorieSymbolSlug,
     LRZVignobleAppellationSymbolSlug,

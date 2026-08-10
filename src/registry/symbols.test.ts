@@ -19,6 +19,7 @@ import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
+import { GUINGUETTE_ACTIVITE_META } from "@/registry/Meta/guinguette-activite";
 import { VIGNOBLE_APPELLATION_META } from "@/registry/Meta/vignoble-appellation";
 import { VIGNOBLE_CEPAGE_META } from "@/registry/Meta/vignoble-cepage";
 import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
@@ -41,6 +42,7 @@ import {
     LRZ_FLORE_CATEGORIE_SYMBOLS,
     LRZ_FLORE_RARETE_SYMBOLS,
     LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
+    LRZ_GUINGUETTE_ACTIVITE_SYMBOLS,
     LRZ_CODEX_INDEX_SYMBOLS,
     LRZ_SYMBOLS,
     LRZ_VIGNOBLE_APPELLATION_SYMBOLS,
@@ -403,6 +405,22 @@ describe("LRZ symbol registry", () => {
             const source = getLRZSymbolSource("guinguette", "ambience", slug);
 
             expect(source).toBe(LRZ_GUINGUETTE_AMBIENCE_SYMBOLS[slug]);
+            expectPublicAsset(source);
+        },
+    );
+
+    it("contains one symbol for every Guinguette activity", () => {
+        expect(Object.keys(LRZ_SYMBOLS.guinguette.activite)).toEqual(
+            GUINGUETTE_ACTIVITE_META.map((activity) => activity.slug),
+        );
+    });
+
+    it.each(GUINGUETTE_ACTIVITE_META)(
+        "resolves guinguette/activite/$slug",
+        ({ slug }) => {
+            const source = getLRZSymbolSource("guinguette", "activite", slug);
+
+            expect(source).toBe(LRZ_GUINGUETTE_ACTIVITE_SYMBOLS[slug]);
             expectPublicAsset(source);
         },
     );

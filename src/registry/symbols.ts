@@ -61,6 +61,10 @@ import {
     type GuinguetteAmbience,
 } from "@/registry/Meta/guinguette-ambience";
 import {
+    getGuinguetteActiviteMeta,
+    type GuinguetteActivite,
+} from "@/registry/Meta/guinguette-activite";
+import {
     getVignobleAOCMeta,
     type VignobleAOC,
 } from "@/registry/Meta/vignoble-appellation";
@@ -357,6 +361,57 @@ export const LRZ_GUINGUETTE_AMBIENCE_SYMBOLS = {
 export type LRZGuinguetteAmbienceSymbolSlug =
     keyof typeof LRZ_GUINGUETTE_AMBIENCE_SYMBOLS;
 
+export const LRZ_GUINGUETTE_ACTIVITE_SYMBOLS = {
+    bar: "/symbols/guinguette/activite/bar.png",
+    restauration: "/symbols/guinguette/activite/restauration.png",
+    "petite-restauration":
+        "/symbols/guinguette/activite/petite-restauration.png",
+    "vente-a-emporter": "/symbols/guinguette/activite/vente-a-emporter.png",
+    brunch: "/symbols/guinguette/activite/brunch.png",
+    glacier: "/symbols/guinguette/activite/glacier.png",
+    "produits-locaux": "/symbols/guinguette/activite/produits-locaux.png",
+    "options-vegetariennes":
+        "/symbols/guinguette/activite/options-vegetariennes.png",
+    "menu-enfant": "/symbols/guinguette/activite/menu-enfant.png",
+    reservation: "/symbols/guinguette/activite/reservation.png",
+    groupes: "/symbols/guinguette/activite/groupes.png",
+    privatisation: "/symbols/guinguette/activite/privatisation.png",
+    "terrasse-couverte": "/symbols/guinguette/activite/terrasse-couverte.png",
+    "espace-interieur": "/symbols/guinguette/activite/espace-interieur.png",
+    "accueil-enfants": "/symbols/guinguette/activite/accueil-enfants.png",
+    "animaux-acceptes": "/symbols/guinguette/activite/animaux-acceptes.png",
+    "acces-pmr": "/symbols/guinguette/activite/acces-pmr.png",
+    toilettes: "/symbols/guinguette/activite/toilettes.png",
+    "table-a-langer": "/symbols/guinguette/activite/table-a-langer.png",
+    "point-eau": "/symbols/guinguette/activite/point-eau.png",
+    wifi: "/symbols/guinguette/activite/wifi.png",
+    "recharge-telephone": "/symbols/guinguette/activite/recharge-telephone.png",
+    consigne: "/symbols/guinguette/activite/consigne.png",
+    parking: "/symbols/guinguette/activite/parking.png",
+    "paiement-carte": "/symbols/guinguette/activite/paiement-carte.png",
+    "stationnement-velo": "/symbols/guinguette/activite/stationnement-velo.png",
+    "station-reparation": "/symbols/guinguette/activite/station-reparation.png",
+    "recharge-vae": "/symbols/guinguette/activite/recharge-vae.png",
+    "location-velo": "/symbols/guinguette/activite/location-velo.png",
+    "accueil-velo": "/symbols/guinguette/activite/accueil-velo.png",
+    "bagages-cyclistes": "/symbols/guinguette/activite/bagages-cyclistes.png",
+    ponton: "/symbols/guinguette/activite/ponton.png",
+    "halte-nautique": "/symbols/guinguette/activite/halte-nautique.png",
+    amarrage: "/symbols/guinguette/activite/amarrage.png",
+    "location-nautique": "/symbols/guinguette/activite/location-nautique.png",
+    "mise-a-eau": "/symbols/guinguette/activite/mise-a-eau.png",
+    "piste-de-danse": "/symbols/guinguette/activite/piste-de-danse.png",
+    scene: "/symbols/guinguette/activite/scene.png",
+    petanque: "/symbols/guinguette/activite/petanque.png",
+    "jeux-de-societe": "/symbols/guinguette/activite/jeux-de-societe.png",
+    "jeux-en-bois": "/symbols/guinguette/activite/jeux-en-bois.png",
+    "aire-de-jeux": "/symbols/guinguette/activite/aire-de-jeux.png",
+    bibliotheque: "/symbols/guinguette/activite/bibliotheque.png",
+} as const satisfies Record<GuinguetteActivite, string>;
+
+export type LRZGuinguetteActiviteSymbolSlug =
+    keyof typeof LRZ_GUINGUETTE_ACTIVITE_SYMBOLS;
+
 export const LRZ_PERSONNAGE_CATEGORIE_SYMBOLS = {
     souverain: "/symbols/personnage/categorie/souverain.png",
     prince: "/symbols/personnage/categorie/prince.png",
@@ -460,7 +515,8 @@ export type LRZVignobleTerroirSymbolSlug =
  * `flore.categorie`, `flore.rarete`, `common.epoque`, `common.architecture`,
  * `common.milieu`, `common.experience`, `common.general`, `common.territoire`,
  * `common.website`,
- * `guinguette.ambience`, `personnage.categorie`, `vignoble.appellation`,
+ * `guinguette.ambience`, `guinguette.activite`, `personnage.categorie`,
+ * `vignoble.appellation`,
  * `vignoble.cepage`, `vignoble.couleur`, `vignoble.notoriete` et
  * `vignoble.terroir`.
  */
@@ -491,6 +547,7 @@ export const LRZ_SYMBOLS = {
     },
     guinguette: {
         ambience: LRZ_GUINGUETTE_AMBIENCE_SYMBOLS,
+        activite: LRZ_GUINGUETTE_ACTIVITE_SYMBOLS,
     },
     personnage: {
         categorie: LRZ_PERSONNAGE_CATEGORIE_SYMBOLS,
@@ -545,6 +602,7 @@ export type LRZSymbolSlug =
     | LRZFloreCategorieSymbolSlug
     | LRZFloreRareteSymbolSlug
     | LRZGuinguetteAmbienceSymbolSlug
+    | LRZGuinguetteActiviteSymbolSlug
     | LRZPersonnageCategorieSymbolSlug
     | LRZVignobleAppellationSymbolSlug
     | LRZVignobleCepageSymbolSlug
@@ -649,6 +707,12 @@ export type LRZSymbolLocator =
           collection: "guinguette";
           meta: "ambience";
           slug: LRZGuinguetteAmbienceSymbolSlug;
+      }
+    | {
+          /** Activités, services et équipements des guinguettes. */
+          collection: "guinguette";
+          meta: "activite";
+          slug: LRZGuinguetteActiviteSymbolSlug;
       }
     | {
           /** Collection de symboles classés par métadonnée. */
@@ -825,6 +889,16 @@ export function getLRZSymbolSource(
     ) {
         return LRZ_SYMBOLS.guinguette.ambience[
             slug as LRZGuinguetteAmbienceSymbolSlug
+        ];
+    }
+
+    if (
+        collection === "guinguette" &&
+        meta === "activite" &&
+        Object.hasOwn(LRZ_SYMBOLS.guinguette.activite, slug)
+    ) {
+        return LRZ_SYMBOLS.guinguette.activite[
+            slug as LRZGuinguetteActiviteSymbolSlug
         ];
     }
 
@@ -1078,6 +1152,19 @@ export function getLRZSymbolDefinition(
                   label: ambience.label,
                   accent: getLRZColorValue(ambience.color),
                   color: ambience.color,
+              }
+            : undefined;
+    }
+
+    if (collection === "guinguette" && meta === "activite") {
+        const activity = getGuinguetteActiviteMeta(slug);
+
+        return activity
+            ? {
+                  source,
+                  label: activity.label,
+                  accent: getLRZColorValue(activity.color),
+                  color: activity.color,
               }
             : undefined;
     }

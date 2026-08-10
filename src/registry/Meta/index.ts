@@ -187,6 +187,15 @@ export {
 } from "@/registry/Meta/guinguette-ambience";
 
 export {
+    getGuinguetteActiviteMeta,
+    GUINGUETTE_ACTIVITE_META,
+    GUINGUETTE_ACTIVITE_META_REGISTRY,
+    isGuinguetteActivite,
+    type GuinguetteActivite,
+    type GuinguetteActiviteMeta,
+} from "@/registry/Meta/guinguette-activite";
+
+export {
     getPersonnageCategorieMeta,
     isPersonnageCategorieSlug,
     PERSONNAGE_CATEGORIE_META,
