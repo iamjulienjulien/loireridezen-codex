@@ -89,7 +89,7 @@ export const INDEXES = [
         eyebrow: "Index",
         title: "Faune ligérienne",
         description:
-            "Ce qui verdit le fil, du saule des grèves à l’angélique de l’estuaire.",
+            "Des oiseaux des grèves aux loutres, explorez la faune de la Loire.",
         universe: "vivant",
         format: "naturaliste",
         accent: "#4D80A7",
@@ -113,7 +113,7 @@ export const INDEXES = [
         eyebrow: "Index",
         title: "Flore ligérienne",
         description:
-            "Ce qui verdit le fil, du saule des grèves à l’angélique de l’estuaire.",
+            "Des saules aux fleurs de l’estuaire, explorez la flore de la Loire.",
         universe: "vivant",
         format: "naturaliste",
         accent: "#5C8754",
@@ -147,7 +147,7 @@ export const INDEXES = [
         presentationFooter:
             "**Cet index rassemble les guinguettes qui animent les rives ligériennes, des haltes discrètes aux rendez-vous les plus festifs. Chaque adresse raconte son cadre, sa cuisine, sa musique et le paysage qui l’entoure.**",
         footerNote: "guinguettes et haltes conviviales du Val de Loire",
-        dataFile: "guinguettes.json",
+        dataFile: "catalogue-guinguettes.json",
         etat: "relecture",
         env: ["development", "production"],
     },
