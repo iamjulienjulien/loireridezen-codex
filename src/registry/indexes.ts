@@ -197,7 +197,7 @@ export const INDEXES = [
         footerNote: "villes, bourgs et villages du corridor ligérien",
         dataFile: "catalogue-villes-villages.json",
         etat: "brouillon",
-        env: [],
+        env: ["development"],
     },
     {
         slug: "personnages",
