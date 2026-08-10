@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getCanonicalUrl, SITE_OG_IMAGE } from "@/lib/site-metadata";
+import { getCodexOgImageUrl } from "@/lib/og-data";
+import { getCanonicalUrl } from "@/lib/site-metadata";
 
 import {
     CHATEAUX,
@@ -32,6 +33,7 @@ export async function generateMetadata({
         chateau.resume ??
         `${chateau.nom}, ${chateau.sousTitre.toLowerCase()}. Découvrez sa place dans le Codex ligérien.`;
     const canonical = getCanonicalUrl(`/chateau/${chateau.slug}`);
+    const image = getCodexOgImageUrl("chateau", chateau.slug);
 
     return {
         title,
@@ -50,7 +52,7 @@ export async function generateMetadata({
             url: canonical,
             images: [
                 {
-                    url: SITE_OG_IMAGE,
+                    url: image,
                     width: 1200,
                     height: 630,
                     alt: title,
@@ -61,7 +63,7 @@ export async function generateMetadata({
             card: "summary_large_image",
             title,
             description,
-            images: [SITE_OG_IMAGE],
+            images: [image],
         },
     };
 }

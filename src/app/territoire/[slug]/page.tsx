@@ -6,7 +6,8 @@ import {
     getTerritoireBySlug,
     TerritoiresRoute,
 } from "@/app/territoires/TerritoiresRoute";
-import { getCanonicalUrl, SITE_OG_IMAGE } from "@/lib/site-metadata";
+import { getCodexOgImageUrl } from "@/lib/og-data";
+import { getCanonicalUrl } from "@/lib/site-metadata";
 
 type TerritoirePageProps = {
     params: Promise<{ slug: string }>;
@@ -27,6 +28,7 @@ export async function generateMetadata({
     const title = `${territoire.nom} — Territoires de la Loire`;
     const description = territoire.description;
     const canonical = getCanonicalUrl(`/territoire/${territoire.slug}`);
+    const image = getCodexOgImageUrl("territoire", territoire.slug);
 
     return {
         title,
@@ -42,7 +44,7 @@ export async function generateMetadata({
             url: canonical,
             images: [
                 {
-                    url: SITE_OG_IMAGE,
+                    url: image,
                     width: 1200,
                     height: 630,
                     alt: title,
@@ -53,7 +55,7 @@ export async function generateMetadata({
             card: "summary_large_image",
             title,
             description,
-            images: [SITE_OG_IMAGE],
+            images: [image],
         },
     };
 }

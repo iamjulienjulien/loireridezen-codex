@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getCanonicalUrl, SITE_OG_IMAGE } from "@/lib/site-metadata";
+import { getCodexOgImageUrl } from "@/lib/og-data";
+import { getCanonicalUrl } from "@/lib/site-metadata";
 
 import {
     GUINGUETTES,
@@ -30,6 +31,7 @@ export async function generateMetadata({
         guinguette.description ||
         `${guinguette.nom}, une adresse du fil ligérien à ${guinguette.commune}.`;
     const canonical = getCanonicalUrl(`/guinguette/${guinguette.slug}`);
+    const image = getCodexOgImageUrl("guinguette", guinguette.slug);
 
     return {
         title,
@@ -45,7 +47,7 @@ export async function generateMetadata({
             url: canonical,
             images: [
                 {
-                    url: SITE_OG_IMAGE,
+                    url: image,
                     width: 1200,
                     height: 630,
                     alt: title,
@@ -56,7 +58,7 @@ export async function generateMetadata({
             card: "summary_large_image",
             title,
             description,
-            images: [SITE_OG_IMAGE],
+            images: [image],
         },
     };
 }
