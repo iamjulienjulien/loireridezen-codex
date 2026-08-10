@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import {
     Allura,
@@ -193,6 +194,7 @@ export default function RootLayout({
                     {commandPaletteEnabled ? <AmbianceCommandPalette /> : null}
                 </AmbianceProvider>
             </body>
+            <GoogleTagManager gtmId="GTM-WPQT6KX7" />
             <Analytics />
         </html>
     );
