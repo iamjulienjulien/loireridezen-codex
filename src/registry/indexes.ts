@@ -245,8 +245,8 @@ export const INDEXES = [
         footerNote:
             "appellations du fil · les émojis attendent leur version LRZ",
         dataFile: "vignoble.json",
-        etat: "relecture",
-        env: ["development"],
+        etat: "publie",
+        env: ["development", "production"],
     },
     {
         slug: "vocabulaire",

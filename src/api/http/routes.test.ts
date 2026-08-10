@@ -69,7 +69,7 @@ describe("public API route handlers", () => {
         ["unknown index", () => getIndex(request, context({ index: "x" }))],
         [
             "review index",
-            () => getIndex(request, context({ index: "vignobles" })),
+            () => getIndex(request, context({ index: "territoires" })),
         ],
         [
             "unknown entry",
