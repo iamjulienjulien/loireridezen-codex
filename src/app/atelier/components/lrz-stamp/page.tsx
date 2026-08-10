@@ -24,7 +24,10 @@ import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
+import { VIGNOBLE_APPELLATION_META } from "@/registry/Meta/vignoble-appellation";
 import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
+import { VIGNOBLE_NOTORIETE_META } from "@/registry/Meta/vignoble-notoriete";
+import { VIGNOBLE_TERROIR_META } from "@/registry/Meta/vignoble-terroir";
 import {
     type LRZChateauRenommeeSymbolSlug,
     type LRZChateauVisiteSymbolSlug,
@@ -39,7 +42,10 @@ import {
     type LRZFloreCategorieSymbolSlug,
     type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
+    type LRZVignobleAppellationSymbolSlug,
     type LRZVignobleCouleurSymbolSlug,
+    type LRZVignobleNotorieteSymbolSlug,
+    type LRZVignobleTerroirSymbolSlug,
 } from "@/registry/symbols";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
@@ -117,9 +123,21 @@ const PERSONNAGE_OPTIONS = CATEGORIES_PERSONNAGES.map(({ slug, nom }) => ({
     label: nom,
 }));
 
+const VIGNOBLE_APPELLATION_OPTIONS = VIGNOBLE_APPELLATION_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZStampPlaygroundOption<LRZVignobleAppellationSymbolSlug>[];
+
 const VIGNOBLE_COULEUR_OPTIONS = VIGNOBLE_COULEUR_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZStampPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
+
+const VIGNOBLE_NOTORIETE_OPTIONS = VIGNOBLE_NOTORIETE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZStampPlaygroundOption<LRZVignobleNotorieteSymbolSlug>[];
+
+const VIGNOBLE_TERROIR_OPTIONS = VIGNOBLE_TERROIR_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZStampPlaygroundOption<LRZVignobleTerroirSymbolSlug>[];
 
 const VARIANTS: Array<{
     variant: LRZStampVariant;
@@ -179,7 +197,7 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience" | "couleur"',
+        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience" | "appellation" | "couleur" | "notoriete" | "terroir"',
         "—",
         "Métadonnée de la collection.",
     ],
@@ -349,7 +367,10 @@ export default function LRZStampPage() {
                     floreRareteOptions={FLORE_RARETE_OPTIONS}
                     guinguetteOptions={GUINGUETTE_OPTIONS}
                     personnageOptions={PERSONNAGE_OPTIONS}
+                    vignobleAppellationOptions={VIGNOBLE_APPELLATION_OPTIONS}
                     vignobleCouleurOptions={VIGNOBLE_COULEUR_OPTIONS}
+                    vignobleNotorieteOptions={VIGNOBLE_NOTORIETE_OPTIONS}
+                    vignobleTerroirOptions={VIGNOBLE_TERROIR_OPTIONS}
                 />
 
                 <section
@@ -374,6 +395,111 @@ export default function LRZStampPage() {
                                 slug={slug}
                                 key={slug}
                                 size="lg"
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-vignoble-appellations"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Vignobles
+                        </p>
+                        <h2 id="stamp-vignoble-appellations">
+                            Les appellations viticoles
+                        </h2>
+                        <p>
+                            Chaque stamp récupère son symbole, son label et sa
+                            couleur depuis le registre
+                            <code> vignoble.appellation</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {VIGNOBLE_APPELLATION_META.map((appellation) => (
+                            <LRZStamp
+                                collection="vignoble"
+                                meta="appellation"
+                                slug={appellation.slug}
+                                key={appellation.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-vignoble-terroirs"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Vignobles
+                        </p>
+                        <h2 id="stamp-vignoble-terroirs">
+                            Les terroirs viticoles
+                        </h2>
+                        <p>
+                            Chaque stamp récupère son échantillon géologique,
+                            son label et sa couleur depuis le registre
+                            <code> vignoble.terroir</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {VIGNOBLE_TERROIR_META.map((terroir) => (
+                            <LRZStamp
+                                collection="vignoble"
+                                meta="terroir"
+                                slug={terroir.slug}
+                                key={terroir.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
+                                shadow="soft"
+                            />
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="stamp-vignoble-notorietes"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Vignobles
+                        </p>
+                        <h2 id="stamp-vignoble-notorietes">
+                            Les niveaux de notoriété
+                        </h2>
+                        <p>
+                            Chaque stamp récupère son symbole, son label et sa
+                            couleur depuis le registre
+                            <code> vignoble.notoriete</code>.
+                        </p>
+                    </div>
+                    <div className={styles.catalogGrid}>
+                        {VIGNOBLE_NOTORIETE_META.map((notoriety) => (
+                            <LRZStamp
+                                collection="vignoble"
+                                meta="notoriete"
+                                slug={notoriety.slug}
+                                key={notoriety.slug}
+                                size="md"
+                                variant="pill"
+                                tone="subtle"
+                                font="grotesk"
+                                symbolScale={1.1}
                                 shadow="soft"
                             />
                         ))}

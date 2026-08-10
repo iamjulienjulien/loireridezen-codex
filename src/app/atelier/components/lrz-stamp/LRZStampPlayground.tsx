@@ -42,7 +42,10 @@ import type {
     LRZGuinguetteAmbienceSymbolSlug,
     LRZCodexIndexSymbolSlug,
     LRZPersonnageCategorieSymbolSlug,
+    LRZVignobleAppellationSymbolSlug,
     LRZVignobleCouleurSymbolSlug,
+    LRZVignobleNotorieteSymbolSlug,
+    LRZVignobleTerroirSymbolSlug,
 } from "@/registry/symbols";
 
 import styles from "./LRZStampPlayground.module.css";
@@ -67,7 +70,10 @@ type LRZStampPlaygroundProps = {
     floreRareteOptions: readonly LRZStampPlaygroundOption<LRZFloreRareteSymbolSlug>[];
     guinguetteOptions: readonly LRZStampPlaygroundOption<LRZGuinguetteAmbienceSymbolSlug>[];
     personnageOptions: readonly LRZStampPlaygroundOption<LRZPersonnageCategorieSymbolSlug>[];
+    vignobleAppellationOptions: readonly LRZStampPlaygroundOption<LRZVignobleAppellationSymbolSlug>[];
     vignobleCouleurOptions: readonly LRZStampPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
+    vignobleNotorieteOptions: readonly LRZStampPlaygroundOption<LRZVignobleNotorieteSymbolSlug>[];
+    vignobleTerroirOptions: readonly LRZStampPlaygroundOption<LRZVignobleTerroirSymbolSlug>[];
 };
 
 type SizeChoice = LRZStampSize | "custom";
@@ -206,7 +212,7 @@ const META_OPTIONS: Record<LRZSymbolCollection, readonly LRZSymbolMeta[]> = {
     flore: ["categorie", "rarete"],
     guinguette: ["ambience"],
     personnage: ["categorie"],
-    vignoble: ["couleur"],
+    vignoble: ["appellation", "couleur", "notoriete", "terroir"],
 };
 
 function codeValue(value: string) {
@@ -300,7 +306,10 @@ export default function LRZStampPlayground({
     floreRareteOptions,
     guinguetteOptions,
     personnageOptions,
+    vignobleAppellationOptions,
     vignobleCouleurOptions,
+    vignobleNotorieteOptions,
+    vignobleTerroirOptions,
 }: LRZStampPlaygroundProps) {
     const [values, setValues] = useState<PlaygroundState>(INITIAL_STATE);
     function getOptions(
@@ -337,7 +346,13 @@ export default function LRZStampPlayground({
             case "personnage":
                 return personnageOptions;
             case "vignoble":
-                return vignobleCouleurOptions;
+                return meta === "appellation"
+                    ? vignobleAppellationOptions
+                    : meta === "notoriete"
+                      ? vignobleNotorieteOptions
+                      : meta === "terroir"
+                        ? vignobleTerroirOptions
+                        : vignobleCouleurOptions;
         }
     }
 
@@ -355,86 +370,108 @@ export default function LRZStampPlayground({
                     meta: "visite",
                     slug: values.slug as LRZChateauVisiteSymbolSlug,
                 }
-            : values.collection === "chateau"
-              ? {
-                    collection: "chateau",
-                    meta: "renommee",
-                    slug: values.slug as LRZChateauRenommeeSymbolSlug,
-                }
-            : values.collection === "common" && values.meta === "territoire"
-              ? {
-                    collection: "common",
-                    meta: "territoire",
-                    slug: values.slug as LRZCommonTerritoireSymbolSlug,
-                }
-              : values.collection === "common" && values.meta === "experience"
+              : values.collection === "chateau"
                 ? {
-                      collection: "common",
-                      meta: "experience",
-                      slug: values.slug as LRZCommonExperienceSymbolSlug,
+                      collection: "chateau",
+                      meta: "renommee",
+                      slug: values.slug as LRZChateauRenommeeSymbolSlug,
                   }
-                : values.collection === "common" && values.meta === "milieu"
+                : values.collection === "common" && values.meta === "territoire"
                   ? {
                         collection: "common",
-                        meta: "milieu",
-                        slug: values.slug as LRZCommonMilieuSymbolSlug,
+                        meta: "territoire",
+                        slug: values.slug as LRZCommonTerritoireSymbolSlug,
                     }
                   : values.collection === "common" &&
-                      values.meta === "architecture"
+                      values.meta === "experience"
                     ? {
                           collection: "common",
-                          meta: "architecture",
-                          slug: values.slug as LRZCommonArchitectureSymbolSlug,
+                          meta: "experience",
+                          slug: values.slug as LRZCommonExperienceSymbolSlug,
                       }
-                    : values.collection === "common"
+                    : values.collection === "common" && values.meta === "milieu"
                       ? {
                             collection: "common",
-                            meta: "epoque",
-                            slug: values.slug as LRZCommonEpoqueSymbolSlug,
+                            meta: "milieu",
+                            slug: values.slug as LRZCommonMilieuSymbolSlug,
                         }
-                      : values.collection === "faune" &&
-                          values.meta === "rarete"
+                      : values.collection === "common" &&
+                          values.meta === "architecture"
                         ? {
-                              collection: "faune",
-                              meta: "rarete",
-                              slug: values.slug as LRZFauneRareteSymbolSlug,
+                              collection: "common",
+                              meta: "architecture",
+                              slug: values.slug as LRZCommonArchitectureSymbolSlug,
                           }
-                        : values.collection === "faune"
+                        : values.collection === "common"
                           ? {
-                                collection: "faune",
-                                meta: "type",
-                                slug: values.slug as LRZFauneTypeSymbolSlug,
+                                collection: "common",
+                                meta: "epoque",
+                                slug: values.slug as LRZCommonEpoqueSymbolSlug,
                             }
-                          : values.collection === "flore" &&
+                          : values.collection === "faune" &&
                               values.meta === "rarete"
                             ? {
-                                  collection: "flore",
+                                  collection: "faune",
                                   meta: "rarete",
-                                  slug: values.slug as LRZFloreRareteSymbolSlug,
+                                  slug: values.slug as LRZFauneRareteSymbolSlug,
                               }
-                            : values.collection === "flore"
+                            : values.collection === "faune"
                               ? {
-                                    collection: "flore",
-                                    meta: "categorie",
-                                    slug: values.slug as LRZFloreCategorieSymbolSlug,
+                                    collection: "faune",
+                                    meta: "type",
+                                    slug: values.slug as LRZFauneTypeSymbolSlug,
                                 }
-                              : values.collection === "guinguette"
+                              : values.collection === "flore" &&
+                                  values.meta === "rarete"
                                 ? {
-                                      collection: "guinguette",
-                                      meta: "ambience",
-                                      slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                                      collection: "flore",
+                                      meta: "rarete",
+                                      slug: values.slug as LRZFloreRareteSymbolSlug,
                                   }
-                                : values.collection === "vignoble"
+                                : values.collection === "flore"
                                   ? {
-                                        collection: "vignoble",
-                                        meta: "couleur",
-                                        slug: values.slug as LRZVignobleCouleurSymbolSlug,
-                                    }
-                                  : {
-                                        collection: "personnage",
+                                        collection: "flore",
                                         meta: "categorie",
-                                        slug: values.slug as LRZPersonnageCategorieSymbolSlug,
-                                    };
+                                        slug: values.slug as LRZFloreCategorieSymbolSlug,
+                                    }
+                                  : values.collection === "guinguette"
+                                    ? {
+                                          collection: "guinguette",
+                                          meta: "ambience",
+                                          slug: values.slug as LRZGuinguetteAmbienceSymbolSlug,
+                                      }
+                                    : values.collection === "vignoble" &&
+                                        values.meta === "appellation"
+                                      ? {
+                                            collection: "vignoble",
+                                            meta: "appellation",
+                                            slug: values.slug as LRZVignobleAppellationSymbolSlug,
+                                        }
+                                      : values.collection === "vignoble" &&
+                                          values.meta === "notoriete"
+                                        ? {
+                                              collection: "vignoble",
+                                              meta: "notoriete",
+                                              slug: values.slug as LRZVignobleNotorieteSymbolSlug,
+                                          }
+                                        : values.collection === "vignoble" &&
+                                            values.meta === "terroir"
+                                          ? {
+                                                collection: "vignoble",
+                                                meta: "terroir",
+                                                slug: values.slug as LRZVignobleTerroirSymbolSlug,
+                                            }
+                                          : values.collection === "vignoble"
+                                            ? {
+                                                  collection: "vignoble",
+                                                  meta: "couleur",
+                                                  slug: values.slug as LRZVignobleCouleurSymbolSlug,
+                                              }
+                                            : {
+                                                  collection: "personnage",
+                                                  meta: "categorie",
+                                                  slug: values.slug as LRZPersonnageCategorieSymbolSlug,
+                                              };
     const resolvedSize =
         values.size === "custom" ? values.customSize : values.size;
     const resolvedPadding =
@@ -534,6 +571,7 @@ export default function LRZStampPlayground({
                                     <option value="personnage">
                                         personnage
                                     </option>
+                                    <option value="vignoble">vignoble</option>
                                 </select>
                             </label>
                             <label className={styles.control}>

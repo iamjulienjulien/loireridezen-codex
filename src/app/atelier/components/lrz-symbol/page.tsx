@@ -18,7 +18,10 @@ import {
     type LRZFloreCategorieSymbolSlug,
     type LRZFloreRareteSymbolSlug,
     type LRZGuinguetteAmbienceSymbolSlug,
+    type LRZVignobleAppellationSymbolSlug,
     type LRZVignobleCouleurSymbolSlug,
+    type LRZVignobleNotorieteSymbolSlug,
+    type LRZVignobleTerroirSymbolSlug,
     type LRZSymbolFrame,
     type LRZSymbolPadding,
     type LRZSymbolShadow,
@@ -40,7 +43,10 @@ import { FAUNE_TYPE_META } from "@/registry/Meta/faune-type";
 import { FLORE_CATEGORIE_META } from "@/registry/Meta/flore-categorie";
 import { FLORE_RARETE_META } from "@/registry/Meta/flore-rarete";
 import { GUINGUETTE_AMBIENCE_META } from "@/registry/Meta/guinguette-ambience";
+import { VIGNOBLE_APPELLATION_META } from "@/registry/Meta/vignoble-appellation";
 import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
+import { VIGNOBLE_NOTORIETE_META } from "@/registry/Meta/vignoble-notoriete";
+import { VIGNOBLE_TERROIR_META } from "@/registry/Meta/vignoble-terroir";
 
 import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
 import shellStyles from "../filter-playground.module.css";
@@ -174,9 +180,21 @@ const PERSONNAGE_SYMBOL_OPTIONS = CATEGORIES_PERSONNAGES.map(
     ({ slug, nom }) => ({ slug, label: nom }),
 );
 
+const VIGNOBLE_APPELLATION_OPTIONS = VIGNOBLE_APPELLATION_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZSymbolPlaygroundOption<LRZVignobleAppellationSymbolSlug>[];
+
 const VIGNOBLE_COULEUR_OPTIONS = VIGNOBLE_COULEUR_META.map(
     ({ slug, label }) => ({ slug, label }),
 ) satisfies readonly LRZSymbolPlaygroundOption<LRZVignobleCouleurSymbolSlug>[];
+
+const VIGNOBLE_NOTORIETE_OPTIONS = VIGNOBLE_NOTORIETE_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZSymbolPlaygroundOption<LRZVignobleNotorieteSymbolSlug>[];
+
+const VIGNOBLE_TERROIR_OPTIONS = VIGNOBLE_TERROIR_META.map(
+    ({ slug, label }) => ({ slug, label }),
+) satisfies readonly LRZSymbolPlaygroundOption<LRZVignobleTerroirSymbolSlug>[];
 
 const API_PROPS = [
     [
@@ -187,7 +205,7 @@ const API_PROPS = [
     ],
     [
         "meta",
-        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience" | "couleur"',
+        '"index" | "renommee" | "visite" | "epoque" | "architecture" | "milieu" | "experience" | "territoire" | "type" | "rarete" | "categorie" | "ambience" | "appellation" | "couleur" | "notoriete" | "terroir"',
         "—",
         "Métadonnée de la collection.",
     ],
@@ -353,7 +371,10 @@ export default function LRZSymbolPage() {
                     floreRareteOptions={FLORE_RARETE_OPTIONS}
                     guinguetteOptions={GUINGUETTE_AMBIENCE_OPTIONS}
                     personnageOptions={PERSONNAGE_SYMBOL_OPTIONS}
+                    vignobleAppellationOptions={VIGNOBLE_APPELLATION_OPTIONS}
                     vignobleCouleurOptions={VIGNOBLE_COULEUR_OPTIONS}
+                    vignobleNotorieteOptions={VIGNOBLE_NOTORIETE_OPTIONS}
+                    vignobleTerroirOptions={VIGNOBLE_TERROIR_OPTIONS}
                 />
 
                 <section
@@ -386,6 +407,153 @@ export default function LRZSymbolPage() {
                                 />
                                 <h3>{label}</h3>
                                 <code>{`slug="${slug}"`}</code>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-vignoble-appellations"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Vignobles
+                        </p>
+                        <h2 id="symbol-vignoble-appellations">
+                            Les appellations viticoles
+                        </h2>
+                        <p>
+                            Le locator <code>vignoble.appellation</code> associe
+                            chaque niveau d’appellation à son symbole et à sa
+                            couleur LRZ.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {VIGNOBLE_APPELLATION_META.map((appellation) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={appellation.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            appellation.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="vignoble"
+                                    meta="appellation"
+                                    slug={appellation.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{appellation.color}</span>
+                                    <h3>{appellation.label}</h3>
+                                    <code>{appellation.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-vignoble-terroirs"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Vignobles
+                        </p>
+                        <h2 id="symbol-vignoble-terroirs">
+                            Les terroirs viticoles
+                        </h2>
+                        <p>
+                            Le locator <code>vignoble.terroir</code> associe
+                            chaque nature de sol à son échantillon géologique
+                            illustré et à sa couleur LRZ.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {VIGNOBLE_TERROIR_META.map((terroir) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={terroir.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            terroir.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="vignoble"
+                                    meta="terroir"
+                                    slug={terroir.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{terroir.color}</span>
+                                    <h3>{terroir.label}</h3>
+                                    <code>{terroir.slug}</code>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+                </section>
+
+                <section
+                    className={shellStyles.section}
+                    aria-labelledby="symbol-vignoble-notorietes"
+                >
+                    <div className={shellStyles.sectionHeader}>
+                        <p className={shellStyles.kicker}>
+                            Collection Vignobles
+                        </p>
+                        <h2 id="symbol-vignoble-notorietes">
+                            Les niveaux de notoriété
+                        </h2>
+                        <p>
+                            Le locator <code>vignoble.notoriete</code> associe
+                            chaque niveau de reconnaissance à son symbole et à
+                            sa couleur LRZ.
+                        </p>
+                    </div>
+
+                    <div className={styles.catalogGrid}>
+                        {VIGNOBLE_NOTORIETE_META.map((notoriety) => (
+                            <article
+                                className={styles.catalogCard}
+                                key={notoriety.slug}
+                                style={
+                                    {
+                                        "--showcase-accent": getLRZColorValue(
+                                            notoriety.color,
+                                        ),
+                                    } as AccentStyle
+                                }
+                            >
+                                <LRZSymbol
+                                    collection="vignoble"
+                                    meta="notoriete"
+                                    slug={notoriety.slug}
+                                    size="xl"
+                                    frame="subtle"
+                                    padding="xs"
+                                />
+                                <div className={styles.catalogCopy}>
+                                    <span>{notoriety.color}</span>
+                                    <h3>{notoriety.label}</h3>
+                                    <code>{notoriety.slug}</code>
+                                </div>
                             </article>
                         ))}
                     </div>
