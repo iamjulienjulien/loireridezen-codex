@@ -167,12 +167,30 @@ export default function PageControls({
                                 }
                                 onClick={() => setFiltersOpen((open) => !open)}
                             >
-                                Filtres
+                                <span>Filtres</span>
+                                {activeFiltersCount > 0 ? (
+                                    <span
+                                        className={styles.filterBadge}
+                                        aria-label={`${activeFiltersCount} filtre${activeFiltersCount > 1 ? "s" : ""} actif${activeFiltersCount > 1 ? "s" : ""}`}
+                                    >
+                                        {activeFiltersCount}
+                                    </span>
+                                ) : null}
                             </LRZButton>
                         ) : null}
                     </div>
 
                     <div className={styles.toolbarEnd}>
+                        {reset?.active ? (
+                            <button
+                                type="button"
+                                className={styles.reset}
+                                onClick={reset.onReset}
+                            >
+                                Réinitialiser
+                            </button>
+                        ) : null}
+
                         {action ? (
                             <LRZButton
                                 aria-pressed={action.active}
