@@ -21,7 +21,8 @@
             "cepages": ["Gamay"],
             "style": "Rouge léger et fruité ; quelques rosés",
             "appellation": { "niveau": "AOC communale", "depuis": "2000" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["granite"] }
         },
         {
             "emoji": "🍇",
@@ -36,7 +37,8 @@
             "cepages": ["Gamay (Saint-Romain)"],
             "style": "Rouge fruité de granite ; quelques rosés",
             "appellation": { "niveau": "AOC communale", "depuis": "1994" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["granite"] }
         },
         {
             "emoji": "🍇",
@@ -57,7 +59,8 @@
             ],
             "style": "Blancs vifs (tressallier) ; rouges & rosés de gamay/pinot",
             "appellation": { "niveau": "AOC communale", "depuis": "2009" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["argilo-calcaire", "granite"] }
         },
         {
             "emoji": "🍇",
@@ -72,7 +75,8 @@
             "cepages": ["Gamay", "Pinot noir", "Chardonnay"],
             "style": "Rouges et rosés volcaniques ; blancs de chardonnay. Dénominations : Boudes, Chanturgue, Corent, Madargue, Châteaugay",
             "appellation": { "niveau": "AOC communale", "depuis": "2010" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["marne-calcaire", "granite", "gneiss"] }
         },
 
         {
@@ -88,7 +92,8 @@
             "cepages": ["Gamay", "Pinot noir", "Sauvignon blanc"],
             "style": "Rouges de gamay/pinot ; blancs de sauvignon",
             "appellation": { "niveau": "AOC communale", "depuis": "1998" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"] }
         },
         {
             "emoji": "🥂",
@@ -103,7 +108,8 @@
             "cepages": ["Chasselas"],
             "style": "Blanc sec léger, de chasselas — rareté vivante à côté du pouilly-fumé",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["marne-calcaire", "argile-a-silex"] }
         },
         {
             "emoji": "🥂",
@@ -120,7 +126,8 @@
             "style": "Sec, vif, fumé (silex)",
             "accord": "Poisson de Loire, fromage de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": { "terroirs": ["marne-calcaire", "argile-a-silex"] }
         },
         {
             "emoji": "🥂",
@@ -141,7 +148,10 @@
                 "depuis": "1936",
                 "note": "Blanc en 1936, rouge et rosé (pinot noir) en 1959."
             },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": {
+                "terroirs": ["argilo-calcaire", "calcaire", "argile-a-silex"]
+            }
         },
         {
             "emoji": "🥂",
@@ -156,7 +166,8 @@
             "cepages": ["Sauvignon blanc", "Pinot noir"],
             "style": "Blanc sec minéral ; rouges & rosés de pinot noir",
             "appellation": { "niveau": "AOC communale", "depuis": "1959" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["marne-calcaire", "calcaire"] }
         },
         {
             "emoji": "🥂",
@@ -171,7 +182,8 @@
             "cepages": ["Sauvignon blanc"],
             "style": "Blanc sec, vif, sur terrasses sableuses — l'une des plus anciennes AOC",
             "appellation": { "niveau": "AOC communale", "depuis": "1936" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["sable", "graviers", "alluvions"] }
         },
         {
             "emoji": "🥂",
@@ -186,7 +198,8 @@
             "cepages": ["Sauvignon blanc", "Pinot noir", "Pinot gris"],
             "style": "Blanc de sauvignon ; rouge de pinot noir ; rosé recherché de pinot gris",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["marne-calcaire", "sable", "graviers"] }
         },
         {
             "emoji": "🍇",
@@ -201,7 +214,8 @@
             "cepages": ["Gamay", "Pinot noir"],
             "style": "Célèbre pour son « vin gris » (rosé de pressurage) ; aussi rouges légers",
             "appellation": { "niveau": "AOC communale", "depuis": "2010" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["granite", "sable", "argilo-calcaire"] }
         },
 
         {
@@ -218,7 +232,8 @@
             "cepages": ["Sauvignon blanc", "Gamay", "Côt (Malbec)"],
             "style": "Blancs de sauvignon, rouges de gamay/côt, rosés, fines bulles",
             "appellation": { "niveau": "AOC régionale", "depuis": "1939" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["argilo-calcaire", "sable", "graviers"] }
         },
         {
             "emoji": "🍷",
@@ -233,7 +248,8 @@
             "cepages": ["Côt (Malbec)", "Cabernet franc", "Chenin"],
             "style": "Rouges de côt ; blancs de chenin. Dénomination de Touraine",
             "appellation": { "niveau": "AOC communale", "depuis": "1955" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -248,7 +264,8 @@
             "cepages": ["Chenin", "Grolleau"],
             "style": "Blancs de chenin (secs à tendres) ; rosés de grolleau. Dénomination de Touraine",
             "appellation": { "niveau": "AOC communale", "depuis": "1953" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -263,7 +280,8 @@
             "cepages": ["Gamay", "Côt", "Cabernet franc", "Chenin"],
             "style": "Rouges de gamay ; blancs & rosés. Dénomination de Touraine",
             "appellation": { "niveau": "AOC communale", "depuis": "1955" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["argilo-calcaire", "sable"] }
         },
         {
             "emoji": "🍷",
@@ -278,7 +296,8 @@
             "cepages": ["Sauvignon blanc", "Côt (Malbec)"],
             "style": "Blancs de sauvignon ; rouges de côt. Dénomination de Touraine",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"] }
         },
         {
             "emoji": "🍷",
@@ -293,7 +312,8 @@
             "cepages": ["Sauvignon blanc"],
             "style": "Blanc sec de sauvignon exclusivement. Dénomination de Touraine",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["sable", "argile-a-silex"] }
         },
         {
             "emoji": "🌸",
@@ -308,7 +328,8 @@
             "cepages": ["Pinot meunier", "Pinot gris", "Pinot noir"],
             "style": "Rosé « vin gris » d'assemblage de pinots, aux portes de Tours",
             "appellation": { "niveau": "AOC communale", "depuis": "2001" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["sable", "argilo-calcaire"] }
         },
         {
             "emoji": "🥂",
@@ -325,7 +346,10 @@
             "style": "Sec, demi-sec, moelleux et fines bulles — selon le millésime",
             "accord": "Rillettes, fromages de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1936" },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": {
+                "terroirs": ["tuffeau", "argilo-calcaire", "argile-a-silex"]
+            }
         },
         {
             "emoji": "🥂",
@@ -340,7 +364,8 @@
             "cepages": ["Chenin"],
             "style": "Chenin sec à moelleux et fines bulles — le pendant rive gauche de Vouvray",
             "appellation": { "niveau": "AOC communale", "depuis": "1938" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["tuffeau", "argile-a-silex"] }
         },
         {
             "emoji": "🍷",
@@ -357,7 +382,8 @@
             "style": "Rouge fin de cabernet franc ; un peu de blanc et de rosé",
             "accord": "Charcuterie, viandes rouges",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": { "terroirs": ["tuffeau", "graviers", "sable"] }
         },
         {
             "emoji": "🍷",
@@ -372,7 +398,8 @@
             "cepages": ["Cabernet franc"],
             "style": "Rouge de cabernet franc, du fruité de gravier au charnu de tuffeau ; peu de rosé",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["tuffeau", "graviers", "sable"] }
         },
         {
             "emoji": "🍷",
@@ -387,7 +414,8 @@
             "cepages": ["Cabernet franc"],
             "style": "Rouge de cabernet franc, souvent le plus fin et fruité du secteur",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["graviers", "sable", "tuffeau"] }
         },
         {
             "emoji": "🍷",
@@ -402,7 +430,8 @@
             "cepages": ["Sauvignon blanc", "Chardonnay", "Gamay", "Pinot noir"],
             "style": "Blancs d'assemblage sauvignon/chardonnay ; rouges gamay/pinot",
             "appellation": { "niveau": "AOC communale", "depuis": "1993" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["sable", "argilo-calcaire"] }
         },
         {
             "emoji": "🥂",
@@ -422,7 +451,8 @@
                 "depuis": "1993",
                 "note": "Seule AOC au monde en cépage romorantin."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["sable", "argilo-calcaire"] }
         },
         {
             "emoji": "🥂",
@@ -437,7 +467,8 @@
             "cepages": ["Chenin"],
             "style": "Blanc sec (parfois moelleux) de chenin, sur la rive nord du Loir — la limite septentrionale du chenin",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -452,7 +483,8 @@
             "cepages": ["Pineau d'Aunis", "Chenin", "Gamay"],
             "style": "Rouges poivrés de pineau d'aunis ; blancs de chenin ; rosés",
             "appellation": { "niveau": "AOC communale", "depuis": "1948" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"] }
         },
         {
             "emoji": "🍇",
@@ -467,7 +499,8 @@
             "cepages": ["Pineau d'Aunis", "Chenin", "Gamay"],
             "style": "Célèbre pour son rosé « gris » de pineau d'aunis, poivré ; rouges et blancs",
             "appellation": { "niveau": "AOC communale", "depuis": "2001" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"] }
         },
         {
             "emoji": "🍷",
@@ -482,7 +515,8 @@
             "cepages": ["Sauvignon blanc", "Gamay", "Côt", "Pinot noir"],
             "style": "Blancs de sauvignon ; rouges d'assemblage. Duo réputé avec le fromage AOP de Valençay",
             "appellation": { "niveau": "AOC communale", "depuis": "2004" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["argilo-calcaire", "sable"] }
         },
         {
             "emoji": "🍷",
@@ -501,7 +535,8 @@
             ],
             "style": "Blancs de chardonnay ; rouges & rosés de pinot meunier — vignoble historique de la capitale ligérienne",
             "appellation": { "niveau": "AOC communale", "depuis": "2006" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["sable", "argilo-calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -516,7 +551,8 @@
             "cepages": ["Cabernet franc"],
             "style": "Rouge exclusivement, de cabernet franc, autour de Cléry-Saint-André",
             "appellation": { "niveau": "AOC communale", "depuis": "2006" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["argilo-calcaire", "calcaire"] }
         },
 
         {
@@ -537,7 +573,8 @@
             ],
             "style": "Régionale : blancs de chenin, rouges de cabernet (dont Anjou-Gamay)",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["schiste", "tuffeau", "argilo-calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -552,7 +589,8 @@
             "cepages": ["Cabernet franc", "Cabernet-Sauvignon"],
             "style": "Rouge de sélection de communes, plus concentré que l'Anjou générique",
             "appellation": { "niveau": "AOC communale", "depuis": "1991" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -567,7 +605,8 @@
             "cepages": ["Cabernet franc", "Cabernet-Sauvignon"],
             "style": "Rouge d'élite autour de Brissac, sur schistes",
             "appellation": { "niveau": "AOC communale", "depuis": "1998" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -582,7 +621,8 @@
             "cepages": ["Chenin"],
             "style": "Blancs de chenin tendres à moelleux, sur les coteaux de la Loire",
             "appellation": { "niveau": "AOC communale", "depuis": "1946" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["schiste", "tuffeau"] }
         },
         {
             "emoji": "🌸",
@@ -597,7 +637,8 @@
             "cepages": ["Grolleau", "Gamay", "Cabernet franc"],
             "style": "Rosé demi-sec, tendre et fruité, à base de grolleau",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
         },
         {
             "emoji": "🌸",
@@ -612,7 +653,8 @@
             "cepages": ["Cabernet franc", "Cabernet-Sauvignon"],
             "style": "Rosé demi-sec de cabernet, plus structuré que le rosé d'Anjou",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
         },
         {
             "emoji": "🍯",
@@ -627,7 +669,8 @@
             "cepages": ["Chenin"],
             "style": "Blancs moelleux de chenin sur les coteaux de l'Aubance",
             "appellation": { "niveau": "AOC communale", "depuis": "1950" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["schiste", "tuffeau"] }
         },
         {
             "emoji": "🥂",
@@ -643,7 +686,8 @@
             "cepages": ["Chenin"],
             "style": "Blanc sec puissant, minéral et de longue garde",
             "appellation": { "niveau": "AOC communale", "depuis": "1952" },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": { "terroirs": ["schiste", "micaschiste"] }
         },
         {
             "emoji": "🥂",
@@ -662,7 +706,8 @@
                 "depuis": "2011",
                 "note": "Anciennement climat de Savennières, érigé en AOC distincte."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["schiste", "micaschiste"] }
         },
         {
             "emoji": "🥂",
@@ -682,7 +727,8 @@
                 "depuis": "2011",
                 "note": "Monopole d'un seul domaine ; érigé en AOC distincte de Savennières."
             },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": { "terroirs": ["schiste", "micaschiste"] }
         },
         {
             "emoji": "🍯",
@@ -703,7 +749,8 @@
                 "depuis": "1950",
                 "note": "Villages : Beaulieu, Faye, Rablay, Rochefort, Saint-Aubin, Saint-Lambert, Chaume."
             },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
         },
         {
             "emoji": "🍯",
@@ -722,7 +769,8 @@
                 "depuis": "2011",
                 "note": "Unique « Premier Cru » du vignoble ligérien."
             },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["schiste", "graviers"] }
         },
         {
             "emoji": "🍯",
@@ -742,7 +790,8 @@
                 "depuis": "1954",
                 "note": "Élevé au rang de Grand Cru en 2011 — le seul de la Loire."
             },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": { "terroirs": ["schiste", "graviers"] }
         },
         {
             "emoji": "🍯",
@@ -757,7 +806,8 @@
             "cepages": ["Chenin"],
             "style": "Grand liquoreux de chenin, sur trois coteaux de Thouarcé",
             "appellation": { "niveau": "AOC communale", "depuis": "1951" },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -772,7 +822,8 @@
             "cepages": ["Chenin", "Cabernet franc"],
             "style": "Régionale : blancs de chenin, rouges de cabernet, et fameuses fines bulles (Saumur brut)",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["tuffeau", "faluns", "argilo-calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -789,7 +840,8 @@
             "style": "Rouge fruité et digeste de cabernet franc",
             "accord": "Fouées, charcuterie, viandes blanches",
             "appellation": { "niveau": "AOC communale", "depuis": "1957" },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": { "terroirs": ["tuffeau", "calcaire"] }
         },
         {
             "emoji": "🍷",
@@ -804,7 +856,8 @@
             "cepages": ["Cabernet franc"],
             "style": "Rouge de sélection autour du Puy-Notre-Dame",
             "appellation": { "niveau": "AOC communale", "depuis": "2009" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["tuffeau", "calcaire"] }
         },
         {
             "emoji": "🌸",
@@ -819,7 +872,8 @@
             "cepages": ["Cabernet franc", "Cabernet-Sauvignon"],
             "style": "Rosé demi-sec léger, plus discret que le cabernet d'Anjou",
             "appellation": { "niveau": "AOC régionale", "depuis": "1964" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["tuffeau", "faluns"] }
         },
         {
             "emoji": "🍯",
@@ -834,7 +888,8 @@
             "cepages": ["Chenin"],
             "style": "Blanc moelleux de chenin, production confidentielle",
             "appellation": { "niveau": "AOC communale", "depuis": "1962" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["tuffeau", "calcaire"] }
         },
         {
             "emoji": "🍇",
@@ -849,7 +904,8 @@
             "cepages": ["Sauvignon blanc", "Cabernet franc", "Gamay"],
             "style": "Blancs de sauvignon ; rouges & rosés — vignoble satellite au sud",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["argilo-calcaire", "tuffeau"] }
         },
 
         {
@@ -865,7 +921,8 @@
             "cepages": ["Cabernet franc", "Grolleau", "Gamay", "Pinot noir"],
             "style": "Rosé sec régional, produit en Anjou, Saumur et Touraine",
             "appellation": { "niveau": "AOC régionale", "depuis": "1974" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["schiste", "tuffeau", "argilo-calcaire"] }
         },
         {
             "emoji": "🥂",
@@ -881,7 +938,8 @@
             "style": "Effervescent méthode traditionnelle, blanc ou rosé",
             "accord": "Apéritif, fouées",
             "appellation": { "niveau": "AOC régionale", "depuis": "1975" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": { "terroirs": ["tuffeau", "schiste", "argilo-calcaire"] }
         },
 
         {
@@ -897,7 +955,10 @@
             "cepages": ["Melon de Bourgogne"],
             "style": "Régionale : blanc sec vif et iodé, cépage melon de Bourgogne",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
-            "notoriete": "majeur"
+            "notoriete": "majeur",
+            "meta": {
+                "terroirs": ["gneiss", "granite", "gabbro", "micaschiste"]
+            }
         },
         {
             "emoji": "🥂",
@@ -918,7 +979,8 @@
                 "depuis": "1936",
                 "note": "Porte dix crus communaux reconnus depuis 2011."
             },
-            "notoriete": "phare"
+            "notoriete": "phare",
+            "meta": { "terroirs": ["gneiss", "granite", "gabbro"] }
         },
         {
             "emoji": "🥂",
@@ -933,7 +995,8 @@
             "cepages": ["Melon de Bourgogne"],
             "style": "Blanc sec autour du lac de Grand-Lieu",
             "appellation": { "niveau": "AOC communale", "depuis": "1994" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["gneiss", "granite", "micaschiste"] }
         },
         {
             "emoji": "🥂",
@@ -948,7 +1011,8 @@
             "cepages": ["Melon de Bourgogne"],
             "style": "Blanc sec sur les coteaux vers Ancenis",
             "appellation": { "niveau": "AOC communale", "depuis": "1936" },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["granite", "gneiss", "schiste"] }
         },
         {
             "emoji": "🍇",
@@ -963,7 +1027,8 @@
             "cepages": ["Gamay", "Malvoisie (Pinot gris)"],
             "style": "Rouges & rosés de gamay ; blanc tendre de malvoisie",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["schiste", "granite", "gneiss"] }
         },
         {
             "emoji": "🥂",
@@ -982,7 +1047,8 @@
                 "depuis": "2011",
                 "note": "Ancien AOVDQS, promu AOP en 2011."
             },
-            "notoriete": "notable"
+            "notoriete": "notable",
+            "meta": { "terroirs": ["gneiss", "granite", "gabbro"] }
         },
         {
             "emoji": "🍇",
@@ -1003,7 +1069,8 @@
             ],
             "style": "Rouges, blancs et rosés selon cinq terroirs : Brem, Mareuil, Pissotte, Vix, Chantonnay",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["schiste", "granite", "gneiss"] }
         },
 
         {
@@ -1023,7 +1090,8 @@
                 "depuis": "2011",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["granite"] }
         },
         {
             "emoji": "🥂",
@@ -1042,7 +1110,8 @@
                 "depuis": "2011",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["gabbro"] }
         },
         {
             "emoji": "🥂",
@@ -1061,7 +1130,8 @@
                 "depuis": "2011",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["gneiss"] }
         },
         {
             "emoji": "🥂",
@@ -1080,7 +1150,8 @@
                 "depuis": "2020",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["gabbro", "granite"] }
         },
         {
             "emoji": "🥂",
@@ -1099,7 +1170,8 @@
                 "depuis": "2019",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["granite"] }
         },
         {
             "emoji": "🥂",
@@ -1118,7 +1190,8 @@
                 "depuis": "2019",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["gneiss"] }
         },
         {
             "emoji": "🥂",
@@ -1137,7 +1210,8 @@
                 "depuis": "2020",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["gabbro"] }
         },
         {
             "emoji": "🥂",
@@ -1156,7 +1230,8 @@
                 "depuis": "2020",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["gneiss"] }
         },
         {
             "emoji": "🥂",
@@ -1175,7 +1250,8 @@
                 "depuis": "2020",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
-            "notoriete": "confidentiel"
+            "notoriete": "confidentiel",
+            "meta": { "terroirs": ["gneiss", "granite"] }
         }
     ]
 }

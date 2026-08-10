@@ -43,6 +43,30 @@ export const vignobleEntrySchema = z
             })
             .strict(),
         notoriete: z.enum(["phare", "majeur", "notable", "confidentiel"]),
+        meta: z
+            .object({
+                terroirs: z
+                    .array(
+                        z.enum([
+                            "tuffeau",
+                            "calcaire",
+                            "marne-calcaire",
+                            "argilo-calcaire",
+                            "argile-a-silex",
+                            "schiste",
+                            "micaschiste",
+                            "gneiss",
+                            "granite",
+                            "gabbro",
+                            "sable",
+                            "graviers",
+                            "alluvions",
+                            "faluns",
+                        ]),
+                    )
+                    .min(1),
+            })
+            .strict(),
     })
     .strict();
 

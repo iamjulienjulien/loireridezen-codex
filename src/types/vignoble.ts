@@ -2,8 +2,10 @@
 // Vignoble & AOC ligérien — sibling de Chateau/Flore (même grammaire de codex).
 
 import type { VignobleCouleur } from "@/registry/Meta/vignoble-couleur";
+import type { VignobleTerroir } from "@/registry/Meta/vignoble-terroir";
 
 export type { VignobleCouleur } from "@/registry/Meta/vignoble-couleur";
+export type { VignobleTerroir } from "@/registry/Meta/vignoble-terroir";
 
 /** Notoriété sur le fil — miroir de la rareté / renommée. */
 export type VignobleNotoriete = "phare" | "majeur" | "notable" | "confidentiel";
@@ -31,6 +33,11 @@ export interface VignobleAppellation {
 export interface VignobleCoordonnees {
     lat: number;
     lng: number;
+}
+
+/** Métadonnées éditoriales permettant de relier l'appellation à ses sols. */
+export interface VignobleMeta {
+    terroirs: VignobleTerroir[];
 }
 
 export interface Vignoble {
@@ -64,6 +71,7 @@ export interface Vignoble {
     // ── Statut ──
     appellation: VignobleAppellation;
     notoriete: VignobleNotoriete;
+    meta: VignobleMeta;
 }
 
 // — exemple renseigné —
@@ -88,5 +96,6 @@ export const VIGNOBLES: Vignoble[] = [
             note: "AOC pour le blanc en 1936, étendue aux rouge et rosé (pinot noir) en 1959.",
         },
         notoriete: "phare",
+        meta: { terroirs: ["argilo-calcaire", "calcaire", "argile-a-silex"] },
     },
 ];
