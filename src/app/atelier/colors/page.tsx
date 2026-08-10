@@ -23,7 +23,6 @@ function AmbiancePreview({ colors }: { colors: readonly (readonly string[])[] })
     const value = (token: string) => colors.find((color) => color[1] === token)?.[2] ?? "transparent";
     const fond = value("fond");
     const surface = value("surface");
-    const elevation = value("elevation");
     const primary = value("texte-primaire");
     const secondary = value("texte-secondaire");
     const accent = value("accent");

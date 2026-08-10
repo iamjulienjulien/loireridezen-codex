@@ -1,7 +1,5 @@
 "use client";
 
-import { useMemo } from "react";
-
 import LRZTypography from "@/components/LRZTypography";
 
 import styles from "./LRZTypographyPlayground.module.css";

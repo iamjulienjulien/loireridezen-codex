@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- ImageResponse requires plain image elements. */
 import { ImageResponse } from "next/og";
 
 async function loadGoogleFont(font: string, text: string) {

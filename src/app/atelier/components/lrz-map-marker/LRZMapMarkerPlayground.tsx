@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- The playground previews arbitrary marker media nodes. */
 "use client";
 
 import { useState } from "react";

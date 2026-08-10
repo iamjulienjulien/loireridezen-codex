@@ -9,13 +9,10 @@ import {
     CircleX,
     ExternalLink,
     Globe2,
-    Landmark,
     MapPin,
     Music2,
     Route,
-    TentTree,
     Umbrella,
-    UtensilsCrossed,
     Waves,
 } from "lucide-react";
 
@@ -24,10 +21,8 @@ import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
 import LRZBadge, { type LRZBadgeIcon } from "@/components/LRZBadge/LRZBadge";
 import LRZCard from "@/components/LRZCard";
 import LRZMetaList, { type LRZMetaListItem } from "@/components/LRZMetaList";
-import { LRZStamp } from "@/components/LRZStamp";
 import { LRZTextClamp } from "@/components/LRZTextClamp";
-import { getTerritoire } from "@/registry/territoires";
-import type { Guinguette, GuinguetteStatut } from "@/types/guinguette";
+import type { Guinguette } from "@/types/guinguette";
 import type { LRZColor } from "@/types/lrz";
 
 import styles from "./GuinguetteCard.module.css";
@@ -38,12 +33,6 @@ const TYPE_LABELS: Record<Guinguette["type"], string> = {
     "restaurant-guinguette": "Restaurant-guinguette",
     "bar-guinguette": "Bar-guinguette",
     "guinguette-itinerante": "Guinguette itinérante",
-};
-
-const STATUS_LABELS: Record<GuinguetteStatut, string> = {
-    actif: "Adresse active",
-    a_verifier: "À vérifier",
-    historique: "Lieu historique",
 };
 
 const VERIFICATION_LABELS: Record<string, string> = {
@@ -93,12 +82,9 @@ export default function GuinguetteCard({
     expandAll = false,
 }: GuinguetteCardProps) {
     const color = getCardColor(guinguette);
-    const territoire = getTerritoire(guinguette.territoire);
     const locality = guinguette.communeDeleguee
         ? `${guinguette.communeDeleguee} · ${guinguette.commune}`
         : guinguette.commune;
-    const isItinerant = guinguette.type === "guinguette-itinerante";
-    const isUnverified = guinguette.statut === "a_verifier";
     const titleId = `guinguette-${guinguette.slug}-title`;
     const links = Object.entries(guinguette.liens).filter(
         (entry): entry is [LinkKey, string] =>
@@ -177,9 +163,6 @@ export default function GuinguetteCard({
         >
             <div className={styles.content}>
                 <header className={styles.identity}>
-                    {/* <span className={styles.identityIcon} aria-hidden="true">
-                        {isItinerant ? <TentTree /> : <Umbrella />}
-                    </span> */}
                     <LRZSymbol
                         collection="common"
                         meta="territoire"
@@ -214,18 +197,6 @@ export default function GuinguetteCard({
                                 : null}
                         </p> */}
                     </div>
-
-                    {/* <LRZBadge
-                        label={STATUS_LABELS[guinguette.statut]}
-                        icon={getStatusIcon(guinguette.statut)}
-                        color={color}
-                        variant={
-                            guinguette.statut === "actif" ? "plaque" : "shield"
-                        }
-                        dashed={isUnverified}
-                        gradient={guinguette.statut === "actif"}
-                        className={styles.status}
-                    /> */}
                 </header>
 
                 <div className={styles.wave} aria-hidden="true" />
@@ -243,21 +214,6 @@ export default function GuinguetteCard({
                 ) : null}
 
                 <div className={styles.stamps} aria-label="Repères illustrés">
-                    {/* <LRZStamp
-                        collection="common"
-                        meta="territoire"
-                        slug={guinguette.territoire}
-                        variant="chip"
-                        tone="outline"
-                        size="xs"
-                        font="mono"
-                        labelSize={11}
-                        paddingX={10}
-                        paddingY={4}
-                        gap="lg"
-                        symbolScale={0.9}
-                        gradient={false}
-                    /> */}
                     {guinguette.ambiance.map((ambience) => (
                         <LRZSymbol
                             key={ambience}
@@ -467,12 +423,6 @@ function Signal({
             </span>
         </span>
     );
-}
-
-function getStatusIcon(status: GuinguetteStatut) {
-    if (status === "actif") return <BadgeCheck size={14} />;
-    if (status === "a_verifier") return <CircleHelp size={14} />;
-    return <Landmark size={14} />;
 }
 
 function getLinkIcon(key: LinkKey) {

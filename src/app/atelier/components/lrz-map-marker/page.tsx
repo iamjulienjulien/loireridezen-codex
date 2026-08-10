@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- Marker media is rendered as arbitrary component content. */
 import Link from "next/link";
 
 import { LRZMapMarker } from "@/components/LRZMapMarker";

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element -- ImageResponse requires plain image elements. */
 import { ImageResponse } from "next/og";
 
 import { LRZ_CODEX_INDEX_SYMBOLS } from "@/registry/symbols";
