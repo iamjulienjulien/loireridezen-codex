@@ -39,57 +39,88 @@ export default function HomeContent({
 
                         <div className="mt-3 grid gap-4">
                             {universe.indexes.map((entry) => (
-                                <Link
+                                <HomeIndexLink
                                     key={entry.href}
-                                    href={entry.href}
-                                    data-index-format={entry.format}
-                                    style={
-                                        {
-                                            "--index-accent": entry.accent,
-                                        } as CSSProperties
+                                    entry={entry}
+                                    indexesCustomEmojiEnabled={
+                                        indexesCustomEmojiEnabled
                                     }
-                                    className="group flex items-center gap-4 rounded-[10px] border border-[var(--border-subtle)] bg-[var(--color-ambiance-surface)] p-5 text-left shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[var(--index-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--index-accent)]"
-                                >
-                                    {indexesCustomEmojiEnabled &&
-                                    isLRZCodexIndexSymbolSlug(entry.slug) ? (
-                                        <LRZSymbol
-                                            collection="codex"
-                                            meta="index"
-                                            slug={entry.slug}
-                                            size="lg"
-                                            frame="subtle"
-                                            shape="rounded"
-                                            padding="sm"
-                                            decorative
-                                        />
-                                    ) : (
-                                        <span
-                                            aria-hidden
-                                            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] bg-[var(--gold-soft)] text-2xl"
-                                        >
-                                            {entry.mark}
-                                        </span>
-                                    )}
-                                    <div className="min-w-0 flex-1">
-                                        <h3 className="mt-0.5 font-[family-name:var(--font-display)] text-lg font-medium tracking-tight text-[var(--color-ambiance-texte-primaire)]">
-                                            {entry.title}
-                                        </h3>
-                                        <p className="mt-1 text-[13px] leading-snug text-[var(--color-ambiance-texte-secondaire)]">
-                                            {entry.description}
-                                        </p>
-                                    </div>
-                                    <span
-                                        aria-hidden
-                                        className="shrink-0 text-[#c8893a] transition-transform group-hover:translate-x-1"
-                                    >
-                                        →
-                                    </span>
-                                </Link>
+                                />
                             ))}
                         </div>
                     </section>
                 );
             })}
         </nav>
+    );
+}
+
+function HomeIndexLink({
+    entry,
+    indexesCustomEmojiEnabled,
+}: {
+    entry: IndexEntry;
+    indexesCustomEmojiEnabled: boolean;
+}) {
+    const isPreview = !entry.env.includes("production");
+
+    return (
+        <Link
+            href={entry.href}
+            data-index-format={entry.format}
+            data-index-availability={isPreview ? "preview" : "published"}
+            style={
+                {
+                    "--index-accent": entry.accent,
+                } as CSSProperties
+            }
+            className={`group flex items-center gap-4 rounded-[10px] border bg-[var(--color-ambiance-surface)] p-5 text-left shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[var(--index-accent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--index-accent)] ${
+                isPreview
+                    ? "border-dashed border-[var(--index-accent)]"
+                    : "border-solid border-[var(--border-subtle)]"
+            }`}
+        >
+            {indexesCustomEmojiEnabled &&
+            isLRZCodexIndexSymbolSlug(entry.slug) ? (
+                <LRZSymbol
+                    collection="codex"
+                    meta="index"
+                    slug={entry.slug}
+                    size="lg"
+                    frame="subtle"
+                    shape="rounded"
+                    padding="sm"
+                    decorative
+                />
+            ) : (
+                <span
+                    aria-hidden
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[8px] bg-[var(--gold-soft)] text-2xl"
+                >
+                    {entry.mark}
+                </span>
+            )}
+            <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <h3 className="mt-0.5 font-[family-name:var(--font-display)] text-lg font-medium tracking-tight text-[var(--color-ambiance-texte-primaire)]">
+                        {entry.title}
+                    </h3>
+                    {isPreview ? (
+                        <span className="rounded-full border border-dashed border-[var(--index-accent)] px-1.5 py-0.5 font-[family-name:var(--font-mono)] text-[8px] font-semibold uppercase tracking-[0.1em] text-[var(--index-accent)]">
+                            En préparation
+                        </span>
+                    ) : null}
+                </div>
+                <p className="mt-1 text-[13px] leading-snug text-[var(--color-ambiance-texte-secondaire)]">
+                    {entry.description}
+                </p>
+            </div>
+            <span
+                aria-hidden
+                className="shrink-0 text-[#c8893a] transition-transform group-hover:translate-x-1"
+            >
+                →
+            </span>
+        </Link>
     );
 }

@@ -20,6 +20,8 @@ export type PageHeaderVariant =
 export type PageHeaderProps = {
     variant: PageHeaderVariant;
     title: string;
+    /** Statut ou précision affiché à côté du titre de la variante Index. */
+    titleAddon?: ReactNode;
     eyebrow?: ReactNode;
     description?: ReactNode;
     mark?: ReactNode;
@@ -41,6 +43,7 @@ type PageHeaderStyle = CSSProperties & {
 export default function PageHeader({
     variant,
     title,
+    titleAddon,
     eyebrow = "Loire Ride Zen",
     description,
     mark,
@@ -152,7 +155,10 @@ export default function PageHeader({
                                 </span>
                             )}
 
-                            <h1 className={styles.indexTitle}>{title}</h1>
+                            <h1 className={styles.indexTitle}>
+                                <span>{title}</span>
+                                {titleAddon}
+                            </h1>
                         </div>
                     </div>
 

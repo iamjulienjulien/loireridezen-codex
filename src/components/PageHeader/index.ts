@@ -2,6 +2,7 @@ export { default, default as PageHeader } from "./PageHeader";
 
 export {
     PageHeaderBreadcrumbs,
+    PageHeaderIndexAvailability,
     PageHeaderIndexMark,
     PageHeaderIndexNavigation,
 } from "./PageHeaderSlots";

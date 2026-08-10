@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import PageHeader, {
+    PageHeaderIndexAvailability,
     PageHeaderIndexMark,
     PageHeaderIndexNavigation,
 } from "@/components/PageHeader";
@@ -67,6 +68,7 @@ export default function IndexShell({
                 <PageHeader
                     variant="index"
                     title={page.title}
+                    titleAddon={<PageHeaderIndexAvailability index={page} />}
                     eyebrow={page.eyebrow}
                     mark={resolvedMark}
                     accent={page.accent}

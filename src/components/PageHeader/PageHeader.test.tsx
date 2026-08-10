@@ -6,6 +6,7 @@ import { getIndexesForEnv } from "@/registry/indexes";
 import PageHeader from "./PageHeader";
 import {
     PageHeaderBreadcrumbs,
+    PageHeaderIndexAvailability,
     PageHeaderIndexMark,
     PageHeaderIndexNavigation,
 } from "./PageHeaderSlots";
@@ -59,6 +60,33 @@ describe("PageHeader", () => {
         expect(markup).toContain('aria-label="Index du Codex"');
         expect(markup).toContain(`href="${current.href}"`);
         expect(markup).toContain('aria-current="page"');
+    });
+
+    it("marks development-only indexes in the title and navigation", () => {
+        vi.stubEnv("CURRENT_ENV", "development");
+        const indexes = getIndexesForEnv("development");
+        const current = indexes.find(
+            (index) => !(index.env as readonly string[]).includes("production"),
+        )!;
+        const markup = renderToStaticMarkup(
+            <PageHeader
+                variant="index"
+                title={current.title}
+                accent={current.accent}
+                color={current.color}
+                titleAddon={<PageHeaderIndexAvailability index={current} />}
+                navigation={
+                    <PageHeaderIndexNavigation
+                        current={current.href}
+                        indexes={indexes}
+                    />
+                }
+            />,
+        );
+
+        expect(markup).toContain('data-index-availability="preview"');
+        expect(markup).toContain('data-index-availability="published"');
+        expect(markup).toContain("En préparation");
     });
 
     it("preserves the compact historical Home composition", () => {

@@ -8,18 +8,18 @@ import HomeContent from "./HomeContent";
 describe("HomeContent", () => {
     afterEach(() => vi.unstubAllEnvs());
 
-    it("groups the published indexes into inhabited and living universes", () => {
+    it("groups the published indexes into their editorial universes", () => {
         vi.stubEnv("CURRENT_ENV", "production");
 
         const markup = renderToStaticMarkup(
             <HomeContent indexes={getIndexesForEnv("production")} />,
         );
 
-        expect(markup.match(/<h2/g)).toHaveLength(2);
-        expect(markup.match(/<h3/g)).toHaveLength(3);
+        expect(markup.match(/<h2/g)).toHaveLength(3);
+        expect(markup.match(/<h3/g)).toHaveLength(5);
         expect(markup).toContain("Le fleuve habité");
         expect(markup).toContain("Le fleuve vivant");
-        expect(markup).not.toContain("Le fleuve raconté");
+        expect(markup).toContain("Le fleuve raconté");
         expect(markup).toContain('data-index-format="catalogue"');
         expect(markup).toContain('data-index-format="naturaliste"');
     });
@@ -51,11 +51,23 @@ describe("HomeContent", () => {
             universe: "raconte",
             format: "repertoire",
             dataFile: "catalogue-personnages.json",
-            env: ["development"],
+            env: ["development", "production"],
         });
         expect(getIndexBySlug("vocabulaire")).toMatchObject({
             universe: "raconte",
             format: "lexique",
         });
+    });
+
+    it("marks development-only indexes as previews", () => {
+        vi.stubEnv("CURRENT_ENV", "development");
+
+        const markup = renderToStaticMarkup(
+            <HomeContent indexes={getIndexesForEnv("development")} />,
+        );
+
+        expect(markup).toContain('data-index-availability="preview"');
+        expect(markup).toContain('data-index-availability="published"');
+        expect(markup).toContain("En préparation");
     });
 });

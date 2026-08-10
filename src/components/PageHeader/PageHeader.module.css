@@ -470,6 +470,10 @@
 }
 
 .indexTitle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
     margin: 0;
     color: var(--color-ambiance-texte-primaire);
     font-family: var(--font-display);
@@ -477,6 +481,22 @@
     font-weight: 500;
     letter-spacing: -0.02em;
     line-height: 1;
+}
+
+.indexAvailability {
+    display: inline-flex;
+    align-items: center;
+    min-height: 20px;
+    padding: 3px 7px;
+    border: 1px dashed var(--accent);
+    border-radius: 999px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.1;
+    text-transform: uppercase;
 }
 
 .indexNav {
@@ -532,6 +552,16 @@
         in srgb,
         var(--accent) 8%,
         var(--color-ambiance-elevation)
+    );
+}
+
+.indexNavButton[data-index-availability="preview"] {
+    margin: -1px;
+    border: 1px dashed color-mix(in srgb, var(--accent) 68%, transparent);
+    color: color-mix(
+        in srgb,
+        var(--accent) 72%,
+        var(--color-ambiance-texte-secondaire)
     );
 }
 

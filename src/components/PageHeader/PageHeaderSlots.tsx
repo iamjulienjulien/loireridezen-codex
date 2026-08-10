@@ -63,6 +63,23 @@ export function PageHeaderIndexMark({
     );
 }
 
+export function PageHeaderIndexAvailability({
+    index,
+}: {
+    index: Pick<IndexEntry, "env">;
+}) {
+    if (index.env.includes("production")) return null;
+
+    return (
+        <span
+            className={styles.indexAvailability}
+            data-index-availability="preview"
+        >
+            En préparation
+        </span>
+    );
+}
+
 export function PageHeaderIndexNavigation({
     current,
     indexes,
@@ -83,6 +100,7 @@ export function PageHeaderIndexNavigation({
             {orderedIndexes.map((index) => {
                 const isCurrentPage = index.href === current;
                 const isCurrentSection = index.href === activeSectionHref;
+                const isPreview = !index.env.includes("production");
 
                 return (
                     <Link
@@ -93,6 +111,9 @@ export function PageHeaderIndexNavigation({
                         aria-current={isCurrentPage ? "page" : undefined}
                         data-current-section={
                             !isCurrentPage && isCurrentSection ? "" : undefined
+                        }
+                        data-index-availability={
+                            isPreview ? "preview" : "published"
                         }
                     >
                         {featureIsEnabled("indexesCustomEmoji") &&
