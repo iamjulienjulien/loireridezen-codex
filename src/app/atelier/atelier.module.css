@@ -196,6 +196,13 @@
     align-items: start;
 }
 
+.territoireShowcaseGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
 .collectionMetaGrid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -223,6 +230,7 @@
     .showcaseGrid,
     .collectionShowcaseGrid,
     .personnageShowcaseGrid,
+    .territoireShowcaseGrid,
     .collectionMetaGrid {
         grid-template-columns: 1fr;
     }

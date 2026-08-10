@@ -1,18 +1,21 @@
 "use client";
 
-import { useState } from "react";
-
 import ChateauxCard from "@/app/chateaux/ChateauxCard";
 import FauneCard from "@/app/faune/FauneCard";
 import FloreCard from "@/app/flore/FloreCard";
-import GuinguetteCardV3 from "@/app/guinguettes/GuinguetteCardV3";
-import GuinguetteCardV4 from "@/app/guinguettes/GuinguetteCardV4";
+import GuinguetteCard from "@/app/guinguettes/GuinguetteCard";
 import PersonnageCard from "@/app/personnages/PersonnageCard";
+import TerritoireCard from "@/app/territoires/TerritoireCard";
+import VignoblesCard from "@/app/vignobles/VignoblesCard";
+import type { ChateauV2 } from "@/types/chateauV2";
+import type { Guinguette } from "@/types/guinguette";
 import type {
     Personnage,
     PersonnagesParLieu,
     RelationPersonnageLieu,
 } from "@/types/personnage";
+import type { TerritoireCatalogueEntry } from "@/types/territoireCatalogue";
+import type { Vignoble } from "@/types/vignoble";
 
 import { MOCK_CHATEAU } from "../mockChateau";
 import { MOCK_FAUNE } from "../mockFaune";
@@ -25,17 +28,25 @@ type PersonnageExample = {
     relations: RelationPersonnageLieu[];
 };
 
+type TerritoireExample = {
+    territoire: TerritoireCatalogueEntry;
+    chateaux: readonly ChateauV2[];
+    guinguettes: readonly Guinguette[];
+};
+
+const noop = () => undefined;
+
 export default function MetierShowcase({
     personnageExamples,
     personnagesByChateau,
+    territoireExamples,
+    vignobleExamples,
 }: {
     personnageExamples: readonly PersonnageExample[];
     personnagesByChateau: PersonnagesParLieu;
+    territoireExamples: readonly TerritoireExample[];
+    vignobleExamples: readonly Vignoble[];
 }) {
-    const [open, setOpen] = useState<Record<string, boolean>>({});
-    const toggle = (slug: string) =>
-        setOpen((current) => ({ ...current, [slug]: !current[slug] }));
-
     return (
         <div className={styles.showcaseStack}>
             <section id="faune-card" className={styles.showcaseSection}>
@@ -88,43 +99,67 @@ export default function MetierShowcase({
             <section id="guinguette-card" className={styles.showcaseSection}>
                 <header className={styles.showcaseHeader}>
                     <p>Fiche métier · 04</p>
-                    <h2>GuinguetteCardV3</h2>
+                    <h2>GuinguetteCard</h2>
                     <span>
-                        Les escales, leurs ambiances et leurs informations
-                        pratiques.
+                        Une lecture éditoriale des escales, de leurs ambiances
+                        et de leurs informations pratiques.
                     </span>
                 </header>
                 <div className={styles.showcaseGrid}>
                     {MOCK_GUINGUETTE.map((item) => (
-                        <GuinguetteCardV3
-                            key={item.slug}
-                            guinguette={item}
-                            open={Boolean(open[item.slug])}
-                            onToggle={() => toggle(item.slug)}
+                        <GuinguetteCard key={item.slug} guinguette={item} />
+                    ))}
+                </div>
+            </section>
+
+            <section id="vignobles-card" className={styles.showcaseSection}>
+                <header className={styles.showcaseHeader}>
+                    <p>Fiche métier · 05</p>
+                    <h2>VignoblesCard</h2>
+                    <span>
+                        Les appellations, leurs robes, leurs terroirs et leurs
+                        profils de dégustation.
+                    </span>
+                </header>
+                <div className={styles.showcaseGrid}>
+                    {vignobleExamples.map((vignoble) => (
+                        <VignoblesCard
+                            key={vignoble.slug}
+                            version={4}
+                            d={vignoble}
+                            open={false}
+                            onToggle={noop}
                         />
                     ))}
                 </div>
             </section>
 
-            <section id="guinguette-card-v4" className={styles.showcaseSection}>
+            <section id="territoire-card" className={styles.showcaseSection}>
                 <header className={styles.showcaseHeader}>
-                    <p>Fiche métier · 05</p>
-                    <h2>GuinguetteCardV4</h2>
+                    <p>Fiche métier · 06</p>
+                    <h2>TerritoireCard</h2>
                     <span>
-                        Une lecture éditoriale alignée sur Faune et Flore, avec
-                        les ambiances illustrées par LRZStamp.
+                        Les chapitres géohistoriques, leurs repères et les lieux
+                        qui composent le fil ligérien.
                     </span>
                 </header>
-                <div className={styles.showcaseGrid}>
-                    {MOCK_GUINGUETTE.map((item) => (
-                        <GuinguetteCardV4 key={item.slug} guinguette={item} />
-                    ))}
+                <div className={styles.territoireShowcaseGrid}>
+                    {territoireExamples.map(
+                        ({ territoire, chateaux, guinguettes }) => (
+                            <TerritoireCard
+                                key={territoire.slug}
+                                territoire={territoire}
+                                chateaux={chateaux}
+                                guinguettes={guinguettes}
+                            />
+                        ),
+                    )}
                 </div>
             </section>
 
             <section id="personnage-card" className={styles.showcaseSection}>
                 <header className={styles.showcaseHeader}>
-                    <p>Fiche métier · 06</p>
+                    <p>Fiche métier · 07</p>
                     <h2>PersonnageCard</h2>
                     <span>
                         Les figures historiques, leurs rôles et leurs liens avec
