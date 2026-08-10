@@ -30,6 +30,7 @@ export const isoDateSchema = z.string().refine(isRealIsoDate, {
 
 export const baseMetaShape = {
     titre: z.string().min(1),
+    etat: z.enum(["publie", "brouillon"]),
     source: z.string().min(1),
     corridor: z.string().min(1),
     maj: isoDateSchema,

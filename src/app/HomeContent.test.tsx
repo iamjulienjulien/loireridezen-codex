@@ -16,7 +16,7 @@ describe("HomeContent", () => {
         );
 
         expect(markup.match(/<h2/g)).toHaveLength(3);
-        expect(markup.match(/<h3/g)).toHaveLength(5);
+        expect(markup.match(/<h3/g)).toHaveLength(7);
         expect(markup).toContain("Le fleuve habité");
         expect(markup).toContain("Le fleuve vivant");
         expect(markup).toContain("Le fleuve raconté");
@@ -45,7 +45,7 @@ describe("HomeContent", () => {
             universe: "raconte",
             format: "catalogue",
             dataFile: "catalogue-territoires.json",
-            env: ["development"],
+            env: ["development", "production"],
         });
         expect(getIndexBySlug("personnages")).toMatchObject({
             universe: "raconte",
@@ -59,15 +59,17 @@ describe("HomeContent", () => {
         });
     });
 
-    it("marks development-only indexes as previews", () => {
+    it("keeps disabled indexes out of every public environment", () => {
         vi.stubEnv("CURRENT_ENV", "development");
 
         const markup = renderToStaticMarkup(
             <HomeContent indexes={getIndexesForEnv("development")} />,
         );
 
-        expect(markup).toContain('data-index-availability="preview"');
         expect(markup).toContain('data-index-availability="published"');
-        expect(markup).toContain("En préparation");
+        expect(markup).not.toContain("En préparation");
+        expect(markup).not.toContain("Vocabulaire du fleuve");
+        expect(markup).not.toContain("Petit patrimoine du fil");
+        expect(markup).not.toContain("Villes et villages de la Loire");
     });
 });

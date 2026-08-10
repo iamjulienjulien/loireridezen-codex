@@ -594,7 +594,15 @@
             },
             "PublishedIndexSlug": {
                 "type": "string",
-                "enum": ["faune", "flore", "chateaux"],
+                "enum": [
+                    "faune",
+                    "flore",
+                    "chateaux",
+                    "guinguettes",
+                    "territoires",
+                    "personnages",
+                    "vignobles"
+                ],
                 "description": "Identifiant d’un index actuellement publié."
             },
             "EntrySlug": {
@@ -1043,8 +1051,9 @@
                 },
                 "additionalProperties": false
             },
-            "ChateauIllustrationVariant": {
+            "ChateauIllustrations": {
                 "type": "object",
+                "required": ["aube", "jour", "soir", "nuit"],
                 "properties": {
                     "aube": {
                         "type": "string",
@@ -1065,6 +1074,96 @@
                 },
                 "additionalProperties": false
             },
+            "ChateauMeta": {
+                "type": "object",
+                "required": ["architecture", "epoque", "experience"],
+                "properties": {
+                    "architecture": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "gallo-romaine",
+                                "pre-romane",
+                                "medievale",
+                                "romane",
+                                "gothique",
+                                "gothique-flamboyant",
+                                "renaissance",
+                                "classique",
+                                "baroque",
+                                "rocaille",
+                                "neoclassique",
+                                "neogothique",
+                                "historiciste",
+                                "industrielle",
+                                "art-nouveau",
+                                "art-deco",
+                                "moderniste",
+                                "brutaliste",
+                                "contemporaine",
+                                "vernaculaire",
+                                "troglodytique"
+                            ]
+                        }
+                    },
+                    "epoque": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "prehistoire",
+                                "protohistoire",
+                                "antiquite",
+                                "moyen-age",
+                                "renaissance",
+                                "ancien-regime",
+                                "revolution-empire",
+                                "xixe-siecle",
+                                "xxe-siecle",
+                                "xxie-siecle"
+                            ]
+                        }
+                    },
+                    "experience": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "visite-libre",
+                                "visite-guidee",
+                                "exposition",
+                                "reconstitution",
+                                "demonstration",
+                                "atelier",
+                                "jeu-piste",
+                                "promenade",
+                                "randonnee",
+                                "velo",
+                                "equitation",
+                                "bateau",
+                                "canoe-kayak",
+                                "baignade",
+                                "peche",
+                                "observation-nature",
+                                "photographie",
+                                "contemplation",
+                                "detente",
+                                "pique-nique",
+                                "repas",
+                                "degustation",
+                                "marche-local",
+                                "concert",
+                                "spectacle",
+                                "danse",
+                                "fete-populaire",
+                                "montgolfiere"
+                            ]
+                        }
+                    }
+                },
+                "additionalProperties": false
+            },
             "ChateauAttributes": {
                 "type": "object",
                 "required": [
@@ -1073,6 +1172,8 @@
                     "departement",
                     "coordonnees",
                     "riviere",
+                    "illustrations",
+                    "meta",
                     "epoque",
                     "style",
                     "construction",
@@ -1087,8 +1188,11 @@
                             "type": "string"
                         }
                     },
-                    "illustrationVariant": {
-                        "$ref": "#/components/schemas/ChateauIllustrationVariant"
+                    "illustrations": {
+                        "$ref": "#/components/schemas/ChateauIllustrations"
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/ChateauMeta"
                     },
                     "commune": {
                         "type": "string"
@@ -1135,6 +1239,380 @@
                             "privé, non visitable",
                             "inconnu"
                         ]
+                    }
+                },
+                "additionalProperties": false
+            },
+            "VignobleAppellation": {
+                "type": "object",
+                "required": ["niveau"],
+                "properties": {
+                    "niveau": {
+                        "type": "string",
+                        "enum": ["AOC communale", "AOC régionale", "IGP"]
+                    },
+                    "depuis": {
+                        "type": "string"
+                    },
+                    "note": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "VignobleMeta": {
+                "type": "object",
+                "required": ["terroirs", "cepages"],
+                "properties": {
+                    "terroirs": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "tuffeau",
+                                "calcaire",
+                                "marne-calcaire",
+                                "argilo-calcaire",
+                                "argile-a-silex",
+                                "schiste",
+                                "micaschiste",
+                                "gneiss",
+                                "granite",
+                                "gabbro",
+                                "sable",
+                                "graviers",
+                                "alluvions",
+                                "faluns"
+                            ]
+                        }
+                    },
+                    "cepages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "chenin",
+                                "sauvignon-blanc",
+                                "melon-de-bourgogne",
+                                "chardonnay",
+                                "chasselas",
+                                "folle-blanche",
+                                "romorantin",
+                                "menu-pineau",
+                                "tressallier",
+                                "cabernet-franc",
+                                "cabernet-sauvignon",
+                                "pinot-noir",
+                                "pinot-gris",
+                                "pinot-meunier",
+                                "gamay",
+                                "grolleau-noir",
+                                "grolleau-gris",
+                                "pineau-daunis",
+                                "cot"
+                            ]
+                        }
+                    }
+                },
+                "additionalProperties": false
+            },
+            "VignobleAttributes": {
+                "type": "object",
+                "required": [
+                    "autresNoms",
+                    "couleur",
+                    "rive",
+                    "departement",
+                    "coordonnees",
+                    "cepages",
+                    "style",
+                    "appellation",
+                    "notoriete",
+                    "meta"
+                ],
+                "properties": {
+                    "autresNoms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "couleur": {
+                        "type": "string",
+                        "enum": [
+                            "blanc sec",
+                            "blanc moelleux",
+                            "rouge",
+                            "rosé",
+                            "effervescent"
+                        ]
+                    },
+                    "rive": {
+                        "type": "string",
+                        "enum": [
+                            "Auvergne & Forez",
+                            "Centre-Loire",
+                            "Touraine",
+                            "Anjou-Saumur",
+                            "Pays nantais"
+                        ]
+                    },
+                    "departement": {
+                        "type": "string"
+                    },
+                    "coordonnees": {
+                        "$ref": "#/components/schemas/Coordinates"
+                    },
+                    "cepages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "style": {
+                        "type": "string"
+                    },
+                    "accord": {
+                        "type": "string"
+                    },
+                    "appellation": {
+                        "$ref": "#/components/schemas/VignobleAppellation"
+                    },
+                    "notoriete": {
+                        "type": "string",
+                        "enum": ["phare", "majeur", "notable", "confidentiel"]
+                    },
+                    "meta": {
+                        "$ref": "#/components/schemas/VignobleMeta"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GuinguettePosition": {
+                "type": "object",
+                "required": ["latitude", "longitude"],
+                "properties": {
+                    "latitude": {
+                        "type": ["number", "null"],
+                        "minimum": -90,
+                        "maximum": 90
+                    },
+                    "longitude": {
+                        "type": ["number", "null"],
+                        "minimum": -180,
+                        "maximum": 180
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GuinguetteLinks": {
+                "type": "object",
+                "required": ["siteWeb", "instagram", "facebook", "googleMaps"],
+                "properties": {
+                    "siteWeb": {
+                        "type": ["string", "null"]
+                    },
+                    "instagram": {
+                        "type": ["string", "null"]
+                    },
+                    "facebook": {
+                        "type": ["string", "null"]
+                    },
+                    "googleMaps": {
+                        "type": ["string", "null"]
+                    }
+                },
+                "additionalProperties": false
+            },
+            "GuinguetteAttributes": {
+                "type": "object",
+                "required": [
+                    "autresNoms",
+                    "commune",
+                    "communeDeleguee",
+                    "departement",
+                    "territoire",
+                    "coursDEau",
+                    "type",
+                    "ambiance",
+                    "terrasse",
+                    "musiqueLive",
+                    "accessibleVelo",
+                    "loireAVelo",
+                    "vue",
+                    "periode",
+                    "position",
+                    "liens",
+                    "services",
+                    "tags",
+                    "statut",
+                    "verification"
+                ],
+                "properties": {
+                    "autresNoms": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    },
+                    "commune": { "type": "string" },
+                    "communeDeleguee": { "type": ["string", "null"] },
+                    "departement": { "type": "string" },
+                    "territoire": {
+                        "type": "string",
+                        "enum": [
+                            "nivernais",
+                            "orleanais",
+                            "blaisois",
+                            "touraine",
+                            "chinonais",
+                            "saumurois",
+                            "anjou",
+                            "bretagne-ligerienne"
+                        ]
+                    },
+                    "coursDEau": { "type": ["string", "null"] },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "guinguette",
+                            "restaurant-guinguette",
+                            "bar-guinguette",
+                            "guinguette-itinerante"
+                        ]
+                    },
+                    "ambiance": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    },
+                    "terrasse": { "type": ["boolean", "null"] },
+                    "musiqueLive": { "type": ["boolean", "null"] },
+                    "accessibleVelo": { "type": ["boolean", "null"] },
+                    "loireAVelo": { "type": ["boolean", "null"] },
+                    "vue": { "type": "string" },
+                    "periode": { "type": "string" },
+                    "position": {
+                        "$ref": "#/components/schemas/GuinguettePosition"
+                    },
+                    "liens": {
+                        "$ref": "#/components/schemas/GuinguetteLinks"
+                    },
+                    "services": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    },
+                    "statut": {
+                        "type": "string",
+                        "enum": ["actif", "a_verifier", "historique"]
+                    },
+                    "verification": { "type": "string" }
+                },
+                "additionalProperties": false
+            },
+            "TerritoireLimites": {
+                "type": "object",
+                "required": ["amont", "aval"],
+                "properties": {
+                    "amont": { "type": "string" },
+                    "aval": { "type": "string" },
+                    "note": { "type": "string" }
+                },
+                "additionalProperties": false
+            },
+            "TerritoireIdentite": {
+                "type": "object",
+                "required": ["accent", "color", "symboles"],
+                "properties": {
+                    "accent": {
+                        "type": "string",
+                        "pattern": "^#[0-9a-fA-F]{6}$"
+                    },
+                    "color": { "type": "string" },
+                    "blasonAlt": { "type": "string" },
+                    "symboles": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    }
+                },
+                "additionalProperties": false
+            },
+            "TerritoireAttributes": {
+                "type": "object",
+                "required": [
+                    "ordre",
+                    "presentationMd",
+                    "nature",
+                    "paysage",
+                    "reperes",
+                    "coursEau",
+                    "limites",
+                    "identite"
+                ],
+                "properties": {
+                    "ordre": { "type": "integer", "minimum": 1 },
+                    "presentationMd": { "type": "string" },
+                    "nature": {
+                        "type": "string",
+                        "enum": [
+                            "duché",
+                            "comté",
+                            "province",
+                            "pays historique",
+                            "territoire éditorial"
+                        ]
+                    },
+                    "paysage": {
+                        "type": "string",
+                        "enum": [
+                            "val amont",
+                            "val royal",
+                            "val occidental",
+                            "estuaire"
+                        ]
+                    },
+                    "reperes": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    },
+                    "coursEau": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    },
+                    "limites": {
+                        "$ref": "#/components/schemas/TerritoireLimites"
+                    },
+                    "identite": {
+                        "$ref": "#/components/schemas/TerritoireIdentite"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "PersonnageAttributes": {
+                "type": "object",
+                "required": [
+                    "autresNoms",
+                    "roles",
+                    "categoriePrincipale",
+                    "tags"
+                ],
+                "properties": {
+                    "autresNoms": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    },
+                    "categoriePrincipale": {
+                        "$ref": "#/components/schemas/EntrySlug"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": { "type": "string" }
                     }
                 },
                 "additionalProperties": false
@@ -1349,6 +1827,20 @@
                             "lng": 2.63
                         },
                         "riviere": "Loire",
+                        "illustrations": {
+                            "aube": "/illustrations/chateaux/chateau-de-gien/aube@2x.png",
+                            "jour": "/illustrations/chateaux/chateau-de-gien/jour@2x.png",
+                            "soir": "/illustrations/chateaux/chateau-de-gien/soir@2x.png",
+                            "nuit": "/illustrations/chateaux/chateau-de-gien/nuit@2x.png"
+                        },
+                        "meta": {
+                            "architecture": [
+                                "gothique-flamboyant",
+                                "renaissance"
+                            ],
+                            "epoque": ["renaissance"],
+                            "experience": ["visite-libre", "visite-guidee"]
+                        },
                         "epoque": "Renaissance",
                         "style": "Gothique-Renaissance de brique",
                         "construction": "1484–1500",
@@ -1363,6 +1855,169 @@
                     }
                 }
             },
+            "GuinguetteEntry": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "index",
+                    "slug",
+                    "name",
+                    "subtitle",
+                    "summary",
+                    "media",
+                    "attributes"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "pattern": "^guinguettes:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "index": { "type": "string", "const": "guinguettes" },
+                    "slug": { "$ref": "#/components/schemas/EntrySlug" },
+                    "name": { "type": "string" },
+                    "subtitle": { "type": "string" },
+                    "summary": { "type": "string" },
+                    "media": { "$ref": "#/components/schemas/PublicMedia" },
+                    "attributes": {
+                        "$ref": "#/components/schemas/GuinguetteAttributes"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "TerritoireEntry": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "index",
+                    "slug",
+                    "name",
+                    "subtitle",
+                    "summary",
+                    "media",
+                    "attributes"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "pattern": "^territoires:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "index": { "type": "string", "const": "territoires" },
+                    "slug": { "$ref": "#/components/schemas/EntrySlug" },
+                    "name": { "type": "string" },
+                    "subtitle": { "type": "string" },
+                    "summary": { "type": "string" },
+                    "media": { "$ref": "#/components/schemas/PublicMedia" },
+                    "attributes": {
+                        "$ref": "#/components/schemas/TerritoireAttributes"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "PersonnageEntry": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "index",
+                    "slug",
+                    "name",
+                    "subtitle",
+                    "summary",
+                    "media",
+                    "attributes"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "pattern": "^personnages:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "index": { "type": "string", "const": "personnages" },
+                    "slug": { "$ref": "#/components/schemas/EntrySlug" },
+                    "name": { "type": "string" },
+                    "subtitle": { "type": "string" },
+                    "summary": { "type": "null" },
+                    "media": { "$ref": "#/components/schemas/PublicMedia" },
+                    "attributes": {
+                        "$ref": "#/components/schemas/PersonnageAttributes"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "VignobleEntry": {
+                "type": "object",
+                "required": [
+                    "id",
+                    "index",
+                    "slug",
+                    "name",
+                    "subtitle",
+                    "summary",
+                    "media",
+                    "attributes"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "pattern": "^vignobles:[a-z0-9]+(?:-[a-z0-9]+)*$"
+                    },
+                    "index": {
+                        "type": "string",
+                        "const": "vignobles"
+                    },
+                    "slug": {
+                        "$ref": "#/components/schemas/EntrySlug"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "subtitle": {
+                        "type": "string"
+                    },
+                    "summary": {
+                        "type": ["string", "null"]
+                    },
+                    "media": {
+                        "$ref": "#/components/schemas/PublicMedia"
+                    },
+                    "attributes": {
+                        "$ref": "#/components/schemas/VignobleAttributes"
+                    }
+                },
+                "additionalProperties": false,
+                "example": {
+                    "id": "vignobles:cotes-du-forez",
+                    "index": "vignobles",
+                    "slug": "cotes-du-forez",
+                    "name": "Côtes du Forez",
+                    "subtitle": "le gamay des monts du Forez",
+                    "summary": null,
+                    "media": {
+                        "emoji": "🍇",
+                        "imageUrl": null
+                    },
+                    "attributes": {
+                        "autresNoms": [],
+                        "couleur": "rouge",
+                        "rive": "Auvergne & Forez",
+                        "departement": "Loire (42)",
+                        "coordonnees": {
+                            "lat": 45.75,
+                            "lng": 4.0
+                        },
+                        "cepages": ["Gamay"],
+                        "style": "Rouge léger et fruité ; quelques rosés",
+                        "accord": "Charcuterie, volaille rôtie, lentilles du Puy",
+                        "appellation": {
+                            "niveau": "AOC communale",
+                            "depuis": "2000"
+                        },
+                        "notoriete": "confidentiel",
+                        "meta": {
+                            "terroirs": ["granite"],
+                            "cepages": ["gamay"]
+                        }
+                    }
+                }
+            },
             "PublicEntry": {
                 "oneOf": [
                     {
@@ -1373,6 +2028,18 @@
                     },
                     {
                         "$ref": "#/components/schemas/ChateauEntry"
+                    },
+                    {
+                        "$ref": "#/components/schemas/GuinguetteEntry"
+                    },
+                    {
+                        "$ref": "#/components/schemas/TerritoireEntry"
+                    },
+                    {
+                        "$ref": "#/components/schemas/PersonnageEntry"
+                    },
+                    {
+                        "$ref": "#/components/schemas/VignobleEntry"
                     }
                 ],
                 "discriminator": {
@@ -1380,7 +2047,11 @@
                     "mapping": {
                         "faune": "#/components/schemas/FauneEntry",
                         "flore": "#/components/schemas/FloreEntry",
-                        "chateaux": "#/components/schemas/ChateauEntry"
+                        "chateaux": "#/components/schemas/ChateauEntry",
+                        "guinguettes": "#/components/schemas/GuinguetteEntry",
+                        "territoires": "#/components/schemas/TerritoireEntry",
+                        "personnages": "#/components/schemas/PersonnageEntry",
+                        "vignobles": "#/components/schemas/VignobleEntry"
                     }
                 }
             },

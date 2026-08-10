@@ -25,15 +25,15 @@ const formatIssues = (issues: z.core.$ZodIssue[]) =>
 
 const buildRegistry = (): ReadonlyMap<IndexSlug, RegisteredIndex> => {
     const actual = new Set(TECHNICAL_INDEX_SOURCES.map(({ slug }) => slug));
-    const expected = new Set(
-        INDEXES.filter(
-            (index) => actual.has(index.slug) || index.etat !== "brouillon",
-        ).map(({ slug }) => slug),
+    const required = new Set(
+        INDEXES.filter((index) => index.etat === "publie").map(
+            ({ slug }) => slug,
+        ),
     );
 
     if (
-        expected.size !== TECHNICAL_INDEX_SOURCES.length ||
-        [...expected].some((slug) => !actual.has(slug))
+        [...required].some((slug) => !actual.has(slug)) ||
+        [...actual].some((slug) => !getIndexBySlug(slug))
     ) {
         throw new Error(
             "The API publication registry does not match the index registry.",
@@ -76,11 +76,20 @@ const buildRegistry = (): ReadonlyMap<IndexSlug, RegisteredIndex> => {
                 );
             }
 
+            const expectedCatalogState =
+                definition.etat === "publie" ? "publie" : "brouillon";
+            const meta = parsed.meta as CatalogMeta;
+            if (meta.etat !== expectedCatalogState) {
+                throw new Error(
+                    `Catalog ${source.slug} must be ${expectedCatalogState} when its index is ${definition.etat}.`,
+                );
+            }
+
             return [
                 source.slug,
                 {
                     definition,
-                    meta: parsed.meta as CatalogMeta,
+                    meta,
                     entries: entries as InternalEntry[],
                     adapter: source.adapter,
                 },

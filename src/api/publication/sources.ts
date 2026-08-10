@@ -41,6 +41,8 @@ export interface TechnicalIndexSource {
     schema: z.ZodType;
     adapter: EntryAdapter;
     mediaDirectory: string;
+    /** Whether every entry must expose the legacy `customEmoji` field. */
+    mediaRequired?: boolean;
 }
 
 export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
@@ -70,6 +72,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         schema: chateauCatalogSchema,
         adapter: adaptChateau as EntryAdapter,
         mediaDirectory: "chateau",
+        mediaRequired: false,
     },
     {
         slug: "guinguettes",
@@ -79,6 +82,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         schema: guinguetteCatalogSchema,
         adapter: adaptGuinguette as EntryAdapter,
         mediaDirectory: "guinguette",
+        mediaRequired: false,
     },
     {
         slug: "territoires",
@@ -88,6 +92,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         schema: territoireCatalogSchema,
         adapter: adaptTerritoire as EntryAdapter,
         mediaDirectory: "blasons",
+        mediaRequired: false,
     },
     {
         slug: "personnages",
@@ -97,6 +102,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         schema: personnageCatalogSchema,
         adapter: adaptPersonnage as EntryAdapter,
         mediaDirectory: "personnage",
+        mediaRequired: false,
     },
     {
         slug: "vignobles",
@@ -106,6 +112,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         schema: vignobleCatalogSchema,
         adapter: adaptVignoble as EntryAdapter,
         mediaDirectory: "vignoble",
+        mediaRequired: false,
     },
     {
         slug: "vocabulaire",

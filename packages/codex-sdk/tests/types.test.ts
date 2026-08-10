@@ -3,14 +3,24 @@ import type {
     ChateauAttributes,
     FauneAttributes,
     FloreAttributes,
+    GuinguetteAttributes,
+    PersonnageAttributes,
     PublicEntry,
     PublishedIndexSlug,
+    TerritoireAttributes,
+    VignobleAttributes,
 } from "../src/index.js";
 
 describe("public SDK types", () => {
     it("exposes the published index union from OpenAPI", () => {
         expectTypeOf<PublishedIndexSlug>().toEqualTypeOf<
-            "faune" | "flore" | "chateaux"
+            | "faune"
+            | "flore"
+            | "chateaux"
+            | "guinguettes"
+            | "territoires"
+            | "personnages"
+            | "vignobles"
         >();
     });
 
@@ -24,5 +34,17 @@ describe("public SDK types", () => {
         expectTypeOf<
             Extract<PublicEntry, { index: "chateaux" }>["attributes"]
         >().toEqualTypeOf<ChateauAttributes>();
+        expectTypeOf<
+            Extract<PublicEntry, { index: "guinguettes" }>["attributes"]
+        >().toEqualTypeOf<GuinguetteAttributes>();
+        expectTypeOf<
+            Extract<PublicEntry, { index: "territoires" }>["attributes"]
+        >().toEqualTypeOf<TerritoireAttributes>();
+        expectTypeOf<
+            Extract<PublicEntry, { index: "personnages" }>["attributes"]
+        >().toEqualTypeOf<PersonnageAttributes>();
+        expectTypeOf<
+            Extract<PublicEntry, { index: "vignobles" }>["attributes"]
+        >().toEqualTypeOf<VignobleAttributes>();
     });
 });

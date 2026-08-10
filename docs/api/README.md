@@ -227,7 +227,14 @@ type ApiEnvelope<T> = {
 
 type PublicEntry = {
     id: string;
-    index: "faune" | "flore" | "chateaux";
+    index:
+        | "faune"
+        | "flore"
+        | "chateaux"
+        | "guinguettes"
+        | "territoires"
+        | "personnages"
+        | "vignobles";
     slug: string;
     name: string;
     subtitle: string;
@@ -331,7 +338,7 @@ Un index expose :
 - `links.self` et `links.entries` pour la navigation.
 
 `editorialWarning` peut être `null`. Seuls les index publiés sont exposés. Un
-index en relecture répond comme un index inconnu.
+index désactivé répond comme un index inconnu.
 
 ### Entrée publique
 
@@ -350,6 +357,10 @@ Les variantes actuellement publiées sont :
 - `flore` : catégorie, taxonomie, statut, floraison, rareté et milieu ;
 - `chateaux` : localisation, coordonnées, époque, protection, renommée et
   visite.
+- `guinguettes` : territoire, ambiance, saison, services, accès et liens ;
+- `territoires` : limites, paysages, repères, cours d’eau et identité ;
+- `personnages` : autres noms, rôles, catégorie éditoriale et tags ;
+- `vignobles` : couleur, appellation, cépages, terroirs, accords et ancrage.
 
 Consultez le
 [schéma `PublicEntry` dans OpenAPI](https://codex.loireridezen.bike/api/v1/openapi.json)

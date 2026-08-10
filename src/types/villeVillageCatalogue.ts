@@ -148,6 +148,7 @@ export interface VilleVillageCatalogueEntry {
 /** Métadonnées éditoriales de `data/catalogue-villes-villages.json`. */
 export interface VilleVillageCatalogueMeta {
     titre: string;
+    etat: "publie" | "brouillon";
     source: string;
     corridor: string;
     maj: string;

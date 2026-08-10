@@ -63,6 +63,7 @@ export default function ApiDocumentationPage() {
             footer={
                 <>
                     Loire Ride Zen · API publique V1 ·{" "}
+                    <a href="/docs/sdk">SDK TypeScript</a> ·{" "}
                     <a href="#demarrage-rapide">Revenir au démarrage rapide</a>
                 </>
             }

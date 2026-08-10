@@ -28,7 +28,7 @@ describe("villes et villages catalogue", () => {
             universe: "raconte",
             format: "repertoire",
             dataFile: "catalogue-villes-villages.json",
-            etat: "brouillon",
+            etat: "desactive",
             env: [],
         });
     });

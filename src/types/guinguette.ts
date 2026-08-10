@@ -69,6 +69,7 @@ export type Guinguette = {
 
 export type GuinguettesCatalogMeta = {
     titre: string;
+    etat: "publie" | "brouillon";
     source: string;
     corridor: string;
     maj: string;

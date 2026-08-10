@@ -60,6 +60,7 @@ export const personnageCatalogSchema = z
         meta: z
             .object({
                 titre: z.string().min(1),
+                etat: z.enum(["publie", "brouillon"]),
                 source: z.string().min(1),
                 corridor: z
                     .string()

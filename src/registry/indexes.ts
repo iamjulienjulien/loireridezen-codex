@@ -8,7 +8,7 @@
 import { LRZColor } from "@/types/lrz";
 
 export type Env = "development" | "production";
-export type IndexEtat = "publie" | "relecture" | "brouillon";
+export type IndexEtat = "publie" | "desactive";
 export type IndexUniverse = "habite" | "vivant" | "raconte";
 export type IndexFormat =
     "catalogue" | "naturaliste" | "repertoire" | "lexique";
@@ -148,7 +148,7 @@ export const INDEXES = [
             "**Cet index rassemble les guinguettes qui animent les rives ligériennes, des haltes discrètes aux rendez-vous les plus festifs. Chaque adresse raconte son cadre, sa cuisine, sa musique et le paysage qui l’entoure.**",
         footerNote: "guinguettes et haltes conviviales du Val de Loire",
         dataFile: "catalogue-guinguettes.json",
-        etat: "relecture",
+        etat: "publie",
         env: ["development", "production"],
     },
     {
@@ -172,7 +172,7 @@ export const INDEXES = [
             "**Cet index rassemble les huit territoires géohistoriques qui structurent le Codex Ligérien. Chacun est raconté par ses limites, ses paysages, ses cours d’eau, ses repères et son identité.**",
         footerNote: "territoires composant le fil géohistorique ligérien",
         dataFile: "catalogue-territoires.json",
-        etat: "relecture",
+        etat: "publie",
         env: ["development", "production"],
     },
     {
@@ -196,8 +196,8 @@ export const INDEXES = [
             "**Ce répertoire rassemble les villes, bourgs et villages qui structurent le voyage ligérien. Chaque fiche présente leur territoire, leur relation au fleuve, leurs repères et leurs liens avec les autres index du Codex.**",
         footerNote: "villes, bourgs et villages du corridor ligérien",
         dataFile: "catalogue-villes-villages.json",
-        etat: "brouillon",
-        env: ["development"],
+        etat: "desactive",
+        env: [],
     },
     {
         slug: "personnages",
@@ -220,7 +220,7 @@ export const INDEXES = [
             "**Ce répertoire rassemble les personnages reliés aux lieux du Codex. Chaque fiche présente leurs rôles, leurs autres noms et les relations documentées avec les châteaux de la Loire.**",
         footerNote: "personnages reliés aux lieux et aux récits du Codex",
         dataFile: "catalogue-personnages.json",
-        etat: "relecture",
+        etat: "publie",
         env: ["development", "production"],
     },
     {
@@ -268,7 +268,7 @@ export const INDEXES = [
         presentationFooter: "",
         footerNote: "mots du fil · la mémoire déposée dans les mots",
         dataFile: "mot.json",
-        etat: "relecture",
+        etat: "desactive",
         env: [],
     },
     {
@@ -292,7 +292,7 @@ export const INDEXES = [
         footerNote:
             "ouvrages du fleuve-travail · les émojis attendent leur version LRZ",
         dataFile: "patrimoine.json",
-        etat: "relecture",
+        etat: "desactive",
         env: [],
     },
 ] as const satisfies readonly IndexEntry[];
@@ -314,7 +314,9 @@ export const getIndexesForEnv = (value: string | undefined) => {
         throw new Error(`CURRENT_ENV invalide ou absent : ${value}`);
     }
 
-    return INDEXES.filter((index) =>
-        index.env.some((environment) => environment === value),
+    return INDEXES.filter(
+        (index) =>
+            index.etat === "publie" &&
+            index.env.some((environment) => environment === value),
     );
 };

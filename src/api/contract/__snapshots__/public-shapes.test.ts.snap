@@ -143,15 +143,21 @@ exports[`public structural signatures > snapshots chateaux attributes 1`] = `
   },
   "departement": "string",
   "epoque": "string",
-  "illustrationVariant": {
-    "oneOf": [
-      "absent",
-      {
-        "aube": "string",
-        "jour": "string",
-        "nuit": "string",
-        "soir": "string",
-      },
+  "illustrations": {
+    "aube": "string",
+    "jour": "string",
+    "nuit": "string",
+    "soir": "string",
+  },
+  "meta": {
+    "architecture": [
+      "string",
+    ],
+    "epoque": [
+      "string",
+    ],
+    "experience": [
+      "string",
     ],
   },
   "protection": {
@@ -241,6 +247,122 @@ exports[`public structural signatures > snapshots flore attributes 1`] = `
 }
 `;
 
+exports[`public structural signatures > snapshots guinguettes attributes 1`] = `
+{
+  "accessibleVelo": {
+    "oneOf": [
+      "boolean",
+      "null",
+    ],
+  },
+  "ambiance": [
+    "string",
+  ],
+  "autresNoms": [
+    "string",
+  ],
+  "commune": "string",
+  "communeDeleguee": {
+    "oneOf": [
+      "null",
+      "string",
+    ],
+  },
+  "coursDEau": {
+    "oneOf": [
+      "null",
+      "string",
+    ],
+  },
+  "departement": "string",
+  "liens": {
+    "facebook": {
+      "oneOf": [
+        "null",
+        "string",
+      ],
+    },
+    "googleMaps": {
+      "oneOf": [
+        "null",
+        "string",
+      ],
+    },
+    "instagram": {
+      "oneOf": [
+        "null",
+        "string",
+      ],
+    },
+    "siteWeb": {
+      "oneOf": [
+        "null",
+        "string",
+      ],
+    },
+  },
+  "loireAVelo": {
+    "oneOf": [
+      "boolean",
+      "null",
+    ],
+  },
+  "musiqueLive": {
+    "oneOf": [
+      "boolean",
+      "null",
+    ],
+  },
+  "periode": "string",
+  "position": {
+    "latitude": {
+      "oneOf": [
+        "null",
+        "number",
+      ],
+    },
+    "longitude": {
+      "oneOf": [
+        "null",
+        "number",
+      ],
+    },
+  },
+  "services": [
+    "string",
+  ],
+  "statut": "string",
+  "tags": [
+    "string",
+  ],
+  "terrasse": {
+    "oneOf": [
+      "boolean",
+      "null",
+    ],
+  },
+  "territoire": "string",
+  "type": "string",
+  "verification": "string",
+  "vue": "string",
+}
+`;
+
+exports[`public structural signatures > snapshots personnages attributes 1`] = `
+{
+  "autresNoms": [
+    "string",
+  ],
+  "categoriePrincipale": "string",
+  "roles": [
+    "string",
+  ],
+  "tags": [
+    "string",
+  ],
+}
+`;
+
 exports[`public structural signatures > snapshots public links 1`] = `
 {
   "api": {
@@ -286,6 +408,39 @@ exports[`public structural signatures > snapshots public links 1`] = `
     ],
   },
   "self": "string",
+}
+`;
+
+exports[`public structural signatures > snapshots territoires attributes 1`] = `
+{
+  "coursEau": [
+    "string",
+  ],
+  "identite": {
+    "accent": "string",
+    "blasonAlt": "string",
+    "color": "string",
+    "symboles": [
+      "string",
+    ],
+  },
+  "limites": {
+    "amont": "string",
+    "aval": "string",
+    "note": {
+      "oneOf": [
+        "absent",
+        "string",
+      ],
+    },
+  },
+  "nature": "string",
+  "ordre": "number",
+  "paysage": "string",
+  "presentationMd": "string",
+  "reperes": [
+    "string",
+  ],
 }
 `;
 
@@ -401,5 +556,44 @@ exports[`public structural signatures > snapshots the index collection envelope 
     },
     "total": "number",
   },
+}
+`;
+
+exports[`public structural signatures > snapshots vignobles attributes 1`] = `
+{
+  "accord": "string",
+  "appellation": {
+    "depuis": "string",
+    "niveau": "string",
+    "note": {
+      "oneOf": [
+        "absent",
+        "string",
+      ],
+    },
+  },
+  "autresNoms": [
+    "string",
+  ],
+  "cepages": [
+    "string",
+  ],
+  "coordonnees": {
+    "lat": "number",
+    "lng": "number",
+  },
+  "couleur": "string",
+  "departement": "string",
+  "meta": {
+    "cepages": [
+      "string",
+    ],
+    "terroirs": [
+      "string",
+    ],
+  },
+  "notoriete": "string",
+  "rive": "string",
+  "style": "string",
 }
 `;

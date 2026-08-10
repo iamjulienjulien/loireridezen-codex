@@ -39,6 +39,7 @@ export interface PublicIndex {
 
 export interface CatalogMeta {
     titre: string;
+    etat: "publie" | "brouillon";
     source: string;
     corridor: string;
     maj: string;

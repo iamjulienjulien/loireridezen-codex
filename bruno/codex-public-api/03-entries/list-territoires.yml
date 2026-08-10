@@ -1,0 +1,31 @@
+info:
+    name: List territoires entries
+    type: http
+    seq: 21
+    tags: [get, production-safe, success]
+
+http:
+    method: GET
+    url: "{{baseUrl}}/api/v1/indexes/territoires/entries"
+
+docs: Lists every public territoires entry without assuming an editorial count.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "200"
+    scripts:
+        - type: tests
+          code: |-
+              const index = "territoires";
+              test("returns a coherent non-empty collection", function () {
+                  expect(res.body.data).to.be.an("array").and.not.empty;
+                  expect(res.body.meta.index).to.equal(index);
+                  expect(res.body.meta.total).to.equal(res.body.data.length);
+                  res.body.data.forEach((entry) => {
+                      expect(entry.index).to.equal(index);
+                      expect(entry.id).to.equal(`${index}:${entry.slug}`);
+                      expect(entry.attributes).to.be.an("object");
+                  });
+              });

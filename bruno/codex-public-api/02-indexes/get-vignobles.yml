@@ -1,0 +1,29 @@
+info:
+    name: Get vignobles index
+    type: http
+    seq: 23
+    tags: [get, production-safe, success]
+
+http:
+    method: GET
+    url: "{{baseUrl}}/api/v1/indexes/vignobles"
+
+docs: Returns the public metadata of the vignobles index.
+
+runtime:
+    assertions:
+        - expression: res.status
+          operator: eq
+          value: "200"
+    scripts:
+        - type: tests
+          code: |-
+              const index = "vignobles";
+              test("returns coherent published index metadata", function () {
+                  expect(res.body.apiVersion).to.equal("1");
+                  expect(res.body.data.slug).to.equal(index);
+                  expect(res.body.data.state).to.equal("publie");
+                  expect(res.body.data.entryCount).to.be.a("number").and.greaterThan(0);
+                  expect(res.body.links.self).to.equal(`/api/v1/indexes/${index}`);
+                  expect(res.body.links.entries).to.equal(`/api/v1/indexes/${index}/entries`);
+              });

@@ -140,7 +140,7 @@ describe("public OpenAPI contract", () => {
         expect(documented).toEqual(published);
     });
 
-    it("uses three strict entry variants and an explicit discriminator", () => {
+    it("uses seven strict entry variants and an explicit discriminator", () => {
         const entry = contract.components.schemas.PublicEntry;
         const discriminator = asObject(entry.discriminator);
 
@@ -148,12 +148,20 @@ describe("public OpenAPI contract", () => {
             { $ref: "#/components/schemas/FauneEntry" },
             { $ref: "#/components/schemas/FloreEntry" },
             { $ref: "#/components/schemas/ChateauEntry" },
+            { $ref: "#/components/schemas/GuinguetteEntry" },
+            { $ref: "#/components/schemas/TerritoireEntry" },
+            { $ref: "#/components/schemas/PersonnageEntry" },
+            { $ref: "#/components/schemas/VignobleEntry" },
         ]);
         expect(discriminator.propertyName).toBe("index");
         expect(discriminator.mapping).toEqual({
             faune: "#/components/schemas/FauneEntry",
             flore: "#/components/schemas/FloreEntry",
             chateaux: "#/components/schemas/ChateauEntry",
+            guinguettes: "#/components/schemas/GuinguetteEntry",
+            territoires: "#/components/schemas/TerritoireEntry",
+            personnages: "#/components/schemas/PersonnageEntry",
+            vignobles: "#/components/schemas/VignobleEntry",
         });
 
         for (const name of [
@@ -163,6 +171,14 @@ describe("public OpenAPI contract", () => {
             "FloreAttributes",
             "ChateauEntry",
             "ChateauAttributes",
+            "GuinguetteEntry",
+            "GuinguetteAttributes",
+            "TerritoireEntry",
+            "TerritoireAttributes",
+            "PersonnageEntry",
+            "PersonnageAttributes",
+            "VignobleEntry",
+            "VignobleAttributes",
         ]) {
             expect(contract.components.schemas[name].additionalProperties).toBe(
                 false,
@@ -251,6 +267,7 @@ describe("public OpenAPI contract", () => {
             "FauneEntry",
             "FloreEntry",
             "ChateauEntry",
+            "VignobleEntry",
             "Problem",
         ]) {
             const schema = contract.components.schemas[name];

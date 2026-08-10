@@ -21,7 +21,14 @@ type ApiEnvelope<T> = {
 
 type PublicEntry = {
     id: string;
-    index: "faune" | "flore" | "chateaux";
+    index:
+        | "faune"
+        | "flore"
+        | "chateaux"
+        | "guinguettes"
+        | "territoires"
+        | "personnages"
+        | "vignobles";
     slug: string;
     name: string;
     subtitle: string;

@@ -62,12 +62,10 @@ describe("PageHeader", () => {
         expect(markup).toContain('aria-current="page"');
     });
 
-    it("marks development-only indexes in the title and navigation", () => {
+    it("only renders published indexes in the navigation", () => {
         vi.stubEnv("CURRENT_ENV", "development");
         const indexes = getIndexesForEnv("development");
-        const current = indexes.find(
-            (index) => !(index.env as readonly string[]).includes("production"),
-        )!;
+        const current = indexes[0]!;
         const markup = renderToStaticMarkup(
             <PageHeader
                 variant="index"
@@ -84,9 +82,8 @@ describe("PageHeader", () => {
             />,
         );
 
-        expect(markup).toContain('data-index-availability="preview"');
         expect(markup).toContain('data-index-availability="published"');
-        expect(markup).toContain("En préparation");
+        expect(markup).not.toContain("En préparation");
     });
 
     it("preserves the compact historical Home composition", () => {

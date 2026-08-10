@@ -6,7 +6,7 @@ info:
 
 http:
     method: GET
-    url: "{{baseUrl}}/api/v1/indexes/vignobles"
+    url: "{{baseUrl}}/api/v1/indexes/vocabulaire"
 
 docs: Confirms that an existing but unpublished index remains indistinguishable from an unknown resource.
 
@@ -18,7 +18,7 @@ runtime:
     scripts:
         - type: tests
           code: |-
-              const instance = "/api/v1/indexes/vignobles";
+              const instance = "/api/v1/indexes/vocabulaire";
               const serialized = JSON.stringify(res.body);
               test("returns public Problem Details without cache", function () {
                   expect(res.getHeader("content-type")).to.match(/^application\/problem\+json/i);

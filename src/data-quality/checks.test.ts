@@ -19,7 +19,7 @@ import type {
 } from "./types";
 
 type MutableCatalog = {
-    meta: { maj: string };
+    meta: { maj: string; etat: "publie" | "brouillon" };
     entries: Array<Record<string, unknown>>;
 };
 
@@ -35,7 +35,10 @@ type Fixture = {
 };
 
 const fixtureSchema = z.object({
-    meta: z.object({ maj: z.string() }),
+    meta: z.object({
+        maj: z.string(),
+        etat: z.enum(["publie", "brouillon"]),
+    }),
     entries: z.array(
         z
             .object({
@@ -63,7 +66,7 @@ const buildDefinition = (
     href: `/${slug}`,
     dataFile,
     etat,
-    env: etat === "publie" ? ["development", "production"] : ["development"],
+    env: etat === "publie" ? ["development", "production"] : [],
 });
 
 const addBundle = (
@@ -73,7 +76,7 @@ const addBundle = (
     dataFile: string,
 ) => {
     const catalog: MutableCatalog = {
-        meta: { maj: "2026-07-08" },
+        meta: { maj: "2026-07-08", etat: "publie" },
         entries: [
             {
                 slug: "entry",
@@ -191,7 +194,7 @@ describe("data quality mutations", () => {
             const definition = buildDefinition(
                 "villes-villages",
                 dataFile,
-                "brouillon",
+                "desactive",
             );
 
             definition.env = [];
@@ -306,7 +309,8 @@ describe("data quality mutations", () => {
     it("allows missing media for an unpublished entry with a warning", () => {
         const report = runFixture(({ catalogs, indexes }) => {
             delete catalogs[0].entries[0].customEmoji;
-            indexes[0] = buildDefinition("faune", "faune.json", "relecture");
+            catalogs[0].meta.etat = "brouillon";
+            indexes[0] = buildDefinition("faune", "faune.json", "desactive");
         });
         expectIssue(report, "MEDIA_MISSING_FOR_UNPUBLISHED_ENTRY", "warning");
         expect(report.summary.errors).toBe(0);
@@ -353,6 +357,14 @@ describe("data quality mutations", () => {
         }
     });
 
+    it("detects a catalog state that contradicts its index state", () => {
+        const report = runFixture(({ catalogs }) => {
+            catalogs[0].meta.etat = "brouillon";
+        });
+
+        expectIssue(report, "CATALOG_PUBLICATION_STATE_MISMATCH");
+    });
+
     it("detects a wrongly associated schema", () => {
         const report = runFixture(({ sources }) => {
             sources[0] = { ...sources[0], schema: z.never() };
@@ -384,7 +396,7 @@ describe("data quality mutations", () => {
     });
 
     it.each([
-        ["relecture", ["development", "production"]],
+        ["desactive", ["development", "production"]],
         ["publie", ["development"]],
     ] as const)("detects etat/env contradiction for %s", (etat, env) => {
         const report = runFixture(({ indexes }) => {
@@ -455,10 +467,10 @@ describe("real editorial data", () => {
 
         console.log(formatDataQualityReport(report));
         expect(report.summary).toMatchObject({
-            indexes: 7,
-            entries: 363,
-            referencedMedia: 152,
-            mediaFiles: 163,
+            indexes: 10,
+            entries: 524,
+            referencedMedia: 100,
+            mediaFiles: 237,
             errors: 0,
         });
         expect(report.summary.warnings).toBeGreaterThanOrEqual(0);

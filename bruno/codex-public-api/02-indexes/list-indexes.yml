@@ -24,10 +24,12 @@ runtime:
                   ? value.some(internal)
                   : Boolean(value && typeof value === "object" && Object.entries(value)
                       .some(([key, child]) => key === "env" || key === "dataFile" || internal(child)));
-              test("returns the three published indexes only", function () {
+              test("returns every production index only", function () {
                   expect(res.body.data).to.be.an("array");
-                  expect(res.body.data.map(({ slug }) => slug).sort()).to.deep.equal(["chateaux", "faune", "flore"]);
-                  ["vignobles", "vocabulaire", "patrimoine"].forEach((slug) =>
+                  expect(res.body.data.map(({ slug }) => slug).sort()).to.deep.equal([
+                      "chateaux", "faune", "flore", "guinguettes", "personnages", "territoires", "vignobles"
+                  ]);
+                  ["villes-villages", "vocabulaire", "patrimoine"].forEach((slug) =>
                       expect(res.body.data.some((item) => item.slug === slug)).to.equal(false)
                   );
                   expect(internal(res.body)).to.equal(false);

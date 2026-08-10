@@ -219,7 +219,7 @@ export const inspectDataQuality = (
         }
         const source = sourcesBySlug.get(index.slug);
         const stagedWithoutSource =
-            index.etat === "brouillon" &&
+            index.etat === "desactive" &&
             index.env.length === 0 &&
             catalogExclusions.has(index.dataFile);
         if (!source && !stagedWithoutSource) {
@@ -352,6 +352,7 @@ export const inspectDataQuality = (
             });
         }
 
+        let validatedCatalog: JsonObject | undefined;
         if (source.schema && typeof source.schema.safeParse === "function") {
             const parsed = source.schema.safeParse(diskValue);
             if (!parsed.success) {
@@ -363,10 +364,26 @@ export const inspectDataQuality = (
                         message: problem.message,
                     });
                 }
+            } else if (isObject(parsed.data)) {
+                validatedCatalog = parsed.data;
             }
         }
         const catalog = isObject(diskValue) ? diskValue : {};
-        const collection = catalog[source.collectionKey];
+        const catalogMeta = isObject(catalog.meta) ? catalog.meta : {};
+        const expectedCatalogState =
+            definition?.etat === "publie" ? "publie" : "brouillon";
+        if (catalogMeta.etat !== expectedCatalogState) {
+            add("CATALOG_PUBLICATION_STATE_MISMATCH", "error", {
+                index: source.slug,
+                file,
+                path: "meta.etat",
+                message: `Le catalogue doit être ${expectedCatalogState} lorsque l’index est ${definition?.etat ?? "absent"}.`,
+                value: catalogMeta.etat,
+            });
+        }
+        const collection =
+            validatedCatalog?.[source.collectionKey] ??
+            catalog[source.collectionKey];
         if (!Array.isArray(collection)) {
             add("CATALOG_COLLECTION_NOT_ARRAY", "error", {
                 index: source.slug,
@@ -521,21 +538,26 @@ export const inspectDataQuality = (
 
             const customEmoji = value.customEmoji;
             if (customEmoji === undefined) {
-                add(
-                    definition?.etat === "publie"
-                        ? "MEDIA_REQUIRED_FOR_PUBLISHED_ENTRY"
-                        : "MEDIA_MISSING_FOR_UNPUBLISHED_ENTRY",
-                    definition?.etat === "publie" ? "error" : "warning",
-                    {
+                if (
+                    definition?.etat === "publie" &&
+                    source.mediaRequired !== false
+                ) {
+                    add("MEDIA_REQUIRED_FOR_PUBLISHED_ENTRY", "error", {
                         index: source.slug,
                         file,
                         path: `${basePath}.customEmoji`,
                         message:
-                            definition?.etat === "publie"
-                                ? "Une entrée publiée doit posséder une illustration."
-                                : "L’illustration de cette entrée WIP est encore absente.",
-                    },
-                );
+                            "Une entrée publiée doit posséder une illustration.",
+                    });
+                } else if (definition?.etat !== "publie") {
+                    add("MEDIA_MISSING_FOR_UNPUBLISHED_ENTRY", "warning", {
+                        index: source.slug,
+                        file,
+                        path: `${basePath}.customEmoji`,
+                        message:
+                            "L’illustration de cette entrée WIP est encore absente.",
+                    });
+                }
                 continue;
             }
             if (typeof customEmoji !== "string" || customEmoji.length === 0) {

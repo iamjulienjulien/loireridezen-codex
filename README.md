@@ -41,27 +41,28 @@ métacollections, cartes métier, symboles LRZ et fiches partageables.
 
 Le site public rassemble **7 index et 464 entrées** :
 
-| Univers           | Index          | Entrées | Web |  API V1   |
-| ----------------- | -------------- | ------: | :-: | :-------: |
-| Le fleuve habité  | 🏰 Châteaux    |      52 | ✅  |    ✅     |
-| Le fleuve habité  | 🍷 Guinguettes |     160 | ✅  | Relecture |
-| Le fleuve vivant  | 🪶 Faune       |      49 | ✅  |    ✅     |
-| Le fleuve vivant  | 🌿 Flore       |      51 | ✅  |    ✅     |
-| Le fleuve vivant  | 🍇 Vignobles   |      70 | ✅  |    ✅     |
-| Le fleuve raconté | 🗺️ Territoires |       8 | ✅  | Relecture |
-| Le fleuve raconté | ♜ Personnages  |      74 | ✅  | Relecture |
+| Univers           | Index          | Entrées | Web | API V1 |
+| ----------------- | -------------- | ------: | :-: | :----: |
+| Le fleuve habité  | 🏰 Châteaux    |      52 | ✅  |   ✅   |
+| Le fleuve habité  | 🍷 Guinguettes |     160 | ✅  |   ✅   |
+| Le fleuve vivant  | 🪶 Faune       |      49 | ✅  |   ✅   |
+| Le fleuve vivant  | 🌿 Flore       |      51 | ✅  |   ✅   |
+| Le fleuve vivant  | 🍇 Vignobles   |      70 | ✅  |   ✅   |
+| Le fleuve raconté | 🗺️ Territoires |       8 | ✅  |   ✅   |
+| Le fleuve raconté | ♜ Personnages  |      74 | ✅  |   ✅   |
 
 Trois catalogues supplémentaires préparent la suite :
 
 | Index                 | Entrées | État actuel                             |
 | --------------------- | ------: | --------------------------------------- |
-| 🏘️ Villes et Villages |      39 | Disponible en développement             |
-| ⚓ Vocabulaire        |      37 | Catalogue en relecture, index désactivé |
-| 🏛️ Petit patrimoine   |      23 | Catalogue en relecture, index désactivé |
+| 🏘️ Villes et Villages |      39 | Catalogue en brouillon, index désactivé |
+| ⚓ Vocabulaire        |      37 | Catalogue en brouillon, index désactivé |
+| 🏛️ Petit patrimoine   |      23 | Catalogue en brouillon, index désactivé |
 
-L’état web et la publication API sont volontairement distincts. Un index peut
-être visible sur le site tout en restant absent de l’API jusqu’à la validation
-de son contrat public.
+L’état web et la publication API suivent désormais la même écluse : un index
+`publie` est visible dans les environnements publics et exposé par l’API ; un
+index `desactive` reste hors navigation, hors routes publiques et hors API,
+avec un catalogue conservé en `brouillon`.
 
 ### Parcours disponibles
 

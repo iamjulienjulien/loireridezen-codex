@@ -28,11 +28,14 @@ describe("publication registry", () => {
         ).toBe(false);
     });
 
-    it("publishes exactly the four approved indexes in editorial order", () => {
+    it("publishes every production index in editorial order", () => {
         expect(getPublishedIndexes().map(({ slug }) => slug)).toEqual([
             "faune",
             "flore",
             "chateaux",
+            "guinguettes",
+            "territoires",
+            "personnages",
             "vignobles",
         ]);
     });
@@ -41,13 +44,16 @@ describe("publication registry", () => {
         ["faune", 49],
         ["flore", 51],
         ["chateaux", 52],
+        ["guinguettes", 160],
+        ["territoires", 8],
+        ["personnages", 74],
         ["vignobles", 70],
     ])("publishes %s with %i entries", (slug, count) => {
         expect(getPublishedEntries(slug)).toHaveLength(count);
     });
 
-    it("does not distinguish a review index from an unknown index", () => {
-        expect(getPublishedIndex("territoires")).toBeUndefined();
+    it("does not distinguish a disabled index from an unknown index", () => {
+        expect(getPublishedIndex("vocabulaire")).toBeUndefined();
         expect(getPublishedIndex("villes-villages")).toBeUndefined();
         expect(getPublishedIndex("inconnu")).toBeUndefined();
     });

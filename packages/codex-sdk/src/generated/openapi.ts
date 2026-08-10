@@ -167,7 +167,7 @@ export interface components {
          * @description Identifiant d’un index actuellement publié.
          * @enum {string}
          */
-        PublishedIndexSlug: "faune" | "flore" | "chateaux";
+        PublishedIndexSlug: "faune" | "flore" | "chateaux" | "guinguettes" | "territoires" | "personnages" | "vignobles";
         /**
          * @description Identifiant kebab-case immuable de l’entrée.
          * @example heron-cendre
@@ -300,15 +300,21 @@ export interface components {
             unesco: boolean;
             note?: string;
         };
-        ChateauIllustrationVariant: {
-            aube?: string;
-            jour?: string;
-            soir?: string;
-            nuit?: string;
+        ChateauIllustrations: {
+            aube: string;
+            jour: string;
+            soir: string;
+            nuit: string;
+        };
+        ChateauMeta: {
+            architecture: ("gallo-romaine" | "pre-romane" | "medievale" | "romane" | "gothique" | "gothique-flamboyant" | "renaissance" | "classique" | "baroque" | "rocaille" | "neoclassique" | "neogothique" | "historiciste" | "industrielle" | "art-nouveau" | "art-deco" | "moderniste" | "brutaliste" | "contemporaine" | "vernaculaire" | "troglodytique")[];
+            epoque: ("prehistoire" | "protohistoire" | "antiquite" | "moyen-age" | "renaissance" | "ancien-regime" | "revolution-empire" | "xixe-siecle" | "xxe-siecle" | "xxie-siecle")[];
+            experience: ("visite-libre" | "visite-guidee" | "exposition" | "reconstitution" | "demonstration" | "atelier" | "jeu-piste" | "promenade" | "randonnee" | "velo" | "equitation" | "bateau" | "canoe-kayak" | "baignade" | "peche" | "observation-nature" | "photographie" | "contemplation" | "detente" | "pique-nique" | "repas" | "degustation" | "marche-local" | "concert" | "spectacle" | "danse" | "fete-populaire" | "montgolfiere")[];
         };
         ChateauAttributes: {
             autresNoms: string[];
-            illustrationVariant?: components["schemas"]["ChateauIllustrationVariant"];
+            illustrations: components["schemas"]["ChateauIllustrations"];
+            meta: components["schemas"]["ChateauMeta"];
             commune: string;
             departement: string;
             coordonnees: components["schemas"]["Coordinates"];
@@ -323,6 +329,96 @@ export interface components {
             renommee: "phare" | "majeur" | "notable" | "confidentiel";
             /** @enum {string} */
             visite: "ouvert au public" | "extérieurs & parc" | "privé, non visitable" | "inconnu";
+        };
+        VignobleAppellation: {
+            /** @enum {string} */
+            niveau: "AOC communale" | "AOC régionale" | "IGP";
+            depuis?: string;
+            note?: string;
+        };
+        VignobleMeta: {
+            terroirs: ("tuffeau" | "calcaire" | "marne-calcaire" | "argilo-calcaire" | "argile-a-silex" | "schiste" | "micaschiste" | "gneiss" | "granite" | "gabbro" | "sable" | "graviers" | "alluvions" | "faluns")[];
+            cepages: ("chenin" | "sauvignon-blanc" | "melon-de-bourgogne" | "chardonnay" | "chasselas" | "folle-blanche" | "romorantin" | "menu-pineau" | "tressallier" | "cabernet-franc" | "cabernet-sauvignon" | "pinot-noir" | "pinot-gris" | "pinot-meunier" | "gamay" | "grolleau-noir" | "grolleau-gris" | "pineau-daunis" | "cot")[];
+        };
+        VignobleAttributes: {
+            autresNoms: string[];
+            /** @enum {string} */
+            couleur: "blanc sec" | "blanc moelleux" | "rouge" | "rosé" | "effervescent";
+            /** @enum {string} */
+            rive: "Auvergne & Forez" | "Centre-Loire" | "Touraine" | "Anjou-Saumur" | "Pays nantais";
+            departement: string;
+            coordonnees: components["schemas"]["Coordinates"];
+            cepages: string[];
+            style: string;
+            accord?: string;
+            appellation: components["schemas"]["VignobleAppellation"];
+            /** @enum {string} */
+            notoriete: "phare" | "majeur" | "notable" | "confidentiel";
+            meta: components["schemas"]["VignobleMeta"];
+        };
+        GuinguettePosition: {
+            latitude: number | null;
+            longitude: number | null;
+        };
+        GuinguetteLinks: {
+            siteWeb: string | null;
+            instagram: string | null;
+            facebook: string | null;
+            googleMaps: string | null;
+        };
+        GuinguetteAttributes: {
+            autresNoms: string[];
+            commune: string;
+            communeDeleguee: string | null;
+            departement: string;
+            /** @enum {string} */
+            territoire: "nivernais" | "orleanais" | "blaisois" | "touraine" | "chinonais" | "saumurois" | "anjou" | "bretagne-ligerienne";
+            coursDEau: string | null;
+            /** @enum {string} */
+            type: "guinguette" | "restaurant-guinguette" | "bar-guinguette" | "guinguette-itinerante";
+            ambiance: string[];
+            terrasse: boolean | null;
+            musiqueLive: boolean | null;
+            accessibleVelo: boolean | null;
+            loireAVelo: boolean | null;
+            vue: string;
+            periode: string;
+            position: components["schemas"]["GuinguettePosition"];
+            liens: components["schemas"]["GuinguetteLinks"];
+            services: string[];
+            tags: string[];
+            /** @enum {string} */
+            statut: "actif" | "a_verifier" | "historique";
+            verification: string;
+        };
+        TerritoireLimites: {
+            amont: string;
+            aval: string;
+            note?: string;
+        };
+        TerritoireIdentite: {
+            accent: string;
+            color: string;
+            blasonAlt?: string;
+            symboles: string[];
+        };
+        TerritoireAttributes: {
+            ordre: number;
+            presentationMd: string;
+            /** @enum {string} */
+            nature: "duché" | "comté" | "province" | "pays historique" | "territoire éditorial";
+            /** @enum {string} */
+            paysage: "val amont" | "val royal" | "val occidental" | "estuaire";
+            reperes: string[];
+            coursEau: string[];
+            limites: components["schemas"]["TerritoireLimites"];
+            identite: components["schemas"]["TerritoireIdentite"];
+        };
+        PersonnageAttributes: {
+            autresNoms: string[];
+            roles: string[];
+            categoriePrincipale: components["schemas"]["EntrySlug"];
+            tags: string[];
         };
         /**
          * @example {
@@ -454,6 +550,25 @@ export interface components {
          *           "lng": 2.63
          *         },
          *         "riviere": "Loire",
+         *         "illustrations": {
+         *           "aube": "/illustrations/chateaux/chateau-de-gien/aube@2x.png",
+         *           "jour": "/illustrations/chateaux/chateau-de-gien/jour@2x.png",
+         *           "soir": "/illustrations/chateaux/chateau-de-gien/soir@2x.png",
+         *           "nuit": "/illustrations/chateaux/chateau-de-gien/nuit@2x.png"
+         *         },
+         *         "meta": {
+         *           "architecture": [
+         *             "gothique-flamboyant",
+         *             "renaissance"
+         *           ],
+         *           "epoque": [
+         *             "renaissance"
+         *           ],
+         *           "experience": [
+         *             "visite-libre",
+         *             "visite-guidee"
+         *           ]
+         *         },
          *         "epoque": "Renaissance",
          *         "style": "Gothique-Renaissance de brique",
          *         "construction": "1484–1500",
@@ -482,7 +597,105 @@ export interface components {
             media: components["schemas"]["PublicMedia"];
             attributes: components["schemas"]["ChateauAttributes"];
         };
-        PublicEntry: components["schemas"]["FauneEntry"] | components["schemas"]["FloreEntry"] | components["schemas"]["ChateauEntry"];
+        GuinguetteEntry: {
+            id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            index: "guinguettes";
+            slug: components["schemas"]["EntrySlug"];
+            name: string;
+            subtitle: string;
+            summary: string;
+            media: components["schemas"]["PublicMedia"];
+            attributes: components["schemas"]["GuinguetteAttributes"];
+        };
+        TerritoireEntry: {
+            id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            index: "territoires";
+            slug: components["schemas"]["EntrySlug"];
+            name: string;
+            subtitle: string;
+            summary: string;
+            media: components["schemas"]["PublicMedia"];
+            attributes: components["schemas"]["TerritoireAttributes"];
+        };
+        PersonnageEntry: {
+            id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            index: "personnages";
+            slug: components["schemas"]["EntrySlug"];
+            name: string;
+            subtitle: string;
+            summary: null;
+            media: components["schemas"]["PublicMedia"];
+            attributes: components["schemas"]["PersonnageAttributes"];
+        };
+        /**
+         * @example {
+         *       "id": "vignobles:cotes-du-forez",
+         *       "index": "vignobles",
+         *       "slug": "cotes-du-forez",
+         *       "name": "Côtes du Forez",
+         *       "subtitle": "le gamay des monts du Forez",
+         *       "summary": null,
+         *       "media": {
+         *         "emoji": "🍇",
+         *         "imageUrl": null
+         *       },
+         *       "attributes": {
+         *         "autresNoms": [],
+         *         "couleur": "rouge",
+         *         "rive": "Auvergne & Forez",
+         *         "departement": "Loire (42)",
+         *         "coordonnees": {
+         *           "lat": 45.75,
+         *           "lng": 4
+         *         },
+         *         "cepages": [
+         *           "Gamay"
+         *         ],
+         *         "style": "Rouge léger et fruité ; quelques rosés",
+         *         "accord": "Charcuterie, volaille rôtie, lentilles du Puy",
+         *         "appellation": {
+         *           "niveau": "AOC communale",
+         *           "depuis": "2000"
+         *         },
+         *         "notoriete": "confidentiel",
+         *         "meta": {
+         *           "terroirs": [
+         *             "granite"
+         *           ],
+         *           "cepages": [
+         *             "gamay"
+         *           ]
+         *         }
+         *       }
+         *     }
+         */
+        VignobleEntry: {
+            id: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            index: "vignobles";
+            slug: components["schemas"]["EntrySlug"];
+            name: string;
+            subtitle: string;
+            summary: string | null;
+            media: components["schemas"]["PublicMedia"];
+            attributes: components["schemas"]["VignobleAttributes"];
+        };
+        PublicEntry: components["schemas"]["FauneEntry"] | components["schemas"]["FloreEntry"] | components["schemas"]["ChateauEntry"] | components["schemas"]["GuinguetteEntry"] | components["schemas"]["TerritoireEntry"] | components["schemas"]["PersonnageEntry"] | components["schemas"]["VignobleEntry"];
         /**
          * @example {
          *       "apiVersion": "1",
