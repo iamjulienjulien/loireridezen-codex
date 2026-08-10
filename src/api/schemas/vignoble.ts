@@ -65,6 +65,29 @@ export const vignobleEntrySchema = z
                         ]),
                     )
                     .min(1),
+                cepages: z.array(
+                    z.enum([
+                        "chenin",
+                        "sauvignon-blanc",
+                        "melon-de-bourgogne",
+                        "chardonnay",
+                        "chasselas",
+                        "folle-blanche",
+                        "romorantin",
+                        "menu-pineau",
+                        "tressallier",
+                        "cabernet-franc",
+                        "cabernet-sauvignon",
+                        "pinot-noir",
+                        "pinot-gris",
+                        "pinot-meunier",
+                        "gamay",
+                        "grolleau-noir",
+                        "grolleau-gris",
+                        "pineau-daunis",
+                        "cot",
+                    ]),
+                ),
             })
             .strict(),
     })

@@ -17,9 +17,12 @@ describe("vineyard grape variety metadata registry", () => {
             "romorantin",
             "menu-pineau",
             "tressallier",
+            "chasselas",
             "cabernet-franc",
             "cabernet-sauvignon",
             "pinot-noir",
+            "pinot-gris",
+            "pinot-meunier",
             "gamay",
             "grolleau-noir",
             "grolleau-gris",
@@ -37,7 +40,7 @@ describe("vineyard grape variety metadata registry", () => {
     });
 
     it("rejects an unknown grape variety", () => {
-        expect(isVignobleCepage("chasselas")).toBe(false);
-        expect(getVignobleCepageMeta("chasselas")).toBeUndefined();
+        expect(isVignobleCepage("riesling")).toBe(false);
+        expect(getVignobleCepageMeta("riesling")).toBeUndefined();
     });
 });

@@ -20,9 +20,10 @@
             "coordonnees": { "lat": 45.75, "lng": 4.0 },
             "cepages": ["Gamay"],
             "style": "Rouge léger et fruité ; quelques rosés",
+            "accord": "Charcuterie, volaille rôtie, lentilles du Puy",
             "appellation": { "niveau": "AOC communale", "depuis": "2000" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["granite"] }
+            "meta": { "terroirs": ["granite"], "cepages": ["gamay"] }
         },
         {
             "emoji": "🍇",
@@ -36,9 +37,10 @@
             "coordonnees": { "lat": 46.04, "lng": 3.97 },
             "cepages": ["Gamay (Saint-Romain)"],
             "style": "Rouge fruité de granite ; quelques rosés",
+            "accord": "Charcuterie, côte de porc, fromages fermiers",
             "appellation": { "niveau": "AOC communale", "depuis": "1994" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["granite"] }
+            "meta": { "terroirs": ["granite"], "cepages": ["gamay"] }
         },
         {
             "emoji": "🍇",
@@ -58,9 +60,10 @@
                 "Pinot noir"
             ],
             "style": "Blancs vifs (tressallier) ; rouges & rosés de gamay/pinot",
+            "accord": "Pâté bourbonnais, poissons de rivière, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "2009" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "granite"] }
+            "meta": { "terroirs": ["argilo-calcaire", "granite"], "cepages": ["tressallier", "chardonnay", "sauvignon-blanc", "gamay", "pinot-noir"] }
         },
         {
             "emoji": "🍇",
@@ -74,9 +77,10 @@
             "coordonnees": { "lat": 45.72, "lng": 3.13 },
             "cepages": ["Gamay", "Pinot noir", "Chardonnay"],
             "style": "Rouges et rosés volcaniques ; blancs de chardonnay. Dénominations : Boudes, Chanturgue, Corent, Madargue, Châteaugay",
+            "accord": "Charcuterie auvergnate, potée, saint-nectaire",
             "appellation": { "niveau": "AOC communale", "depuis": "2010" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["marne-calcaire", "granite", "gneiss"] }
+            "meta": { "terroirs": ["marne-calcaire", "granite", "gneiss"], "cepages": ["gamay", "pinot-noir", "chardonnay"] }
         },
 
         {
@@ -91,9 +95,10 @@
             "coordonnees": { "lat": 47.41, "lng": 2.83 },
             "cepages": ["Gamay", "Pinot noir", "Sauvignon blanc"],
             "style": "Rouges de gamay/pinot ; blancs de sauvignon",
+            "accord": "Poisson de Loire, crottin de Chavignol, charcuterie",
             "appellation": { "niveau": "AOC communale", "depuis": "1998" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"] }
+            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"], "cepages": ["gamay", "pinot-noir", "sauvignon-blanc"] }
         },
         {
             "emoji": "🥂",
@@ -107,9 +112,10 @@
             "coordonnees": { "lat": 47.28, "lng": 2.96 },
             "cepages": ["Chasselas"],
             "style": "Blanc sec léger, de chasselas — rareté vivante à côté du pouilly-fumé",
+            "accord": "Friture de Loire, poissons grillés, chèvre frais",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["marne-calcaire", "argile-a-silex"] }
+            "meta": { "terroirs": ["marne-calcaire", "argile-a-silex"], "cepages": ["chasselas"] }
         },
         {
             "emoji": "🥂",
@@ -127,7 +133,7 @@
             "accord": "Poisson de Loire, fromage de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["marne-calcaire", "argile-a-silex"] }
+            "meta": { "terroirs": ["marne-calcaire", "argile-a-silex"], "cepages": ["sauvignon-blanc"] }
         },
         {
             "emoji": "🥂",
@@ -150,7 +156,8 @@
             },
             "notoriete": "phare",
             "meta": {
-                "terroirs": ["argilo-calcaire", "calcaire", "argile-a-silex"]
+                "terroirs": ["argilo-calcaire", "calcaire", "argile-a-silex"],
+                "cepages": ["sauvignon-blanc", "pinot-noir"]
             }
         },
         {
@@ -165,9 +172,10 @@
             "coordonnees": { "lat": 47.22, "lng": 2.49 },
             "cepages": ["Sauvignon blanc", "Pinot noir"],
             "style": "Blanc sec minéral ; rouges & rosés de pinot noir",
+            "accord": "Crottin de Chavignol, poissons de Loire, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "1959" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["marne-calcaire", "calcaire"] }
+            "meta": { "terroirs": ["marne-calcaire", "calcaire"], "cepages": ["sauvignon-blanc", "pinot-noir"] }
         },
         {
             "emoji": "🥂",
@@ -181,9 +189,10 @@
             "coordonnees": { "lat": 47.14, "lng": 2.16 },
             "cepages": ["Sauvignon blanc"],
             "style": "Blanc sec, vif, sur terrasses sableuses — l'une des plus anciennes AOC",
+            "accord": "Asperges, poissons grillés, fromage de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1936" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["sable", "graviers", "alluvions"] }
+            "meta": { "terroirs": ["sable", "graviers", "alluvions"], "cepages": ["sauvignon-blanc"] }
         },
         {
             "emoji": "🥂",
@@ -197,9 +206,10 @@
             "coordonnees": { "lat": 47.09, "lng": 2.05 },
             "cepages": ["Sauvignon blanc", "Pinot noir", "Pinot gris"],
             "style": "Blanc de sauvignon ; rouge de pinot noir ; rosé recherché de pinot gris",
+            "accord": "Fromage de chèvre, poissons de rivière, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["marne-calcaire", "sable", "graviers"] }
+            "meta": { "terroirs": ["marne-calcaire", "sable", "graviers"], "cepages": ["sauvignon-blanc", "pinot-noir", "pinot-gris"] }
         },
         {
             "emoji": "🍇",
@@ -213,9 +223,10 @@
             "coordonnees": { "lat": 46.56, "lng": 2.19 },
             "cepages": ["Gamay", "Pinot noir"],
             "style": "Célèbre pour son « vin gris » (rosé de pressurage) ; aussi rouges légers",
+            "accord": "Charcuterie, grillades, tarte aux légumes",
             "appellation": { "niveau": "AOC communale", "depuis": "2010" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["granite", "sable", "argilo-calcaire"] }
+            "meta": { "terroirs": ["granite", "sable", "argilo-calcaire"], "cepages": ["gamay", "pinot-noir"] }
         },
 
         {
@@ -231,9 +242,10 @@
             "coordonnees": { "lat": 47.35, "lng": 0.9 },
             "cepages": ["Sauvignon blanc", "Gamay", "Côt (Malbec)"],
             "style": "Blancs de sauvignon, rouges de gamay/côt, rosés, fines bulles",
+            "accord": "Rillettes, poissons de Loire, fromages de chèvre",
             "appellation": { "niveau": "AOC régionale", "depuis": "1939" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["argilo-calcaire", "sable", "graviers"] }
+            "meta": { "terroirs": ["argilo-calcaire", "sable", "graviers"], "cepages": ["sauvignon-blanc", "gamay", "cot"] }
         },
         {
             "emoji": "🍷",
@@ -247,9 +259,10 @@
             "coordonnees": { "lat": 47.4131, "lng": 0.986 },
             "cepages": ["Côt (Malbec)", "Cabernet franc", "Chenin"],
             "style": "Rouges de côt ; blancs de chenin. Dénomination de Touraine",
+            "accord": "Charcuterie, viandes rôties, fromages de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1955" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"] }
+            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"], "cepages": ["cot", "cabernet-franc", "chenin"] }
         },
         {
             "emoji": "🍷",
@@ -263,9 +276,10 @@
             "coordonnees": { "lat": 47.2586, "lng": 0.4664 },
             "cepages": ["Chenin", "Grolleau"],
             "style": "Blancs de chenin (secs à tendres) ; rosés de grolleau. Dénomination de Touraine",
+            "accord": "Poissons de Loire, rillettes, tarte aux fruits",
             "appellation": { "niveau": "AOC communale", "depuis": "1953" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"] }
+            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"], "cepages": ["chenin", "grolleau-noir"] }
         },
         {
             "emoji": "🍷",
@@ -279,9 +293,10 @@
             "coordonnees": { "lat": 47.51, "lng": 1.13 },
             "cepages": ["Gamay", "Côt", "Cabernet franc", "Chenin"],
             "style": "Rouges de gamay ; blancs & rosés. Dénomination de Touraine",
+            "accord": "Charcuterie, volaille, poissons grillés",
             "appellation": { "niveau": "AOC communale", "depuis": "1955" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "sable"] }
+            "meta": { "terroirs": ["argilo-calcaire", "sable"], "cepages": ["gamay", "cot", "cabernet-franc", "chenin"] }
         },
         {
             "emoji": "🍷",
@@ -295,9 +310,10 @@
             "coordonnees": { "lat": 47.33, "lng": 1.07 },
             "cepages": ["Sauvignon blanc", "Côt (Malbec)"],
             "style": "Blancs de sauvignon ; rouges de côt. Dénomination de Touraine",
+            "accord": "Fromage de chèvre, poissons, viande rouge grillée",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"] }
+            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"], "cepages": ["sauvignon-blanc", "cot"] }
         },
         {
             "emoji": "🍷",
@@ -311,9 +327,10 @@
             "coordonnees": { "lat": 47.35, "lng": 1.35 },
             "cepages": ["Sauvignon blanc"],
             "style": "Blanc sec de sauvignon exclusivement. Dénomination de Touraine",
+            "accord": "Asperges, poissons de Loire, chèvre frais",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["sable", "argile-a-silex"] }
+            "meta": { "terroirs": ["sable", "argile-a-silex"], "cepages": ["sauvignon-blanc"] }
         },
         {
             "emoji": "🌸",
@@ -327,9 +344,10 @@
             "coordonnees": { "lat": 47.35, "lng": 0.68 },
             "cepages": ["Pinot meunier", "Pinot gris", "Pinot noir"],
             "style": "Rosé « vin gris » d'assemblage de pinots, aux portes de Tours",
+            "accord": "Rillettes de Tours, grillades, cuisine estivale",
             "appellation": { "niveau": "AOC communale", "depuis": "2001" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["sable", "argilo-calcaire"] }
+            "meta": { "terroirs": ["sable", "argilo-calcaire"], "cepages": ["pinot-meunier", "pinot-gris", "pinot-noir"] }
         },
         {
             "emoji": "🥂",
@@ -348,7 +366,8 @@
             "appellation": { "niveau": "AOC communale", "depuis": "1936" },
             "notoriete": "phare",
             "meta": {
-                "terroirs": ["tuffeau", "argilo-calcaire", "argile-a-silex"]
+                "terroirs": ["tuffeau", "argilo-calcaire", "argile-a-silex"],
+                "cepages": ["chenin"]
             }
         },
         {
@@ -363,9 +382,10 @@
             "coordonnees": { "lat": 47.39, "lng": 0.83 },
             "cepages": ["Chenin"],
             "style": "Chenin sec à moelleux et fines bulles — le pendant rive gauche de Vouvray",
+            "accord": "Poissons de Loire, chèvre, desserts aux pommes",
             "appellation": { "niveau": "AOC communale", "depuis": "1938" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["tuffeau", "argile-a-silex"] }
+            "meta": { "terroirs": ["tuffeau", "argile-a-silex"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🍷",
@@ -383,7 +403,7 @@
             "accord": "Charcuterie, viandes rouges",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["tuffeau", "graviers", "sable"] }
+            "meta": { "terroirs": ["tuffeau", "graviers", "sable"], "cepages": ["cabernet-franc", "chenin"] }
         },
         {
             "emoji": "🍷",
@@ -397,9 +417,10 @@
             "coordonnees": { "lat": 47.28, "lng": 0.17 },
             "cepages": ["Cabernet franc"],
             "style": "Rouge de cabernet franc, du fruité de gravier au charnu de tuffeau ; peu de rosé",
+            "accord": "Rillettes, agneau, viandes rouges",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["tuffeau", "graviers", "sable"] }
+            "meta": { "terroirs": ["tuffeau", "graviers", "sable"], "cepages": ["cabernet-franc"] }
         },
         {
             "emoji": "🍷",
@@ -413,9 +434,10 @@
             "coordonnees": { "lat": 47.27, "lng": 0.14 },
             "cepages": ["Cabernet franc"],
             "style": "Rouge de cabernet franc, souvent le plus fin et fruité du secteur",
+            "accord": "Charcuterie, volaille rôtie, champignons",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["graviers", "sable", "tuffeau"] }
+            "meta": { "terroirs": ["graviers", "sable", "tuffeau"], "cepages": ["cabernet-franc"] }
         },
         {
             "emoji": "🍷",
@@ -429,9 +451,10 @@
             "coordonnees": { "lat": 47.5, "lng": 1.4581 },
             "cepages": ["Sauvignon blanc", "Chardonnay", "Gamay", "Pinot noir"],
             "style": "Blancs d'assemblage sauvignon/chardonnay ; rouges gamay/pinot",
+            "accord": "Asperges, poissons de Loire, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "1993" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["sable", "argilo-calcaire"] }
+            "meta": { "terroirs": ["sable", "argilo-calcaire"], "cepages": ["sauvignon-blanc", "chardonnay", "gamay", "pinot-noir"] }
         },
         {
             "emoji": "🥂",
@@ -446,13 +469,14 @@
             "coordonnees": { "lat": 47.51, "lng": 1.45 },
             "cepages": ["Romorantin"],
             "style": "Blanc sec du rare romorantin, cépage exclusif de l'appellation",
+            "accord": "Poissons en sauce, volaille à la crème, chèvre affiné",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "1993",
                 "note": "Seule AOC au monde en cépage romorantin."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["sable", "argilo-calcaire"] }
+            "meta": { "terroirs": ["sable", "argilo-calcaire"], "cepages": ["romorantin"] }
         },
         {
             "emoji": "🥂",
@@ -466,9 +490,10 @@
             "coordonnees": { "lat": 47.74, "lng": 0.53 },
             "cepages": ["Chenin"],
             "style": "Blanc sec (parfois moelleux) de chenin, sur la rive nord du Loir — la limite septentrionale du chenin",
+            "accord": "Poissons de rivière, volaille, fromages de chèvre",
             "appellation": { "niveau": "AOC communale", "depuis": "1937" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"] }
+            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🍷",
@@ -482,9 +507,10 @@
             "coordonnees": { "lat": 47.73, "lng": 0.55 },
             "cepages": ["Pineau d'Aunis", "Chenin", "Gamay"],
             "style": "Rouges poivrés de pineau d'aunis ; blancs de chenin ; rosés",
+            "accord": "Charcuterie, lapin, cuisine épicée",
             "appellation": { "niveau": "AOC communale", "depuis": "1948" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"] }
+            "meta": { "terroirs": ["tuffeau", "argilo-calcaire"], "cepages": ["pineau-daunis", "chenin", "gamay"] }
         },
         {
             "emoji": "🍇",
@@ -498,9 +524,10 @@
             "coordonnees": { "lat": 47.79, "lng": 1.07 },
             "cepages": ["Pineau d'Aunis", "Chenin", "Gamay"],
             "style": "Célèbre pour son rosé « gris » de pineau d'aunis, poivré ; rouges et blancs",
+            "accord": "Rillettes, grillades, cuisine épicée",
             "appellation": { "niveau": "AOC communale", "depuis": "2001" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"] }
+            "meta": { "terroirs": ["argilo-calcaire", "argile-a-silex"], "cepages": ["pineau-daunis", "chenin", "gamay"] }
         },
         {
             "emoji": "🍷",
@@ -514,9 +541,10 @@
             "coordonnees": { "lat": 47.1613, "lng": 1.556 },
             "cepages": ["Sauvignon blanc", "Gamay", "Côt", "Pinot noir"],
             "style": "Blancs de sauvignon ; rouges d'assemblage. Duo réputé avec le fromage AOP de Valençay",
+            "accord": "Fromage de Valençay, poissons, volaille",
             "appellation": { "niveau": "AOC communale", "depuis": "2004" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["argilo-calcaire", "sable"] }
+            "meta": { "terroirs": ["argilo-calcaire", "sable"], "cepages": ["sauvignon-blanc", "gamay", "cot", "pinot-noir"] }
         },
         {
             "emoji": "🍷",
@@ -534,9 +562,10 @@
                 "Pinot noir"
             ],
             "style": "Blancs de chardonnay ; rouges & rosés de pinot meunier — vignoble historique de la capitale ligérienne",
+            "accord": "Pithiviers salé, volaille, poissons de Loire",
             "appellation": { "niveau": "AOC communale", "depuis": "2006" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["sable", "argilo-calcaire"] }
+            "meta": { "terroirs": ["sable", "argilo-calcaire"], "cepages": ["chardonnay", "pinot-meunier", "pinot-noir"] }
         },
         {
             "emoji": "🍷",
@@ -550,9 +579,10 @@
             "coordonnees": { "lat": 47.83, "lng": 1.75 },
             "cepages": ["Cabernet franc"],
             "style": "Rouge exclusivement, de cabernet franc, autour de Cléry-Saint-André",
+            "accord": "Gibier à plume, viandes rôties, fromages affinés",
             "appellation": { "niveau": "AOC communale", "depuis": "2006" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "calcaire"] }
+            "meta": { "terroirs": ["argilo-calcaire", "calcaire"], "cepages": ["cabernet-franc"] }
         },
 
         {
@@ -572,9 +602,10 @@
                 "Gamay"
             ],
             "style": "Régionale : blancs de chenin, rouges de cabernet (dont Anjou-Gamay)",
+            "accord": "Rillauds, poissons de Loire, viandes rôties",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["schiste", "tuffeau", "argilo-calcaire"] }
+            "meta": { "terroirs": ["schiste", "tuffeau", "argilo-calcaire"], "cepages": ["chenin", "cabernet-franc", "cabernet-sauvignon", "gamay"] }
         },
         {
             "emoji": "🍷",
@@ -588,9 +619,10 @@
             "coordonnees": { "lat": 47.35, "lng": -0.45 },
             "cepages": ["Cabernet franc", "Cabernet-Sauvignon"],
             "style": "Rouge de sélection de communes, plus concentré que l'Anjou générique",
+            "accord": "Bœuf rôti, gibier, fromages affinés",
             "appellation": { "niveau": "AOC communale", "depuis": "1991" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["cabernet-franc", "cabernet-sauvignon"] }
         },
         {
             "emoji": "🍷",
@@ -604,9 +636,10 @@
             "coordonnees": { "lat": 47.36, "lng": -0.44 },
             "cepages": ["Cabernet franc", "Cabernet-Sauvignon"],
             "style": "Rouge d'élite autour de Brissac, sur schistes",
+            "accord": "Gibier, viandes mijotées, fromages de caractère",
             "appellation": { "niveau": "AOC communale", "depuis": "1998" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["cabernet-franc", "cabernet-sauvignon"] }
         },
         {
             "emoji": "🍷",
@@ -620,9 +653,10 @@
             "coordonnees": { "lat": 47.36, "lng": -0.77 },
             "cepages": ["Chenin"],
             "style": "Blancs de chenin tendres à moelleux, sur les coteaux de la Loire",
+            "accord": "Foie gras, cuisine épicée, desserts aux fruits",
             "appellation": { "niveau": "AOC communale", "depuis": "1946" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["schiste", "tuffeau"] }
+            "meta": { "terroirs": ["schiste", "tuffeau"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🌸",
@@ -636,9 +670,10 @@
             "coordonnees": { "lat": 47.35, "lng": -0.45 },
             "cepages": ["Grolleau", "Gamay", "Cabernet franc"],
             "style": "Rosé demi-sec, tendre et fruité, à base de grolleau",
+            "accord": "Apéritif, cuisine épicée, desserts aux fruits rouges",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["grolleau-noir", "gamay", "cabernet-franc"] }
         },
         {
             "emoji": "🌸",
@@ -652,9 +687,10 @@
             "coordonnees": { "lat": 47.35, "lng": -0.45 },
             "cepages": ["Cabernet franc", "Cabernet-Sauvignon"],
             "style": "Rosé demi-sec de cabernet, plus structuré que le rosé d'Anjou",
+            "accord": "Cuisine épicée, grillades, desserts aux fruits rouges",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["cabernet-franc", "cabernet-sauvignon"] }
         },
         {
             "emoji": "🍯",
@@ -668,9 +704,10 @@
             "coordonnees": { "lat": 47.36, "lng": -0.5 },
             "cepages": ["Chenin"],
             "style": "Blancs moelleux de chenin sur les coteaux de l'Aubance",
+            "accord": "Foie gras, fromage persillé, tarte aux fruits",
             "appellation": { "niveau": "AOC communale", "depuis": "1950" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "tuffeau"] }
+            "meta": { "terroirs": ["schiste", "tuffeau"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🥂",
@@ -685,9 +722,10 @@
             "coordonnees": { "lat": 47.38, "lng": -0.63 },
             "cepages": ["Chenin"],
             "style": "Blanc sec puissant, minéral et de longue garde",
+            "accord": "Poissons en sauce, volaille rôtie, fromages affinés",
             "appellation": { "niveau": "AOC communale", "depuis": "1952" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "micaschiste"] }
+            "meta": { "terroirs": ["schiste", "micaschiste"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🥂",
@@ -701,13 +739,14 @@
             "coordonnees": { "lat": 47.38, "lng": -0.64 },
             "cepages": ["Chenin"],
             "style": "Cru de chenin sec, dominant la Loire — appellation propre depuis 2011",
+            "accord": "Sandre au beurre blanc, volaille, vieux comté",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2011",
                 "note": "Anciennement climat de Savennières, érigé en AOC distincte."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["schiste", "micaschiste"] }
+            "meta": { "terroirs": ["schiste", "micaschiste"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🥂",
@@ -722,13 +761,14 @@
             "coordonnees": { "lat": 47.38, "lng": -0.645 },
             "cepages": ["Chenin"],
             "style": "Chenin sec de garde, monopole en biodynamie — appellation propre depuis 2011",
+            "accord": "Poissons nobles, homard, volaille aux morilles",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2011",
                 "note": "Monopole d'un seul domaine ; érigé en AOC distincte de Savennières."
             },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "micaschiste"] }
+            "meta": { "terroirs": ["schiste", "micaschiste"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🍯",
@@ -750,7 +790,7 @@
                 "note": "Villages : Beaulieu, Faye, Rablay, Rochefort, Saint-Aubin, Saint-Lambert, Chaume."
             },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🍯",
@@ -764,13 +804,14 @@
             "coordonnees": { "lat": 47.21, "lng": -0.66 },
             "cepages": ["Chenin"],
             "style": "Liquoreux de chenin, seul Premier Cru de la Loire",
+            "accord": "Foie gras, fromage persillé, desserts aux fruits jaunes",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2011",
                 "note": "Unique « Premier Cru » du vignoble ligérien."
             },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "graviers"] }
+            "meta": { "terroirs": ["schiste", "graviers"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🍯",
@@ -785,13 +826,14 @@
             "coordonnees": { "lat": 47.21, "lng": -0.665 },
             "cepages": ["Chenin"],
             "style": "Liquoreux rare et de longue garde, chenin botrytisé",
+            "accord": "Foie gras, roquefort, tarte tatin",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "1954",
                 "note": "Élevé au rang de Grand Cru en 2011 — le seul de la Loire."
             },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "graviers"] }
+            "meta": { "terroirs": ["schiste", "graviers"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🍯",
@@ -805,9 +847,10 @@
             "coordonnees": { "lat": 47.22, "lng": -0.5 },
             "cepages": ["Chenin"],
             "style": "Grand liquoreux de chenin, sur trois coteaux de Thouarcé",
+            "accord": "Foie gras, bleu, desserts à l'abricot",
             "appellation": { "niveau": "AOC communale", "depuis": "1951" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["schiste", "argilo-calcaire"] }
+            "meta": { "terroirs": ["schiste", "argilo-calcaire"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🍷",
@@ -821,9 +864,10 @@
             "coordonnees": { "lat": 47.2569, "lng": -0.0769 },
             "cepages": ["Chenin", "Cabernet franc"],
             "style": "Régionale : blancs de chenin, rouges de cabernet, et fameuses fines bulles (Saumur brut)",
+            "accord": "Fouées, poissons de Loire, champignons",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["tuffeau", "faluns", "argilo-calcaire"] }
+            "meta": { "terroirs": ["tuffeau", "faluns", "argilo-calcaire"], "cepages": ["chenin", "cabernet-franc"] }
         },
         {
             "emoji": "🍷",
@@ -841,7 +885,7 @@
             "accord": "Fouées, charcuterie, viandes blanches",
             "appellation": { "niveau": "AOC communale", "depuis": "1957" },
             "notoriete": "phare",
-            "meta": { "terroirs": ["tuffeau", "calcaire"] }
+            "meta": { "terroirs": ["tuffeau", "calcaire"], "cepages": ["cabernet-franc"] }
         },
         {
             "emoji": "🍷",
@@ -855,9 +899,10 @@
             "coordonnees": { "lat": 47.14, "lng": -0.15 },
             "cepages": ["Cabernet franc"],
             "style": "Rouge de sélection autour du Puy-Notre-Dame",
+            "accord": "Viandes grillées, gibier, champignons",
             "appellation": { "niveau": "AOC communale", "depuis": "2009" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "calcaire"] }
+            "meta": { "terroirs": ["tuffeau", "calcaire"], "cepages": ["cabernet-franc"] }
         },
         {
             "emoji": "🌸",
@@ -871,9 +916,10 @@
             "coordonnees": { "lat": 47.2569, "lng": -0.0769 },
             "cepages": ["Cabernet franc", "Cabernet-Sauvignon"],
             "style": "Rosé demi-sec léger, plus discret que le cabernet d'Anjou",
+            "accord": "Apéritif, grillades, cuisine légèrement épicée",
             "appellation": { "niveau": "AOC régionale", "depuis": "1964" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "faluns"] }
+            "meta": { "terroirs": ["tuffeau", "faluns"], "cepages": ["cabernet-franc", "cabernet-sauvignon"] }
         },
         {
             "emoji": "🍯",
@@ -887,9 +933,10 @@
             "coordonnees": { "lat": 47.2569, "lng": -0.0769 },
             "cepages": ["Chenin"],
             "style": "Blanc moelleux de chenin, production confidentielle",
+            "accord": "Foie gras, chèvre affiné, desserts aux fruits",
             "appellation": { "niveau": "AOC communale", "depuis": "1962" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["tuffeau", "calcaire"] }
+            "meta": { "terroirs": ["tuffeau", "calcaire"], "cepages": ["chenin"] }
         },
         {
             "emoji": "🍇",
@@ -903,9 +950,10 @@
             "coordonnees": { "lat": 46.68, "lng": 0.15 },
             "cepages": ["Sauvignon blanc", "Cabernet franc", "Gamay"],
             "style": "Blancs de sauvignon ; rouges & rosés — vignoble satellite au sud",
+            "accord": "Fromage de chèvre, poissons, charcuterie",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["argilo-calcaire", "tuffeau"] }
+            "meta": { "terroirs": ["argilo-calcaire", "tuffeau"], "cepages": ["sauvignon-blanc", "cabernet-franc", "gamay"] }
         },
 
         {
@@ -920,9 +968,10 @@
             "coordonnees": { "lat": 47.3, "lng": 0.0 },
             "cepages": ["Cabernet franc", "Grolleau", "Gamay", "Pinot noir"],
             "style": "Rosé sec régional, produit en Anjou, Saumur et Touraine",
+            "accord": "Apéritif, grillades, salades estivales",
             "appellation": { "niveau": "AOC régionale", "depuis": "1974" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["schiste", "tuffeau", "argilo-calcaire"] }
+            "meta": { "terroirs": ["schiste", "tuffeau", "argilo-calcaire"], "cepages": ["cabernet-franc", "grolleau-noir", "gamay", "pinot-noir"] }
         },
         {
             "emoji": "🥂",
@@ -939,7 +988,7 @@
             "accord": "Apéritif, fouées",
             "appellation": { "niveau": "AOC régionale", "depuis": "1975" },
             "notoriete": "majeur",
-            "meta": { "terroirs": ["tuffeau", "schiste", "argilo-calcaire"] }
+            "meta": { "terroirs": ["tuffeau", "schiste", "argilo-calcaire"], "cepages": ["chenin", "cabernet-franc", "chardonnay"] }
         },
 
         {
@@ -954,10 +1003,12 @@
             "coordonnees": { "lat": 47.1, "lng": -1.3 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Régionale : blanc sec vif et iodé, cépage melon de Bourgogne",
+            "accord": "Huîtres, fruits de mer, sardines grillées",
             "appellation": { "niveau": "AOC régionale", "depuis": "1936" },
             "notoriete": "majeur",
             "meta": {
-                "terroirs": ["gneiss", "granite", "gabbro", "micaschiste"]
+                "terroirs": ["gneiss", "granite", "gabbro", "micaschiste"],
+                "cepages": ["melon-de-bourgogne"]
             }
         },
         {
@@ -980,7 +1031,7 @@
                 "note": "Porte dix crus communaux reconnus depuis 2011."
             },
             "notoriete": "phare",
-            "meta": { "terroirs": ["gneiss", "granite", "gabbro"] }
+            "meta": { "terroirs": ["gneiss", "granite", "gabbro"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -994,9 +1045,10 @@
             "coordonnees": { "lat": 47.1, "lng": -1.65 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Blanc sec autour du lac de Grand-Lieu",
+            "accord": "Poissons du lac, fruits de mer, beurre blanc",
             "appellation": { "niveau": "AOC communale", "depuis": "1994" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["gneiss", "granite", "micaschiste"] }
+            "meta": { "terroirs": ["gneiss", "granite", "micaschiste"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -1010,9 +1062,10 @@
             "coordonnees": { "lat": 47.36, "lng": -1.18 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Blanc sec sur les coteaux vers Ancenis",
+            "accord": "Poissons de Loire, coquillages, fromage frais",
             "appellation": { "niveau": "AOC communale", "depuis": "1936" },
             "notoriete": "notable",
-            "meta": { "terroirs": ["granite", "gneiss", "schiste"] }
+            "meta": { "terroirs": ["granite", "gneiss", "schiste"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🍇",
@@ -1026,9 +1079,10 @@
             "coordonnees": { "lat": 47.36, "lng": -1.18 },
             "cepages": ["Gamay", "Malvoisie (Pinot gris)"],
             "style": "Rouges & rosés de gamay ; blanc tendre de malvoisie",
+            "accord": "Charcuterie, volaille, desserts aux poires",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["schiste", "granite", "gneiss"] }
+            "meta": { "terroirs": ["schiste", "granite", "gneiss"], "cepages": ["gamay", "pinot-gris"] }
         },
         {
             "emoji": "🥂",
@@ -1042,13 +1096,14 @@
             "coordonnees": { "lat": 47.1, "lng": -1.35 },
             "cepages": ["Folle blanche (Gros Plant)"],
             "style": "Blanc sec très vif de folle blanche — le compagnon acidulé du Muscadet",
+            "accord": "Huîtres, coquillages, poissons frits",
             "appellation": {
                 "niveau": "AOC régionale",
                 "depuis": "2011",
                 "note": "Ancien AOVDQS, promu AOP en 2011."
             },
             "notoriete": "notable",
-            "meta": { "terroirs": ["gneiss", "granite", "gabbro"] }
+            "meta": { "terroirs": ["gneiss", "granite", "gabbro"], "cepages": ["folle-blanche"] }
         },
         {
             "emoji": "🍇",
@@ -1068,9 +1123,10 @@
                 "Chardonnay"
             ],
             "style": "Rouges, blancs et rosés selon cinq terroirs : Brem, Mareuil, Pissotte, Vix, Chantonnay",
+            "accord": "Poissons de l'Atlantique, mogettes, grillades",
             "appellation": { "niveau": "AOC communale", "depuis": "2011" },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["schiste", "granite", "gneiss"] }
+            "meta": { "terroirs": ["schiste", "granite", "gneiss"], "cepages": ["cabernet-franc", "gamay", "pinot-noir", "chenin", "chardonnay"] }
         },
 
         {
@@ -1085,13 +1141,14 @@
             "coordonnees": { "lat": 47.09, "lng": -1.28 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Cru communal du Muscadet Sèvre et Maine, sur granite — élevage long",
+            "accord": "Sandre au beurre blanc, coquilles Saint-Jacques, volaille",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2011",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["granite"] }
+            "meta": { "terroirs": ["granite"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -1105,13 +1162,14 @@
             "coordonnees": { "lat": 47.1, "lng": -1.3 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Cru communal, sur gabbro argileux — style dense et de garde",
+            "accord": "Poissons en sauce, homard, fromages affinés",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2011",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gabbro"] }
+            "meta": { "terroirs": ["gabbro"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -1125,13 +1183,14 @@
             "coordonnees": { "lat": 47.12, "lng": -1.35 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Cru communal sur gneiss — vif et floral",
+            "accord": "Coquillages, poissons grillés, fromage de chèvre",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2011",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gneiss"] }
+            "meta": { "terroirs": ["gneiss"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -1145,13 +1204,14 @@
             "coordonnees": { "lat": 47.19, "lng": -1.4 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Cru communal au nord du vignoble, près du marais de Goulaine",
+            "accord": "Brochet au beurre blanc, anguilles, coquillages",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2020",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gabbro", "granite"] }
+            "meta": { "terroirs": ["gabbro", "granite"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -1165,13 +1225,14 @@
             "coordonnees": { "lat": 47.11, "lng": -1.42 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Cru communal sur orthogneiss — l'un des plus longs élevages",
+            "accord": "Poissons nobles, homard, volaille à la crème",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2019",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["granite"] }
+            "meta": { "terroirs": ["granite"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -1185,13 +1246,14 @@
             "coordonnees": { "lat": 47.13, "lng": -1.37 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Cru communal, minéral et de longue garde",
+            "accord": "Saint-Jacques, poissons en sauce, vieux comté",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2019",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gneiss"] }
+            "meta": { "terroirs": ["gneiss"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -1205,13 +1267,14 @@
             "coordonnees": { "lat": 47.1, "lng": -1.24 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Cru communal sur gabbro — corsé et épicé",
+            "accord": "Poissons fumés, crustacés, cuisine épicée",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2020",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gabbro"] }
+            "meta": { "terroirs": ["gabbro"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -1225,13 +1288,14 @@
             "coordonnees": { "lat": 47.15, "lng": -1.38 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Cru communal sur gneiss et micaschistes",
+            "accord": "Coquillages, poissons grillés, beurre blanc",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2020",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gneiss"] }
+            "meta": { "terroirs": ["gneiss"], "cepages": ["melon-de-bourgogne"] }
         },
         {
             "emoji": "🥂",
@@ -1245,13 +1309,14 @@
             "coordonnees": { "lat": 47.16, "lng": -1.27 },
             "cepages": ["Melon de Bourgogne"],
             "style": "Cru communal au cœur historique du vignoble — structuré et de garde",
+            "accord": "Sandre au beurre blanc, crustacés, volaille",
             "appellation": {
                 "niveau": "AOC communale",
                 "depuis": "2020",
                 "note": "Cru communal du Muscadet Sèvre et Maine."
             },
             "notoriete": "confidentiel",
-            "meta": { "terroirs": ["gneiss", "granite"] }
+            "meta": { "terroirs": ["gneiss", "granite"], "cepages": ["melon-de-bourgogne"] }
         }
     ]
 }
