@@ -4,4 +4,5 @@ export type {
     LRZButtonGroupItemProps,
     LRZButtonGroupOrientation,
     LRZButtonGroupProps,
+    LRZButtonGroupSelectionMode,
 } from "./LRZButtonGroup";

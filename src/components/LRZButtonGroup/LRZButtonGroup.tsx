@@ -21,6 +21,7 @@ import type { LRZColor } from "@/types/lrz";
 import styles from "./LRZButtonGroup.module.css";
 
 export type LRZButtonGroupOrientation = "horizontal" | "vertical";
+export type LRZButtonGroupSelectionMode = "single" | "none";
 
 export type LRZButtonGroupProps = {
     children: ReactNode;
@@ -31,6 +32,7 @@ export type LRZButtonGroupProps = {
     size?: LRZButtonSize;
     variant?: LRZButtonVariant;
     orientation?: LRZButtonGroupOrientation;
+    selectionMode?: LRZButtonGroupSelectionMode;
     fullWidth?: boolean;
     withWrapper?: boolean;
     attached?: boolean;
@@ -56,6 +58,7 @@ type ButtonGroupContextValue = {
     size: LRZButtonSize;
     variant: LRZButtonVariant;
     orientation: LRZButtonGroupOrientation;
+    selectionMode: LRZButtonGroupSelectionMode;
 };
 
 const ButtonGroupContext = createContext<ButtonGroupContextValue | null>(null);
@@ -75,6 +78,7 @@ export function LRZButtonGroup({
     size = "md",
     variant = "quiet",
     orientation = "horizontal",
+    selectionMode = "single",
     fullWidth = false,
     withWrapper = false,
     attached = true,
@@ -94,6 +98,8 @@ export function LRZButtonGroup({
     };
 
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+        if (selectionMode === "none") return;
+
         const direction =
             orientation === "horizontal" ? "horizontal" : "vertical";
         const isPrevious =
@@ -147,7 +153,7 @@ export function LRZButtonGroup({
             data-orientation={orientation}
             data-wrapper={withWrapper || undefined}
             data-attached={attached}
-            role="radiogroup"
+            role={selectionMode === "single" ? "radiogroup" : "group"}
             aria-label={ariaLabel}
             onKeyDown={handleKeyDown}
         >
@@ -159,6 +165,7 @@ export function LRZButtonGroup({
                     size,
                     variant,
                     orientation,
+                    selectionMode,
                 }}
             >
                 {children}
@@ -186,6 +193,7 @@ export function LRZButtonGroupItem({
     }
 
     const checked = context.selectedValue === value;
+    const isSelectionGroup = context.selectionMode === "single";
 
     return (
         <LRZButton
@@ -195,12 +203,18 @@ export function LRZButtonGroupItem({
             size={size ?? context.size}
             variant={variant ?? (checked ? "primary" : context.variant)}
             disabled={disabled}
-            role="radio"
-            aria-checked={checked}
-            tabIndex={checked || context.selectedValue === undefined ? 0 : -1}
+            role={isSelectionGroup ? "radio" : undefined}
+            aria-checked={isSelectionGroup ? checked : undefined}
+            tabIndex={
+                isSelectionGroup
+                    ? checked || context.selectedValue === undefined
+                        ? 0
+                        : -1
+                    : buttonProps.tabIndex
+            }
             onClick={(event) => {
                 onClick?.(event);
-                if (!event.defaultPrevented && !disabled) {
+                if (!event.defaultPrevented && !disabled && isSelectionGroup) {
                     context.select(value);
                 }
             }}

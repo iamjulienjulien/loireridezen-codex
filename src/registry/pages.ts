@@ -85,6 +85,24 @@ export const HOME_PAGE = {
 export const CONTENT_PAGES = [
     {
         kind: "page",
+        href: "/carte",
+        label: "Carte",
+        eyebrow: "Atlas vivant",
+        variant: "editorial",
+        title: "La Loire, de repère en repère.",
+        description:
+            "Parcourez les châteaux et les guinguettes du Codex sur une même carte, de la source à l’estuaire.",
+        accent: "#4C83CF",
+        color: "bleu",
+        mark: "⌖",
+        seo: {
+            title: "Carte châteaux et guinguettes de Loire — Le Codex ligérien",
+            description:
+                "Explorez sur une même carte les châteaux et guinguettes du Codex ligérien, de Nevers à l’estuaire, et ouvrez chaque fiche au fil de la Loire.",
+        },
+    },
+    {
+        kind: "page",
         href: "/a-propos",
         label: "À propos",
         eyebrow: "À propos",

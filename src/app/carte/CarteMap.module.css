@@ -1,0 +1,231 @@
+.root {
+    position: relative;
+    width: 100%;
+    min-height: inherit;
+    overflow: hidden;
+    border: 1px solid var(--color-ambiance-bordure);
+    border-radius: 1.25rem;
+    background: var(--color-ambiance-elevation);
+    box-shadow: 0 1.2rem 3.5rem color-mix(in srgb, #1d1813 16%, transparent);
+}
+
+.canvas {
+    position: absolute;
+    inset: 0;
+}
+
+.root::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+    background: var(--map-wash);
+    content: "";
+    mix-blend-mode: multiply;
+    opacity: var(--map-wash-opacity);
+}
+
+.root[data-ambiance="aube"] {
+    --map-wash: #eadcc6;
+    --map-wash-opacity: 0.24;
+}
+
+.root[data-ambiance="jour"] {
+    --map-wash: #d8c686;
+    --map-wash-opacity: 0.15;
+}
+
+.root[data-ambiance="soir"] {
+    --map-wash: #b2725a;
+    --map-wash-opacity: 0.28;
+}
+
+.root[data-ambiance="nuit"] {
+    --map-wash: #27313d;
+    --map-wash-opacity: 0.4;
+}
+
+.canvas :global(.maplibregl-map) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.canvas :global(.maplibregl-canvas) {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.canvas :global(.maplibregl-marker) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+
+.mapMarker {
+    --lrz-map-marker-surface: var(--color-creme);
+    --lrz-map-marker-symbol-offset-y: 1px;
+}
+
+.zoomControls {
+    position: absolute;
+    z-index: 3;
+    top: 1rem;
+    right: 1rem;
+}
+
+.zoomControls svg {
+    width: 1rem;
+    height: 1rem;
+    stroke-width: 2;
+}
+
+.controls,
+.selection {
+    position: absolute;
+    z-index: 3;
+    border: 1px solid
+        color-mix(in srgb, var(--color-ambiance-bordure) 86%, transparent);
+    background: color-mix(
+        in srgb,
+        var(--color-ambiance-surface) 92%,
+        transparent
+    );
+    box-shadow: 0 0.8rem 2rem color-mix(in srgb, #1d1813 18%, transparent);
+    backdrop-filter: blur(0.8rem);
+}
+
+.controls {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.8rem;
+    border-radius: 0.85rem;
+}
+
+.controlsEyebrow,
+.selectionEyebrow,
+.legendCount,
+.attribution {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.controlsEyebrow,
+.selectionEyebrow {
+    margin: 0 0 0.65rem;
+    color: var(--color-ambiance-texte-tertiaire);
+}
+
+.legend {
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+.legendButton {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.36rem 0.55rem;
+    border: 1px solid var(--color-ambiance-bordure);
+    border-radius: 999px;
+    color: var(--color-ambiance-texte-secondaire);
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    transition:
+        opacity 160ms ease,
+        border-color 160ms ease;
+}
+
+.legendButton:not([data-active]) {
+    opacity: 0.45;
+}
+
+.legendButton[data-active] {
+    border-color: var(--marker-color);
+}
+
+.legendCount {
+    color: var(--color-ambiance-texte-tertiaire);
+}
+
+.selection {
+    right: 1rem;
+    bottom: 1.5rem;
+    width: min(20rem, calc(100% - 2rem));
+    padding: 1rem;
+    border-radius: 0.9rem;
+}
+
+.selection h2 {
+    margin: 0;
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.05;
+}
+
+.selection p:not(.selectionEyebrow) {
+    margin: 0.45rem 0 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-size: 0.84rem;
+    line-height: 1.4;
+}
+
+.selection a {
+    display: inline-flex;
+    margin-top: 0.85rem;
+    color: var(--color-ambiance-accent);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 650;
+    letter-spacing: 0.07em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.attribution {
+    position: absolute;
+    z-index: 3;
+    bottom: 0.45rem;
+    left: 0.65rem;
+    margin: 0;
+    color: var(--color-ambiance-texte-tertiaire);
+}
+
+.attribution a {
+    color: inherit;
+}
+
+@media (max-width: 700px) {
+    .controls {
+        right: 0.7rem;
+        left: 0.7rem;
+    }
+
+    .legendButton {
+        flex: 1 1 0;
+        justify-content: center;
+    }
+
+    .zoomControls {
+        top: 5.4rem;
+        right: 0.7rem;
+    }
+
+    .selection {
+        right: 0.7rem;
+        bottom: 1.6rem;
+        left: 0.7rem;
+        width: auto;
+    }
+}

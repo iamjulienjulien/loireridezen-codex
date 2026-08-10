@@ -13,6 +13,7 @@ import { getIndexesForEnv } from "@/registry/indexes";
 
 const STATIC_PUBLIC_PATHS = [
     "/",
+    "/carte",
     "/a-propos",
     "/docs",
     "/docs/api",

@@ -1,0 +1,10 @@
+.main {
+    display: flex;
+    min-height: min(74svh, 56rem);
+}
+
+@media (max-width: 700px) {
+    .main {
+        min-height: 68svh;
+    }
+}
