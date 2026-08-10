@@ -167,13 +167,13 @@ export const INDEXES = [
         presentation:
             "La Loire n’a pas un seul visage. Du Nivernais à l’estuaire, elle traverse huit territoires géohistoriques façonnés par leurs paysages, leurs villes, leurs héritages et leurs cours d’eau.",
         presentation_md:
-            "La Loire n’a pas un seul visage. Du **Nivernais** à l’**estuaire**, elle traverse huit territoires géohistoriques façonnés par leurs paysages, leurs villes, leurs héritages et leurs cours d’eau.\n\nD’amont en aval, la pierre, les usages et les accents se transforment : Loire sauvage et ducale, val royal, douceur angevine, puis ouverture atlantique. Les frontières retenues ici ne reproduisent pas un découpage administratif uniforme ; elles composent les chapitres cohérents d’un même voyage.\n\nChaque territoire devient un point de rencontre entre les lieux, les personnages et les récits du Codex.",
+            "À l’amont, le **Nivernais** garde les seuils de la Loire sauvage, tandis que l’**Orléanais** accompagne le fleuve lorsqu’il rejoint les premières grandes cités. Entre forêts, ponts et levées, la Loire y prend la mesure de son val.\n\nPuis le cours s’élargit et compose le paysage royal. Le **Blaisois** rassemble les coteaux et les demeures du Loir-et-Cher, la **Touraine** fait dialoguer jardins, caves et confluences, tandis que le **Chinonais** veille sur le fleuve et la Vienne.\n\nEnfin, l’aval ouvre d’autres horizons. Le **Saumurois** creuse ses coteaux de tuffeau, l’**Anjou** mêle schiste et douceur ligérienne, puis la **Bretagne ligérienne** accompagne la Loire jusqu’aux marais, aux ports et à l’estuaire.",
         presentationFooter:
             "**Cet index rassemble les huit territoires géohistoriques qui structurent le Codex ligérien. Chacun est raconté par ses limites, ses paysages, ses cours d’eau, ses repères et son identité.**",
         footerNote: "territoires composant le fil géohistorique ligérien",
         dataFile: "catalogue-territoires.json",
         etat: "relecture",
-        env: ["development"],
+        env: ["development", "production"],
     },
     {
         slug: "villes-villages",
