@@ -1,219 +1,296 @@
-# 🌊 Loire Ride Zen — Le Codex ligérien
+# 📖 Loire Ride Zen — Le Codex Ligérien
 
-> Un carnet vivant du fil, de la source à l’Atlantique.
+> Explorer, observer, raconter la Loire.
 
-Le **Codex ligérien** rassemble les êtres, les lieux, les savoir-faire et les
-mots qui vivent autour de la Loire. On y croise une loutre à l’aube, une
-fritillaire dans une prairie humide, un château posé sur le Cher, un chenin sur
-tuffeau… et quelques termes de marinier sauvés des eaux.
+[![Codex en ligne](https://img.shields.io/website?url=https%3A%2F%2Fcodex.loireridezen.bike&up_message=en%20ligne&down_message=indisponible&style=for-the-badge&label=Codex&logo=vercel)](https://codex.loireridezen.bike/)
+[![Contrat API](https://img.shields.io/github/actions/workflow/status/iamjulienjulien/loireridezen-codex/api-contract.yml?branch=main&style=for-the-badge&label=Contrat%20API&logo=openapiinitiative)](https://github.com/iamjulienjulien/loireridezen-codex/actions/workflows/api-contract.yml)
+[![SDK npm](https://img.shields.io/npm/v/%40loireridezen%2Fcodex-sdk?style=for-the-badge&label=SDK&logo=npm)](https://www.npmjs.com/package/@loireridezen/codex-sdk)
 
-Ce dépôt contient l’application web du Codex : une collection d’index
-éditoriaux consultables, filtrables et illustrés, construite avec Next.js.
+[![Next.js 16](https://img.shields.io/badge/Next.js-16.2-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![pnpm 10](https://img.shields.io/badge/pnpm-10.33-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![Vercel](https://img.shields.io/badge/Déployé_sur-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-## 🧭 Ce que contient le Codex
+Le **Codex Ligérien** est l’atlas éditorial de
+[Loire Ride Zen](https://loireridezen.bike/). Il relie les paysages, les
+patrimoines, les espèces, les savoir-faire et les récits qui accompagnent le
+fleuve, du Nivernais à l’estuaire. Ici, la Loire n’est pas un simple décor :
+elle est le fil qui donne une place, un contexte et une direction à chaque
+donnée.
 
-| Index          | Contenu                                     | Entrées | Disponible en production |
-| -------------- | ------------------------------------------- | ------: | :----------------------: |
-| 🪶 Faune       | Oiseaux, mammifères, poissons, reptiles…    |      49 |            ✅            |
-| 🌿 Flore       | Arbres, herbacées, plantes aquatiques…      |      51 |            ✅            |
-| 🏰 Châteaux    | Forteresses et demeures du Val de Loire     |      28 |            ✅            |
-| 🍷 Vignobles   | Appellations et crus du bassin ligérien     |      70 |            —             |
-| ⚓️ Vocabulaire | Mots du fleuve et de la marine de Loire     |      37 |            —             |
-| 🏛 Patrimoine   | Ponts, ports, moulins et ouvrages du fleuve |      23 |            —             |
+Ce dépôt contient :
 
-Soit **258 entrées** à explorer — et le fleuve n’a pas dit son dernier mot.
+- l’application web publique construite avec Next.js ;
+- les catalogues éditoriaux et leurs registres ;
+- l’API publique `/api/v1` et son contrat OpenAPI ;
+- le SDK TypeScript officiel `@loireridezen/codex-sdk` ;
+- l’Atelier du design system LRZ ;
+- les contrôles de qualité, tests de contrat et scénarios Bruno.
 
-Chaque index propose notamment :
+[Ouvrir le Codex](https://codex.loireridezen.bike/) ·
+[Lire la documentation](https://codex.loireridezen.bike/docs) ·
+[Explorer l’API](https://codex.loireridezen.bike/api/v1) ·
+[Découvrir le projet](https://codex.loireridezen.bike/a-propos)
 
-- une recherche textuelle ;
-- des filtres propres à son sujet ;
-- des cartes repliables et dépliables ;
-- quatre ambiances visuelles : aube, jour, soir et nuit ;
-- une navigation commune générée depuis un registre central.
+## 🌊 La V1
 
-## 🚲 Embarquement rapide
+La V1 marque le premier grand passage : une version cohérente, publique et
+réellement explorable du Codex. Les index suivent un même courant sans perdre
+leur paysage propre : présentation éditoriale, filtres issus des
+métacollections, cartes métier, symboles LRZ et fiches partageables.
+
+Le site public rassemble **7 index et 464 entrées** :
+
+| Univers           | Index          | Entrées | Web |  API V1   |
+| ----------------- | -------------- | ------: | :-: | :-------: |
+| Le fleuve habité  | 🏰 Châteaux    |      52 | ✅  |    ✅     |
+| Le fleuve habité  | 🍷 Guinguettes |     160 | ✅  | Relecture |
+| Le fleuve vivant  | 🪶 Faune       |      49 | ✅  |    ✅     |
+| Le fleuve vivant  | 🌿 Flore       |      51 | ✅  |    ✅     |
+| Le fleuve vivant  | 🍇 Vignobles   |      70 | ✅  |    ✅     |
+| Le fleuve raconté | 🗺️ Territoires |       8 | ✅  | Relecture |
+| Le fleuve raconté | ♜ Personnages  |      74 | ✅  | Relecture |
+
+Trois catalogues supplémentaires préparent la suite :
+
+| Index                 | Entrées | État actuel                             |
+| --------------------- | ------: | --------------------------------------- |
+| 🏘️ Villes et Villages |      39 | Disponible en développement             |
+| ⚓ Vocabulaire        |      37 | Catalogue en relecture, index désactivé |
+| 🏛️ Petit patrimoine   |      23 | Catalogue en relecture, index désactivé |
+
+L’état web et la publication API sont volontairement distincts. Un index peut
+être visible sur le site tout en restant absent de l’API jusqu’à la validation
+de son contrat public.
+
+### Parcours disponibles
+
+- recherche, filtres et vues propres à chaque index ;
+- navigation par territoires pour les Châteaux et les Guinguettes ;
+- deeplinks vers les fiches avec navigation précédente/suivante :
+  `/chateau/[slug]`, `/guinguette/[slug]`, `/faune/[slug]`, `/flore/[slug]`,
+  `/personnage/[slug]`, `/territoire/[slug]` et `/vignoble/[slug]` ;
+- partage, URL canonique, métadonnées et images Open Graph personnalisées ;
+- carte commune des Châteaux et Guinguettes sous `/carte` ;
+- sitemap adapté aux index et aux fonctionnalités réellement publiés.
+
+## 🚲 Démarrage rapide
 
 ### Prérequis
 
 - [Node.js](https://nodejs.org/) **20.9 ou supérieur** ;
-- [pnpm](https://pnpm.io/) ;
-- une curiosité raisonnable pour les hérons et les châteaux.
+- [pnpm](https://pnpm.io/) **10.33.0** ;
+- Git.
 
-Ce projet utilise **pnpm exclusivement**. Pas de `npm`, pas de `yarn` : chacun
-sa rive.
-
-### Installation
+Le dépôt utilise exclusivement pnpm : une seule embarcation évite bien des
+écarts entre les rives.
 
 ```bash
 pnpm install
-```
-
-Crée ensuite un fichier `.env.local` à la racine :
-
-```dotenv
-CURRENT_ENV=development
-SITE_URL=https://codex.example.com
-```
-
-`SITE_URL` doit être une URL HTTP ou HTTPS absolue. Elle sert à construire les
-URL publiques des illustrations dans l’API.
-
-Puis lance le serveur de développement :
-
-```bash
+pnpm env:development
 pnpm dev
 ```
 
-Le Codex est alors accessible sur
+Le site est alors disponible sur
 [http://localhost:3000](http://localhost:3000).
 
-## 🌦 Environnements
+`pnpm env:development` copie `.env.development` vers `.env.local`. Pour une
+configuration manuelle, pars de `.env.example` :
 
-`CURRENT_ENV` détermine les index visibles sur l’accueil et dans la navigation.
-La liste autorisée pour chaque index se trouve dans
-[`src/registry/indexes.ts`](src/registry/indexes.ts).
+```dotenv
+CURRENT_ENV=development
+SITE_URL=http://localhost:3000
+```
 
-| Valeur        | Comportement actuel                             |
-| ------------- | ----------------------------------------------- |
-| `development` | Affiche les six index et le lien vers l’Atelier |
-| `production`  | Affiche la Faune, la Flore et les Châteaux      |
+`SITE_URL` doit être une origine HTTP ou HTTPS absolue. Elle sert notamment à
+construire les URL publiques de l’API. Ne commite jamais `.env.local`.
 
-Si aucun index ou un seul index est disponible, la navigation du header est
-automatiquement masquée.
+## 🌦️ Trois environnements, trois rives
 
-La configuration est volontairement stricte : une valeur absente ou différente
-de `development` et `production` provoque une erreur explicite au démarrage.
+Le nouveau cycle du Codex s’organise autour de trois environnements. Chacun a
+un rôle clair : construire, éprouver, puis publier.
+
+| Environnement | Rôle                                                                        | Code et configuration                                      |
+| ------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `development` | Le chantier local : données de travail, Atelier et fonctionnalités en cours | Code d’une branche de travail, configuration `development` |
+| `preview`     | La répétition générale : version déployée et partageable du prochain lot    | Code de `dev`, configuration `production`                  |
+| `production`  | Le Codex public : version stable, indexable et surveillée                   | Code de `main`, configuration `production`                 |
+
+Le passage en `preview` n’est pas une simple compilation intermédiaire. C’est
+l’endroit où le lot est relu dans son ensemble : contenu, navigation,
+responsive, métadonnées, données publiques et contrat API.
 
 > [!NOTE]
-> Masquer un index dans la navigation ne bloque pas encore l’accès direct à son
-> URL. Le filtrage actuel porte sur l’interface, pas sur l’autorisation des
-> routes.
+> `preview` est pour l’instant un environnement de livraison, pas une troisième
+> valeur de `CURRENT_ENV`. Il exécute le code de `dev` avec la configuration
+> `production`, afin d’éprouver le prochain lot dans les mêmes conditions
+> fonctionnelles que le site public sans exposer le domaine canonique.
 
-## 🗺 Carte du territoire
+Les commandes actuellement disponibles restent :
+
+```bash
+pnpm env:development
+pnpm env:production
+```
+
+Les sources de vérité sont :
+
+- [`src/registry/indexes.ts`](src/registry/indexes.ts) pour l’identité, le
+  format, l’état éditorial, le fichier de données et les environnements de
+  chaque index ;
+- [`src/registry/feature-flags.ts`](src/registry/feature-flags.ts) pour les
+  fonctionnalités transversales et expérimentales.
+
+Les helpers refusent une valeur de `CURRENT_ENV` absente ou inconnue. Lorsqu’un
+flag est utilisé dans un composant client, `NEXT_PUBLIC_CURRENT_ENV` doit rester
+aligné sur l’environnement serveur. La preview utilise donc les mêmes valeurs
+fonctionnelles que la production ; seuls le code déployé et le domaine
+permettent de distinguer les deux rives.
+
+```bash
+pnpm features:list
+pnpm features
+```
+
+La commande `features` ouvre le gestionnaire interactif. Elle modifie le
+registre : vérifie toujours le diff avant de le conserver.
+
+## 🗺️ Architecture du dépôt
 
 ```text
 .
-├── data/                       # Les six catalogues éditoriaux en JSON
+├── bruno/codex-public-api/    # Collection de tests HTTP
+├── data/                      # Catalogues éditoriaux JSON
+├── docs/api/                  # Documentation source de l’API
+├── packages/codex-sdk/        # SDK TypeScript publié sur npm
 ├── public/
-│   └── emoji/                  # Illustrations LRZ par collection
+│   ├── api/v1/openapi.json    # Contrat public OpenAPI
+│   └── symbols/               # Illustrations et symboles LRZ
+├── scripts/                   # Environnements, contrat et qualité
 ├── src/
-│   ├── app/
-│   │   ├── atelier/            # Laboratoire de composants (développement)
-│   │   ├── chateaux/           # Page, index, carte et styles
-│   │   ├── faune/
-│   │   ├── flore/
-│   │   ├── patrimoine/
-│   │   ├── vignobles/
-│   │   └── vocabulaire/
-│   ├── components/             # Header, contrôles, présentation et footer
-│   ├── registry/               # Registres des index et des couleurs
-│   └── types/                  # Modèles TypeScript des catalogues
-├── AGENTS.md                   # Consignes spécifiques à Next.js 16
+│   ├── api/                   # Schémas, adaptateurs et publication API
+│   ├── app/                   # Routes App Router, sitemap et robots
+│   ├── components/            # Primitives et composants métier
+│   ├── data-quality/          # Contrôles éditoriaux transverses
+│   ├── registry/              # Index, métacollections et feature flags
+│   └── types/                 # Modèles TypeScript des catalogues
+├── AGENTS.md                  # Règles Next.js et convention de commits
+├── CONTENT_LICENSE.md         # Licences des contenus et médias
 └── package.json
 ```
 
-### Le flux d’une page
+### Flux de données
 
 ```text
 data/*.json
     ↓
-app/<index>/page.tsx            composant serveur, lecture de CURRENT_ENV
+schémas TypeScript et Zod + contrôles de qualité
     ↓
-<Index>                         recherche, filtres et état interactif
-    ↓
-IndexHeader + Cards + Footer    présentation partagée
+registres éditoriaux et métacollections
+    ├──→ pages, filtres, cartes et deeplinks
+    └──→ adaptateurs API → OpenAPI → SDK TypeScript
 ```
 
-Le fichier [`src/registry/indexes.ts`](src/registry/indexes.ts) est la source de
-vérité pour :
+Les catalogues restent indépendants de leurs représentations. Une même donnée
+peut ainsi descendre le fil vers le site, la carte, l’API, le Passeport et une
+future expérience hors ligne sans perdre sa source éditoriale.
 
-- les routes et libellés des index ;
-- leur couleur et leur symbole ;
-- leurs textes de présentation ;
-- leur fichier de données ;
-- leur disponibilité par environnement.
+## ✍️ Travailler sur les contenus
 
-## ✍️ Ajouter ou modifier une entrée
+### Modifier une entrée
 
-1. Repère le catalogue concerné dans `data/`.
-2. Consulte son modèle dans `src/types/`.
-3. Ajoute ou modifie l’objet JSON en respectant les valeurs attendues.
-4. Si l’entrée possède une illustration LRZ, dépose-la dans
-   `public/emoji/<index>/` et renseigne `customEmoji`.
-5. Lance les contrôles de qualité avant de proposer la modification.
+1. Identifie le catalogue dans `data/`.
+2. Consulte le modèle correspondant dans `src/types/` et, s’il existe, son
+   schéma dans `src/api/schemas/`.
+3. Réutilise les slugs déclarés par les registres et métacollections ; ne crée
+   pas une valeur libre lorsqu’un vocabulaire commun existe.
+4. Ajoute les médias dans l’arborescence publique prévue sans modifier leur
+   casse.
+5. Vérifie le catalogue avant toute livraison.
 
-Exemple très simplifié :
-
-```json
-{
-    "emoji": "🦦",
-    "customEmoji": "/emoji/faune/loutre-d-europe.png",
-    "type": "mammifère",
-    "nomCommun": "Loutre d’Europe",
-    "nomScientifique": "Lutra lutra",
-    "rarete": "trésor",
-    "sousTitre": "la discrète du petit matin"
-}
+```bash
+SITE_URL=https://example.test pnpm api:data:check
 ```
 
-Les vrais modèles contiennent davantage de champs : cet exemple montre le
-principe, pas un objet complet à copier tel quel.
+Le contrôle transverse vérifie notamment :
 
-### Ajouter un nouvel index
+- l’unicité et le format des slugs et identifiants publics ;
+- les dates, coordonnées et limites du corridor ligérien ;
+- l’existence, la casse et l’extension des médias ;
+- la cohérence entre catalogues, registres, publication API et états
+  éditoriaux.
 
-Un nouvel affluent du Codex demande généralement :
+Une `error` bloque la livraison. Une `warning` représente une dette éditoriale
+encore autorisée.
 
-1. un fichier de données dans `data/` ;
-2. un type dans `src/types/` ;
-3. une route dans `src/app/<index>/` avec sa page, son composant interactif, ses
-   cartes et ses styles ;
-4. une entrée dans `src/registry/indexes.ts` ;
-5. éventuellement un dossier d’illustrations dans `public/emoji/` ;
-6. des spécimens dans l’Atelier pour comparer les variantes visuelles.
+### Ajouter un index
 
-## 🎨 L’Atelier
+Un nouvel index demande généralement :
 
-[`/atelier`](http://localhost:3000/atelier) est le laboratoire du Codex. Il
-rassemble les variantes des six familles de cartes avec des données de
-démonstration.
+1. un type métier dans `src/types/` ;
+2. un catalogue `data/catalogue-<index>.json` — les données secondaires restent
+   décrites par des registres ou métacollections ;
+3. une entrée complète dans `src/registry/indexes.ts` ;
+4. une route plurielle d’index et ses composants métier ;
+5. si nécessaire, une route singulière `/item/[slug]` utilisant
+   `LRZCardDialog` ;
+6. des symboles, métadonnées et exemples dans l’Atelier ;
+7. une décision explicite de visibilité web et de publication API ;
+8. les tests, le sitemap et les redirections associés.
+
+Une route ouverte ne suffit pas à faire un index. Les sources, la cohérence des
+relations et la qualité de chaque fiche font partie du voyage avant
+publication.
+
+## 🎨 Design system et Atelier
+
+L’Atelier, accessible localement sous
+[`/atelier`](http://localhost:3000/atelier), documente les fondations visuelles,
+les primitives LRZ et les cartes métier.
 
 Il sert à :
 
-- comparer rapidement plusieurs versions d’un composant ;
-- vérifier les états ouverts et fermés ;
-- éprouver la cohérence visuelle entre les collections ;
-- bricoler sans déranger les hérons en production.
+- comparer les variantes et leurs états interactifs ;
+- vérifier les symboles et métacollections ;
+- tester les composants avec des contrôles réels ;
+- harmoniser les cartes sans effacer l’identité de chaque index ;
+- valider le responsive avant intégration.
 
-Le lien vers l’Atelier n’est affiché sur l’accueil qu’en environnement
-`development`.
+Les composants partagés fournissent une grammaire commune, jamais un moule.
+Les cartes Châteaux, Guinguettes, Vignobles, Territoires, Faune, Flore et
+Personnages conservent leur rythme, leur organisation et leur voix propres.
 
-## API publique
+## 📡 API publique V1
 
-La V1 est publique, anonyme et disponible en lecture seule sous `/api/v1`.
-Pour effectuer un premier appel et comprendre les réponses, consultez le
-[guide développeur public](https://codex.loireridezen.bike/docs/api) ou sa
-[source versionnée](docs/api/README.md).
+L’API est publique, anonyme, gratuite et en lecture seule. Elle ne demande ni
+clé ni compte.
 
-Ce README conserve les informations de maintenance du dépôt. Le guide
-développeur est la source narrative destinée aux consommateurs externes.
-
-Le contrat externe est publié au format **OpenAPI 3.1.2** :
-
-```text
-https://codex.loireridezen.bike/api/v1/openapi.json
-http://localhost:3000/api/v1/openapi.json
+```bash
+curl --fail-with-body \
+  https://codex.loireridezen.bike/api/v1/indexes
 ```
 
-Ce document JSON peut être importé dans Bruno ou dans tout autre client
-compatible OpenAPI. L’URL de production est déclarée comme serveur canonique ;
-un client local peut la remplacer par `http://localhost:3000`.
+Elle expose actuellement **Châteaux, Faune, Flore et Vignobles**, soit
+**222 entrées**.
 
-Les schémas Zod de `src/api/schemas/` valident les catalogues éditoriaux
-internes. Le document OpenAPI décrit séparément les DTO réellement exposés aux
-consommateurs. Toute modification du format public doit mettre à jour le
-contrat et ses tests.
+| Route                                        | Rôle                                       |
+| -------------------------------------------- | ------------------------------------------ |
+| `GET /api/v1`                                | Découvrir l’API, ses licences et ses liens |
+| `GET /api/v1/indexes`                        | Lister les index publiés                   |
+| `GET /api/v1/indexes/{index}`                | Lire les métadonnées d’un index            |
+| `GET /api/v1/indexes/{index}/entries`        | Lister ses entrées                         |
+| `GET /api/v1/indexes/{index}/entries/{slug}` | Lire une entrée                            |
+| `GET /api/v1/openapi.json`                   | Consulter le contrat OpenAPI 3.1.2         |
 
-Pour valider le contrat :
+`HEAD` et `OPTIONS` sont également pris en charge. Les erreurs utilisent
+`application/problem+json`.
+
+Pour intégrer l’API, utilise la
+[documentation publique](https://codex.loireridezen.bike/docs/api). Pour la
+maintenir, consulte sa [source versionnée](docs/api/README.md) et la
+[collection Bruno](bruno/codex-public-api/README.md).
+
+### Contrat et non-régression
 
 ```bash
 pnpm api:lint
@@ -221,201 +298,214 @@ pnpm api:test:contract
 pnpm api:contract:diff
 ```
 
-La non-régression repose sur trois garde-fous complémentaires : Ajv vérifie les
-réponses des Route Handlers contre l’OpenAPI courant, des snapshots ciblés
-rendent les changements de structure visibles, puis `oasdiff` compare le
-contrat à sa base Git. Ces contrôles sont locaux et n’appellent jamais la
-production.
+Le contrat est protégé par :
 
-`pnpm api:contract:diff` exige exactement
-[`oasdiff 1.17.0`](https://github.com/oasdiff/oasdiff/releases/tag/v1.17.0)
-dans le `PATH`. Un échec Ajv indique la route, le statut, le schéma et le chemin
-JSON concernés ; un échec de snapshot signale une forme publique modifiée ;
-un échec `oasdiff` indique une rupture avérée ou potentielle de compatibilité.
+- la validation des réponses avec Ajv ;
+- des snapshots ciblés sur les formes publiques ;
+- une comparaison de compatibilité avec `oasdiff 1.17.0` ;
+- le contrôle de qualité des catalogues ;
+- les scénarios HTTP Bruno.
 
-Après revue explicite d’un ajout public volontaire, les snapshots peuvent être
-mis à jour localement avec :
+Après une évolution additive volontaire et relue, les snapshots peuvent être
+mis à jour avec `pnpm api:contract:update-snapshots`. Cette commande ne rend
+jamais compatible une rupture détectée par OpenAPI.
 
-```bash
-pnpm api:contract:update-snapshots
-```
+## 📦 SDK TypeScript
 
-Cette commande n’est jamais exécutée en CI. Mettre à jour un snapshot ne rend
-pas une rupture OpenAPI compatible : le diff `oasdiff` reste bloquant pour les
-niveaux `WARN` et `ERR`.
-Le fichier `oasdiff-levels.txt` renforce sa politique par défaut pour traiter
-notamment la suppression d’une réponse d’erreur, la réduction d’une enum et le
-passage d’un champ facultatif à obligatoire comme des ruptures de la V1.
-Le wrapper compense également une limite vérifiée d’`oasdiff 1.17.0` : il
-compare les contraintes JSON Schema et bloque les bornes numériques ou de
-taille durcies, ainsi que l’ajout ou le changement de `pattern`, `multipleOf`
-et `uniqueItems`.
-
-### Qualité des données éditoriales
-
-Les schémas Zod valident la structure propre à chaque catalogue. Le contrôle
-qualité transverse vérifie en complément la cohérence entre registres,
-catalogues, API et fichiers médias :
-
-- unicité et format des slugs, hrefs, fichiers et identifiants publics ;
-- dates réelles, non futures, au format `YYYY-MM-DD` ;
-- coordonnées dans le corridor ligérien (`44.5–48.5` de latitude,
-  `-2.5–5.0` de longitude), avec avertissement à moins de `0.25°` d’une limite ;
-- chemins médias sûrs, casse exacte, existence et extensions `.png`, `.webp`
-  ou `.svg` ;
-- cohérence de l’état de publication, des sources techniques et des entrées
-  réellement exposées.
+Le client officiel est publié sur npm sous le nom
+[`@loireridezen/codex-sdk`](https://www.npmjs.com/package/@loireridezen/codex-sdk).
 
 ```bash
-SITE_URL=https://example.test pnpm api:data:check
+pnpm add @loireridezen/codex-sdk
 ```
 
-La commande inspecte uniquement le dépôt local et ne fait aucun appel réseau.
-Une `error` bloque la CI ; une `warning` signale une dette éditoriale autorisée.
-Ainsi, une illustration manque encore légitimement sur une entrée WIP, tandis
-qu’elle est obligatoire dès publication. Les codes stables affichés dans le
-rapport sont définis dans
-[`src/data-quality/types.ts`](src/data-quality/types.ts) et permettent de
-retrouver précisément la règle concernée.
+```typescript
+import { createCodexClient } from "@loireridezen/codex-sdk";
 
-Après le premier run vert du workflow `API contract`, ajoutez son check stable
-aux contrôles requis de la branche `main` dans les règles ou la protection de
-branche. Vérifiez ensuite qu’une pull request rouge ne peut pas être fusionnée.
-Cette configuration GitHub reste manuelle.
+const codex = createCodexClient();
+const response = await codex.entries.list("faune");
+```
 
-Une collection Bruno versionnée couvre les routes publiques, CORS, le cache,
-les licences et les erreurs. Consultez son
-[guide de prise en main](bruno/codex-public-api/README.md).
+Le cœur du SDK est indépendant de React et Next.js. Il est compatible avec les
+environnements Expo/React Native qui fournissent les standards web nécessaires.
+Les types sont générés depuis OpenAPI.
 
 ```bash
-pnpm api:test:local
-pnpm api:test:production
-pnpm api:test:smoke
+pnpm sdk:generate
+pnpm sdk:check
+pnpm sdk:build
+pnpm sdk:test
 ```
 
-### Surveillance de production
-
-Le workflow
-[`API production monitor`](.github/workflows/api-production-monitor.yml)
-réutilise `pnpm api:test:smoke` après chaque promotion Vercel en production,
-toutes les 30 minutes et à la demande. Il contrôle exclusivement le domaine
-canonique, sans secret ni service de monitoring supplémentaire.
-
-Après trois échecs, GitHub Actions conserve pendant sept jours un rapport
-minimal et signale le job en erreur. Les notifications GitHub et e-mail
-configurées sur le dépôt assurent l’alerte. Le
-[README Bruno](bruno/codex-public-api/README.md#surveillance-de-production)
-détaille les parcours surveillés et la procédure d’incident.
-
-Les données textuelles et les illustrations n’ont pas la même politique de
-réutilisation. Consultez [`CONTENT_LICENSE.md`](CONTENT_LICENSE.md) pour le
-détail des licences et de l’attribution.
+La documentation complète se trouve dans
+[`packages/codex-sdk/README.md`](packages/codex-sdk/README.md) et sur
+[le site public](https://codex.loireridezen.bike/docs/sdk).
 
 ## 🧰 Commandes utiles
 
-| Commande                   | Effet                                           |
-| -------------------------- | ----------------------------------------------- |
-| `pnpm dev`                 | Lance le serveur de développement               |
-| `pnpm build`               | Produit la version optimisée                    |
-| `pnpm start`               | Lance une version déjà compilée                 |
-| `pnpm test`                | Exécute les tests automatisés                   |
-| `pnpm api:lint`            | Valide le contrat OpenAPI public                |
-| `pnpm api:test:contract`   | Vérifie réponses et snapshots du contrat        |
-| `pnpm api:contract:diff`   | Compare l’OpenAPI à sa base Git avec oasdiff    |
-| `pnpm api:data:check`      | Contrôle la qualité des données éditoriales     |
-| `pnpm api:docs:check`      | Vérifie le guide et ses exemples                |
-| `pnpm api:test:local`      | Teste l’API locale avec Bruno                   |
-| `pnpm api:test:production` | Teste toute l’API publique en production        |
-| `pnpm api:test:smoke`      | Lance le smoke test de production               |
-| `pnpm lint`                | Analyse le code avec ESLint                     |
-| `pnpm format`              | Formate le dépôt avec Prettier                  |
-| `pnpm format:check`        | Vérifie le formatage sans modifier les fichiers |
-| `pnpm exec tsc --noEmit`   | Vérifie les types TypeScript                    |
+| Commande                   | Effet                                            |
+| -------------------------- | ------------------------------------------------ |
+| `pnpm dev`                 | Lance le serveur Next.js en développement        |
+| `pnpm build`               | Produit la version optimisée                     |
+| `pnpm start`               | Lance une version déjà compilée                  |
+| `pnpm env:development`     | Active la configuration locale de développement  |
+| `pnpm env:production`      | Active la configuration locale de production     |
+| `pnpm features:list`       | Affiche les feature flags                        |
+| `pnpm test`                | Exécute la suite Vitest                          |
+| `pnpm lint`                | Analyse le code avec ESLint                      |
+| `pnpm format`              | Formate le dépôt avec Prettier                   |
+| `pnpm format:check`        | Vérifie le formatage                             |
+| `pnpm exec tsc --noEmit`   | Vérifie les types TypeScript                     |
+| `pnpm api:data:check`      | Contrôle la qualité éditoriale                   |
+| `pnpm api:docs:check`      | Vérifie la documentation développeur             |
+| `pnpm api:lint`            | Valide le contrat OpenAPI                        |
+| `pnpm api:test:contract`   | Vérifie les réponses et snapshots publics        |
+| `pnpm api:contract:diff`   | Détecte les ruptures du contrat                  |
+| `pnpm api:test:local`      | Teste l’API locale avec Bruno                    |
+| `pnpm api:test:production` | Teste l’API complète en production               |
+| `pnpm api:test:smoke`      | Exécute le parcours critique de production       |
+| `pnpm sdk:check`           | Vérifie génération, types, tests et build du SDK |
 
-Avant de quitter le quai :
+## 🚦 Le nouveau rythme des livraisons
+
+La V1 s’est construite au fil de l’eau, directement et parfois au plus près de
+la production. Ce rythme avait une vertu : il fallait d’abord découvrir la
+forme du Codex en le faisant vivre. Le cap est désormais assez net pour adopter
+des livraisons plus calmes, regroupées et versionnées.
+
+```text
+branche de travail
+        ↓
+development
+        ↓
+dev → preview Vercel
+        ↓
+validation visuelle, éditoriale et technique
+        ↓
+main → production
+        ↓
+smoke test de production
+```
+
+### Rôle des branches
+
+- `main` représente la production stable ;
+- `dev` rassemble le prochain lot cohérent et alimente la preview de référence ;
+- les branches de travail partent de `dev` et y reviennent par pull request ;
+- les previews de branche permettent d’observer un changement isolé avant de
+  le réunir au lot ;
+- un hotfix de production part de `main`, puis est resynchronisé vers `dev`.
+
+### Préparer un lot
+
+1. Définir l’intention et le périmètre de la livraison.
+2. Développer sur une branche issue de `dev`.
+3. Ouvrir une pull request vers `dev` et vérifier sa preview.
+4. Exécuter les contrôles proportionnés au changement.
+5. Regrouper les changements validés et attribuer une version au lot.
+6. Fusionner `dev` vers `main` pour la promotion en production.
+7. Vérifier le domaine canonique et le smoke test de l’API.
+8. Consigner les jalons importants dans la Chronicle du Codex.
+
+Une livraison doit raconter quelque chose de compréhensible. Mieux vaut une
+étape courte et cohérente qu’une pluie de modifications sans halte ni repère.
+
+## ✅ Vérifications avant livraison
+
+Pour tout changement :
 
 ```bash
 pnpm format:check
 pnpm lint
+pnpm test
 pnpm exec tsc --noEmit
+```
+
+Ajoute selon le périmètre :
+
+```bash
+# Données et contenus publiés
+SITE_URL=https://example.test pnpm api:data:check
+
+# API publique ou adaptateurs
+pnpm api:lint
+pnpm api:test:contract
+pnpm api:contract:diff
+
+# SDK
+pnpm sdk:check
+
+# Validation finale du lot
 pnpm build
 ```
 
-## 🪨 Conventions du projet
+Après la mise à l’eau, `API production monitor` contrôle automatiquement le
+domaine canonique et relance jusqu’à trois fois le smoke test avant de signaler
+un incident.
 
-- **Next.js 16.2**, App Router et React 19 ;
-- TypeScript en mode strict ;
-- Tailwind CSS pour les utilitaires globaux et CSS Modules pour les composants ;
+## 🪨 Conventions techniques
+
+- Next.js **16.2.10**, App Router et React **19.2** ;
+- TypeScript strict ;
+- composants serveur par défaut, composants client pour l’interactivité ;
+- CSS Modules pour les composants et Tailwind CSS pour les utilitaires globaux ;
 - Prettier comme source de vérité du formatage ;
-- indentation de quatre espaces ;
-- guillemets doubles et points-virgules ;
+- indentation de quatre espaces, guillemets doubles et points-virgules ;
 - alias `@/*` vers `src/*` et `@data/*` vers `data/*` ;
-- données éditoriales séparées du rendu ;
-- composants serveur pour la configuration et composants client pour
-  l’interactivité.
+- données éditoriales séparées du rendu et du contrat public.
 
 Cette version de Next.js comporte des changements importants. Avant de modifier
 une API ou une convention du framework, consulte la documentation embarquée
-dans `node_modules/next/dist/docs/`, conformément à `AGENTS.md`.
+dans `node_modules/next/dist/docs/`, conformément à [`AGENTS.md`](AGENTS.md).
 
-## 🚀 Préparer une production
+Les commits suivent la convention LRZ :
 
-Définis la variable suivante dans l’environnement de déploiement :
-
-```dotenv
-CURRENT_ENV=production
+```text
+[LRZ-CODEX] <emoji> <scope> > <imperative summary in English> > 🤠 Julien
 ```
-
-Puis vérifie la compilation :
-
-```bash
-pnpm build
-pnpm start
-```
-
-`CURRENT_ENV` n’est pas préfixée par `NEXT_PUBLIC_` : elle est lue côté serveur,
-puis seule la liste d’index autorisés est transmise aux composants interactifs.
 
 ## 🤝 Contribuer
 
 Une contribution peut être technique, graphique ou éditoriale :
 
 - corriger ou sourcer une information ;
-- enrichir une fiche ;
-- dessiner une illustration LRZ ;
-- améliorer l’accessibilité ou le responsive ;
-- proposer un nouvel index ;
-- repêcher un mot ligérien presque oublié.
+- enrichir les relations entre les fiches ;
+- dessiner un symbole ou une illustration LRZ ;
+- améliorer l’accessibilité et le responsive ;
+- renforcer l’API, le SDK ou les contrôles de qualité ;
+- proposer un index, une collection ou un dossier éditorial.
 
-Dans tous les cas : garde les changements ciblés, respecte les modèles existants
-et lance les vérifications avant partage.
+Garde les changements ciblés, préserve les travaux déjà sur la rive et
+documente les décisions qui affectent durablement les catalogues ou le contrat
+public. Le Codex avance par liens patients, pas par accumulation pressée.
 
-## 📜 Licence
+## 📜 Licences
 
-Le Codex utilise plusieurs licences afin de distinguer son moteur technique de
-son univers éditorial et graphique :
+Le dépôt distingue trois périmètres :
 
 - le **code source** et la documentation technique sont distribués sous
   [licence MIT](LICENSE) ;
-- les **textes et données** sont proposés sous licence
+- les **textes et données** sont proposés sous
   [CC BY-NC-SA 4.0](CONTENT_LICENSE.md#textes-et-données) ;
-- les **illustrations, emojis LRZ et éléments de marque** restent protégés —
+- les **illustrations, symboles LRZ et éléments de marque** restent protégés —
   tous droits réservés.
 
-Le détail des périmètres et des conditions de réutilisation est disponible dans
-[`CONTENT_LICENSE.md`](CONTENT_LICENSE.md).
+Consulte [`CONTENT_LICENSE.md`](CONTENT_LICENSE.md) avant toute réutilisation de
+contenu ou de média.
 
-**Loire Ride Zen** — suivre le fil, documenter ce qui vit autour. 🌊
+**Loire Ride Zen** — prendre le temps de suivre le fleuve. 🌊
 
 ---
 
 ## 👋 À propos du développeur
 
-**Julien Julien**  
+**Julien Julien**<br />
 _Développeur web & créateur de projets narratifs._
 
-Je conçois des applications et des outils numériques durables, où le code, la structure et le récit avancent ensemble.  
-J'aime les projets clairs, évolutifs, pensés pour le temps long plutôt que pour l'instantané.
+Je conçois des applications et des outils numériques durables, où le code, la
+structure et le récit avancent ensemble.<br />
+J'aime les projets clairs, évolutifs, pensés pour le temps long plutôt que pour
+l'instantané.
 
-📍 Angers, France 🇫🇷  
-🌍 https://julienjulien.fr
+📍 Angers, France 🇫🇷<br />
+🌍 <https://julienjulien.fr>
