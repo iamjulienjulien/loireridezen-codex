@@ -20,11 +20,9 @@ import { getCollectionsByIndexForEnv } from "@/registry/collections";
 
 import IndexPresentation from "@/components/IndexPresentation";
 import { PageControls } from "@/components/PageControls";
-import {
-    LRZDialog,
-    LRZDialogBody,
-    LRZDialogContent,
-} from "@/components/LRZDialog";
+import { LRZCardDialog } from "@/components/LRZCardDialog";
+import { LRZSymbol } from "@/components/LRZSymbol";
+import { SITE_URL } from "@/lib/site-metadata";
 
 import { CollectionCard } from "@/components/ui/collection-card";
 
@@ -198,6 +196,7 @@ export default function ChateauxIndex({
     const openChateau = openSlug
         ? chateaux.find((castle) => castle.slug === openSlug)
         : undefined;
+    const openChateauIndex = openChateau ? chateaux.indexOf(openChateau) : -1;
     const hasActiveFilters =
         epoque !== "all" || (renommeeEnabled && renommee !== "all") || q !== "";
 
@@ -488,7 +487,6 @@ export default function ChateauxIndex({
                     >
                         <ChateauxCard
                             d={castle}
-                            open={false}
                             personnages={
                                 personnagesByChateau[castle.slug] ?? []
                             }
@@ -505,39 +503,65 @@ export default function ChateauxIndex({
 
     return (
         <>
-            <LRZDialog
-                open={Boolean(openChateau)}
-                onOpenChange={(open) => {
-                    if (!open) {
-                        setOpenSlug(undefined);
-                        router.replace("/chateaux");
+            {openChateau ? (
+                <LRZCardDialog
+                    open={Boolean(openChateau)}
+                    onOpenChange={(open) => {
+                        if (!open) {
+                            setOpenSlug(undefined);
+                            router.replace("/chateaux");
+                        }
+                    }}
+                    indexLabel={entry.title}
+                    indexIcon={
+                        <LRZSymbol
+                            collection="codex"
+                            meta="index"
+                            slug="chateaux"
+                            size="md"
+                            decorative
+                        />
                     }
-                }}
-            >
-                {openChateau ? (
-                    <LRZDialogContent
-                        size="sm"
-                        variant="immersive"
-                        scrollMode="content"
-                        color={entry.color}
-                    >
-                        <LRZDialogBody padding="none">
-                            <ChateauxCard
-                                d={openChateau}
-                                open
-                                personnages={
-                                    personnagesByChateau[openChateau.slug] ?? []
-                                }
-                                onShowOnMap={
-                                    interactiveMapEnabled
-                                        ? showChateauOnMap
-                                        : undefined
-                                }
-                            />
-                        </LRZDialogBody>
-                    </LRZDialogContent>
-                ) : null}
-            </LRZDialog>
+                    item={{ id: openChateau.slug, label: openChateau.nom }}
+                    navigation={{
+                        position: openChateauIndex + 1,
+                        total: chateaux.length,
+                        previous:
+                            openChateauIndex > 0
+                                ? {
+                                      id: chateaux[openChateauIndex - 1].slug,
+                                      label: chateaux[openChateauIndex - 1].nom,
+                                  }
+                                : undefined,
+                        next:
+                            openChateauIndex < chateaux.length - 1
+                                ? {
+                                      id: chateaux[openChateauIndex + 1].slug,
+                                      label: chateaux[openChateauIndex + 1].nom,
+                                  }
+                                : undefined,
+                        onNavigate: ({ id }) => {
+                            setOpenSlug(id);
+                            router.replace(`/chateau/${id}`);
+                        },
+                    }}
+                    share={{
+                        title: `${openChateau.nom} — ${entry.title}`,
+                        url: `${SITE_URL}/chateau/${openChateau.slug}`,
+                    }}
+                    color={entry.color}
+                >
+                    <ChateauxCard
+                        d={openChateau}
+                        personnages={
+                            personnagesByChateau[openChateau.slug] ?? []
+                        }
+                        onShowOnMap={
+                            interactiveMapEnabled ? showChateauOnMap : undefined
+                        }
+                    />
+                </LRZCardDialog>
+            ) : null}
 
             <IndexPresentation
                 description={entry.description}

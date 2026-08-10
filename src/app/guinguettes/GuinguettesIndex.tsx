@@ -11,11 +11,9 @@ import ReactMarkdown from "react-markdown";
 import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 import { useRouter } from "next/navigation";
 import IndexPresentation from "@/components/IndexPresentation";
-import {
-    LRZDialog,
-    LRZDialogBody,
-    LRZDialogContent,
-} from "@/components/LRZDialog";
+import { LRZCardDialog } from "@/components/LRZCardDialog";
+import { LRZSymbol } from "@/components/LRZSymbol";
+import { SITE_URL } from "@/lib/site-metadata";
 import { PageControls } from "@/components/PageControls";
 import { LRZSection } from "@/components/LRZSection";
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
@@ -99,6 +97,9 @@ export default function GuinguettesIndex({
     const openGuinguette = openSlug
         ? guinguettes.find((guinguette) => guinguette.slug === openSlug)
         : undefined;
+    const openGuinguetteIndex = openGuinguette
+        ? guinguettes.indexOf(openGuinguette)
+        : -1;
 
     useEffect(() => {
         if (!interactiveMapEnabled) return;
@@ -279,31 +280,66 @@ export default function GuinguettesIndex({
 
     return (
         <>
-            <LRZDialog
-                open={Boolean(openGuinguette)}
-                onOpenChange={(open) => {
-                    if (!open) {
-                        setOpenSlug(undefined);
-                        router.replace("/guinguettes");
+            {openGuinguette ? (
+                <LRZCardDialog
+                    open={Boolean(openGuinguette)}
+                    onOpenChange={(open) => {
+                        if (!open) {
+                            setOpenSlug(undefined);
+                            router.replace("/guinguettes");
+                        }
+                    }}
+                    indexLabel={entry.title}
+                    indexIcon={
+                        <LRZSymbol
+                            collection="codex"
+                            meta="index"
+                            slug="guinguettes"
+                            size="md"
+                            decorative
+                        />
                     }
-                }}
-            >
-                {openGuinguette ? (
-                    <LRZDialogContent
-                        size="sm"
-                        variant="immersive"
-                        scrollMode="content"
-                        color={entry.color}
-                    >
-                        <LRZDialogBody padding="none">
-                            <GuinguetteCard
-                                guinguette={openGuinguette}
-                                expandAll
-                            />
-                        </LRZDialogBody>
-                    </LRZDialogContent>
-                ) : null}
-            </LRZDialog>
+                    item={{
+                        id: openGuinguette.slug,
+                        label: openGuinguette.nom,
+                    }}
+                    navigation={{
+                        position: openGuinguetteIndex + 1,
+                        total: guinguettes.length,
+                        previous:
+                            openGuinguetteIndex > 0
+                                ? {
+                                      id: guinguettes[openGuinguetteIndex - 1]
+                                          .slug,
+                                      label: guinguettes[
+                                          openGuinguetteIndex - 1
+                                      ].nom,
+                                  }
+                                : undefined,
+                        next:
+                            openGuinguetteIndex < guinguettes.length - 1
+                                ? {
+                                      id: guinguettes[openGuinguetteIndex + 1]
+                                          .slug,
+                                      label: guinguettes[
+                                          openGuinguetteIndex + 1
+                                      ].nom,
+                                  }
+                                : undefined,
+                        onNavigate: ({ id }) => {
+                            setOpenSlug(id);
+                            router.replace(`/guinguette/${id}`);
+                        },
+                    }}
+                    share={{
+                        title: `${openGuinguette.nom} — ${entry.title}`,
+                        url: `${SITE_URL}/guinguette/${openGuinguette.slug}`,
+                    }}
+                    color={entry.color}
+                >
+                    <GuinguetteCard guinguette={openGuinguette} />
+                </LRZCardDialog>
+            ) : null}
 
             <IndexPresentation
                 description={entry.description}

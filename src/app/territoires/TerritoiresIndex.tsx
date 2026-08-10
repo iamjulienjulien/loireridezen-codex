@@ -5,13 +5,11 @@ import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/navigation";
 
 import IndexPresentation from "@/components/IndexPresentation";
-import {
-    LRZDialog,
-    LRZDialogBody,
-    LRZDialogContent,
-} from "@/components/LRZDialog";
+import { LRZCardDialog } from "@/components/LRZCardDialog";
+import { LRZSymbol } from "@/components/LRZSymbol";
 import LRZSeparateur from "@/components/LRZSeparateur";
 import { LRZSection } from "@/components/LRZSection";
+import { SITE_URL } from "@/lib/site-metadata";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { TerritoireSlug } from "@/registry/territoires";
@@ -43,42 +41,82 @@ export default function TerritoiresIndex({
     const openTerritoire = openSlug
         ? territoires.find((territoire) => territoire.slug === openSlug)
         : undefined;
+    const openTerritoireIndex = openTerritoire
+        ? territoires.indexOf(openTerritoire)
+        : -1;
 
     return (
         <>
-            <LRZDialog
-                open={Boolean(openTerritoire)}
-                onOpenChange={(open) => {
-                    if (!open) {
-                        setOpenSlug(undefined);
-                        router.replace("/territoires");
+            {openTerritoire ? (
+                <LRZCardDialog
+                    open={Boolean(openTerritoire)}
+                    onOpenChange={(open) => {
+                        if (!open) {
+                            setOpenSlug(undefined);
+                            router.replace("/territoires");
+                        }
+                    }}
+                    indexLabel={entry.title}
+                    indexIcon={
+                        <LRZSymbol
+                            collection="codex"
+                            meta="index"
+                            slug="territoires"
+                            size="md"
+                            decorative
+                        />
                     }
-                }}
-            >
-                {openTerritoire ? (
-                    <LRZDialogContent
-                        size="sm"
-                        variant="immersive"
-                        scrollMode="content"
-                        color={entry.color}
-                    >
-                        <LRZDialogBody padding="none">
-                            <TerritoireCard
-                                territoire={openTerritoire}
-                                chateaux={getTerritoireChateaux(
-                                    chateaux,
-                                    openTerritoire.slug as TerritoireSlug,
-                                )}
-                                guinguettes={guinguettes.filter(
-                                    (guinguette) =>
-                                        guinguette.territoire ===
-                                        openTerritoire.slug,
-                                )}
-                            />
-                        </LRZDialogBody>
-                    </LRZDialogContent>
-                ) : null}
-            </LRZDialog>
+                    item={{
+                        id: openTerritoire.slug,
+                        label: openTerritoire.nom,
+                    }}
+                    navigation={{
+                        position: openTerritoireIndex + 1,
+                        total: territoires.length,
+                        previous:
+                            openTerritoireIndex > 0
+                                ? {
+                                      id: territoires[openTerritoireIndex - 1]
+                                          .slug,
+                                      label: territoires[
+                                          openTerritoireIndex - 1
+                                      ].nom,
+                                  }
+                                : undefined,
+                        next:
+                            openTerritoireIndex < territoires.length - 1
+                                ? {
+                                      id: territoires[openTerritoireIndex + 1]
+                                          .slug,
+                                      label: territoires[
+                                          openTerritoireIndex + 1
+                                      ].nom,
+                                  }
+                                : undefined,
+                        onNavigate: ({ id }) => {
+                            setOpenSlug(id);
+                            router.replace(`/territoire/${id}`);
+                        },
+                    }}
+                    share={{
+                        title: `${openTerritoire.nom} — ${entry.title}`,
+                        url: `${SITE_URL}/territoire/${openTerritoire.slug}`,
+                    }}
+                    color={entry.color}
+                >
+                    <TerritoireCard
+                        territoire={openTerritoire}
+                        chateaux={getTerritoireChateaux(
+                            chateaux,
+                            openTerritoire.slug as TerritoireSlug,
+                        )}
+                        guinguettes={guinguettes.filter(
+                            (guinguette) =>
+                                guinguette.territoire === openTerritoire.slug,
+                        )}
+                    />
+                </LRZCardDialog>
+            ) : null}
 
             <IndexPresentation
                 description={entry.description}

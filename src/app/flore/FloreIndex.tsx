@@ -8,11 +8,9 @@ import IndexPresentation from "@/components/IndexPresentation";
 import { LRZSection } from "@/components/LRZSection";
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import { PageControls } from "@/components/PageControls";
-import {
-    LRZDialog,
-    LRZDialogBody,
-    LRZDialogContent,
-} from "@/components/LRZDialog";
+import { LRZCardDialog } from "@/components/LRZCardDialog";
+import { LRZSymbol } from "@/components/LRZSymbol";
+import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FloreCard from "./FloreCard";
 import styles from "./flore.module.css";
@@ -42,6 +40,7 @@ export default function FloreIndex({
     const openFlore = openSlug
         ? flore.find((entry) => entry.slug === openSlug)
         : undefined;
+    const openFloreIndex = openFlore ? flore.indexOf(openFlore) : -1;
 
     const toggleAll = () => setExpandAll((value) => !value);
 
@@ -67,23 +66,59 @@ export default function FloreIndex({
 
     return (
         <>
-            <LRZDialog
-                open={Boolean(openFlore)}
-                onOpenChange={(open) => {
-                    if (!open) {
-                        setOpenSlug(undefined);
-                        router.replace("/flore");
+            {openFlore ? (
+                <LRZCardDialog
+                    open={Boolean(openFlore)}
+                    onOpenChange={(open) => {
+                        if (!open) {
+                            setOpenSlug(undefined);
+                            router.replace("/flore");
+                        }
+                    }}
+                    indexLabel={entry.title}
+                    indexIcon={
+                        <LRZSymbol
+                            collection="codex"
+                            meta="index"
+                            slug="flore"
+                            size="md"
+                            decorative
+                        />
                     }
-                }}
-            >
-                {openFlore ? (
-                    <LRZDialogContent size="sm" variant="immersive">
-                        <LRZDialogBody padding="none">
-                            <FloreCard d={openFlore} expandAll />
-                        </LRZDialogBody>
-                    </LRZDialogContent>
-                ) : null}
-            </LRZDialog>
+                    item={{ id: openFlore.slug, label: openFlore.nomCommun }}
+                    navigation={{
+                        position: openFloreIndex + 1,
+                        total: flore.length,
+                        previous:
+                            openFloreIndex > 0
+                                ? {
+                                      id: flore[openFloreIndex - 1].slug,
+                                      label: flore[openFloreIndex - 1]
+                                          .nomCommun,
+                                  }
+                                : undefined,
+                        next:
+                            openFloreIndex < flore.length - 1
+                                ? {
+                                      id: flore[openFloreIndex + 1].slug,
+                                      label: flore[openFloreIndex + 1]
+                                          .nomCommun,
+                                  }
+                                : undefined,
+                        onNavigate: ({ id }) => {
+                            setOpenSlug(id);
+                            router.replace(`/flore/${id}`);
+                        },
+                    }}
+                    share={{
+                        title: `${openFlore.nomCommun} — ${entry.title}`,
+                        url: `${SITE_URL}/flore/${openFlore.slug}`,
+                    }}
+                    color={entry.color}
+                >
+                    <FloreCard d={openFlore} />
+                </LRZCardDialog>
+            ) : null}
 
             <IndexPresentation
                 description={entry.description}

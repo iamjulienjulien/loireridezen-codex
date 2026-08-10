@@ -8,11 +8,9 @@ import IndexPresentation from "@/components/IndexPresentation";
 import { LRZSection } from "@/components/LRZSection";
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import { PageControls } from "@/components/PageControls";
-import {
-    LRZDialog,
-    LRZDialogBody,
-    LRZDialogContent,
-} from "@/components/LRZDialog";
+import { LRZCardDialog } from "@/components/LRZCardDialog";
+import { LRZSymbol } from "@/components/LRZSymbol";
+import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FauneCard from "./FauneCard";
 import styles from "./faune.module.css";
@@ -42,6 +40,7 @@ export default function FauneIndex({
     const openEspece = openSlug
         ? especes.find((espece) => espece.slug === openSlug)
         : undefined;
+    const openEspeceIndex = openEspece ? especes.indexOf(openEspece) : -1;
 
     const toggleAll = () => setExpandAll((value) => !value);
 
@@ -68,23 +67,62 @@ export default function FauneIndex({
 
     return (
         <>
-            <LRZDialog
-                open={Boolean(openEspece)}
-                onOpenChange={(open) => {
-                    if (!open) {
-                        setOpenSlug(undefined);
-                        router.replace("/faune");
+            {openEspece ? (
+                <LRZCardDialog
+                    open={Boolean(openEspece)}
+                    onOpenChange={(open) => {
+                        if (!open) {
+                            setOpenSlug(undefined);
+                            router.replace("/faune");
+                        }
+                    }}
+                    indexLabel={entry.title}
+                    indexIcon={
+                        <LRZSymbol
+                            collection="codex"
+                            meta="index"
+                            slug="faune"
+                            size="md"
+                            decorative
+                        />
                     }
-                }}
-            >
-                {openEspece ? (
-                    <LRZDialogContent size="sm" variant="immersive">
-                        <LRZDialogBody padding="none">
-                            <FauneCard d={openEspece} expandAll />
-                        </LRZDialogBody>
-                    </LRZDialogContent>
-                ) : null}
-            </LRZDialog>
+                    item={{
+                        id: openEspece.slug,
+                        label: openEspece.nomCommun,
+                    }}
+                    navigation={{
+                        position: openEspeceIndex + 1,
+                        total: especes.length,
+                        previous:
+                            openEspeceIndex > 0
+                                ? {
+                                      id: especes[openEspeceIndex - 1].slug,
+                                      label: especes[openEspeceIndex - 1]
+                                          .nomCommun,
+                                  }
+                                : undefined,
+                        next:
+                            openEspeceIndex < especes.length - 1
+                                ? {
+                                      id: especes[openEspeceIndex + 1].slug,
+                                      label: especes[openEspeceIndex + 1]
+                                          .nomCommun,
+                                  }
+                                : undefined,
+                        onNavigate: ({ id }) => {
+                            setOpenSlug(id);
+                            router.replace(`/faune/${id}`);
+                        },
+                    }}
+                    share={{
+                        title: `${openEspece.nomCommun} — ${entry.title}`,
+                        url: `${SITE_URL}/faune/${openEspece.slug}`,
+                    }}
+                    color={entry.color}
+                >
+                    <FauneCard d={openEspece} />
+                </LRZCardDialog>
+            ) : null}
 
             <IndexPresentation
                 description={entry.description}

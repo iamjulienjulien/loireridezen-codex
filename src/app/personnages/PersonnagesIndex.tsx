@@ -7,11 +7,9 @@ import IndexPresentation from "@/components/IndexPresentation";
 import { LRZSection } from "@/components/LRZSection";
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import { PageControls } from "@/components/PageControls";
-import {
-    LRZDialog,
-    LRZDialogBody,
-    LRZDialogContent,
-} from "@/components/LRZDialog";
+import { LRZCardDialog } from "@/components/LRZCardDialog";
+import { LRZSymbol } from "@/components/LRZSymbol";
+import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";
 
@@ -42,6 +40,7 @@ export default function PersonnagesIndex({
     const openEntry = openSlug
         ? entries.find(({ personnage }) => personnage.id === openSlug)
         : undefined;
+    const openEntryIndex = openEntry ? entries.indexOf(openEntry) : -1;
     const filteredEntries = useMemo(() => {
         const normalizedQuery = query.trim().toLocaleLowerCase();
         return entries.filter(({ personnage }) => {
@@ -62,26 +61,67 @@ export default function PersonnagesIndex({
 
     return (
         <>
-            <LRZDialog
-                open={Boolean(openEntry)}
-                onOpenChange={(open) => {
-                    if (!open) {
-                        setOpenSlug(undefined);
-                        router.replace("/personnages");
+            {openEntry ? (
+                <LRZCardDialog
+                    open={Boolean(openEntry)}
+                    onOpenChange={(open) => {
+                        if (!open) {
+                            setOpenSlug(undefined);
+                            router.replace("/personnages");
+                        }
+                    }}
+                    indexLabel={entry.title}
+                    indexIcon={
+                        <LRZSymbol
+                            collection="codex"
+                            meta="index"
+                            slug="personnages"
+                            size="md"
+                            decorative
+                        />
                     }
-                }}
-            >
-                {openEntry ? (
-                    <LRZDialogContent size="sm" variant="immersive">
-                        <LRZDialogBody padding="none">
-                            <PersonnageCard
-                                personnage={openEntry.personnage}
-                                relations={openEntry.relations}
-                            />
-                        </LRZDialogBody>
-                    </LRZDialogContent>
-                ) : null}
-            </LRZDialog>
+                    item={{
+                        id: openEntry.personnage.id,
+                        label: openEntry.personnage.nom,
+                    }}
+                    navigation={{
+                        position: openEntryIndex + 1,
+                        total: entries.length,
+                        previous:
+                            openEntryIndex > 0
+                                ? {
+                                      id: entries[openEntryIndex - 1].personnage
+                                          .id,
+                                      label: entries[openEntryIndex - 1]
+                                          .personnage.nom,
+                                  }
+                                : undefined,
+                        next:
+                            openEntryIndex < entries.length - 1
+                                ? {
+                                      id: entries[openEntryIndex + 1].personnage
+                                          .id,
+                                      label: entries[openEntryIndex + 1]
+                                          .personnage.nom,
+                                  }
+                                : undefined,
+                        onNavigate: ({ id }) => {
+                            setOpenSlug(id);
+                            router.replace(`/personnage/${id}`);
+                        },
+                    }}
+                    share={{
+                        title: `${openEntry.personnage.nom} — ${entry.title}`,
+                        url: `${SITE_URL}/personnage/${openEntry.personnage.id}`,
+                    }}
+                    color={entry.color}
+                >
+                    <PersonnageCard
+                        personnage={openEntry.personnage}
+                        relations={openEntry.relations}
+                    />
+                </LRZCardDialog>
+            ) : null}
 
             <IndexPresentation
                 description={entry.description}
