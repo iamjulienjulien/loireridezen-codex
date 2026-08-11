@@ -1,4 +1,4 @@
-import floreData from "@data/flore.json";
+import floreData from "@data/catalogue-flore.json";
 
 import IndexShell from "@/components/layout/IndexShell";
 import { buildPageMetadata } from "@/lib/site-metadata";

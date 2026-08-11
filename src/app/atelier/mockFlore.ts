@@ -1,9 +1,9 @@
-import flore from "@data/flore.json";
+import flore from "@data/catalogue-flore.json";
 import type { Flore } from "@/types/flore";
 
 /**
  * Jeu de démonstration pour l'atelier : 2 espèces de chaque catégorie,
- * tirées du catalogue réel (data/flore.json), enrichies de quelques
+ * tirées du catalogue réel (data/catalogue-flore.json), enrichies de quelques
  * champs détaillés (usages, anecdote) pour la démo de la carte v3.
  */
 const CATEGORIES = [

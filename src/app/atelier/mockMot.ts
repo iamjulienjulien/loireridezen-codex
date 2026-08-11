@@ -1,9 +1,9 @@
-import mot from "@data/mot.json";
+import mot from "@data/catalogue-mots.json";
 import type { Mot } from "@/types/mot";
 
 /**
  * Jeu de démonstration pour l'atelier : 2 mots de chaque catégorie,
- * tirés du catalogue réel (data/mot.json). On privilégie les mieux
+ * tirés du catalogue réel (data/catalogue-mots.json). On privilégie les mieux
  * renseignés (étymologie + exemple) pour la démo v3.
  */
 const CATEGORIES = ["relief", "bateau", "ouvrage", "métier", "eau"];

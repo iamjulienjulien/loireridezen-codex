@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import chateauData from "@data/catalogue-chateaux.json";
-import fauneData from "@data/faune.json";
-import floreData from "@data/flore.json";
+import fauneData from "@data/catalogue-faune.json";
+import floreData from "@data/catalogue-flore.json";
 import guinguetteData from "@data/catalogue-guinguettes.json";
-import motData from "@data/mot.json";
-import patrimoineData from "@data/patrimoine.json";
-import vignobleData from "@data/vignoble.json";
+import motData from "@data/catalogue-mots.json";
+import patrimoineData from "@data/catalogue-patrimoine.json";
+import vignobleData from "@data/catalogue-vignobles.json";
 import {
     adaptChateau,
     adaptFaune,

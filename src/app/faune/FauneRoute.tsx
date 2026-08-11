@@ -1,4 +1,4 @@
-import fauneData from "@data/faune.json";
+import fauneData from "@data/catalogue-faune.json";
 
 import IndexShell from "@/components/layout/IndexShell";
 import { buildPageMetadata } from "@/lib/site-metadata";

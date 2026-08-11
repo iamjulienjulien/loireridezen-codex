@@ -1,9 +1,9 @@
-import patrimoine from "@data/patrimoine.json";
+import patrimoine from "@data/catalogue-patrimoine.json";
 import type { Patrimoine } from "@/types/patrimoine";
 
 /**
  * Jeu de démonstration pour l'atelier : jusqu'à 2 ouvrages de chaque type,
- * tirés du catalogue réel (data/patrimoine.json).
+ * tirés du catalogue réel (data/catalogue-patrimoine.json).
  */
 const TYPES = [
     "pont",

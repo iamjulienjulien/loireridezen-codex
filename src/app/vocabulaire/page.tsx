@@ -1,4 +1,4 @@
-import mot from "@data/mot.json";
+import mot from "@data/catalogue-mots.json";
 import IndexShell from "@/components/layout/IndexShell";
 import type { Mot } from "@/types/mot";
 import { requireIndexForEnv } from "@/lib/publication-guards";

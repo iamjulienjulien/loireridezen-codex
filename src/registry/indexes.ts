@@ -101,7 +101,7 @@ export const INDEXES = [
         presentationFooter:
             "**Cet index rassemble les espèces animales qui vivent, passent ou se cachent le long du fil ligérien. Chaque fiche est racontée par son milieu, ses habitudes, sa présence saisonnière et les liens qui l’unissent au fleuve.**",
         footerNote: "espèces composant le bestiaire ligérien",
-        dataFile: "faune.json",
+        dataFile: "catalogue-faune.json",
         etat: "publie",
         env: ["development", "production"],
     },
@@ -125,7 +125,7 @@ export const INDEXES = [
         presentationFooter:
             "**Cet index rassemble les plantes qui enracinent, fleurissent et colonisent les rives ligériennes. Chaque fiche est racontée par son milieu, sa saison, ses usages et sa place dans les équilibres du fleuve.**",
         footerNote: "espèces composant l'herbier ligérien",
-        dataFile: "flore.json",
+        dataFile: "catalogue-flore.json",
         etat: "publie",
         env: ["development", "production"],
     },
@@ -244,7 +244,7 @@ export const INDEXES = [
             "**Cet index rassemble les appellations et vignobles qui jalonnent la Loire, des coteaux du Forez aux rives de l’Atlantique. Chaque fiche raconte sa robe, ses cépages, son terroir et l’accord qui prolonge le vin à table.**",
         footerNote:
             "appellations du fil · les émojis attendent leur version LRZ",
-        dataFile: "vignoble.json",
+        dataFile: "catalogue-vignobles.json",
         etat: "publie",
         env: ["development", "production"],
     },
@@ -267,7 +267,7 @@ export const INDEXES = [
             "Un fleuve laisse sa mémoire dans les mots avant de la laisser dans les pierres 📖. La Loire a la sienne : ici, on ne dit pas un bras mort mais une **boire**, pas une berge de sable mais une **grève**.\n\nPuis vient le peuple de la **marine de Loire** ⚓️ — le chaland, la toue cabanée du pêcheur, le fûtreau, plus petit des ligériens — et ses métiers effacés : marinier, sablier, passeur du bac.\n\nCertains mots vivent encore, d'autres ne survivent plus que dans les livres : le **mascaret** qui remonte l'estuaire 🌊, la débâcle des glaces, l'art d'avaler — descendre au fil du courant.",
         presentationFooter: "",
         footerNote: "mots du fil · la mémoire déposée dans les mots",
-        dataFile: "mot.json",
+        dataFile: "catalogue-mots.json",
         etat: "desactive",
         env: [],
     },
@@ -291,7 +291,7 @@ export const INDEXES = [
         presentationFooter: "",
         footerNote:
             "ouvrages du fleuve-travail · les émojis attendent leur version LRZ",
-        dataFile: "patrimoine.json",
+        dataFile: "catalogue-patrimoine.json",
         etat: "desactive",
         env: [],
     },

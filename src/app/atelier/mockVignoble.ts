@@ -1,9 +1,9 @@
-import vignoble from "@data/vignoble.json";
+import vignoble from "@data/catalogue-vignobles.json";
 import type { Vignoble } from "@/types/vignoble";
 
 /**
  * Jeu de démonstration pour l'atelier : 2 appellations de chaque couleur,
- * tirées du catalogue réel (data/vignoble.json). On privilégie les
+ * tirées du catalogue réel (data/catalogue-vignobles.json). On privilégie les
  * appellations les mieux renseignées (accord + résumé) pour la démo v3.
  */
 const COULEURS = [

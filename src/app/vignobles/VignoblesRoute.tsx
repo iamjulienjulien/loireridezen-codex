@@ -1,4 +1,4 @@
-import vignobleData from "@data/vignoble.json";
+import vignobleData from "@data/catalogue-vignobles.json";
 
 import IndexShell from "@/components/layout/IndexShell";
 import { buildPageMetadata } from "@/lib/site-metadata";

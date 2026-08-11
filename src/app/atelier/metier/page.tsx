@@ -1,7 +1,7 @@
 import chateauCatalogue from "@data/catalogue-chateaux.json";
 import guinguettesCatalogue from "@data/catalogue-guinguettes.json";
 import territoireCatalogue from "@data/catalogue-territoires.json";
-import vignobleCatalogue from "@data/vignoble.json";
+import vignobleCatalogue from "@data/catalogue-vignobles.json";
 
 import AtelierCategoryLayout from "../AtelierCategoryLayout";
 import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";

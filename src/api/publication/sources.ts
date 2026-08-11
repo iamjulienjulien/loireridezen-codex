@@ -1,12 +1,12 @@
 import chateauData from "@data/catalogue-chateaux.json";
-import fauneData from "@data/faune.json";
-import floreData from "@data/flore.json";
+import fauneData from "@data/catalogue-faune.json";
+import floreData from "@data/catalogue-flore.json";
 import guinguetteData from "@data/catalogue-guinguettes.json";
-import motData from "@data/mot.json";
-import patrimoineData from "@data/patrimoine.json";
+import motData from "@data/catalogue-mots.json";
+import patrimoineData from "@data/catalogue-patrimoine.json";
 import personnageData from "@data/catalogue-personnages.json";
 import territoireData from "@data/catalogue-territoires.json";
-import vignobleData from "@data/vignoble.json";
+import vignobleData from "@data/catalogue-vignobles.json";
 import type { z } from "zod";
 import {
     adaptChateau,
@@ -48,7 +48,7 @@ export interface TechnicalIndexSource {
 export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
     {
         slug: "faune",
-        dataFile: "faune.json",
+        dataFile: "catalogue-faune.json",
         collectionKey: "especes",
         raw: fauneData,
         schema: fauneCatalogSchema,
@@ -57,7 +57,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
     },
     {
         slug: "flore",
-        dataFile: "flore.json",
+        dataFile: "catalogue-flore.json",
         collectionKey: "flore",
         raw: floreData,
         schema: floreCatalogSchema,
@@ -106,7 +106,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
     },
     {
         slug: "vignobles",
-        dataFile: "vignoble.json",
+        dataFile: "catalogue-vignobles.json",
         collectionKey: "vignobles",
         raw: vignobleData,
         schema: vignobleCatalogSchema,
@@ -116,7 +116,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
     },
     {
         slug: "vocabulaire",
-        dataFile: "mot.json",
+        dataFile: "catalogue-mots.json",
         collectionKey: "mots",
         raw: motData,
         schema: motCatalogSchema,
@@ -125,7 +125,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
     },
     {
         slug: "patrimoine",
-        dataFile: "patrimoine.json",
+        dataFile: "catalogue-patrimoine.json",
         collectionKey: "patrimoine",
         raw: patrimoineData,
         schema: patrimoineCatalogSchema,

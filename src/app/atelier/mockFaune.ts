@@ -1,9 +1,9 @@
-import faune from "@data/faune.json";
+import faune from "@data/catalogue-faune.json";
 import type { FauneEspece, FauneType } from "@/types/faune";
 
 /**
  * Jeu de démonstration pour l'atelier : 2 espèces de chaque type,
- * tirées du catalogue réel (data/faune.json), enrichies de quelques
+ * tirées du catalogue réel (data/catalogue-faune.json), enrichies de quelques
  * champs détaillés (taille, poids, longévité, régime, anecdote) pour
  * la démo de la carte v3.
  */

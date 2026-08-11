@@ -1,4 +1,4 @@
-import patrimoine from "@data/patrimoine.json";
+import patrimoine from "@data/catalogue-patrimoine.json";
 import IndexShell from "@/components/layout/IndexShell";
 import type { Patrimoine } from "@/types/patrimoine";
 import { requireIndexForEnv } from "@/lib/publication-guards";
