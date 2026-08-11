@@ -1,7 +1,6 @@
 import { getCodexOgItem, type CodexOgItemKind } from "@/lib/og-data";
 import { renderCodexOgImage } from "@/lib/og-image";
 
-export const runtime = "edge";
 export const revalidate = 86_400;
 
 type OgItemRouteProps = {

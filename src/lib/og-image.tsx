@@ -4,38 +4,12 @@ import { ImageResponse } from "next/og";
 import { LRZ_CODEX_INDEX_SYMBOLS } from "@/registry/symbols";
 
 import type { CodexOgItem } from "./og-data";
+import { loadCodexOgFonts } from "./og-fonts";
 
 const OG_WIDTH = 1200;
 const OG_HEIGHT = 630;
 const TEXT_COLOR = "#302621";
 const PAPER_COLOR = "#F8F1E6";
-
-const loadGoogleFont = async (font: string, text: string) => {
-    const cssUrl = new URL("https://fonts.googleapis.com/css2");
-    cssUrl.searchParams.set("family", font);
-    cssUrl.searchParams.set("text", text);
-
-    const cssResponse = await fetch(cssUrl);
-
-    if (!cssResponse.ok) {
-        throw new Error(`Impossible de charger la police OG : ${font}.`);
-    }
-
-    const css = await cssResponse.text();
-    const resource = css.match(/src:\s*url\(([^)]+)\)/u);
-
-    if (!resource?.[1]) {
-        throw new Error(`Police OG introuvable : ${font}.`);
-    }
-
-    const fontResponse = await fetch(resource[1]);
-
-    if (!fontResponse.ok) {
-        throw new Error(`Impossible de télécharger la police OG : ${font}.`);
-    }
-
-    return fontResponse.arrayBuffer();
-};
 
 const getAssetUrl = (path: string, requestUrl: string) =>
     new URL(path, requestUrl).toString();
@@ -44,18 +18,7 @@ export const renderCodexOgImage = async (
     item: CodexOgItem,
     requestUrl: string,
 ) => {
-    const fontText = [
-        "LOIRE RIDE ZEN",
-        "LE CODEX LIGÉRIEN",
-        item.indexTitle,
-        item.title,
-        item.subtitle,
-        item.detail,
-    ].join(" ");
-    const [fraunces, jetBrainsMono] = await Promise.all([
-        loadGoogleFont("Fraunces:wght@600", fontText),
-        loadGoogleFont("JetBrains Mono:wght@600", fontText),
-    ]);
+    const [fraunces, jetBrainsMono] = await loadCodexOgFonts();
     const indexSymbol = getAssetUrl(
         LRZ_CODEX_INDEX_SYMBOLS[item.indexSlug],
         requestUrl,
@@ -104,7 +67,6 @@ export const renderCodexOgImage = async (
 
             <div
                 style={{
-                    zIndex: 1,
                     display: "flex",
                     width: "100%",
                     margin: 36,
