@@ -5,8 +5,8 @@ import type { Mot } from "@/types/mot";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import VocabulaireCard from "./VocabulaireCard";
-import styles from "./vocabulaire.module.css";
+import VocabulaireCard from "@/components/cards/VocabulaireCard";
+import styles from "@/components/cards/VocabulaireCard/vocabulaire.module.css";
 
 const CATEGORIES = [
     { id: "all", label: "Tout" },

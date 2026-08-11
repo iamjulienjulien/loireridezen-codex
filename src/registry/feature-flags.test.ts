@@ -31,9 +31,12 @@ describe("feature flags registry", () => {
         );
     });
 
-    it("keeps personnages available in development and production", () => {
-        expect(featureIsEnabled("personnages", "development")).toBe(true);
-        expect(featureIsEnabled("personnages", "production")).toBe(true);
+    it("only keeps flags that still represent optional products", () => {
+        expect(Object.keys(FEATURE_FLAGS)).toEqual([
+            "atelier",
+            "collections",
+            "commandPalette",
+        ]);
     });
 
     it("uses CURRENT_ENV when no environment is provided", () => {

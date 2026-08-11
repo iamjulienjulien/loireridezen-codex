@@ -13,16 +13,16 @@ import { SITE_URL } from "@/lib/site-metadata";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { TerritoireSlug } from "@/registry/territoires";
-import type { ChateauV2 } from "@/types/chateauV2";
+import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 import type { TerritoireCatalogueEntry } from "@/types/territoireCatalogue";
 
-import TerritoireCard from "./TerritoireCard";
+import TerritoireCard from "@/components/cards/TerritoireCard";
 import styles from "./territoires.module.css";
 
 type TerritoiresIndexProps = {
     territoires: readonly TerritoireCatalogueEntry[];
-    chateaux: readonly ChateauV2[];
+    chateaux: readonly Chateau[];
     guinguettes: readonly Guinguette[];
     indexes: readonly IndexEntry[];
     initialOpenSlug?: string;

@@ -84,11 +84,8 @@ describe("public entry adapters", () => {
             expect(entry.summary).toBe(summary);
             expect(entry.subtitle).toBeTruthy();
             if (entry.media.imageUrl) {
-                const mediaDirectory =
-                    index === "chateaux" ? "illustrations" : "emoji";
-
                 expect(entry.media.imageUrl).toContain(
-                    `https://example.test/${mediaDirectory}/`,
+                    "https://example.test/illustrations/",
                 );
             } else {
                 expect(entry.media.imageUrl).toBeNull();

@@ -23,16 +23,7 @@ const defineFeatureFlags = <
 export const FEATURE_FLAGS = defineFeatureFlags({
     atelier: ["development"],
     collections: [],
-    indexesCustomEmoji: ["development", "production"],
-    ambianceChateauxVisual: ["development", "production"],
     commandPalette: ["development"],
-    territoires: ["development", "production"],
-    chateauxViewportMapSpike: [],
-    chateauxInteractiveMap: ["development", "production"],
-    guinguettesInteractiveMap: ["development", "production"],
-    detailDialogChateaux: [],
-    personnages: ["development", "production"],
-    chateauxRenommee: ["development", "production"],
 });
 
 export type FeatureFlagName = keyof typeof FEATURE_FLAGS;

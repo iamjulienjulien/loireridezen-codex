@@ -1,7 +1,7 @@
 import { z } from "zod";
 import {
     baseMetaShape,
-    customEmojiSchema,
+    publicIllustrationSchema,
     slugSchema,
     stringArraySchema,
 } from "./common";
@@ -9,7 +9,7 @@ import {
 export const floreEntrySchema = z
     .object({
         emoji: z.string(),
-        customEmoji: customEmojiSchema("flore").optional(),
+        customEmoji: publicIllustrationSchema("flore").optional(),
         slug: slugSchema,
         categorie: z.enum([
             "arbre",

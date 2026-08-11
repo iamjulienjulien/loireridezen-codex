@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 import {
-    customEmojiSchema,
+    publicIllustrationSchema,
     isoDateSchema,
     slugSchema,
     stringArraySchema,
@@ -36,7 +36,7 @@ export const personnageEntrySchema = z
         categoriePrincipale: slugSchema,
         roles: stringArraySchema,
         tags: stringArraySchema,
-        illustration: customEmojiSchema("personnage").optional(),
+        illustration: publicIllustrationSchema("personnages").optional(),
     })
     .strict()
     .transform((entry) => ({ ...entry, slug: entry.id }));

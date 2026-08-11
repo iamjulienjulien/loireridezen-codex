@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { LRZSymbol } from "@/components/LRZSymbol";
 import { INDEX_UNIVERSES, type IndexEntry } from "@/registry/indexes";
-import { featureIsEnabled } from "@/registry/feature-flags";
 import { isLRZCodexIndexSymbolSlug } from "@/registry/symbols";
 
 export default function HomeContent({
@@ -10,7 +9,6 @@ export default function HomeContent({
 }: {
     indexes: readonly IndexEntry[];
 }) {
-    const indexesCustomEmojiEnabled = featureIsEnabled("indexesCustomEmoji");
     const visibleUniverses = INDEX_UNIVERSES.map((universe) => ({
         ...universe,
         indexes: indexes.filter((index) => index.universe === universe.slug),
@@ -39,13 +37,7 @@ export default function HomeContent({
 
                         <div className="mt-3 grid gap-4">
                             {universe.indexes.map((entry) => (
-                                <HomeIndexLink
-                                    key={entry.href}
-                                    entry={entry}
-                                    indexesCustomEmojiEnabled={
-                                        indexesCustomEmojiEnabled
-                                    }
-                                />
+                                <HomeIndexLink key={entry.href} entry={entry} />
                             ))}
                         </div>
                     </section>
@@ -55,13 +47,7 @@ export default function HomeContent({
     );
 }
 
-function HomeIndexLink({
-    entry,
-    indexesCustomEmojiEnabled,
-}: {
-    entry: IndexEntry;
-    indexesCustomEmojiEnabled: boolean;
-}) {
+function HomeIndexLink({ entry }: { entry: IndexEntry }) {
     const isPreview = !entry.env.includes("production");
 
     return (
@@ -80,8 +66,7 @@ function HomeIndexLink({
                     : "border-solid border-[var(--border-subtle)]"
             }`}
         >
-            {indexesCustomEmojiEnabled &&
-            isLRZCodexIndexSymbolSlug(entry.slug) ? (
+            {isLRZCodexIndexSymbolSlug(entry.slug) ? (
                 <LRZSymbol
                     collection="codex"
                     meta="index"

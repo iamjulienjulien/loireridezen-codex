@@ -72,7 +72,7 @@ const buildDefinition = (
 const addBundle = (
     fixture: Fixture,
     slug: IndexSlug,
-    mediaDirectory: string,
+    mediaPrefix: string,
     dataFile: string,
 ) => {
     const catalog: MutableCatalog = {
@@ -80,7 +80,7 @@ const addBundle = (
         entries: [
             {
                 slug: "entry",
-                customEmoji: `/emoji/${mediaDirectory}/entry.png`,
+                customEmoji: `${mediaPrefix}entry.png`,
                 coordonnees: { lat: 47, lng: 1 },
             },
         ],
@@ -94,7 +94,7 @@ const addBundle = (
         raw: catalog,
         schema: fixtureSchema,
         adapter,
-        mediaDirectory,
+        mediaPrefix,
     });
 };
 
@@ -110,7 +110,7 @@ const writeFixture = (fixture: Fixture) => {
             if (
                 typeof media !== "string" ||
                 fixture.skipMedia.has(media) ||
-                !media.startsWith("/emoji/")
+                !media.startsWith("/")
             ) {
                 continue;
             }
@@ -147,7 +147,12 @@ const runFixture = (
         extraFiles: {},
         catalogExclusions: [],
     };
-    addBundle(fixture, "faune", "faune", "faune.json");
+    addBundle(
+        fixture,
+        "faune",
+        "/illustrations/faune/",
+        "catalogue-faune.json",
+    );
     try {
         mutate(fixture);
         writeFixture(fixture);
@@ -217,7 +222,12 @@ describe("data quality mutations", () => {
 
     it("allows the same entry slug in different indexes", () => {
         const report = runFixture((fixture) => {
-            addBundle(fixture, "flore", "flore", "flore.json");
+            addBundle(
+                fixture,
+                "flore",
+                "/illustrations/flore/",
+                "catalogue-flore.json",
+            );
         });
         expect(issuesWith(report, "ENTRY_PUBLIC_ID_DUPLICATE")).toHaveLength(0);
         expect(report.summary.errors).toBe(0);
@@ -268,9 +278,9 @@ describe("data quality mutations", () => {
 
     it.each([
         ["../../secret.png", "MEDIA_PATH_TRAVERSAL"],
-        ["/emoji/faune/missing.png", "MEDIA_FILE_MISSING"],
-        ["/emoji/faune/entry.PNG", "MEDIA_EXTENSION_INVALID"],
-        ["/emoji/faune/entry.png?size=2", "MEDIA_PATH_INVALID"],
+        ["/illustrations/faune/missing.png", "MEDIA_FILE_MISSING"],
+        ["/illustrations/faune/entry.PNG", "MEDIA_EXTENSION_INVALID"],
+        ["/illustrations/faune/entry.png?size=2", "MEDIA_PATH_INVALID"],
     ] as const)("detects the media mutation %s", (media, code) => {
         const report = runFixture(({ catalogs, skipMedia }) => {
             catalogs[0].entries[0].customEmoji = media;
@@ -281,20 +291,20 @@ describe("data quality mutations", () => {
 
     it("detects a path case mismatch", () => {
         const report = runFixture(({ catalogs, skipMedia, extraFiles }) => {
-            const media = "/emoji/faune/Entry.png";
+            const media = "/illustrations/faune/Entry.png";
             catalogs[0].entries[0].customEmoji = media;
             skipMedia.add(media);
-            extraFiles["public/emoji/faune/entry.png"] = "fixture";
+            extraFiles["public/illustrations/faune/entry.png"] = "fixture";
         });
         expectIssue(report, "MEDIA_PATH_CASE_MISMATCH");
     });
 
     it("rejects a directory used as a media target", () => {
         const report = runFixture(({ catalogs, skipMedia, directories }) => {
-            const media = "/emoji/faune/folder.png";
+            const media = "/illustrations/faune/folder.png";
             catalogs[0].entries[0].customEmoji = media;
             skipMedia.add(media);
-            directories.push("public/emoji/faune/folder.png");
+            directories.push("public/illustrations/faune/folder.png");
         });
         expectIssue(report, "MEDIA_TARGET_NOT_FILE");
     });
@@ -310,7 +320,11 @@ describe("data quality mutations", () => {
         const report = runFixture(({ catalogs, indexes }) => {
             delete catalogs[0].entries[0].customEmoji;
             catalogs[0].meta.etat = "brouillon";
-            indexes[0] = buildDefinition("faune", "faune.json", "desactive");
+            indexes[0] = buildDefinition(
+                "faune",
+                "catalogue-faune.json",
+                "desactive",
+            );
         });
         expectIssue(report, "MEDIA_MISSING_FOR_UNPUBLISHED_ENTRY", "warning");
         expect(report.summary.errors).toBe(0);
@@ -324,7 +338,7 @@ describe("data quality mutations", () => {
         expect(issue).toMatchObject({
             severity: "error",
             index: "faune",
-            file: "data/faune.json",
+            file: "data/catalogue-faune.json",
             path: "dataFile",
         });
     });
@@ -340,7 +354,12 @@ describe("data quality mutations", () => {
             extraFiles: {},
             catalogExclusions: [],
         };
-        addBundle(fixture, "faune", "faune", "faune.json");
+        addBundle(
+            fixture,
+            "faune",
+            "/illustrations/faune/",
+            "catalogue-faune.json",
+        );
         try {
             writeFixture(fixture);
             const report = inspectDataQuality({
@@ -409,16 +428,16 @@ describe("data quality mutations", () => {
 
     it("warns about orphan and system media files", () => {
         const report = runFixture(({ extraFiles }) => {
-            extraFiles["public/emoji/faune/orphan.svg"] = "<svg/>";
-            extraFiles["public/emoji/faune/.DS_Store"] = "system";
+            extraFiles["public/illustrations/faune/orphan.svg"] = "<svg/>";
+            extraFiles["public/illustrations/faune/.DS_Store"] = "system";
         });
         expect(issuesWith(report, "MEDIA_ORPHAN")[0]).toMatchObject({
             severity: "warning",
-            file: "public/emoji/faune/orphan.svg",
+            file: "public/illustrations/faune/orphan.svg",
         });
         expect(issuesWith(report, "MEDIA_SYSTEM_FILE")[0]).toMatchObject({
             severity: "warning",
-            file: "public/emoji/faune/.DS_Store",
+            file: "public/illustrations/faune/.DS_Store",
         });
     });
 
@@ -469,8 +488,8 @@ describe("real editorial data", () => {
         expect(report.summary).toMatchObject({
             indexes: 10,
             entries: 524,
-            referencedMedia: 100,
-            mediaFiles: 237,
+            referencedMedia: 382,
+            mediaFiles: 382,
             errors: 0,
         });
         expect(report.summary.warnings).toBeGreaterThanOrEqual(0);

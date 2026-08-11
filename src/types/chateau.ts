@@ -2,6 +2,11 @@
 // Château ligérien — sibling de FauneEspece (même grammaire de codex).
 
 import type { Ambiance } from "@/registry/ambiances";
+import type {
+    CommonArchitecture,
+    CommonEpoque,
+    CommonExperience,
+} from "@/registry/Meta";
 import type { ChateauRenommee } from "@/registry/Meta/chateau-renommee";
 import type { ChateauVisite } from "@/registry/Meta/chateau-visite";
 
@@ -27,14 +32,17 @@ export interface ChateauCoordonnees {
     lng: number;
 }
 
-/** Illustration alternative sélectionnée selon l'ambiance active. */
-export type ChateauIllustrationVariant = Partial<Record<Ambiance, string>>;
+/** Illustrations du château déclinées selon l'ambiance active. */
+export type ChateauIllustrations = Record<Ambiance, string>;
+
+/** Métadonnées normalisées à partir des registres communs. */
+export interface ChateauMeta {
+    architecture: CommonArchitecture[];
+    epoque: CommonEpoque[];
+    experience: CommonExperience[];
+}
 
 export interface Chateau {
-    /** À remplir : l'emoji custom LRZ. */
-    emoji: string;
-    customEmoji?: string;
-    illustrationVariant?: ChateauIllustrationVariant;
     /** Identifiant d'URL, kebab-case sans accents. */
     slug: string;
     nom: string;
@@ -65,31 +73,24 @@ export interface Chateau {
     protection: ChateauProtection;
     renommee: ChateauRenommee;
     visite: ChateauVisite;
+
+    // ── Représentation normalisée ──
+    illustrations: ChateauIllustrations;
+    meta: ChateauMeta;
 }
 
-export const CHATEAUX: Chateau[] = [
-    // — exemple renseigné —
-    {
-        emoji: "🏰",
-        slug: "chateau-de-chambord",
-        nom: "Château de Chambord",
-        autresNoms: [],
-        sousTitre: "le rêve de pierre de François Iᵉʳ",
-        resume: "Le plus vaste des châteaux de la Loire, manifeste de la première Renaissance française.",
-        commune: "Chambord",
-        departement: "Loir-et-Cher (41)",
-        coordonnees: { lat: 47.6161, lng: 1.517 },
-        riviere: "Cosson",
-        epoque: "Renaissance",
-        style: "Première Renaissance française",
-        construction: "1519–1547",
-        commanditaire: "François Iᵉʳ",
-        protection: {
-            monumentHistorique: "classé",
-            unesco: true,
-            note: "Inscrit au patrimoine mondial de l'UNESCO en 1981 ; compris dans le Val de Loire (2000).",
-        },
-        renommee: "phare",
-        visite: "ouvert au public",
-    },
-];
+/** Métadonnées éditoriales du catalogue des châteaux. */
+export interface CatalogueChateauxMeta {
+    titre: string;
+    source: string;
+    corridor: string;
+    maj: string;
+    note: string;
+    ordre: string;
+}
+
+/** Structure racine de `data/catalogue-chateaux.json`. */
+export interface CatalogueChateaux {
+    meta: CatalogueChateauxMeta;
+    chateaux: Chateau[];
+}

@@ -418,7 +418,6 @@ exports[`public structural signatures > snapshots territoires attributes 1`] = `
   ],
   "identite": {
     "accent": "string",
-    "blasonAlt": "string",
     "color": "string",
     "symboles": [
       "string",

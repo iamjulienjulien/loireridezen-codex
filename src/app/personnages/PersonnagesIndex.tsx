@@ -13,7 +13,7 @@ import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";
 
-import PersonnageCard from "./PersonnageCard";
+import PersonnageCard from "@/components/cards/PersonnageCard";
 import styles from "./personnages.module.css";
 
 export type PersonnageIndexEntry = {

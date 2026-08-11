@@ -2,7 +2,7 @@ import { z } from "zod";
 import {
     baseMetaShape,
     coordinatesSchema,
-    customEmojiSchema,
+    publicIllustrationSchema,
     slugSchema,
     stringArraySchema,
 } from "./common";
@@ -10,7 +10,7 @@ import {
 export const patrimoineEntrySchema = z
     .object({
         emoji: z.string(),
-        customEmoji: customEmojiSchema("patrimoine").optional(),
+        customEmoji: publicIllustrationSchema("patrimoine").optional(),
         slug: slugSchema,
         nom: z.string(),
         autresNoms: stringArraySchema,

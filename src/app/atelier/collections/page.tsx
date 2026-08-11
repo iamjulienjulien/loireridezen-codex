@@ -13,15 +13,15 @@ import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import AtelierCategoryLayout from "../AtelierCategoryLayout";
 import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
 import styles from "../atelier.module.css";
-import { MOCK_COLLECTIONS } from "../mockCollection";
-import { MOCK_COLLECTION_BADGES } from "../mockCollectionBadge";
-import { MOCK_COLLECTION_CRITERIA } from "../mockCollectionCriteria";
+import { MOCK_COLLECTIONS } from "@/mocks/mockCollection";
+import { MOCK_COLLECTION_BADGES } from "@/mocks/mockCollectionBadge";
+import { MOCK_COLLECTION_CRITERIA } from "@/mocks/mockCollectionCriteria";
 import {
     MOCK_COLLECTION_ENTRIES,
     MOCK_COLLECTION_PODIUM,
-} from "../mockCollectionEntry";
-import { MOCK_COLLECTION_HEROES } from "../mockCollectionHero";
-import { MOCK_COLLECTION_RANKS } from "../mockCollectionRank";
+} from "@/mocks/mockCollectionEntry";
+import { MOCK_COLLECTION_HEROES } from "@/mocks/mockCollectionHero";
+import { MOCK_COLLECTION_RANKS } from "@/mocks/mockCollectionRank";
 
 export const metadata = getAtelierPageMetadata("/atelier/collections");
 

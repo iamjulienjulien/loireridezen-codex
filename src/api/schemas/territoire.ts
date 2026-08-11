@@ -47,8 +47,6 @@ export const territoireEntrySchema = z
                 mark: z.string().min(1),
                 accent: z.string().regex(/^#[0-9a-f]{6}$/i),
                 color: lrzColorSchema,
-                blason: z.string().startsWith("/emoji/blasons/").optional(),
-                blasonAlt: z.string().min(1).optional(),
                 symboles: stringArraySchema,
             })
             .strict(),

@@ -13,8 +13,8 @@ import { LRZSymbol } from "@/components/LRZSymbol";
 import { PageControls } from "@/components/PageControls";
 import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import VignoblesCard from "./VignoblesCard";
-import styles from "./vignobles.module.css";
+import VignoblesCard from "@/components/cards/VignoblesCard";
+import styles from "@/components/cards/VignoblesCard/vignobles.module.css";
 
 const norm = (s: string) =>
     s

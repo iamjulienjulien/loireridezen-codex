@@ -1,4 +1,4 @@
-import type { ChateauV2 } from "@/types/chateauV2";
+import type { Chateau } from "@/types/chateau";
 import { TERRITOIRES, type TerritoireSlug } from "./territoires";
 
 /** Association éditoriale centralisée entre les châteaux et les territoires. */
@@ -80,13 +80,13 @@ const TERRITOIRE_PAR_CHATEAU = new Map<string, TerritoireSlug>(
 );
 
 export function getTerritoireSlugForChateau(
-    chateau: Pick<ChateauV2, "slug">,
+    chateau: Pick<Chateau, "slug">,
 ): TerritoireSlug | undefined {
     return TERRITOIRE_PAR_CHATEAU.get(chateau.slug);
 }
 
 export function getTerritoireChateaux(
-    chateaux: readonly ChateauV2[],
+    chateaux: readonly Chateau[],
     territorySlug: TerritoireSlug,
 ) {
     const order = new Map<string, number>(
@@ -111,7 +111,7 @@ export function getTerritoireChateaux(
         });
 }
 
-export function getTerritoiresWithChateaux(chateaux: readonly ChateauV2[]) {
+export function getTerritoiresWithChateaux(chateaux: readonly Chateau[]) {
     return TERRITOIRES.map((territory) => ({
         territory,
         chateaux: getTerritoireChateaux(chateaux, territory.slug),

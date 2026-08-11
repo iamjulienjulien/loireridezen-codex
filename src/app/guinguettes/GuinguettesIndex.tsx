@@ -18,11 +18,10 @@ import { PageControls } from "@/components/PageControls";
 import { LRZSection } from "@/components/LRZSection";
 import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
 import { TerritoireSection } from "@/components/TerritoireSection";
-import { featureIsEnabled } from "@/registry/feature-flags";
 import { getTerritoiresWithGuinguettes } from "@/registry/guinguettes-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Guinguette } from "@/types/guinguette";
-import GuinguetteCard from "./GuinguetteCard";
+import GuinguetteCard from "@/components/cards/GuinguetteCard";
 import GuinguettesInteractiveMap from "./GuinguettesInteractiveMap";
 import { GUINGUETTES_MAP_CONFIG } from "./guinguettes-map.config";
 import {
@@ -55,8 +54,6 @@ export default function GuinguettesIndex({
     const [openSlug, setOpenSlug] = useState(initialOpenSlug);
     const router = useRouter();
     const catalogueRef = useRef<HTMLDivElement>(null);
-    const interactiveMapEnabled = featureIsEnabled("guinguettesInteractiveMap");
-
     const list = useMemo(() => {
         const normalizedQuery = normalize(query.trim());
 
@@ -102,7 +99,6 @@ export default function GuinguettesIndex({
         : -1;
 
     useEffect(() => {
-        if (!interactiveMapEnabled) return;
         if (window.matchMedia("(max-width: 760px)").matches) return;
 
         const catalogue = catalogueRef.current;
@@ -171,11 +167,9 @@ export default function GuinguettesIndex({
             window.removeEventListener("scroll", scheduleViewport);
             if (frame) cancelAnimationFrame(frame);
         };
-    }, [interactiveMapEnabled, list]);
+    }, [list]);
 
     useEffect(() => {
-        if (!interactiveMapEnabled) return;
-
         const onMapSync = (event: Event) => {
             const detail = (event as CustomEvent<GuinguettesMapSyncDetail>)
                 .detail;
@@ -194,7 +188,7 @@ export default function GuinguettesIndex({
         window.addEventListener(GUINGUETTES_MAP_SYNC_EVENT, onMapSync);
         return () =>
             window.removeEventListener(GUINGUETTES_MAP_SYNC_EVENT, onMapSync);
-    }, [interactiveMapEnabled, list]);
+    }, [list]);
 
     const syncCatalogueHover = (
         target: EventTarget | null,
@@ -231,17 +225,13 @@ export default function GuinguettesIndex({
                     setQuery("");
                 },
             }}
-            action={
-                interactiveMapEnabled
-                    ? {
-                          label: "Carte",
-                          activeLabel: "Carte",
-                          active: isMapOpen,
-                          icon: <MapIcon aria-hidden="true" />,
-                          onClick: () => setIsMapOpen((open) => !open),
-                      }
-                    : undefined
-            }
+            action={{
+                label: "Carte",
+                activeLabel: "Carte",
+                active: isMapOpen,
+                icon: <MapIcon aria-hidden="true" />,
+                onClick: () => setIsMapOpen((open) => !open),
+            }}
             viewGroup={{
                 value: groupByTerritory ? "territoires" : "catalogue",
                 onValueChange: (value) =>
@@ -378,14 +368,12 @@ export default function GuinguettesIndex({
                 />
                 <div className="mt-5">{indexControls}</div>
 
-                {interactiveMapEnabled ? (
-                    <GuinguettesInteractiveMap
-                        guinguettes={list}
-                        open={isMapOpen}
-                        onOpenChange={setIsMapOpen}
-                        stickyMode={GUINGUETTES_MAP_CONFIG.stickyMode}
-                    />
-                ) : null}
+                <GuinguettesInteractiveMap
+                    guinguettes={list}
+                    open={isMapOpen}
+                    onOpenChange={setIsMapOpen}
+                    stickyMode={GUINGUETTES_MAP_CONFIG.stickyMode}
+                />
 
                 <div
                     ref={catalogueRef}
@@ -419,7 +407,7 @@ export default function GuinguettesIndex({
                                         key={territory.slug}
                                         territory={territory}
                                         guinguettes={guinguettes}
-                                        mapSync={interactiveMapEnabled}
+                                        mapSync
                                     />
                                 ),
                             )}

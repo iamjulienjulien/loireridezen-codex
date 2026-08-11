@@ -40,7 +40,7 @@ export interface TechnicalIndexSource {
     raw: unknown;
     schema: z.ZodType;
     adapter: EntryAdapter;
-    mediaDirectory: string;
+    mediaPrefix: string;
     /** Whether every entry must expose the legacy `customEmoji` field. */
     mediaRequired?: boolean;
 }
@@ -53,7 +53,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         raw: fauneData,
         schema: fauneCatalogSchema,
         adapter: adaptFaune as EntryAdapter,
-        mediaDirectory: "faune",
+        mediaPrefix: "/illustrations/faune/",
     },
     {
         slug: "flore",
@@ -62,7 +62,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         raw: floreData,
         schema: floreCatalogSchema,
         adapter: adaptFlore as EntryAdapter,
-        mediaDirectory: "flore",
+        mediaPrefix: "/illustrations/flore/",
     },
     {
         slug: "chateaux",
@@ -71,7 +71,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         raw: chateauData,
         schema: chateauCatalogSchema,
         adapter: adaptChateau as EntryAdapter,
-        mediaDirectory: "chateau",
+        mediaPrefix: "/illustrations/chateaux/",
         mediaRequired: false,
     },
     {
@@ -81,7 +81,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         raw: guinguetteData,
         schema: guinguetteCatalogSchema,
         adapter: adaptGuinguette as EntryAdapter,
-        mediaDirectory: "guinguette",
+        mediaPrefix: "/illustrations/guinguettes/",
         mediaRequired: false,
     },
     {
@@ -91,7 +91,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         raw: territoireData,
         schema: territoireCatalogSchema,
         adapter: adaptTerritoire as EntryAdapter,
-        mediaDirectory: "blasons",
+        mediaPrefix: "/symbols/common/territoire/",
         mediaRequired: false,
     },
     {
@@ -101,7 +101,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         raw: personnageData,
         schema: personnageCatalogSchema,
         adapter: adaptPersonnage as EntryAdapter,
-        mediaDirectory: "personnage",
+        mediaPrefix: "/illustrations/personnages/",
         mediaRequired: false,
     },
     {
@@ -111,7 +111,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         raw: vignobleData,
         schema: vignobleCatalogSchema,
         adapter: adaptVignoble as EntryAdapter,
-        mediaDirectory: "vignoble",
+        mediaPrefix: "/symbols/vignoble/",
         mediaRequired: false,
     },
     {
@@ -121,7 +121,7 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         raw: motData,
         schema: motCatalogSchema,
         adapter: adaptMot as EntryAdapter,
-        mediaDirectory: "mot",
+        mediaPrefix: "/illustrations/vocabulaire/",
     },
     {
         slug: "patrimoine",
@@ -130,6 +130,6 @@ export const TECHNICAL_INDEX_SOURCES: readonly TechnicalIndexSource[] = [
         raw: patrimoineData,
         schema: patrimoineCatalogSchema,
         adapter: adaptPatrimoine as EntryAdapter,
-        mediaDirectory: "patrimoine",
+        mediaPrefix: "/illustrations/patrimoine/",
     },
 ] as const;

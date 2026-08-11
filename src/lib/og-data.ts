@@ -8,8 +8,11 @@ import vignoblesData from "@data/catalogue-vignobles.json";
 
 import { SITE_URL } from "@/lib/site-metadata";
 import { getIndexBySlug } from "@/registry/indexes";
-import { LRZ_VIGNOBLE_COULEUR_SYMBOLS } from "@/registry/symbols";
-import type { ChateauV2 } from "@/types/chateauV2";
+import {
+    LRZ_COMMON_TERRITOIRE_SYMBOLS,
+    LRZ_VIGNOBLE_COULEUR_SYMBOLS,
+} from "@/registry/symbols";
+import type { Chateau } from "@/types/chateau";
 import type { FauneEspece } from "@/types/faune";
 import type { Flore } from "@/types/flore";
 import type { Guinguette } from "@/types/guinguette";
@@ -50,7 +53,7 @@ export type CodexOgItem = {
     visualFit: "cover" | "contain";
 };
 
-const CHATEAUX = chateauxData.chateaux as ChateauV2[];
+const CHATEAUX = chateauxData.chateaux as Chateau[];
 const FAUNE = fauneData.especes as FauneEspece[];
 const FLORE = floreData.flore as Flore[];
 const GUINGUETTES = guinguettesData.guinguettes as Guinguette[];
@@ -194,8 +197,10 @@ export const getCodexOgItem = (
               title: territoire.nom,
               subtitle: territoire.sousTitre,
               detail: `${toLabel(territoire.nature)} · ${toLabel(territoire.paysage)}`,
-              visual: territoire.identite.blason,
-              visualAlt: territoire.identite.blasonAlt,
+              visual: LRZ_COMMON_TERRITOIRE_SYMBOLS[
+                  territoire.slug as keyof typeof LRZ_COMMON_TERRITOIRE_SYMBOLS
+              ],
+              visualAlt: `Symbole du territoire ${territoire.nom}`,
               visualFit: "contain",
           })
         : undefined;

@@ -7,8 +7,8 @@ import type { Territoire } from "@/types/territoire";
 import type { PersonnagesParLieu } from "@/types/personnage";
 import type { Guinguette } from "@/types/guinguette";
 
-import ChateauxCard from "@/app/chateaux/ChateauxCard";
-import GuinguetteCard from "@/app/guinguettes/GuinguetteCard";
+import ChateauxCard from "@/components/cards/ChateauxCard";
+import GuinguetteCard from "@/components/cards/GuinguetteCard";
 import { LRZSymbol } from "@/components/LRZSymbol";
 import { LRZTypography } from "@/components/LRZTypography";
 import { isCommonTerritoire } from "@/registry/Meta/common-territoire";
@@ -17,7 +17,7 @@ import styles from "./TerritoireSection.module.css";
 import { lighter } from "@/lib/colors";
 import LRZSeparateur from "../LRZSeparateur/LRZSeparateur";
 import { getLRZColorValue } from "@/registry/colors";
-import type { ChateauV2 } from "@/types/chateauV2";
+import type { Chateau } from "@/types/chateau";
 
 type TerritoireSectionStyle = CSSProperties & {
     "--territoire-accent": string;
@@ -25,7 +25,7 @@ type TerritoireSectionStyle = CSSProperties & {
 
 type TerritoireSectionProps = {
     territory: Territoire;
-    chateaux?: readonly ChateauV2[];
+    chateaux?: readonly Chateau[];
     guinguettes?: readonly Guinguette[];
     personnagesByChateau?: PersonnagesParLieu;
     /** Ajoute un repère DOM pour la synchronisation expérimentale de carte. */

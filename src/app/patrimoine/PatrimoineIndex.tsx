@@ -5,8 +5,8 @@ import type { Patrimoine } from "@/types/patrimoine";
 import IndexPresentation from "@/components/IndexPresentation";
 import IndexControls from "@/components/IndexControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import PatrimoineCard from "./PatrimoineCard";
-import styles from "./patrimoine.module.css";
+import PatrimoineCard from "@/components/cards/PatrimoineCard";
+import styles from "@/components/cards/PatrimoineCard/patrimoine.module.css";
 
 const TYPES = [
     { id: "all", label: "Tout" },

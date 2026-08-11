@@ -12,8 +12,8 @@ import { LRZCardDialog } from "@/components/LRZCardDialog";
 import { LRZSymbol } from "@/components/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import FauneCard from "./FauneCard";
-import styles from "./faune.module.css";
+import FauneCard from "@/components/cards/FauneCard";
+import styles from "@/components/cards/FauneCard/faune.module.css";
 
 const norm = (s: string) =>
     s

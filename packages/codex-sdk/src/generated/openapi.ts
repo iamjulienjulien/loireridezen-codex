@@ -430,7 +430,7 @@ export interface components {
          *       "summary": null,
          *       "media": {
          *         "emoji": "🐦",
-         *         "imageUrl": "https://codex.loireridezen.bike/emoji/faune/heron-cendree.png"
+         *         "imageUrl": "https://codex.loireridezen.bike/illustrations/faune/heron-cendree.png"
          *       },
          *       "attributes": {
          *         "autresNoms": [
@@ -489,7 +489,7 @@ export interface components {
          *       "summary": null,
          *       "media": {
          *         "emoji": "🌳",
-         *         "imageUrl": "https://codex.loireridezen.bike/emoji/flore/peuplier-noir.png"
+         *         "imageUrl": "https://codex.loireridezen.bike/illustrations/flore/peuplier-noir.png"
          *       },
          *       "attributes": {
          *         "autresNoms": [
@@ -537,7 +537,7 @@ export interface components {
          *       "summary": "Château de brique et de pierre de la fin du XVᵉ siècle.",
          *       "media": {
          *         "emoji": "🏰",
-         *         "imageUrl": "https://codex.loireridezen.bike/emoji/chateau/gien.png"
+         *         "imageUrl": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/jourx.png"
          *       },
          *       "attributes": {
          *         "autresNoms": [
@@ -881,7 +881,7 @@ export interface components {
          *           "summary": null,
          *           "media": {
          *             "emoji": "🐦",
-         *             "imageUrl": "https://codex.loireridezen.bike/emoji/faune/heron-cendree.png"
+         *             "imageUrl": "https://codex.loireridezen.bike/illustrations/faune/heron-cendree.png"
          *           },
          *           "attributes": {
          *             "autresNoms": [
@@ -961,7 +961,7 @@ export interface components {
          *         "summary": null,
          *         "media": {
          *           "emoji": "🐦",
-         *           "imageUrl": "https://codex.loireridezen.bike/emoji/faune/heron-cendree.png"
+         *           "imageUrl": "https://codex.loireridezen.bike/illustrations/faune/heron-cendree.png"
          *         },
          *         "attributes": {
          *           "autresNoms": [

@@ -12,7 +12,7 @@ import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/navigation";
 import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 
-import type { ChateauV2 } from "@/types/chateauV2";
+import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
 import type { PersonnagesParLieu } from "@/types/personnage";
 
@@ -28,14 +28,13 @@ import { CollectionCard } from "@/components/ui/collection-card";
 
 import { getIndex } from "@/registry/indexes";
 
-import ChateauxCard from "./ChateauxCard";
+import ChateauxCard from "@/components/cards/ChateauxCard";
 
 import styles from "./chateaux.module.css";
 import { LRZSection } from "@/components/LRZSection";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import { TerritoireSection } from "@/components/TerritoireSection";
 import { getTerritoiresWithChateaux } from "@/registry/chateaux-territoires";
-import ChateauxViewportMapSpike from "./ChateauxViewportMapSpike";
 import ChateauxInteractiveMap from "./ChateauxInteractiveMap";
 import { CHATEAUX_MAP_CONFIG } from "./chateaux-map.config";
 import {
@@ -52,7 +51,7 @@ const SECONDARY_COLLECTION_SLUGS = [
     "plus-ligeriens",
 ] as const;
 
-const EPOQUE_PRESET_VALUES: Record<string, ChateauV2["epoque"]> = {
+const EPOQUE_PRESET_VALUES: Record<string, Chateau["epoque"]> = {
     "moyen-age": "Médiéval",
     renaissance: "Renaissance",
     "ancien-regime": "Classique",
@@ -72,7 +71,7 @@ const norm = (value: string) =>
         .toLowerCase();
 
 type ChateauxIndexProps = {
-    chateaux: ChateauV2[];
+    chateaux: Chateau[];
     indexes: readonly IndexEntry[];
     personnagesByChateau: PersonnagesParLieu;
     initialOpenSlug?: string;
@@ -94,9 +93,6 @@ export default function ChateauxIndex({
     const [openSlug, setOpenSlug] = useState(initialOpenSlug);
     const router = useRouter();
     const catalogueRef = useRef<HTMLDivElement>(null);
-    const territoiresEnabled = featureIsEnabled("territoires");
-    const renommeeEnabled = featureIsEnabled("chateauxRenommee");
-
     const collections = useMemo(() => {
         const castleBySlug = new Map(
             chateaux.map((castle) => [castle.slug, castle]),
@@ -153,11 +149,7 @@ export default function ChateauxIndex({
                 return false;
             }
 
-            if (
-                renommeeEnabled &&
-                renommee !== "all" &&
-                castle.renommee !== renommee
-            ) {
+            if (renommee !== "all" && castle.renommee !== renommee) {
                 return false;
             }
 
@@ -179,29 +171,19 @@ export default function ChateauxIndex({
 
             return true;
         });
-    }, [chateaux, epoque, renommee, renommeeEnabled, q]);
+    }, [chateaux, epoque, renommee, q]);
 
     const territorySections = useMemo(
-        () =>
-            territoiresEnabled && groupByTerritory
-                ? getTerritoiresWithChateaux(list)
-                : [],
-        [groupByTerritory, list, territoiresEnabled],
+        () => (groupByTerritory ? getTerritoiresWithChateaux(list) : []),
+        [groupByTerritory, list],
     );
-
-    const viewportMapSpikeEnabled = featureIsEnabled(
-        "chateauxViewportMapSpike",
-    );
-    const interactiveMapEnabled = featureIsEnabled("chateauxInteractiveMap");
     const openChateau = openSlug
         ? chateaux.find((castle) => castle.slug === openSlug)
         : undefined;
     const openChateauIndex = openChateau ? chateaux.indexOf(openChateau) : -1;
-    const hasActiveFilters =
-        epoque !== "all" || (renommeeEnabled && renommee !== "all") || q !== "";
+    const hasActiveFilters = epoque !== "all" || renommee !== "all" || q !== "";
 
     useEffect(() => {
-        if (!interactiveMapEnabled) return;
         if (window.matchMedia("(max-width: 760px)").matches) return;
 
         const catalogue = catalogueRef.current;
@@ -313,11 +295,9 @@ export default function ChateauxIndex({
             window.removeEventListener("scroll", scheduleViewport);
             if (frame) cancelAnimationFrame(frame);
         };
-    }, [groupByTerritory, interactiveMapEnabled, list]);
+    }, [groupByTerritory, list]);
 
     useEffect(() => {
-        if (!interactiveMapEnabled) return;
-
         const onMapSync = (event: Event) => {
             const detail = (event as CustomEvent<ChateauxMapSyncDetail>).detail;
             if (detail.source !== "map" || detail.type !== "hover") return;
@@ -335,7 +315,7 @@ export default function ChateauxIndex({
         window.addEventListener(CHATEAUX_MAP_SYNC_EVENT, onMapSync);
         return () =>
             window.removeEventListener(CHATEAUX_MAP_SYNC_EVENT, onMapSync);
-    }, [groupByTerritory, interactiveMapEnabled, list]);
+    }, [groupByTerritory, list]);
 
     const syncCatalogueHover = (
         target: EventTarget | null,
@@ -399,57 +379,44 @@ export default function ChateauxIndex({
                                 chateau.epoque === EPOQUE_PRESET_VALUES[id],
                         ).length,
                 },
-                ...(renommeeEnabled
-                    ? [
-                          {
-                              label: "Renommée",
-                              active: renommee,
-                              onSelect: setRenommee,
-                              preset: {
-                                  collection: "chateau" as const,
-                                  meta: "renommee" as const,
-                              },
-                              getCount: (id: string) =>
-                                  chateaux.filter(
-                                      (chateau) => chateau.renommee === id,
-                                  ).length,
-                          },
-                      ]
-                    : []),
+                {
+                    label: "Renommée",
+                    active: renommee,
+                    onSelect: setRenommee,
+                    preset: {
+                        collection: "chateau" as const,
+                        meta: "renommee" as const,
+                    },
+                    getCount: (id: string) =>
+                        chateaux.filter((chateau) => chateau.renommee === id)
+                            .length,
+                },
             ]}
-            viewGroup={
-                territoiresEnabled
-                    ? {
-                          value: groupByTerritory ? "territoires" : "catalogue",
-                          onValueChange: (value) =>
-                              setGroupByTerritory(value === "territoires"),
-                          ariaLabel: "Organisation du catalogue de châteaux",
-                          options: [
-                              {
-                                  value: "catalogue",
-                                  label: "Catalogue",
-                                  icon: <LayoutGrid aria-hidden="true" />,
-                              },
-                              {
-                                  value: "territoires",
-                                  label: "Territoires",
-                                  icon: <MapPinned aria-hidden="true" />,
-                              },
-                          ],
-                      }
-                    : undefined
-            }
-            action={
-                interactiveMapEnabled
-                    ? {
-                          label: "Carte",
-                          activeLabel: "Carte",
-                          active: isMapOpen,
-                          icon: <MapIcon aria-hidden="true" />,
-                          onClick: () => setIsMapOpen((open) => !open),
-                      }
-                    : undefined
-            }
+            viewGroup={{
+                value: groupByTerritory ? "territoires" : "catalogue",
+                onValueChange: (value) =>
+                    setGroupByTerritory(value === "territoires"),
+                ariaLabel: "Organisation du catalogue de châteaux",
+                options: [
+                    {
+                        value: "catalogue",
+                        label: "Catalogue",
+                        icon: <LayoutGrid aria-hidden="true" />,
+                    },
+                    {
+                        value: "territoires",
+                        label: "Territoires",
+                        icon: <MapPinned aria-hidden="true" />,
+                    },
+                ],
+            }}
+            action={{
+                label: "Carte",
+                activeLabel: "Carte",
+                active: isMapOpen,
+                icon: <MapIcon aria-hidden="true" />,
+                onClick: () => setIsMapOpen((open) => !open),
+            }}
         />
     );
 
@@ -459,7 +426,7 @@ export default function ChateauxIndex({
                 Aucun château à cet endroit du fil. Élargis la recherche ou
                 change de filtre.
             </p>
-        ) : territoiresEnabled && groupByTerritory ? (
+        ) : groupByTerritory ? (
             <div className={styles.territories}>
                 {territorySections.map(({ territory, chateaux }) => (
                     <TerritoireSection
@@ -467,12 +434,8 @@ export default function ChateauxIndex({
                         territory={territory}
                         chateaux={chateaux}
                         personnagesByChateau={personnagesByChateau}
-                        mapSync={
-                            viewportMapSpikeEnabled || interactiveMapEnabled
-                        }
-                        onShowOnMap={
-                            interactiveMapEnabled ? showChateauOnMap : undefined
-                        }
+                        mapSync
+                        onShowOnMap={showChateauOnMap}
                     />
                 ))}
             </div>
@@ -490,11 +453,7 @@ export default function ChateauxIndex({
                             personnages={
                                 personnagesByChateau[castle.slug] ?? []
                             }
-                            onShowOnMap={
-                                interactiveMapEnabled
-                                    ? showChateauOnMap
-                                    : undefined
-                            }
+                            onShowOnMap={showChateauOnMap}
                         />
                     </div>
                 ))}
@@ -556,9 +515,7 @@ export default function ChateauxIndex({
                         personnages={
                             personnagesByChateau[openChateau.slug] ?? []
                         }
-                        onShowOnMap={
-                            interactiveMapEnabled ? showChateauOnMap : undefined
-                        }
+                        onShowOnMap={showChateauOnMap}
                     />
                 </LRZCardDialog>
             ) : null}
@@ -676,14 +633,12 @@ export default function ChateauxIndex({
                 />
                 <div className="mt-5">{indexControls}</div>
 
-                {interactiveMapEnabled ? (
-                    <ChateauxInteractiveMap
-                        chateaux={list}
-                        open={isMapOpen}
-                        onOpenChange={setIsMapOpen}
-                        stickyMode={CHATEAUX_MAP_CONFIG.stickyMode}
-                    />
-                ) : null}
+                <ChateauxInteractiveMap
+                    chateaux={list}
+                    open={isMapOpen}
+                    onOpenChange={setIsMapOpen}
+                    stickyMode={CHATEAUX_MAP_CONFIG.stickyMode}
+                />
 
                 <div
                     ref={catalogueRef}
@@ -704,13 +659,7 @@ export default function ChateauxIndex({
                     onFocus={(event) => syncCatalogueHover(event.target, true)}
                     onBlur={(event) => syncCatalogueHover(event.target, false)}
                 >
-                    {viewportMapSpikeEnabled && list.length > 0 ? (
-                        <ChateauxViewportMapSpike chateaux={list} variant="top">
-                            {catalogue}
-                        </ChateauxViewportMapSpike>
-                    ) : (
-                        catalogue
-                    )}
+                    {catalogue}
                 </div>
             </LRZSection>
         </>

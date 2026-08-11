@@ -10,7 +10,7 @@
     "especes": [
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/heron-cendree.png",
+            "customEmoji": "/illustrations/faune/heron-cendree.png",
             "slug": "heron-cendre",
             "type": "oiseau",
             "nomCommun": "Héron cendré",
@@ -36,7 +36,7 @@
         },
         {
             "emoji": "🕊️",
-            "customEmoji": "/emoji/faune/grande-aigrette.png",
+            "customEmoji": "/illustrations/faune/grande-aigrette.png",
             "slug": "grande-aigrette",
             "type": "oiseau",
             "nomCommun": "Grande aigrette",
@@ -66,7 +66,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/martin-pecheur.png",
+            "customEmoji": "/illustrations/faune/martin-pecheur.png",
             "slug": "martin-pecheur-d-europe",
             "type": "oiseau",
             "nomCommun": "Martin-pêcheur d'Europe",
@@ -96,7 +96,7 @@
         },
         {
             "emoji": "🕊️",
-            "customEmoji": "/emoji/faune/aigrette-garzette.png",
+            "customEmoji": "/illustrations/faune/aigrette-garzette.png",
             "slug": "aigrette-garzette",
             "type": "oiseau",
             "nomCommun": "Aigrette garzette",
@@ -122,7 +122,7 @@
         },
         {
             "emoji": "🐦‍⬛",
-            "customEmoji": "/emoji/faune/grand-cormoran.png",
+            "customEmoji": "/illustrations/faune/grand-cormoran.png",
             "slug": "grand-cormoran",
             "type": "oiseau",
             "nomCommun": "Grand cormoran",
@@ -148,7 +148,7 @@
         },
         {
             "emoji": "🦅",
-            "customEmoji": "/emoji/faune/milan-noir.png",
+            "customEmoji": "/illustrations/faune/milan-noir.png",
             "slug": "milan-noir",
             "type": "oiseau",
             "nomCommun": "Milan noir",
@@ -174,7 +174,7 @@
         },
         {
             "emoji": "🦢",
-            "customEmoji": "/emoji/faune/cygne-tubercule.png",
+            "customEmoji": "/illustrations/faune/cygne-tubercule.png",
             "slug": "cygne-tubercule",
             "type": "oiseau",
             "nomCommun": "Cygne tuberculé",
@@ -200,7 +200,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/grebe-huppe.png",
+            "customEmoji": "/illustrations/faune/grebe-huppe.png",
             "slug": "grebe-huppe",
             "type": "oiseau",
             "nomCommun": "Grèbe huppé",
@@ -226,7 +226,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/chevalier-guignette.png",
+            "customEmoji": "/illustrations/faune/chevalier-guignette.png",
             "slug": "chevalier-guignette",
             "type": "oiseau",
             "nomCommun": "Chevalier guignette",
@@ -256,7 +256,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/petit-gravelot.png",
+            "customEmoji": "/illustrations/faune/petit-gravelot.png",
             "slug": "petit-gravelot",
             "type": "oiseau",
             "nomCommun": "Petit gravelot",
@@ -282,7 +282,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/sterne-pierregarin.png",
+            "customEmoji": "/illustrations/faune/sterne-pierregarin.png",
             "slug": "sterne-pierregarin",
             "type": "oiseau",
             "nomCommun": "Sterne pierregarin",
@@ -308,7 +308,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/sterne-naine.png",
+            "customEmoji": "/illustrations/faune/sterne-naine.png",
             "slug": "sterne-naine",
             "type": "oiseau",
             "nomCommun": "Sterne naine",
@@ -338,7 +338,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/oedicneme-criard.png",
+            "customEmoji": "/illustrations/faune/oedicneme-criard.png",
             "slug": "oedicneme-criard",
             "type": "oiseau",
             "nomCommun": "Œdicnème criard",
@@ -368,7 +368,7 @@
         },
         {
             "emoji": "🦅",
-            "customEmoji": "/emoji/faune/balbuzard-pecheur.png",
+            "customEmoji": "/illustrations/faune/balbuzard-pecheur.png",
             "slug": "balbuzard-pecheur",
             "type": "oiseau",
             "nomCommun": "Balbuzard pêcheur",
@@ -398,7 +398,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/hirondelle-de-rivage.png",
+            "customEmoji": "/illustrations/faune/hirondelle-de-rivage.png",
             "slug": "hirondelle-de-rivage",
             "type": "oiseau",
             "nomCommun": "Hirondelle de rivage",
@@ -428,7 +428,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/guepier-d-europe.png",
+            "customEmoji": "/illustrations/faune/guepier-d-europe.png",
             "slug": "guepier-d-europe",
             "type": "oiseau",
             "nomCommun": "Guêpier d'Europe",
@@ -458,7 +458,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/loriot-europe.png",
+            "customEmoji": "/illustrations/faune/loriot-europe.png",
             "slug": "loriot-d-europe",
             "type": "oiseau",
             "nomCommun": "Loriot d'Europe",
@@ -484,7 +484,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/rossignol-philomele.png",
+            "customEmoji": "/illustrations/faune/rossignol-philomele.png",
             "slug": "rossignol-philomele",
             "type": "oiseau",
             "nomCommun": "Rossignol philomèle",
@@ -510,7 +510,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/bergeronette-des-ruisseaux.png",
+            "customEmoji": "/illustrations/faune/bergeronette-des-ruisseaux.png",
             "slug": "bergeronnette-des-ruisseaux",
             "type": "oiseau",
             "nomCommun": "Bergeronnette des ruisseaux",
@@ -536,7 +536,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/huppe-fasciee.png",
+            "customEmoji": "/illustrations/faune/huppe-fasciee.png",
             "slug": "huppe-fasciee",
             "type": "oiseau",
             "nomCommun": "Huppe fasciée",
@@ -562,7 +562,7 @@
         },
         {
             "emoji": "🦅",
-            "customEmoji": "/emoji/faune/faucon-hobereau.png",
+            "customEmoji": "/illustrations/faune/faucon-hobereau.png",
             "slug": "faucon-hobereau",
             "type": "oiseau",
             "nomCommun": "Faucon hobereau",
@@ -588,7 +588,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/cigogne-blanche.png",
+            "customEmoji": "/illustrations/faune/cigogne-blanche.png",
             "slug": "cigogne-blanche",
             "type": "oiseau",
             "nomCommun": "Cigogne blanche",
@@ -618,7 +618,7 @@
         },
         {
             "emoji": "🐦‍⬛",
-            "customEmoji": "/emoji/faune/cigogne-noire.png",
+            "customEmoji": "/illustrations/faune/cigogne-noire.png",
             "slug": "cigogne-noire",
             "type": "oiseau",
             "nomCommun": "Cigogne noire",
@@ -648,7 +648,7 @@
         },
         {
             "emoji": "🦅",
-            "customEmoji": "/emoji/faune/busard-des-roseaux.png",
+            "customEmoji": "/illustrations/faune/busard-des-roseaux.png",
             "slug": "busard-des-roseaux",
             "type": "oiseau",
             "nomCommun": "Busard des roseaux",
@@ -675,7 +675,7 @@
         {
             "emoji": "🐦",
             "type": "oiseau",
-            "customEmoji": "/emoji/faune/rousserolle-effartave.png",
+            "customEmoji": "/illustrations/faune/rousserolle-effartave.png",
             "slug": "rousserolle-effarvatte",
             "nomCommun": "Rousserolle effarvatte",
             "autresNoms": ["Effarvatte"],
@@ -700,7 +700,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/bruant-des-roseaux.png",
+            "customEmoji": "/illustrations/faune/bruant-des-roseaux.png",
             "slug": "bruant-des-roseaux",
             "type": "oiseau",
             "nomCommun": "Bruant des roseaux",
@@ -730,7 +730,7 @@
         },
         {
             "emoji": "🐦",
-            "customEmoji": "/emoji/faune/tarier-patre.png",
+            "customEmoji": "/illustrations/faune/tarier-patre.png",
             "slug": "tarier-patre",
             "type": "oiseau",
             "nomCommun": "Tarier pâtre",
@@ -756,7 +756,7 @@
         },
         {
             "emoji": "🐀",
-            "customEmoji": "/emoji/faune/ragondin.png",
+            "customEmoji": "/illustrations/faune/ragondin.png",
             "slug": "ragondin",
             "type": "mammifère",
             "nomCommun": "Ragondin",
@@ -785,7 +785,7 @@
         },
         {
             "emoji": "🦌",
-            "customEmoji": "/emoji/faune/chevreuil.png",
+            "customEmoji": "/illustrations/faune/chevreuil.png",
             "slug": "chevreuil",
             "type": "mammifère",
             "nomCommun": "Chevreuil",
@@ -811,7 +811,7 @@
         },
         {
             "emoji": "🦊",
-            "customEmoji": "/emoji/faune/renard-roux.png",
+            "customEmoji": "/illustrations/faune/renard-roux.png",
             "slug": "renard-roux",
             "type": "mammifère",
             "nomCommun": "Renard roux",
@@ -837,7 +837,7 @@
         },
         {
             "emoji": "🐺",
-            "customEmoji": "/emoji/faune/loup-gris.png",
+            "customEmoji": "/illustrations/faune/loup-gris.png",
             "slug": "loup-gris",
             "type": "mammifère",
             "nomCommun": "Loup gris",
@@ -867,7 +867,7 @@
         },
         {
             "emoji": "🐿️",
-            "customEmoji": "/emoji/faune/ecureuil-roux.png",
+            "customEmoji": "/illustrations/faune/ecureuil-roux.png",
             "slug": "ecureuil-roux",
             "type": "mammifère",
             "nomCommun": "Écureuil roux",
@@ -892,7 +892,7 @@
         },
         {
             "emoji": "🦇",
-            "customEmoji": "/emoji/faune/murin-de-daubenton.png",
+            "customEmoji": "/illustrations/faune/murin-de-daubenton.png",
             "slug": "murin-de-daubenton",
             "type": "mammifère",
             "nomCommun": "Murin de Daubenton",
@@ -922,7 +922,7 @@
         },
         {
             "emoji": "🦫",
-            "customEmoji": "/emoji/faune/castor-d-europe.png",
+            "customEmoji": "/illustrations/faune/castor-d-europe.png",
             "slug": "castor-d-europe",
             "type": "mammifère",
             "nomCommun": "Castor d'Europe",
@@ -951,7 +951,7 @@
         },
         {
             "emoji": "🦦",
-            "customEmoji": "/emoji/faune/loutre-d-europe.png",
+            "customEmoji": "/illustrations/faune/loutre-d-europe.png",
             "slug": "loutre-d-europe",
             "type": "mammifère",
             "nomCommun": "Loutre d'Europe",
@@ -980,7 +980,7 @@
         },
         {
             "emoji": "🐟",
-            "customEmoji": "/emoji/faune/brochet.png",
+            "customEmoji": "/illustrations/faune/brochet.png",
             "slug": "brochet",
             "type": "poisson",
             "nomCommun": "Brochet",
@@ -1009,7 +1009,7 @@
         },
         {
             "emoji": "🐟",
-            "customEmoji": "/emoji/faune/silure-glane.png",
+            "customEmoji": "/illustrations/faune/silure-glane.png",
             "slug": "silure-glane",
             "type": "poisson",
             "nomCommun": "Silure glane",
@@ -1038,7 +1038,7 @@
         },
         {
             "emoji": "🐟",
-            "customEmoji": "/emoji/faune/anguille-europeenne.png",
+            "customEmoji": "/illustrations/faune/anguille-europeenne.png",
             "slug": "anguille-europeenne",
             "type": "poisson",
             "nomCommun": "Anguille européenne",
@@ -1067,7 +1067,7 @@
         },
         {
             "emoji": "🐟",
-            "customEmoji": "/emoji/faune/grande-alose.png",
+            "customEmoji": "/illustrations/faune/grande-alose.png",
             "slug": "grande-alose",
             "type": "poisson",
             "nomCommun": "Grande alose",
@@ -1096,7 +1096,7 @@
         },
         {
             "emoji": "🐟",
-            "customEmoji": "/emoji/faune/lamproie-marine.png",
+            "customEmoji": "/illustrations/faune/lamproie-marine.png",
             "slug": "lamproie-marine",
             "type": "poisson",
             "nomCommun": "Lamproie marine",
@@ -1125,7 +1125,7 @@
         },
         {
             "emoji": "🐟",
-            "customEmoji": "/emoji/faune/saumon-atlantique.png",
+            "customEmoji": "/illustrations/faune/saumon-atlantique.png",
             "slug": "saumon-atlantique",
             "type": "poisson",
             "nomCommun": "Saumon atlantique",
@@ -1155,7 +1155,7 @@
 
         {
             "emoji": "🦎",
-            "customEmoji": "/emoji/faune/lezard-des-murailles.png",
+            "customEmoji": "/illustrations/faune/lezard-des-murailles.png",
             "slug": "lezard-des-murailles",
             "type": "reptile",
             "nomCommun": "Lézard des murailles",
@@ -1184,7 +1184,7 @@
         },
         {
             "emoji": "🐍",
-            "customEmoji": "/emoji/faune/couleuvre-a-collier.png",
+            "customEmoji": "/illustrations/faune/couleuvre-a-collier.png",
             "slug": "couleuvre-a-collier",
             "type": "reptile",
             "nomCommun": "Couleuvre à collier",
@@ -1216,7 +1216,7 @@
         },
         {
             "emoji": "🐢",
-            "customEmoji": "/emoji/faune/cistude-d-europe.png",
+            "customEmoji": "/illustrations/faune/cistude-d-europe.png",
             "slug": "cistude-d-europe",
             "type": "reptile",
             "nomCommun": "Cistude d'Europe",
@@ -1246,7 +1246,7 @@
 
         {
             "emoji": "🐸",
-            "customEmoji": "/emoji/faune/grenouille-rieuse.png",
+            "customEmoji": "/illustrations/faune/grenouille-rieuse.png",
             "slug": "grenouille-rieuse",
             "type": "amphibien",
             "nomCommun": "Grenouille rieuse",
@@ -1271,7 +1271,7 @@
         },
         {
             "emoji": "🐸",
-            "customEmoji": "/emoji/faune/rainette-verte.png",
+            "customEmoji": "/illustrations/faune/rainette-verte.png",
             "slug": "rainette-verte",
             "type": "amphibien",
             "nomCommun": "Rainette verte",
@@ -1301,7 +1301,7 @@
 
         {
             "emoji": "🦋",
-            "customEmoji": "/emoji/faune/calopteryx-eclatant.png",
+            "customEmoji": "/illustrations/faune/calopteryx-eclatant.png",
             "slug": "calopteryx-eclatant",
             "type": "insecte",
             "nomCommun": "Caloptéryx éclatant",
@@ -1327,7 +1327,7 @@
         },
         {
             "emoji": "🦋",
-            "customEmoji": "/emoji/faune/anax-empereur.png",
+            "customEmoji": "/illustrations/faune/anax-empereur.png",
             "slug": "anax-empereur",
             "type": "insecte",
             "nomCommun": "Anax empereur",
@@ -1353,7 +1353,7 @@
         },
         {
             "emoji": "🦋",
-            "customEmoji": "/emoji/faune/cuivree-des-marais.png",
+            "customEmoji": "/illustrations/faune/cuivree-des-marais.png",
             "slug": "cuivre-des-marais",
             "type": "insecte",
             "nomCommun": "Cuivré des marais",

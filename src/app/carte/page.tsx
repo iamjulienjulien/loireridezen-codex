@@ -4,7 +4,7 @@ import guinguettesData from "@data/catalogue-guinguettes.json";
 import PageShell from "@/components/layout/PageShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getContentPageDefinition } from "@/registry/pages";
-import type { ChateauV2 } from "@/types/chateauV2";
+import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 
 import CarteMap, { type CarteMarker } from "./CarteMap";
@@ -14,7 +14,7 @@ const CARTE_PAGE = getContentPageDefinition("/carte");
 
 export const metadata = buildPageMetadata(CARTE_PAGE);
 
-const chateaux = chateauxData.chateaux as ChateauV2[];
+const chateaux = chateauxData.chateaux as Chateau[];
 const guinguettes = guinguettesData.guinguettes as Guinguette[];
 
 const markers: CarteMarker[] = [

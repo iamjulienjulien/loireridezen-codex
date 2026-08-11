@@ -188,7 +188,7 @@ export const adaptTerritoire: EntryAdapter<ValidatedTerritoireEntry> = (
 ) => {
     const { slug, nom, sousTitre, description, identite, ...attributes } =
         entry;
-    const { mark, blason, ...identityAttributes } = identite;
+    const { mark, ...identityAttributes } = identite;
 
     return {
         id: publicEntryId("territoires", slug),
@@ -197,7 +197,7 @@ export const adaptTerritoire: EntryAdapter<ValidatedTerritoireEntry> = (
         name: nom,
         subtitle: sousTitre,
         summary: description,
-        media: media(mark, blason),
+        media: media(mark),
         attributes: {
             ...attributes,
             identite: identityAttributes,

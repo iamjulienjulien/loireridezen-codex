@@ -10,16 +10,16 @@ describe("formatDataQualityReport", () => {
                     code: "MEDIA_FILE_MISSING",
                     severity: "error",
                     index: "faune",
-                    file: "data/faune.json",
+                    file: "data/catalogue-faune.json",
                     path: "especes[0].customEmoji",
                     message: "Le média est absent.",
-                    value: "/emoji/faune/missing.png",
+                    value: "/illustrations/faune/missing.png",
                 },
                 ...[0, 1, 2, 3].map((position) => ({
                     code: "MEDIA_MISSING_FOR_UNPUBLISHED_ENTRY" as const,
                     severity: "warning" as const,
                     index: "vignobles",
-                    file: "data/vignoble.json",
+                    file: "data/catalogue-vignobles.json",
                     path: `vignobles[${position}].customEmoji`,
                     message: "Illustration absente.",
                 })),
@@ -40,7 +40,7 @@ describe("formatDataQualityReport", () => {
 
         expect(output).toContain("[ERROR MEDIA_FILE_MISSING]");
         expect(output).toContain(
-            "index=faune file=data/faune.json path=especes[0].customEmoji",
+            "index=faune file=data/catalogue-faune.json path=especes[0].customEmoji",
         );
         expect(output.match(/\[WARNING MEDIA_MISSING/g)).toHaveLength(1);
         expect(output).toContain("index=vignobles count=4");

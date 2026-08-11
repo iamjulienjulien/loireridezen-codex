@@ -12,7 +12,7 @@ import {
     getPersonnageWithRelations,
 } from "@/lib/personnages";
 import type { TerritoireSlug } from "@/registry/territoires";
-import type { ChateauV2 } from "@/types/chateauV2";
+import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 import type { TerritoireCatalogueEntry } from "@/types/territoireCatalogue";
 import type { Vignoble } from "@/types/vignoble";
@@ -26,7 +26,7 @@ const PERSONNAGE_EXAMPLE_IDS = [
     "jeanne-d-arc",
 ] as const;
 
-const CHATEAUX = chateauCatalogue.chateaux as ChateauV2[];
+const CHATEAUX = chateauCatalogue.chateaux as Chateau[];
 const GUINGUETTES = guinguettesCatalogue.guinguettes as Guinguette[];
 const TERRITOIRE_EXAMPLE_SLUGS = new Set(["touraine", "anjou"]);
 const VIGNOBLE_EXAMPLE_SLUGS = new Set([

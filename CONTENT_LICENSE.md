@@ -27,7 +27,7 @@ Vous pouvez les partager et les adapter à condition :
 
 ## Illustrations et identité visuelle
 
-Les illustrations et emojis personnalisés du dossier [`public/emoji/`](public/emoji/),
+Les illustrations personnalisées du dossier [`public/illustrations/`](public/illustrations/),
 les logos, les icônes de marque et les autres éléments constitutifs de
 l’identité visuelle de Loire Ride Zen sont :
 

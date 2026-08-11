@@ -12,11 +12,11 @@ import type {
     CollectionRegistryEntry,
 } from "@/registry/collections";
 
-import type { ChateauV2 } from "@/types/chateauV2";
+import type { Chateau } from "@/types/chateau";
 
 export type ResolvedCollectionEntry = {
     collectionEntry: CollectionRankingEntry;
-    castle: ChateauV2;
+    castle: Chateau;
 };
 
 export type ResolvedCollectionPage = {
@@ -26,21 +26,21 @@ export type ResolvedCollectionPage = {
 };
 
 type ChateauCatalogShape = {
-    chateaux?: ChateauV2[];
-    items?: ChateauV2[];
-    entries?: ChateauV2[];
-    catalogue?: ChateauV2[];
+    chateaux?: Chateau[];
+    items?: Chateau[];
+    entries?: Chateau[];
+    catalogue?: Chateau[];
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
     return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function getChateauCatalog(): readonly ChateauV2[] {
+function getChateauCatalog(): readonly Chateau[] {
     const data: unknown = chateauCatalog;
 
     if (Array.isArray(data)) {
-        return data as ChateauV2[];
+        return data as Chateau[];
     }
 
     if (!isRecord(data)) {
@@ -75,7 +75,7 @@ function getChateauCatalog(): readonly ChateauV2[] {
     );
 }
 
-export function getChateauBySlug(slug: string): ChateauV2 | undefined {
+export function getChateauBySlug(slug: string): Chateau | undefined {
     return getChateauCatalog().find((castle) => castle.slug === slug);
 }
 
@@ -93,7 +93,7 @@ function isPodiumEntry(
     );
 }
 
-function buildCastleLocation(castle: ChateauV2): string {
+function buildCastleLocation(castle: Chateau): string {
     return `${castle.commune} · ${castle.departement}`;
 }
 

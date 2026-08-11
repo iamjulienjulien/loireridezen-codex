@@ -45,7 +45,6 @@ export interface TerritoireLimites {
 /**
  * Identité visuelle du territoire.
  *
- * `blason` reste facultatif tant que la série LRZ n’est pas finalisée.
  */
 export interface TerritoireIdentite {
     /** Emoji temporaire ou signe utilisé dans les interfaces. */
@@ -56,12 +55,6 @@ export interface TerritoireIdentite {
 
     /** Token LRZ associé au territoire pour les composants du design system. */
     color: LRZColor;
-
-    /** Chemin vers le blason LRZ final. */
-    blason?: string;
-
-    /** Description accessible du blason. */
-    blasonAlt?: string;
 
     /** Éléments symboliques retenus ou envisagés pour sa composition. */
     symboles: string[];

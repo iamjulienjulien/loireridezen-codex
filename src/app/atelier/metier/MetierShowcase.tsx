@@ -1,13 +1,13 @@
 "use client";
 
-import ChateauxCard from "@/app/chateaux/ChateauxCard";
-import FauneCard from "@/app/faune/FauneCard";
-import FloreCard from "@/app/flore/FloreCard";
-import GuinguetteCard from "@/app/guinguettes/GuinguetteCard";
-import PersonnageCard from "@/app/personnages/PersonnageCard";
-import TerritoireCard from "@/app/territoires/TerritoireCard";
-import VignoblesCard from "@/app/vignobles/VignoblesCard";
-import type { ChateauV2 } from "@/types/chateauV2";
+import ChateauxCard from "@/components/cards/ChateauxCard";
+import FauneCard from "@/components/cards/FauneCard";
+import FloreCard from "@/components/cards/FloreCard";
+import GuinguetteCard from "@/components/cards/GuinguetteCard";
+import PersonnageCard from "@/components/cards/PersonnageCard";
+import TerritoireCard from "@/components/cards/TerritoireCard";
+import VignoblesCard from "@/components/cards/VignoblesCard";
+import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 import type {
     Personnage,
@@ -17,10 +17,10 @@ import type {
 import type { TerritoireCatalogueEntry } from "@/types/territoireCatalogue";
 import type { Vignoble } from "@/types/vignoble";
 
-import { MOCK_CHATEAU } from "../mockChateau";
-import { MOCK_FAUNE } from "../mockFaune";
-import { MOCK_FLORE } from "../mockFlore";
-import { MOCK_GUINGUETTE } from "../mockGuinguette";
+import { MOCK_CHATEAU } from "@/mocks/mockChateau";
+import { MOCK_FAUNE } from "@/mocks/mockFaune";
+import { MOCK_FLORE } from "@/mocks/mockFlore";
+import { MOCK_GUINGUETTE } from "@/mocks/mockGuinguette";
 import styles from "../atelier.module.css";
 
 type PersonnageExample = {
@@ -30,7 +30,7 @@ type PersonnageExample = {
 
 type TerritoireExample = {
     territoire: TerritoireCatalogueEntry;
-    chateaux: readonly ChateauV2[];
+    chateaux: readonly Chateau[];
     guinguettes: readonly Guinguette[];
 };
 

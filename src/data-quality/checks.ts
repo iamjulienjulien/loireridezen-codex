@@ -123,6 +123,29 @@ const discoverFiles = (directory: string): string[] => {
     });
 };
 
+const collectMediaReferences = (value: unknown, references: Set<string>) => {
+    if (typeof value === "string") {
+        if (
+            value.startsWith("/") &&
+            ALLOWED_MEDIA_EXTENSIONS.includes(
+                extname(value) as (typeof ALLOWED_MEDIA_EXTENSIONS)[number],
+            )
+        ) {
+            references.add(value);
+        }
+        return;
+    }
+    if (Array.isArray(value)) {
+        for (const child of value) collectMediaReferences(child, references);
+        return;
+    }
+    if (isObject(value)) {
+        for (const child of Object.values(value)) {
+            collectMediaReferences(child, references);
+        }
+    }
+};
+
 export const inspectDataQuality = (
     input: DataQualityInput = {
         rootDir: process.cwd(),
@@ -440,6 +463,7 @@ export const inspectDataQuality = (
 
         for (const [entryIndex, value] of collection.entries()) {
             if (!isObject(value)) continue;
+            collectMediaReferences(value, referencedMedia);
             const basePath = `${source.collectionKey}[${entryIndex}]`;
             const slug = value.slug;
             if (typeof slug !== "string" || !slugPattern.test(slug)) {
@@ -607,7 +631,7 @@ export const inspectDataQuality = (
                     value: customEmoji,
                 });
             }
-            const expectedPrefix = `/emoji/${source.mediaDirectory}/`;
+            const expectedPrefix = source.mediaPrefix;
             if (!customEmoji.startsWith(expectedPrefix)) {
                 add("MEDIA_DIRECTORY_MISMATCH", "error", {
                     index: source.slug,
@@ -633,7 +657,10 @@ export const inspectDataQuality = (
             }
 
             const publicRoot = resolve(input.rootDir, "public");
-            const mediaRoot = resolve(publicRoot, "emoji");
+            const mediaRoot = resolve(
+                publicRoot,
+                expectedPrefix.replace(/^\/+|\/+$/g, ""),
+            );
             const target = resolve(publicRoot, customEmoji.replace(/^\/+/, ""));
             const fromMediaRoot = relative(mediaRoot, target);
             if (
@@ -645,7 +672,7 @@ export const inspectDataQuality = (
                     index: source.slug,
                     file,
                     path: `${basePath}.customEmoji`,
-                    message: "La cible sort de public/emoji.",
+                    message: `La cible sort de public${expectedPrefix}.`,
                     value: customEmoji,
                 });
             } else if (!existsSync(target)) {
@@ -733,14 +760,25 @@ export const inspectDataQuality = (
         }
     }
 
-    const mediaRoot = join(input.rootDir, "public", "emoji");
-    const mediaFiles = discoverFiles(mediaRoot);
+    const publicRoot = join(input.rootDir, "public");
+    const managedMediaRoots = new Set(
+        input.sources
+            .map(({ mediaPrefix }) => mediaPrefix)
+            .filter((mediaPrefix) => mediaPrefix.startsWith("/illustrations/"))
+            .map((mediaPrefix) =>
+                resolve(publicRoot, mediaPrefix.replace(/^\/+|\/+$/g, "")),
+            ),
+    );
+    const mediaFiles = [
+        ...new Set(
+            [...managedMediaRoots].flatMap((mediaRoot) =>
+                discoverFiles(mediaRoot),
+            ),
+        ),
+    ];
     let usefulMediaFiles = 0;
     for (const absoluteFile of mediaFiles) {
-        const pathFromPublic = `/${relative(
-            join(input.rootDir, "public"),
-            absoluteFile,
-        )
+        const pathFromPublic = `/${relative(publicRoot, absoluteFile)
             .split(sep)
             .join("/")}`;
         const name = absoluteFile.split(sep).at(-1) ?? "";

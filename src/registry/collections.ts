@@ -126,7 +126,7 @@ export const COLLECTIONS = [
         accent: "#b88945",
         color: "fauve",
 
-        customEmoji: "/emoji/collection/incontournables-du-val.png",
+        customEmoji: "/illustrations/collection/incontournables-du-val.png",
 
         criteria: [
             "renommée dans le catalogue",
@@ -266,7 +266,7 @@ export const COLLECTIONS = [
         accent: "#795739",
         color: "brun",
 
-        customEmoji: "/emoji/collection/chefs-doeuvre-renaissance.png",
+        customEmoji: "/illustrations/collection/chefs-doeuvre-renaissance.png",
 
         criteria: [
             "importance Renaissance dans le style",
@@ -479,7 +479,7 @@ export const COLLECTIONS = [
         accent: "#B37A43",
         color: "fauve",
 
-        customEmoji: "/emoji/collection/sur-les-traces-des-rois.png",
+        customEmoji: "/illustrations/collection/sur-les-traces-des-rois.png",
 
         criteria: [
             "présence royale dans le commanditaire ou le résumé",

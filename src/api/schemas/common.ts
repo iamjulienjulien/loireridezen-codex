@@ -2,8 +2,8 @@ import { z } from "zod";
 
 export const slugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
-export const customEmojiSchema = (indexPath: string) =>
-    z.string().startsWith(`/emoji/${indexPath}/`);
+export const publicIllustrationSchema = (indexPath: string) =>
+    z.string().startsWith(`/illustrations/${indexPath}/`);
 
 export const coordinatesSchema = z
     .object({

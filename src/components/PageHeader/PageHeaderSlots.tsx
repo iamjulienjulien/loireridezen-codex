@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 
 import LRZSymbol from "@/components/LRZSymbol/LRZSymbol";
-import { featureIsEnabled } from "@/registry/feature-flags";
 import { INDEX_UNIVERSES, type IndexEntry } from "@/registry/indexes";
 import { isLRZCodexIndexSymbolSlug } from "@/registry/symbols";
 
@@ -35,10 +34,7 @@ export function PageHeaderIndexMark({
 }: {
     index: Pick<IndexEntry, "mark" | "slug">;
 }) {
-    if (
-        featureIsEnabled("indexesCustomEmoji") &&
-        isLRZCodexIndexSymbolSlug(index.slug)
-    ) {
+    if (isLRZCodexIndexSymbolSlug(index.slug)) {
         return (
             <LRZSymbol
                 collection="codex"
@@ -116,8 +112,7 @@ export function PageHeaderIndexNavigation({
                             isPreview ? "preview" : "published"
                         }
                     >
-                        {featureIsEnabled("indexesCustomEmoji") &&
-                        isLRZCodexIndexSymbolSlug(index.slug) ? (
+                        {isLRZCodexIndexSymbolSlug(index.slug) ? (
                             <LRZSymbol
                                 collection="codex"
                                 meta="index"

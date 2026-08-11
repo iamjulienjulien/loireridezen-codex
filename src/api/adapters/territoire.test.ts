@@ -22,7 +22,10 @@ describe("territory public entry adapter", () => {
             subtitle: "la Loire sauvage et ducale",
             summary: source.description,
         });
-        expect(entry.media.imageUrl).toContain("/emoji/blasons/nivernais.png");
+        expect(entry.media).toEqual({
+            emoji: source.identite.mark,
+            imageUrl: null,
+        });
         expect(entry.attributes).not.toHaveProperty("slug");
         expect(entry.attributes).not.toHaveProperty("description");
     });

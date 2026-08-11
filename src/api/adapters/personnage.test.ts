@@ -22,7 +22,7 @@ describe("character public entry adapter", () => {
             subtitle: "favorite de Charles VII",
         });
         expect(entry.media.imageUrl).toContain(
-            "/emoji/personnage/agnes-sorel.png",
+            "/illustrations/personnages/agnes-sorel.png",
         );
         expect(entry.attributes).not.toHaveProperty("slug");
     });

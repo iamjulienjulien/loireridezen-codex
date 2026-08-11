@@ -12,8 +12,8 @@ import { LRZCardDialog } from "@/components/LRZCardDialog";
 import { LRZSymbol } from "@/components/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import FloreCard from "./FloreCard";
-import styles from "./flore.module.css";
+import FloreCard from "@/components/cards/FloreCard";
+import styles from "@/components/cards/FloreCard/flore.module.css";
 
 const norm = (s: string) =>
     s

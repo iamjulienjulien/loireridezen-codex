@@ -9,7 +9,6 @@ import type { Territoire } from "@/types/territoire";
  * - les chapitres de l’index Châteaux ;
  * - la navigation territoriale ;
  * - la carte interactive ;
- * - les blasons ;
  * - l’association des châteaux à leur territoire.
  *
  * Les territoires suivent la Loire d’amont en aval.
@@ -37,8 +36,6 @@ export const TERRITOIRES = [
             mark: "⚓️",
             accent: "#CB2D2A",
             color: "rose-sauvage",
-            blason: "/emoji/blasons/nivernais.png",
-            blasonAlt: "Blason du Nivernais",
             symboles: [
                 "ancre fluviale",
                 "tour ducale",
@@ -75,8 +72,6 @@ export const TERRITOIRES = [
             mark: "👑",
             accent: "#4C83CF",
             color: "bleu",
-            blason: "/emoji/blasons/orleanais.png",
-            blasonAlt: "Blason de l'Orléanais",
             symboles: ["fleur de lys", "forteresse", "pont", "onde royale"],
         },
     },
@@ -101,8 +96,6 @@ export const TERRITOIRES = [
             mark: "🏰",
             accent: "#e9c12e",
             color: "miel",
-            blason: "/emoji/blasons/blaisois.png",
-            blasonAlt: "Blason du Blaisois",
             symboles: ["salamandre", "couronne", "forêt", "tour Renaissance"],
         },
     },
@@ -134,8 +127,6 @@ export const TERRITOIRES = [
             mark: "🌿",
             accent: "#e2dfd4",
             color: "vert",
-            blason: "/emoji/blasons/touraine.png",
-            blasonAlt: "Blason de la Touraine",
             symboles: [
                 "jardin géométrique",
                 "tour blanche",
@@ -166,8 +157,6 @@ export const TERRITOIRES = [
             mark: "⚔️",
             accent: "#df3a20",
             color: "corail",
-            blason: "/emoji/blasons/chinonais.png",
-            blasonAlt: "Blason du Chinonais",
             symboles: [
                 "forteresse sur éperon",
                 "épée",
@@ -197,8 +186,6 @@ export const TERRITOIRES = [
             mark: "🍇",
             accent: "#d0ab67",
             color: "miel",
-            blason: "/emoji/blasons/saumurois.png",
-            blasonAlt: "Blason du Saumurois",
             symboles: [
                 "cheval",
                 "grappe",
@@ -237,8 +224,6 @@ export const TERRITOIRES = [
             mark: "⚜️",
             accent: "#2835CA",
             color: "bleu-loire",
-            blason: "/emoji/blasons/anjou.png",
-            blasonAlt: "Blason de l'Anjou",
             symboles: [
                 "forteresse d’ardoise",
                 "clef",
@@ -276,8 +261,6 @@ export const TERRITOIRES = [
             mark: "🐚",
             accent: "#e5dfd0",
             color: "gris",
-            blason: "/emoji/blasons/bretagne.png",
-            blasonAlt: "Blason de la Bretagne ligérienne",
             symboles: ["hermine", "nef", "tour nantaise", "vague atlantique"],
         },
     },

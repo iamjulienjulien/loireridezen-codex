@@ -28,8 +28,6 @@ export interface TerritoireCatalogueIdentite {
     mark: string;
     accent: string;
     color: LRZColor;
-    blason?: string;
-    blasonAlt?: string;
     symboles: string[];
 }
 
