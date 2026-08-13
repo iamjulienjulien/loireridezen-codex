@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import ChateauxCard from "@/components/_cards/ChateauxCard";
 import FauneCard from "@/components/_cards/FauneCard";
 import FloreCard from "@/components/_cards/FloreCard";
@@ -11,6 +13,7 @@ import VignoblesCard from "@/components/_cards/VignoblesCard";
 import VilleVillageCard from "@/components/_cards/VilleVillageCard";
 import VocabulaireCard from "@/components/_cards/VocabulaireCard";
 import LRZBadge from "@/components/_ui/LRZBadge";
+import type { NearbyGuinguettesByChateau } from "@/lib/nearby-guinguettes";
 import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 import type {
@@ -46,16 +49,20 @@ const noop = () => undefined;
 export default function MetierShowcase({
     personnageExamples,
     personnagesByChateau,
+    nearbyGuinguettesByChateau,
     territoireExamples,
     vignobleExamples,
     villeVillageExamples,
 }: {
     personnageExamples: readonly PersonnageExample[];
     personnagesByChateau: PersonnagesParLieu;
+    nearbyGuinguettesByChateau: NearbyGuinguettesByChateau;
     territoireExamples: readonly TerritoireExample[];
     vignobleExamples: readonly Vignoble[];
     villeVillageExamples: readonly VilleVillageCatalogueEntry[];
 }) {
+    const [showNearbyGuinguettes, setShowNearbyGuinguettes] = useState(true);
+
     return (
         <div className={styles.showcaseStack}>
             <section id="faune-card" className={styles.showcaseSection}>
@@ -89,7 +96,26 @@ export default function MetierShowcase({
             <section id="chateaux-card" className={styles.showcaseSection}>
                 <header className={styles.showcaseHeader}>
                     <p>Fiche métier · 03</p>
-                    <h2>ChateauxCard</h2>
+                    <div className={styles.showcaseTitleRow}>
+                        <h2>ChateauxCard</h2>
+                        <button
+                            type="button"
+                            role="switch"
+                            aria-checked={showNearbyGuinguettes}
+                            className={styles.switch}
+                            onClick={() =>
+                                setShowNearbyGuinguettes((current) => !current)
+                            }
+                        >
+                            <span>Nouveau rendu</span>
+                            <span
+                                className={styles.switchTrack}
+                                aria-hidden="true"
+                            >
+                                <span className={styles.switchThumb} />
+                            </span>
+                        </button>
+                    </div>
                     <span>
                         Les demeures, les protections et leurs histoires.
                     </span>
@@ -100,6 +126,12 @@ export default function MetierShowcase({
                             key={item.slug}
                             d={item}
                             personnages={personnagesByChateau[item.slug] ?? []}
+                            nearbyGuinguettes={
+                                showNearbyGuinguettes
+                                    ? (nearbyGuinguettesByChateau[item.slug] ??
+                                      [])
+                                    : undefined
+                            }
                         />
                     ))}
                 </div>

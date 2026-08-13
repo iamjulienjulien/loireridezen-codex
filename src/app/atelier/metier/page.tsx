@@ -6,6 +6,10 @@ import villesVillagesCatalogue from "@data/catalogue-villes-villages.json";
 
 import AtelierCategoryLayout from "@/components/_atelier/AtelierCategoryLayout";
 import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
+import {
+    getNearbyGuinguettes,
+    type NearbyGuinguettesByChateau,
+} from "@/lib/nearby-guinguettes";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import {
@@ -30,6 +34,13 @@ const PERSONNAGE_EXAMPLE_IDS = [
 
 const CHATEAUX = chateauCatalogue.chateaux as Chateau[];
 const GUINGUETTES = guinguettesCatalogue.guinguettes as Guinguette[];
+const NEARBY_GUINGUETTES_BY_CHATEAU: NearbyGuinguettesByChateau =
+    Object.fromEntries(
+        CHATEAUX.map((chateau) => [
+            chateau.slug,
+            getNearbyGuinguettes(chateau, GUINGUETTES),
+        ]),
+    );
 const TERRITOIRE_EXAMPLE_SLUGS = new Set(["touraine", "anjou"]);
 const VIGNOBLE_EXAMPLE_SLUGS = new Set([
     "sancerre",
@@ -74,6 +85,7 @@ export default function AtelierMetierPage() {
             <MetierShowcase
                 personnageExamples={personnageExamples}
                 personnagesByChateau={personnagesByChateau}
+                nearbyGuinguettesByChateau={NEARBY_GUINGUETTES_BY_CHATEAU}
                 territoireExamples={TERRITOIRE_EXAMPLES}
                 vignobleExamples={VIGNOBLE_EXAMPLES}
                 villeVillageExamples={VILLE_VILLAGE_EXAMPLES}
