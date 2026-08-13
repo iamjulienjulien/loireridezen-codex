@@ -29,7 +29,7 @@
         "sdk:check": "pnpm --filter @loireridezen/codex-sdk check",
         "sdk:build": "pnpm --filter @loireridezen/codex-sdk build",
         "sdk:test": "pnpm --filter @loireridezen/codex-sdk test",
-        "check": "pnpm format:check && pnpm lint && pnpm exec tsc --noEmit && pnpm test && pnpm build",
+        "check": "pnpm format:check && pnpm lint && pnpm exec next typegen && pnpm exec tsc --noEmit && pnpm test && pnpm build",
         "lint": "eslint",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
