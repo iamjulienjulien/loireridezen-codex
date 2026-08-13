@@ -20,8 +20,8 @@ export {
     parseStoredAnalyticsConsent,
     readAnalyticsConsent,
     writeAnalyticsConsent,
-} from "./analytics-consent";
+} from "@/lib/analytics";
 export type {
     AnalyticsConsentValue,
     StoredAnalyticsConsent,
-} from "./analytics-consent";
+} from "@/lib/analytics";

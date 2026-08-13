@@ -19,7 +19,7 @@ import {
     grantAnalyticsConsent,
     readAnalyticsConsent,
     writeAnalyticsConsent,
-} from "./analytics-consent";
+} from "@/lib/analytics";
 
 type AnalyticsConsentContextValue = {
     status: AnalyticsConsentValue | null;

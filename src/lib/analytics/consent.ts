@@ -80,6 +80,13 @@ export function readAnalyticsConsent(
     }
 }
 
+export function analyticsConsentIsGranted(
+    storage: AnalyticsStorage,
+    now = new Date(),
+): boolean {
+    return readAnalyticsConsent(storage, now)?.value === "accepted";
+}
+
 export function writeAnalyticsConsent(
     storage: AnalyticsStorage,
     value: AnalyticsConsentValue,
