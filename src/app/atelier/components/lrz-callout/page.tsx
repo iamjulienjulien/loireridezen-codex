@@ -9,9 +9,9 @@ import {
     LRZCalloutHeader,
     type LRZCalloutAccent,
     type LRZCalloutTone,
-} from "@/components/LRZCallout";
+} from "@/components/_ui/LRZCallout";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import styles from "./lrz-callout.module.css";
 
 export const metadata = getAtelierPageMetadata(

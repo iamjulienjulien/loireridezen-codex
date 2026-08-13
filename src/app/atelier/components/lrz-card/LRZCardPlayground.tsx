@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Castle, MapPin } from "lucide-react";
 
-import LRZBadge from "@/components/LRZBadge/LRZBadge";
+import LRZBadge from "@/components/_ui/LRZBadge/LRZBadge";
 import {
     LRZCard,
     LRZCardContent,
@@ -17,7 +17,7 @@ import {
     type LRZCardMediaRatio,
     type LRZCardPadding,
     type LRZCardTone,
-} from "@/components/LRZCard";
+} from "@/components/_ui/LRZCard";
 import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 

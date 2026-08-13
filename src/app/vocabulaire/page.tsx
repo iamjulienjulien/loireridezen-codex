@@ -1,5 +1,5 @@
 import mot from "@data/catalogue-mots.json";
-import IndexShell from "@/components/layout/IndexShell";
+import IndexShell from "@/components/_shells/IndexShell";
 import type { Mot } from "@/types/mot";
 import { requireIndexForEnv } from "@/lib/publication-guards";
 import { buildPageMetadata } from "@/lib/site-metadata";

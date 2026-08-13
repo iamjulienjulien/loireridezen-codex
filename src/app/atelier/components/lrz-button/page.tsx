@@ -2,9 +2,9 @@ import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { ArrowRight, Castle, MapPin, Plus } from "lucide-react";
 
-import { LRZButton } from "@/components/LRZButton";
+import { LRZButton } from "@/components/_ui/LRZButton";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZButtonPlayground from "./LRZButtonPlayground";
 import styles from "../filter-playground.module.css";
 

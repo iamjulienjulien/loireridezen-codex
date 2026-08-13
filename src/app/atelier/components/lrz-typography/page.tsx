@@ -6,9 +6,9 @@ import LRZTypography, {
     type LRZTypographyFont,
     type LRZTypographyMotion,
     type LRZTypographyPreset,
-} from "@/components/LRZTypography";
+} from "@/components/_ui/LRZTypography";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZAnimationCard from "./LRZAnimationCard";
 import LRZTypographyPlayground from "./LRZTypographyPlayground";
 import styles from "./LRZTypographyPlayground.module.css";

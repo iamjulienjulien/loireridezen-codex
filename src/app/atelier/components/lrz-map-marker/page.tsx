@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element -- Marker media is rendered as arbitrary component content. */
 import Link from "next/link";
 
-import { LRZMapMarker } from "@/components/LRZMapMarker";
+import { LRZMapMarker } from "@/components/_ui/LRZMapMarker";
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import styles from "../filter-playground.module.css";
 import LRZMapMarkerPlayground from "./LRZMapMarkerPlayground";
 

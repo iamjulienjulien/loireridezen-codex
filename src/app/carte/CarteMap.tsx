@@ -17,15 +17,15 @@ import type { Map as MapLibreMap, Marker } from "maplibre-gl";
 import {
     LRZMapMarker,
     type LRZMapMarkerVariant,
-} from "@/components/LRZMapMarker";
+} from "@/components/_ui/LRZMapMarker";
 import {
     LRZButtonGroup,
     LRZButtonGroupItem,
-} from "@/components/LRZButtonGroup";
+} from "@/components/_ui/LRZButtonGroup";
 import { useAmbiance } from "@/hooks/useAmbiance";
 import type { LRZColor } from "@/types/lrz";
 
-import { CHATEAUX_MAP_CONFIG } from "../chateaux/chateaux-map.config";
+import { CHATEAUX_MAP_CONFIG } from "@/components/_maps/chateaux/config";
 import styles from "./CarteMap.module.css";
 
 export type CarteMarker = {

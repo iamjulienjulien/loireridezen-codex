@@ -1,10 +1,10 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
-import LRZDocCodeInline from "@/components/LRZDocCodeInline/LRZDocCodeInline";
+import LRZDocCodeInline from "@/components/_ui/LRZDocCodeInline/LRZDocCodeInline";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
-import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
+import DocMarkdownSyntax from "@/components/_atelier/DocMarkdownSyntax";
 
 import styles from "../lrz-doc-code.module.css";
 

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-import { LRZCompteur } from "@/components/LRZCompteur";
+import { LRZCompteur } from "@/components/_ui/LRZCompteur";
 
 import styles from "./LRZCompteurPlayground.module.css";
 

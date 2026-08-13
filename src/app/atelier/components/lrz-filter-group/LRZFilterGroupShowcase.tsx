@@ -5,7 +5,7 @@ import { useState } from "react";
 import {
     LRZFilterGroup,
     type LRZFilterGroupPreset,
-} from "@/components/LRZFilterGroup";
+} from "@/components/_ui/LRZFilterGroup";
 
 import styles from "../filter-playground.module.css";
 

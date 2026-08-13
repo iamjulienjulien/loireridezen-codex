@@ -1,12 +1,12 @@
 "use client";
 
-import ChateauxCard from "@/components/cards/ChateauxCard";
-import FauneCard from "@/components/cards/FauneCard";
-import FloreCard from "@/components/cards/FloreCard";
-import GuinguetteCard from "@/components/cards/GuinguetteCard";
-import PersonnageCard from "@/components/cards/PersonnageCard";
-import TerritoireCard from "@/components/cards/TerritoireCard";
-import VignoblesCard from "@/components/cards/VignoblesCard";
+import ChateauxCard from "@/components/_cards/ChateauxCard";
+import FauneCard from "@/components/_cards/FauneCard";
+import FloreCard from "@/components/_cards/FloreCard";
+import GuinguetteCard from "@/components/_cards/GuinguetteCard";
+import PersonnageCard from "@/components/_cards/PersonnageCard";
+import TerritoireCard from "@/components/_cards/TerritoireCard";
+import VignoblesCard from "@/components/_cards/VignoblesCard";
 import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 import type {

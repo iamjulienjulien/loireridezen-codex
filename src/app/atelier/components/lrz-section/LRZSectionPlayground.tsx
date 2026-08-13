@@ -13,7 +13,7 @@ import LRZSection, {
     type LRZSectionSpacing,
     type LRZSectionTone,
     type LRZSectionWidth,
-} from "@/components/LRZSection/LRZSection";
+} from "@/components/_ui/LRZSection/LRZSection";
 import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 import styles from "./LRZSectionPlayground.module.css";

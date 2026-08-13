@@ -1,7 +1,7 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZTabsPlayground from "./LRZTabsPlayground";
 import styles from "../filter-playground.module.css";
 

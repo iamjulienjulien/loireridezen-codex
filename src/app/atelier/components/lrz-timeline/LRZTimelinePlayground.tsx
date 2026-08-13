@@ -7,7 +7,7 @@ import {
     type LRZTimelineOrientation,
     type LRZTimelineSize,
     type LRZTimelineVariant,
-} from "@/components/LRZTimeline";
+} from "@/components/_ui/LRZTimeline";
 
 import styles from "../filter-playground.module.css";
 

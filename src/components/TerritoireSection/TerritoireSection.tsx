@@ -7,15 +7,15 @@ import type { Territoire } from "@/types/territoire";
 import type { PersonnagesParLieu } from "@/types/personnage";
 import type { Guinguette } from "@/types/guinguette";
 
-import ChateauxCard from "@/components/cards/ChateauxCard";
-import GuinguetteCard from "@/components/cards/GuinguetteCard";
-import { LRZSymbol } from "@/components/LRZSymbol";
-import { LRZTypography } from "@/components/LRZTypography";
+import ChateauxCard from "@/components/_cards/ChateauxCard";
+import GuinguetteCard from "@/components/_cards/GuinguetteCard";
+import { LRZSymbol } from "@/components/_ui/LRZSymbol";
+import { LRZTypography } from "@/components/_ui/LRZTypography";
 import { isCommonTerritoire } from "@/registry/Meta/common-territoire";
 
 import styles from "./TerritoireSection.module.css";
 import { lighter } from "@/lib/colors";
-import LRZSeparateur from "../LRZSeparateur/LRZSeparateur";
+import LRZSeparateur from "../_ui/LRZSeparateur/LRZSeparateur";
 import { getLRZColorValue } from "@/registry/colors";
 import type { Chateau } from "@/types/chateau";
 

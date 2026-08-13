@@ -1,6 +1,6 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
-import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import { LRZ_COLOR_GROUPS, LRZ_COLOR_REGISTRY } from "@/registry/colors";
 import styles from "./page.module.css";
 

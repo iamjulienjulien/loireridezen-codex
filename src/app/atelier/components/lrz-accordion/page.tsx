@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import LRZAccordion, {
     type LRZAccordionProps,
-} from "@/components/LRZAccordion/LRZAccordion";
+} from "@/components/_ui/LRZAccordion/LRZAccordion";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZAccordionPlayground from "./LRZAccordionPlayground";
 import styles from "./LRZAccordionPlayground.module.css";
 

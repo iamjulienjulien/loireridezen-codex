@@ -9,7 +9,7 @@ import LRZMetaList, {
     type LRZMetaListSize,
     type LRZMetaListTone,
     type LRZMetaListValueAlign,
-} from "@/components/LRZMetaList";
+} from "@/components/_ui/LRZMetaList";
 import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 

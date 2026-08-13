@@ -5,9 +5,9 @@ import LRZTypography, {
     type LRZTypographyFont,
     type LRZTypographyPreset,
     type LRZTypographyWeight,
-} from "@/components/LRZTypography";
+} from "@/components/_ui/LRZTypography";
 
-import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import styles from "./page.module.css";
 
 export const metadata = getAtelierPageMetadata("/atelier/typography");

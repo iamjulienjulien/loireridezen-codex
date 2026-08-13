@@ -3,7 +3,7 @@ import "./atelier.css";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import AtelierShell from "@/components/layout/AtelierShell";
+import AtelierShell from "@/components/_shells/AtelierShell";
 import { ATELIER_PAGE } from "@/registry/atelier-pages";
 import { featureIsEnabled } from "@/registry/feature-flags";
 

@@ -1,5 +1,5 @@
 import patrimoine from "@data/catalogue-patrimoine.json";
-import IndexShell from "@/components/layout/IndexShell";
+import IndexShell from "@/components/_shells/IndexShell";
 import type { Patrimoine } from "@/types/patrimoine";
 import { requireIndexForEnv } from "@/lib/publication-guards";
 import { buildPageMetadata } from "@/lib/site-metadata";

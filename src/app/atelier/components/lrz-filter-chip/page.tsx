@@ -1,9 +1,9 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
-import { LRZFilterChip } from "@/components/LRZFilterChip";
+import { LRZFilterChip } from "@/components/_ui/LRZFilterChip";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZFilterChipPlayground from "./LRZFilterChipPlayground";
 import styles from "../filter-playground.module.css";
 

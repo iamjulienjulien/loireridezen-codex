@@ -1,4 +1,4 @@
-import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur/LRZSeparateur";
 
 export default function LRZLivingTextSeparator() {
     return (

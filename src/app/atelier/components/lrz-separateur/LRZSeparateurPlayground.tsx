@@ -9,7 +9,7 @@ import LRZSeparateur, {
     type LRZSeparateurSize,
     type LRZSeparateurTone,
     type LRZSeparateurWeight,
-} from "@/components/LRZSeparateur/LRZSeparateur";
+} from "@/components/_ui/LRZSeparateur/LRZSeparateur";
 import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 import styles from "./LRZSeparateurPlayground.module.css";

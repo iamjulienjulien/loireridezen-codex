@@ -19,30 +19,30 @@ import type { PersonnagesParLieu } from "@/types/personnage";
 import { getCollectionsByIndexForEnv } from "@/registry/collections";
 
 import IndexPresentation from "@/components/IndexPresentation";
-import { PageControls } from "@/components/PageControls";
-import { LRZCardDialog } from "@/components/LRZCardDialog";
-import { LRZSymbol } from "@/components/LRZSymbol";
+import { PageControls } from "@/components/_layout/PageControls";
+import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
+import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
 
-import { CollectionCard } from "@/components/ui/collection-card";
+import { CollectionCard } from "@/components/CollectionCard";
 
 import { getIndex } from "@/registry/indexes";
 
-import ChateauxCard from "@/components/cards/ChateauxCard";
+import ChateauxCard from "@/components/_cards/ChateauxCard";
 
 import styles from "./chateaux.module.css";
-import { LRZSection } from "@/components/LRZSection";
+import { LRZSection } from "@/components/_ui/LRZSection";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import { TerritoireSection } from "@/components/TerritoireSection";
 import { getTerritoiresWithChateaux } from "@/registry/chateaux-territoires";
-import ChateauxInteractiveMap from "./ChateauxInteractiveMap";
-import { CHATEAUX_MAP_CONFIG } from "./chateaux-map.config";
+import ChateauxInteractiveMap from "@/components/_maps/chateaux/ChateauxInteractiveMap";
+import { CHATEAUX_MAP_CONFIG } from "@/components/_maps/chateaux/config";
 import {
     CHATEAUX_MAP_SYNC_EVENT,
     dispatchChateauxMapSync,
     type ChateauxMapSyncDetail,
-} from "./chateaux-map-sync";
-import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
+} from "@/components/_maps/chateaux/sync";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur/LRZSeparateur";
 
 const FEATURED_COLLECTION_SLUG = "incontournables-du-val";
 const SECONDARY_COLLECTION_SLUGS = [

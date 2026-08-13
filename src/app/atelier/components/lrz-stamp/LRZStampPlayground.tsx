@@ -13,7 +13,7 @@ import {
     type LRZStampSize,
     type LRZStampTone,
     type LRZStampVariant,
-} from "@/components/LRZStamp";
+} from "@/components/_ui/LRZStamp";
 import type {
     LRZChateauRenommeeSymbolSlug,
     LRZChateauVisiteSymbolSlug,
@@ -23,7 +23,7 @@ import type {
     LRZSymbolMeta,
     LRZSymbolShadow,
     LRZSymbolShape,
-} from "@/components/LRZSymbol";
+} from "@/components/_ui/LRZSymbol";
 import {
     LRZ_COLOR_LABELS,
     LRZ_COLOR_NAMES,

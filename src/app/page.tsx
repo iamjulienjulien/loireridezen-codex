@@ -1,4 +1,4 @@
-import HomeShell from "@/components/layout/HomeShell";
+import HomeShell from "@/components/_shells/HomeShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";
 import { HOME_PAGE } from "@/registry/pages";

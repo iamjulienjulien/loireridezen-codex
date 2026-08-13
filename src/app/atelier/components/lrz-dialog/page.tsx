@@ -13,9 +13,9 @@ import {
     type LRZDialogPlacement,
     type LRZDialogSize,
     type LRZDialogVariant,
-} from "@/components/LRZDialog";
+} from "@/components/_ui/LRZDialog";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZDialogPlayground from "./LRZDialogPlayground";
 import styles from "./LRZDialogPlayground.module.css";
 

@@ -5,15 +5,15 @@ import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import type { FauneEspece } from "@/types/faune";
 import IndexPresentation from "@/components/IndexPresentation";
-import { LRZSection } from "@/components/LRZSection";
-import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
-import { PageControls } from "@/components/PageControls";
-import { LRZCardDialog } from "@/components/LRZCardDialog";
-import { LRZSymbol } from "@/components/LRZSymbol";
+import { LRZSection } from "@/components/_ui/LRZSection";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur/LRZSeparateur";
+import { PageControls } from "@/components/_layout/PageControls";
+import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
+import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import FauneCard from "@/components/cards/FauneCard";
-import styles from "@/components/cards/FauneCard/faune.module.css";
+import FauneCard from "@/components/_cards/FauneCard";
+import styles from "@/components/_cards/FauneCard/faune.module.css";
 
 const norm = (s: string) =>
     s

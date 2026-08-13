@@ -1,9 +1,9 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
-import { LRZCompteur } from "@/components/LRZCompteur";
+import { LRZCompteur } from "@/components/_ui/LRZCompteur";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import styles from "../filter-playground.module.css";
 import LRZCompteurPlayground from "./LRZCompteurPlayground";
 

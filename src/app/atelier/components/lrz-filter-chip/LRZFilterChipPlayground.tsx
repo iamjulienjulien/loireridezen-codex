@@ -5,7 +5,7 @@ import { useState } from "react";
 import {
     LRZFilterChip,
     type LRZFilterPreset,
-} from "@/components/LRZFilterChip";
+} from "@/components/_ui/LRZFilterChip";
 
 import styles from "../filter-playground.module.css";
 

@@ -11,24 +11,24 @@ import ReactMarkdown from "react-markdown";
 import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 import { useRouter } from "next/navigation";
 import IndexPresentation from "@/components/IndexPresentation";
-import { LRZCardDialog } from "@/components/LRZCardDialog";
-import { LRZSymbol } from "@/components/LRZSymbol";
+import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
+import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
-import { PageControls } from "@/components/PageControls";
-import { LRZSection } from "@/components/LRZSection";
-import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
+import { PageControls } from "@/components/_layout/PageControls";
+import { LRZSection } from "@/components/_ui/LRZSection";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur/LRZSeparateur";
 import { TerritoireSection } from "@/components/TerritoireSection";
 import { getTerritoiresWithGuinguettes } from "@/registry/guinguettes-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Guinguette } from "@/types/guinguette";
-import GuinguetteCard from "@/components/cards/GuinguetteCard";
-import GuinguettesInteractiveMap from "./GuinguettesInteractiveMap";
-import { GUINGUETTES_MAP_CONFIG } from "./guinguettes-map.config";
+import GuinguetteCard from "@/components/_cards/GuinguetteCard";
+import GuinguettesInteractiveMap from "@/components/_maps/guinguettes/GuinguettesInteractiveMap";
+import { GUINGUETTES_MAP_CONFIG } from "@/components/_maps/guinguettes/config";
 import {
     GUINGUETTES_MAP_SYNC_EVENT,
     dispatchGuinguettesMapSync,
     type GuinguettesMapSyncDetail,
-} from "./guinguettes-map-sync";
+} from "@/components/_maps/guinguettes/sync";
 import styles from "./guinguettes.module.css";
 
 const normalize = (value: string) =>

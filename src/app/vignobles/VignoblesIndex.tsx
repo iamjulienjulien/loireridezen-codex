@@ -6,15 +6,15 @@ import { useRouter } from "next/navigation";
 
 import type { Vignoble } from "@/types/vignoble";
 import IndexPresentation from "@/components/IndexPresentation";
-import { LRZCardDialog } from "@/components/LRZCardDialog";
-import { LRZSection } from "@/components/LRZSection";
-import LRZSeparateur from "@/components/LRZSeparateur";
-import { LRZSymbol } from "@/components/LRZSymbol";
-import { PageControls } from "@/components/PageControls";
+import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
+import { LRZSection } from "@/components/_ui/LRZSection";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur";
+import { LRZSymbol } from "@/components/_ui/LRZSymbol";
+import { PageControls } from "@/components/_layout/PageControls";
 import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import VignoblesCard from "@/components/cards/VignoblesCard";
-import styles from "@/components/cards/VignoblesCard/vignobles.module.css";
+import VignoblesCard from "@/components/_cards/VignoblesCard";
+import styles from "@/components/_cards/VignoblesCard/vignobles.module.css";
 
 const norm = (s: string) =>
     s

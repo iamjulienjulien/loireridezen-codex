@@ -31,7 +31,7 @@ import {
     type LRZSymbolShadow,
     type LRZSymbolShape,
     type LRZSymbolSize,
-} from "@/components/LRZSymbol";
+} from "@/components/_ui/LRZSymbol";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { getLRZColorValue } from "@/registry/colors";
 import { CHATEAU_RENOMMEE_META } from "@/registry/Meta/chateau-renommee";
@@ -56,7 +56,7 @@ import { VIGNOBLE_COULEUR_META } from "@/registry/Meta/vignoble-couleur";
 import { VIGNOBLE_NOTORIETE_META } from "@/registry/Meta/vignoble-notoriete";
 import { VIGNOBLE_TERROIR_META } from "@/registry/Meta/vignoble-terroir";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import shellStyles from "../filter-playground.module.css";
 import LRZSymbolPlayground, {
     type LRZSymbolPlaygroundOption,

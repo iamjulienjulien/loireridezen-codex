@@ -1,9 +1,9 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
-import { LRZTextClamp } from "@/components/LRZTextClamp";
+import { LRZTextClamp } from "@/components/_ui/LRZTextClamp";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import styles from "../filter-playground.module.css";
 import localStyles from "./lrz-text-clamp.module.css";
 

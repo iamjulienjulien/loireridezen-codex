@@ -1,16 +1,16 @@
 import type { ReactElement } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import type { AtelierShellProps } from "@/components/layout/AtelierShell";
-import AtelierShell from "@/components/layout/AtelierShell";
-import type { CollectionShellProps } from "@/components/layout/CollectionShell";
-import CollectionShell from "@/components/layout/CollectionShell";
-import type { HomeShellProps } from "@/components/layout/HomeShell";
-import HomeShell from "@/components/layout/HomeShell";
-import type { IndexShellProps } from "@/components/layout/IndexShell";
-import IndexShell from "@/components/layout/IndexShell";
-import type { PageShellProps } from "@/components/layout/PageShell";
-import PageShell from "@/components/layout/PageShell";
+import type { AtelierShellProps } from "@/components/_shells/AtelierShell";
+import AtelierShell from "@/components/_shells/AtelierShell";
+import type { CollectionShellProps } from "@/components/_shells/CollectionShell";
+import CollectionShell from "@/components/_shells/CollectionShell";
+import type { HomeShellProps } from "@/components/_shells/HomeShell";
+import HomeShell from "@/components/_shells/HomeShell";
+import type { IndexShellProps } from "@/components/_shells/IndexShell";
+import IndexShell from "@/components/_shells/IndexShell";
+import type { PageShellProps } from "@/components/_shells/PageShell";
+import PageShell from "@/components/_shells/PageShell";
 import { COLLECTIONS } from "@/registry/collections";
 import { featureIsEnabled } from "@/registry/feature-flags";
 
@@ -19,7 +19,7 @@ import AtelierLayout from "./atelier/layout";
 import ChateauxIndex from "./chateaux/ChateauxIndex";
 import { ChateauxRoute } from "./chateaux/ChateauxRoute";
 import CollectionPage from "./chateaux/collections/[collectionSlug]/page";
-import DocumentationTopbar from "./docs/DocumentationTopbar";
+import DocumentationTopbar from "@/components/_docs/DocumentationTopbar";
 import ApiDocumentationPage from "./docs/api/page";
 import DocumentationHomePage from "./docs/page";
 import SdkDocumentationPage from "./docs/sdk/page";

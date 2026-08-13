@@ -4,9 +4,9 @@ import { Waves } from "lucide-react";
 import LRZBadge, {
     type LRZBadgeProps,
     type LRZBadgeVariant,
-} from "@/components/LRZBadge/LRZBadge";
+} from "@/components/_ui/LRZBadge/LRZBadge";
 import { LRZ_COLOR_GROUPS } from "@/registry/colors";
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZBadgePlayground from "./LRZBadgePlayground";
 import styles from "./lrz-badge.module.css";
 

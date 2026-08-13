@@ -6,14 +6,14 @@ import { Grid2X2, Images, List, Table2 } from "lucide-react";
 import {
     LRZButtonGroup,
     LRZButtonGroupItem,
-} from "@/components/LRZButtonGroup";
-import type { LRZButtonVariant } from "@/components/LRZButton";
+} from "@/components/_ui/LRZButtonGroup";
+import type { LRZButtonVariant } from "@/components/_ui/LRZButton";
 import { LRZ_COLOR_GROUPS, LRZ_COLOR_LABELS } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 import type {
     LRZButtonGroupOrientation,
     LRZButtonGroupProps,
-} from "@/components/LRZButtonGroup";
+} from "@/components/_ui/LRZButtonGroup";
 
 import pageStyles from "../filter-playground.module.css";
 import styles from "./LRZButtonGroupPlayground.module.css";

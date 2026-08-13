@@ -5,7 +5,7 @@ import chateauCatalog from "@data/catalogue-chateaux.json";
 import type {
     CollectionPodiumEntry,
     CollectionPodiumRank,
-} from "@/components/ui/collection-podium";
+} from "@/components/CollectionPodium";
 
 import type {
     CollectionRankingEntry,

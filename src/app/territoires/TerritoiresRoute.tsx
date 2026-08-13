@@ -2,7 +2,7 @@ import chateauCatalogue from "@data/catalogue-chateaux.json";
 import guinguettesCatalogue from "@data/catalogue-guinguettes.json";
 import territoireCatalogue from "@data/catalogue-territoires.json";
 
-import IndexShell from "@/components/layout/IndexShell";
+import IndexShell from "@/components/_shells/IndexShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";
 import { getIndexPageDefinition } from "@/registry/pages";

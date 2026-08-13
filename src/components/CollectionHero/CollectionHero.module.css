@@ -1,0 +1,733 @@
+/* src/components/CollectionHero/CollectionHero.module.css */
+
+.hero {
+    --collection-accent: #b88945;
+    --collection-accent-soft: #ead9b7;
+
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(320px, 0.95fr);
+    min-height: 520px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background:
+        radial-gradient(
+            circle at 78% 24%,
+            color-mix(in srgb, var(--collection-color) 13%, transparent),
+            transparent 34%
+        ),
+        linear-gradient(
+            135deg,
+            var(--color-ambiance-elevation),
+            var(--color-ambiance-surface)
+        );
+    box-shadow: var(--shadow-card);
+}
+
+.hero::before {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background-image:
+        linear-gradient(
+            color-mix(in srgb, var(--border-soft) 28%, transparent) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--border-soft) 18%, transparent) 1px,
+            transparent 1px
+        );
+    background-size: 34px 34px;
+    content: "";
+    opacity: 0.17;
+    pointer-events: none;
+}
+
+.hero::after {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 54%;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        color-mix(in srgb, var(--collection-color) 28%, var(--border-subtle)),
+        transparent
+    );
+    content: "";
+    pointer-events: none;
+}
+
+/* ============================================================
+   Contenu
+   ============================================================ */
+
+.content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(34px, 5vw, 68px);
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--collection-color);
+}
+
+.eyebrow::after {
+    width: 42px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--collection-color), transparent);
+    content: "";
+}
+
+.emoji {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid
+        color-mix(in srgb, var(--collection-color) 36%, var(--border-subtle));
+    border-radius: 50%;
+    background: color-mix(
+        in srgb,
+        var(--collection-color-soft) 28%,
+        var(--color-ambiance-surface)
+    );
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.52),
+        0 4px 12px color-mix(in srgb, var(--collection-color) 12%, transparent);
+    font-size: 17px;
+}
+
+.title {
+    max-width: 13ch;
+    margin: 0;
+    text-wrap: balance;
+    font-family: var(--font-display);
+    font-size: clamp(42px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.052em;
+    line-height: 0.94;
+    color: var(--color-ambiance-texte-primaire);
+}
+
+.subtitle {
+    max-width: 34ch;
+    margin: 25px 0 0;
+    text-wrap: balance;
+    font-family: var(--font-display);
+    font-size: clamp(19px, 2vw, 27px);
+    font-style: italic;
+    line-height: 1.28;
+    color: var(--color-ambiance-texte-secondaire);
+}
+
+.description {
+    max-width: 58ch;
+    margin: 18px 0 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--color-ambiance-texte-tertiaire);
+}
+
+.meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 27px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.meta li {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 5px 10px;
+    border: 1px solid
+        color-mix(in srgb, var(--collection-color) 18%, var(--border-subtle));
+    border-radius: 999px;
+    background: color-mix(
+        in srgb,
+        var(--collection-color) 5%,
+        var(--color-ambiance-surface)
+    );
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ambiance-texte-tertiaire);
+}
+
+.meta li::before {
+    width: 4px;
+    height: 4px;
+    margin-right: 7px;
+    border-radius: 50%;
+    background: var(--collection-color);
+    content: "";
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 34px;
+}
+
+.primaryAction {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border: 1px solid
+        color-mix(in srgb, var(--collection-color) 56%, var(--border-subtle));
+    border-radius: 999px;
+    background: var(--collection-color);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.24),
+        0 7px 18px color-mix(in srgb, var(--collection-color) 20%, transparent);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
+}
+
+.primaryAction:hover {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 11px 22px color-mix(in srgb, var(--collection-color) 27%, transparent);
+    filter: saturate(1.08);
+    transform: translateY(-2px);
+}
+
+.primaryAction:focus-visible {
+    outline: 2px solid var(--collection-color);
+    outline-offset: 4px;
+}
+
+.primaryAction span {
+    font-family: var(--font-body);
+    font-size: 15px;
+    transition: transform 0.18s ease;
+}
+
+.primaryAction:hover span {
+    transform: translateY(2px);
+}
+
+.signature {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--color-ambiance-texte-tertiaire);
+}
+
+/* ============================================================
+   Visuel
+   ============================================================ */
+
+.visual {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    min-width: 0;
+    place-items: center;
+    padding: clamp(34px, 5vw, 62px);
+}
+
+.arch {
+    position: absolute;
+    top: 7%;
+    right: 9%;
+    bottom: 0;
+    left: 9%;
+    border: 1px solid
+        color-mix(in srgb, var(--collection-color) 25%, var(--border-subtle));
+    border-bottom: 0;
+    border-radius: 999px 999px 0 0;
+    background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--collection-color) 5%, transparent),
+        transparent 68%
+    );
+}
+
+.arch::before {
+    position: absolute;
+    inset: 18px;
+    border: 1px dashed
+        color-mix(in srgb, var(--collection-color) 20%, transparent);
+    border-bottom: 0;
+    border-radius: inherit;
+    content: "";
+}
+
+.arch::after {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    width: 1px;
+    height: 68%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        color-mix(in srgb, var(--collection-color) 20%, transparent),
+        transparent
+    );
+    content: "";
+}
+
+.medallion {
+    position: relative;
+    width: min(88%, 440px);
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 1px solid
+        color-mix(in srgb, var(--collection-color) 38%, var(--border-subtle));
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 50% 35%,
+        color-mix(
+            in srgb,
+            var(--collection-color) 14%,
+            var(--color-ambiance-surface)
+        ),
+        var(--color-ambiance-surface) 70%
+    );
+    box-shadow:
+        inset 0 0 0 11px
+            color-mix(in srgb, var(--collection-color) 5%, transparent),
+        inset 0 -22px 38px
+            color-mix(in srgb, var(--collection-color) 8%, transparent),
+        0 22px 46px rgba(54, 40, 20, 0.13);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.hero:hover .medallion {
+    box-shadow:
+        inset 0 0 0 11px
+            color-mix(in srgb, var(--collection-color) 7%, transparent),
+        inset 0 -22px 38px
+            color-mix(in srgb, var(--collection-color) 10%, transparent),
+        0 28px 56px rgba(54, 40, 20, 0.17);
+    transform: translateY(-5px);
+}
+
+.medallion::before {
+    position: absolute;
+    z-index: 4;
+    inset: 10%;
+    border: 1px dashed
+        color-mix(in srgb, var(--collection-color) 28%, transparent);
+    border-radius: inherit;
+    content: "";
+    pointer-events: none;
+}
+
+.medallion::after {
+    position: absolute;
+    z-index: 2;
+    right: 12%;
+    bottom: 8%;
+    left: 12%;
+    height: 13%;
+    border-radius: 50%;
+    background: rgba(55, 39, 20, 0.11);
+    content: "";
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+.medallionRing {
+    position: absolute;
+    z-index: 3;
+    inset: 5%;
+    border: 1px solid
+        color-mix(in srgb, var(--collection-color) 15%, transparent);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.image {
+    z-index: 2;
+    object-fit: contain;
+    object-position: center bottom;
+    padding: 15% 15% 20%;
+    filter: drop-shadow(0 16px 13px rgba(44, 32, 17, 0.22));
+    transform-origin: center bottom;
+    transition:
+        transform 0.32s ease,
+        filter 0.32s ease;
+}
+
+.hero:hover .image {
+    filter: drop-shadow(0 21px 16px rgba(44, 32, 17, 0.27));
+    transform: translateY(-4px) scale(1.035);
+}
+
+.fallback {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: clamp(88px, 12vw, 144px);
+    filter: saturate(0.82);
+}
+
+.visualCaption {
+    position: absolute;
+    right: clamp(28px, 4vw, 52px);
+    bottom: clamp(25px, 4vw, 46px);
+    left: clamp(28px, 4vw, 52px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid
+        color-mix(in srgb, var(--collection-color) 22%, var(--border-subtle));
+    padding-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ambiance-texte-tertiaire);
+}
+
+.visualCaption span:last-child {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: -0.04em;
+    color: var(--collection-color);
+}
+
+/* ============================================================
+   Immersive
+   ============================================================ */
+
+.immersive {
+    grid-template-columns:
+        minmax(0, 0.86fr)
+        minmax(440px, 1.14fr);
+    min-height: 680px;
+}
+
+.immersive .content {
+    padding-right: clamp(28px, 4vw, 52px);
+}
+
+.immersive .title {
+    max-width: 11ch;
+    font-size: clamp(52px, 7vw, 94px);
+}
+
+.immersive .subtitle {
+    max-width: 29ch;
+    font-size: clamp(22px, 2.4vw, 31px);
+}
+
+.immersive .visual {
+    padding: clamp(38px, 5vw, 70px);
+}
+
+.immersive .medallion {
+    width: min(92%, 560px);
+}
+
+.immersive .arch {
+    top: 3%;
+    right: 5%;
+    left: 5%;
+}
+
+/* ============================================================
+   Compact
+   ============================================================ */
+
+.compact {
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(180px, 0.42fr);
+    min-height: 200px;
+}
+
+.compact::after {
+    left: auto;
+    right: 31%;
+}
+
+.compact .content {
+    padding: 28px 32px;
+}
+
+.compact .eyebrow {
+    margin-bottom: 12px;
+}
+
+.compact .emoji {
+    width: 29px;
+    height: 29px;
+    font-size: 14px;
+}
+
+.compact .title {
+    max-width: 18ch;
+    font-size: clamp(30px, 4vw, 44px);
+}
+
+.compact .subtitle {
+    max-width: 42ch;
+    margin-top: 14px;
+    font-size: 17px;
+}
+
+.compact .description,
+.compact .signature {
+    display: none;
+}
+
+.compact .meta {
+    margin-top: 18px;
+}
+
+.compact .actions {
+    margin-top: 20px;
+}
+
+.compact .visual {
+    padding: 24px;
+}
+
+.compact .arch {
+    display: none;
+}
+
+.compact .medallion {
+    width: min(100%, 190px);
+}
+
+.compact .visualCaption {
+    display: none;
+}
+
+.compact .fallback {
+    font-size: 72px;
+}
+
+/* ============================================================
+   Tablette
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .hero,
+    .immersive {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: auto;
+    }
+
+    .hero::after {
+        top: auto;
+        right: 8%;
+        bottom: 43%;
+        left: 8%;
+        width: auto;
+        height: 1px;
+    }
+
+    .content {
+        padding: 42px 36px 30px;
+    }
+
+    .title,
+    .immersive .title {
+        max-width: 16ch;
+        font-size: clamp(42px, 8vw, 66px);
+    }
+
+    .subtitle,
+    .immersive .subtitle {
+        max-width: 38ch;
+    }
+
+    .visual,
+    .immersive .visual {
+        min-height: 430px;
+        padding: 32px 42px 58px;
+    }
+
+    .medallion,
+    .immersive .medallion {
+        width: min(74vw, 430px);
+    }
+
+    .arch,
+    .immersive .arch {
+        top: 2%;
+        right: 16%;
+        left: 16%;
+    }
+
+    .compact {
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(170px, 0.36fr);
+    }
+
+    .compact::after {
+        top: 10%;
+        right: 31%;
+        bottom: 10%;
+        left: auto;
+        width: 1px;
+        height: auto;
+    }
+
+    .compact .visual {
+        min-height: auto;
+    }
+}
+
+/* ============================================================
+   Mobile
+   ============================================================ */
+
+@media (max-width: 640px) {
+    .hero,
+    .immersive,
+    .compact {
+        grid-template-columns: minmax(0, 1fr);
+        border-radius: calc(var(--radius-lg) - 2px);
+    }
+
+    .hero::after,
+    .compact::after {
+        top: auto;
+        right: 8%;
+        bottom: 39%;
+        left: 8%;
+        width: auto;
+        height: 1px;
+    }
+
+    .content,
+    .immersive .content,
+    .compact .content {
+        padding: 30px 22px 22px;
+    }
+
+    .eyebrow {
+        margin-bottom: 15px;
+    }
+
+    .title,
+    .immersive .title,
+    .compact .title {
+        max-width: 16ch;
+        font-size: clamp(38px, 12vw, 54px);
+    }
+
+    .subtitle,
+    .immersive .subtitle,
+    .compact .subtitle {
+        margin-top: 18px;
+        font-size: 18px;
+    }
+
+    .description {
+        font-size: 12.5px;
+    }
+
+    .meta {
+        gap: 6px;
+        margin-top: 22px;
+    }
+
+    .meta li {
+        min-height: 25px;
+        padding: 4px 8px;
+        font-size: 7.5px;
+    }
+
+    .actions {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-top: 27px;
+    }
+
+    .visual,
+    .immersive .visual,
+    .compact .visual {
+        min-height: 340px;
+        padding: 24px 24px 50px;
+    }
+
+    .medallion,
+    .immersive .medallion,
+    .compact .medallion {
+        width: min(82vw, 310px);
+    }
+
+    .arch,
+    .immersive .arch {
+        right: 9%;
+        left: 9%;
+    }
+
+    .visualCaption {
+        right: 24px;
+        bottom: 20px;
+        left: 24px;
+    }
+}
+
+/* ============================================================
+   Réduction des animations
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .primaryAction,
+    .primaryAction span,
+    .medallion,
+    .image {
+        transition: none;
+    }
+
+    .primaryAction:hover,
+    .hero:hover .medallion,
+    .hero:hover .image {
+        transform: none;
+    }
+}

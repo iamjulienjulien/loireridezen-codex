@@ -1,7 +1,7 @@
 import chateauxData from "@data/catalogue-chateaux.json";
 import guinguettesData from "@data/catalogue-guinguettes.json";
 
-import PageShell from "@/components/layout/PageShell";
+import PageShell from "@/components/_shells/PageShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getContentPageDefinition } from "@/registry/pages";
 import type { Chateau } from "@/types/chateau";

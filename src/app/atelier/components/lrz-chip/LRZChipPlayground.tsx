@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { LRZChip } from "@/components/LRZChip";
+import { LRZChip } from "@/components/_ui/LRZChip";
 
 import styles from "../filter-playground.module.css";
 

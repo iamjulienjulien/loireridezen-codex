@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    min-height: 100dvh;
+    flex-direction: column;
+}
+
+.homeContainer {
+    --shell-container-max-width: 39rem;
+
+    justify-content: center;
+    padding-block: 4rem;
+    padding-inline: 1.5rem;
+}
+
+.main {
+    min-width: 0;
+    flex: 1 0 auto;
+}
+
+.homeMain {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: center;
+}

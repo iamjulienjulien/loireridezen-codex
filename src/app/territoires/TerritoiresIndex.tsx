@@ -5,10 +5,10 @@ import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/navigation";
 
 import IndexPresentation from "@/components/IndexPresentation";
-import { LRZCardDialog } from "@/components/LRZCardDialog";
-import { LRZSymbol } from "@/components/LRZSymbol";
-import LRZSeparateur from "@/components/LRZSeparateur";
-import { LRZSection } from "@/components/LRZSection";
+import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
+import { LRZSymbol } from "@/components/_ui/LRZSymbol";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur";
+import { LRZSection } from "@/components/_ui/LRZSection";
 import { SITE_URL } from "@/lib/site-metadata";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -17,7 +17,7 @@ import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 import type { TerritoireCatalogueEntry } from "@/types/territoireCatalogue";
 
-import TerritoireCard from "@/components/cards/TerritoireCard";
+import TerritoireCard from "@/components/_cards/TerritoireCard";
 import styles from "./territoires.module.css";
 
 type TerritoiresIndexProps = {

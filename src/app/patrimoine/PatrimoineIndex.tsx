@@ -3,10 +3,10 @@
 import { useMemo, useState } from "react";
 import type { Patrimoine } from "@/types/patrimoine";
 import IndexPresentation from "@/components/IndexPresentation";
-import IndexControls from "@/components/IndexControls";
+import { PageControls } from "@/components/_layout/PageControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import PatrimoineCard from "@/components/cards/PatrimoineCard";
-import styles from "@/components/cards/PatrimoineCard/patrimoine.module.css";
+import PatrimoineCard from "@/components/_cards/PatrimoineCard";
+import styles from "@/components/_cards/PatrimoineCard/patrimoine.module.css";
 
 const TYPES = [
     { id: "all", label: "Tout" },
@@ -100,7 +100,7 @@ export default function PatrimoineIndex({
                 {entry.presentation_md}
             </IndexPresentation>
 
-            <IndexControls
+            <PageControls
                 query={q}
                 onQuery={setQ}
                 placeholder="Chercher un ouvrage, une commune, une fonction…"
@@ -108,7 +108,22 @@ export default function PatrimoineIndex({
                 totalCount={items.length}
                 unit="ouvrages"
                 accent={entry.accent}
-                expand={{ all: expandAll, onToggle: toggleAll }}
+                buttonColor={entry.color}
+                mode="filters-toggle"
+                reset={{
+                    active: type !== "all" || etat !== "all" || q !== "",
+                    onReset: () => {
+                        setType("all");
+                        setEtat("all");
+                        setQ("");
+                    },
+                }}
+                action={{
+                    label: "Tout déplier",
+                    activeLabel: "Tout replier",
+                    active: expandAll,
+                    onClick: toggleAll,
+                }}
                 groups={[
                     {
                         label: "Type",

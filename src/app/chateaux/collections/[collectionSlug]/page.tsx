@@ -3,11 +3,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import CollectionShell from "@/components/layout/CollectionShell";
-import { CollectionEntryCard } from "@/components/ui/collection-entry-card";
-import { CollectionHero } from "@/components/ui/collection-hero";
-import { CollectionList } from "@/components/ui/collection-list";
-import { CollectionPodium } from "@/components/ui/collection-podium";
+import CollectionShell from "@/components/_shells/CollectionShell";
+import { CollectionEntryCard } from "@/components/CollectionEntryCard";
+import { CollectionHero } from "@/components/CollectionHero";
+import { CollectionList } from "@/components/CollectionList";
+import { CollectionPodium } from "@/components/CollectionPodium";
 import {
     getCollectionsForPublicationEnv,
     requireCollectionForEnv,

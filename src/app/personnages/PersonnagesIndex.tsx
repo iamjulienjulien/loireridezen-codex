@@ -4,16 +4,16 @@ import { useMemo, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import IndexPresentation from "@/components/IndexPresentation";
-import { LRZSection } from "@/components/LRZSection";
-import LRZSeparateur from "@/components/LRZSeparateur/LRZSeparateur";
-import { PageControls } from "@/components/PageControls";
-import { LRZCardDialog } from "@/components/LRZCardDialog";
-import { LRZSymbol } from "@/components/LRZSymbol";
+import { LRZSection } from "@/components/_ui/LRZSection";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur/LRZSeparateur";
+import { PageControls } from "@/components/_layout/PageControls";
+import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
+import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";
 
-import PersonnageCard from "@/components/cards/PersonnageCard";
+import PersonnageCard from "@/components/_cards/PersonnageCard";
 import styles from "./personnages.module.css";
 
 export type PersonnageIndexEntry = {

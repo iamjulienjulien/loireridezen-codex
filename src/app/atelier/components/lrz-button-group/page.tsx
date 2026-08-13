@@ -5,9 +5,9 @@ import { Grid2X2, Images, List, Map, Table2 } from "lucide-react";
 import {
     LRZButtonGroup,
     LRZButtonGroupItem,
-} from "@/components/LRZButtonGroup";
+} from "@/components/_ui/LRZButtonGroup";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZButtonGroupPlayground from "./LRZButtonGroupPlayground";
 import styles from "../filter-playground.module.css";
 

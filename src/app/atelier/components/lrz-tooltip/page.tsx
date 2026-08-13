@@ -1,9 +1,9 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
-import { LRZTooltip } from "@/components/LRZTooltip";
+import { LRZTooltip } from "@/components/_ui/LRZTooltip";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import styles from "../filter-playground.module.css";
 import localStyles from "./lrz-tooltip.module.css";
 

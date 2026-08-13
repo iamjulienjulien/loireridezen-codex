@@ -1,6 +1,6 @@
 import chateauData from "@data/catalogue-chateaux.json";
 
-import IndexShell from "@/components/layout/IndexShell";
+import IndexShell from "@/components/_shells/IndexShell";
 import { getPersonnagesByLieu } from "@/lib/personnages";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";

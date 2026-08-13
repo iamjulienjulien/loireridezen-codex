@@ -8,7 +8,7 @@ import LRZAccordion, {
     type LRZAccordionIndicatorPosition,
     type LRZAccordionSize,
     type LRZAccordionTone,
-} from "@/components/LRZAccordion/LRZAccordion";
+} from "@/components/_ui/LRZAccordion/LRZAccordion";
 import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 

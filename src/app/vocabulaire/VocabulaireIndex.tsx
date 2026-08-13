@@ -3,10 +3,10 @@
 import { useMemo, useState } from "react";
 import type { Mot } from "@/types/mot";
 import IndexPresentation from "@/components/IndexPresentation";
-import IndexControls from "@/components/IndexControls";
+import { PageControls } from "@/components/_layout/PageControls";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
-import VocabulaireCard from "@/components/cards/VocabulaireCard";
-import styles from "@/components/cards/VocabulaireCard/vocabulaire.module.css";
+import VocabulaireCard from "@/components/_cards/VocabulaireCard";
+import styles from "@/components/_cards/VocabulaireCard/vocabulaire.module.css";
 
 const CATEGORIES = [
     { id: "all", label: "Tout" },
@@ -89,7 +89,7 @@ export default function VocabulaireIndex({
                 {entry.presentation_md}
             </IndexPresentation>
 
-            <IndexControls
+            <PageControls
                 query={q}
                 onQuery={setQ}
                 placeholder="Chercher un mot, une définition, une variante…"
@@ -97,6 +97,22 @@ export default function VocabulaireIndex({
                 totalCount={mots.length}
                 unit="mots"
                 accent={entry.accent}
+                buttonColor={entry.color}
+                mode="filters-toggle"
+                reset={{
+                    active: categorie !== "all" || usage !== "all" || q !== "",
+                    onReset: () => {
+                        setCategorie("all");
+                        setUsage("all");
+                        setQ("");
+                    },
+                }}
+                action={{
+                    label: "Tout déplier",
+                    activeLabel: "Tout replier",
+                    active: expandAll,
+                    onClick: toggleAll,
+                }}
                 groups={[
                     {
                         label: "Catégorie",
@@ -125,7 +141,6 @@ export default function VocabulaireIndex({
                         })),
                     },
                 ]}
-                expand={{ all: expandAll, onToggle: toggleAll }}
             />
 
             {list.length === 0 ? (

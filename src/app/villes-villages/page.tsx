@@ -1,6 +1,6 @@
 import villesVillagesCatalogue from "@data/catalogue-villes-villages.json";
 
-import IndexShell from "@/components/layout/IndexShell";
+import IndexShell from "@/components/_shells/IndexShell";
 import { requireIndexForEnv } from "@/lib/publication-guards";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";

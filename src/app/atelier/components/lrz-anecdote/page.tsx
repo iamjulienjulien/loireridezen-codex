@@ -1,8 +1,8 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
-import LRZAnecdote from "@/components/LRZAnecdote/LRZAnecdote";
+import LRZAnecdote from "@/components/_ui/LRZAnecdote/LRZAnecdote";
 import { LRZ_COLOR_GROUPS } from "@/registry/colors";
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZAnecdotePlayground from "./LRZAnecdotePlayground";
 import styles from "./lrz-anecdote.module.css";
 

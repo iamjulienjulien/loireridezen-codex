@@ -9,7 +9,7 @@ import {
     type LRZStampSize,
     type LRZStampTone,
     type LRZStampVariant,
-} from "@/components/LRZStamp";
+} from "@/components/_ui/LRZStamp";
 import { CATEGORIES_PERSONNAGES } from "@/registry/categories-personnages";
 import { CHATEAU_RENOMMEE_META } from "@/registry/Meta/chateau-renommee";
 import { CHATEAU_VISITE_META } from "@/registry/Meta/chateau-visite";
@@ -56,7 +56,7 @@ import {
     type LRZVignobleTerroirSymbolSlug,
 } from "@/registry/symbols";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import shellStyles from "../filter-playground.module.css";
 import LRZStampPlayground, {
     type LRZStampPlaygroundOption,

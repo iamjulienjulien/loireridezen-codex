@@ -23,7 +23,7 @@ import {
     type LRZMapMarkerSize,
     type LRZMapMarkerTone,
     type LRZMapMarkerVariant,
-} from "@/components/LRZMapMarker";
+} from "@/components/_ui/LRZMapMarker";
 import { LRZ_COLOR_LABELS, LRZ_COLOR_NAMES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 

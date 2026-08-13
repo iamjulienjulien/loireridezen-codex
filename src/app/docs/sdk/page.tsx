@@ -4,11 +4,11 @@ import { MarkdownAsync } from "react-markdown";
 import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 
-import PageShell from "@/components/layout/PageShell";
+import PageShell from "@/components/_shells/PageShell";
 import remarkLrzDirectives from "@/lib/markdown/remark-lrz-directives";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getContentPageDefinition } from "@/registry/pages";
-import DocumentationTopbar from "../DocumentationTopbar";
+import DocumentationTopbar from "@/components/_docs/DocumentationTopbar";
 
 import styles from "../api/api-docs.module.css";
 import { createDocumentationComponents } from "../markdown-components";

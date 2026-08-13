@@ -3,11 +3,11 @@ import Link from "next/link";
 
 import LRZDocCallout, {
     type LRZDocCalloutVariant,
-} from "@/components/LRZDocCallout/LRZDocCallout";
-import LRZDocCodeBlock from "@/components/LRZDocCodeBlock/LRZDocCodeBlock";
+} from "@/components/_ui/LRZDocCallout/LRZDocCallout";
+import LRZDocCodeBlock from "@/components/_ui/LRZDocCodeBlock/LRZDocCodeBlock";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
-import DocMarkdownSyntax from "../DocMarkdownSyntax/DocMarkdownSyntax";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
+import DocMarkdownSyntax from "@/components/_atelier/DocMarkdownSyntax";
 import styles from "../lrz-doc-list/lrz-doc-list.module.css";
 
 export const metadata = getAtelierPageMetadata(

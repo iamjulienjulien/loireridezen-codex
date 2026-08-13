@@ -1,10 +1,10 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
-import LRZLivingText from "@/components/LRZLivingText";
-import LRZTypography from "@/components/LRZTypography";
+import LRZLivingText from "@/components/_ui/LRZLivingText";
+import LRZTypography from "@/components/_ui/LRZTypography";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZAnimationCard from "../lrz-typography/LRZAnimationCard";
 import LRZLivingTextSeparator from "./LRZLivingTextSeparator";
 import {

@@ -1,0 +1,6 @@
+.indexFooterCount {
+    display: block;
+    margin-bottom: 0.3125rem;
+    color: var(--color-ambiance-texte-secondaire);
+    font-size: 0.75rem;
+}

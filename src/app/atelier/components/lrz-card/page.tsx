@@ -2,7 +2,7 @@ import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { Castle, MapPin } from "lucide-react";
 
-import LRZBadge from "@/components/LRZBadge/LRZBadge";
+import LRZBadge from "@/components/_ui/LRZBadge/LRZBadge";
 import {
     LRZCard,
     LRZCardContent,
@@ -11,9 +11,9 @@ import {
     LRZCardMedia,
     type LRZCardAccent,
     type LRZCardTone,
-} from "@/components/LRZCard";
+} from "@/components/_ui/LRZCard";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZCardPlayground from "./LRZCardPlayground";
 import styles from "./LRZCardPlayground.module.css";
 

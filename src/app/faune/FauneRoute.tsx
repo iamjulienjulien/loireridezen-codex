@@ -1,6 +1,6 @@
 import fauneData from "@data/catalogue-faune.json";
 
-import IndexShell from "@/components/layout/IndexShell";
+import IndexShell from "@/components/_shells/IndexShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getIndexesForEnv } from "@/registry/indexes";
 import { getIndexPageDefinition } from "@/registry/pages";

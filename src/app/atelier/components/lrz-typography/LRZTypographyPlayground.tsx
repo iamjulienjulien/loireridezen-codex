@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import LRZLivingText from "@/components/LRZLivingText";
+import LRZLivingText from "@/components/_ui/LRZLivingText";
 import LRZTypography, {
     type LRZTypographyAlign,
     type LRZTypographyColor,
@@ -20,7 +20,7 @@ import LRZTypography, {
     type LRZTypographyTracking,
     type LRZTypographyTransform,
     type LRZTypographyWeight,
-} from "@/components/LRZTypography";
+} from "@/components/_ui/LRZTypography";
 import type { Ambiance } from "@/registry/ambiances";
 import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 

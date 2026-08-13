@@ -2,7 +2,7 @@ import IndexPresentation from "@/components/IndexPresentation";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { VilleVillageCatalogueEntry } from "@/types/villeVillageCatalogue";
 
-import VilleVillageCard from "@/components/cards/VilleVillageCard";
+import VilleVillageCard from "@/components/_cards/VilleVillageCard";
 import styles from "./villes-villages.module.css";
 
 type VillesVillagesIndexProps = {

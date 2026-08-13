@@ -3,8 +3,8 @@ import guinguettesCatalogue from "@data/catalogue-guinguettes.json";
 import territoireCatalogue from "@data/catalogue-territoires.json";
 import vignobleCatalogue from "@data/catalogue-vignobles.json";
 
-import AtelierCategoryLayout from "../AtelierCategoryLayout";
-import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
+import AtelierCategoryLayout from "@/components/_atelier/AtelierCategoryLayout";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import {

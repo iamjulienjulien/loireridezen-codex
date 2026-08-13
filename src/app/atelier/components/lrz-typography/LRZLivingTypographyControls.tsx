@@ -5,7 +5,7 @@ import { useState } from "react";
 import LRZLivingText, {
     type LRZPathTextPath,
     type LRZScrambleCharacterSet,
-} from "@/components/LRZLivingText";
+} from "@/components/_ui/LRZLivingText";
 import type { Ambiance } from "@/registry/ambiances";
 import { LRZ_COLOR_LABELS, LRZ_COLOR_NAMES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";

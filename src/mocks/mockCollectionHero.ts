@@ -1,6 +1,6 @@
 // src/components/codex/atelier/mockCollectionHero.ts
 
-import type { CollectionHeroData } from "@/components/ui/collection-hero";
+import type { CollectionHeroData } from "@/components/CollectionHero";
 
 export const MOCK_COLLECTION_HEROES: CollectionHeroData[] = [
     {

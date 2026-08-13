@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { ArrowRight, MapPin, Plus } from "lucide-react";
 
-import { LRZButton } from "@/components/LRZButton";
+import { LRZButton } from "@/components/_ui/LRZButton";
 import { LRZ_COLOR_GROUPS, LRZ_COLOR_LABELS } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 import type {
     LRZButtonPreset,
     LRZButtonSize,
     LRZButtonVariant,
-} from "@/components/LRZButton";
+} from "@/components/_ui/LRZButton";
 
 import pageStyles from "../filter-playground.module.css";
 import styles from "./LRZButtonPlayground.module.css";

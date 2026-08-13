@@ -2,16 +2,16 @@ import type { Components } from "react-markdown";
 
 import LRZDocCallout, {
     type LRZDocCalloutVariant,
-} from "@/components/LRZDocCallout/LRZDocCallout";
-import LRZDocCodeBlock from "@/components/LRZDocCodeBlock/LRZDocCodeBlock";
-import LRZDocCodeInline from "@/components/LRZDocCodeInline/LRZDocCodeInline";
-import LRZDocList from "@/components/LRZDocList/LRZDocList";
+} from "@/components/_ui/LRZDocCallout/LRZDocCallout";
+import LRZDocCodeBlock from "@/components/_ui/LRZDocCodeBlock/LRZDocCodeBlock";
+import LRZDocCodeInline from "@/components/_ui/LRZDocCodeInline/LRZDocCodeInline";
+import LRZDocList from "@/components/_ui/LRZDocList/LRZDocList";
 import LRZDocQuote, {
     type LRZDocQuoteVariant,
-} from "@/components/LRZDocQuote/LRZDocQuote";
+} from "@/components/_ui/LRZDocQuote/LRZDocQuote";
 import LRZDocTable, {
     type LRZDocTableVariant,
-} from "@/components/LRZDocTable/LRZDocTable";
+} from "@/components/_ui/LRZDocTable/LRZDocTable";
 
 import { headingId, textContent } from "./markdown";
 

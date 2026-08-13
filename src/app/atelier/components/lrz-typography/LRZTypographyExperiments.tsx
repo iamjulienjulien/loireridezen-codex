@@ -1,6 +1,6 @@
 "use client";
 
-import LRZTypography from "@/components/LRZTypography";
+import LRZTypography from "@/components/_ui/LRZTypography";
 
 import styles from "./LRZTypographyPlayground.module.css";
 

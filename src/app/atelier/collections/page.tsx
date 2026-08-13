@@ -1,17 +1,15 @@
-import {
-    CollectionBadge,
-    CollectionCard,
-    CollectionCriteria,
-    CollectionEntryCard,
-    CollectionHero,
-    CollectionList,
-    CollectionPodium,
-    CollectionRank,
-} from "@/components/ui";
+import { CollectionBadge } from "@/components/CollectionBadge";
+import { CollectionCard } from "@/components/CollectionCard";
+import { CollectionCriteria } from "@/components/CollectionCriteria";
+import { CollectionEntryCard } from "@/components/CollectionEntryCard";
+import { CollectionHero } from "@/components/CollectionHero";
+import { CollectionList } from "@/components/CollectionList";
+import { CollectionPodium } from "@/components/CollectionPodium";
+import { CollectionRank } from "@/components/CollectionRank";
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 
-import AtelierCategoryLayout from "../AtelierCategoryLayout";
-import ComponentsNavigation from "../components/ComponentsNavigation/ComponentsNavigation";
+import AtelierCategoryLayout from "@/components/_atelier/AtelierCategoryLayout";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import styles from "../atelier.module.css";
 import { MOCK_COLLECTIONS } from "@/mocks/mockCollection";
 import { MOCK_COLLECTION_BADGES } from "@/mocks/mockCollectionBadge";

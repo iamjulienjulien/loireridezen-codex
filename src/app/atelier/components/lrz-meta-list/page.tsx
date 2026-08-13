@@ -2,10 +2,12 @@ import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { CalendarDays, Landmark, MapPin } from "lucide-react";
 
-import LRZBadge from "@/components/LRZBadge/LRZBadge";
-import LRZMetaList, { type LRZMetaListTone } from "@/components/LRZMetaList";
+import LRZBadge from "@/components/_ui/LRZBadge/LRZBadge";
+import LRZMetaList, {
+    type LRZMetaListTone,
+} from "@/components/_ui/LRZMetaList";
 
-import ComponentsNavigation from "../ComponentsNavigation/ComponentsNavigation";
+import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZMetaListPlayground from "./LRZMetaListPlayground";
 import styles from "./LRZMetaListPlayground.module.css";
 

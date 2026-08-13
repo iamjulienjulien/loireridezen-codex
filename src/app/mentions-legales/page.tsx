@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import PageShell from "@/components/layout/PageShell";
+import PageShell from "@/components/_shells/PageShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
 import { getContentPageDefinition } from "@/registry/pages";
 

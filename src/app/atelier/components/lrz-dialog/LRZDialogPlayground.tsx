@@ -17,7 +17,7 @@ import {
     type LRZDialogScrollMode,
     type LRZDialogSize,
     type LRZDialogVariant,
-} from "@/components/LRZDialog";
+} from "@/components/_ui/LRZDialog";
 import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 

@@ -34,7 +34,7 @@ import {
     type LRZSymbolShadow,
     type LRZSymbolShape,
     type LRZSymbolSize,
-} from "@/components/LRZSymbol";
+} from "@/components/_ui/LRZSymbol";
 
 import styles from "./LRZSymbolPlayground.module.css";
 

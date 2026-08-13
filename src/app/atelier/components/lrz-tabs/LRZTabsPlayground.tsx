@@ -6,7 +6,7 @@ import {
     LRZTabs,
     type LRZTabsSize,
     type LRZTabsVariant,
-} from "@/components/LRZTabs";
+} from "@/components/_ui/LRZTabs";
 
 import styles from "../filter-playground.module.css";
 
