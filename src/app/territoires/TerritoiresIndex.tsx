@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/navigation";
 
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
@@ -153,24 +154,31 @@ export default function TerritoiresIndex({
                     color={entry.color}
                 />
 
-                <ol className={styles.grid}>
-                    {territoires.map((territoire) => (
-                        <li className={styles.item} key={territoire.slug}>
-                            <TerritoireCard
-                                territoire={territoire}
-                                chateaux={getTerritoireChateaux(
-                                    chateaux,
-                                    territoire.slug as TerritoireSlug,
-                                )}
-                                guinguettes={guinguettes.filter(
-                                    (guinguette) =>
-                                        guinguette.territoire ===
-                                        territoire.slug,
-                                )}
-                            />
-                        </li>
-                    ))}
-                </ol>
+                <IndexCardTrackingProvider
+                    indexSlug="territoires"
+                    entrySlugs={territoires.map(
+                        (territoire) => territoire.slug,
+                    )}
+                >
+                    <ol className={styles.grid}>
+                        {territoires.map((territoire) => (
+                            <li className={styles.item} key={territoire.slug}>
+                                <TerritoireCard
+                                    territoire={territoire}
+                                    chateaux={getTerritoireChateaux(
+                                        chateaux,
+                                        territoire.slug as TerritoireSlug,
+                                    )}
+                                    guinguettes={guinguettes.filter(
+                                        (guinguette) =>
+                                            guinguette.territoire ===
+                                            territoire.slug,
+                                    )}
+                                />
+                            </li>
+                        ))}
+                    </ol>
+                </IndexCardTrackingProvider>
             </LRZSection>
         </>
     );

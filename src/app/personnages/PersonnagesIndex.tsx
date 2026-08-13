@@ -4,6 +4,7 @@ import { useMemo, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { PageControls } from "@/components/_layout/PageControls";
@@ -196,18 +197,23 @@ export default function PersonnagesIndex({
                     />
                 </div>
 
-                <section
-                    className={styles.grid}
-                    aria-label="Personnages du Codex"
+                <IndexCardTrackingProvider
+                    indexSlug="personnages"
+                    entrySlugs={entries.map(({ personnage }) => personnage.id)}
                 >
-                    {filteredEntries.map(({ personnage, relations }) => (
-                        <PersonnageCard
-                            key={personnage.id}
-                            personnage={personnage}
-                            relations={relations}
-                        />
-                    ))}
-                </section>
+                    <section
+                        className={styles.grid}
+                        aria-label="Personnages du Codex"
+                    >
+                        {filteredEntries.map(({ personnage, relations }) => (
+                            <PersonnageCard
+                                key={personnage.id}
+                                personnage={personnage}
+                                relations={relations}
+                            />
+                        ))}
+                    </section>
+                </IndexCardTrackingProvider>
             </LRZSection>
 
             <p className={styles.note}>

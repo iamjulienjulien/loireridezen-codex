@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
+import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 import {
     BadgeCheck,
     Bike,
@@ -187,9 +187,12 @@ export default function GuinguetteCard({
                             lines={2}
                             fixedHeight
                         >
-                            <Link href={`/guinguette/${guinguette.slug}`}>
+                            <TrackedCardLink
+                                entrySlug={guinguette.slug}
+                                href={`/guinguette/${guinguette.slug}`}
+                            >
                                 {guinguette.nom}
-                            </Link>
+                            </TrackedCardLink>
                         </LRZTextClamp>
                         {/* <p className={styles.locality}>{locality}</p>
                         <p className={styles.classification}>

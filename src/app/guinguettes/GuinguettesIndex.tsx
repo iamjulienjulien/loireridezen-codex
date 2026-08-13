@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown";
 import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 import { useRouter } from "next/navigation";
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
@@ -394,38 +395,49 @@ export default function GuinguettesIndex({
                     onFocus={(event) => syncCatalogueHover(event.target, true)}
                     onBlur={(event) => syncCatalogueHover(event.target, false)}
                 >
-                    {list.length === 0 ? (
-                        <p className={styles.empty}>
-                            Pas de lampions sur cette portion du fil. Élargis la
-                            recherche ou change de filtre.
-                        </p>
-                    ) : groupByTerritory ? (
-                        <div className={styles.territories}>
-                            {territorySections.map(
-                                ({ territory, guinguettes }) => (
-                                    <TerritoireSection
-                                        key={territory.slug}
-                                        territory={territory}
-                                        guinguettes={guinguettes}
-                                        mapSync
-                                    />
-                                ),
-                            )}
-                        </div>
-                    ) : (
-                        <div className={styles.grid}>
-                            {list.map((guinguette) => (
-                                <div
-                                    id={`guinguette-${guinguette.slug}`}
-                                    data-guinguette-map-slug={guinguette.slug}
-                                    data-map-sync-card=""
-                                    key={guinguette.slug}
-                                >
-                                    <GuinguetteCard guinguette={guinguette} />
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                    <IndexCardTrackingProvider
+                        indexSlug="guinguettes"
+                        entrySlugs={guinguettes.map(
+                            (guinguette) => guinguette.slug,
+                        )}
+                    >
+                        {list.length === 0 ? (
+                            <p className={styles.empty}>
+                                Pas de lampions sur cette portion du fil.
+                                Élargis la recherche ou change de filtre.
+                            </p>
+                        ) : groupByTerritory ? (
+                            <div className={styles.territories}>
+                                {territorySections.map(
+                                    ({ territory, guinguettes }) => (
+                                        <TerritoireSection
+                                            key={territory.slug}
+                                            territory={territory}
+                                            guinguettes={guinguettes}
+                                            mapSync
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        ) : (
+                            <div className={styles.grid}>
+                                {list.map((guinguette) => (
+                                    <div
+                                        id={`guinguette-${guinguette.slug}`}
+                                        data-guinguette-map-slug={
+                                            guinguette.slug
+                                        }
+                                        data-map-sync-card=""
+                                        key={guinguette.slug}
+                                    >
+                                        <GuinguetteCard
+                                            guinguette={guinguette}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </IndexCardTrackingProvider>
                 </div>
             </LRZSection>
         </>

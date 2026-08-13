@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import type { Flore } from "@/types/flore";
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { PageControls } from "@/components/_layout/PageControls";
@@ -213,22 +214,27 @@ export default function FloreIndex({
                     />
                 </div>
 
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Rien ne pousse à cet endroit du fil. Élargis la
-                        recherche ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <FloreCard
-                                key={`${d.slug}-${expandAll}`}
-                                d={d}
-                                expandAll={expandAll}
-                            />
-                        ))}
-                    </div>
-                )}
+                <IndexCardTrackingProvider
+                    indexSlug="flore"
+                    entrySlugs={flore.map((plante) => plante.slug)}
+                >
+                    {list.length === 0 ? (
+                        <p className={styles.empty}>
+                            Rien ne pousse à cet endroit du fil. Élargis la
+                            recherche ou change de filtre.
+                        </p>
+                    ) : (
+                        <div className={styles.grid}>
+                            {list.map((d) => (
+                                <FloreCard
+                                    key={`${d.slug}-${expandAll}`}
+                                    d={d}
+                                    expandAll={expandAll}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </IndexCardTrackingProvider>
             </LRZSection>
         </>
     );

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import type { FauneEspece } from "@/types/faune";
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { PageControls } from "@/components/_layout/PageControls";
@@ -212,22 +213,27 @@ export default function FauneIndex({
                     />
                 </div>
 
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Rien à cet endroit du fil. Élargis la recherche ou
-                        change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <FauneCard
-                                key={`${d.nomScientifique}-${expandAll}`}
-                                d={d}
-                                expandAll={expandAll}
-                            />
-                        ))}
-                    </div>
-                )}
+                <IndexCardTrackingProvider
+                    indexSlug="faune"
+                    entrySlugs={especes.map((espece) => espece.slug)}
+                >
+                    {list.length === 0 ? (
+                        <p className={styles.empty}>
+                            Rien à cet endroit du fil. Élargis la recherche ou
+                            change de filtre.
+                        </p>
+                    ) : (
+                        <div className={styles.grid}>
+                            {list.map((d) => (
+                                <FauneCard
+                                    key={`${d.nomScientifique}-${expandAll}`}
+                                    d={d}
+                                    expandAll={expandAll}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </IndexCardTrackingProvider>
             </LRZSection>
         </>
     );

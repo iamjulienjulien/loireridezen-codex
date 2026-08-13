@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import type { Vignoble } from "@/types/vignoble";
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
@@ -232,23 +233,28 @@ export default function VignoblesIndex({
                     />
                 </div>
 
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Aucune appellation à cet endroit du fil. Élargis la
-                        recherche ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <VignoblesCard
-                                key={d.slug}
-                                d={d}
-                                open={openOverrides[d.slug] ?? expandAll}
-                                onToggle={() => toggleOne(d.slug)}
-                            />
-                        ))}
-                    </div>
-                )}
+                <IndexCardTrackingProvider
+                    indexSlug="vignobles"
+                    entrySlugs={vignobles.map((vignoble) => vignoble.slug)}
+                >
+                    {list.length === 0 ? (
+                        <p className={styles.empty}>
+                            Aucune appellation à cet endroit du fil. Élargis la
+                            recherche ou change de filtre.
+                        </p>
+                    ) : (
+                        <div className={styles.grid}>
+                            {list.map((d) => (
+                                <VignoblesCard
+                                    key={d.slug}
+                                    d={d}
+                                    open={openOverrides[d.slug] ?? expandAll}
+                                    onToggle={() => toggleOne(d.slug)}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </IndexCardTrackingProvider>
             </LRZSection>
         </>
     );

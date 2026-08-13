@@ -19,6 +19,7 @@ import type { PersonnagesParLieu } from "@/types/personnage";
 import { getCollectionsByIndexForEnv } from "@/registry/collections";
 
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { PageControls } from "@/components/_layout/PageControls";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
@@ -659,7 +660,12 @@ export default function ChateauxIndex({
                     onFocus={(event) => syncCatalogueHover(event.target, true)}
                     onBlur={(event) => syncCatalogueHover(event.target, false)}
                 >
-                    {catalogue}
+                    <IndexCardTrackingProvider
+                        indexSlug="chateaux"
+                        entrySlugs={chateaux.map((chateau) => chateau.slug)}
+                    >
+                        {catalogue}
+                    </IndexCardTrackingProvider>
                 </div>
             </LRZSection>
         </>
