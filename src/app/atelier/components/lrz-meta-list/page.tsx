@@ -2,7 +2,7 @@ import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 import { CalendarDays, Landmark, MapPin } from "lucide-react";
 
-import LRZBadge from "@/components/_ui/LRZBadge/LRZBadge";
+import LRZBadge from "@/components/_ui/LRZBadge";
 import LRZMetaList, {
     type LRZMetaListTone,
 } from "@/components/_ui/LRZMetaList";

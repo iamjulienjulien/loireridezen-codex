@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 
 import LRZScrambleText from "@/components/_ui/LRZLivingText/scramble";
-import LRZSeparateur from "@/components/_ui/LRZSeparateur/LRZSeparateur";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import type { LRZColor } from "@/types/lrz";
 
 import styles from "./PageHeader.module.css";

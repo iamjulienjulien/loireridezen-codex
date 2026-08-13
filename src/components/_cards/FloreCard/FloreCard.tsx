@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Flower2, Leaf, ShieldCheck } from "lucide-react";
 
-import LRZAccordion from "@/components/_ui/LRZAccordion/LRZAccordion";
-import LRZAnecdote from "@/components/_ui/LRZAnecdote/LRZAnecdote";
-import LRZBadge from "@/components/_ui/LRZBadge/LRZBadge";
+import LRZAccordion from "@/components/_ui/LRZAccordion";
+import LRZAnecdote from "@/components/_ui/LRZAnecdote";
+import LRZBadge from "@/components/_ui/LRZBadge";
 import LRZMetaList from "@/components/_ui/LRZMetaList";
 import { LRZStamp } from "@/components/_ui/LRZStamp";
 import { LRZTextClamp } from "@/components/_ui/LRZTextClamp";

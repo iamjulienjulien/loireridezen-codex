@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
-import LRZAccordion from "@/components/_ui/LRZAccordion/LRZAccordion";
+import LRZAccordion from "@/components/_ui/LRZAccordion";
 import { LRZStamp } from "@/components/_ui/LRZStamp";
 import { getCategoriePersonnage } from "@/registry/categories-personnages";
 import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";

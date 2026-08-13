@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 
 import PageShell from "@/components/_shells/PageShell";
-import LRZSection from "@/components/_ui/LRZSection/LRZSection";
+import { LRZSection } from "@/components/_ui/LRZSection";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { buildPageMetadata, SITE_URL } from "@/lib/site-metadata";
 import {

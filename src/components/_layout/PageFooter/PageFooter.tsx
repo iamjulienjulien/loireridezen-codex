@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 
-import LRZSeparateur from "@/components/_ui/LRZSeparateur/LRZSeparateur";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import type { LRZColor } from "@/types/lrz";
 

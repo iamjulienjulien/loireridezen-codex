@@ -25,7 +25,7 @@ import {
     Wheat,
 } from "lucide-react";
 
-import type { LRZBadgeVariant } from "@/components/_ui/LRZBadge/LRZBadge";
+import type { LRZBadgeVariant } from "@/components/_ui/LRZBadge";
 import {
     isGuinguetteAmbience,
     type GuinguetteAmbience,

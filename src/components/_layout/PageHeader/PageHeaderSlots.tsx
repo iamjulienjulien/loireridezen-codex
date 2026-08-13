@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 
-import LRZSymbol from "@/components/_ui/LRZSymbol/LRZSymbol";
+import LRZSymbol from "@/components/_ui/LRZSymbol";
 import { INDEX_UNIVERSES, type IndexEntry } from "@/registry/indexes";
 import { isLRZCodexIndexSymbolSlug } from "@/registry/symbols";
 

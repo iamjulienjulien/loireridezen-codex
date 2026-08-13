@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Castle, MapPin } from "lucide-react";
 
-import LRZBadge from "@/components/_ui/LRZBadge/LRZBadge";
+import LRZBadge from "@/components/_ui/LRZBadge";
 import {
     LRZCard,
     LRZCardContent,

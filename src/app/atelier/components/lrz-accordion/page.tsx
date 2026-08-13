@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import LRZAccordion, {
     type LRZAccordionProps,
-} from "@/components/_ui/LRZAccordion/LRZAccordion";
+} from "@/components/_ui/LRZAccordion";
 
 import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZAccordionPlayground from "./LRZAccordionPlayground";

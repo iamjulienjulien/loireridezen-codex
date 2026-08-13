@@ -1,6 +1,6 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
-import LRZAnecdote from "@/components/_ui/LRZAnecdote/LRZAnecdote";
+import LRZAnecdote from "@/components/_ui/LRZAnecdote";
 import { LRZ_COLOR_GROUPS } from "@/registry/colors";
 import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZAnecdotePlayground from "./LRZAnecdotePlayground";

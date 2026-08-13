@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import LRZSection, {
+import {
+    LRZSection,
     type LRZSectionAlign,
     type LRZSectionAsidePosition,
     type LRZSectionColumns,
@@ -13,7 +14,7 @@ import LRZSection, {
     type LRZSectionSpacing,
     type LRZSectionTone,
     type LRZSectionWidth,
-} from "@/components/_ui/LRZSection/LRZSection";
+} from "@/components/_ui/LRZSection";
 import { LRZ_COLOR_NAMES, LRZ_COLOR_VARIABLES } from "@/registry/colors";
 import type { LRZColor } from "@/types/lrz";
 import styles from "./LRZSectionPlayground.module.css";

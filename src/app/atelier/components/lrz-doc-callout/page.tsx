@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import LRZDocCallout, {
     type LRZDocCalloutVariant,
-} from "@/components/_ui/LRZDocCallout/LRZDocCallout";
-import LRZDocCodeBlock from "@/components/_ui/LRZDocCodeBlock/LRZDocCodeBlock";
+} from "@/components/_ui/LRZDocCallout";
+import LRZDocCodeBlock from "@/components/_ui/LRZDocCodeBlock";
 
 import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import DocMarkdownSyntax from "@/components/_atelier/DocMarkdownSyntax";

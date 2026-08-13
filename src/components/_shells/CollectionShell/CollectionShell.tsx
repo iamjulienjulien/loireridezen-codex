@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import CollectionOutro from "@/components/_collections/CollectionOutro/CollectionOutro";
+import CollectionOutro from "@/components/_collections/CollectionOutro";
 import PageHeader, {
     PageHeaderBreadcrumbs,
     PageHeaderIndexNavigation,

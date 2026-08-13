@@ -42,7 +42,7 @@ import {
     dispatchChateauxMapSync,
     type ChateauxMapSyncDetail,
 } from "@/components/_maps/chateaux/sync";
-import LRZSeparateur from "@/components/_ui/LRZSeparateur/LRZSeparateur";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 
 const FEATURED_COLLECTION_SLUG = "incontournables-du-val";
 const SECONDARY_COLLECTION_SLUGS = [

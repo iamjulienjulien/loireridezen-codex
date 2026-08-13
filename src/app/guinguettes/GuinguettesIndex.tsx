@@ -16,7 +16,7 @@ import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
 import { PageControls } from "@/components/_layout/PageControls";
 import { LRZSection } from "@/components/_ui/LRZSection";
-import LRZSeparateur from "@/components/_ui/LRZSeparateur/LRZSeparateur";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { TerritoireSection } from "@/components/TerritoireSection";
 import { getTerritoiresWithGuinguettes } from "@/registry/guinguettes-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";

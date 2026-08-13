@@ -1,7 +1,7 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
 
-import LRZDocCodeBlock from "@/components/_ui/LRZDocCodeBlock/LRZDocCodeBlock";
+import LRZDocCodeBlock from "@/components/_ui/LRZDocCodeBlock";
 
 import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import DocMarkdownSyntax from "@/components/_atelier/DocMarkdownSyntax";

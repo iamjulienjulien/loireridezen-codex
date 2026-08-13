@@ -1,8 +1,6 @@
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 import Link from "next/link";
-import LRZSection, {
-    type LRZSectionProps,
-} from "@/components/_ui/LRZSection/LRZSection";
+import { LRZSection, type LRZSectionProps } from "@/components/_ui/LRZSection";
 import ComponentsNavigation from "@/components/_atelier/ComponentsNavigation";
 import LRZSectionPlayground from "./LRZSectionPlayground";
 import styles from "./LRZSectionPlayground.module.css";

@@ -8,10 +8,10 @@ import type { Chateau } from "@/types/chateau";
 import type { Ambiance } from "@/registry/ambiances";
 
 import styles from "./ChateauCard.module.css";
-import LRZBadge from "@/components/_ui/LRZBadge/LRZBadge";
-import LRZAnecdote from "@/components/_ui/LRZAnecdote/LRZAnecdote";
+import LRZBadge from "@/components/_ui/LRZBadge";
+import LRZAnecdote from "@/components/_ui/LRZAnecdote";
 import { BookOpen, Castle, MapPin, MapPinned, Ticket } from "lucide-react";
-import LRZAccordion from "@/components/_ui/LRZAccordion/LRZAccordion";
+import LRZAccordion from "@/components/_ui/LRZAccordion";
 import LRZMetaList from "@/components/_ui/LRZMetaList";
 import LRZCard, { LRZCardMedia } from "@/components/_ui/LRZCard";
 import { LRZStamp } from "@/components/_ui/LRZStamp";

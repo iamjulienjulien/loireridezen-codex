@@ -16,11 +16,9 @@ import {
     Waves,
 } from "lucide-react";
 
-import LRZAccordion from "@/components/_ui/LRZAccordion/LRZAccordion";
-import LRZAnecdote from "@/components/_ui/LRZAnecdote/LRZAnecdote";
-import LRZBadge, {
-    type LRZBadgeIcon,
-} from "@/components/_ui/LRZBadge/LRZBadge";
+import LRZAccordion from "@/components/_ui/LRZAccordion";
+import LRZAnecdote from "@/components/_ui/LRZAnecdote";
+import LRZBadge, { type LRZBadgeIcon } from "@/components/_ui/LRZBadge";
 import LRZCard from "@/components/_ui/LRZCard";
 import LRZMetaList, {
     type LRZMetaListItem,
