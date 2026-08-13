@@ -164,7 +164,6 @@ export default function PatrimoineIndex({
                     {list.map((d) => (
                         <PatrimoineCard
                             key={d.slug}
-                            version={2}
                             d={d}
                             numero={numeros.get(d.slug) ?? 0}
                             open={openOverrides[d.slug] ?? expandAll}

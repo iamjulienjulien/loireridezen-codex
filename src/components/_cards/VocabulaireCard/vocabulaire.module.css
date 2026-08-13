@@ -233,9 +233,9 @@
 }
 
 /* ============================================================
-   VocabulaireCard v2 — esprit dictionnaire (--cat-accent)
+   VocabulaireCard — esprit dictionnaire (--cat-accent)
    ============================================================ */
-.entreeV2 {
+.entreeAccentuee {
     overflow: hidden;
     transition:
         transform 0.18s ease,
@@ -244,7 +244,7 @@
         opacity 0.4s ease;
 }
 /* Filet d'accent par catégorie, façon marge de dictionnaire */
-.entreeV2::before {
+.entreeAccentuee::before {
     content: "";
     position: absolute;
     left: 0;
@@ -254,7 +254,7 @@
     background: var(--cat-accent, var(--gold));
     opacity: 0.85;
 }
-.entreeV2:hover {
+.entreeAccentuee:hover {
     transform: translateY(-3px);
     border-color: color-mix(
         in srgb,
@@ -267,196 +267,8 @@
             color-mix(in srgb, var(--cat-accent, var(--gold)) 16%, transparent);
 }
 /* Initiale enluminée du terme */
-.termeV2::first-letter {
+.termeEnlumine::first-letter {
     font-size: 1.5em;
     font-weight: 600;
     color: var(--cat-accent, var(--gold));
-}
-
-/* ============================================================
-   VocabulaireCard v3 — fiche de dictionnaire complète (--cat-accent)
-   Base .entree ; initiale enluminée en avatar. Même style que Faune v3.
-   ============================================================ */
-.entreeV3 {
-    gap: 13px;
-    overflow: hidden;
-    transition:
-        transform 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        opacity 0.4s ease;
-}
-.entreeV3 .detailsBtn {
-    margin-top: 0;
-    padding: 0;
-}
-.entreeV3 .details {
-    margin-top: 0;
-}
-/* Étymologie ancrée en bas de la carte */
-.entreeV3 .anecdoteV3 {
-    margin-top: auto;
-}
-.entreeV3:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(
-        in srgb,
-        var(--cat-accent, var(--gold)) 50%,
-        transparent
-    );
-    box-shadow:
-        var(--shadow-card),
-        0 10px 24px
-            color-mix(in srgb, var(--cat-accent, var(--gold)) 16%, transparent);
-}
-.heroV3 {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px;
-    border-radius: 12px;
-    background: linear-gradient(
-        135deg,
-        color-mix(in srgb, var(--cat-accent, var(--gold)) 15%, transparent),
-        color-mix(in srgb, var(--cat-accent, var(--gold)) 4%, transparent)
-    );
-    border: 1px solid
-        color-mix(in srgb, var(--cat-accent, var(--gold)) 20%, transparent);
-}
-/* Initiale enluminée du terme, en avatar */
-.heroInitialeV3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: 52px;
-    height: 52px;
-    border-radius: 13px;
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 30px;
-    line-height: 1;
-    color: var(--cat-accent, var(--gold));
-    background: color-mix(
-        in srgb,
-        var(--cat-accent, var(--gold)) 13%,
-        transparent
-    );
-    border: 1px solid
-        color-mix(in srgb, var(--cat-accent, var(--gold)) 30%, transparent);
-}
-.heroTextV3 {
-    min-width: 0;
-    flex: 1;
-}
-.heroEyebrowV3 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    margin-bottom: 5px;
-}
-.heroCatV3 {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--color-ambiance-texte-tertiaire);
-}
-.heroCatV3::before {
-    content: "";
-    width: 5px;
-    height: 5px;
-    border-radius: 999px;
-    background: var(--cat-accent, var(--gold));
-}
-.heroNameV3 {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 20px;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-    color: var(--color-ambiance-texte-primaire);
-}
-.heroSciV3 {
-    font-family: var(--font-edit, var(--font-display));
-    font-style: italic;
-    font-size: 13px;
-    color: var(--color-ambiance-texte-secondaire);
-    margin-top: 2px;
-}
-.defV3 {
-    font-family: var(--font-body);
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: var(--color-ambiance-texte-primaire);
-}
-.statsV3 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-}
-.statV3 {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    padding: 8px 10px;
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    background: var(--bg-overlay);
-}
-.statKV3 {
-    font-family: var(--font-mono);
-    font-size: 8.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-ambiance-texte-tertiaire);
-}
-.statVV3 {
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.3;
-    color: var(--color-ambiance-texte-primaire);
-}
-.tagsV3 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-.tagV3 {
-    display: inline-flex;
-    align-items: center;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.02em;
-    padding: 4px 10px;
-    border: 1px solid var(--border-soft);
-    border-radius: 999px;
-    color: var(--color-ambiance-texte-secondaire);
-}
-.anecdoteV3 {
-    position: relative;
-    font-family: var(--font-edit, var(--font-display));
-    font-style: italic;
-    font-size: 13px;
-    line-height: 1.55;
-    color: var(--color-ambiance-texte-secondaire);
-    padding: 10px 12px;
-    border-left: 2px solid var(--cat-accent, var(--gold));
-    border-radius: 0 6px 6px 0;
-    background: color-mix(
-        in srgb,
-        var(--cat-accent, var(--gold)) 7%,
-        transparent
-    );
-}
-.anecdoteMarkV3 {
-    color: var(--cat-accent, var(--gold));
-    font-size: 15px;
-    font-style: normal;
-    margin-right: 5px;
 }

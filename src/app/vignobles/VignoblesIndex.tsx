@@ -137,7 +137,6 @@ export default function VignoblesIndex({
                     color={entry.color}
                 >
                     <VignoblesCard
-                        version={4}
                         d={openVignoble}
                         open={false}
                         onToggle={() => undefined}
@@ -243,7 +242,6 @@ export default function VignoblesIndex({
                         {list.map((d) => (
                             <VignoblesCard
                                 key={d.slug}
-                                version={4}
                                 d={d}
                                 open={openOverrides[d.slug] ?? expandAll}
                                 onToggle={() => toggleOne(d.slug)}

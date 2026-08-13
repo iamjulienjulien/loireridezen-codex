@@ -153,7 +153,6 @@ export default function VocabulaireIndex({
                     {list.map((d) => (
                         <VocabulaireCard
                             key={d.slug}
-                            version={2}
                             d={d}
                             open={openOverrides[d.slug] ?? expandAll}
                             onToggle={() => toggleOne(d.slug)}
