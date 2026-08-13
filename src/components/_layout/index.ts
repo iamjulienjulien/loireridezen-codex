@@ -2,6 +2,20 @@ export { default as AmbientPageFrame } from "./AmbientPageFrame";
 export { PageControls } from "./PageControls";
 export { PageFooter } from "./PageFooter";
 export {
+    AnalyticsConsentBanner,
+    AnalyticsConsentProvider,
+    AnalyticsPreferencesButton,
+    ConsentAwareGoogleTagManager,
+    useAnalyticsConsent,
+} from "./AnalyticsConsent";
+export type {
+    AnalyticsConsentProviderProps,
+    AnalyticsConsentValue,
+    AnalyticsPreferencesButtonProps,
+    ConsentAwareGoogleTagManagerProps,
+    StoredAnalyticsConsent,
+} from "./AnalyticsConsent";
+export {
     PageHeader,
     PageHeaderBreadcrumbs,
     PageHeaderIndexAvailability,
