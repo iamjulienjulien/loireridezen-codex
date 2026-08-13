@@ -440,10 +440,174 @@
 }
 
 .experienceGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.legacyExperienceGrid {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 1rem;
+}
+
+.visitSection {
+    display: grid;
+    gap: 8px;
+    min-width: 0;
+}
+
+.visitSection + .visitSection {
+    padding-top: 13px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.visitSectionHeading {
+    display: flex;
+    min-width: 0;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.visitSectionLabel,
+.visitSectionHint {
+    margin: 0;
+    font-family: var(--font-mono);
+    line-height: 1.3;
+}
+
+.visitSectionLabel {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-size: 9.5px;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.visitSectionHint {
+    overflow: hidden;
+    color: var(--color-ambiance-texte-secondaire);
+    font-size: 8.5px;
+    letter-spacing: 0.015em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nearbyList {
+    display: grid;
+    gap: 7px;
+}
+
+.nearbyLink {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    min-width: 0;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 9px;
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--color-patrimoine-brique) 18%,
+            var(--border-subtle)
+        );
+    border-radius: var(--radius-md);
+    background: color-mix(
+        in srgb,
+        var(--color-patrimoine-brique) 5%,
+        var(--color-ambiance-surface)
+    );
+    color: inherit;
+    text-decoration: none;
+    transition:
+        border-color 160ms ease,
+        background-color 160ms ease,
+        transform 160ms ease;
+}
+
+.nearbyLink:hover {
+    border-color: color-mix(
+        in srgb,
+        var(--color-patrimoine-brique) 42%,
+        transparent
+    );
+    background: color-mix(
+        in srgb,
+        var(--color-patrimoine-brique) 9%,
+        var(--color-ambiance-surface)
+    );
+    transform: translateY(-1px);
+}
+
+.nearbyLink:focus-visible {
+    outline: 2px solid var(--color-patrimoine-brique);
+    outline-offset: 2px;
+}
+
+.nearbySymbol {
+    flex: 0 0 auto;
+}
+
+.nearbyCopy {
+    display: grid;
+    min-width: 0;
+    gap: 2px;
+}
+
+.nearbyName {
+    overflow: hidden;
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-body);
+    font-size: 11.5px;
+    font-weight: 650;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nearbySubtitle {
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-edit, var(--font-display));
+    font-size: 10.5px;
+    font-style: italic;
+    line-height: 1.25;
+}
+
+.nearbyDetails {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 7.75px;
+    line-height: 1.3;
+}
+
+.nearbyReview {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    color: var(--color-orange-cuivre);
+}
+
+.nearbyReview svg {
+    width: 10px;
+    height: 10px;
+}
+
+.nearbyDistance {
+    align-self: start;
+    padding-top: 1px;
+    color: var(--color-patrimoine-brique);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
 }
 
 .fiche .accordionIcon {
@@ -834,6 +998,17 @@
 @container (min-width: 620px) {
     .infoGroups {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@container (max-width: 240px) {
+    .experienceGrid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .visitSectionHeading {
+        display: grid;
+        gap: 3px;
     }
 }
 

@@ -2,6 +2,7 @@
 
 import { useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 
@@ -11,7 +12,15 @@ import type { Ambiance } from "@/registry/ambiances";
 import styles from "./ChateauCard.module.css";
 import LRZBadge from "@/components/_ui/LRZBadge";
 import LRZAnecdote from "@/components/_ui/LRZAnecdote";
-import { BookOpen, Castle, MapPin, MapPinned, Ticket } from "lucide-react";
+import {
+    BookOpen,
+    Castle,
+    CircleHelp,
+    MapPin,
+    MapPinned,
+    Route,
+    Ticket,
+} from "lucide-react";
 import LRZAccordion from "@/components/_ui/LRZAccordion";
 import LRZMetaList from "@/components/_ui/LRZMetaList";
 import LRZCard, { LRZCardMedia } from "@/components/_ui/LRZCard";
@@ -28,6 +37,7 @@ import {
 import { Territoire } from "@/types/territoire";
 import type { PersonnageAvecRelationLieu } from "@/types/personnage";
 import type { NearbyGuinguette } from "@/lib/nearby-guinguettes";
+import { formatDistanceKm } from "@/lib/nearby-guinguettes";
 
 const CHATEAU_NAME_PREFIXES = [
     "Forteresse royale de",
@@ -148,12 +158,17 @@ export default function ChateauCard({
     d,
     t,
     personnages = [],
+    nearbyGuinguettes,
     onShowOnMap,
 }: ChateauCardProps) {
     const [ambiance] = useAmbiance();
     const illustration = getChateauIllustration(d, ambiance);
     const starField = useMemo(() => createStarField(d.slug), [d.slug]);
     const title = parseChateauName(d.nom);
+    const nearbyEnrichmentEnabled = nearbyGuinguettes !== undefined;
+    const nearbyMatches = nearbyGuinguettes ?? [];
+    const hasVisitAndSurroundings =
+        d.meta.experience.length > 0 || nearbyMatches.length > 0;
     const [openSection, setOpenSection] = useState<ChateauAccordionKey | null>(
         null,
     );
@@ -510,51 +525,208 @@ export default function ChateauCard({
                     </div>
                 </LRZAccordion>
 
-                <LRZAccordion
-                    title="Visite &amp; expériences"
-                    description={
-                        <LRZTextClamp
-                            as="span"
-                            lines={1}
-                            fixedHeight
-                            tooltip={false}
-                        >
-                            Accès et expériences
-                        </LRZTextClamp>
-                    }
-                    id="visite"
-                    icon={<Ticket className={styles.accordionIcon} />}
-                    open={openSection === "visit"}
-                    onOpenChange={(nextOpen) =>
-                        setSectionOpen("visit", nextOpen)
-                    }
-                    color={color}
-                    tone="surface"
-                    fullWidth
-                    headingLevel={4}
-                    size="sm"
-                    animated
-                >
-                    <div className={styles.visitPanel}>
-                        {d.meta.experience.length > 0 ? (
-                            <div className={styles.experienceGrid}>
-                                {d.meta.experience.map((experience) => (
-                                    <LRZSymbol
-                                        key={experience}
-                                        collection="common"
-                                        meta="experience"
-                                        slug={experience}
-                                        frame="solid"
-                                        size={65}
-                                        tooltip
-                                    />
-                                ))}
-                            </div>
-                        ) : null}
-                    </div>
-                </LRZAccordion>
+                {!nearbyEnrichmentEnabled || hasVisitAndSurroundings ? (
+                    <LRZAccordion
+                        title={
+                            nearbyEnrichmentEnabled
+                                ? "Visite & alentours"
+                                : "Visite & expériences"
+                        }
+                        description={
+                            <LRZTextClamp
+                                as="span"
+                                lines={1}
+                                fixedHeight
+                                tooltip={false}
+                            >
+                                {nearbyEnrichmentEnabled
+                                    ? "Expériences au château et guinguettes à proximité"
+                                    : "Accès et expériences"}
+                            </LRZTextClamp>
+                        }
+                        id="visite"
+                        icon={
+                            nearbyEnrichmentEnabled ? (
+                                <Route className={styles.accordionIcon} />
+                            ) : (
+                                <Ticket className={styles.accordionIcon} />
+                            )
+                        }
+                        open={openSection === "visit"}
+                        onOpenChange={(nextOpen) =>
+                            setSectionOpen("visit", nextOpen)
+                        }
+                        color={color}
+                        tone="surface"
+                        fullWidth
+                        headingLevel={4}
+                        size="sm"
+                        animated
+                    >
+                        <div className={styles.visitPanel}>
+                            {nearbyEnrichmentEnabled ? (
+                                <>
+                                    {d.meta.experience.length > 0 ? (
+                                        <section
+                                            className={styles.visitSection}
+                                            aria-labelledby={`experiences-${d.slug}`}
+                                        >
+                                            <p
+                                                id={`experiences-${d.slug}`}
+                                                className={
+                                                    styles.visitSectionLabel
+                                                }
+                                            >
+                                                Expériences
+                                            </p>
+                                            <div
+                                                className={
+                                                    styles.experienceGrid
+                                                }
+                                            >
+                                                {d.meta.experience.map(
+                                                    (experience) => (
+                                                        <LRZStamp
+                                                            key={experience}
+                                                            collection="common"
+                                                            meta="experience"
+                                                            slug={experience}
+                                                            variant="badge"
+                                                            tone="ghost"
+                                                            size="md"
+                                                            font="body"
+                                                            labelSize="xs"
+                                                            padding="xs"
+                                                            gap="sm"
+                                                            symbolFrame="subtle"
+                                                            symbolShape="rounded"
+                                                            symbolScale={1}
+                                                            gradient={false}
+                                                            fullWidth
+                                                        />
+                                                    ),
+                                                )}
+                                            </div>
+                                        </section>
+                                    ) : null}
+
+                                    {nearbyMatches.length > 0 ? (
+                                        <section
+                                            className={styles.visitSection}
+                                            aria-labelledby={`nearby-guinguettes-${d.slug}`}
+                                        >
+                                            <div
+                                                className={
+                                                    styles.visitSectionHeading
+                                                }
+                                            >
+                                                <p
+                                                    id={`nearby-guinguettes-${d.slug}`}
+                                                    className={
+                                                        styles.visitSectionLabel
+                                                    }
+                                                >
+                                                    Après la visite
+                                                </p>
+                                                <span
+                                                    className={
+                                                        styles.visitSectionHint
+                                                    }
+                                                >
+                                                    Guinguettes à proximité
+                                                </span>
+                                            </div>
+                                            <NearbyGuinguetteList
+                                                matches={nearbyMatches}
+                                            />
+                                        </section>
+                                    ) : null}
+                                </>
+                            ) : d.meta.experience.length > 0 ? (
+                                <div className={styles.legacyExperienceGrid}>
+                                    {d.meta.experience.map((experience) => (
+                                        <LRZSymbol
+                                            key={experience}
+                                            collection="common"
+                                            meta="experience"
+                                            slug={experience}
+                                            frame="solid"
+                                            size={65}
+                                            tooltip
+                                        />
+                                    ))}
+                                </div>
+                            ) : null}
+                        </div>
+                    </LRZAccordion>
+                ) : null}
             </div>
         </LRZCard>
+    );
+}
+
+function NearbyGuinguetteList({
+    matches,
+}: {
+    matches: readonly NearbyGuinguette[];
+}) {
+    return (
+        <div className={styles.nearbyList}>
+            {matches.map(({ guinguette, distanceKm }) => {
+                const distance = formatDistanceKm(distanceKm);
+
+                return (
+                    <Link
+                        key={guinguette.slug}
+                        href={`/guinguette/${guinguette.slug}`}
+                        className={styles.nearbyLink}
+                        aria-label={`${guinguette.nom}, à ${distance} du château`}
+                    >
+                        <LRZSymbol
+                            collection="codex"
+                            meta="index"
+                            slug="guinguettes"
+                            size={34}
+                            frame="subtle"
+                            shape="rounded"
+                            padding="xs"
+                            decorative
+                            className={styles.nearbySymbol}
+                        />
+                        <span className={styles.nearbyCopy}>
+                            <strong className={styles.nearbyName}>
+                                {guinguette.nom}
+                            </strong>
+                            {guinguette.sousTitre ? (
+                                <LRZTextClamp
+                                    as="span"
+                                    className={styles.nearbySubtitle}
+                                    lines={1}
+                                    fixedHeight
+                                    tooltip={false}
+                                >
+                                    {guinguette.sousTitre}
+                                </LRZTextClamp>
+                            ) : null}
+                            <span className={styles.nearbyDetails}>
+                                {guinguette.periode ? (
+                                    <span>{guinguette.periode}</span>
+                                ) : null}
+                                {guinguette.statut === "a_verifier" ? (
+                                    <span className={styles.nearbyReview}>
+                                        <CircleHelp aria-hidden="true" />
+                                        Informations à vérifier
+                                    </span>
+                                ) : null}
+                            </span>
+                        </span>
+                        <strong className={styles.nearbyDistance}>
+                            {distance}
+                        </strong>
+                    </Link>
+                );
+            })}
+        </div>
     );
 }
 
