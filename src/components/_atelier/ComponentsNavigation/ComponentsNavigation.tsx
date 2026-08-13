@@ -139,6 +139,21 @@ const SECTIONS = [
                 "PersonnageCard",
                 "/atelier/metier#personnage-card",
             ],
+            [
+                "patrimoine-card",
+                "PatrimoineCard",
+                "/atelier/metier#patrimoine-card",
+            ],
+            [
+                "ville-village-card",
+                "VilleVillageCard",
+                "/atelier/metier#ville-village-card",
+            ],
+            [
+                "vocabulaire-card",
+                "VocabulaireCard",
+                "/atelier/metier#vocabulaire-card",
+            ],
         ],
     },
     {

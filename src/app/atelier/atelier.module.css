@@ -172,6 +172,13 @@
     line-height: 0.95;
 }
 
+.showcaseTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
 .showcaseHeader span {
     color: var(--color-ambiance-texte-secondaire);
     line-height: 1.55;
