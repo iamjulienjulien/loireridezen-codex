@@ -70,6 +70,7 @@ describe("ChateauxCard nearby Guinguettes contract", () => {
         expect(markup).toContain(reviewGuinguette.nom);
         expect(markup).toContain("650 m");
         expect(markup.match(/href="\/guinguette\//g)).toHaveLength(3);
+        expect(markup).toContain(`?retour=%2Fchateau%2F${CHATEAU.slug}`);
 
         if (reviewGuinguette.statut === "a_verifier") {
             expect(markup).toContain("Informations à vérifier");

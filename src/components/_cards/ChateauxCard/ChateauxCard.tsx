@@ -638,6 +638,7 @@ export default function ChateauCard({
                                             </div>
                                             <NearbyGuinguetteList
                                                 matches={nearbyMatches}
+                                                returnTo={`/chateau/${d.slug}`}
                                             />
                                         </section>
                                     ) : null}
@@ -667,8 +668,10 @@ export default function ChateauCard({
 
 function NearbyGuinguetteList({
     matches,
+    returnTo,
 }: {
     matches: readonly NearbyGuinguette[];
+    returnTo: `/chateau/${string}`;
 }) {
     return (
         <div className={styles.nearbyList}>
@@ -678,7 +681,7 @@ function NearbyGuinguetteList({
                 return (
                     <Link
                         key={guinguette.slug}
-                        href={`/guinguette/${guinguette.slug}`}
+                        href={`/guinguette/${guinguette.slug}?retour=${encodeURIComponent(returnTo)}`}
                         className={styles.nearbyLink}
                         aria-label={`${guinguette.nom}, à ${distance} du château`}
                     >
