@@ -27,6 +27,7 @@ import {
 } from "@/registry/categories-personnages";
 import { Territoire } from "@/types/territoire";
 import type { PersonnageAvecRelationLieu } from "@/types/personnage";
+import type { NearbyGuinguette } from "@/lib/nearby-guinguettes";
 
 const CHATEAU_NAME_PREFIXES = [
     "Forteresse royale de",
@@ -126,6 +127,7 @@ export type ChateauCardProps = {
     d: Chateau;
     t?: Territoire;
     personnages?: readonly PersonnageAvecRelationLieu[];
+    nearbyGuinguettes?: readonly NearbyGuinguette[];
     onShowOnMap?: (slug: string) => void;
 };
 

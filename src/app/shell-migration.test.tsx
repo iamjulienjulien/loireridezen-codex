@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import type { ComponentProps, ReactElement } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { AtelierShellProps } from "@/components/_shells/AtelierShell";
@@ -54,12 +54,36 @@ describe("pilot shell migration", () => {
 
     it("keeps the Châteaux catalogue client inside IndexShell", () => {
         const route = ChateauxRoute() as ReactElement<IndexShellProps>;
-        const catalogue = route.props.children as ReactElement;
+        const catalogue = route.props.children as ReactElement<
+            ComponentProps<typeof ChateauxIndex>
+        >;
 
         expect(route.type).toBe(IndexShell);
         expect(route.props.page.href).toBe("/chateaux");
         expect(route.props.totalEntries).toBeGreaterThan(0);
         expect(catalogue.type).toBe(ChateauxIndex);
+        expect(catalogue.props.nearbyGuinguettesByChateau).toBeDefined();
+        expect(
+            Object.values(
+                catalogue.props.nearbyGuinguettesByChateau ?? {},
+            ).some((matches) => matches.length > 0),
+        ).toBe(true);
+        expect(
+            Object.values(
+                catalogue.props.nearbyGuinguettesByChateau ?? {},
+            ).every((matches) => matches.length <= 3),
+        ).toBe(true);
+    });
+
+    it("keeps nearby Guinguettes out of the production catalogue", () => {
+        vi.stubEnv("CURRENT_ENV", "production");
+
+        const route = ChateauxRoute() as ReactElement<IndexShellProps>;
+        const catalogue = route.props.children as ReactElement<
+            ComponentProps<typeof ChateauxIndex>
+        >;
+
+        expect(catalogue.props.nearbyGuinguettesByChateau).toBeUndefined();
     });
 
     it.each(REMAINING_INDEX_ROUTES)(

@@ -6,6 +6,7 @@ import { MapPin, Waves } from "lucide-react";
 import type { Territoire } from "@/types/territoire";
 import type { PersonnagesParLieu } from "@/types/personnage";
 import type { Guinguette } from "@/types/guinguette";
+import type { NearbyGuinguettesByChateau } from "@/lib/nearby-guinguettes";
 
 import ChateauxCard from "@/components/_cards/ChateauxCard";
 import GuinguetteCard from "@/components/_cards/GuinguetteCard";
@@ -28,6 +29,7 @@ type TerritoireSectionProps = {
     chateaux?: readonly Chateau[];
     guinguettes?: readonly Guinguette[];
     personnagesByChateau?: PersonnagesParLieu;
+    nearbyGuinguettesByChateau?: NearbyGuinguettesByChateau;
     /** Ajoute un repère DOM pour la synchronisation expérimentale de carte. */
     mapSync?: boolean;
     onShowOnMap?: (slug: string) => void;
@@ -38,6 +40,7 @@ export default function TerritoireSection({
     chateaux,
     guinguettes,
     personnagesByChateau,
+    nearbyGuinguettesByChateau,
     mapSync = false,
     onShowOnMap,
 }: TerritoireSectionProps) {
@@ -193,6 +196,9 @@ export default function TerritoireSection({
                                   t={territory}
                                   personnages={
                                       personnagesByChateau?.[chateau.slug] ?? []
+                                  }
+                                  nearbyGuinguettes={
+                                      nearbyGuinguettesByChateau?.[chateau.slug]
                                   }
                                   onShowOnMap={onShowOnMap}
                               />

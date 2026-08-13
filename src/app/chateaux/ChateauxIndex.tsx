@@ -15,6 +15,7 @@ import { LayoutGrid, Map as MapIcon, MapPinned } from "lucide-react";
 import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
 import type { PersonnagesParLieu } from "@/types/personnage";
+import type { NearbyGuinguettesByChateau } from "@/lib/nearby-guinguettes";
 
 import { getCollectionsByIndexForEnv } from "@/registry/collections";
 
@@ -76,6 +77,7 @@ type ChateauxIndexProps = {
     chateaux: Chateau[];
     indexes: readonly IndexEntry[];
     personnagesByChateau: PersonnagesParLieu;
+    nearbyGuinguettesByChateau?: NearbyGuinguettesByChateau;
     initialOpenSlug?: string;
 };
 
@@ -83,6 +85,7 @@ export default function ChateauxIndex({
     chateaux,
     indexes,
     personnagesByChateau,
+    nearbyGuinguettesByChateau,
     initialOpenSlug,
 }: ChateauxIndexProps) {
     const entry = getIndex("/chateaux")!;
@@ -436,6 +439,7 @@ export default function ChateauxIndex({
                         territory={territory}
                         chateaux={chateaux}
                         personnagesByChateau={personnagesByChateau}
+                        nearbyGuinguettesByChateau={nearbyGuinguettesByChateau}
                         mapSync
                         onShowOnMap={showChateauOnMap}
                     />
@@ -454,6 +458,9 @@ export default function ChateauxIndex({
                             d={castle}
                             personnages={
                                 personnagesByChateau[castle.slug] ?? []
+                            }
+                            nearbyGuinguettes={
+                                nearbyGuinguettesByChateau?.[castle.slug]
                             }
                             onShowOnMap={showChateauOnMap}
                         />
@@ -525,6 +532,9 @@ export default function ChateauxIndex({
                         d={openChateau}
                         personnages={
                             personnagesByChateau[openChateau.slug] ?? []
+                        }
+                        nearbyGuinguettes={
+                            nearbyGuinguettesByChateau?.[openChateau.slug]
                         }
                         onShowOnMap={showChateauOnMap}
                     />

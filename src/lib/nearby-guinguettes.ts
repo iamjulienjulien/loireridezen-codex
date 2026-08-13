@@ -16,6 +16,10 @@ export type NearbyGuinguette = {
     distanceKm: number;
 };
 
+export type NearbyGuinguettesByChateau = Readonly<
+    Record<string, readonly NearbyGuinguette[]>
+>;
+
 export type NearbyGuinguettesOptions = {
     radiusKm?: number;
     limit?: number;
