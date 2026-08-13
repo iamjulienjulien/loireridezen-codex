@@ -12,6 +12,7 @@ import { PageControls } from "@/components/_layout/PageControls";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FloreCard from "@/components/_cards/FloreCard";
 import styles from "@/components/_cards/FloreCard/flore.module.css";
@@ -106,7 +107,16 @@ export default function FloreIndex({
                                           .nomCommun,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "flore",
+                                entry_slug: id,
+                                previous_entry_slug: openFlore.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/flore/${id}`);
                         },

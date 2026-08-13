@@ -12,6 +12,7 @@ import { PageControls } from "@/components/_layout/PageControls";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FauneCard from "@/components/_cards/FauneCard";
 import styles from "@/components/_cards/FauneCard/faune.module.css";
@@ -110,7 +111,16 @@ export default function FauneIndex({
                                           .nomCommun,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "faune",
+                                entry_slug: id,
+                                previous_entry_slug: openEspece.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/faune/${id}`);
                         },

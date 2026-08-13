@@ -28,18 +28,61 @@ export type LRZCardDialogItem = {
     label: string;
 };
 
+export type LRZCardDialogNavigationDirection = "previous" | "next";
+
+export type LRZCardDialogNavigationMode = "button" | "keyboard" | "swipe";
+
+export type LRZCardDialogNavigationContext = {
+    direction: LRZCardDialogNavigationDirection;
+    interactionMode: LRZCardDialogNavigationMode;
+    position: number;
+    total: number;
+};
+
 export type LRZCardDialogNavigation = {
     /** Élément précédent dans l’ordre éditorial de l’index. */
     previous?: LRZCardDialogItem;
     /** Élément suivant dans l’ordre éditorial de l’index. */
     next?: LRZCardDialogItem;
     /** Position courante dans l’index, à partir de 1. */
-    position?: number;
+    position: number;
     /** Nombre total d’éléments navigables dans l’index. */
-    total?: number;
+    total: number;
     /** Met à jour l’élément ouvert et son URL profonde. */
-    onNavigate: (item: LRZCardDialogItem) => void;
+    onNavigate: (
+        item: LRZCardDialogItem,
+        context: LRZCardDialogNavigationContext,
+    ) => void;
 };
+
+export function resolveLRZCardDialogNavigation(
+    navigation: LRZCardDialogNavigation,
+    direction: LRZCardDialogNavigationDirection,
+    interactionMode: LRZCardDialogNavigationMode,
+) {
+    const item = navigation[direction];
+    const position = navigation.position + (direction === "previous" ? -1 : 1);
+
+    if (
+        !item ||
+        !Number.isInteger(position) ||
+        !Number.isInteger(navigation.total) ||
+        position < 1 ||
+        position > navigation.total
+    ) {
+        return null;
+    }
+
+    return {
+        item,
+        context: {
+            direction,
+            interactionMode,
+            position,
+            total: navigation.total,
+        } satisfies LRZCardDialogNavigationContext,
+    };
+}
 
 export type LRZCardDialogShare = {
     /** URL canonique et partageable de l’élément. */
@@ -174,6 +217,7 @@ export default function LRZCardDialog({
         y: number;
         pointerId: number;
     } | null>(null);
+    const navigationLocked = useRef(false);
     const [shareStatus, setShareStatus] = useState("");
     const [transition, setTransition] = useState<{
         direction: "previous" | "next";
@@ -183,18 +227,29 @@ export default function LRZCardDialog({
         "previous" | "next" | null
     >(null);
 
-    const navigate = (direction: "previous" | "next") => {
-        const target = navigation?.[direction];
+    const navigate = (
+        direction: LRZCardDialogNavigationDirection,
+        interactionMode: LRZCardDialogNavigationMode,
+    ) => {
+        const resolved = navigation
+            ? resolveLRZCardDialogNavigation(
+                  navigation,
+                  direction,
+                  interactionMode,
+              )
+            : null;
 
-        if (!target || transition) {
+        if (!resolved || navigationLocked.current) {
             return;
         }
 
+        navigationLocked.current = true;
         setTransition({ direction, itemId: item.id });
         window.setTimeout(() => {
-            navigation.onNavigate(target);
+            navigation?.onNavigate(resolved.item, resolved.context);
             setTransition(null);
             setCardEntryAnimation(direction);
+            navigationLocked.current = false;
             window.setTimeout(() => {
                 setCardEntryAnimation(null);
             }, CARD_ENTRY_TRANSITION_DURATION);
@@ -261,12 +316,12 @@ export default function LRZCardDialog({
 
                     if (event.key === "ArrowLeft" && navigation?.previous) {
                         event.preventDefault();
-                        navigate("previous");
+                        navigate("previous", "keyboard");
                     }
 
                     if (event.key === "ArrowRight" && navigation?.next) {
                         event.preventDefault();
-                        navigate("next");
+                        navigate("next", "keyboard");
                     }
                 }}
             >
@@ -316,7 +371,7 @@ export default function LRZCardDialog({
                             return;
                         }
 
-                        navigate(distanceX > 0 ? "previous" : "next");
+                        navigate(distanceX > 0 ? "previous" : "next", "swipe");
                     }}
                     onPointerCancel={() => {
                         swipeStart.current = null;
@@ -401,7 +456,9 @@ export default function LRZCardDialog({
                                     <button
                                         className={styles.navigationButton}
                                         type="button"
-                                        onClick={() => navigate("previous")}
+                                        onClick={() =>
+                                            navigate("previous", "button")
+                                        }
                                         disabled={
                                             !navigation.previous ||
                                             Boolean(transition)
@@ -437,7 +494,9 @@ export default function LRZCardDialog({
                                     <button
                                         className={styles.navigationButton}
                                         type="button"
-                                        onClick={() => navigate("next")}
+                                        onClick={() =>
+                                            navigate("next", "button")
+                                        }
                                         disabled={
                                             !navigation.next ||
                                             Boolean(transition)

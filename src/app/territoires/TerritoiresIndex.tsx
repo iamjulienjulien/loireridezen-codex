@@ -11,6 +11,7 @@ import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { TerritoireSlug } from "@/registry/territoires";
@@ -94,7 +95,16 @@ export default function TerritoiresIndex({
                                       ].nom,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "territoires",
+                                entry_slug: id,
+                                previous_entry_slug: openTerritoire.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/territoire/${id}`);
                         },

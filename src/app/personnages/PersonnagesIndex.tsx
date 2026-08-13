@@ -11,6 +11,7 @@ import { PageControls } from "@/components/_layout/PageControls";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";
 
@@ -106,7 +107,16 @@ export default function PersonnagesIndex({
                                           .personnage.nom,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "personnages",
+                                entry_slug: id,
+                                previous_entry_slug: openEntry.personnage.id,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/personnage/${id}`);
                         },

@@ -13,6 +13,7 @@ import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { PageControls } from "@/components/_layout/PageControls";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import VignoblesCard from "@/components/_cards/VignoblesCard";
 import styles from "@/components/_cards/VignoblesCard/vignobles.module.css";
@@ -125,7 +126,16 @@ export default function VignoblesIndex({
                                           .nom,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "vignobles",
+                                entry_slug: id,
+                                previous_entry_slug: openVignoble.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/vignoble/${id}`);
                         },

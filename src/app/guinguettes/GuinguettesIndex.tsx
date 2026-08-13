@@ -15,6 +15,7 @@ import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTrackin
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { PageControls } from "@/components/_layout/PageControls";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
@@ -317,7 +318,16 @@ export default function GuinguettesIndex({
                                       ].nom,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "guinguettes",
+                                entry_slug: id,
+                                previous_entry_slug: openGuinguette.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/guinguette/${id}`);
                         },
