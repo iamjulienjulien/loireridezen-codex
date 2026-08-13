@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { CSSProperties } from "react";
+import { TrackedIndexLink } from "@/components/_layout/AnalyticsTracking";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { INDEX_UNIVERSES, type IndexEntry } from "@/registry/indexes";
 import { isLRZCodexIndexSymbolSlug } from "@/registry/symbols";
@@ -51,8 +51,10 @@ function HomeIndexLink({ entry }: { entry: IndexEntry }) {
     const isPreview = !entry.env.includes("production");
 
     return (
-        <Link
+        <TrackedIndexLink
             href={entry.href}
+            indexSlug={entry.slug}
+            source="home"
             data-index-format={entry.format}
             data-index-availability={isPreview ? "preview" : "published"}
             style={
@@ -106,6 +108,6 @@ function HomeIndexLink({ entry }: { entry: IndexEntry }) {
             >
                 →
             </span>
-        </Link>
+        </TrackedIndexLink>
     );
 }

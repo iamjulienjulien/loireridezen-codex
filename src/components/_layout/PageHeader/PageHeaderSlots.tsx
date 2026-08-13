@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 
+import { TrackedIndexLink } from "@/components/_layout/AnalyticsTracking";
 import LRZSymbol from "@/components/_ui/LRZSymbol";
 import { INDEX_UNIVERSES, type IndexEntry } from "@/registry/indexes";
 import { isLRZCodexIndexSymbolSlug } from "@/registry/symbols";
@@ -99,9 +100,12 @@ export function PageHeaderIndexNavigation({
                 const isPreview = !index.env.includes("production");
 
                 return (
-                    <Link
+                    <TrackedIndexLink
                         key={index.href}
                         href={index.href}
+                        indexSlug={index.slug}
+                        source="page_header"
+                        trackingEnabled={!isCurrentPage}
                         className={styles.indexNavButton}
                         style={{ "--accent": index.accent } as CSSProperties}
                         aria-current={isCurrentPage ? "page" : undefined}
@@ -128,7 +132,7 @@ export function PageHeaderIndexNavigation({
                         <span className={styles.indexNavText}>
                             {index.label}
                         </span>
-                    </Link>
+                    </TrackedIndexLink>
                 );
             })}
         </nav>

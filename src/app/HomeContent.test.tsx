@@ -22,6 +22,10 @@ describe("HomeContent", () => {
         expect(markup).toContain("Le fleuve raconté");
         expect(markup).toContain('data-index-format="catalogue"');
         expect(markup).toContain('data-index-format="naturaliste"');
+        expect(markup.match(/data-analytics-event="index_open"/g)).toHaveLength(
+            7,
+        );
+        expect(markup).toContain('data-analytics-source="home"');
     });
 
     it("keeps each index attached to its editorial universe and format", () => {

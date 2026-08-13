@@ -15,6 +15,8 @@ export type {
     ConsentAwareGoogleTagManagerProps,
     StoredAnalyticsConsent,
 } from "./AnalyticsConsent";
+export { TrackedIndexLink } from "./AnalyticsTracking";
+export type { TrackedIndexLinkProps } from "./AnalyticsTracking";
 export {
     PageHeader,
     PageHeaderBreadcrumbs,
