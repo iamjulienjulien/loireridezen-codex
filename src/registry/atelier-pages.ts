@@ -101,6 +101,11 @@ export const ATELIER_PAGE_DEFINITIONS = [
         "Variantes du composant de statut partagé par les index du Codex Ligérien.",
     ),
     defineAtelierPage(
+        "/atelier/components/lrz-banner",
+        "LRZBanner",
+        "Bannières contextuelles et persistantes du design system Loire Ride Zen.",
+    ),
+    defineAtelierPage(
         "/atelier/components/lrz-button",
         "LRZButton",
         "Bouton accessible et coloré du design system Loire Ride Zen.",

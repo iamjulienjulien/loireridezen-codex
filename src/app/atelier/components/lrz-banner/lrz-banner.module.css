@@ -1,0 +1,202 @@
+.wrap {
+    display: grid;
+    width: min(100%, 1040px);
+    gap: clamp(3rem, 8vw, 6rem);
+    margin-inline: auto;
+    padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+}
+
+.header,
+.section,
+.sectionHeader {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.back {
+    width: fit-content;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-decoration: none;
+}
+
+.eyebrow,
+.kicker {
+    margin: 0;
+    color: var(--color-ocre);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.title,
+.sectionHeader h2 {
+    margin: 0;
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-display);
+    font-weight: 520;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+}
+
+.title {
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+}
+
+.sectionHeader h2 {
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+}
+
+.lede,
+.sectionHeader > p:last-child {
+    max-width: 46rem;
+    margin: 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-body);
+    line-height: 1.7;
+}
+
+.examples {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+.stage {
+    display: grid;
+    min-height: 24rem;
+    margin-top: 1rem;
+    padding: clamp(1rem, 5vw, 3rem);
+    align-content: end;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background:
+        linear-gradient(var(--border-subtle) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px),
+        var(--color-ambiance-fond);
+    background-size: 28px 28px;
+}
+
+.code {
+    max-width: 100%;
+    margin: 0;
+    padding: 1.2rem;
+    overflow: auto;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-surface);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.65;
+}
+
+.guidance {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.guidance p {
+    margin: 0;
+    padding: 1.2rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    color: var(--color-ambiance-texte-secondaire);
+    background: var(--color-ambiance-surface);
+    line-height: 1.65;
+}
+
+.guidance strong {
+    color: var(--color-ambiance-texte-primaire);
+}
+
+.props {
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-lg);
+    background: var(--color-ambiance-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.propsHeader {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.propsHeader h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 3vw, 2rem);
+    font-weight: 540;
+}
+
+.propsHeader > p:last-child {
+    margin: 0.55rem 0 0;
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.tableScroll {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.tableScroll table {
+    width: 100%;
+    min-width: 58rem;
+    border-collapse: collapse;
+}
+
+.tableScroll th,
+.tableScroll td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--color-ambiance-texte-secondaire);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tableScroll thead th {
+    color: var(--color-ambiance-texte-tertiaire);
+    background: var(--bg-overlay);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tableScroll tbody th {
+    color: var(--color-ambiance-texte-primaire);
+    font-weight: 500;
+}
+
+.tableScroll code {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.tableScroll tr:last-child th,
+.tableScroll tr:last-child td {
+    border-bottom: 0;
+}
+
+@media (max-width: 640px) {
+    .guidance {
+        grid-template-columns: 1fr;
+    }
+
+    .stage {
+        min-height: 30rem;
+        padding: 0.75rem;
+    }
+}
