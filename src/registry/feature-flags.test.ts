@@ -29,6 +29,15 @@ describe("feature flags registry", () => {
         expect(featureIsEnabled("collections", "production")).toBe(
             collectionEnvironments.includes("production"),
         );
+        expect(featureIsEnabled("collections", "staging")).toBe(
+            collectionEnvironments.includes("staging"),
+        );
+    });
+
+    it("enables the V1.2 prototype outside production", () => {
+        expect(featureIsEnabled("followTheThread", "development")).toBe(true);
+        expect(featureIsEnabled("followTheThread", "staging")).toBe(true);
+        expect(featureIsEnabled("followTheThread", "production")).toBe(false);
     });
 
     it("only keeps flags that still represent optional products", () => {
@@ -36,6 +45,7 @@ describe("feature flags registry", () => {
             "atelier",
             "collections",
             "commandPalette",
+            "followTheThread",
         ]);
     });
 

@@ -24,6 +24,7 @@ export const FEATURE_FLAGS = defineFeatureFlags({
     atelier: ["development"],
     collections: [],
     commandPalette: ["development"],
+    followTheThread: ["development", "staging"],
 });
 
 export type FeatureFlagName = keyof typeof FEATURE_FLAGS;
