@@ -93,7 +93,8 @@ pnpm dev
 ```
 
 Le site est alors disponible sur
-[http://localhost:3000](http://localhost:3000).
+[https://loireridezen-codex.test/](https://loireridezen-codex.test/), ou sur
+[http://localhost:3000](http://localhost:3000) sans domaine local configuré.
 
 `pnpm env:development` copie `.env.development` vers `.env.local`. Pour une
 configuration manuelle, pars de `.env.example` :
@@ -111,11 +112,11 @@ construire les URL publiques de l’API. Ne commite jamais `.env.local`.
 Le nouveau cycle du Codex s’organise autour de trois environnements. Chacun a
 un rôle clair : construire, éprouver, puis publier.
 
-| Environnement | Rôle                                                                        | Code et configuration                                      |
-| ------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `development` | Le chantier local : données de travail, Atelier et fonctionnalités en cours | Code d’une branche de travail, configuration `development` |
-| `preview`     | La répétition générale : version déployée et partageable du prochain lot    | Code de `dev`, configuration `production`                  |
-| `production`  | Le Codex public : version stable, indexable et surveillée                   | Code de `main`, configuration `production`                 |
+| Environnement | URL                                                                         | Rôle                                                                        | Code et configuration                                      |
+| ------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `development` | [loireridezen-codex.test](https://loireridezen-codex.test/)                 | Le chantier local : données de travail, Atelier et fonctionnalités en cours | Code d’une branche de travail, configuration `development` |
+| `preview`     | [preview-codex.loireridezen.bike](https://preview-codex.loireridezen.bike/) | La répétition générale : version déployée et partageable du prochain lot    | Code de `dev`, configuration `production`                  |
+| `production`  | [codex.loireridezen.bike](https://codex.loireridezen.bike/)                 | Le Codex public : version stable, indexable et surveillée                   | Code de `main`, configuration `production`                 |
 
 Le passage en `preview` n’est pas une simple compilation intermédiaire. C’est
 l’endroit où le lot est relu dans son ensemble : contenu, navigation,
@@ -357,6 +358,7 @@ La documentation complète se trouve dans
 | `pnpm format`              | Formate le dépôt avec Prettier                   |
 | `pnpm format:check`        | Vérifie le formatage                             |
 | `pnpm exec tsc --noEmit`   | Vérifie les types TypeScript                     |
+| `pnpm check`               | Exécute la quality gate complète                 |
 | `pnpm api:data:check`      | Contrôle la qualité éditoriale                   |
 | `pnpm api:docs:check`      | Vérifie la documentation développeur             |
 | `pnpm api:lint`            | Valide le contrat OpenAPI                        |
