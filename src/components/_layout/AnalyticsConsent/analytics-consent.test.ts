@@ -102,7 +102,11 @@ describe("analytics consent storage", () => {
 
         grantAnalyticsConsent();
 
-        expect(dataLayer).toEqual([
+        const commands = dataLayer.map((command) =>
+            Array.from(command as ArrayLike<unknown>),
+        );
+
+        expect(commands).toEqual([
             [
                 "consent",
                 "default",

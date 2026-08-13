@@ -107,7 +107,11 @@ function pushConsentCommand(command: DataLayerCommand) {
     window.dataLayer = window.dataLayer ?? [];
 
     const gtag = function (...args: DataLayerCommand) {
-        window.dataLayer?.push(args);
+        void args;
+        // GTM reconnaît les commandes de consentement sous la forme exacte
+        // produite par gtag(), c’est-à-dire un objet `arguments` array-like.
+        // eslint-disable-next-line prefer-rest-params
+        window.dataLayer?.push(arguments);
     };
 
     gtag(...command);
