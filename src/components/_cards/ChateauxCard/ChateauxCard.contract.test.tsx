@@ -71,10 +71,44 @@ describe("ChateauxCard nearby Guinguettes contract", () => {
         expect(markup).toContain("650 m");
         expect(markup.match(/href="\/guinguette\//g)).toHaveLength(3);
         expect(markup).toContain(`?retour=%2Fchateau%2F${CHATEAU.slug}`);
+        expect(
+            markup.match(
+                new RegExp(`\\?retour=%2Fchateau%2F${CHATEAU.slug}`, "g"),
+            ),
+        ).toHaveLength(3);
 
         if (reviewGuinguette.statut === "a_verifier") {
             expect(markup).toContain("Informations à vérifier");
         }
+    });
+
+    it("renders exactly one nearby Guinguette without inventing more rows", () => {
+        const guinguette = GUINGUETTES[0];
+        const markup = renderCard({
+            nearbyGuinguettes: [{ guinguette, distanceKm: 1.24 }],
+        });
+
+        expect(markup).toContain(guinguette.nom);
+        expect(markup).toContain("1,2 km");
+        expect(markup.match(/href="\/guinguette\//g)).toHaveLength(1);
+    });
+
+    it("keeps experiences but removes the nearby section for an empty result", () => {
+        const markup = renderCard({ nearbyGuinguettes: [] });
+
+        expect(markup).toContain("Visite &amp; alentours");
+        expect(markup).toContain("Expériences");
+        expect(markup).not.toContain("Après la visite");
+        expect(markup).not.toContain('href="/guinguette/');
+    });
+
+    it("keeps the V1.1 symbols and copy when the enrichment is unavailable", () => {
+        const markup = renderCard();
+
+        expect(markup).toContain("Visite &amp; expériences");
+        expect(markup).toContain("Accès et expériences");
+        expect(markup).not.toContain("Après la visite");
+        expect(markup).not.toContain('data-variant="badge"');
     });
 
     it("hides the enriched accordion when it has no content", () => {

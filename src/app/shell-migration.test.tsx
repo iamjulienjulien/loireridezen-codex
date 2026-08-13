@@ -86,6 +86,23 @@ describe("pilot shell migration", () => {
         expect(catalogue.props.nearbyGuinguettesByChateau).toBeUndefined();
     });
 
+    it("composes the same nearby table in staging as in development", () => {
+        const developmentRoute =
+            ChateauxRoute() as ReactElement<IndexShellProps>;
+        const developmentCatalogue = developmentRoute.props
+            .children as ReactElement<ComponentProps<typeof ChateauxIndex>>;
+
+        vi.stubEnv("CURRENT_ENV", "staging");
+        const stagingRoute = ChateauxRoute() as ReactElement<IndexShellProps>;
+        const stagingCatalogue = stagingRoute.props.children as ReactElement<
+            ComponentProps<typeof ChateauxIndex>
+        >;
+
+        expect(stagingCatalogue.props.nearbyGuinguettesByChateau).toEqual(
+            developmentCatalogue.props.nearbyGuinguettesByChateau,
+        );
+    });
+
     it.each(REMAINING_INDEX_ROUTES)(
         "composes $href through IndexShell",
         ({ href, render }) => {
