@@ -13,7 +13,7 @@ import VignoblesCard from "@/components/_cards/VignoblesCard";
 import VilleVillageCard from "@/components/_cards/VilleVillageCard";
 import VocabulaireCard from "@/components/_cards/VocabulaireCard";
 import LRZBadge from "@/components/_ui/LRZBadge";
-import type { NearbyGuinguettesByChateau } from "@/lib/nearby-guinguettes";
+import type { NearbyGuinguette } from "@/lib/nearby-guinguettes";
 import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 import type {
@@ -24,7 +24,6 @@ import type {
 import type { TerritoireCatalogueEntry } from "@/types/territoireCatalogue";
 import type { Vignoble } from "@/types/vignoble";
 
-import { MOCK_CHATEAU } from "@/mocks/mockChateau";
 import { MOCK_FAUNE } from "@/mocks/mockFaune";
 import { MOCK_FLORE } from "@/mocks/mockFlore";
 import { MOCK_GUINGUETTE } from "@/mocks/mockGuinguette";
@@ -44,24 +43,38 @@ type TerritoireExample = {
     guinguettes: readonly Guinguette[];
 };
 
+export type ChateauShowcaseExample = {
+    label: string;
+    detail: string;
+    chateau: Chateau;
+    nearbyGuinguettes: readonly NearbyGuinguette[];
+};
+
 const noop = () => undefined;
 
 export default function MetierShowcase({
+    chateauExamples,
+    followTheThreadEnabled,
     personnageExamples,
     personnagesByChateau,
-    nearbyGuinguettesByChateau,
     territoireExamples,
     vignobleExamples,
     villeVillageExamples,
 }: {
+    chateauExamples: readonly ChateauShowcaseExample[];
+    followTheThreadEnabled: boolean;
     personnageExamples: readonly PersonnageExample[];
     personnagesByChateau: PersonnagesParLieu;
-    nearbyGuinguettesByChateau: NearbyGuinguettesByChateau;
     territoireExamples: readonly TerritoireExample[];
     vignobleExamples: readonly Vignoble[];
     villeVillageExamples: readonly VilleVillageCatalogueEntry[];
 }) {
-    const [showNearbyGuinguettes, setShowNearbyGuinguettes] = useState(true);
+    const [showNearbyGuinguettes, setShowNearbyGuinguettes] = useState(
+        followTheThreadEnabled,
+    );
+    const visibleChateauExamples = followTheThreadEnabled
+        ? chateauExamples
+        : chateauExamples.slice(0, 3);
 
     return (
         <div className={styles.showcaseStack}>
@@ -98,42 +111,69 @@ export default function MetierShowcase({
                     <p>Fiche métier · 03</p>
                     <div className={styles.showcaseTitleRow}>
                         <h2>ChateauxCard</h2>
-                        <button
-                            type="button"
-                            role="switch"
-                            aria-checked={showNearbyGuinguettes}
-                            className={styles.switch}
-                            onClick={() =>
-                                setShowNearbyGuinguettes((current) => !current)
-                            }
-                        >
-                            <span>Nouveau rendu</span>
-                            <span
-                                className={styles.switchTrack}
-                                aria-hidden="true"
+                        {followTheThreadEnabled ? (
+                            <button
+                                type="button"
+                                role="switch"
+                                aria-checked={showNearbyGuinguettes}
+                                className={styles.switch}
+                                onClick={() =>
+                                    setShowNearbyGuinguettes(
+                                        (current) => !current,
+                                    )
+                                }
                             >
-                                <span className={styles.switchThumb} />
-                            </span>
-                        </button>
+                                <span>Nouveau rendu</span>
+                                <span
+                                    className={styles.switchTrack}
+                                    aria-hidden="true"
+                                >
+                                    <span className={styles.switchThumb} />
+                                </span>
+                            </button>
+                        ) : null}
                     </div>
                     <span>
                         Les demeures, les protections et leurs histoires.
                     </span>
                 </header>
                 <div className={styles.showcaseGrid}>
-                    {MOCK_CHATEAU.slice(0, 3).map((item) => (
-                        <ChateauxCard
-                            key={item.slug}
-                            d={item}
-                            personnages={personnagesByChateau[item.slug] ?? []}
-                            nearbyGuinguettes={
-                                showNearbyGuinguettes
-                                    ? (nearbyGuinguettesByChateau[item.slug] ??
-                                      [])
-                                    : undefined
-                            }
-                        />
-                    ))}
+                    {visibleChateauExamples.map(
+                        ({ label, detail, chateau, nearbyGuinguettes }) => (
+                            <article
+                                key={label}
+                                className={styles.showcaseScenario}
+                            >
+                                {followTheThreadEnabled ? (
+                                    <header
+                                        className={
+                                            styles.showcaseScenarioHeader
+                                        }
+                                    >
+                                        <LRZBadge
+                                            label={label}
+                                            variant="pill"
+                                            color="brique"
+                                            dashed
+                                        />
+                                        <span>{detail}</span>
+                                    </header>
+                                ) : null}
+                                <ChateauxCard
+                                    d={chateau}
+                                    personnages={
+                                        personnagesByChateau[chateau.slug] ?? []
+                                    }
+                                    nearbyGuinguettes={
+                                        followTheThreadEnabled &&
+                                        showNearbyGuinguettes
+                                            ? nearbyGuinguettes
+                                            : undefined
+                                    }
+                                />
+                            </article>
+                        ),
+                    )}
                 </div>
             </section>
 

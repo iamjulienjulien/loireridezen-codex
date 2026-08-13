@@ -190,6 +190,29 @@
     gap: 1rem;
 }
 
+.showcaseScenario {
+    display: grid;
+    min-width: 0;
+    align-content: start;
+    gap: 0.65rem;
+}
+
+.showcaseScenarioHeader {
+    display: grid;
+    min-height: 3.25rem;
+    align-content: end;
+    justify-items: start;
+    gap: 0.35rem;
+}
+
+.showcaseScenarioHeader > span:last-child {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.035em;
+    line-height: 1.4;
+}
+
 .collectionShowcaseGrid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
