@@ -5,6 +5,8 @@ import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import type { LRZColor } from "@/types/lrz";
 
+import { AnalyticsPreferencesButton } from "../AnalyticsConsent";
+
 import styles from "./PageFooter.module.css";
 
 export type PageFooterProps = {
@@ -51,6 +53,9 @@ export default function PageFooter({
                     <Link href="/a-propos">À propos</Link>
                     <Link href="/docs">Documentation</Link>
                     <Link href="/mentions-legales">Mentions légales</Link>
+                    <AnalyticsPreferencesButton
+                        className={styles.preferencesButton}
+                    />
 
                     {featureIsEnabled("atelier") ? (
                         <Link href="/atelier">Atelier</Link>
