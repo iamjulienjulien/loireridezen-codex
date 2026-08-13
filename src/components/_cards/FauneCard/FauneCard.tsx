@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Binoculars, ListTree, ShieldCheck } from "lucide-react";
+import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 import type { FauneCouleur, FauneEspece, FauneStatut } from "@/types/faune";
 import styles from "./faune.module.css";
 import LRZAccordion from "@/components/_ui/LRZAccordion";
@@ -110,12 +110,13 @@ export default function FauneCard({ d, expandAll = false }: FauneCardProps) {
                         lines={1}
                         fixedHeight
                     >
-                        <Link
+                        <TrackedCardLink
+                            entrySlug={d.slug}
                             href={`/faune/${d.slug}`}
                             className={styles.fNameLink}
                         >
                             {d.nomCommun}
-                        </Link>
+                        </TrackedCardLink>
                     </LRZTextClamp>
                     <div className={styles.fSci}>{d.nomScientifique}</div>
                     <p className={styles.fSub}>{d.sousTitre}</p>

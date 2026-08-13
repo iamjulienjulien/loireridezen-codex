@@ -253,13 +253,24 @@ export default function LegalNoticePage() {
                             technique.
                         </p>
                         <p>
-                            Un conteneur Google Tag Manager est présent sur le
-                            site, mais aucune balise n’y est publiée pour la V1.
-                            Il n’est donc pas utilisé à ce jour pour déposer des
-                            traceurs de mesure d’audience ou de publicité. Toute
-                            évolution nécessitant un consentement préalable
-                            donnera lieu à une information et à un mécanisme de
-                            choix adaptés.
+                            Le site peut également utiliser{" "}
+                            <strong>Google Analytics 4</strong>, chargé au moyen
+                            de Google Tag Manager, uniquement après votre accord
+                            explicite. En l’absence de choix ou en cas de refus,
+                            le conteneur n’est pas chargé. Le stockage lié à la
+                            publicité, l’envoi de données publicitaires et la
+                            personnalisation publicitaire restent refusés.
+                        </p>
+                        <p>
+                            Google Analytics peut alors utiliser des cookies
+                            tels que <code>_ga</code> afin de distinguer les
+                            visites et de produire des statistiques d’usage. Le
+                            choix est conservé pendant six mois dans le stockage
+                            local du navigateur. Il peut être revu à tout moment
+                            depuis « Préférences de mesure » dans le pied de
+                            page ; une révocation désactive la mesure et
+                            supprime les cookies Google Analytics accessibles
+                            depuis le site.
                         </p>
                         <p>
                             Pour exercer vos droits ou poser une question

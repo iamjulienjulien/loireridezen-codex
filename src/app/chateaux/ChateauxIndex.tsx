@@ -19,10 +19,12 @@ import type { PersonnagesParLieu } from "@/types/personnage";
 import { getCollectionsByIndexForEnv } from "@/registry/collections";
 
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { PageControls } from "@/components/_layout/PageControls";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 
 import { CollectionCard } from "@/components/_collections/CollectionCard";
 
@@ -499,7 +501,16 @@ export default function ChateauxIndex({
                                       label: chateaux[openChateauIndex + 1].nom,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "chateaux",
+                                entry_slug: id,
+                                previous_entry_slug: openChateau.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/chateau/${id}`);
                         },
@@ -659,7 +670,12 @@ export default function ChateauxIndex({
                     onFocus={(event) => syncCatalogueHover(event.target, true)}
                     onBlur={(event) => syncCatalogueHover(event.target, false)}
                 >
-                    {catalogue}
+                    <IndexCardTrackingProvider
+                        indexSlug="chateaux"
+                        entrySlugs={chateaux.map((chateau) => chateau.slug)}
+                    >
+                        {catalogue}
+                    </IndexCardTrackingProvider>
                 </div>
             </LRZSection>
         </>

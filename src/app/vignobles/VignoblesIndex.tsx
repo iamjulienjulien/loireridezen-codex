@@ -6,12 +6,14 @@ import { useRouter } from "next/navigation";
 
 import type { Vignoble } from "@/types/vignoble";
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { PageControls } from "@/components/_layout/PageControls";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import VignoblesCard from "@/components/_cards/VignoblesCard";
 import styles from "@/components/_cards/VignoblesCard/vignobles.module.css";
@@ -124,7 +126,16 @@ export default function VignoblesIndex({
                                           .nom,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "vignobles",
+                                entry_slug: id,
+                                previous_entry_slug: openVignoble.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/vignoble/${id}`);
                         },
@@ -232,23 +243,28 @@ export default function VignoblesIndex({
                     />
                 </div>
 
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Aucune appellation à cet endroit du fil. Élargis la
-                        recherche ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <VignoblesCard
-                                key={d.slug}
-                                d={d}
-                                open={openOverrides[d.slug] ?? expandAll}
-                                onToggle={() => toggleOne(d.slug)}
-                            />
-                        ))}
-                    </div>
-                )}
+                <IndexCardTrackingProvider
+                    indexSlug="vignobles"
+                    entrySlugs={vignobles.map((vignoble) => vignoble.slug)}
+                >
+                    {list.length === 0 ? (
+                        <p className={styles.empty}>
+                            Aucune appellation à cet endroit du fil. Élargis la
+                            recherche ou change de filtre.
+                        </p>
+                    ) : (
+                        <div className={styles.grid}>
+                            {list.map((d) => (
+                                <VignoblesCard
+                                    key={d.slug}
+                                    d={d}
+                                    open={openOverrides[d.slug] ?? expandAll}
+                                    onToggle={() => toggleOne(d.slug)}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </IndexCardTrackingProvider>
             </LRZSection>
         </>
     );

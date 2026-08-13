@@ -2,6 +2,30 @@ export { default as AmbientPageFrame } from "./AmbientPageFrame";
 export { PageControls } from "./PageControls";
 export { PageFooter } from "./PageFooter";
 export {
+    AnalyticsConsentBanner,
+    AnalyticsConsentProvider,
+    AnalyticsPreferencesButton,
+    ConsentAwareGoogleTagManager,
+    useAnalyticsConsent,
+} from "./AnalyticsConsent";
+export type {
+    AnalyticsConsentProviderProps,
+    AnalyticsConsentValue,
+    AnalyticsPreferencesButtonProps,
+    ConsentAwareGoogleTagManagerProps,
+    StoredAnalyticsConsent,
+} from "./AnalyticsConsent";
+export {
+    IndexCardTrackingProvider,
+    TrackedCardLink,
+    TrackedIndexLink,
+} from "./AnalyticsTracking";
+export type {
+    IndexCardTrackingProviderProps,
+    TrackedCardLinkProps,
+    TrackedIndexLinkProps,
+} from "./AnalyticsTracking";
+export {
     PageHeader,
     PageHeaderBreadcrumbs,
     PageHeaderIndexAvailability,

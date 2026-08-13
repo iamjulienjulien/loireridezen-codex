@@ -1,6 +1,6 @@
 import { Grape, Info, MapPin, UtensilsCrossed } from "lucide-react";
-import Link from "next/link";
 
+import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 import LRZCard from "@/components/_ui/LRZCard";
 import { LRZStamp } from "@/components/_ui/LRZStamp";
 import type { Vignoble } from "@/types/vignoble";
@@ -57,7 +57,8 @@ export default function VignoblesCard({ d }: VignoblesCardProps) {
                                 {colorMeta?.label ?? d.couleur}
                             </span>
                         </div>
-                        <Link
+                        <TrackedCardLink
+                            entrySlug={d.slug}
                             className={styles.nameLink}
                             href={`/vignoble/${d.slug}`}
                         >
@@ -69,7 +70,7 @@ export default function VignoblesCard({ d }: VignoblesCardProps) {
                                     </span>
                                 ) : null}
                             </h3>
-                        </Link>
+                        </TrackedCardLink>
                         <p className={styles.subtitle}>{d.sousTitre}</p>
                     </div>
 

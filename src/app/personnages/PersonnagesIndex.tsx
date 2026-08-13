@@ -4,12 +4,14 @@ import { useMemo, useState, type CSSProperties } from "react";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { PageControls } from "@/components/_layout/PageControls";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { Personnage, RelationPersonnageLieu } from "@/types/personnage";
 
@@ -105,7 +107,16 @@ export default function PersonnagesIndex({
                                           .personnage.nom,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "personnages",
+                                entry_slug: id,
+                                previous_entry_slug: openEntry.personnage.id,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/personnage/${id}`);
                         },
@@ -196,18 +207,23 @@ export default function PersonnagesIndex({
                     />
                 </div>
 
-                <section
-                    className={styles.grid}
-                    aria-label="Personnages du Codex"
+                <IndexCardTrackingProvider
+                    indexSlug="personnages"
+                    entrySlugs={entries.map(({ personnage }) => personnage.id)}
                 >
-                    {filteredEntries.map(({ personnage, relations }) => (
-                        <PersonnageCard
-                            key={personnage.id}
-                            personnage={personnage}
-                            relations={relations}
-                        />
-                    ))}
-                </section>
+                    <section
+                        className={styles.grid}
+                        aria-label="Personnages du Codex"
+                    >
+                        {filteredEntries.map(({ personnage, relations }) => (
+                            <PersonnageCard
+                                key={personnage.id}
+                                personnage={personnage}
+                                relations={relations}
+                            />
+                        ))}
+                    </section>
+                </IndexCardTrackingProvider>
             </LRZSection>
 
             <p className={styles.note}>

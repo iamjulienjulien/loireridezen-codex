@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import type { FauneEspece } from "@/types/faune";
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { PageControls } from "@/components/_layout/PageControls";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FauneCard from "@/components/_cards/FauneCard";
 import styles from "@/components/_cards/FauneCard/faune.module.css";
@@ -109,7 +111,16 @@ export default function FauneIndex({
                                           .nomCommun,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "faune",
+                                entry_slug: id,
+                                previous_entry_slug: openEspece.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/faune/${id}`);
                         },
@@ -212,22 +223,27 @@ export default function FauneIndex({
                     />
                 </div>
 
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Rien à cet endroit du fil. Élargis la recherche ou
-                        change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <FauneCard
-                                key={`${d.nomScientifique}-${expandAll}`}
-                                d={d}
-                                expandAll={expandAll}
-                            />
-                        ))}
-                    </div>
-                )}
+                <IndexCardTrackingProvider
+                    indexSlug="faune"
+                    entrySlugs={especes.map((espece) => espece.slug)}
+                >
+                    {list.length === 0 ? (
+                        <p className={styles.empty}>
+                            Rien à cet endroit du fil. Élargis la recherche ou
+                            change de filtre.
+                        </p>
+                    ) : (
+                        <div className={styles.grid}>
+                            {list.map((d) => (
+                                <FauneCard
+                                    key={`${d.nomScientifique}-${expandAll}`}
+                                    d={d}
+                                    expandAll={expandAll}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </IndexCardTrackingProvider>
             </LRZSection>
         </>
     );

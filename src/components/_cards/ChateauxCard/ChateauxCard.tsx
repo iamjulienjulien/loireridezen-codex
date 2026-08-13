@@ -2,7 +2,8 @@
 
 import { useMemo, useState, type CSSProperties } from "react";
 import Image from "next/image";
-import Link from "next/link";
+
+import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 
 import type { Chateau } from "@/types/chateau";
 import type { Ambiance } from "@/registry/ambiances";
@@ -190,7 +191,8 @@ export default function ChateauCard({
             <div className={styles.heroContent}>
                 {/* <p className={styles.heroEpoque}>{d.epoque}</p> */}
                 <h3 className={styles.heroName}>
-                    <Link
+                    <TrackedCardLink
+                        entrySlug={d.slug}
                         href={`/chateau/${d.slug}`}
                         className={styles.heroNameLink}
                     >
@@ -209,7 +211,7 @@ export default function ChateauCard({
                                 {title.name}
                             </span>
                         </span>
-                    </Link>
+                    </TrackedCardLink>
                 </h3>
             </div>
             <div className={styles.subtitleWrapper}>

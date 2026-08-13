@@ -15,6 +15,7 @@ const SECTIONS = [
         href: "/atelier/ui",
         components: [
             ["lrz-badge", "LRZBadge", "/atelier/components/lrz-badge"],
+            ["lrz-banner", "LRZBanner", "/atelier/components/lrz-banner"],
             ["lrz-symbol", "LRZSymbol", "/atelier/components/lrz-symbol"],
             ["lrz-stamp", "LRZStamp", "/atelier/components/lrz-stamp"],
             ["lrz-anecdote", "LRZAnecdote", "/atelier/components/lrz-anecdote"],

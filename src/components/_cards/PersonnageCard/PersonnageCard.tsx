@@ -1,8 +1,8 @@
 import { Castle } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import type { CSSProperties } from "react";
 
+import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 import LRZAccordion from "@/components/_ui/LRZAccordion";
 import { LRZStamp } from "@/components/_ui/LRZStamp";
 import { getCategoriePersonnage } from "@/registry/categories-personnages";
@@ -96,12 +96,13 @@ export default function PersonnageCard({
                 <div className={styles.biography}>
                     <div className={styles.identity}>
                         <h3 className={styles.name}>
-                            <Link
+                            <TrackedCardLink
+                                entrySlug={personnage.id}
                                 href={`/personnage/${personnage.id}`}
                                 className={styles.nameLink}
                             >
                                 {personnage.nom}
-                            </Link>
+                            </TrackedCardLink>
                         </h3>
 
                         {alias ? (

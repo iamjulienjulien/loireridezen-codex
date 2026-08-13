@@ -1,8 +1,8 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Flower2, Leaf, ShieldCheck } from "lucide-react";
 
+import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 import LRZAccordion from "@/components/_ui/LRZAccordion";
 import LRZAnecdote from "@/components/_ui/LRZAnecdote";
 import LRZBadge from "@/components/_ui/LRZBadge";
@@ -61,12 +61,13 @@ export default function FloreCard({ d, expandAll = false }: FloreCardProps) {
                         lines={1}
                         fixedHeight
                     >
-                        <Link
+                        <TrackedCardLink
+                            entrySlug={d.slug}
                             href={`/flore/${d.slug}`}
                             className={styles.fNameLink}
                         >
                             {d.nomCommun}
-                        </Link>
+                        </TrackedCardLink>
                     </LRZTextClamp>
                     <div className={styles.fSci}>{d.nomScientifique}</div>
                     <p className={styles.fSub}>{d.sousTitre}</p>

@@ -60,6 +60,10 @@ describe("PageHeader", () => {
         expect(markup).toContain('aria-label="Index du Codex"');
         expect(markup).toContain(`href="${current.href}"`);
         expect(markup).toContain('aria-current="page"');
+        expect(markup).toContain('data-analytics-source="page_header"');
+        expect(markup.match(/data-analytics-event="index_open"/g)).toHaveLength(
+            indexes.length - 1,
+        );
     });
 
     it("only renders published indexes in the navigation", () => {

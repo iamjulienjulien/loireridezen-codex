@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Castle, MapPin, Music2, Waves } from "lucide-react";
 
+import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 import LRZAccordion from "@/components/_ui/LRZAccordion";
 import LRZCard from "@/components/_ui/LRZCard";
 import type { Chateau } from "@/types/chateau";
@@ -59,12 +60,13 @@ export default function TerritoireCard({
                     <div className={styles.heading}>
                         <p className={styles.nature}>{territoire.nature}</p>
                         <h3 id={titleId} className={styles.name}>
-                            <Link
+                            <TrackedCardLink
+                                entrySlug={territoire.slug}
                                 className={styles.nameLink}
                                 href={`/territoire/${territoire.slug}`}
                             >
                                 {territoire.nom}
-                            </Link>
+                            </TrackedCardLink>
                         </h3>
                         <p className={styles.subtitle}>
                             {territoire.sousTitre}

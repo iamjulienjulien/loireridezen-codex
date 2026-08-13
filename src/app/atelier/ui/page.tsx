@@ -9,6 +9,7 @@ export const metadata = getAtelierPageMetadata("/atelier/ui");
 
 const COMPONENTS = [
     ["LRZBadge", "/atelier/components/lrz-badge"],
+    ["LRZBanner", "/atelier/components/lrz-banner"],
     ["LRZSymbol", "/atelier/components/lrz-symbol"],
     ["LRZStamp", "/atelier/components/lrz-stamp"],
     ["LRZAnecdote", "/atelier/components/lrz-anecdote"],

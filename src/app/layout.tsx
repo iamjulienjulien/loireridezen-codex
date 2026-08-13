@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import {
     Allura,
@@ -13,6 +12,10 @@ import {
 } from "next/font/google";
 import Script from "next/script";
 import AmbianceCommandPalette from "@/components/AmbianceCommandPalette";
+import {
+    analyticsIsEnabled,
+    AnalyticsConsentProvider,
+} from "@/components/_layout/AnalyticsConsent";
 import { AmbianceProvider } from "@/hooks/useAmbiance";
 import {
     SITE_DESCRIPTION,
@@ -165,6 +168,7 @@ export default function RootLayout({
         currentEnv === "development" || currentEnv === "production"
             ? featureIsEnabled("commandPalette", currentEnv)
             : false;
+    const googleTagManagerEnabled = analyticsIsEnabled(currentEnv);
 
     return (
         <html lang="fr" data-mode="jour" suppressHydrationWarning>
@@ -174,12 +178,18 @@ export default function RootLayout({
                 <Script id="lrz-ambiance" strategy="beforeInteractive">
                     {AMBIANCE_INITIALIZATION_SCRIPT}
                 </Script>
-                <AmbianceProvider>
-                    {children}
-                    {commandPaletteEnabled ? <AmbianceCommandPalette /> : null}
-                </AmbianceProvider>
+                <AnalyticsConsentProvider
+                    googleTagManagerId="GTM-WPQT6KX7"
+                    googleTagManagerEnabled={googleTagManagerEnabled}
+                >
+                    <AmbianceProvider>
+                        {children}
+                        {commandPaletteEnabled ? (
+                            <AmbianceCommandPalette />
+                        ) : null}
+                    </AmbianceProvider>
+                </AnalyticsConsentProvider>
             </body>
-            <GoogleTagManager gtmId="GTM-WPQT6KX7" />
             <Analytics />
         </html>
     );

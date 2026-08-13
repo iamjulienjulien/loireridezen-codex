@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import type { Flore } from "@/types/flore";
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { PageControls } from "@/components/_layout/PageControls";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import FloreCard from "@/components/_cards/FloreCard";
 import styles from "@/components/_cards/FloreCard/flore.module.css";
@@ -105,7 +107,16 @@ export default function FloreIndex({
                                           .nomCommun,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "flore",
+                                entry_slug: id,
+                                previous_entry_slug: openFlore.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/flore/${id}`);
                         },
@@ -213,22 +224,27 @@ export default function FloreIndex({
                     />
                 </div>
 
-                {list.length === 0 ? (
-                    <p className={styles.empty}>
-                        Rien ne pousse à cet endroit du fil. Élargis la
-                        recherche ou change de filtre.
-                    </p>
-                ) : (
-                    <div className={styles.grid}>
-                        {list.map((d) => (
-                            <FloreCard
-                                key={`${d.slug}-${expandAll}`}
-                                d={d}
-                                expandAll={expandAll}
-                            />
-                        ))}
-                    </div>
-                )}
+                <IndexCardTrackingProvider
+                    indexSlug="flore"
+                    entrySlugs={flore.map((plante) => plante.slug)}
+                >
+                    {list.length === 0 ? (
+                        <p className={styles.empty}>
+                            Rien ne pousse à cet endroit du fil. Élargis la
+                            recherche ou change de filtre.
+                        </p>
+                    ) : (
+                        <div className={styles.grid}>
+                            {list.map((d) => (
+                                <FloreCard
+                                    key={`${d.slug}-${expandAll}`}
+                                    d={d}
+                                    expandAll={expandAll}
+                                />
+                            ))}
+                        </div>
+                    )}
+                </IndexCardTrackingProvider>
             </LRZSection>
         </>
     );

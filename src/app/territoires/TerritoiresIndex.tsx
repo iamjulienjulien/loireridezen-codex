@@ -5,11 +5,13 @@ import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/navigation";
 
 import IndexPresentation from "@/components/IndexPresentation";
+import { IndexCardTrackingProvider } from "@/components/_layout/AnalyticsTracking";
 import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import { SITE_URL } from "@/lib/site-metadata";
+import { trackCardNavigate } from "@/lib/analytics";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { TerritoireSlug } from "@/registry/territoires";
@@ -93,7 +95,16 @@ export default function TerritoiresIndex({
                                       ].nom,
                                   }
                                 : undefined,
-                        onNavigate: ({ id }) => {
+                        onNavigate: ({ id }, context) => {
+                            trackCardNavigate({
+                                index_slug: "territoires",
+                                entry_slug: id,
+                                previous_entry_slug: openTerritoire.slug,
+                                direction: context.direction,
+                                interaction_mode: context.interactionMode,
+                                position: context.position,
+                                total_items: context.total,
+                            });
                             setOpenSlug(id);
                             router.replace(`/territoire/${id}`);
                         },
@@ -153,24 +164,31 @@ export default function TerritoiresIndex({
                     color={entry.color}
                 />
 
-                <ol className={styles.grid}>
-                    {territoires.map((territoire) => (
-                        <li className={styles.item} key={territoire.slug}>
-                            <TerritoireCard
-                                territoire={territoire}
-                                chateaux={getTerritoireChateaux(
-                                    chateaux,
-                                    territoire.slug as TerritoireSlug,
-                                )}
-                                guinguettes={guinguettes.filter(
-                                    (guinguette) =>
-                                        guinguette.territoire ===
-                                        territoire.slug,
-                                )}
-                            />
-                        </li>
-                    ))}
-                </ol>
+                <IndexCardTrackingProvider
+                    indexSlug="territoires"
+                    entrySlugs={territoires.map(
+                        (territoire) => territoire.slug,
+                    )}
+                >
+                    <ol className={styles.grid}>
+                        {territoires.map((territoire) => (
+                            <li className={styles.item} key={territoire.slug}>
+                                <TerritoireCard
+                                    territoire={territoire}
+                                    chateaux={getTerritoireChateaux(
+                                        chateaux,
+                                        territoire.slug as TerritoireSlug,
+                                    )}
+                                    guinguettes={guinguettes.filter(
+                                        (guinguette) =>
+                                            guinguette.territoire ===
+                                            territoire.slug,
+                                    )}
+                                />
+                            </li>
+                        ))}
+                    </ol>
+                </IndexCardTrackingProvider>
             </LRZSection>
         </>
     );
