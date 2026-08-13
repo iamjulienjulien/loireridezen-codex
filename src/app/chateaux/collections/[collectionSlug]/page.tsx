@@ -4,10 +4,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import CollectionShell from "@/components/_shells/CollectionShell";
-import { CollectionEntryCard } from "@/components/CollectionEntryCard";
-import { CollectionHero } from "@/components/CollectionHero";
-import { CollectionList } from "@/components/CollectionList";
-import { CollectionPodium } from "@/components/CollectionPodium";
+import { CollectionEntryCard } from "@/components/_collections/CollectionEntryCard";
+import { CollectionHero } from "@/components/_collections/CollectionHero";
+import { CollectionList } from "@/components/_collections/CollectionList";
+import { CollectionPodium } from "@/components/_collections/CollectionPodium";
 import {
     getCollectionsForPublicationEnv,
     requireCollectionForEnv,

@@ -3,7 +3,7 @@
 import type {
     CollectionEntry,
     CollectionEntryCastle,
-} from "@/components/CollectionEntryCard";
+} from "@/components/_collections/CollectionEntryCard";
 
 export type MockCollectionEntry = {
     collectionEntry: CollectionEntry;
@@ -121,7 +121,7 @@ export const MOCK_COLLECTION_ENTRIES: MockCollectionEntry[] = [
     },
 ];
 
-import type { CollectionPodiumEntry } from "@/components/CollectionPodium";
+import type { CollectionPodiumEntry } from "@/components/_collections/CollectionPodium";
 
 export const MOCK_COLLECTION_PODIUM: CollectionPodiumEntry[] = [
     {

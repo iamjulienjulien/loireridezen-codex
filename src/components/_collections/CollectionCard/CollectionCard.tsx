@@ -1,6 +1,6 @@
 "use client";
 
-// src/components/CollectionCard/CollectionCard.tsx
+// Composant de collection partagé.
 
 import { useId, useState, type CSSProperties } from "react";
 import Image from "next/image";

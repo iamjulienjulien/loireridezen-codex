@@ -1,4 +1,4 @@
-// src/components/CollectionBadge/CollectionBadge.tsx
+// Composant de collection partagé.
 
 import Link from "next/link";
 import type { CSSProperties, ElementType, ReactNode } from "react";

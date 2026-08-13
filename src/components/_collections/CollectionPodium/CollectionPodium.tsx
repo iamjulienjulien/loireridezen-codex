@@ -1,4 +1,4 @@
-// src/components/CollectionPodium/CollectionPodium.tsx
+// Composant de collection partagé.
 
 import Image from "next/image";
 import Link from "next/link";

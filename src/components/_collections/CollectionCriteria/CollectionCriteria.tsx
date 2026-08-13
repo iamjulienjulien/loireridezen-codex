@@ -1,4 +1,4 @@
-// src/components/CollectionCriteria/CollectionCriteria.tsx
+// Composant de collection partagé.
 
 import type { ReactNode } from "react";
 

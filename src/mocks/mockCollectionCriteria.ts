@@ -1,6 +1,6 @@
 // mockCollectionCriteria.ts
 
-import type { CollectionCriterion } from "@/components/CollectionCriteria";
+import type { CollectionCriterion } from "@/components/_collections/CollectionCriteria";
 
 export const MOCK_COLLECTION_CRITERIA: CollectionCriterion[] = [
     {

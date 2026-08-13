@@ -1,6 +1,6 @@
 // mockCollection.ts
 
-import type { CollectionCardData } from "@/components/CollectionCard";
+import type { CollectionCardData } from "@/components/_collections/CollectionCard";
 
 export const MOCK_COLLECTIONS: CollectionCardData[] = [
     {

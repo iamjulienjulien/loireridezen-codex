@@ -1,11 +1,11 @@
-import { CollectionBadge } from "@/components/CollectionBadge";
-import { CollectionCard } from "@/components/CollectionCard";
-import { CollectionCriteria } from "@/components/CollectionCriteria";
-import { CollectionEntryCard } from "@/components/CollectionEntryCard";
-import { CollectionHero } from "@/components/CollectionHero";
-import { CollectionList } from "@/components/CollectionList";
-import { CollectionPodium } from "@/components/CollectionPodium";
-import { CollectionRank } from "@/components/CollectionRank";
+import { CollectionBadge } from "@/components/_collections/CollectionBadge";
+import { CollectionCard } from "@/components/_collections/CollectionCard";
+import { CollectionCriteria } from "@/components/_collections/CollectionCriteria";
+import { CollectionEntryCard } from "@/components/_collections/CollectionEntryCard";
+import { CollectionHero } from "@/components/_collections/CollectionHero";
+import { CollectionList } from "@/components/_collections/CollectionList";
+import { CollectionPodium } from "@/components/_collections/CollectionPodium";
+import { CollectionRank } from "@/components/_collections/CollectionRank";
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
 
 import AtelierCategoryLayout from "@/components/_atelier/AtelierCategoryLayout";

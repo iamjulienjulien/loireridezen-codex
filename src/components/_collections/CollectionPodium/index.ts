@@ -1,4 +1,4 @@
-// src/components/ui/collection-podium/index.ts
+// Composant de collection partagé.index.ts
 
 export {
     CollectionPodium,

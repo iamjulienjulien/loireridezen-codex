@@ -1,4 +1,4 @@
-// src/components/ui/collection-hero/index.ts
+// Composant de collection partagé.index.ts
 
 export {
     CollectionHero,

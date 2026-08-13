@@ -1,4 +1,4 @@
-// src/components/ui/collection-card/index.ts
+// Composant de collection partagé.index.ts
 
 export {
     CollectionCard,

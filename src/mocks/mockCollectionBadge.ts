@@ -1,6 +1,6 @@
 // mockCollectionBadge.ts
 
-import type { CollectionBadgeData } from "@/components/CollectionBadge";
+import type { CollectionBadgeData } from "@/components/_collections/CollectionBadge";
 
 export const MOCK_COLLECTION_BADGES: CollectionBadgeData[] = [
     {

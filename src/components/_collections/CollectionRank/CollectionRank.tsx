@@ -1,4 +1,4 @@
-// src/components/CollectionRank/CollectionRank.tsx
+// Composant de collection partagé.
 
 import type { CSSProperties } from "react";
 

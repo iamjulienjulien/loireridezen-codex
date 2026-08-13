@@ -1,4 +1,4 @@
-// src/components/ui/collection-list/index.ts
+// Composant de collection partagé.index.ts
 
 export {
     CollectionList,

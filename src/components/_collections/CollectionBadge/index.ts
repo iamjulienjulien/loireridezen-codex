@@ -1,4 +1,4 @@
-// src/components/ui/collection-badge/index.ts
+// Composant de collection partagé.index.ts
 
 export {
     CollectionBadge,

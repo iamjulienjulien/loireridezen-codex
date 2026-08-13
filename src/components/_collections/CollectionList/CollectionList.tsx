@@ -1,4 +1,4 @@
-// src/components/CollectionList/CollectionList.tsx
+// Composant de collection partagé.
 
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
 

@@ -24,7 +24,7 @@ import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
 
-import { CollectionCard } from "@/components/CollectionCard";
+import { CollectionCard } from "@/components/_collections/CollectionCard";
 
 import { getIndex } from "@/registry/indexes";
 
