@@ -127,6 +127,11 @@ export type ChateauCardProps = {
     d: Chateau;
     t?: Territoire;
     personnages?: readonly PersonnageAvecRelationLieu[];
+    /**
+     * Résultats déjà calculés côté serveur.
+     * `undefined` indique que l’enrichissement n’est pas fourni ; un tableau
+     * vide indique qu’il est actif mais qu’aucune Guinguette n’est assez proche.
+     */
     nearbyGuinguettes?: readonly NearbyGuinguette[];
     onShowOnMap?: (slug: string) => void;
 };
