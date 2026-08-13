@@ -115,18 +115,17 @@ un rôle clair : construire, éprouver, puis publier.
 | Environnement | URL                                                                         | Rôle                                                                        | Code et configuration                                      |
 | ------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | `development` | [loireridezen-codex.test](https://loireridezen-codex.test/)                 | Le chantier local : données de travail, Atelier et fonctionnalités en cours | Code d’une branche de travail, configuration `development` |
-| `preview`     | [preview-codex.loireridezen.bike](https://preview-codex.loireridezen.bike/) | La répétition générale : version déployée et partageable du prochain lot    | Code de `dev`, configuration `production`                  |
+| `staging`     | [preview-codex.loireridezen.bike](https://preview-codex.loireridezen.bike/) | La répétition générale : version déployée et partageable du prochain lot    | Code de `dev`, configuration `staging`                     |
 | `production`  | [codex.loireridezen.bike](https://codex.loireridezen.bike/)                 | Le Codex public : version stable, indexable et surveillée                   | Code de `main`, configuration `production`                 |
 
-Le passage en `preview` n’est pas une simple compilation intermédiaire. C’est
+Le passage en `staging` n’est pas une simple compilation intermédiaire. C’est
 l’endroit où le lot est relu dans son ensemble : contenu, navigation,
 responsive, métadonnées, données publiques et contrat API.
 
 > [!NOTE]
-> `preview` est pour l’instant un environnement de livraison, pas une troisième
-> valeur de `CURRENT_ENV`. Il exécute le code de `dev` avec la configuration
-> `production`, afin d’éprouver le prochain lot dans les mêmes conditions
-> fonctionnelles que le site public sans exposer le domaine canonique.
+> `staging` est la valeur applicative utilisée par la preview. Elle exécute le
+> code de `dev` dans un environnement de recette distinct de `production`, afin
+> d’éprouver le prochain lot sans activer ses fonctionnalités sur le site public.
 
 Les commandes actuellement disponibles restent :
 
@@ -145,9 +144,8 @@ Les sources de vérité sont :
 
 Les helpers refusent une valeur de `CURRENT_ENV` absente ou inconnue. Lorsqu’un
 flag est utilisé dans un composant client, `NEXT_PUBLIC_CURRENT_ENV` doit rester
-aligné sur l’environnement serveur. La preview utilise donc les mêmes valeurs
-fonctionnelles que la production ; seuls le code déployé et le domaine
-permettent de distinguer les deux rives.
+aligné sur l’environnement serveur. La preview utilise `staging`, tandis que le
+site public conserve `production`.
 
 ```bash
 pnpm features:list

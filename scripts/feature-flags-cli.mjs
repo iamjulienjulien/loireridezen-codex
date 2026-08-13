@@ -4,7 +4,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { createInterface } from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 
-const ENVIRONMENTS = ["development", "production"];
+const ENVIRONMENTS = ["development", "staging", "production"];
 const REGISTRY_START = "export const FEATURE_FLAGS = defineFeatureFlags({";
 const REGISTRY_END = "\n});";
 const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -35,7 +35,7 @@ export function parseFeatureFlags(source) {
             ? rawEnvironments.split(",").map((entry) => {
                   const environmentMatch = entry
                       .trim()
-                      .match(/^"(development|production)"$/);
+                      .match(/^"(development|staging|production)"$/);
                   if (!environmentMatch) {
                       throw new Error(
                           `Environnement non pris en charge pour ${name} : ${entry.trim()}`,

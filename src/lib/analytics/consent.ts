@@ -3,7 +3,7 @@ export const ANALYTICS_CONSENT_STORAGE_KEY = "lrz.analytics-consent.v1";
 export const ANALYTICS_CONSENT_DURATION_MONTHS = 6;
 
 export function analyticsIsEnabled(environment?: string): boolean {
-    return environment === "production";
+    return environment === "staging" || environment === "production";
 }
 
 export type AnalyticsConsentValue = "accepted" | "refused";

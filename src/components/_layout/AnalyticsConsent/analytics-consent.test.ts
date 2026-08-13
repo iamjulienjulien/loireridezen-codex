@@ -90,8 +90,9 @@ describe("analytics consent storage", () => {
         expect(readAnalyticsConsent(storage, NOW)).toBeNull();
     });
 
-    it("only enables GTM with the production configuration", () => {
+    it("enables GTM in staging and production", () => {
         expect(analyticsIsEnabled("development")).toBe(false);
+        expect(analyticsIsEnabled("staging")).toBe(true);
         expect(analyticsIsEnabled("production")).toBe(true);
         expect(analyticsIsEnabled(undefined)).toBe(false);
     });

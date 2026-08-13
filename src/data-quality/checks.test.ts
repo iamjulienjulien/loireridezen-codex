@@ -66,7 +66,7 @@ const buildDefinition = (
     href: `/${slug}`,
     dataFile,
     etat,
-    env: etat === "publie" ? ["development", "production"] : [],
+    env: etat === "publie" ? ["development", "staging", "production"] : [],
 });
 
 const addBundle = (

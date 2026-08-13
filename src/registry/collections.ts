@@ -14,7 +14,12 @@
  * Données pures, importables côté serveur comme côté client.
  */
 
-import type { Env, IndexHref, IndexSlug } from "@/registry/indexes";
+import {
+    isEnv,
+    type Env,
+    type IndexHref,
+    type IndexSlug,
+} from "@/registry/indexes";
 import { LRZColor } from "@/types/lrz";
 
 export type CollectionEtat = "publie" | "relecture" | "brouillon";
@@ -191,7 +196,7 @@ export const COLLECTIONS = [
         footerNote: "10 châteaux pour comprendre l’essentiel du récit ligérien",
 
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "jardins-et-domaines",
@@ -321,7 +326,7 @@ export const COLLECTIONS = [
         footerNote: "8 châteaux pour lire la métamorphose Renaissance du Val",
 
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "plus-ligeriens",
@@ -398,7 +403,7 @@ export const COLLECTIONS = [
         footerNote: "8 châteaux dont le destin épouse le fleuve",
 
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "pepites-confidentielles",
@@ -533,7 +538,7 @@ export const COLLECTIONS = [
         footerNote: "8 châteaux sur les traces du pouvoir royal",
 
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
 ] as const satisfies readonly CollectionRegistryEntry[];
 
@@ -572,7 +577,7 @@ export const getCollectionsByIndex = (
 export const getCollectionsForEnv = (
     value: string | undefined,
 ): CollectionRegistryEntry[] => {
-    if (value !== "development" && value !== "production") {
+    if (!isEnv(value)) {
         throw new Error(`CURRENT_ENV invalide ou absent : ${value}`);
     }
 

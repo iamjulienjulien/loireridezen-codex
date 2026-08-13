@@ -9,7 +9,7 @@ const SOURCE = `
 export const FEATURE_FLAGS = defineFeatureFlags({
     atelier: ["development"],
     collections: [],
-    territoires: ["development", "production"],
+    territoires: ["development", "staging", "production"],
 });
 `;
 
@@ -20,7 +20,7 @@ describe("feature flags CLI", () => {
             { name: "collections", environments: [] },
             {
                 name: "territoires",
-                environments: ["development", "production"],
+                environments: ["development", "staging", "production"],
             },
         ]);
     });
@@ -50,7 +50,7 @@ describe("feature flags CLI", () => {
 
         expect(parseFeatureFlags(updated)).toContainEqual({
             name: "territoires",
-            environments: ["production"],
+            environments: ["staging", "production"],
         });
     });
 
@@ -59,7 +59,7 @@ describe("feature flags CLI", () => {
             updateFeatureFlagSource(SOURCE, "unknown", "development", true),
         ).toThrow("Feature flag inconnu");
         expect(() =>
-            updateFeatureFlagSource(SOURCE, "atelier", "staging", true),
+            updateFeatureFlagSource(SOURCE, "atelier", "test", true),
         ).toThrow("Environnement invalide");
     });
 });

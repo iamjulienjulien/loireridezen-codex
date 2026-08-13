@@ -49,13 +49,13 @@ describe("HomeContent", () => {
             universe: "raconte",
             format: "catalogue",
             dataFile: "catalogue-territoires.json",
-            env: ["development", "production"],
+            env: ["development", "staging", "production"],
         });
         expect(getIndexBySlug("personnages")).toMatchObject({
             universe: "raconte",
             format: "repertoire",
             dataFile: "catalogue-personnages.json",
-            env: ["development", "production"],
+            env: ["development", "staging", "production"],
         });
         expect(getIndexBySlug("vocabulaire")).toMatchObject({
             universe: "raconte",

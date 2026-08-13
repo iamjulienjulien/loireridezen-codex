@@ -7,7 +7,7 @@
 
 import { LRZColor } from "@/types/lrz";
 
-export type Env = "development" | "production";
+export type Env = "development" | "staging" | "production";
 export type IndexEtat = "publie" | "desactive";
 export type IndexUniverse = "habite" | "vivant" | "raconte";
 export type IndexFormat =
@@ -79,7 +79,7 @@ export const INDEXES = [
         footerNote: "châteaux composant le patrimoine castral ligérien",
         dataFile: "catalogue-chateaux.json",
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "faune",
@@ -103,7 +103,7 @@ export const INDEXES = [
         footerNote: "espèces composant le bestiaire ligérien",
         dataFile: "catalogue-faune.json",
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "flore",
@@ -127,7 +127,7 @@ export const INDEXES = [
         footerNote: "espèces composant l'herbier ligérien",
         dataFile: "catalogue-flore.json",
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "guinguettes",
@@ -149,7 +149,7 @@ export const INDEXES = [
         footerNote: "guinguettes et haltes conviviales du Val de Loire",
         dataFile: "catalogue-guinguettes.json",
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "territoires",
@@ -173,7 +173,7 @@ export const INDEXES = [
         footerNote: "territoires composant le fil géohistorique ligérien",
         dataFile: "catalogue-territoires.json",
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "villes-villages",
@@ -221,7 +221,7 @@ export const INDEXES = [
         footerNote: "personnages reliés aux lieux et aux récits du Codex",
         dataFile: "catalogue-personnages.json",
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "vignobles",
@@ -246,7 +246,7 @@ export const INDEXES = [
             "appellations du fil · les émojis attendent leur version LRZ",
         dataFile: "catalogue-vignobles.json",
         etat: "publie",
-        env: ["development", "production"],
+        env: ["development", "staging", "production"],
     },
     {
         slug: "vocabulaire",
@@ -307,7 +307,7 @@ export const getIndexBySlug = (slug: string): IndexEntry | undefined =>
     INDEXES.find((i) => i.slug === slug);
 
 export const isEnv = (value: string | undefined): value is Env =>
-    value === "development" || value === "production";
+    value === "development" || value === "staging" || value === "production";
 
 export const getIndexesForEnv = (value: string | undefined) => {
     if (!isEnv(value)) {

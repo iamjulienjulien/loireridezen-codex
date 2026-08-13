@@ -24,6 +24,7 @@ import {
     SITE_URL,
 } from "@/lib/site-metadata";
 import { featureIsEnabled } from "@/registry/feature-flags";
+import { isEnv } from "@/registry/indexes";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./globals.css";
 
@@ -164,10 +165,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     const currentEnv = process.env.CURRENT_ENV;
-    const commandPaletteEnabled =
-        currentEnv === "development" || currentEnv === "production"
-            ? featureIsEnabled("commandPalette", currentEnv)
-            : false;
+    const commandPaletteEnabled = isEnv(currentEnv)
+        ? featureIsEnabled("commandPalette", currentEnv)
+        : false;
     const googleTagManagerEnabled = analyticsIsEnabled(currentEnv);
 
     return (
