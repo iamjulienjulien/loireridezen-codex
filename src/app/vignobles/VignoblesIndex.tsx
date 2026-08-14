@@ -18,6 +18,7 @@ import {
     type CardReturnContext,
 } from "@/lib/card-return-context";
 import { trackCardNavigate } from "@/lib/analytics";
+import type { TerritoiresParVignoble } from "@/lib/vignobles-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import VignoblesCard from "@/components/_cards/VignoblesCard";
 import styles from "@/components/_cards/VignoblesCard/vignobles.module.css";
@@ -33,11 +34,13 @@ export default function VignoblesIndex({
     indexes,
     initialOpenSlug,
     returnContext,
+    territoiresByVignoble,
 }: {
     vignobles: Vignoble[];
     indexes: readonly IndexEntry[];
     initialOpenSlug?: string;
     returnContext?: CardReturnContext;
+    territoiresByVignoble?: TerritoiresParVignoble;
 }) {
     const entry = getIndex("/vignobles")!;
     const [couleur, setCouleur] = useState<string>("all");
@@ -171,6 +174,7 @@ export default function VignoblesIndex({
                         d={openVignoble}
                         open={false}
                         onToggle={() => undefined}
+                        territoires={territoiresByVignoble?.[openVignoble.slug]}
                     />
                 </LRZCardDialog>
             ) : null}
@@ -280,6 +284,9 @@ export default function VignoblesIndex({
                                     d={d}
                                     open={openOverrides[d.slug] ?? expandAll}
                                     onToggle={() => toggleOne(d.slug)}
+                                    territoires={
+                                        territoiresByVignoble?.[d.slug]
+                                    }
                                 />
                             ))}
                         </div>

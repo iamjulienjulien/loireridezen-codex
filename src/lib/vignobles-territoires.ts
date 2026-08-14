@@ -11,6 +11,10 @@ export type VignoblesParTerritoire = Partial<
     Record<TerritoireSlug, readonly Vignoble[]>
 >;
 
+export type TerritoiresParVignoble = Readonly<
+    Record<string, readonly VignobleTerritoireView[]>
+>;
+
 const getTerritoiresBySlug = (
     territoires: readonly TerritoireCatalogueEntry[],
 ): ReadonlyMap<TerritoireSlug, TerritoireCatalogueEntry> =>

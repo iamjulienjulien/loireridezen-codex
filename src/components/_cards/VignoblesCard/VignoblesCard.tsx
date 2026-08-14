@@ -1,4 +1,5 @@
 import { Grape, Info, MapPin, UtensilsCrossed } from "lucide-react";
+import Link from "next/link";
 
 import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 import LRZCard from "@/components/_ui/LRZCard";
@@ -8,13 +9,17 @@ import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { LRZTextClamp } from "@/components/_ui/LRZTextClamp";
 import { LRZTooltip } from "@/components/_ui/LRZTooltip";
 import { getVignobleCouleurMeta } from "@/registry/Meta/vignoble-couleur";
+import { buildCardHrefWithReturn } from "@/lib/card-return-context";
+import type { VignobleTerritoireView } from "@/lib/vignobles-territoires";
+import type { TerritoireSlug } from "@/registry/territoires";
 
 import styles from "./vignobles.module.css";
 
-type VignoblesCardProps = {
+export type VignoblesCardProps = {
     d: Vignoble;
     open: boolean;
     onToggle: () => void;
+    territoires?: readonly VignobleTerritoireView[];
 };
 
 const VIGNOBLE_TITLE_QUALIFIERS = ["Premier Cru Chaume", "Grand Cru"] as const;
@@ -32,7 +37,7 @@ function splitVignobleTitle(title: string) {
         : { name: title, qualifier: null };
 }
 
-export default function VignoblesCard({ d }: VignoblesCardProps) {
+export default function VignoblesCard({ d, territoires }: VignoblesCardProps) {
     const colorMeta = getVignobleCouleurMeta(d.couleur);
     const color = colorMeta?.color ?? "miel";
     const titleId = `vignoble-${d.slug}-title`;
@@ -250,6 +255,61 @@ export default function VignoblesCard({ d }: VignoblesCardProps) {
                             </dd>
                         </div>
                     </dl>
+
+                    {territoires && territoires.length > 0 ? (
+                        <div className={styles.territoryRelations}>
+                            <p>Territoires du vin</p>
+                            <div className={styles.territoryStampList}>
+                                {territoires.map(
+                                    ({ territoire, principal }) => (
+                                        <Link
+                                            key={territoire.slug}
+                                            href={buildCardHrefWithReturn(
+                                                `/territoire/${territoire.slug}`,
+                                                `/vignoble/${d.slug}`,
+                                            )}
+                                            className={
+                                                styles.territoryStampLink
+                                            }
+                                            data-primary-territory={
+                                                principal ? "true" : undefined
+                                            }
+                                            aria-label={`${territoire.nom}${
+                                                principal
+                                                    ? ", territoire principal"
+                                                    : ""
+                                            }`}
+                                        >
+                                            <LRZStamp
+                                                collection="common"
+                                                meta="territoire"
+                                                slug={
+                                                    territoire.slug as TerritoireSlug
+                                                }
+                                                variant="badge"
+                                                tone={
+                                                    principal
+                                                        ? "subtle"
+                                                        : "ghost"
+                                                }
+                                                size="sm"
+                                                font="display"
+                                                labelSize="sm"
+                                                padding="xs"
+                                                gap="xs"
+                                                symbolFrame={
+                                                    principal
+                                                        ? "subtle"
+                                                        : "none"
+                                                }
+                                                gradient={principal}
+                                            />
+                                        </Link>
+                                    ),
+                                )}
+                            </div>
+                        </div>
+                    ) : null}
                 </section>
             </div>
         </LRZCard>
