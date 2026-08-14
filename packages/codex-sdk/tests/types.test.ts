@@ -47,4 +47,24 @@ describe("public SDK types", () => {
             Extract<PublicEntry, { index: "vignobles" }>["attributes"]
         >().toEqualTypeOf<VignobleAttributes>();
     });
+
+    it("exposes the canonical vineyard territory relation", () => {
+        type TerritoireSlug =
+            | "nivernais"
+            | "orleanais"
+            | "blaisois"
+            | "touraine"
+            | "chinonais"
+            | "saumurois"
+            | "anjou"
+            | "bretagne-ligerienne";
+
+        expectTypeOf<VignobleAttributes["meta"]["territoires"]>().toEqualTypeOf<
+            TerritoireSlug[] | undefined
+        >();
+        expectTypeOf<
+            VignobleAttributes["meta"]["territoirePrincipal"]
+        >().toEqualTypeOf<TerritoireSlug | undefined>();
+        expectTypeOf<TerritoireAttributes>().not.toHaveProperty("vignobles");
+    });
 });

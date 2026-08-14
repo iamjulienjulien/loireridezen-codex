@@ -339,6 +339,9 @@ export interface components {
         VignobleMeta: {
             terroirs: ("tuffeau" | "calcaire" | "marne-calcaire" | "argilo-calcaire" | "argile-a-silex" | "schiste" | "micaschiste" | "gneiss" | "granite" | "gabbro" | "sable" | "graviers" | "alluvions" | "faluns")[];
             cepages: ("chenin" | "sauvignon-blanc" | "melon-de-bourgogne" | "chardonnay" | "chasselas" | "folle-blanche" | "romorantin" | "menu-pineau" | "tressallier" | "cabernet-franc" | "cabernet-sauvignon" | "pinot-noir" | "pinot-gris" | "pinot-meunier" | "gamay" | "grolleau-noir" | "grolleau-gris" | "pineau-daunis" | "cot")[];
+            territoires?: ("nivernais" | "orleanais" | "blaisois" | "touraine" | "chinonais" | "saumurois" | "anjou" | "bretagne-ligerienne")[];
+            /** @enum {string} */
+            territoirePrincipal?: "nivernais" | "orleanais" | "blaisois" | "touraine" | "chinonais" | "saumurois" | "anjou" | "bretagne-ligerienne";
         };
         VignobleAttributes: {
             autresNoms: string[];

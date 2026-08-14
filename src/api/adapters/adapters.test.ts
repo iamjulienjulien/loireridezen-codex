@@ -98,4 +98,13 @@ describe("public entry adapters", () => {
             expect(Object.keys(entry.attributes).length).toBeGreaterThan(0);
         },
     );
+
+    it("publishes the canonical vineyard territory relation", () => {
+        const source = vignobleEntrySchema.parse(vignobleData.vignobles[0]);
+        const entry = adaptVignoble(source);
+        const meta = entry.attributes.meta as typeof source.meta;
+
+        expect(meta.territoires).toEqual(source.meta.territoires);
+        expect(meta.territoirePrincipal).toBe(source.meta.territoirePrincipal);
+    });
 });

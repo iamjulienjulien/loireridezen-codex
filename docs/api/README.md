@@ -361,6 +361,12 @@ Les variantes actuellement publiées sont :
 - `territoires` : limites, paysages, repères, cours d’eau et identité ;
 - `personnages` : autres noms, rôles, catégorie éditoriale et tags ;
 - `vignobles` : couleur, appellation, cépages, terroirs, accords et ancrage.
+  La relation canonique vers les territoires est exposée dans
+  `meta.territoires`, avec un éventuel `meta.territoirePrincipal`. Ces champs
+  additifs restent optionnels dans le contrat public de la V1 pour préserver
+  la compatibilité des consommateurs existants. La liste inverse n'est pas
+  dupliquée dans les entrées `territoires` : elle se déduit des vignobles afin
+  de conserver une seule source de vérité.
 
 Consultez le
 [schéma `PublicEntry` dans OpenAPI](https://codex.loireridezen.bike/api/v1/openapi.json)

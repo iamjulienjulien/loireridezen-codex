@@ -186,6 +186,19 @@ describe("public OpenAPI contract", () => {
         }
     });
 
+    it("publishes vineyard territories without duplicating their inverse", () => {
+        const vignobleMeta = contract.components.schemas.VignobleMeta;
+        const vignobleProperties = asObject(vignobleMeta.properties);
+        const territoireAttributes =
+            contract.components.schemas.TerritoireAttributes;
+        const territoireProperties = asObject(territoireAttributes.properties);
+
+        expect(vignobleMeta.required).not.toContain("territoires");
+        expect(vignobleProperties).toHaveProperty("territoires");
+        expect(vignobleProperties).toHaveProperty("territoirePrincipal");
+        expect(territoireProperties).not.toHaveProperty("vignobles");
+    });
+
     it("documents JSON successes and Problem Details errors", () => {
         for (const path of Object.keys(expectedOperations)) {
             const responses = contract.paths[path].get.responses ?? {};

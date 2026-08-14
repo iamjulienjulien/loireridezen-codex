@@ -587,6 +587,15 @@ exports[`public structural signatures > snapshots vignobles attributes 1`] = `
     "cepages": [
       "string",
     ],
+    "territoirePrincipal": {
+      "oneOf": [
+        "absent",
+        "string",
+      ],
+    },
+    "territoires": [
+      "string",
+    ],
     "terroirs": [
       "string",
     ],

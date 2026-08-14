@@ -1313,6 +1313,36 @@
                                 "cot"
                             ]
                         }
+                    },
+                    "territoires": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "nivernais",
+                                "orleanais",
+                                "blaisois",
+                                "touraine",
+                                "chinonais",
+                                "saumurois",
+                                "anjou",
+                                "bretagne-ligerienne"
+                            ]
+                        }
+                    },
+                    "territoirePrincipal": {
+                        "type": "string",
+                        "enum": [
+                            "nivernais",
+                            "orleanais",
+                            "blaisois",
+                            "touraine",
+                            "chinonais",
+                            "saumurois",
+                            "anjou",
+                            "bretagne-ligerienne"
+                        ]
                     }
                 },
                 "additionalProperties": false
