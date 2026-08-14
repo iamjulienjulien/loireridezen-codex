@@ -13,6 +13,10 @@ import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { PageControls } from "@/components/_layout/PageControls";
 import { SITE_URL } from "@/lib/site-metadata";
+import {
+    buildCardHrefWithReturn,
+    type CardReturnContext,
+} from "@/lib/card-return-context";
 import { trackCardNavigate } from "@/lib/analytics";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import VignoblesCard from "@/components/_cards/VignoblesCard";
@@ -28,10 +32,12 @@ export default function VignoblesIndex({
     vignobles,
     indexes,
     initialOpenSlug,
+    returnContext,
 }: {
     vignobles: Vignoble[];
     indexes: readonly IndexEntry[];
     initialOpenSlug?: string;
+    returnContext?: CardReturnContext;
 }) {
     const entry = getIndex("/vignobles")!;
     const [couleur, setCouleur] = useState<string>("all");
@@ -107,6 +113,15 @@ export default function VignoblesIndex({
                         />
                     }
                     item={{ id: openVignoble.slug, label: openVignoble.nom }}
+                    returnTo={
+                        returnContext
+                            ? {
+                                  ...returnContext,
+                                  onNavigate: () =>
+                                      router.push(returnContext.href),
+                              }
+                            : undefined
+                    }
                     navigation={{
                         position: openVignobleIndex + 1,
                         total: vignobles.length,
@@ -137,7 +152,12 @@ export default function VignoblesIndex({
                                 total_items: context.total,
                             });
                             setOpenSlug(id);
-                            router.replace(`/vignoble/${id}`);
+                            router.replace(
+                                buildCardHrefWithReturn(
+                                    `/vignoble/${id}`,
+                                    returnContext?.href,
+                                ),
+                            );
                         },
                     }}
                     share={{

@@ -4,6 +4,7 @@ import territoireCatalogue from "@data/catalogue-territoires.json";
 
 import IndexShell from "@/components/_shells/IndexShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
+import type { CardReturnContext } from "@/lib/card-return-context";
 import { getIndexesForEnv } from "@/registry/indexes";
 import { getIndexPageDefinition } from "@/registry/pages";
 import type { Chateau } from "@/types/chateau";
@@ -27,7 +28,11 @@ export function getTerritoireBySlug(slug: string) {
 
 export function TerritoiresRoute({
     initialOpenSlug,
-}: { initialOpenSlug?: string } = {}) {
+    returnContext,
+}: {
+    initialOpenSlug?: string;
+    returnContext?: CardReturnContext;
+} = {}) {
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
 
     return (
@@ -42,6 +47,7 @@ export function TerritoiresRoute({
                 guinguettes={GUINGUETTES}
                 indexes={indexes}
                 initialOpenSlug={initialOpenSlug}
+                returnContext={returnContext}
             />
         </IndexShell>
     );

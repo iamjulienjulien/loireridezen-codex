@@ -2,6 +2,7 @@ import vignobleData from "@data/catalogue-vignobles.json";
 
 import IndexShell from "@/components/_shells/IndexShell";
 import { buildPageMetadata } from "@/lib/site-metadata";
+import type { CardReturnContext } from "@/lib/card-return-context";
 import { getIndexesForEnv } from "@/registry/indexes";
 import { getIndexPageDefinition } from "@/registry/pages";
 import type { Vignoble } from "@/types/vignoble";
@@ -17,7 +18,11 @@ export function getVignobleBySlug(slug: string) {
 
 export function VignoblesRoute({
     initialOpenSlug,
-}: { initialOpenSlug?: string } = {}) {
+    returnContext,
+}: {
+    initialOpenSlug?: string;
+    returnContext?: CardReturnContext;
+} = {}) {
     const indexes = getIndexesForEnv(process.env.CURRENT_ENV);
 
     return (
@@ -30,6 +35,7 @@ export function VignoblesRoute({
                 vignobles={VIGNOBLES}
                 indexes={indexes}
                 initialOpenSlug={initialOpenSlug}
+                returnContext={returnContext}
             />
         </IndexShell>
     );

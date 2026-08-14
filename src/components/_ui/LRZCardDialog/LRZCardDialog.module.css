@@ -20,9 +20,8 @@
 .header {
     position: relative;
     z-index: 3;
-    display: flex;
-    gap: 0.8rem;
-    align-items: center;
+    display: grid;
+    gap: 0.7rem;
     padding: 1rem 4.5rem 0.95rem 1.15rem;
     border-radius: var(--dialog-radius) var(--dialog-radius) 0 0;
     border-bottom: 1px solid
@@ -30,6 +29,47 @@
     box-shadow: 0 10px 24px
         color-mix(in srgb, var(--dialog-color) 7%, transparent);
     flex: 0 0 auto;
+}
+
+.headerIdentity {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.returnLink {
+    display: inline-flex;
+    width: fit-content;
+    gap: 0.38rem;
+    align-items: center;
+    padding: 0.36rem 0.62rem;
+    border: 1px solid color-mix(in srgb, var(--dialog-color) 34%, transparent);
+    border-radius: 999px;
+    color: var(--dialog-color);
+    background: color-mix(in srgb, var(--dialog-color) 8%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-decoration: none;
+    transition:
+        color 160ms ease,
+        border-color 160ms ease,
+        background-color 160ms ease,
+        transform 160ms ease;
+}
+
+.returnLink:hover {
+    border-color: var(--dialog-color);
+    color: var(--dialog-text-primary);
+    background: color-mix(in srgb, var(--dialog-color) 16%, transparent);
+    transform: translateX(-1px);
+}
+
+.returnLink:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--dialog-color) 52%, transparent);
+    outline-offset: 3px;
 }
 
 .indexIcon {

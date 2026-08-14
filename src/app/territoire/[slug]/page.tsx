@@ -6,6 +6,8 @@ import {
     getTerritoireBySlug,
     TerritoiresRoute,
 } from "@/app/territoires/TerritoiresRoute";
+import { VIGNOBLES } from "@/app/vignobles/VignoblesRoute";
+import { resolveCardReturnContext } from "@/lib/card-return-context";
 import { getCodexOgImageUrl } from "@/lib/og-data";
 import { requireIndexForEnv } from "@/lib/publication-guards";
 import {
@@ -16,6 +18,7 @@ import {
 
 type TerritoirePageProps = {
     params: Promise<{ slug: string }>;
+    searchParams: Promise<{ retour?: string | string[] }>;
 };
 
 export function generateStaticParams() {
@@ -71,11 +74,23 @@ export async function generateMetadata({
     };
 }
 
-export default async function TerritoirePage({ params }: TerritoirePageProps) {
+export default async function TerritoirePage({
+    params,
+    searchParams,
+}: TerritoirePageProps) {
     requireIndexForEnv("territoires");
     const { slug } = await params;
+    const { retour } = await searchParams;
 
     if (!getTerritoireBySlug(slug)) notFound();
 
-    return <TerritoiresRoute initialOpenSlug={slug} />;
+    return (
+        <TerritoiresRoute
+            initialOpenSlug={slug}
+            returnContext={resolveCardReturnContext(retour, {
+                vignobles: VIGNOBLES,
+                territoires: TERRITOIRES,
+            })}
+        />
+    );
 }

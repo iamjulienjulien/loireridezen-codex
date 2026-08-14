@@ -11,6 +11,10 @@ import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import { SITE_URL } from "@/lib/site-metadata";
+import {
+    buildCardHrefWithReturn,
+    type CardReturnContext,
+} from "@/lib/card-return-context";
 import { trackCardNavigate } from "@/lib/analytics";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
@@ -28,6 +32,7 @@ type TerritoiresIndexProps = {
     guinguettes: readonly Guinguette[];
     indexes: readonly IndexEntry[];
     initialOpenSlug?: string;
+    returnContext?: CardReturnContext;
 };
 
 export default function TerritoiresIndex({
@@ -36,6 +41,7 @@ export default function TerritoiresIndex({
     guinguettes,
     indexes,
     initialOpenSlug,
+    returnContext,
 }: TerritoiresIndexProps) {
     const entry = getIndex("/territoires")!;
     const [openSlug, setOpenSlug] = useState(initialOpenSlug);
@@ -72,6 +78,15 @@ export default function TerritoiresIndex({
                         id: openTerritoire.slug,
                         label: openTerritoire.nom,
                     }}
+                    returnTo={
+                        returnContext
+                            ? {
+                                  ...returnContext,
+                                  onNavigate: () =>
+                                      router.push(returnContext.href),
+                              }
+                            : undefined
+                    }
                     navigation={{
                         position: openTerritoireIndex + 1,
                         total: territoires.length,
@@ -106,7 +121,12 @@ export default function TerritoiresIndex({
                                 total_items: context.total,
                             });
                             setOpenSlug(id);
-                            router.replace(`/territoire/${id}`);
+                            router.replace(
+                                buildCardHrefWithReturn(
+                                    `/territoire/${id}`,
+                                    returnContext?.href,
+                                ),
+                            );
                         },
                     }}
                     share={{

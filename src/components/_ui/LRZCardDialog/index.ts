@@ -7,5 +7,6 @@ export type {
     LRZCardDialogNavigationDirection,
     LRZCardDialogNavigationMode,
     LRZCardDialogProps,
+    LRZCardDialogReturn,
     LRZCardDialogShare,
 } from "./LRZCardDialog";

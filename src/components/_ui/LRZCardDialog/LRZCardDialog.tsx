@@ -93,6 +93,15 @@ export type LRZCardDialogShare = {
     text?: string;
 };
 
+export type LRZCardDialogReturn = {
+    /** Route interne sûre vers la fiche d’origine. */
+    href: string;
+    /** Nom de la fiche d’origine, ajouté après « Retour à ». */
+    label: string;
+    /** Navigation client facultative évitant un rechargement complet. */
+    onNavigate?: () => void;
+};
+
 export type LRZCardDialogProps = {
     /** État contrôlé du dialogue. */
     open: boolean;
@@ -110,6 +119,8 @@ export type LRZCardDialogProps = {
     navigation?: LRZCardDialogNavigation;
     /** Données nécessaires au pied de partage. */
     share?: LRZCardDialogShare;
+    /** Retour contextuel vers une fiche d’un autre index. */
+    returnTo?: LRZCardDialogReturn;
     /** Taille LRZDialog, fixée à sm pour les cartes d’index. */
     size?: LRZDialogSize;
     /** Variante visuelle du LRZDialog sous-jacent. */
@@ -206,6 +217,7 @@ export default function LRZCardDialog({
     children,
     navigation,
     share,
+    returnTo,
     size = "sm",
     variant = "immersive",
     color = "ocre",
@@ -326,16 +338,39 @@ export default function LRZCardDialog({
                 }}
             >
                 <header className={styles.header}>
-                    {indexIcon ? (
-                        <span className={styles.indexIcon} aria-hidden="true">
-                            {indexIcon}
-                        </span>
+                    {returnTo ? (
+                        <a
+                            className={styles.returnLink}
+                            href={returnTo.href}
+                            onClick={(event) => {
+                                if (returnTo.onNavigate) {
+                                    event.preventDefault();
+                                    returnTo.onNavigate();
+                                }
+                            }}
+                        >
+                            <ArrowLeft size={15} strokeWidth={1.7} />
+                            <span>Retour à {returnTo.label}</span>
+                        </a>
                     ) : null}
-                    <div>
-                        <p className={styles.eyebrow}>Index du Codex</p>
-                        <LRZDialogTitle as="h2" className={styles.indexTitle}>
-                            {indexLabel}
-                        </LRZDialogTitle>
+                    <div className={styles.headerIdentity}>
+                        {indexIcon ? (
+                            <span
+                                className={styles.indexIcon}
+                                aria-hidden="true"
+                            >
+                                {indexIcon}
+                            </span>
+                        ) : null}
+                        <div>
+                            <p className={styles.eyebrow}>Index du Codex</p>
+                            <LRZDialogTitle
+                                as="h2"
+                                className={styles.indexTitle}
+                            >
+                                {indexLabel}
+                            </LRZDialogTitle>
+                        </div>
                     </div>
                 </header>
 
