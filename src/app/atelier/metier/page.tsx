@@ -10,6 +10,10 @@ import {
     getNearbyGuinguettes,
     type NearbyGuinguette,
 } from "@/lib/nearby-guinguettes";
+import {
+    buildVignoblesParTerritoire,
+    resolveVignobleTerritoires,
+} from "@/lib/vignobles-territoires";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { featureIsEnabled } from "@/registry/feature-flags";
 import { getAtelierPageMetadata } from "@/lib/atelier-metadata";
@@ -23,7 +27,11 @@ import type { Guinguette } from "@/types/guinguette";
 import type { TerritoireCatalogueEntry } from "@/types/territoireCatalogue";
 import type { Vignoble } from "@/types/vignoble";
 import type { VilleVillageCatalogueEntry } from "@/types/villeVillageCatalogue";
-import MetierShowcase, { type ChateauShowcaseExample } from "./MetierShowcase";
+import MetierShowcase, {
+    type ChateauShowcaseExample,
+    type TerritoryVineyardsShowcaseExample,
+    type VineyardTerritoriesShowcaseExample,
+} from "./MetierShowcase";
 
 export const metadata = getAtelierPageMetadata("/atelier/metier");
 
@@ -130,6 +138,68 @@ const TERRITOIRE_EXAMPLES = (
 const VIGNOBLE_EXAMPLES = (vignobleCatalogue.vignobles as Vignoble[]).filter(
     (vignoble) => VIGNOBLE_EXAMPLE_SLUGS.has(vignoble.slug),
 );
+const ALL_VIGNOBLES = vignobleCatalogue.vignobles as Vignoble[];
+const ALL_TERRITOIRES =
+    territoireCatalogue.territoires as TerritoireCatalogueEntry[];
+const VIGNOBLES_BY_TERRITORY = buildVignoblesParTerritoire(
+    ALL_VIGNOBLES,
+    ALL_TERRITOIRES,
+);
+
+const getVignoble = (slug: string): Vignoble => {
+    const vignoble = ALL_VIGNOBLES.find((entry) => entry.slug === slug);
+    if (!vignoble) throw new Error(`Vignoble Atelier introuvable : ${slug}`);
+    return vignoble;
+};
+
+const getTerritoire = (slug: string): TerritoireCatalogueEntry => {
+    const territoire = ALL_TERRITOIRES.find((entry) => entry.slug === slug);
+    if (!territoire)
+        throw new Error(`Territoire Atelier introuvable : ${slug}`);
+    return territoire;
+};
+
+const VINEYARD_TERRITORIES_EXAMPLES: VineyardTerritoriesShowcaseExample[] = [
+    {
+        label: "Territoire unique",
+        detail: "Une appellation, un ancrage directement navigable",
+        vignoble: getVignoble("pouilly-fume"),
+    },
+    {
+        label: "Principal + secondaires",
+        detail: "Le principal ouvre la série sans effacer les autres",
+        vignoble: getVignoble("touraine"),
+    },
+    {
+        label: "Sans principal",
+        detail: "L’ordre éditorial déclaré reste intact",
+        vignoble: getVignoble("coteaux-du-giennois"),
+    },
+].map((example) => ({
+    ...example,
+    territoires: resolveVignobleTerritoires(example.vignoble, ALL_TERRITOIRES),
+}));
+
+const TERRITORY_VINEYARDS_EXAMPLES: TerritoryVineyardsShowcaseExample[] = [
+    {
+        label: "Territoire court",
+        detail: "Trois appellations visibles sans accordéon",
+        territoire: getTerritoire("nivernais"),
+        vignobles: VIGNOBLES_BY_TERRITORY.nivernais ?? [],
+    },
+    {
+        label: "Territoire dense",
+        detail: "Trois appellations puis un accordéon pour le complément",
+        territoire: getTerritoire("anjou"),
+        vignobles: VIGNOBLES_BY_TERRITORY.anjou ?? [],
+    },
+    {
+        label: "État vide simulé",
+        detail: "Le bloc relationnel disparaît entièrement",
+        territoire: getTerritoire("bretagne-ligerienne"),
+        vignobles: [],
+    },
+];
 const VILLE_VILLAGE_EXAMPLES = (
     villesVillagesCatalogue.villesVillages as VilleVillageCatalogueEntry[]
 ).filter((villeVillage) => VILLE_VILLAGE_EXAMPLE_SLUGS.has(villeVillage.slug));
@@ -155,6 +225,8 @@ export default function AtelierMetierPage() {
                 personnagesByChateau={personnagesByChateau}
                 territoireExamples={TERRITOIRE_EXAMPLES}
                 vignobleExamples={VIGNOBLE_EXAMPLES}
+                vineyardTerritoriesExamples={VINEYARD_TERRITORIES_EXAMPLES}
+                territoryVineyardsExamples={TERRITORY_VINEYARDS_EXAMPLES}
                 villeVillageExamples={VILLE_VILLAGE_EXAMPLES}
             />
             <ComponentsNavigation />

@@ -28,6 +28,18 @@ describe("Atelier métier followTheThread prototype", () => {
             expect(showcase.type).toBe(MetierShowcase);
             expect(showcase.props.followTheThreadEnabled).toBe(true);
             expect(showcase.props.chateauExamples).toHaveLength(6);
+            expect(showcase.props.vineyardTerritoriesExamples).toHaveLength(3);
+            expect(showcase.props.territoryVineyardsExamples).toHaveLength(3);
+            expect(
+                showcase.props.vineyardTerritoriesExamples.map(
+                    ({ territoires }) => territoires.length,
+                ),
+            ).toEqual([1, 3, 2]);
+            expect(
+                showcase.props.territoryVineyardsExamples.map(
+                    ({ vignobles }) => vignobles.length,
+                ),
+            ).toEqual([3, 18, 0]);
             expect(
                 showcase.props.chateauExamples.some(({ nearbyGuinguettes }) =>
                     nearbyGuinguettes.some(

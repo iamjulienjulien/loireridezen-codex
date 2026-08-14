@@ -233,6 +233,270 @@
     align-items: start;
 }
 
+.relationPrototypeStack {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.prototypeGroup {
+    display: grid;
+    gap: 1rem;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--gold) 5%, transparent),
+            transparent 55%
+        ),
+        var(--color-ambiance-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.prototypeGroupHeader {
+    display: grid;
+    gap: 0.28rem;
+}
+
+.prototypeGroupHeader p,
+.prototypeCardHeading > span,
+.prototypeRelationBlock > p,
+.territoryHeaderPrototype > div:first-child > span,
+.headerVineyards > span,
+.prototypeEmptyState > span {
+    margin: 0;
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.prototypeGroupHeader h3 {
+    margin: 0;
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+}
+
+.prototypeGroupHeader > span {
+    max-width: 70ch;
+    color: var(--color-ambiance-texte-secondaire);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.relationScenarioGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+    align-items: start;
+}
+
+.relationScenario {
+    display: grid;
+    min-width: 0;
+    gap: 0.65rem;
+}
+
+.prototypeCard,
+.prototypeEmptyState {
+    min-width: 0;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    background: var(--color-ambiance-fond);
+}
+
+.prototypeCard {
+    display: grid;
+    gap: 0.85rem;
+    padding: 0.9rem;
+}
+
+.prototypeCardHeading {
+    display: grid;
+    gap: 0.2rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.prototypeCardHeading strong {
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.prototypeRelationBlock {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.territoryStampList,
+.headerVineyards > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: center;
+}
+
+.stampLink {
+    display: inline-flex;
+    min-width: 0;
+    border-radius: 999px;
+    text-decoration: none;
+}
+
+.stampLink:focus-visible,
+.vineyardRows a:focus-visible,
+.moreVineyardsLink:focus-visible {
+    outline: 3px solid var(--gold-soft);
+    outline-offset: 3px;
+}
+
+.vineyardRows {
+    display: grid;
+    gap: 0.42rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.vineyardRows a {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.58rem;
+    align-items: center;
+    min-height: 3.15rem;
+    padding: 0.42rem 0.52rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: calc(var(--radius-md) - 3px);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-surface);
+    text-decoration: none;
+    transition:
+        border-color 160ms ease,
+        background-color 160ms ease,
+        transform 160ms ease;
+}
+
+.vineyardRows a:hover {
+    border-color: var(--gold);
+    background: var(--bg-overlay);
+    transform: translateY(-1px);
+}
+
+.vineyardRows a > span:last-child {
+    display: grid;
+    min-width: 0;
+    gap: 0.12rem;
+}
+
+.vineyardRows strong {
+    overflow: hidden;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vineyardRows small {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.prototypeAccordion {
+    margin-top: 0.1rem;
+}
+
+.prototypeEmptyState,
+.prototypeDisabled {
+    display: grid;
+    place-items: center;
+    gap: 0.3rem;
+    min-height: 7.5rem;
+    padding: 1rem;
+    color: var(--color-ambiance-texte-tertiaire);
+    text-align: center;
+}
+
+.prototypeEmptyState {
+    border-style: dashed;
+}
+
+.prototypeEmptyState strong {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.prototypeDisabled {
+    border: 1px dashed var(--border-soft);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    line-height: 1.5;
+}
+
+.territoryHeaderStack {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.territoryHeaderPrototype {
+    display: grid;
+    grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1.3fr);
+    gap: 1rem;
+    align-items: center;
+    min-width: 0;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius-md);
+    background: var(--color-ambiance-fond);
+}
+
+.territoryHeaderPrototype h4 {
+    margin: 0.18rem 0 0;
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+.territoryHeaderPrototype p {
+    margin: 0.18rem 0 0;
+    color: var(--color-ambiance-texte-tertiaire);
+    font-size: 0.72rem;
+}
+
+.headerVineyards {
+    display: grid;
+    min-width: 0;
+    gap: 0.45rem;
+}
+
+.moreVineyardsLink {
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+}
+
 .collectionMetaGrid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -261,7 +525,12 @@
     .collectionShowcaseGrid,
     .personnageShowcaseGrid,
     .territoireShowcaseGrid,
-    .collectionMetaGrid {
+    .collectionMetaGrid,
+    .relationScenarioGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .territoryHeaderPrototype {
         grid-template-columns: 1fr;
     }
 }
