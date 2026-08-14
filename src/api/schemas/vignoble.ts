@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { isTerritoireSlug } from "@/registry/territoires";
 import {
     baseMetaShape,
     coordinatesSchema,
@@ -6,6 +7,81 @@ import {
     slugSchema,
     stringArraySchema,
 } from "./common";
+
+const territoireSlugSchema = z.string().refine(isTerritoireSlug, {
+    message: "Territoire ligérien inconnu",
+});
+
+const vignobleMetaSchema = z
+    .object({
+        terroirs: z
+            .array(
+                z.enum([
+                    "tuffeau",
+                    "calcaire",
+                    "marne-calcaire",
+                    "argilo-calcaire",
+                    "argile-a-silex",
+                    "schiste",
+                    "micaschiste",
+                    "gneiss",
+                    "granite",
+                    "gabbro",
+                    "sable",
+                    "graviers",
+                    "alluvions",
+                    "faluns",
+                ]),
+            )
+            .min(1),
+        cepages: z.array(
+            z.enum([
+                "chenin",
+                "sauvignon-blanc",
+                "melon-de-bourgogne",
+                "chardonnay",
+                "chasselas",
+                "folle-blanche",
+                "romorantin",
+                "menu-pineau",
+                "tressallier",
+                "cabernet-franc",
+                "cabernet-sauvignon",
+                "pinot-noir",
+                "pinot-gris",
+                "pinot-meunier",
+                "gamay",
+                "grolleau-noir",
+                "grolleau-gris",
+                "pineau-daunis",
+                "cot",
+            ]),
+        ),
+        territoires: z.array(territoireSlugSchema),
+        territoirePrincipal: territoireSlugSchema.optional(),
+    })
+    .strict()
+    .superRefine(({ territoires, territoirePrincipal }, context) => {
+        if (new Set(territoires).size !== territoires.length) {
+            context.addIssue({
+                code: "custom",
+                path: ["territoires"],
+                message: "Les territoires d’un vignoble doivent être uniques",
+            });
+        }
+
+        if (
+            territoirePrincipal !== undefined &&
+            !territoires.includes(territoirePrincipal)
+        ) {
+            context.addIssue({
+                code: "custom",
+                path: ["territoirePrincipal"],
+                message:
+                    "Le territoire principal doit appartenir aux territoires du vignoble",
+            });
+        }
+    });
 
 export const vignobleEntrySchema = z
     .object({
@@ -43,53 +119,7 @@ export const vignobleEntrySchema = z
             })
             .strict(),
         notoriete: z.enum(["phare", "majeur", "notable", "confidentiel"]),
-        meta: z
-            .object({
-                terroirs: z
-                    .array(
-                        z.enum([
-                            "tuffeau",
-                            "calcaire",
-                            "marne-calcaire",
-                            "argilo-calcaire",
-                            "argile-a-silex",
-                            "schiste",
-                            "micaschiste",
-                            "gneiss",
-                            "granite",
-                            "gabbro",
-                            "sable",
-                            "graviers",
-                            "alluvions",
-                            "faluns",
-                        ]),
-                    )
-                    .min(1),
-                cepages: z.array(
-                    z.enum([
-                        "chenin",
-                        "sauvignon-blanc",
-                        "melon-de-bourgogne",
-                        "chardonnay",
-                        "chasselas",
-                        "folle-blanche",
-                        "romorantin",
-                        "menu-pineau",
-                        "tressallier",
-                        "cabernet-franc",
-                        "cabernet-sauvignon",
-                        "pinot-noir",
-                        "pinot-gris",
-                        "pinot-meunier",
-                        "gamay",
-                        "grolleau-noir",
-                        "grolleau-gris",
-                        "pineau-daunis",
-                        "cot",
-                    ]),
-                ),
-            })
-            .strict(),
+        meta: vignobleMetaSchema,
     })
     .strict();
 

@@ -4,6 +4,7 @@
 import type { VignobleCouleur } from "@/registry/Meta/vignoble-couleur";
 import type { VignobleCepage } from "@/registry/Meta/vignoble-cepage";
 import type { VignobleTerroir } from "@/registry/Meta/vignoble-terroir";
+import type { TerritoireSlug } from "@/registry/territoires";
 
 export type { VignobleCouleur } from "@/registry/Meta/vignoble-couleur";
 export type { VignobleTerroir } from "@/registry/Meta/vignoble-terroir";
@@ -41,6 +42,10 @@ export interface VignobleMeta {
     terroirs: VignobleTerroir[];
     /** Slugs des cépages disposant d’une métadonnée illustrée. */
     cepages: VignobleCepage[];
+    /** Chapitres territoriaux du Codex auxquels l’appellation est reliée. */
+    territoires: TerritoireSlug[];
+    /** Ancrage éditorial prioritaire, lorsqu’un territoire s’impose. */
+    territoirePrincipal?: TerritoireSlug;
 }
 
 export interface Vignoble {
@@ -102,6 +107,7 @@ export const VIGNOBLES: Vignoble[] = [
         meta: {
             terroirs: ["argilo-calcaire", "calcaire", "argile-a-silex"],
             cepages: ["sauvignon-blanc", "pinot-noir"],
+            territoires: [],
         },
     },
 ];
