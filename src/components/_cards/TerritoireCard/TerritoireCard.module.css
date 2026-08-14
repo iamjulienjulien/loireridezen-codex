@@ -323,6 +323,120 @@
     line-height: 1.35;
 }
 
+.vineyards {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1.15rem;
+    padding: 0.85rem;
+    border: 1px solid
+        color-mix(in srgb, var(--territoire-accent) 24%, var(--border-subtle));
+    border-radius: var(--radius-md);
+    background:
+        linear-gradient(
+            145deg,
+            color-mix(in srgb, var(--territoire-accent) 7%, transparent),
+            transparent 58%
+        ),
+        var(--color-ambiance-surface);
+}
+
+.vineyardsHeading {
+    display: grid;
+    gap: 0.18rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.vineyardsHeading span {
+    color: color-mix(
+        in srgb,
+        var(--territoire-accent) 76%,
+        var(--color-ambiance-texte-primaire)
+    );
+    font-family: var(--font-mono);
+    font-size: 0.53rem;
+    font-weight: 650;
+    letter-spacing: 0.11em;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.vineyardsHeading h4 {
+    margin: 0;
+    color: var(--color-ambiance-texte-primaire);
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.vineyardRows {
+    display: grid;
+    gap: 0.42rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.vineyardRows a {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.58rem;
+    align-items: center;
+    min-height: 3.15rem;
+    padding: 0.42rem 0.52rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: calc(var(--radius-md) - 3px);
+    color: var(--color-ambiance-texte-primaire);
+    background: var(--color-ambiance-surface);
+    text-decoration: none;
+    transition:
+        border-color 160ms ease,
+        background-color 160ms ease,
+        transform 160ms ease;
+}
+
+.vineyardRows a:hover {
+    border-color: var(--territoire-accent);
+    background: var(--bg-overlay);
+    transform: translateY(-1px);
+}
+
+.vineyardRows a:focus-visible {
+    outline: 3px solid
+        color-mix(in srgb, var(--territoire-accent) 38%, transparent);
+    outline-offset: 3px;
+}
+
+.vineyardRows a > span:last-child {
+    display: grid;
+    min-width: 0;
+    gap: 0.12rem;
+}
+
+.vineyardRows strong {
+    overflow: hidden;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vineyardRows small {
+    color: var(--color-ambiance-texte-tertiaire);
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    letter-spacing: 0.05em;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.vineyardsAccordion {
+    margin-top: 0.1rem;
+}
+
 @media (max-width: 480px) {
     .identity {
         grid-template-columns: 4.65rem minmax(0, 1fr);
@@ -353,7 +467,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .card {
+    .card,
+    .vineyardRows a {
         transition: none;
     }
 }

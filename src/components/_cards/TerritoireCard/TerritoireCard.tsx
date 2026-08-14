@@ -1,30 +1,45 @@
+"use client";
+
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import { Castle, MapPin, Music2, Waves } from "lucide-react";
 
 import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
 import LRZAccordion from "@/components/_ui/LRZAccordion";
 import LRZCard from "@/components/_ui/LRZCard";
+import { LRZSymbol } from "@/components/_ui/LRZSymbol";
+import { buildCardHrefWithReturn } from "@/lib/card-return-context";
 import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 import type { TerritoireCatalogueEntry } from "@/types/territoireCatalogue";
+import type { Vignoble } from "@/types/vignoble";
 
 import styles from "./TerritoireCard.module.css";
 
-type TerritoireCardProps = {
+export type TerritoireCardProps = {
     territoire: TerritoireCatalogueEntry;
     chateaux: readonly Chateau[];
     guinguettes: readonly Guinguette[];
+    vignobles?: readonly Vignoble[];
 };
 
 type TerritoireCardStyle = CSSProperties & {
     "--territoire-accent": string;
 };
 
+export const getVineyardAccordionTitle = (
+    expanded: boolean,
+    remainingCount: number,
+) =>
+    expanded
+        ? "Masquer les autres vignobles"
+        : `Voir ${remainingCount} ${remainingCount > 1 ? "autres vignobles" : "autre vignoble"}`;
+
 export default function TerritoireCard({
     territoire,
     chateaux,
     guinguettes,
+    vignobles,
 }: TerritoireCardProps) {
     const { identite, limites } = territoire;
     const titleId = `territoire-${territoire.slug}-title`;
@@ -109,6 +124,13 @@ export default function TerritoireCard({
                     ))}
                 </ul>
 
+                {vignobles && vignobles.length > 0 ? (
+                    <TerritoryVineyards
+                        territoire={territoire}
+                        vignobles={vignobles}
+                    />
+                ) : null}
+
                 {chateaux.length > 0 ? (
                     <LRZAccordion
                         id={`territoire-${territoire.slug}-chateaux`}
@@ -170,5 +192,96 @@ export default function TerritoireCard({
                 ) : null}
             </div>
         </LRZCard>
+    );
+}
+
+function TerritoryVineyards({
+    territoire,
+    vignobles,
+}: {
+    territoire: TerritoireCatalogueEntry;
+    vignobles: readonly Vignoble[];
+}) {
+    const [expanded, setExpanded] = useState(false);
+    const visible = vignobles.slice(0, 3);
+    const remaining = vignobles.slice(3);
+
+    return (
+        <section
+            className={styles.vineyards}
+            aria-labelledby={`territoire-${territoire.slug}-vignobles-title`}
+        >
+            <div className={styles.vineyardsHeading}>
+                <span>Sur les coteaux</span>
+                <h4 id={`territoire-${territoire.slug}-vignobles-title`}>
+                    Vignobles du territoire
+                </h4>
+            </div>
+
+            <VineyardRows vignobles={visible} territoire={territoire} />
+
+            {remaining.length > 0 ? (
+                <LRZAccordion
+                    id={`territoire-${territoire.slug}-vignobles-more`}
+                    className={styles.vineyardsAccordion}
+                    title={getVineyardAccordionTitle(
+                        expanded,
+                        remaining.length,
+                    )}
+                    description={`${vignobles.length} appellations liées au territoire`}
+                    color={territoire.identite.color}
+                    tone="plain"
+                    size="sm"
+                    fullWidth
+                    headingLevel={5}
+                    open={expanded}
+                    onOpenChange={setExpanded}
+                >
+                    <VineyardRows
+                        vignobles={remaining}
+                        territoire={territoire}
+                    />
+                </LRZAccordion>
+            ) : null}
+        </section>
+    );
+}
+
+function VineyardRows({
+    vignobles,
+    territoire,
+}: {
+    vignobles: readonly Vignoble[];
+    territoire: TerritoireCatalogueEntry;
+}) {
+    return (
+        <ul
+            className={styles.vineyardRows}
+            aria-label={`Vignobles du ${territoire.nom}`}
+        >
+            {vignobles.map((vignoble) => (
+                <li key={vignoble.slug}>
+                    <Link
+                        href={buildCardHrefWithReturn(
+                            `/vignoble/${vignoble.slug}`,
+                            `/territoire/${territoire.slug}`,
+                        )}
+                    >
+                        <LRZSymbol
+                            collection="vignoble"
+                            meta="couleur"
+                            slug={vignoble.couleur}
+                            size={34}
+                            frame="subtle"
+                            decorative
+                        />
+                        <span>
+                            <strong>{vignoble.nom}</strong>
+                            <small>{vignoble.appellation.niveau}</small>
+                        </span>
+                    </Link>
+                </li>
+            ))}
+        </ul>
     );
 }

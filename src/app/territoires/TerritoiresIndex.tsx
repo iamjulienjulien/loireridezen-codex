@@ -16,6 +16,7 @@ import {
     type CardReturnContext,
 } from "@/lib/card-return-context";
 import { trackCardNavigate } from "@/lib/analytics";
+import type { VignoblesParTerritoire } from "@/lib/vignobles-territoires";
 import { getTerritoireChateaux } from "@/registry/chateaux-territoires";
 import { getIndex, type IndexEntry } from "@/registry/indexes";
 import type { TerritoireSlug } from "@/registry/territoires";
@@ -33,6 +34,7 @@ type TerritoiresIndexProps = {
     indexes: readonly IndexEntry[];
     initialOpenSlug?: string;
     returnContext?: CardReturnContext;
+    vignoblesByTerritoire?: VignoblesParTerritoire;
 };
 
 export default function TerritoiresIndex({
@@ -42,6 +44,7 @@ export default function TerritoiresIndex({
     indexes,
     initialOpenSlug,
     returnContext,
+    vignoblesByTerritoire,
 }: TerritoiresIndexProps) {
     const entry = getIndex("/territoires")!;
     const [openSlug, setOpenSlug] = useState(initialOpenSlug);
@@ -145,6 +148,13 @@ export default function TerritoiresIndex({
                             (guinguette) =>
                                 guinguette.territoire === openTerritoire.slug,
                         )}
+                        vignobles={
+                            vignoblesByTerritoire
+                                ? (vignoblesByTerritoire[
+                                      openTerritoire.slug as TerritoireSlug
+                                  ] ?? [])
+                                : undefined
+                        }
                     />
                 </LRZCardDialog>
             ) : null}
@@ -204,6 +214,13 @@ export default function TerritoiresIndex({
                                             guinguette.territoire ===
                                             territoire.slug,
                                     )}
+                                    vignobles={
+                                        vignoblesByTerritoire
+                                            ? (vignoblesByTerritoire[
+                                                  territoire.slug as TerritoireSlug
+                                              ] ?? [])
+                                            : undefined
+                                    }
                                 />
                             </li>
                         ))}
