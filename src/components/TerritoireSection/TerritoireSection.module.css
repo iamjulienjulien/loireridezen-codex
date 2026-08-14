@@ -155,6 +155,71 @@
     line-height: 1.4;
 }
 
+.vineyards {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.vineyards > p {
+    margin: 0;
+    color: var(--territoire-accent-lighter);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+.vineyardStamps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    align-items: center;
+}
+
+.vineyardStampLink {
+    display: inline-flex;
+    min-width: 0;
+    border-radius: 999px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.vineyardStampLink:focus-visible,
+.moreVineyardsLink:focus-visible {
+    outline: 3px solid
+        color-mix(in srgb, var(--territoire-accent) 42%, transparent);
+    outline-offset: 3px;
+}
+
+.moreVineyardsLink {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.7rem;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.35rem;
+    color: var(--territoire-accent-lighter);
+    font-family: var(--font-mono);
+    font-size: 0.56rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    line-height: 1.35;
+    text-decoration-color: color-mix(
+        in srgb,
+        var(--territoire-accent) 45%,
+        transparent
+    );
+    text-underline-offset: 0.2em;
+}
+
+.moreVineyardsLink:hover {
+    color: var(--color-ambiance-texte-primaire);
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

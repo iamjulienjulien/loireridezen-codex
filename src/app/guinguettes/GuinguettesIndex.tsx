@@ -16,6 +16,7 @@ import { LRZCardDialog } from "@/components/_ui/LRZCardDialog";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { SITE_URL } from "@/lib/site-metadata";
 import { trackCardNavigate } from "@/lib/analytics";
+import type { VignoblesParTerritoire } from "@/lib/vignobles-territoires";
 import { PageControls } from "@/components/_layout/PageControls";
 import { LRZSection } from "@/components/_ui/LRZSection";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
@@ -43,10 +44,12 @@ export default function GuinguettesIndex({
     guinguettes,
     indexes,
     initialOpenSlug,
+    vignoblesByTerritoire,
 }: {
     guinguettes: Guinguette[];
     indexes: readonly IndexEntry[];
     initialOpenSlug?: string;
+    vignoblesByTerritoire?: VignoblesParTerritoire;
 }) {
     const entry = getIndex("/guinguettes")!;
     const [territoire, setTerritoire] = useState("all");
@@ -424,6 +427,14 @@ export default function GuinguettesIndex({
                                             key={territory.slug}
                                             territory={territory}
                                             guinguettes={guinguettes}
+                                            vignobles={
+                                                vignoblesByTerritoire?.[
+                                                    territory.slug
+                                                ] ??
+                                                (vignoblesByTerritoire
+                                                    ? []
+                                                    : undefined)
+                                            }
                                             mapSync
                                         />
                                     ),

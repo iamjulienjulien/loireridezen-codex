@@ -16,6 +16,7 @@ import type { Chateau } from "@/types/chateau";
 import type { IndexEntry } from "@/registry/indexes";
 import type { PersonnagesParLieu } from "@/types/personnage";
 import type { NearbyGuinguettesByChateau } from "@/lib/nearby-guinguettes";
+import type { VignoblesParTerritoire } from "@/lib/vignobles-territoires";
 
 import { getCollectionsByIndexForEnv } from "@/registry/collections";
 
@@ -78,6 +79,7 @@ type ChateauxIndexProps = {
     indexes: readonly IndexEntry[];
     personnagesByChateau: PersonnagesParLieu;
     nearbyGuinguettesByChateau?: NearbyGuinguettesByChateau;
+    vignoblesByTerritoire?: VignoblesParTerritoire;
     initialOpenSlug?: string;
 };
 
@@ -86,6 +88,7 @@ export default function ChateauxIndex({
     indexes,
     personnagesByChateau,
     nearbyGuinguettesByChateau,
+    vignoblesByTerritoire,
     initialOpenSlug,
 }: ChateauxIndexProps) {
     const entry = getIndex("/chateaux")!;
@@ -440,6 +443,10 @@ export default function ChateauxIndex({
                         chateaux={chateaux}
                         personnagesByChateau={personnagesByChateau}
                         nearbyGuinguettesByChateau={nearbyGuinguettesByChateau}
+                        vignobles={
+                            vignoblesByTerritoire?.[territory.slug] ??
+                            (vignoblesByTerritoire ? [] : undefined)
+                        }
                         mapSync
                         onShowOnMap={showChateauOnMap}
                     />

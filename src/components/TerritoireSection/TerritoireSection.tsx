@@ -2,21 +2,24 @@
 
 import type { CSSProperties } from "react";
 import { MapPin, Waves } from "lucide-react";
+import Link from "next/link";
 
 import type { Territoire } from "@/types/territoire";
 import type { PersonnagesParLieu } from "@/types/personnage";
 import type { Guinguette } from "@/types/guinguette";
 import type { NearbyGuinguettesByChateau } from "@/lib/nearby-guinguettes";
+import type { Vignoble } from "@/types/vignoble";
 
 import ChateauxCard from "@/components/_cards/ChateauxCard";
 import GuinguetteCard from "@/components/_cards/GuinguetteCard";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
+import { LRZStamp } from "@/components/_ui/LRZStamp";
 import { LRZTypography } from "@/components/_ui/LRZTypography";
 import { isCommonTerritoire } from "@/registry/Meta/common-territoire";
 
 import styles from "./TerritoireSection.module.css";
 import { lighter } from "@/lib/colors";
-import LRZSeparateur from "../_ui/LRZSeparateur/LRZSeparateur";
+import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { getLRZColorValue } from "@/registry/colors";
 import type { Chateau } from "@/types/chateau";
 
@@ -30,6 +33,7 @@ type TerritoireSectionProps = {
     guinguettes?: readonly Guinguette[];
     personnagesByChateau?: PersonnagesParLieu;
     nearbyGuinguettesByChateau?: NearbyGuinguettesByChateau;
+    vignobles?: readonly Vignoble[];
     /** Ajoute un repère DOM pour la synchronisation expérimentale de carte. */
     mapSync?: boolean;
     onShowOnMap?: (slug: string) => void;
@@ -41,6 +45,7 @@ export default function TerritoireSection({
     guinguettes,
     personnagesByChateau,
     nearbyGuinguettesByChateau,
+    vignobles,
     mapSync = false,
     onShowOnMap,
 }: TerritoireSectionProps) {
@@ -50,6 +55,8 @@ export default function TerritoireSection({
 
     const color = getLRZColorValue(identite.color);
     const colorLighter = lighter(color, 0);
+    const visibleVignobles = vignobles?.slice(0, 3) ?? [];
+    const hasMoreVignobles = (vignobles?.length ?? 0) > 3;
 
     return (
         <section
@@ -66,17 +73,6 @@ export default function TerritoireSection({
             }
             aria-labelledby={`territoire-${territory.slug}-title`}
         >
-            {/* <div style={{ marginTop: "0rem", marginBottom: ".7rem" }}>
-                <LRZSeparateur
-                    preset="diamond"
-                    color={identite.color}
-                    size="lg"
-                    scope="content"
-                    marginBlock={"0"}
-                    weight="regular"
-                    tone="normal"
-                />
-            </div> */}
             <header className={styles.header}>
                 <div className={styles.eyebrowRow}>
                     <p className={styles.eyebrow}>
@@ -103,7 +99,6 @@ export default function TerritoireSection({
                         marginBlock={"0"}
                         weight="regular"
                         tone="subtle"
-                        // fadeEdges
                     />
                 </div>
                 <div className={styles.identity}>
@@ -164,6 +159,45 @@ export default function TerritoireSection({
                                 <dd>{territory.coursEau.join(" · ")}</dd>
                             </div>
                         </dl>
+
+                        {visibleVignobles.length > 0 ? (
+                            <div className={styles.vineyards}>
+                                <p>Vignobles du territoire</p>
+                                <div className={styles.vineyardStamps}>
+                                    {visibleVignobles.map((vignoble) => (
+                                        <Link
+                                            key={vignoble.slug}
+                                            href={`/vignoble/${vignoble.slug}`}
+                                            className={styles.vineyardStampLink}
+                                        >
+                                            <LRZStamp
+                                                collection="vignoble"
+                                                meta="couleur"
+                                                slug={vignoble.couleur}
+                                                label={vignoble.nom}
+                                                variant="badge"
+                                                tone="ghost"
+                                                size="xs"
+                                                font="display"
+                                                labelSize="xs"
+                                                padding="xs"
+                                                gap="xs"
+                                                gradient={false}
+                                            />
+                                        </Link>
+                                    ))}
+                                    {hasMoreVignobles ? (
+                                        <Link
+                                            href={`/territoire/${territory.slug}`}
+                                            className={styles.moreVineyardsLink}
+                                            aria-label={`Voir les ${vignobles?.length} vignobles du ${territory.nom}`}
+                                        >
+                                            Voir tous les vignobles
+                                        </Link>
+                                    ) : null}
+                                </div>
+                            </div>
+                        ) : null}
                     </div>
                 </div>
             </header>
