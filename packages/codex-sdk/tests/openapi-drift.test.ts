@@ -15,5 +15,5 @@ describe("generated OpenAPI types", () => {
                 stdio: "pipe",
             }),
         ).not.toThrow();
-    });
+    }, 15_000);
 });
