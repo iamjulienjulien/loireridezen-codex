@@ -56,6 +56,9 @@ describe("VignoblesCard · territoires du vin", () => {
             "/territoire/nivernais?retour=%2Fvignoble%2Fpouilly-fume",
         );
         expect(markup).toContain('data-primary-territory="true"');
+        expect(markup).toContain('data-analytics-event="relation_open"');
+        expect(markup).toContain('data-analytics-surface="vignobles_card"');
+        expect(markup).not.toContain('data-analytics-event="card_open"');
     });
 
     it("place le territoire principal avant les secondaires", () => {

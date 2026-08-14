@@ -2,7 +2,6 @@
 
 import type { CSSProperties } from "react";
 import { MapPin, Waves } from "lucide-react";
-import Link from "next/link";
 
 import type { Territoire } from "@/types/territoire";
 import type { PersonnagesParLieu } from "@/types/personnage";
@@ -22,6 +21,7 @@ import { lighter } from "@/lib/colors";
 import LRZSeparateur from "@/components/_ui/LRZSeparateur";
 import { getLRZColorValue } from "@/registry/colors";
 import type { Chateau } from "@/types/chateau";
+import { TrackedRelationLink } from "@/components/_layout/AnalyticsTracking";
 
 type TerritoireSectionStyle = CSSProperties & {
     "--territoire-accent": string;
@@ -165,10 +165,27 @@ export default function TerritoireSection({
                                 <p>Vignobles du territoire</p>
                                 <div className={styles.vineyardStamps}>
                                     {visibleVignobles.map((vignoble) => (
-                                        <Link
+                                        <TrackedRelationLink
                                             key={vignoble.slug}
                                             href={`/vignoble/${vignoble.slug}`}
                                             className={styles.vineyardStampLink}
+                                            source_index={
+                                                isGuinguettes
+                                                    ? "guinguettes"
+                                                    : "chateaux"
+                                            }
+                                            source_slug={territory.slug}
+                                            target_index="vignobles"
+                                            target_slug={vignoble.slug}
+                                            surface={
+                                                isGuinguettes
+                                                    ? "guinguettes_territory_header"
+                                                    : "chateaux_territory_header"
+                                            }
+                                            visible_items={
+                                                visibleVignobles.length
+                                            }
+                                            total_items={vignobles?.length}
                                         >
                                             <LRZStamp
                                                 collection="vignoble"
@@ -184,16 +201,33 @@ export default function TerritoireSection({
                                                 gap="xs"
                                                 gradient={false}
                                             />
-                                        </Link>
+                                        </TrackedRelationLink>
                                     ))}
                                     {hasMoreVignobles ? (
-                                        <Link
+                                        <TrackedRelationLink
                                             href={`/territoire/${territory.slug}`}
                                             className={styles.moreVineyardsLink}
                                             aria-label={`Voir les ${vignobles?.length} vignobles du ${territory.nom}`}
+                                            source_index={
+                                                isGuinguettes
+                                                    ? "guinguettes"
+                                                    : "chateaux"
+                                            }
+                                            source_slug={territory.slug}
+                                            target_index="territoires"
+                                            target_slug={territory.slug}
+                                            surface={
+                                                isGuinguettes
+                                                    ? "guinguettes_territory_header"
+                                                    : "chateaux_territory_header"
+                                            }
+                                            visible_items={
+                                                visibleVignobles.length
+                                            }
+                                            total_items={vignobles?.length}
                                         >
                                             Voir tous les vignobles
-                                        </Link>
+                                        </TrackedRelationLink>
                                     ) : null}
                                 </div>
                             </div>

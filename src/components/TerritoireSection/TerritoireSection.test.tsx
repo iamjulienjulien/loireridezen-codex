@@ -73,6 +73,9 @@ describe("TerritoireSection · aperçu des vignobles", () => {
             ),
         ).toBe(true);
         expect(markup).not.toContain("Voir tous les vignobles");
+        expect(markup).toContain(
+            'data-analytics-surface="chateaux_territory_header"',
+        );
     });
 
     it("plafonne un territoire dense et renvoie vers sa fiche", () => {
@@ -97,6 +100,7 @@ describe("TerritoireSection · aperçu des vignobles", () => {
         ).toBe(true);
         expect(markup).toContain('href="/territoire/anjou"');
         expect(markup).toContain("Voir tous les vignobles");
+        expect(markup).toContain('data-analytics-target-index="territoires"');
     });
 
     it("partage le même contrat entre Châteaux et Guinguettes", () => {
@@ -111,6 +115,12 @@ describe("TerritoireSection · aperçu des vignobles", () => {
 
         expect(chateauxMarkup).toContain("Vignobles du territoire");
         expect(guinguettesMarkup).toContain("Vignobles du territoire");
+        expect(chateauxMarkup).toContain(
+            'data-analytics-surface="chateaux_territory_header"',
+        );
+        expect(guinguettesMarkup).toContain(
+            'data-analytics-surface="guinguettes_territory_header"',
+        );
     });
 
     it("préserve les repères de synchronisation cartographique", () => {

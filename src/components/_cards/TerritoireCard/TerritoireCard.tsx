@@ -4,11 +4,15 @@ import Link from "next/link";
 import { useState, type CSSProperties } from "react";
 import { Castle, MapPin, Music2, Waves } from "lucide-react";
 
-import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
+import {
+    TrackedCardLink,
+    TrackedRelationLink,
+} from "@/components/_layout/AnalyticsTracking";
 import LRZAccordion from "@/components/_ui/LRZAccordion";
 import LRZCard from "@/components/_ui/LRZCard";
 import { LRZSymbol } from "@/components/_ui/LRZSymbol";
 import { buildCardHrefWithReturn } from "@/lib/card-return-context";
+import { trackRelationExpand } from "@/lib/analytics";
 import type { Chateau } from "@/types/chateau";
 import type { Guinguette } from "@/types/guinguette";
 import type { TerritoireCatalogueEntry } from "@/types/territoireCatalogue";
@@ -218,7 +222,11 @@ function TerritoryVineyards({
                 </h4>
             </div>
 
-            <VineyardRows vignobles={visible} territoire={territoire} />
+            <VineyardRows
+                vignobles={visible}
+                territoire={territoire}
+                totalItems={vignobles.length}
+            />
 
             {remaining.length > 0 ? (
                 <LRZAccordion
@@ -235,11 +243,23 @@ function TerritoryVineyards({
                     fullWidth
                     headingLevel={5}
                     open={expanded}
-                    onOpenChange={setExpanded}
+                    onOpenChange={(open) => {
+                        setExpanded(open);
+                        if (open) {
+                            trackRelationExpand({
+                                source_index: "territoires",
+                                source_slug: territoire.slug,
+                                surface: "territoire_card",
+                                visible_items: visible.length,
+                                total_items: vignobles.length,
+                            });
+                        }
+                    }}
                 >
                     <VineyardRows
                         vignobles={remaining}
                         territoire={territoire}
+                        totalItems={vignobles.length}
                     />
                 </LRZAccordion>
             ) : null}
@@ -250,9 +270,11 @@ function TerritoryVineyards({
 function VineyardRows({
     vignobles,
     territoire,
+    totalItems,
 }: {
     vignobles: readonly Vignoble[];
     territoire: TerritoireCatalogueEntry;
+    totalItems: number;
 }) {
     return (
         <ul
@@ -261,11 +283,18 @@ function VineyardRows({
         >
             {vignobles.map((vignoble) => (
                 <li key={vignoble.slug}>
-                    <Link
+                    <TrackedRelationLink
                         href={buildCardHrefWithReturn(
                             `/vignoble/${vignoble.slug}`,
                             `/territoire/${territoire.slug}`,
                         )}
+                        source_index="territoires"
+                        source_slug={territoire.slug}
+                        target_index="vignobles"
+                        target_slug={vignoble.slug}
+                        surface="territoire_card"
+                        visible_items={Math.min(3, totalItems)}
+                        total_items={totalItems}
                     >
                         <LRZSymbol
                             collection="vignoble"
@@ -279,7 +308,7 @@ function VineyardRows({
                             <strong>{vignoble.nom}</strong>
                             <small>{vignoble.appellation.niveau}</small>
                         </span>
-                    </Link>
+                    </TrackedRelationLink>
                 </li>
             ))}
         </ul>

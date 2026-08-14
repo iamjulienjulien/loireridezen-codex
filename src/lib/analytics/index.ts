@@ -17,6 +17,8 @@ export {
     trackCardNavigate,
     trackCardOpen,
     trackIndexOpen,
+    trackRelationExpand,
+    trackRelationOpen,
 } from "./events";
 export type {
     CardNavigateEvent,
@@ -26,4 +28,8 @@ export type {
     CodexAnalyticsEvent,
     IndexOpenEvent,
     IndexOpenSource,
+    RelationExpandEvent,
+    RelationIndexSlug,
+    RelationOpenEvent,
+    RelationSurface,
 } from "./events";

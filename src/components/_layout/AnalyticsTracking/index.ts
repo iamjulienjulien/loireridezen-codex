@@ -10,3 +10,5 @@ export type {
 } from "./IndexCardTrackingProvider";
 export { default as TrackedCardLink } from "./TrackedCardLink";
 export type { TrackedCardLinkProps } from "./TrackedCardLink";
+export { default as TrackedRelationLink } from "./TrackedRelationLink";
+export type { TrackedRelationLinkProps } from "./TrackedRelationLink";

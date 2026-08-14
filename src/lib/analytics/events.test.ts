@@ -5,6 +5,8 @@ import {
     trackCardNavigate,
     trackCardOpen,
     trackIndexOpen,
+    trackRelationExpand,
+    trackRelationOpen,
     writeAnalyticsConsent,
 } from ".";
 
@@ -167,4 +169,92 @@ describe("Codex analytics events", () => {
         ).toBe(false);
         expect(dataLayer).toEqual([]);
     });
+
+    it("publishes relational navigation and expansion after consent", () => {
+        const { dataLayer } = stubAnalyticsWindow("accepted");
+
+        expect(
+            trackRelationOpen({
+                source_index: "vignobles",
+                source_slug: "chinon",
+                target_index: "territoires",
+                target_slug: "chinonais",
+                surface: "vignobles_card",
+                visible_items: 2,
+                total_items: 2,
+            }),
+        ).toBe(true);
+        expect(
+            trackRelationExpand({
+                source_index: "territoires",
+                source_slug: "anjou",
+                surface: "territoire_card",
+                visible_items: 3,
+                total_items: 18,
+            }),
+        ).toBe(true);
+
+        expect(dataLayer).toEqual([
+            {
+                event: "relation_open",
+                source_index: "vignobles",
+                source_slug: "chinon",
+                target_index: "territoires",
+                target_slug: "chinonais",
+                surface: "vignobles_card",
+                visible_items: 2,
+                total_items: 2,
+            },
+            {
+                event: "relation_expand",
+                source_index: "territoires",
+                source_slug: "anjou",
+                surface: "territoire_card",
+                visible_items: 3,
+                total_items: 18,
+            },
+        ]);
+    });
+
+    it("rejects incomplete or inconsistent relational payloads", () => {
+        const { dataLayer } = stubAnalyticsWindow("accepted");
+
+        expect(
+            trackRelationOpen({
+                source_index: "vignobles",
+                source_slug: " ",
+                target_index: "territoires",
+                target_slug: "anjou",
+                surface: "vignobles_card",
+            }),
+        ).toBe(false);
+        expect(
+            trackRelationExpand({
+                source_index: "territoires",
+                source_slug: "anjou",
+                surface: "territoire_card",
+                visible_items: 4,
+                total_items: 3,
+            }),
+        ).toBe(false);
+        expect(dataLayer).toEqual([]);
+    });
+
+    it.each([null, "refused"] as const)(
+        "does not publish relational events when consent is %s",
+        (consent) => {
+            const { dataLayer } = stubAnalyticsWindow(consent);
+
+            expect(
+                trackRelationOpen({
+                    source_index: "territoires",
+                    source_slug: "touraine",
+                    target_index: "vignobles",
+                    target_slug: "vouvray",
+                    surface: "territoire_card",
+                }),
+            ).toBe(false);
+            expect(dataLayer).toEqual([]);
+        },
+    );
 });

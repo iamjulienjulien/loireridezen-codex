@@ -61,6 +61,9 @@ describe("TerritoireCard · vignobles du territoire", () => {
             `/vignoble/${linked[0].slug}?retour=%2Fterritoire%2F${territoire.slug}`,
         );
         expect(markup).not.toContain("autres vignobles");
+        expect(markup).toContain('data-analytics-event="relation_open"');
+        expect(markup).toContain('data-analytics-surface="territoire_card"');
+        expect(markup).not.toContain('data-analytics-event="card_open"');
     });
 
     it("affiche trois vignobles sans accordéon pour le Nivernais", () => {
@@ -86,6 +89,9 @@ describe("TerritoireCard · vignobles du territoire", () => {
         expect(linked.length).toBeGreaterThan(3);
         expect(markup).toContain(`Voir ${remaining} autres vignobles`);
         expect(markup).toContain('aria-expanded="false"');
+        expect(markup).toContain(
+            `data-analytics-visible-items="3" data-analytics-total-items="${linked.length}"`,
+        );
         expect(markup).toContain('hidden=""');
         expect(
             linked.every((vignoble) =>

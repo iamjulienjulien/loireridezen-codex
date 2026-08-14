@@ -1,7 +1,9 @@
 import { Grape, Info, MapPin, UtensilsCrossed } from "lucide-react";
-import Link from "next/link";
 
-import { TrackedCardLink } from "@/components/_layout/AnalyticsTracking";
+import {
+    TrackedCardLink,
+    TrackedRelationLink,
+} from "@/components/_layout/AnalyticsTracking";
 import LRZCard from "@/components/_ui/LRZCard";
 import { LRZStamp } from "@/components/_ui/LRZStamp";
 import type { Vignoble } from "@/types/vignoble";
@@ -262,12 +264,19 @@ export default function VignoblesCard({ d, territoires }: VignoblesCardProps) {
                             <div className={styles.territoryStampList}>
                                 {territoires.map(
                                     ({ territoire, principal }) => (
-                                        <Link
+                                        <TrackedRelationLink
                                             key={territoire.slug}
                                             href={buildCardHrefWithReturn(
                                                 `/territoire/${territoire.slug}`,
                                                 `/vignoble/${d.slug}`,
                                             )}
+                                            source_index="vignobles"
+                                            source_slug={d.slug}
+                                            target_index="territoires"
+                                            target_slug={territoire.slug}
+                                            surface="vignobles_card"
+                                            visible_items={territoires.length}
+                                            total_items={territoires.length}
                                             className={
                                                 styles.territoryStampLink
                                             }
@@ -304,7 +313,7 @@ export default function VignoblesCard({ d, territoires }: VignoblesCardProps) {
                                                 }
                                                 gradient={principal}
                                             />
-                                        </Link>
+                                        </TrackedRelationLink>
                                     ),
                                 )}
                             </div>
