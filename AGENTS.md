@@ -85,6 +85,14 @@ Pour la V1 stable :
 @loireridezen/codex-sdk · V1.0.0 — Contrat public stable
 ```
 
+### Responsabilité des publications
+
+Julien exécute exclusivement les opérations de publication : création et
+envoi des tags Git, création des releases GitHub et publication des packages
+sur npm. Les agents préparent et vérifient les changements et les artefacts,
+puis fournissent à Julien les commandes exactes à exécuter. Ils ne lancent
+aucune de ces opérations eux-mêmes.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know
