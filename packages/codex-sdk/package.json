@@ -1,6 +1,6 @@
 {
     "name": "@loireridezen/codex-sdk",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "TypeScript client for the Loire Ride Zen Codex public API.",
     "keywords": [
         "loire",
@@ -17,7 +17,8 @@
     "types": "./dist/index.d.ts",
     "files": [
         "dist",
-        "README.md"
+        "README.md",
+        "CHANGELOG.md"
     ],
     "exports": {
         ".": {
@@ -51,6 +52,7 @@
         "node": ">=20.9.0"
     },
     "publishConfig": {
-        "access": "public"
+        "access": "public",
+        "registry": "https://registry.npmjs.org/"
     }
 }

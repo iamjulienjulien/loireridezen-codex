@@ -20,6 +20,7 @@ export type {
     ApiVersion,
     ChateauAttributes,
     ChateauEntry,
+    ChateauIllustrations,
     ContentLicense,
     EntryCollectionResponse,
     EntryDetailResponse,

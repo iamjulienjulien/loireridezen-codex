@@ -25,7 +25,7 @@ const sdkPackage = JSON.parse(readFileSync(sdkPackagePath, "utf8")) as {
     homepage: string;
     bugs: { url: string };
     keywords: string[];
-    publishConfig: { access: string };
+    publishConfig: { access: string; registry: string };
 };
 const docsHome = readFileSync(docsHomePath, "utf8");
 const apiPage = readFileSync(apiPagePath, "utf8");
@@ -92,11 +92,15 @@ describe("SDK developer documentation", () => {
 
     it("keeps the package ready for a public registry", () => {
         expect(sdkPackage.name).toBe("@loireridezen/codex-sdk");
-        expect(sdkPackage.version).toBe("0.1.0");
+        expect(sdkPackage.version).toBe("1.0.0");
         expect(sdkPackage.sideEffects).toBe(false);
         expect(sdkPackage.main).toBe("./dist/index.js");
         expect(sdkPackage.types).toBe("./dist/index.d.ts");
-        expect(sdkPackage.files).toEqual(["dist", "README.md"]);
+        expect(sdkPackage.files).toEqual([
+            "dist",
+            "README.md",
+            "CHANGELOG.md",
+        ]);
         expect(sdkPackage.repository).toEqual({
             type: "git",
             url: "git+https://github.com/iamjulienjulien/loireridezen-codex.git",
@@ -112,5 +116,8 @@ describe("SDK developer documentation", () => {
             expect.arrayContaining(["typescript", "sdk", "expo", "react-native"]),
         );
         expect(sdkPackage.publishConfig.access).toBe("public");
+        expect(sdkPackage.publishConfig.registry).toBe(
+            "https://registry.npmjs.org/",
+        );
     });
 });

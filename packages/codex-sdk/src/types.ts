@@ -12,6 +12,8 @@ export type PublicIndex = components["schemas"]["PublicIndex"];
 
 export type FauneAttributes = components["schemas"]["FauneAttributes"];
 export type FloreAttributes = components["schemas"]["FloreAttributes"];
+export type ChateauIllustrations =
+    components["schemas"]["ChateauIllustrations"];
 export type ChateauAttributes = components["schemas"]["ChateauAttributes"];
 export type GuinguetteAttributes =
     components["schemas"]["GuinguetteAttributes"];

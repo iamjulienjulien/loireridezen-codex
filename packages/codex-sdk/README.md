@@ -5,7 +5,7 @@ publique v1 du Codex ligérien. Il donne accès aux index et à leurs entrées a
 des types générés depuis OpenAPI, sans dépendre de React, Next.js, Expo ou
 d’une solution de stockage.
 
-> **État de diffusion.** La version `0.1.0` est distribuée publiquement via
+> **État de diffusion.** La version stable `1.0.0` est distribuée publiquement via
 > npm sous le nom `@loireridezen/codex-sdk`.
 
 ## Statut et installation
@@ -85,14 +85,77 @@ package :
 - enveloppes : `ApiRootResponse`, `IndexCollectionResponse`,
   `IndexDetailResponse`, `EntryCollectionResponse` et `EntryDetailResponse` ;
 - contenu : `PublicIndex`, `PublicEntry`, `FauneEntry`, `FloreEntry` et
-  `ChateauEntry` ;
-- attributs : `FauneAttributes`, `FloreAttributes` et `ChateauAttributes` ;
+  `ChateauEntry`, ainsi que les entrées Guinguette, Territoire, Personnage et
+  Vignoble ;
+- attributs : les sept variantes d’attributs et `ChateauIllustrations` ;
 - contrat commun : `PublicMedia`, `PublicLicenses`, `Problem` et
   `PublishedIndexSlug`.
 
 Ces types sont dérivés du
 [contrat OpenAPI](https://codex.loireridezen.bike/api/v1/openapi.json). Une
 évolution du contrat devient donc visible lors de la vérification du SDK.
+
+## Contrat Château V1
+
+Chaque `ChateauEntry` possède quatre illustrations obligatoires. L’API les
+publie sous forme d’URL HTTPS absolues, directement utilisables par un client
+web, Node.js ou React Native :
+
+```typescript
+import type { ChateauEntry } from "@loireridezen/codex-sdk";
+
+const renderChateau = (chateau: ChateauEntry) => {
+    const { aube, jour, soir, nuit } = chateau.attributes.illustrations;
+
+    console.log({ aube, jour, soir, nuit });
+    console.assert(chateau.media.imageUrl === jour);
+};
+```
+
+`media.imageUrl` est toujours strictement identique à
+`attributes.illustrations.jour`. Le SDK transporte ces cinq valeurs sans les
+réécrire, les valider à l’exécution, les télécharger ou les mettre en cache.
+
+## Migration depuis 0.1.0
+
+La version 1.0.0 remplace le contrat expérimental publié en 0.1.0 :
+
+- `illustrationVariant` disparaît sans alias historique ;
+- `attributes.illustrations` et ses quatre clés deviennent obligatoires ;
+- `PublishedIndexSlug` couvre désormais les sept index de production ;
+- les types Guinguette, Territoire, Personnage et Vignoble rejoignent la
+  surface publique.
+
+Remplacez une lecture de `attributes.illustrationVariant?.jour` par
+`attributes.illustrations.jour`. Les modèles dérivés et les fixtures Château
+doivent conserver les quatre valeurs, même si une interface n’affiche encore
+que l’ambiance Jour.
+
+## Compatibilité 1.x
+
+- Une version corrective `1.x.y` ne change pas le comportement observable ni
+  le contrat public.
+- Une version mineure `1.x.0` peut ajouter un export, une opération, un champ
+  optionnel ou un nouvel index.
+- Une suppression, un renommage, un changement de sens ou un champ rendu
+  obligatoire exige une nouvelle version majeure.
+
+Les index éditoriaux sont une union évolutive. Un consommateur qui transforme
+les entrées doit donc prévoir un repli explicite et ne jamais convertir un slug
+inconnu en Château :
+
+```typescript
+const labelForIndex = (index: string) => {
+    switch (index) {
+        case "chateaux":
+            return "Châteaux";
+        case "faune":
+            return "Faune";
+        default:
+            return "Nouvel index du Codex";
+    }
+};
+```
 
 ## Expo et React Native
 

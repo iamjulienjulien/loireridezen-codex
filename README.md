@@ -272,8 +272,8 @@ curl --fail-with-body \
   https://codex.loireridezen.bike/api/v1/indexes
 ```
 
-Elle expose actuellement **Châteaux, Faune, Flore et Vignobles**, soit
-**222 entrées**.
+Elle expose actuellement les sept index de production : **Châteaux,
+Guinguettes, Faune, Flore, Vignobles, Territoires et Personnages**.
 
 | Route                                        | Rôle                                       |
 | -------------------------------------------- | ------------------------------------------ |
@@ -331,6 +331,11 @@ const response = await codex.entries.list("faune");
 Le cœur du SDK est indépendant de React et Next.js. Il est compatible avec les
 environnements Expo/React Native qui fournissent les standards web nécessaires.
 Les types sont générés depuis OpenAPI.
+
+La V1 fournit aux entrées Château quatre URL HTTPS absolues obligatoires dans
+`attributes.illustrations` (`aube`, `jour`, `soir`, `nuit`).
+`media.imageUrl` reste l’alias exact de l’illustration `jour`. Le SDK transporte
+ce contrat sans réécriture, cache ou rendu.
 
 ```bash
 pnpm sdk:generate

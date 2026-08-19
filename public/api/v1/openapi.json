@@ -1053,23 +1053,36 @@
             },
             "ChateauIllustrations": {
                 "type": "object",
+                "description": "Les quatre ambiances illustrées du Château, publiées sous forme d’URL HTTPS absolues.",
                 "required": ["aube", "jour", "soir", "nuit"],
                 "properties": {
                     "aube": {
                         "type": "string",
-                        "pattern": "^/illustrations/chateaux/"
+                        "format": "uri",
+                        "pattern": "^https://",
+                        "description": "Illustration du Château dans l’ambiance de l’aube.",
+                        "example": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/aube@2x.png"
                     },
                     "jour": {
                         "type": "string",
-                        "pattern": "^/illustrations/chateaux/"
+                        "format": "uri",
+                        "pattern": "^https://",
+                        "description": "Illustration du Château en journée, reprise à l’identique dans media.imageUrl.",
+                        "example": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/jour@2x.png"
                     },
                     "soir": {
                         "type": "string",
-                        "pattern": "^/illustrations/chateaux/"
+                        "format": "uri",
+                        "pattern": "^https://",
+                        "description": "Illustration du Château dans l’ambiance du soir.",
+                        "example": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/soir@2x.png"
                     },
                     "nuit": {
                         "type": "string",
-                        "pattern": "^/illustrations/chateaux/"
+                        "format": "uri",
+                        "pattern": "^https://",
+                        "description": "Illustration du Château dans l’ambiance de la nuit.",
+                        "example": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/nuit@2x.png"
                     }
                 },
                 "additionalProperties": false
@@ -1816,7 +1829,7 @@
                     "summary": "Château de brique et de pierre de la fin du XVᵉ siècle.",
                     "media": {
                         "emoji": "🏰",
-                        "imageUrl": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/jourx.png"
+                        "imageUrl": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/jour@2x.png"
                     },
                     "attributes": {
                         "autresNoms": ["Château Anne de Beaujeu"],
@@ -1828,10 +1841,10 @@
                         },
                         "riviere": "Loire",
                         "illustrations": {
-                            "aube": "/illustrations/chateaux/chateau-de-gien/aube@2x.png",
-                            "jour": "/illustrations/chateaux/chateau-de-gien/jour@2x.png",
-                            "soir": "/illustrations/chateaux/chateau-de-gien/soir@2x.png",
-                            "nuit": "/illustrations/chateaux/chateau-de-gien/nuit@2x.png"
+                            "aube": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/aube@2x.png",
+                            "jour": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/jour@2x.png",
+                            "soir": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/soir@2x.png",
+                            "nuit": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/nuit@2x.png"
                         },
                         "meta": {
                             "architecture": [

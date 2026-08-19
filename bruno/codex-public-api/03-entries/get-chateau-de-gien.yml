@@ -32,6 +32,12 @@ runtime:
                   expect(entry.media.emoji).to.be.a("string");
                   expect(entry.media.imageUrl === null || /^https?:\/\//.test(entry.media.imageUrl)).to.equal(true);
                   expect(entry.attributes).to.be.an("object");
+                  const illustrations = entry.attributes.illustrations;
+                  expect(illustrations).to.be.an("object");
+                  ["aube", "jour", "soir", "nuit"].forEach((ambiance) =>
+                      expect(illustrations[ambiance]).to.match(/^https:\/\//)
+                  );
+                  expect(entry.media.imageUrl).to.equal(illustrations.jour);
                   expect(res.body.links.self).to.equal(`/api/v1/indexes/${index}/entries/${slug}`);
                   expect(res.body.links.index).to.equal(`/api/v1/indexes/${index}`);
                   expect(res.body.links.collection).to.equal(`/api/v1/indexes/${index}/entries`);

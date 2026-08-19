@@ -1,6 +1,7 @@
 import { describe, expectTypeOf, it } from "vitest";
 import type {
     ChateauAttributes,
+    ChateauIllustrations,
     FauneAttributes,
     FloreAttributes,
     GuinguetteAttributes,
@@ -46,5 +47,17 @@ describe("public SDK types", () => {
         expectTypeOf<
             Extract<PublicEntry, { index: "vignobles" }>["attributes"]
         >().toEqualTypeOf<VignobleAttributes>();
+    });
+
+    it("requires the four Chateau illustration URLs", () => {
+        expectTypeOf<ChateauIllustrations>().toEqualTypeOf<{
+            aube: string;
+            jour: string;
+            soir: string;
+            nuit: string;
+        }>();
+        expectTypeOf<
+            ChateauAttributes["illustrations"]
+        >().toEqualTypeOf<ChateauIllustrations>();
     });
 });

@@ -186,6 +186,35 @@ describe("public OpenAPI contract", () => {
         }
     });
 
+    it("requires four documented HTTPS Chateau illustrations", () => {
+        const schema = contract.components.schemas.ChateauIllustrations;
+        const properties = asObject(schema.properties);
+
+        expect(schema.required).toEqual(["aube", "jour", "soir", "nuit"]);
+        expect(schema.additionalProperties).toBe(false);
+
+        for (const ambiance of ["aube", "jour", "soir", "nuit"]) {
+            const illustration = asObject(properties[ambiance]);
+            expect(illustration.type).toBe("string");
+            expect(illustration.format).toBe("uri");
+            expect(illustration.pattern).toBe("^https://");
+            expect(illustration.description).toBeTypeOf("string");
+            expect(illustration.example).toMatch(
+                new RegExp(
+                    `^https://codex\\.loireridezen\\.bike/illustrations/chateaux/.+/${ambiance}@2x\\.png$`,
+                ),
+            );
+        }
+
+        const example = asObject(
+            contract.components.schemas.ChateauEntry.example,
+        );
+        const media = asObject(example.media);
+        const attributes = asObject(example.attributes);
+        const illustrations = asObject(attributes.illustrations);
+        expect(media.imageUrl).toBe(illustrations.jour);
+    });
+
     it("documents JSON successes and Problem Details errors", () => {
         for (const path of Object.keys(expectedOperations)) {
             const responses = contract.paths[path].get.responses ?? {};

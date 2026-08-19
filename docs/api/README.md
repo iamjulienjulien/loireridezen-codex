@@ -355,8 +355,8 @@ Les variantes actuellement publiées sont :
 
 - `faune` : taxonomie, identification, conservation, rareté et milieu ;
 - `flore` : catégorie, taxonomie, statut, floraison, rareté et milieu ;
-- `chateaux` : localisation, coordonnées, époque, protection, renommée et
-  visite.
+- `chateaux` : localisation, coordonnées, quatre illustrations d’ambiance,
+  époque, protection, renommée et visite ;
 - `guinguettes` : territoire, ambiance, saison, services, accès et liens ;
 - `territoires` : limites, paysages, repères, cours d’eau et identité ;
 - `personnages` : autres noms, rôles, catégorie éditoriale et tags ;
@@ -369,6 +369,11 @@ pour les propriétés et contraintes exhaustives.
 ### Médias
 
 `emoji` est une représentation textuelle. `imageUrl` peut être `null`.
+
+Pour un Château, `attributes.illustrations` contient obligatoirement `aube`,
+`jour`, `soir` et `nuit`. Chacune de ces valeurs est une URL HTTPS absolue.
+`media.imageUrl` n’est alors jamais `null` et reste strictement identique à
+`attributes.illustrations.jour`.
 
 > **Attention — illustrations protégées.** Une URL présente n’accorde aucun
 > droit de reproduction. Vérifiez `meta.license.media` et demandez une

@@ -33,6 +33,9 @@ const media = (emoji: string, customEmoji?: string) => ({
     imageUrl: customEmoji ? `${getSiteUrl()}${customEmoji}` : null,
 });
 
+const publicImageUrl = (path: string) =>
+    new URL(path, `${getSiteUrl()}/`).toString();
+
 export const publicEntryId = (index: IndexSlug, slug: string) =>
     `${index}:${slug}`;
 
@@ -81,7 +84,22 @@ export const adaptFlore: EntryAdapter<ValidatedFloreEntry> = (entry) => {
 };
 
 export const adaptChateau: EntryAdapter<ValidatedChateauEntry> = (entry) => {
-    const { slug, nom, sousTitre, resume, autresNoms, ...attributes } = entry;
+    const {
+        slug,
+        nom,
+        sousTitre,
+        resume,
+        autresNoms,
+        illustrations: internalIllustrations,
+        ...attributes
+    } = entry;
+    const illustrations = {
+        aube: publicImageUrl(internalIllustrations.aube),
+        jour: publicImageUrl(internalIllustrations.jour),
+        soir: publicImageUrl(internalIllustrations.soir),
+        nuit: publicImageUrl(internalIllustrations.nuit),
+    };
+
     return {
         id: publicEntryId("chateaux", slug),
         index: "chateaux",
@@ -89,8 +107,8 @@ export const adaptChateau: EntryAdapter<ValidatedChateauEntry> = (entry) => {
         name: nom,
         subtitle: sousTitre,
         summary: resume ?? null,
-        media: media("🏰", entry.illustrations.jour),
-        attributes: { autresNoms, ...attributes },
+        media: { emoji: "🏰", imageUrl: illustrations.jour },
+        attributes: { autresNoms, illustrations, ...attributes },
     };
 };
 

@@ -28,6 +28,29 @@ import {
 process.env.SITE_URL = "https://example.test/";
 
 describe("public entry adapters", () => {
+    it("publishes four absolute Chateau illustrations with Jour as the media alias", () => {
+        const entry = adaptChateau(
+            chateauEntrySchema.parse(chateauData.chateaux[0]),
+        );
+        const illustrations = entry.attributes.illustrations as Record<
+            "aube" | "jour" | "soir" | "nuit",
+            string
+        >;
+
+        expect(Object.keys(illustrations)).toEqual([
+            "aube",
+            "jour",
+            "soir",
+            "nuit",
+        ]);
+        for (const imageUrl of Object.values(illustrations)) {
+            expect(imageUrl).toMatch(
+                /^https:\/\/example\.test\/illustrations\/chateaux\//,
+            );
+        }
+        expect(entry.media.imageUrl).toBe(illustrations.jour);
+    });
+
     it.each([
         [
             "faune",

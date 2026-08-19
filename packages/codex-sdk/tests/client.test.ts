@@ -70,6 +70,40 @@ describe("createCodexClient", () => {
         expect(received.get("accept")).toBe("application/ld+json");
     });
 
+    it("transports Chateau illustration URLs without rewriting them", async () => {
+        const illustrations = {
+            aube: "https://cdn.example.test/chateau/aube.png",
+            jour: "https://cdn.example.test/chateau/jour.png",
+            soir: "https://cdn.example.test/chateau/soir.png",
+            nuit: "https://cdn.example.test/chateau/nuit.png",
+        };
+        const responseBody = {
+            apiVersion: "1",
+            data: {
+                index: "chateaux",
+                media: { emoji: "🏰", imageUrl: illustrations.jour },
+                attributes: { illustrations },
+            },
+        };
+        const client = createCodexClient({
+            fetch: async () => jsonResponse(responseBody),
+            timeoutMs: 0,
+        });
+
+        const response = await client.entries.get(
+            "chateaux",
+            "chateau-de-gien",
+        );
+
+        expect(response).toEqual(responseBody);
+        expect(response.data.index).toBe("chateaux");
+        if (response.data.index !== "chateaux") {
+            throw new Error("Expected a Chateau entry.");
+        }
+        expect(response.data.attributes.illustrations).toEqual(illustrations);
+        expect(response.data.media.imageUrl).toBe(illustrations.jour);
+    });
+
     it("turns Problem Details responses into CodexApiError", async () => {
         const problem = {
             type: "https://example.test/problems/not-found",

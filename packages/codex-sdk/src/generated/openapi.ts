@@ -300,10 +300,31 @@ export interface components {
             unesco: boolean;
             note?: string;
         };
+        /** @description Les quatre ambiances illustrées du Château, publiées sous forme d’URL HTTPS absolues. */
         ChateauIllustrations: {
+            /**
+             * Format: uri
+             * @description Illustration du Château dans l’ambiance de l’aube.
+             * @example https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/aube@2x.png
+             */
             aube: string;
+            /**
+             * Format: uri
+             * @description Illustration du Château en journée, reprise à l’identique dans media.imageUrl.
+             * @example https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/jour@2x.png
+             */
             jour: string;
+            /**
+             * Format: uri
+             * @description Illustration du Château dans l’ambiance du soir.
+             * @example https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/soir@2x.png
+             */
             soir: string;
+            /**
+             * Format: uri
+             * @description Illustration du Château dans l’ambiance de la nuit.
+             * @example https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/nuit@2x.png
+             */
             nuit: string;
         };
         ChateauMeta: {
@@ -537,7 +558,7 @@ export interface components {
          *       "summary": "Château de brique et de pierre de la fin du XVᵉ siècle.",
          *       "media": {
          *         "emoji": "🏰",
-         *         "imageUrl": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/jourx.png"
+         *         "imageUrl": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/jour@2x.png"
          *       },
          *       "attributes": {
          *         "autresNoms": [
@@ -551,10 +572,10 @@ export interface components {
          *         },
          *         "riviere": "Loire",
          *         "illustrations": {
-         *           "aube": "/illustrations/chateaux/chateau-de-gien/aube@2x.png",
-         *           "jour": "/illustrations/chateaux/chateau-de-gien/jour@2x.png",
-         *           "soir": "/illustrations/chateaux/chateau-de-gien/soir@2x.png",
-         *           "nuit": "/illustrations/chateaux/chateau-de-gien/nuit@2x.png"
+         *           "aube": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/aube@2x.png",
+         *           "jour": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/jour@2x.png",
+         *           "soir": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/soir@2x.png",
+         *           "nuit": "https://codex.loireridezen.bike/illustrations/chateaux/chateau-de-gien/nuit@2x.png"
          *         },
          *         "meta": {
          *           "architecture": [
